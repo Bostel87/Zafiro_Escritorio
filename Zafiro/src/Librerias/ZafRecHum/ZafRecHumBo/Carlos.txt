@@ -1,0 +1,80 @@
+﻿
+CONTROL DE VERSIONES:
+=====================
+
+Tbm_comsecBO v1.0: (Carlos Lainez- 24/03/2011)
+----
+Objeto se encarga de manejar las transacciones del bean ZafRecHum01Bean a la Base de Datos en un marco de conexión.
+
+
+Tbm_tipconBO v1.0: (Carlos Lainez- 29/03/2011)
+----
+Objeto se encarga de manejar las transacciones del bean ZafRecHum02Bean a la Base de Datos en un marco de conexión.
+
+
+Tbm_traBO v1.0: (Carlos Lainez- 01/04/2011)
+----
+Objeto se encarga de manejar las transacciones del bean ZafRecHum03Bean a la Base de Datos en un marco de conexión.
+
+
+Tbm_tipfamconBO v1.0: (Carlos Lainez- 15/04/2011)
+----
+Objeto se encarga de manejar las transacciones del bean ZafRecHum04Bean a la Base de Datos en un marco de conexión.
+
+
+Tbm_traempBO v1.0: (Carlos Lainez- 17/06/2011)
+----
+Objeto se encarga de manejar las transacciones del bean ZafRecHum05Bean a la Base de Datos en un marco de conexión.
+
+
+Tbm_hortraBO v1.0: (Roberto Flores - xx/xx/xxxx)
+----
+Objeto se encarga de manejar las transacciones del bean ZafRecHum06Bean a la Base de Datos en un marco de conexión.
+
+
+Tbm_callabBO v1.0: (Roberto Flores - xx/xx/xxxx)
+----
+Objeto se encarga de manejar las transacciones del bean ZafRecHum17Bean y ZafRecHum17Bean a la Base de Datos en un marco de conexión.
+
+
+Tbm_carlabBO v1.0: (Roberto Flores - 15/11/2011)
+----
+Objeto se encarga de manejar las transacciones del bean ZafRecHum21Bean a la Base de Datos en un marco de conexión.
+
+
+Tbm_depBO v1.0: (Roberto Flores - 21/11/2011)
+----
+Objeto se encarga de manejar las transacciones del bean ZafRecHum23Bean a la Base de Datos en un marco de conexión.
+
+
+Tbm_conasitraBO v1.0: (Roberto Flores - 26/12/2011)
+----
+Objeto se encarga de manejar las transacciones relacionadas al control de asistencias de trabajadores a la Base de Datos en un marco de conexión.
+
+
+Tbm_MotHorSupExtBO v1.0: (Roberto Flores - 26/03/2012)
+----
+Objeto se encarga de manejar las transacciones relacionadas a los motivos de horas suplementarias/extraordinarias a la Base de Datos en un marco de conexión.
+
+
+Tbm_traempBO v1.0: (Tony Sanginez - 21/09/2015)
+-----
+Aumento de método que retorna un string.
+
+
+Tbm_traBO v1.2: (Tony Sanginez - 11/02/2016)
+------
+Se agrego objeto zafParSis en llamado de método grabar.
+
+
+Tbm_traempBO v1.1: (Christian Mateo - 19/01/2019)
+-----
+
+Se agrega metodo actualizarTraEmpCodHor que envia la conexion al metodo y lanza una exception en caso de fallo o error al metodo que hace la llamada.
+
+
+Tbm_traBO v1.3: (Christian Mateo - 19/01/2019)
+-----
+
+Se agrega metodo grabarTra que envia la conexion principal y la secundaria al metodo y lanza una exception en caso de fallo o error al metodo que hace la llamada.
+

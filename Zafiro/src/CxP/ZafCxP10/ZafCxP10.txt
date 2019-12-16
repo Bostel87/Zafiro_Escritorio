@@ -1,0 +1,14 @@
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Ingrid Lino - 17/Nov/2011)
+-----
+Nuevo programa que permite asociar-agrupar documentos de T/C para generar uno solo.
+
+v0.1.1: (Ingrid Lino - 08/Dic/2011)
+-----
+Se colocan las cuentas contables correctas para los diarios generados automaticamente.
+
+v0.1.3: (Ingrid Lino - 29/Feb/2012)
+-----
+Se configuran las cuentas contables para todas las empresas.

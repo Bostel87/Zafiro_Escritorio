@@ -1,0 +1,15 @@
+Pendientes:
+1) Agregar filtro por local.
+2) 
+3) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 02/Sep/2008)
+----
+Clase nueva.
+
+v0.1.1: (Ingrid Lino - 09/May/2011)
+----
+Se adicionó columna de "Número total de postergaciones" aprobadas de la factura del cliente, dependiendo del co_reg.

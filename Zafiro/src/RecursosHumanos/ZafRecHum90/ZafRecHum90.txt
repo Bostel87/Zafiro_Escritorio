@@ -1,0 +1,21 @@
+﻿Pendientes:
+1) Queda quemado Código de empresa
+2) Queda quemado conexion cosenco y grupo.
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Tony Sanginez - 27/Jul/2017)
+----
+Clase nueva "Traslado de empleados...".
+Permite transladar un empleado de una empresa a otra, este inactivo o activo.
+
+
+v0.2: (Tony Sanginez - 14/Sep/2017)
+-----
+Se agrega para que envie correos al momento de realizar algun traslado o activación de empleados.
+
+
+v0.3: (Tony Sanginez - 06/Nov/2017)
+-----
+Se modifica el campo de actualización tx_tipmodsue para que al trasladar un empleado se le pueda ingresar el sueldo.

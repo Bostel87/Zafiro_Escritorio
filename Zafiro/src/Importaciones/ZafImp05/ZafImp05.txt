@@ -1,0 +1,32 @@
+﻿Pendientes:
+1)
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Ingrid Lino - 22/Ago/2013)
+----
+Nuevo programa que muestra el Listado de Ingresos por Importación.
+
+
+v0.1.1: (José Marín - 23/Oct/2013)
+-----
+Se agrego la columna Núm.Doc. del campo ne_numDoc.
+
+
+v0.1.2: (Rosa Zambrano - 26/Abr/2016)
+-----
+En la función cargarDetReg() se agrego en el query que se presenten los documentos INBOCL.
+
+
+v0.1.3: (Rosa Zambrano - 12/Sep/2017)
+-----
+Modificaciones para Proyecto de Costos. 
+Se agrega columna para ver documentos de ajustes de inventario (importaciones).
+Se agrega columna con dias pendientes de pedido sin cerrar.
+
+
+v0.1.4: (Rosa Zambrano - 23/May/2018)
+-----
+Modificaciones para cambios de exportador de cabecera a detalle.
+

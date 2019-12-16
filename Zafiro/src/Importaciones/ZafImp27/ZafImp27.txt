@@ -1,0 +1,18 @@
+﻿Pendientes:
+1) Dividir el programa en los otros programas de autorización de bancos y programa de autorización de pagos.
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Ingrid Lino - 09/Ago/2017)
+---
+Nuevo programa que permite conceder vistos buenos a los usuarios para los diferentes tipos de documentos (importaciones/compras locales)
+
+v0.1.1: (Ingrid Lino - 13/Sep/2017)
+----
+Se añade la actualización de item según item creado
+
+v0.1.2: (Ingrid Lino - 14/Sep/2017)
+----
+Se realizan validaciones de botón de visto bueno según visto bueno previo y de acceso a visto bueno según usuario.

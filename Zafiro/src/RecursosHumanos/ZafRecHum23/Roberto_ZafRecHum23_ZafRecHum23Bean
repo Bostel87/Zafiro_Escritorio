@@ -1,0 +1,13 @@
+
+CONTROL DE VERSIONES:
+=====================
+
+ZafRecHum23 v1.0: (Roberto Flores - 21/11/2011)
+----
+Se creo la Pantalla de Mantenimiento para los Departamentos
+siendo manejado por el bean ZafRecHum23Bean
+
+
+ZafRecHum23Bean v1.0: (Roberto Flores - 21/11/2011)
+----
+Se creo bean manejador de la Pantalla de Mantenimiento para los Departamentos ZafRecHum23

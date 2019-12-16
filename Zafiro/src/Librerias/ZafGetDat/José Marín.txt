@@ -1,0 +1,16 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (José Marín - 07/Jul/2017)
+----
+Clase nueva "Obtiene datos"
+ * Datos de Clientes 
+ * Datos de Items
+
+
+
+ 

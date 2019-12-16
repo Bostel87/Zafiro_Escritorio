@@ -1,0 +1,62 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 31/Jul/2009)
+----
+Clase nueva.
+
+
+v0.2: (Eddye Lino - 06/Oct/2009)
+-----
+Se modificaron los métodos: 
+   1) configurarTblDat()
+   2) cargarDetReg()
+   3) ZafMouMotAda.mouseMoved(java.awt.event.MouseEvent evt)
+En dichos métodos se hizo cambios para que el mismo programa fuera llamado desde otro lado.
+Ahora también es llamado desde "co_mnu=2184(Listado de egresos físicos de mercadería de Bodega...)".
+
+
+v0.3: (Eddye Lino - 17/Mar/2010)
+-----
+Se modificó el método: 
+   1) invocarClase(String clase)
+En dicho método se hizo cambios para que en lugar de llamar al método "cargarDocumento" se llamara al
+constructor "ZafCom20(ZafParSis obj, Integer codigoEmpresa, Integer codigoLocal, Integer codigoTipoDocumento, Integer codigoDocumento)".
+
+
+v0.4: (Eddye Lino - 01/Dic/2010)
+-----
+Se modificaron los métodos: 
+   1) tblDatKeyPressed(java.awt.event.KeyEvent evt)
+   2) tblDatMouseClicked(java.awt.event.MouseEvent evt)
+En dichos método se agregó la siguiente línea:
+   case 172: //TRINRB: Transferencias de inventario (Reposición desde otras bodegas).
+
+
+v0.5: (Erik Flores - 15/Oct/2012)
+-----
+Se agrega columna con la dirección del destinatario para el reporte de listado de egresos de mercaderia de bodega. ap. Luis Espinoza.
+
+
+v0.6: (Eddye Lino - 02/Sep/2015)
+-----
+Se mejoró la codificación de acuerdo a las sugerencias de NetBeans. 
+
+
+v0.7: (Eddye Lino - 02/Oct/2015)
+-----
+Se modificó el método: 
+   1) tblDatKeyPressed(java.awt.event.KeyEvent evt)
+Se reemplazó "evt.setKeyCode(0);" por "evt.consume();" porque a partir de "Java 7" ya no consumía el ENTER.
+
+
+v0.8: (Rosa Zambrano - 23/Mar/2017)
+-----
+Se realizan modificaciones en los querys para que se adapten al nuevo esquema de transferencias de inventario.
+Se agrega la columna de cantidad en tránsito, pendiente.
+Se habilita para que presente las transferencias relacionadas a la OD.
+

@@ -1,0 +1,27 @@
+﻿
+CONTROL DE VERSIONES:
+=====================
+
+Mail v1.0: (Roberto Flores - 19/Ago/2013)
+----
+Clase nueva para el envío de correos.
+
+v1.01: (Roberto Flores - 01/Oct/2013)
+----
+Se realiza cambio del directorio donde se toman las cuentas para las provisiones.
+
+v1.02: (Roberto Flores - 10/Oct/2013)
+----
+Se agrega el método: directorioArchivo(FileNameExtensionFilter objFilNamExt) para poder presentar objeto JFileChooser desde cualquier pantalla que invoque el método.
+
+v1.03: (Roberto Flores - 19/Mar/2014)
+----
+Se agrega método ZafVenAnlTra para realizar la anulación de un usuario mediante la cédula de identidad.
+
+v1.04: (Tony Sanginez - 04/Ene/2016)
+----
+Se agrega validación para empresa Cosenco.
+
+v1.05: (Rosa Zambrano - 30/Jul/2019)
+----
+Se cambia la clase mail por la libreria ZafNotCorEle para envio de correos.

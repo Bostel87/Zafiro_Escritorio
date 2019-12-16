@@ -1,0 +1,13 @@
+
+CONTROL DE VERSIONES:
+=====================
+
+ZafRecHum04 v1.0: (Carlos Lainez- 15/04/2011)
+----
+Se creo la Pantalla de Mantenimiento para los Tipos de Familiares y Contactos
+siendo manejado por el bean ZafRecHum04Bean
+
+
+ZafRecHum04Bean v1.0: (Carlos Lainez- 15/04/2011)
+----
+Se creo bean manejador de la Pantalla de Mantenimiento para los Tipos de Familiares y Contactos ZafRecHum04

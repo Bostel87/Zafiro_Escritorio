@@ -1,0 +1,9 @@
+ver 1.0 javier ayapata (16-Marzo-2007)
+ se crea clase para poder obtener un listado de inventario con terminales S, donde se pueda visualizar 
+ los item que tangan stock y no tenga precio.
+ 
+ver 1.2 javier ayapata (30-Marzo-2007)
+  se corrigue  query para que valide con el stock de la bodega del grupo
+
+ver 1.3 javier ayapata (02-Mayo-2007)
+  se corrigue query para que muestre el mismo resultado que la ventana de items si precio.

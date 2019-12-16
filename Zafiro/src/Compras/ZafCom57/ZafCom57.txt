@@ -1,0 +1,10 @@
+Pendientes:
+1)
+2)
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Ingrid Lino - 07/Oct/2009)
+----
+Programa que presenta información de seguimiento de reposición.(Grupo).

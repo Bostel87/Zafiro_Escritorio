@@ -1,0 +1,277 @@
+﻿CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Ingrid Lino - 16/Jun/2010)
+----
+Nuevo programa que presenta la información de la retenciones emitidas por la empresa.
+
+v0.1.1: (Ingrid Lino - 21/Jun/2010)
+----
+Se adicionó código para exportar a Excel y se formateo los campos(algunos) con ceros a la izquierda.
+
+v0.2: (Ingrid Lino - 09/Jul/2010)
+----
+Se adicionó la opción de exportar a excel y se cambió formato de exportación a excel de campos que representan valores.
+
+v0.3: (Ingrid Lino - 16/Jul/2010)
+----
+Se cambió el query porque la información se estaba presentando de acuerdo a la orden de compra, y debia ser de acuerdo a la factura que nos envia el proveedor,
+asi se presenta por cada porcentaje de retencion del 1, 2, 8,10% un solo registro(la suma de todas las ordenes de compra segun el tipo de retencion) y no varias.
+
+    antes:     Orden de compra  #555      1%     $ 5.20
+               Orden de compra  #560      1%     $ 3.14  ect
+
+    ahora:
+               Retencion   # 20   1%  $8.34
+
+v0.4: (Ingrid Lino - 16/Jul/2010)
+----
+Se adicionaron campos en el query.
+
+v0.4.1: (Ingrid Lino - 20/Sep/2010)
+----
+Se cambiaron algunos formatos de celdas de los datos que se presentan en excel.
+
+v0.4.2: (Ingrid Lino - 14/Oct/2010)
+----
+El campo "tx_codSRI" antes se tomaba de tbm_pagMovInv y debia tomarselo de tbm_detPag
+
+v0.4.3: (Ingrid Lino - 30/Nov/2010)
+----
+Antes se tomaba campos de tbm_cabmovinv ahora es de tbm_pagmovinv(campos de la factura del proveedor)
+
+v0.4.5: (Ingrid Lino - 07/Feb/2011)
+----
+Se colocó la suma en tabla de totales para la columna IVA.
+
+v0.4.8: (Ingrid Lino - 14/Mar/2011)
+----
+Se colocó validación para el campo Iva1 porque estaba presentando dato incorrecto.
+
+v0.4.9: (Ingrid Lino - 20/Jun/2011)
+----
+Se cambia formato de datos en formulario y en archivo .xml. Se adicionó código para reporte en xls para linux.
+
+v0.5: (Ingrid Lino - 06/Jul/2011)
+----
+Se adiciono query para informacion de PAGOS DE BIENES O SERVICIOS NO SUJETOS A RETENCION.
+
+v0.6: (Ingrid Lino - 21/Jul/2011)
+----
+Cambios varios solicitados por hector(iva 0 el valor en base imp. tarifa cero, sino en base imp. grabada)
+	si existen dos retenciones principales, aplicar al registro correcto. el valor del 312 estaba saliendo en el 310(ambos eran de la misma retencion, pero ponia el valor al primer registro encontrado)
+
+v1.0: (Ingrid Lino - 31/Jul/2013)
+----
+Se cambia el formato de acuerdo a nuevo esquema de Gamaret. Se cambia completamente el query de obtención de información según la explicación de Héctor.
+
+v1.1: (Ingrid Lino - 01/Ago/2013)
+----
+Se realizan cambios varios según verificación presencial con Héctor, para poder subir el archivo al Sistema Gamaret.
+
+v1.2: (Ingrid Lino - 01/Ago/2013)
+----
+ Se agregan documentos sin retencion pero S/N Iva
+
+v1.3: (Ingrid Lino - 05/Ago/2013)
+----
+Se coloca la base imponible o base cero si el código es diferente al 312.
+
+v1.4: (Ingrid Lino - 07/Ago/2013)
+----
+Habian unos valores con valores nulos y al realizar unos calculos generaba una excepcion.
+Se reversa a la versión anterior. Alex le hizo cambios a este programa pero debio hacer el cambio al ZafCon25. Debido a ese cambio no genera correctamente los datos
+
+v1.5: (Ingrid Lino - 15/Nov/2013)
+----
+En el primer query se adiciona los datos de serie y autorizacion de la RFP1, se estaban presentando los datos de la factura de proveedor.
+
+v1.6: (Ingrid Lino - 08/Ene/2015)
+----
+Se agrega el tipo de documenteo RFP1E(230)
+
+v1.7: (Dennis Betancourt - 12/Ene/2015)
+----
+En el query que trae el Listado de retenciones emitidas, se cambio una condicion porque ahora, si el CodTipDoc = 230 (RFP1E) se va a buscar el numero de autorizacion en la tabla tbm_cabpag. Si es diferente a 230, va a seguir buscando en tbm_pagMovInv.
+
+v1.8: (Dennis Betancourt - 11/Jul/2015)
+----
+En el query que trae el Listado de retenciones emitidas, se agregaron los nuevos porcentajes de IVA: 10% y 20%.
+
+v1.9: (Dennis Betancourt - 11/Ago/2015)
+----
+En el query que trae el Listado de retenciones emitidas, se hizo un ajuste para que en las columnas 'Cod.Ret 1' y 'Cod.Ret. 2' aparezcan los codigos del SRI de la Retencion de IVA de 10% y 20%.
+
+v1.10: (Dennis Betancourt - 17/Ago/2015)
+-----
+En el query que trae el Listado de retenciones emitidas, se hizo un ajuste para que en las columnas 'Cod.RetF', 'Val.RetF' y 'Bas.Ret.' aparezcan valores de Retencion en la fuente de 1% cuando los Documentos por Pagar respectivos no tienen IVA.
+
+v1.11: (Dennis Betancourt - 28/Ago/2015)
+-----
+1) En el query que trae el Listado de retenciones emitidas, se hizo un ajuste para que en la columna 'Bas.Ret2' aparezcan valores de Retencion en la fuente de 2% cuando haya documentos que tengan esta retencion.
+2) En el query que trae el Listado de retenciones emitidas, se hizo un ajuste para que en las columnas 'Cod.RetF' y 'Bas.Ret.' aparezcan valores de Retencion en la fuente de 0% cuando haya documentos que tengan esta retencion.
+
+v1.12: (Dennis Betancourt - 12/Nov/2015)
+-----
+En el query que trae el Listado de retenciones emitidas, se hizo un ajuste para que en las columnas 'Cod.RetF', 'Val.RetF' y 'Bas.Ret.' aparezcan valores de Retencion en la fuente de 1% SIEMPRE Y CUANDO no haya valor en la col. "Cod.Ret.Fte.3". Esto se realizo para no duplicar informacion en el listado.
+
+v1.13: (Dennis Betancourt - 26/May/2016)
+-----
+Se busco codigo quemado de IVA (0.12) y se modifico para que el valor sea tomado como parametro del objeto ZafParSis y del campo tbm_cabmovinv.nd_poriva.
+
+v1.14: (Dennis Betancourt - 21/Oct/2016)
+-----
+1) Se adiciona la columna "Val.Com.Sol." (Valor de Comprensacion Solidaria).
+2) Se realizan calculos solicitados por Contabilidad para la columna "Cod.Pag1".
+3) Para la columna "Cod.Iva" se cambia el valor 2 por el 3.
+4) Si val_col_INT_TBL_DAT_IVA <> 0, val_col_INT_TBL_DAT_BAS_TAR_CER <> 0 y val_col_INT_TBL_DAT_COD_RETF = 332, significa que la col. INT_TBL_DAT_BAS_TAR_CER debe estar en blanco, y ese valor debe estar en la col. INT_TBL_DAT_BAS_IMP_GRB.
+
+v1.15: (Dennis Betancourt - 26/Oct/2016)
+-----
+En la funcion cargarDetReg(), en el 2do. query principal titulado "NO RETENCION, S/N IVA", en la columna "Cod.Pag1" se agrego el mismo calculo de la version 1.14.
+
+v1.16: (Dennis Betancourt - 26/Oct/2016)
+-----
+En la funcion cargarDetReg(), para la columna "Cod.RetF" con cod. 332, se va a verificar si el documento (Ej: OPADM) tiene en el detalle items con IVA y sin IVA. Si es asi, el valor de las bases correspondientes son colocadas en las columnas "Bas.Imp.Gra." y "Bas.Tar.0".
+
+v1.17: (Dennis Betancourt - 28/Oct/2016)
+-----
+En la funcion cargarDetReg(), para la columna "Cod.RetF" se verifica si val_col_Cod.RetF <> "" y el valor no es numerico, entonces se pone "" en dicha columna.
+
+v1.18: (Dennis Betancourt - 14/Nov/2016)
+-----
+En el JTable de totales, se agregaron las columnas "Bas.Imp.Gra." y "Bas.Tar.0".
+
+v1.19: (Dennis Betancourt - 22/Nov/2016)
+-----
+Para la columna "Cod.Iva" se pone el valor 2 (IVA 12%) o 3 (IVA 14%) dependiendo de la fecha de emision de la Orden de compra o del Documento por pagar tomando como referencia el 01/Jun/2016 que fue cuando vario el IVA.
+
+v1.20: (Dennis Betancourt - 24/Nov/2016)
+-----
+En la funcion cargarDetReg(), se quito una condicion (CodRetFte = "332") al momento de verificar si el documento (Ej: OPADM) tiene en el detalle items con IVA y sin IVA. Si es asi, el valor de las bases correspondientes son colocadas en las columnas "Bas.Imp.Gra." y "Bas.Tar.0".
+Antes: if ( !bdeValIva.equals(new BigDecimal("0.00")) && !bdeBasTarCer.equals(new BigDecimal("0.00")) && strCodRetFte.equals("332") )
+Ahora: if ( !bdeValIva.equals(new BigDecimal("0.00")) && !bdeBasTarCer.equals(new BigDecimal("0.00")) )
+
+v1.21: (Dennis Betancourt - 29/Nov/2016)
+-----
+En la funcion cargarDetReg(), para la columna "Cod.RetF" con cod. 322, se cambio para que los valores de las columnas "Sub" y "Iva" sean los que se muestren en las columnas "Bas.Imp.Gra." y "Iva" (esta ultima columna esta ubicada a la derecha de la columna "Bas.Tar.0").
+
+v1.22: (Dennis Betancourt - 30/Nov/2016)
+-----
+En la funcion cargarDetReg(), para la columna "Cod.RetF" con cod. 322, se agrego para poner valores en las columnas "Bas.Ret2" y "Cod.RetF2".
+
+v1.23: (Dennis Betancourt - 30/Nov/2016)
+-----
+En la funcion cargarDetReg(), para el proveedor Conecel se procedio a corregir el query para que no salgan filas duplicadas en el JTable (Casos de duplicidad en Tuval en Feb/2015 y Jun/2015 para este proveedor).
+
+v1.24: (Dennis Betancourt - 02/Dic/2016)
+-----
+En la funcion cargarDetReg(), cuando la columna "Cod.RetF" = "" se tomara en cuenta los Documentos por pagar para realizar el calculo de Bas.Imp.Gra. y Bas.Tar.Cero y colocar dichos valores en las columnas correspondientes.
+
+v1.25: (Dennis Betancourt - 06/Dic/2016)
+-----
+En la funcion cargarDetReg(), cuando la columna "Cod.RetF" = "" tambien se toman en cuenta las Retenciones para realizar el calculo de Bas.Imp.Gra. y Bas.Tar.Cero y colocar dichos valores en las columnas correspondientes.
+
+v1.26: (Dennis Betancourt - 07/Dic/2016)
+-----
+En la funcion cargarDetReg(), cuando la columna "Cod.RetF" <> "322" se toman en cuenta todos los documentos para realizar el calculo de Bas.Imp.Gra. y Bas.Tar.Cero y colocar dichos valores en las columnas correspondientes.
+
+v1.27: (Dennis Betancourt - 09/Dic/2016)
+-----
+En la funcion cargarDetReg(), se quito la linea del "if (!strCodRetFte.equals("322"))" para que se tome en cuenta todos los documentos para realizar el calculo de Bas.Imp.Gra. y Bas.Tar.Cero y colocar dichos valores en las columnas correspondientes.
+
+v1.28: (Dennis Betancourt - 13/Dic/2016)
+-----
+En la funcion cargarDetReg(), se va a verificar si la FACCOM tiene asociada mas de una Factura de proveedor. Si tiene mas de una factura asociada, se mantiene el valor inicial del 1er. query; caso contrario se procede a realizar el calculo de Bas.Imp.Gra. y Bas.Tar.Cero y colocar dichos valores en las columnas correspondientes.
+
+v1.29: (Dennis Betancourt - 14/Dic/2016)
+-----
+1) En la funcion cargarDetReg(), cuando las columnas "Cod.RetF", "Cod.RetF2" y "Cod.RetF3" esten en blanco, se pone el valor de 332 en la col. "Cod.RetF" y se procede a poner en blanco ciertas columnas: Fec.Ret., Ser.Ret., Num.Ret. y Aut.Ret.
+2) Cuando se exportaba a Excel la informacion, los valores numericos de la columna "Val.Retf2" se mostraban en formato texto. Ahora ya se muestran en formato numerico.
+
+v1.30: (Dennis Betancourt - 15/Dic/2016)
+-----
+En la funcion cargarDetReg(), cuando las columnas "Cod.RetF", "Cod.RetF2" y "Cod.RetF3" esten en blanco, se hizo un ajuste al poner el valor de 332 en la col. "Cod.RetF" para tambien proceder a poner en blanco ciertas columnas: Fec.Ret., Ser.Ret., Num.Ret. y Aut.Ret.
+
+v1.31: (Dennis Betancourt - 23/Dic/2016)
+-----
+En la funcion cargarDetReg(), ademas de validar si las columnas "Cod.RetF", "Cod.RetF2" y "Cod.RetF3" estan en blanco, se agrego la condicion si la columna "Val.Ret1" esta en blanco. Si estas condiciones se cumplen, se pone el valor de 332 en la col. "Cod.RetF" y se procede a poner en blanco ciertas columnas: Fec.Ret., Ser.Ret., Num.Ret. y Aut.Ret.
+
+v1.32: (Dennis Betancourt - 28/Ene/2017)
+-----
+En la funcion cargarDetReg(), en la parte donde esta "if (blnFacPrvIgu1 == true)" al multiplicar "nd_can" se cambia el campo "nd_cosuni" por "nd_preuni".
+
+v1.33: (Dennis Betancourt - 31/Ene/2017)
+-----
+En la funcion cargarDetReg(), en la parte donde esta "if (blnFacPrvIgu1 == true)" se tomo en cuenta que, si tbm_detMovInv.st_ivaCom = 'N' entonces "nd_can * nd_preuni".  Caso contrario, "nd_can * nd_cosuni".
+
+v1.34: (Dennis Betancourt - 06/Feb/2017)
+-----
+1) En la funcion cargarDetReg(), en la parte donde esta "if (blnFacPrvIgu1 == true)" se volvio a dejar el calculo de "nd_can * nd_preuni".  Para dicho calculo no se considera "nd_cosuni".
+2) En la funcion cargarDetReg(), para calcular la Base Imponible, se cambio la forma de calcular el subtotal. Antes no se redondeaba por cada item del detalle sino que se redondeaba el valor de subtotal al final. Ahora, por cada item del detalle se redondea el total de cada linea.
+
+v1.35: (Tony Sanginez - 08/Feb/2017)
+-----
+Se modificó el Zafcon24_01 para que al exportar el xml con el codigo de rtf 332 no se muestren los siguientes campos: Fec.Ret, Ser.Ret, Num.Ret, Aut.Ret
+Se agregaron mejoras al funcionamiento del boton Consultar que no se visualizaba el prgSis ni la leyenda de lblSis.
+
+v1.36: (Tony Sanginez - 08/Feb/2017)
+-----
+Se agrego validación para los codigos de tarjetas de credito en ambos querys.
+
+1.37: (Tony Sanginez - 09/Feb/2017)
+-----
+Se agrego filtro para que no se muestren los documentos por pagar que no tengan facturas asociadas.
+
+v1.38: (Dennis Betancourt - 16/Feb/2017)
+-----
+1) Correccion de la version 1.19 (Dennis Betancourt - 22/Nov/2016). Para la columna "Cod.Iva" se pone el valor 2 (IVA 12%) o 3 (IVA 14%) dependiendo de la fecha de emision de la Orden de compra o del Documento por pagar tomando como referencia el 01/Jun/2016 que fue cuando vario el IVA.
+2) Correccion de la version 1.14: (Dennis Betancourt - 21/Oct/2016). Se corrige el valor mostrado en la columna "Val.Com.Sol." (Valor de Comprensacion Solidaria).
+
+1.39: (Tony Sanginez - 02/Mar/2017)
+-----
+Se modificó los datos con el codigo de rtf 332 no se muestren los siguientes campos: Fec.Ret, Ser.Ret, Num.Ret, Aut.Ret.
+
+v1.40: (Dennis Betancourt - 03/Mar/2017)
+-----
+Se corrigio para que en el JTable no aparezca duplicado el TipDoc RFP1E. Caso Ferro Torre, Tuval periodo Dic/2016, Retencion 674 aparecia 2 veces en el listado.
+
+v1.41: (Dennis Betancourt - 06/Mar/2017)
+-----
+Se corrigio para que en el JTable aparezca el valor correcto en las columnas "Bas.Imp.Gra." y "Iva". Caso Novacero, Dimulti periodo Ene/2016, Retencion 45: el valor de la col. "Iva" no concordaba con el valor de la col. "Iva1".
+
+v1.42: (Dennis Betancourt - 06/Mar/2017)
+-----
+Se quito la condicion "&& (intCodEmp == 2)" al momento de obtener los valores de las columnas "Cod.Iva" y "Val.Com.Sol.".
+
+v1.43: (Tony Sanginez - 07/Mar/2017)
+-----
+Se corrigio el filtro de busqueda por proveedor ya que no funcionaba de la manera correcta.
+
+v1.44: (Dennis Betancourt - 14/Mar/2017)
+-----
+Cuando se exportaba a Excel la informacion, los valores numericos de la columna "Val.Com.Sol." se mostraban en formato texto. Ahora se muestran en formato numerico.
+
+v1.45: (Tony Sanginez - 24/Mar/2017)
+-----
+Se agregó validación para que los campos de Bas.Imp.Gra." e Iva que antiguanmente no mostraban ningun valor, ahora ya los muestran.
+
+v1.46: (Tony Sanginez - 05/May/2017)
+-----
+Se agregó para que las notas de credito puedan ser visibles en el reporte.
+
+v1.47: (Tony Sanginez - 08/Jun/2017)
+-----
+Se agregaron validaciones del cambio del iva hasta el 31 de Mayo del 2017.
+
+v1.48: (Tony Sanginez - 12/Jun/2017)
+-----
+Se corrigio la validación de la fecha de tope del 31 de Mayo del 2017 ya que no aparecia el iva 14 en el mes de Junio.
+
+v1.49: (Tony Sanginez - 08/Sep/2017)
+-----
+Se cambia para que aparezca negativo las notas de credito y al exportar dejar como positivo.
+
+v1.50: (Dennis Betancourt - 22/May/2018)
+-----
+En el 2do. query grande etiquetado como "NO RETENCION, S/N IVA", se agrego la condicion "and b10.st_reg = 'A'", donde b10 es el alias de la tabla tbr_detRecDocCabMovInv.

@@ -1,0 +1,320 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Javier Ayapata - 01/May/2007)
+----
+Clase Nueva ZafConItm, Notificaciones al Abrir Zafiro.
+
+
+v0.2: (Javier Ayapata - 02/May/2007)
+-----
+Permite mostrar los items que no tienen precio de venta, se coloco que cuando sea miguel presente terminales S,  y cuando es Don Luigi presente Terminales I
+
+
+v0.3: (Javier Ayapata - 11/May/2007)
+-----
+Se agrega para que pueda colocar el precio del items.
+
+
+v0.4: (Javier Ayapata - 28/May/2007)
+-----
+Se cambia descripcion del precio del items.
+
+
+v0.5: (Javier Ayapata - 30/May/2008)
+-----
+Se agrega nueva clase para que muestre listado de facturas pendientes de impresion.
+
+
+v0.6: (Javier Ayapata - 04/Jun/2008)
+-----
+Se corrige el tiempo de presentacion de listado de facturas no impresas.
+
+
+v0.7: (Javier Ayapata - 05/Jun/2008)
+-----
+Se agrega que solo extraiga las facturas activas y no impresas.
+ 
+
+v0.8: (Javier Ayapata - 17/Jun/2008)
+-----
+Se agrega nueva ventana para listado de facturas de contado. y se cambia los tiempos para los usuarios en listado de facturas pendiente de impresion.
+
+
+v0.9: (Javier Ayapata - 24/Jun/2008)
+-----
+Se agrega para que le aparesca listado de facturas de contado a los vendedores.
+
+
+v1.0: (Javier Ayapata - 01/Ago/2008)
+-----
+Se reemplaza usuario 46 que es jruiz  por el usuario 63 gmorales.
+
+
+v1.1: (Javier Ayapata - 20/Ago/2008)
+-----
+Se agrega usuario 46 que es jruiz.
+
+
+v1.2: (Javier Ayapata - 17/Sep/2008)
+-----
+Se agrega nuevo control para ventas listado de cotizaciones ha recordar.
+
+
+v1.3: (Javier Ayapata - 18/Sep/2008)
+-----
+Se corrige query de cotizacion a recordar se filtra por usuario.
+
+
+v1.4: (Javier Ayapata - 24/Sep/2008)
+-----
+Se agrega controles para la solicitud de Devolucion.
+ 
+
+v1.5: (Javier Ayapata - 03/Mar/2009)
+-----
+Se agrega usuario de dimulti nueva persona en cobranzas.
+
+
+v1.6: (Javier Ayapata - 19/Mar/2009)
+-----
+Se agrega en el listado de ventas de contado si esta confirmado o no por bodega.
+
+
+v1.7: (Javier Ayapata - 24/Mar/2009)
+-----
+Se agrega en el listado de solicitudes pendiente de devolucion que aparesca todas las empresas.
+
+
+v1.8: (Javier Ayapata - 27/Abr/2009)
+-----
+Se agrega usuario de tuval nueva persona en cobranzas.
+
+
+v1.9: (Javier Ayapata - 08/May/2009)
+-----
+Se agrega impresiones automaticas para dimulti y castek.
+
+
+v2.0: (Javier Ayapata - 04/Jun/2009)
+-----
+Se corrige query para listado de precio.
+
+
+v2.1: (Javier Ayapata - 28/Jul/2009)
+-----
+Se pasa de usuario de gina a usuario de carla.
+
+
+v2.2: (Javier Ayapata - 07/Ago/2009)
+-----
+Se cambia las opciones que tiene gina Quiroz a carla suarez.
+
+
+v2.3: (Javier Ayapata - 28/Ago/2009)
+-----
+Se agrega nueva ventana para carlos bentancur donde le presenta los item que tiene problemas de stok fisico.
+
+
+v2.4: (Javier Ayapata - 22/Oct/2009)
+-----
+Se agrega dos ventana para gina y carla  donde le presenta los solicitudes pendientes de volver a facturar y factura que no han sido recibidas y que han pasa 7 dias
+
+
+v2.5: (Javier Ayapata - 29/Oct/2009)
+-----
+Se agrega usuario de leonor a listado de facturas pendientes de recibir.
+
+
+v2.6: (Javier Ayapata - 19/Feb/2010)
+-----
+Se agrega usuario de rita de quito para lisatdo de fac pend
+
+
+v2.7: (Javier Ayapata - 23/Mar/2010)
+-----
+Se agrega listado pendiente de confirmacion de ingreso y egreso.
+
+
+v2.8: (Javier Ayapata - 22/Jul/2010)
+-----
+Se agrega listado de facturas no impresas que tengan mas de 7 dias.
+
+
+v2.9: (Javier Ayapata - 17/Sep/2010)
+-----
+Se agrega listado que tenia carla suarez a wendy moran.
+
+
+v3.0: (Javier Ayapata - 23/Dic/2010)
+-----
+Se quita opciones a Don Luigi, por orden del mismo.
+
+
+v3.2: (Javier Ayapata - 25/Feb/2011)
+-----
+Se quita en listado item sin precio la bodega faltante para don luigi
+
+
+v3.3: (Javier Ayapata - 27/Abr/2011)
+-----
+Se agrega al usuario tmartinez de dimulti listado de ventas de contado.
+
+
+v3.4: (Javier Ayapata - 18/May/2011)
+-----
+Se agrega nuevo control para el usuario jfalcones que es listado de mercaderia en mal estado.
+
+
+v3.5: (Javier Ayapata - 30/May/2011)
+-----
+Se agrega mas tiempo para el comtrol de luigi
+
+
+v3.6: (Javier Ayapata - 01/Nov/2011)
+-----
+Se agrega boton de refrescar a lo que verficar si ya esta impreso la orden de compra.
+
+
+v3.7: (Erik Flores - 08/Mar/2012)
+-----
+Se asigna listado de items terminal I que no tienen precio a Fruiz. Se quita al Sr. Sensi.
+
+
+v3.8: (Erik Flores - 22/Jun/2012)
+-----
+Se agrega a MDONOSO para que imprima las facturas de compra
+
+
+v3.9: (Erik Flores - 29/Jun/2012)
+-----
+ZafConitm_14: Se modifica para que la impresion de las facturas de compra se haga mediante hilos y asi no se quede colgada la aplicacion.
+
+
+v4.0: (Erik Flores - 02/Jul/2012)
+-----
+Se crea nueva clase ZAFCONITM_15 para notificaciones de ordenes de despacho con items faltantes/dañados
+
+
+v4.1: (Erik Flores - 01/Ago/2012)
+-----
+Se agrega la pantalla de notificacion de faltantes/dañados a mpeñafiel (inventarista)
+
+
+v4.2: (Erik Flores - 19/Sep/2012)
+-----
+Se agrega envio de alerta de notificacion de faltantes/dañados.
+
+
+v4.3: (Erik Flores - 02/May/2013)
+-----
+Se agrega pantalla de notificación de ingresos físicos de mercadería pendientes de confirmar (bodegueros).
+
+
+v4.4: (Alex Morán - 06/May/2013)
+-----
+Se agrega usuario (Vía a Daule - bodeguero) en notificación de ingresos físicos de mercadería pendientes de confirmar.
+
+
+v4.5: (Alex Morán - 08/May/2013)
+-----
+Se agrega usuario (Quito - bodeguero) en notificación de ingresos físicos de mercadería pendientes de confirmar.
+
+
+v4.6: (Alex Morán - 13/May/2013)
+-----
+Se agrega usuario (Manta - bodeguero) en notificación de ingresos físicos de mercadería pendientes de confirmar.
+
+
+v4.7: (Alex Morán - 14/May/2013)
+-----
+Se agrega usuario (Santo Domingo - bodeguero) en notificación de ingresos físicos de mercadería pendientes de confirmar.
+
+
+v4.8: (Alex Morán - 03/Jun/2013)
+-----
+Se modifica query para agregar importaciones y corregir pendientes de confirmar en despachos parciales.
+
+
+v4.9: (Alex Morán - 30/Sep/2013)
+-----
+Se agrega usuario (Quito - bodeguero) Wilfredo Espinosa en notificación de ingresos físicos de mercadería pendientes de confirmar.
+
+
+v5.0: (José Marín - 14/May/2014)
+-----
+Se agrega usuario (LSC - APaulson) En items sin precio.
+
+
+v5.1: (José Marín - 16/Jun/2014)
+-----
+Se agrega usuario (Quito - bodeguero) Paul Montalvo en notificación de ingresos físicos de mercadería pendientes de confirmar.
+Se agrega usuario (Quito - bodeguero) Miguel Campos en notificación de ingresos físicos de mercadería pendientes de confirmar.
+Se agrega usuario (Inmaconsa - bodeguero) Andres Peña en notificación de ingresos físicos de mercadería pendientes de confirmar.
+Se agrega usuario (California - bodeguero) Juan Lavallen en notificación de ingresos físicos de mercadería pendientes de confirmar.
+Se agrega usuario (California - bodeguero) Victor Cruz en notificación de ingresos físicos de mercadería pendientes de confirmar.
+
+
+v5.2: (José Marín - 11/Jul/2014)
+-----
+Se quito al ususrio Victor Cruz. 
+
+
+v5.3: (José Marín - 13/Ago/2014)
+-----
+Se agrega usuario (California - bodeguero) mquijije en notificación de ingresos físicos de mercadería pendientes de confirmar.
+
+
+v5.4: (José Marín - 04/Sep/2014)
+-----
+Se agrega usuario (California - bodeguero) emorales en notificación de ingresos físicos de mercadería pendientes de confirmar.
+
+
+v5.5: (José Marín - 19/Nov/2014)
+-----
+Se agrega usuario  dmoreira (cód 176) en notificación de ingresos físicos de mercadería pendientes de confirmar.
+
+
+v5.6: (Rosa Zambrano - 01/Jun/2015)
+-----
+En ZafConItm_14 se modifica la direccion del reporte de Ordenes de Compra, para que sea configurable de acuerdo al Reporte que tenga acceso el usuario.
+
+
+v5.7: (Rosa Zambrano - 23/Jun/2015)
+-----
+En ZafConItm se configura el usuario 93 csensi para que le presente el listado de ítems sin precio, en vez de Alfredo Paulson.
+
+
+v5.8: (Rosa Zambrano - 08/Oct/2015)
+-----
+Se crea nueva clase ZAFCONITM_16 para notificaciones de items pendientes de conteo de inventario, solicitado por Miguel Peñafiel.
+Se agregan los usuarios inventaristas gbeltran, arodriguez, vfranco, krodriguez, fchiquito, hcantos para que se les presente la notificación de los items pendientes de conteo.
+
+
+v5.9: (Rosa Zambrano - 04/Dic/2015)
+-----
+Se configura el bloqueo por confirmaciones de ingreso pendientes a los siguientes usuarios:
+[343-gvillon]       => Bod.California
+[176-dmoreira]      => Bod. Vía a Daule
+[327-dsantamaria]   => Bod. Quito Norte
+[263-cchavez]       => Bod. Manta
+[180-jpalma]        => Bod. Santo Domingo
+
+
+v6.0: (Rosa Zambrano - 31/Ago/2016)
+-----
+Se cambia query de notificaciones de confirmaciones de ingreso pendientes de confirmar.
+Se configura el bloqueo por confirmaciones de ingreso pendientes al usuario hgalarza.
+
+v6.1: (Rosa Zambrano - 20/Sep/2016)
+-----
+Se elimina de las notificaciones de actualización de precios a usuario fruiz, solicitado por Ing. Fernando Ruiz el día 19/Sep/2016.
+
+v6.2: (Rosa Zambrano - 30/Ago/2019)
+-----
+Se realizan cambios para Jaspersoft Studio.
+

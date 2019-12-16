@@ -1,0 +1,105 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 08/Abr/2006)
+----
+Se reemplazo la clase "ZafConsulta" por "ZafVenCon".
+
+
+v0.8: (Ingrid Lino - 21/Sep/2015)
+-----
+Se cambia programa para ajustar a migración de código web a código de java swing. "Conteo de items(Importaciones)".
+
+
+v0.9: (Ingrid Lino - 23/Sep/2015)
+-----
+Se realizan cambios según solicitud de AP, puesto que habían muchos elementos en el diseño del formulario. Se reestructuró todo.
+
+
+v0.9.1: (Ingrid Lino - 25/Sep/2015)
+-----
+Se valida que cuando sea importaciones, se limpien los campos del item y de la tabla, dejando sólo el Pedido cargado(bodega de manera implícita). Según pruebas con MM.
+
+
+v0.9.2: (Ingrid Lino - 11/Dic/2015)
+-----
+Se valida que el conteo obtengo la orden última pero de acuerdo al usuario.
+
+
+v0.9.3: (Rosa Zambrano - 23/Sep/2016)
+-----
+Se modifica query de ingresos y egresos pendientes adaptandolo al nuevo esquema "Proyecto de transferencias de inventario" al momento de realizar los conteos.
+
+
+v0.9.4: (Rosa Zambrano - 26/Sep/2016)
+-----
+Se corrige query de cantidades pendientes por egresar.
+
+
+v0.9.5: (Rosa Zambrano - 13/Dic/2016)
+-----
+Se realizan cambios para el proyecto de conteos de inventario, adaptandolo al nuevo esquema de inventario, solicitado por LSC.
+
+
+v0.9.6: (Rosa Zambrano - 15/Feb/2017)
+-----
+Se realizan cambios para que la bodega de Quito trabaje con 2 areas.
+
+
+v0.9.7: (Rosa Zambrano - 17/Feb/2017)
+-----
+Se realizan otras mejoras.
+
+
+v0.9.8: (Ingrid Lino - 17/May/2017)
+-----
+Se elimina en menu=1954  la validación    st_conRea='N'  puesto que cuando existian órdenes de conteo del mismo día donde aparecia el mismo item,
+se contaba el item(de la ultima orden de conteo), se guardaba y el usuario indicaba que volvía a aparecer el item, pero era porque el programa 
+validaba las órdenes de conteo con fecha máxima y que no se haya realizado conteo, por eso aparecia la otra orden ingresada en ese día.
+
+
+v0.9.9: (Ingrid Lino - 14/Jun/2017)
+-----
+Se agrega en método: actualizar_tbmConInv, en el último insert que se hace en el método INSERT INTO tbm_coninvdocingbod, 
+que el query sume valores puesto que presentan varios registros(porque en el documento de Transferencia se ingreso dos veces el mismo item) y generaba error
+0;368840;4;11;46;141;5.620000;0;"I"  (antes registro 1)
+0;368840;4;11;46;141;7.070000;0;"I"  (antes registro 2)
+0;368840;4;11;46;141;12.690000;0;"I" (ahora un sólo registro y ya no da problema de duplicate key en la tabla coninvdocingbod, ya que no se registra aquí el registro, sino hasta el código de documento.
+
+
+v0.9.10: (Rosa Zambrano - 12/Sep/2017)
+-----
+Menu Importaciones:
+  * Se cambia el combo de pedido por una ventana de consulta.
+  * Se quita el ingreso obligatorio del item.
+  * Se quita botón de consultar.
+  * Se agrega boton de limpiar.
+  * Solo se mostrarán pedidos arribados y en proceso de conteo, es decir con el nuevo esquema, a excepción de los pedidos con st_ingImp='M'.
+  * Se crea función actualizaImportaciones().
+  * Se agrega que cuando no exista el item se guarde en tx_obs1 la descripción que ingresen.
+  * Cuando no existe el item, no se guarda el co_itm.  
+  * Se agrega uso de librería ZafDatItm para obtener los datos del ítem.
+  * Actualizar st_ingImp del pedido para indicar que se han realizado conteos.  
+  * Se agrega actualizacion de disponibles en tbm_invBod.    
+  * Se valida pedidos con fecha mayor a 12Sep2017(strFecEsqAnt) para que no incrementen disponibles, debido a que son pedidos anteriores procesados en el nuevo esquema.  
+  * Se valida que solo se pueda establecer Cantidad Disponible a los ítems que aparecen en el INIMPO. Los items que no aparecen en el INIMPO deben pasar por vistos buenos antes de incrementarse el disponible.
+  * Se valida que el disponible no sea mayor que el stock. 
+
+
+v0.9.11: (Rosa Zambrano - 13/Sep/2017)
+-----
+Se agrega la disminucion de la cantidad por ingresar cuando se realiza el conteo.
+
+
+v0.9.12: (Rosa Zambrano - 07/May/2018)
+-----
+Implementar Histórico con libreria ZafHisTblBasDat.
+
+
+v0.9.13: (Rosa Zambrano - 25/Jun/2018)
+-----
+Se agrega constantes de código de menú de objImp para segmentación de compras locales.

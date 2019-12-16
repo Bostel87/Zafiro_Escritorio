@@ -1,0 +1,26 @@
+Pendientes:
+1) 
+2) 
+3) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 20/Jun/2006)
+----
+Clase nueva.
+
+
+v0.2: (Eddye Lino - 23/Jun/2008)
+----
+Se agregó listener a la clase para que se pudiera configurar el renderizador. Por ejemplo:
+se necesitaba hacer que de acuerdo al valor de una celda se presentaran los puntos "..." en
+el botón o simplemente no se los presentara.
+Se agregaron los métodos: 
+   1) addTblCelRenListener(ZafTblCelRenListener listener)
+   2) removeTblCelRenListener(ZafTblCelRenListener listener)
+   3) fireTblCelRenListener(ZafTblCelRenEvent evt, int metodo)
+   4) getRowRender()
+   5) getColumnRender()
+Se corrigió el método: 
+   1) getTableCellRendererComponent(javax.swing.JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column)

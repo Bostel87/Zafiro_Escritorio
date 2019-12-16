@@ -1,0 +1,25 @@
+﻿Pendientes:
+1)
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Ingrid Lino - 22/Ago/2013)
+----
+Nuevo programa que muestra el Listado de Pedidos Embarcados.
+
+
+v0.1.1: (Ingrid Lino - 06/Ene/2015)
+-----
+Se adiciona columnas de días de crédito. Solicitado por Claudia Sensi.
+
+
+v0.1.2: (Rosa Zambrano - 12/Sep/2017)
+-----
+Modificaciones para Proyecto de Costos. 
+Se agrega columna para ver documentos de ajustes de inventario (importaciones).
+
+
+v0.1.3: (Rosa Zambrano - 25/Jun/2018)
+-----
+Modificaciones para cambios de exportador de cabecera a detalle.

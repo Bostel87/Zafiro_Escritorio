@@ -1,0 +1,174 @@
+﻿Pendientes:
+1)
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Ingrid Lino - 15/Oct/2018)
+----
+Nuevo programa que muestra el Listado de Notas de Pedido y Pedido Embarcado que están en transito.
+
+v0.1.1: (Ingrid Lino - 26/Oct/2018)
+-----
+Se agrega botón que permite cargar el formulario de Nota de Pedido/Pedido Embarcado. Se agrega columna de Tipo de Pedido.
+
+v0.1.2: (Rosa Zambrano - 26/Oct/2018)
+-----
+Se agrega configuraciones de permisos de usuarios, porque no le aparecía a Alfredo Paulson los botones.
+
+v0.1.3: (Rosa Zambrano - 15/Nov/2018)
+-----
+Se agrega fecha de puerto.
+Presentar meses de arribo y embarque con la fecha del primer dia del mes, esto aplica para las notas de pedido. No mostrar mes sino fecha.
+Se cambia query para que presente fecha de embarque, estaba presentando la fecha de arribo.
+
+v0.1.4: (Rosa Zambrano - 16/Nov/2018)
+-----
+Se agrega group by para que presente el valor TotCfrFob correcto.
+
+v0.1.5: (Rosa Zambrano - 09/Ene/2019)
+-----
+Se cambia query en nota de pedido, para mostrar solo la diferencia en Tot.Fob.Cfr. y cargos de lo que ha sido embarcadado, Solicitado por Alfredo Paulson.
+
+v0.1.6: (Rosa Zambrano - 11/Ene/2019)
+-----
+Se excluyen los pedidos embarcados anulados para mostrar la diferencia en TotFobCfr.
+
+v0.1.7: (Rosa Zambrano - 21/Feb/2019)
+-----
+Se agrega check para mostrar cargos a pagar, solo cuando se seleccione. Caso contrario mostrará solo los totales, solicitado por LSC.
+
+v0.1.8: (Rosa Zambrano - 10/Abr/2019)
+-----
+Se agrega columnas de ISD, que indican si es credito tributario o no.
+
+v0.1.9: (Rosa Zambrano - 12/Abr/2019)
+-----
+Se añade en "cargarDetReg" el estado de documento, que sólo se muestren los estados activos. (Proceso el esquema de reversiones de documentos y diarios).
+
+v0.2.0: (Rosa Zambrano - 26/Abr/2019)
+-----
+Se agregan columnas dinámicas de fechas de vencimiento estimadas.
+Se establecen 4 fechas según lo indicado por Alfredo Paulson.
+
+v0.2.1: (Rosa Zambrano - 02/May/2019)
+-----
+Se agregan columnas dinámicas de fechas de vencimiento reales.
+Se establecen 4 fechas según lo indicado por Alfredo Paulson.
+
+v0.2.2: (Rosa Zambrano - 08/May/2019)
+-----
+Se agregan columnas valor de abono, valor pendiente de pedidos, solicitado por LSC.
+Se cambia la consulta para mejorar tiempos de respuesta.
+
+v0.2.3: (Rosa Zambrano - 28/May/2019)
+-----
+Se corrige valor total de la factura, solicitado por LSC.
+Se mueve la columna de pedido al inicio, se agrupa valores de total, abono y pendiente.
+
+v0.2.4: (Rosa Zambrano - 29/May/2019)
+-----
+Se agrega columna de Fecha de Embarque Histórica.
+
+v0.2.5: (Rosa Zambrano - 12/Jun/2019)
+-----
+Se bloquea edición de fecha de colocación del pedido.
+Se agregan colores para identificar fechas de embarque.
+
+v0.2.6: (Rosa Zambrano - 24/Jun/2019)
+-----
+Se agregan las siguientes columnas:
+ * Fec.Emb.Act.
+ * Fec.Emb.Est.
+Se cambia numero de pedido.
+Se valida que muestre solo los documentos con st_doc='A'
+
+v0.2.7: (Rosa Zambrano - 25/Jun/2019)
+-----
+Solicito AP que se puedan modificar todas las fechas, excepto las fechas de colocación y fecha de embarque real (BL).
+
+v0.2.8: (Rosa Zambrano - 26/Jun/2019)
+-----
+Se cambia la consulta para Mostrar pedidos llegados (INIMPO).
+
+v0.2.9-beta: (Rosa Zambrano - 28/Jun/2019)
+-----
+Se realizaron ciertos cambios.
+
+v0.3.0: (Rosa Zambrano - 01/Jul/2019)
+-----
+Se agrega mes de prespuesto.
+
+v0.3.1: (Rosa Zambrano - 01/Jul/2019)
+-----
+Se corrige formato de fecha de puerto y arribo.
+
+v0.3.2: (Rosa Zambrano - 10/Jul/2019)
+-----
+Se empiezan a agregar columnas para reporte de Peter.
+Hacer 2 paneles para que se pueda visualizar toda la información.
+
+v0.3.3: (Rosa Zambrano - 10/Jul/2019)
+-----
+Solicitado por LSC, AP: Se muestran las fechas: embarque, puerto y arribo de NOTPED con formato YYYY-MM-dd.
+Se corrige ordenamiento, para que se ordenen los 2 paneles.
+Se establecen colores rojo y amarillo para el panel Fix.
+
+v0.3.4: (Rosa Zambrano - 16/Jul/2019)
+-----
+Se regresa a 1 panel, por que se no permite realizar ordenamiento cuando tiene 2 paneles.
+Se corrige formato de fecha de embarque, puerto y arribo en NOTPED.
+Se empiezan a agregar columnas para reporte de Peter.
+
+v0.3.5: (Rosa Zambrano - 16/Jul/2019)
+-----
+Se modifica función de guardar para Pedidos en tránsito, para que actualice fecha de embarque, puerto y arribo en Formato dd/MM/YYYY.
+Se agrega función de guardar para Panel de control de procesos, para que actualice fecha de embarque, puerto y arribo en Formato dd/MM/YYYY.
+
+v0.3.6: (Rosa Zambrano - 18/Jul/2019)
+-----
+Se agrega validación en pedidos embarcados, para cuando un pedido no haya sido embarcado la Fecha de Embarque sea estimada, y cuando ya fue embarcado sea BL.
+
+v0.3.7: (Rosa Zambrano - 22/Jul/2019)
+-----
+Se agrega consulta y guardado de fechas de vencimiento estimadas en NP, PE.
+
+v0.3.8: (Rosa Zambrano - 25/Jul/2019)
+-----
+Se muestran pedidos con nota de pedido lista.
+Se valida que muestre valor parcial en NOTPED, cuando tiene pedidos embarcados asociados.
+Se mostrarán todas las NOTPED que no hayan sido cerradas, es decir st_Cie='N'.
+
+v0.3.9: (Rosa Zambrano - 25/Jul/2019)
+-----
+Se agregan columnas para reporte "Control Procesos".
+
+v0.4.0: (Rosa Zambrano - 29/Jul/2019)
+-----
+Reporte "Control Procesos", almacenamiento de datos.
+
+v0.4.1: (Rosa Zambrano - 01/Ago/2019)
+-----
+Se agregan mejoras para el reporte "Control de Procesos".
+
+v0.4.2: (Rosa Zambrano - 16/Ago/2019)
+-----
+Se realizan modificaciones para corregir edicion de las fecha en e JTable.
+
+v0.4.3: (Rosa Zambrano - 19/Ago/2019)
+-----
+Se agrega color a columnas de formato fecha.
+
+v0.4.4: (Rosa Zambrano - 21/Ago/2019)
+-----
+Se realizan modificaciones en el panel de control de procesos.
+
+v0.4.5: (Rosa Zambrano - 28/Ago/2019)
+-----
+Se realizan modificaciones para calcular total pagos al exterior en panel de control de procesos.
+
+v0.4.6: (Rosa Zambrano - 29/Ago/2019)
+-----
+Se modifica actualizacion de fecha de embarque.
+
+

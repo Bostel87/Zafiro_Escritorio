@@ -1,0 +1,35 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Ingrid Lino - 26/Jul/2016)
+----
+Clase nueva "Manejo de Inventario"
+
+
+v0.1.1: (Rosa Zambrano - 18/Ago/2017)
+-----
+Se agregan los siguientes metodos en la clase ZafDatItm:
+ a) getCodItmEmp()
+ b) getDisItmEmp()
+ c) getStkItmGrp()
+ d) getStkItmEmp()  
+
+v0.1.2: (Ingrid Lino - 12/Sep/2017)
+-----
+se agrega método "actualizaDisponible" para permitir actualizar cantidades de disponible.
+
+v0.1.3: (Ingrid Lino - 14/Sep/2017)
+-----
+Se coloca entre paréntesis la cantidad que se desea actualizar porque estaba generando problemas cuando el signo enviado era negativo. Ejm: --150 y esto era tomado como un comentario al momento de ejecutar la sentencia SQL. Ahora - (-150)
+
+v0.1.4: (Ingrid Lino - 25/Nov/2017)
+-----
+Se reversa creación de indice en el ArrayList.
+
+v0.1.5: (Ingrid Lino - 17/Ene/2018)
+-----
+Se hacen públicos los elementos del arlDatItm.

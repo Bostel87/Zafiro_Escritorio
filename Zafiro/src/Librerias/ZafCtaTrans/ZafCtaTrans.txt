@@ -1,0 +1,6 @@
+v0.1  (02-Agosto-2011)
+  clase que se encarga de cambiar y quitar cuentas transitorias caso ordenes de compra y devCom.
+
+v0.2: (Dennis Betancourt - 27/Abr/2017)
+----
+Se busco codigo quemado de IVA (0.12; 1.12) y se modifico para que el valor sea tomado del campo de la tabla respectiva donde esta guardado el porcentaje de IVA.

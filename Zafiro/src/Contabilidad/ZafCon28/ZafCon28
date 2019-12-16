@@ -1,0 +1,16 @@
+v0.1: (Ingrid Lino - 16/Dic/2010)
+----
+Programa que muestra los documentos que tienen IVA y que no generan retenciones, es complemento del programa ZafCon24(Datos de retenciones emitidas).
+
+v0.2: (Ingrid Lino - 07/Feb/2011)
+----
+Se adicionaron opciones de presentación de información, esta información es mas que nada para cuadrar los valores de anexos transaccionales con el movimiento de mayor de cuenta.
+
+v0.3: (Ingrid Lino - 07/Feb/2011)
+----
+Se cambió completamente el query para obtención de información.
+
+v0.4: (Ingrid Lino - 26/Sep/2011)
+----
+Se agregan documentos DEVCOM que han sido dadas de baja no con cruce, sino con CRUP o CRUC, el motivo es que son devoluciones
+hechas a FACCOM que han sido canceladas, y q por tanto ya no se las puede cruzar, esto se da en relacionadas.

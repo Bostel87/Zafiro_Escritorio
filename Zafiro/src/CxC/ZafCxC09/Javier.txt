@@ -1,0 +1,15 @@
+﻿
+CONTROL DE VERSIONES:
+=====================
+
+v0.1:  Javier Ayapata  18/Junio/2010 
+----
+   clase nueva 
+
+v0.2:  Javier Ayapata  13/Julio/2010
+ se corrigue valor de centavos en ajuste y poder marcar todos a la vez ó desmarcar.
+
+
+v0.3:  Javier Ayapata  14/Enero/2011
+ se corrigue query que cargar los documentos para hacer ajustes.
+

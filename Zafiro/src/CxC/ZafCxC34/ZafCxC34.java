@@ -1,0 +1,1994 @@
+/*
+ * ZafCxC34.java
+ *
+ * Created on 21 de Noviembre de 2007, 14:26 PM 
+ * CONFIGURACION DE LA PROXIMA ACTUALIZACION DE DATOS
+ * DESARROLLADO POR DARIO CARDENAS EL 21/NOV/2007
+ */
+package CxC.ZafCxC34;
+import Librerias.ZafParSis.ZafParSis;
+import Librerias.ZafUtil.ZafUtil;
+import Librerias.ZafColNumerada.ZafColNumerada;
+import Librerias.ZafTblUti.ZafTblMod.ZafTblMod;
+import Librerias.ZafTblUti.ZafTblCelRenLbl.ZafTblCelRenLbl;
+import Librerias.ZafTblUti.ZafTblPopMnu.ZafTblPopMnu;
+import Librerias.ZafTblUti.ZafTblBus.ZafTblBus;
+import Librerias.ZafTblUti.ZafTblTot.ZafTblTot;
+import java.sql.Connection;
+import java.sql.Statement;
+import java.sql.ResultSet;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.Vector;
+import Librerias.ZafDate.ZafDatePicker;//esto es para calcular el numero de dias transcurridos
+import java.util.ArrayList;
+import Librerias.ZafVenCon.ZafVenCon;
+import Librerias.ZafTblUti.ZafTblEdi.ZafTblEdi;
+import Librerias.ZafTblUti.ZafTblCelRenChk.ZafTblCelRenChk;
+import Librerias.ZafTblUti.ZafTblCelEdiChk.ZafTblCelEdiChk;
+import Librerias.ZafTblUti.ZafTblCelEdiTxt.ZafTblCelEdiTxt;
+import Librerias.ZafTblUti.ZafTblCelRenLbl.ZafTblCelRenLbl;
+import Librerias.ZafTblUti.ZafTblCelEdiButGen.ZafTblCelEdiButGen;//para visualizar una ventana de programa desde una columna de botones
+import Librerias.ZafTblUti.ZafTblCelRenBut.ZafTblCelRenBut;
+
+/**
+ *
+ * @author  DARIO CARDENAS
+ */
+public class ZafCxC34 extends javax.swing.JInternalFrame 
+{
+    //Constantes: Columnas del JTable:
+    final int INT_TBL_DAT_LIN        =0;                    //Línea.
+    final int INT_TBL_DAT_COD_EMP    =1;                    //Código de la empresa.
+    final int INT_TBL_DAT_COD_CLI    =2;                    //Codigo del cliente.
+    final int INT_TBL_DAT_NOM_CLI    =3;                    //Nombre del cliente.
+    final int INT_TBL_DAT_FEC_ULT_ACT=4;                    //Fecha de Ultima Actualizacion
+    final int INT_TBL_DAT_PRO_ACT    =5;                    //Numero para Proxima Actualizacion dada en meses
+    final int INT_TBL_DAT_FEC_PRO_ACT=6;                    //Fecha para una Proxima Actualizacion
+    
+    //Variables
+    private ZafDatePicker dtpDat;                      //esto es para calcular el numero de dias transcurridos
+    private ZafUtil objAux;
+   // private java.util.Date datFecAux;
+    private java.util.Date datFecSer, datFecVen, datFecAux;
+    
+    private ZafParSis objParSis;
+    private ZafUtil objUti;
+    private ZafColNumerada objColNum;
+    private ZafTblMod objTblMod;
+    private ZafTblMod objTblModDab;
+    private ZafThreadGUI objThrGUI;
+    private ZafTblCelRenLbl objTblCelRenLbl;            //Render: Presentar JLabel en JTable.
+    private ZafMouMotAda objMouMotAda;                  //ToolTipText en TableHeader.
+    private ZafTblPopMnu objTblPopMnu;                  //PopupMenu: Establecer PeopuMenú en JTable.
+    private ZafTblBus objTblBus;                        //Editor de búsqueda.
+    private ZafTblTot objTblTot;                        //JTable de totales.
+    private Connection con;
+    private Statement stm;
+    private ResultSet rst;
+    private String strSQL, strAux, STRFECSIS="";
+    private Vector vecDat, vecCab, vecReg;
+    private boolean blnCon;                             //true: Continua la ejecución del hilo.
+    private String strCodCli, strDesLarCli,strCodEmp, strNomEmp,strCodTipDoc, strDesLarTipDoc,strCodEmpTipDoc, strDesLarEmpTipDoc, strCodForPag, strForPag;             //Contenido del campo al obtener el foco.
+    private int intCodLocAux, k=0, p=0, CODEMP=0;
+    private ZafVenCon vcoCli, vcoEmp, vcoForPag;        //Ventana de consulta.
+    private Vector vecAux, vecAuxDat;
+    private ZafTblCelRenChk objTblCelRenChkMain;
+    private ZafTblCelEdiChk objTblCelEdiChkMain;
+    private ZafTblCelEdiButGen objTblCelEdiButGen;      //Editor: JButton en celda.
+    private ZafTblCelRenBut objTblCelRenBut;            //Render: Presentar JButton en JTable.
+    private ZafTblEdi objTblEdi;
+    private String strFormatoFecha="d/m/y"; // Formato de fecha a usar 
+    private String strFormatoFechaBase="y-m-d"; // Formato de fecha que usa la base
+    
+    private ZafTblCelEdiTxt objTblCelEdiTxtFec;
+    
+    private Librerias.ZafDate.ZafDatePicker dtpFecUltAct, dtpFecProAct;
+    
+    java.util.Calendar objFec = java.util.Calendar.getInstance();
+    Librerias.ZafDate.ZafDatePicker dtePckPag = new Librerias.ZafDate.ZafDatePicker(new javax.swing.JFrame(),"d/m/y");
+    
+    /** Crea una nueva instancia de la clase ZafIndRpt. */
+    public ZafCxC34(ZafParSis obj) 
+    {
+        initComponents();
+        //Inicializar objetos.
+        objParSis=obj;
+        //butTipDoc.setVisible(false);
+        
+        if (!configurarFrm())
+            exitForm();
+    }
+    
+    /** This method is called from within the constructor to
+     * initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is
+     * always regenerated by the Form Editor.
+     */
+    private void initComponents() {//GEN-BEGIN:initComponents
+        bgrFil = new javax.swing.ButtonGroup();
+        panFrm = new javax.swing.JPanel();
+        lblTit = new javax.swing.JLabel();
+        tabFrm = new javax.swing.JTabbedPane();
+        panFil = new javax.swing.JPanel();
+        optTod = new javax.swing.JRadioButton();
+        optFil = new javax.swing.JRadioButton();
+        panNomCli = new javax.swing.JPanel();
+        lblNomCliDes = new javax.swing.JLabel();
+        txtNomCliDes = new javax.swing.JTextField();
+        lblNomCliHas = new javax.swing.JLabel();
+        txtNomCliHas = new javax.swing.JTextField();
+        lblCli = new javax.swing.JLabel();
+        txtCodCli = new javax.swing.JTextField();
+        txtDesLarCli = new javax.swing.JTextField();
+        butCli = new javax.swing.JButton();
+        lblEmp = new javax.swing.JLabel();
+        txtCodEmp = new javax.swing.JTextField();
+        txtNomEmp = new javax.swing.JTextField();
+        butEmp = new javax.swing.JButton();
+        lblForPagCreCon = new javax.swing.JLabel();
+        txtCodForPag = new javax.swing.JTextField();
+        txtForPag = new javax.swing.JTextField();
+        butForPag = new javax.swing.JButton();
+        panMonCre = new javax.swing.JPanel();
+        lblMonCreDes = new javax.swing.JLabel();
+        txtMonCreDes = new javax.swing.JTextField();
+        lblMonCreHas = new javax.swing.JLabel();
+        txtMonCreHas = new javax.swing.JTextField();
+        panRpt = new javax.swing.JPanel();
+        spnDat = new javax.swing.JScrollPane();
+        tblDat = new javax.swing.JTable();
+        panBar = new javax.swing.JPanel();
+        panBot = new javax.swing.JPanel();
+        butCon = new javax.swing.JButton();
+        butGuardar = new javax.swing.JButton();
+        butCer = new javax.swing.JButton();
+        panBarEst = new javax.swing.JPanel();
+        lblMsgSis = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        pgrSis = new javax.swing.JProgressBar();
+
+        getContentPane().setLayout(new java.awt.GridLayout(1, 0));
+
+        setClosable(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
+        setTitle("T\u00edtulo de la ventana");
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+                exitForm(evt);
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            }
+        });
+
+        panFrm.setLayout(new java.awt.BorderLayout());
+
+        lblTit.setFont(new java.awt.Font("MS Sans Serif", 1, 14));
+        lblTit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTit.setText("T\u00edtulo de la ventana");
+        panFrm.add(lblTit, java.awt.BorderLayout.NORTH);
+
+        panFil.setLayout(null);
+
+        optTod.setSelected(true);
+        optTod.setText("Todas las Solicitudes de Credito");
+        bgrFil.add(optTod);
+        optTod.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                optTodActionPerformed(evt);
+            }
+        });
+        optTod.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                optTodItemStateChanged(evt);
+            }
+        });
+
+        panFil.add(optTod);
+        optTod.setBounds(4, 34, 400, 20);
+
+        optFil.setText("S\u00f3lo las Solicitudes que cumplan el criterio seleccionado");
+        bgrFil.add(optFil);
+        optFil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                optFilActionPerformed(evt);
+            }
+        });
+        optFil.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                optFilItemStateChanged(evt);
+            }
+        });
+
+        panFil.add(optFil);
+        optFil.setBounds(4, 55, 400, 20);
+
+        panNomCli.setLayout(null);
+
+        panNomCli.setBorder(new javax.swing.border.TitledBorder("Nombre de cliente"));
+        lblNomCliDes.setText("Desde:");
+        panNomCli.add(lblNomCliDes);
+        lblNomCliDes.setBounds(12, 20, 44, 20);
+
+        txtNomCliDes.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtNomCliDesFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtNomCliDesFocusLost(evt);
+            }
+        });
+
+        panNomCli.add(txtNomCliDes);
+        txtNomCliDes.setBounds(56, 20, 268, 20);
+
+        lblNomCliHas.setText("Hasta:");
+        panNomCli.add(lblNomCliHas);
+        lblNomCliHas.setBounds(336, 20, 44, 20);
+
+        txtNomCliHas.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtNomCliHasFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtNomCliHasFocusLost(evt);
+            }
+        });
+
+        panNomCli.add(txtNomCliHas);
+        txtNomCliHas.setBounds(380, 20, 268, 20);
+
+        panFil.add(panNomCli);
+        panNomCli.setBounds(20, 135, 660, 52);
+
+        lblCli.setText("Cliente:");
+        lblCli.setToolTipText("Beneficiario");
+        panFil.add(lblCli);
+        lblCli.setBounds(24, 80, 120, 20);
+
+        txtCodCli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCodCliActionPerformed(evt);
+            }
+        });
+        txtCodCli.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtCodCliFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCodCliFocusLost(evt);
+            }
+        });
+
+        panFil.add(txtCodCli);
+        txtCodCli.setBounds(144, 80, 56, 20);
+
+        txtDesLarCli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDesLarCliActionPerformed(evt);
+            }
+        });
+        txtDesLarCli.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtDesLarCliFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtDesLarCliFocusLost(evt);
+            }
+        });
+
+        panFil.add(txtDesLarCli);
+        txtDesLarCli.setBounds(200, 80, 460, 20);
+
+        butCli.setText("...");
+        butCli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                butCliActionPerformed(evt);
+            }
+        });
+
+        panFil.add(butCli);
+        butCli.setBounds(660, 80, 20, 20);
+
+        lblEmp.setText("Empresa:");
+        panFil.add(lblEmp);
+        lblEmp.setBounds(10, 10, 70, 15);
+
+        txtCodEmp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCodEmpActionPerformed(evt);
+            }
+        });
+        txtCodEmp.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtCodEmpFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCodEmpFocusLost(evt);
+            }
+        });
+
+        panFil.add(txtCodEmp);
+        txtCodEmp.setBounds(70, 8, 30, 20);
+
+        txtNomEmp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNomEmpActionPerformed(evt);
+            }
+        });
+        txtNomEmp.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtNomEmpFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtNomEmpFocusLost(evt);
+            }
+        });
+
+        panFil.add(txtNomEmp);
+        txtNomEmp.setBounds(100, 8, 200, 20);
+
+        butEmp.setText("...");
+        butEmp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                butEmpActionPerformed(evt);
+            }
+        });
+
+        panFil.add(butEmp);
+        butEmp.setBounds(300, 8, 20, 20);
+
+        lblForPagCreCon.setFont(new java.awt.Font("SansSerif", 1, 12));
+        lblForPagCreCon.setText("Forma de Pago:");
+        lblForPagCreCon.setPreferredSize(new java.awt.Dimension(110, 15));
+        panFil.add(lblForPagCreCon);
+        lblForPagCreCon.setBounds(24, 105, 105, 15);
+
+        txtCodForPag.setMaximumSize(null);
+        txtCodForPag.setPreferredSize(new java.awt.Dimension(70, 20));
+        txtCodForPag.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCodForPagActionPerformed(evt);
+            }
+        });
+        txtCodForPag.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtCodForPagFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCodForPagFocusLost(evt);
+            }
+        });
+
+        panFil.add(txtCodForPag);
+        txtCodForPag.setBounds(144, 105, 56, 20);
+
+        txtForPag.setMaximumSize(null);
+        txtForPag.setPreferredSize(new java.awt.Dimension(70, 20));
+        txtForPag.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtForPagActionPerformed(evt);
+            }
+        });
+        txtForPag.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtForPagFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtForPagFocusLost(evt);
+            }
+        });
+
+        panFil.add(txtForPag);
+        txtForPag.setBounds(200, 105, 460, 20);
+
+        butForPag.setFont(new java.awt.Font("SansSerif", 1, 12));
+        butForPag.setText("...");
+        butForPag.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                butForPagActionPerformed(evt);
+            }
+        });
+
+        panFil.add(butForPag);
+        butForPag.setBounds(660, 105, 20, 20);
+
+        panMonCre.setLayout(null);
+
+        panMonCre.setBorder(new javax.swing.border.TitledBorder("Monto de Credito"));
+        lblMonCreDes.setText("Desde:");
+        panMonCre.add(lblMonCreDes);
+        lblMonCreDes.setBounds(12, 20, 44, 20);
+
+        txtMonCreDes.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtMonCreDes.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtMonCreDesFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtMonCreDesFocusLost(evt);
+            }
+        });
+
+        panMonCre.add(txtMonCreDes);
+        txtMonCreDes.setBounds(56, 20, 268, 20);
+
+        lblMonCreHas.setText("Hasta:");
+        panMonCre.add(lblMonCreHas);
+        lblMonCreHas.setBounds(336, 20, 44, 20);
+
+        txtMonCreHas.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtMonCreHas.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtMonCreHasFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtMonCreHasFocusLost(evt);
+            }
+        });
+
+        panMonCre.add(txtMonCreHas);
+        txtMonCreHas.setBounds(380, 20, 268, 20);
+
+        panFil.add(panMonCre);
+        panMonCre.setBounds(20, 200, 660, 52);
+
+        tabFrm.addTab("Filtro", panFil);
+
+        panRpt.setLayout(new java.awt.BorderLayout());
+
+        tblDat.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, false, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        spnDat.setViewportView(tblDat);
+
+        panRpt.add(spnDat, java.awt.BorderLayout.CENTER);
+
+        tabFrm.addTab("Reporte", panRpt);
+
+        panFrm.add(tabFrm, java.awt.BorderLayout.CENTER);
+
+        panBar.setLayout(new java.awt.BorderLayout());
+
+        panBot.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
+
+        butCon.setText("Consultar");
+        butCon.setToolTipText("Ejecuta la consulta de acuerdo al filtro especificado.");
+        butCon.setPreferredSize(new java.awt.Dimension(92, 25));
+        butCon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                butConActionPerformed(evt);
+            }
+        });
+
+        panBot.add(butCon);
+
+        butGuardar.setText("Guardar");
+        butGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                butGuardarActionPerformed(evt);
+            }
+        });
+
+        panBot.add(butGuardar);
+
+        butCer.setText("Cerrar");
+        butCer.setToolTipText("Cierra la ventana.");
+        butCer.setPreferredSize(new java.awt.Dimension(92, 25));
+        butCer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                butCerActionPerformed(evt);
+            }
+        });
+
+        panBot.add(butCer);
+
+        panBar.add(panBot, java.awt.BorderLayout.CENTER);
+
+        panBarEst.setLayout(new java.awt.BorderLayout());
+
+        panBarEst.setPreferredSize(new java.awt.Dimension(320, 19));
+        lblMsgSis.setText("Listo");
+        lblMsgSis.setBorder(new javax.swing.border.EtchedBorder(javax.swing.border.EtchedBorder.RAISED));
+        panBarEst.add(lblMsgSis, java.awt.BorderLayout.CENTER);
+
+        jPanel6.setLayout(new java.awt.BorderLayout(2, 2));
+
+        jPanel6.setBorder(new javax.swing.border.EtchedBorder(javax.swing.border.EtchedBorder.RAISED));
+        jPanel6.setMinimumSize(new java.awt.Dimension(24, 26));
+        jPanel6.setPreferredSize(new java.awt.Dimension(200, 15));
+        pgrSis.setBorder(new javax.swing.border.EtchedBorder(javax.swing.border.EtchedBorder.RAISED));
+        pgrSis.setBorderPainted(false);
+        pgrSis.setPreferredSize(new java.awt.Dimension(100, 16));
+        pgrSis.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        jPanel6.add(pgrSis, java.awt.BorderLayout.CENTER);
+
+        panBarEst.add(jPanel6, java.awt.BorderLayout.EAST);
+
+        panBar.add(panBarEst, java.awt.BorderLayout.SOUTH);
+
+        panFrm.add(panBar, java.awt.BorderLayout.SOUTH);
+
+        getContentPane().add(panFrm);
+
+        java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+        setBounds((screenSize.width-700)/2, (screenSize.height-450)/2, 700, 450);
+    }//GEN-END:initComponents
+
+    private void butForPagActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butForPagActionPerformed
+        // TODO add your handling code here:
+        mostrarVenConForPag(0);
+        //Seleccionar el JRadioButton de filtro si es necesario.
+        if (txtCodForPag.getText().length()>0)
+        {
+            optFil.setSelected(true);
+        }
+    }//GEN-LAST:event_butForPagActionPerformed
+
+    private void txtForPagFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtForPagFocusLost
+        // TODO add your handling code here:
+        //Validar el contenido de la celda sólo si ha cambiado.
+        if (!txtForPag.getText().equalsIgnoreCase(strDesLarCli))
+        {
+            if (txtForPag.getText().equals(""))
+            {
+                txtCodForPag.setText("");
+                txtForPag.setText("");
+            }
+            else
+            {
+                mostrarVenConForPag(2);
+            }
+        }
+        else
+            txtForPag.setText(strForPag);
+        //Seleccionar el JRadioButton de filtro si es necesario.
+        if (txtCodForPag.getText().length()>0)
+        {
+            optFil.setSelected(true);
+        }
+    }//GEN-LAST:event_txtForPagFocusLost
+
+    private void txtForPagFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtForPagFocusGained
+        // TODO add your handling code here:
+        strForPag=txtForPag.getText();
+        txtForPag.selectAll();
+    }//GEN-LAST:event_txtForPagFocusGained
+
+    private void txtForPagActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtForPagActionPerformed
+        // TODO add your handling code here:
+        txtForPag.transferFocus();
+    }//GEN-LAST:event_txtForPagActionPerformed
+
+    private void txtCodForPagFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCodForPagFocusLost
+        // TODO add your handling code here:
+        if (!txtCodForPag.getText().equalsIgnoreCase(strCodForPag))
+        {
+            if (txtCodForPag.getText().equals(""))
+            {
+                txtCodForPag.setText("");
+                txtForPag.setText("");
+            }
+            else
+            {
+                mostrarVenConForPag(1);
+            }
+        }
+        else
+            txtCodForPag.setText(strCodForPag);
+        //Seleccionar el JRadioButton de filtro si es necesario.
+        if (txtCodForPag.getText().length()>0)
+        {
+            optFil.setSelected(true);
+        }
+    }//GEN-LAST:event_txtCodForPagFocusLost
+
+    private void txtCodForPagFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCodForPagFocusGained
+        // TODO add your handling code here:
+        strCodForPag=txtCodForPag.getText();
+        txtCodForPag.selectAll();
+    }//GEN-LAST:event_txtCodForPagFocusGained
+
+    private void txtCodForPagActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodForPagActionPerformed
+        // TODO add your handling code here:
+        txtCodForPag.transferFocus();
+    }//GEN-LAST:event_txtCodForPagActionPerformed
+
+    private void txtMonCreHasFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtMonCreHasFocusLost
+        // TODO add your handling code here:
+        if (txtMonCreHas.getText().length()>0)
+            optFil.setSelected(true);
+    }//GEN-LAST:event_txtMonCreHasFocusLost
+
+    private void txtMonCreHasFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtMonCreHasFocusGained
+        // TODO add your handling code here:
+        txtMonCreHas.selectAll();
+    }//GEN-LAST:event_txtMonCreHasFocusGained
+
+    private void txtMonCreDesFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtMonCreDesFocusLost
+        // TODO add your handling code here:
+        if (txtMonCreDes.getText().length()>0)
+        {
+            optFil.setSelected(true);
+            if (txtMonCreHas.getText().length()==0)
+                txtMonCreHas.setText(txtMonCreDes.getText());            
+        }
+    }//GEN-LAST:event_txtMonCreDesFocusLost
+
+    private void txtMonCreDesFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtMonCreDesFocusGained
+        // TODO add your handling code here:
+        txtMonCreDes.selectAll();
+    }//GEN-LAST:event_txtMonCreDesFocusGained
+
+    private void butEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butEmpActionPerformed
+        // TODO add your handling code here:
+        mostrarVenConEmp(0);
+    }//GEN-LAST:event_butEmpActionPerformed
+
+    private void txtNomEmpFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNomEmpFocusLost
+        // TODO add your handling code here:
+        if (!txtNomEmp.getText().equalsIgnoreCase(strNomEmp))
+        {
+            if (txtNomEmp.getText().equals(""))
+            {
+                txtCodEmp.setText("");
+                txtNomEmp.setText("");
+            }
+            else
+            {
+                mostrarVenConEmp(2);
+            }
+        }
+        else
+            txtNomEmp.setText(strNomEmp);
+    }//GEN-LAST:event_txtNomEmpFocusLost
+
+    private void txtNomEmpFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNomEmpFocusGained
+        // TODO add your handling code here:
+        strNomEmp=txtNomEmp.getText();
+        txtNomEmp.selectAll();
+    }//GEN-LAST:event_txtNomEmpFocusGained
+
+    private void txtNomEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomEmpActionPerformed
+        // TODO add your handling code here:
+        txtNomEmp.transferFocus();
+    }//GEN-LAST:event_txtNomEmpActionPerformed
+
+    private void txtCodEmpFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCodEmpFocusLost
+        // TODO add your handling code here:
+        if (!txtCodEmp.getText().equalsIgnoreCase(strCodEmp))
+        {
+            if (txtCodEmp.getText().equals(""))
+            {
+                txtCodEmp.setText("");
+                txtNomEmp.setText("");
+            }
+            else
+            {
+                mostrarVenConEmp(1);
+            }
+        }
+        else
+            txtCodEmp.setText(strCodEmp);        
+        
+    }//GEN-LAST:event_txtCodEmpFocusLost
+
+    private void txtCodEmpFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCodEmpFocusGained
+        // TODO add your handling code here:
+        strCodEmp=txtCodEmp.getText();
+        txtCodEmp.selectAll();
+    }//GEN-LAST:event_txtCodEmpFocusGained
+
+    private void txtCodEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodEmpActionPerformed
+        // TODO add your handling code here:
+        txtCodEmp.transferFocus();
+    }//GEN-LAST:event_txtCodEmpActionPerformed
+
+    private void optFilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optFilActionPerformed
+        // TODO add your handling code here:
+        txtCodCli.requestFocus();
+    }//GEN-LAST:event_optFilActionPerformed
+
+    private void butGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butGuardarActionPerformed
+        // TODO add your handling code here:
+        
+        if (objTblMod.isDataModelChanged())
+        {
+            if (mostrarMsgCon("¿Está seguro que desea realizar esta operación?")==0)
+            {
+                if (actualizarDatCli())
+                    mostrarMsgInf("La operación GUARDAR se realizó con éxito.");
+                else
+                    mostrarMsgErr("Ocurrió un error al realizar la operación GUARDAR.\nIntente realizar la operación nuevamente.\nSi el problema persiste notifiquelo a su administrador del sistema.");
+            }
+        }
+        else
+            mostrarMsgInf("No ha realizado ningún cambio que se pueda guardar.");
+        
+        System.out.println("---se consultara los registros--- ");
+        cargarDetReg();
+    }//GEN-LAST:event_butGuardarActionPerformed
+
+    private void optFilItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_optFilItemStateChanged
+        if (optFil.isSelected())
+        {
+//            txtCodEmp.setText("");
+//            txtDesLarEmp.setText("");
+//            txtCodTipDoc.setText("");
+//            txtDesLarTipDoc.setText("");
+//            txtCodEmpTipDoc.setText("");
+//            txtDesLarEmpTipDoc.setText("");
+        }
+
+    }//GEN-LAST:event_optFilItemStateChanged
+
+    private void optTodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optTodActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_optTodActionPerformed
+
+    private void butCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butCliActionPerformed
+        configurarVenConCli();
+        mostrarVenConCli(0);
+        //Seleccionar el JRadioButton de filtro si es necesario.
+        if (txtCodCli.getText().length()>0)
+        {
+            optFil.setSelected(true);
+        }
+    }//GEN-LAST:event_butCliActionPerformed
+
+    private void txtDesLarCliFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDesLarCliFocusLost
+        //Validar el contenido de la celda sólo si ha cambiado.
+        if (!txtDesLarCli.getText().equalsIgnoreCase(strDesLarCli))
+        {
+            if (txtDesLarCli.getText().equals(""))
+            {
+                txtCodCli.setText("");
+                txtDesLarCli.setText("");
+            }
+            else
+            {
+                mostrarVenConCli(2);
+            }
+        }
+        else
+            txtDesLarCli.setText(strDesLarCli);
+        //Seleccionar el JRadioButton de filtro si es necesario.
+        if (txtCodCli.getText().length()>0)
+        {
+            optFil.setSelected(true);
+        }
+    }//GEN-LAST:event_txtDesLarCliFocusLost
+
+    private void txtDesLarCliFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDesLarCliFocusGained
+        strDesLarCli=txtDesLarCli.getText();
+        txtDesLarCli.selectAll();
+    }//GEN-LAST:event_txtDesLarCliFocusGained
+
+    private void txtDesLarCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDesLarCliActionPerformed
+        txtDesLarCli.transferFocus();
+    }//GEN-LAST:event_txtDesLarCliActionPerformed
+
+    private void txtCodCliFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCodCliFocusLost
+        //Validar el contenido de la celda sólo si ha cambiado.
+        if (!txtCodCli.getText().equalsIgnoreCase(strCodCli))
+        {
+            if (txtCodCli.getText().equals(""))
+            {
+                txtCodCli.setText("");
+                txtDesLarCli.setText("");
+            }
+            else
+            {
+                mostrarVenConCli(1);
+            }
+        }
+        else
+            txtCodCli.setText(strCodCli);
+        //Seleccionar el JRadioButton de filtro si es necesario.
+        if (txtCodCli.getText().length()>0)
+        {
+            optFil.setSelected(true);
+        }
+    }//GEN-LAST:event_txtCodCliFocusLost
+
+    private void txtCodCliFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCodCliFocusGained
+        strCodCli=txtCodCli.getText();
+        txtCodCli.selectAll();
+    }//GEN-LAST:event_txtCodCliFocusGained
+
+    private void txtCodCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodCliActionPerformed
+        txtCodCli.transferFocus();
+    }//GEN-LAST:event_txtCodCliActionPerformed
+
+    private void txtNomCliHasFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNomCliHasFocusLost
+        if (txtNomCliHas.getText().length()>0)
+            optFil.setSelected(true);
+        
+        txtCodCli.setText("");
+        txtDesLarCli.setText("");
+    }//GEN-LAST:event_txtNomCliHasFocusLost
+
+    private void txtNomCliDesFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNomCliDesFocusLost
+        if (txtNomCliDes.getText().length()>0)
+        {
+            optFil.setSelected(true);
+            if (txtNomCliHas.getText().length()==0)
+                txtNomCliHas.setText(txtNomCliDes.getText());
+            
+            txtCodCli.setText("");
+            txtDesLarCli.setText("");
+            
+        }
+    }//GEN-LAST:event_txtNomCliDesFocusLost
+
+    private void txtNomCliHasFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNomCliHasFocusGained
+        txtNomCliHas.selectAll();
+    }//GEN-LAST:event_txtNomCliHasFocusGained
+
+    private void txtNomCliDesFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNomCliDesFocusGained
+        txtNomCliDes.selectAll();
+    }//GEN-LAST:event_txtNomCliDesFocusGained
+
+    private void optTodItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_optTodItemStateChanged
+        if (optTod.isSelected())
+        {
+            txtCodCli.setText("");
+            txtDesLarCli.setText("");
+            txtNomCliDes.setText("");
+            txtNomCliHas.setText("");
+        }
+    }//GEN-LAST:event_optTodItemStateChanged
+
+    private void butConActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butConActionPerformed
+        //Realizar acción de acuerdo a la etiqueta del botón ("Consultar" o "Detener").
+        k=0;
+        p=0;
+        if (butCon.getText().equals("Consultar"))
+        {
+            blnCon=true;
+            if (objThrGUI==null)
+            {
+                objThrGUI=new ZafThreadGUI();
+                objThrGUI.start();
+            }            
+        }
+        else
+        {
+            blnCon=false;
+        }
+    }//GEN-LAST:event_butConActionPerformed
+
+    private void butCerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butCerActionPerformed
+        exitForm(null);
+    }//GEN-LAST:event_butCerActionPerformed
+
+    /** Cerrar la aplicación. */
+    private void exitForm(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_exitForm
+        String strTit, strMsg;
+        javax.swing.JOptionPane oppMsg=new javax.swing.JOptionPane();
+        strTit="Mensaje del sistema Zafiro";
+        strMsg="¿Está seguro que desea cerrar este programa?";
+        if (oppMsg.showConfirmDialog(this,strMsg,strTit,javax.swing.JOptionPane.YES_NO_OPTION,javax.swing.JOptionPane.QUESTION_MESSAGE)==javax.swing.JOptionPane.YES_OPTION)
+        {
+            dispose();
+        }
+    }//GEN-LAST:event_exitForm
+
+    /** Cerrar la aplicación. */
+    private void exitForm() 
+    {
+        dispose();
+    }    
+        
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup bgrFil;
+    private javax.swing.JButton butCer;
+    private javax.swing.JButton butCli;
+    private javax.swing.JButton butCon;
+    private javax.swing.JButton butEmp;
+    private javax.swing.JButton butForPag;
+    private javax.swing.JButton butGuardar;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JLabel lblCli;
+    private javax.swing.JLabel lblEmp;
+    private javax.swing.JLabel lblForPagCreCon;
+    private javax.swing.JLabel lblMonCreDes;
+    private javax.swing.JLabel lblMonCreHas;
+    private javax.swing.JLabel lblMsgSis;
+    private javax.swing.JLabel lblNomCliDes;
+    private javax.swing.JLabel lblNomCliHas;
+    private javax.swing.JLabel lblTit;
+    private javax.swing.JRadioButton optFil;
+    private javax.swing.JRadioButton optTod;
+    private javax.swing.JPanel panBar;
+    private javax.swing.JPanel panBarEst;
+    private javax.swing.JPanel panBot;
+    private javax.swing.JPanel panFil;
+    private javax.swing.JPanel panFrm;
+    private javax.swing.JPanel panMonCre;
+    private javax.swing.JPanel panNomCli;
+    private javax.swing.JPanel panRpt;
+    private javax.swing.JProgressBar pgrSis;
+    private javax.swing.JScrollPane spnDat;
+    private javax.swing.JTabbedPane tabFrm;
+    private javax.swing.JTable tblDat;
+    private javax.swing.JTextField txtCodCli;
+    private javax.swing.JTextField txtCodEmp;
+    private javax.swing.JTextField txtCodForPag;
+    private javax.swing.JTextField txtDesLarCli;
+    private javax.swing.JTextField txtForPag;
+    private javax.swing.JTextField txtMonCreDes;
+    private javax.swing.JTextField txtMonCreHas;
+    private javax.swing.JTextField txtNomCliDes;
+    private javax.swing.JTextField txtNomCliHas;
+    private javax.swing.JTextField txtNomEmp;
+    // End of variables declaration//GEN-END:variables
+    
+    /** Configurar el formulario. */
+    private boolean configurarFrm()
+    {
+        boolean blnRes=true;
+        int intCodEmp=0, intCodEmpGrp=0;
+        try
+        {
+            //Inicializar objetos.
+            objUti=new ZafUtil();
+            strAux=objParSis.getNombreMenu();
+            this.setTitle(strAux + " V 0.3 ");
+            lblTit.setText(strAux);
+            dtpDat=new ZafDatePicker(((javax.swing.JFrame)this.getParent()), "d/m/y");//inicializa el objeto DatePicker
+            
+            intCodEmp = objParSis.getCodigoEmpresa();
+            intCodEmpGrp = objParSis.getCodigoEmpresaGrupo();
+            CODEMP = intCodEmpGrp;
+            System.out.println("---intCodEmp--- " + intCodEmp);
+            System.out.println("---CODEMPGRP--- " + CODEMP);
+            
+            lblEmp.setVisible(false);
+            txtCodEmp.setVisible(false);
+            txtNomEmp.setVisible(false);
+            butEmp.setVisible(false);
+            
+            
+            if(objParSis.getCodigoEmpresa() == objParSis.getCodigoEmpresaGrupo())
+            {
+                lblEmp.setVisible(true);
+                txtCodEmp.setVisible(true);
+                txtNomEmp.setVisible(true);
+                butEmp.setVisible(true);
+            }
+            
+            //Configurar Ventana de Consulta de Cliente//
+            configurarVenConCli();
+            
+            //Configurar Ventana de Consulta de Empresa//
+            configurarVenConEmp();
+            
+            //Configurar Ventana de Consulta de Forma de Pago//
+            configurarVenConForPag();
+            
+            
+            //Configurar JTable: Establecer el modelo.
+            vecDat=new Vector();    //Almacena los datos
+            vecCab=new Vector(15);  //Almacena las cabeceras
+            vecCab.clear();
+            vecCab.add(INT_TBL_DAT_LIN,"");///0
+            vecCab.add(INT_TBL_DAT_COD_EMP,"Cód.Emp.");///1
+            vecCab.add(INT_TBL_DAT_COD_CLI,"Cód.Cli.");///2
+            vecCab.add(INT_TBL_DAT_NOM_CLI,"Cliente");///3
+            vecCab.add(INT_TBL_DAT_FEC_ULT_ACT,"Fec.Ult.Act.");///4
+            vecCab.add(INT_TBL_DAT_PRO_ACT,"Pro.Act. (Meses)");///5
+            vecCab.add(INT_TBL_DAT_FEC_PRO_ACT,"Fec.Prox.Act.");///6
+            
+            objTblMod=new ZafTblMod();
+            objTblMod.setHeader(vecCab);
+            tblDat.setModel(objTblMod);
+            
+            objTblEdi=new ZafTblEdi(tblDat);
+            setEditable(true);
+                        
+            //Configurar JTable: Establecer tipo de selección.
+            tblDat.setRowSelectionAllowed(true);
+            tblDat.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+            
+            //Configurar JTable: Establecer la fila de cabecera.
+            objColNum=new ZafColNumerada(tblDat,INT_TBL_DAT_LIN);
+            
+            //Configurar JTable: Establecer el menú de contexto.
+            objTblPopMnu=new ZafTblPopMnu(tblDat);
+            
+            //Configurar JTable: Establecer el tipo de redimensionamiento de las columnas.
+            tblDat.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+            
+            //Configurar JTable: Establecer el ancho de las columnas.
+            javax.swing.table.TableColumnModel tcmAux=tblDat.getColumnModel();
+            tcmAux.getColumn(INT_TBL_DAT_LIN).setPreferredWidth(30);///0
+            tcmAux.getColumn(INT_TBL_DAT_COD_EMP).setPreferredWidth(50);///1
+            tcmAux.getColumn(INT_TBL_DAT_COD_CLI).setPreferredWidth(60);///2
+            tcmAux.getColumn(INT_TBL_DAT_NOM_CLI).setPreferredWidth(250);///3
+            tcmAux.getColumn(INT_TBL_DAT_FEC_ULT_ACT).setPreferredWidth(100);///4
+            tcmAux.getColumn(INT_TBL_DAT_PRO_ACT).setPreferredWidth(80);///5
+            tcmAux.getColumn(INT_TBL_DAT_FEC_PRO_ACT).setPreferredWidth(100);///6
+            
+            tcmAux.getColumn(INT_TBL_DAT_FEC_ULT_ACT).setCellEditor(new Librerias.ZafTblUti.ZafDtePckEdi.ZafDtePckEdi(strFormatoFecha));
+            tcmAux.getColumn(INT_TBL_DAT_FEC_PRO_ACT).setCellEditor(new Librerias.ZafTblUti.ZafDtePckEdi.ZafDtePckEdi(strFormatoFecha));           
+            
+            //para hacer editable las celdas
+            vecAux=new Vector();
+            vecAuxDat=new Vector();
+            vecAux.add("" + INT_TBL_DAT_PRO_ACT);///5
+            vecAux.add("" + INT_TBL_DAT_FEC_PRO_ACT);///6
+            objTblMod.setColumnasEditables(vecAux);
+            vecAuxDat = vecAux;
+            vecAux=null;
+            
+            
+            //Configurar JTable: Establecer el tipo de reordenamiento de columnas.
+            tblDat.getTableHeader().setReorderingAllowed(false);
+            
+            //Configurar JTable: Mostrar ToolTipText en la cabecera de las columnas.
+            objMouMotAda=new ZafMouMotAda();
+            tblDat.getTableHeader().addMouseMotionListener(objMouMotAda);
+            
+            //Configurar JTable: Editor de búsqueda.
+            ///objTblBus=new ZafTblBus(tblDat);
+            
+            //Configurar JTable: Renderizar celdas.
+            objTblCelRenLbl=new ZafTblCelRenLbl();
+            objTblCelRenLbl.setHorizontalAlignment(javax.swing.JLabel.CENTER);
+            tcmAux.getColumn(INT_TBL_DAT_COD_EMP).setCellRenderer(objTblCelRenLbl);
+            tcmAux.getColumn(INT_TBL_DAT_COD_CLI).setCellRenderer(objTblCelRenLbl);
+            tcmAux.getColumn(INT_TBL_DAT_FEC_ULT_ACT).setCellRenderer(objTblCelRenLbl);
+            tcmAux.getColumn(INT_TBL_DAT_PRO_ACT).setCellRenderer(objTblCelRenLbl);
+            tcmAux.getColumn(INT_TBL_DAT_FEC_PRO_ACT).setCellRenderer(objTblCelRenLbl);
+            objTblCelRenLbl=null;                                    
+                
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+            objTblCelEdiTxtFec=new ZafTblCelEdiTxt(tblDat);
+            tcmAux.getColumn(INT_TBL_DAT_PRO_ACT).setCellEditor(objTblCelEdiTxtFec);
+            
+            objTblCelEdiTxtFec.addTableEditorListener(new Librerias.ZafTblUti.ZafTblEvt.ZafTableAdapter() 
+            {
+                public void afterEdit(Librerias.ZafTblUti.ZafTblEvt.ZafTableEvent evt) 
+                {
+                    java.util.Calendar objFecDivPag = objFec.getInstance();
+                    
+                    
+                    System.out.println("--funcion afterEdit()");
+                    System.out.println("--ya se escogio el/los mes/es---");
+                    
+                    int intvalproact = Integer.parseInt(""+objTblMod.getValueAt(tblDat.getSelectedRow(),INT_TBL_DAT_PRO_ACT));
+                    System.out.println("---intvalproact: " + intvalproact);
+                    
+                    String strvalProAct = objUti.parseString(objTblMod.getValueAt(tblDat.getSelectedRow(),INT_TBL_DAT_PRO_ACT));
+                    System.out.println("---strvalProAct: " + strvalProAct);
+                    
+                    String strfecUltAct = objUti.parseString(objTblMod.getValueAt(tblDat.getSelectedRow(),INT_TBL_DAT_FEC_ULT_ACT));
+                    System.out.println("---strfecUltAct: " + strfecUltAct);
+                    
+                    
+                    if(IsNumeric(strvalProAct))
+                    {
+                        System.out.println("---EL NUMERO MES ES VALIDO---: ");
+                        /////dias de credito/////
+                        int intDiaCre = (intvalproact * 30);
+                        System.out.println("---EL NUMERO DIAS intDiaCre es: " + intDiaCre);
+                        
+                          /////fecha de vencimiento/////
+                          objFecDivPag.setTime(objFec.getTime()); 
+
+                          if (intDiaCre!=0)
+                              objFecDivPag.add(java.util.Calendar.DATE, intDiaCre);
+
+                          dtePckPag.setAnio( objFecDivPag.get(java.util.Calendar.YEAR));
+                          dtePckPag.setMes( objFecDivPag.get(java.util.Calendar.MONTH)+1);
+                          dtePckPag.setDia(objFecDivPag.get(java.util.Calendar.DAY_OF_MONTH));
+
+                          System.out.println("---LA NUEVA FECHA dtePckPag es: " + dtePckPag.getText());
+                          
+                          objTblMod.setValueAt(dtePckPag.getText(),tblDat.getSelectedRow(),INT_TBL_DAT_FEC_PRO_ACT);
+                    }
+                    else
+                    {
+                        System.out.println("---EL NUMERO MES NO ES VALIDO---: ");
+                    }
+                }
+
+            });
+///////////////////////////////////////////////////////////////////////////////////////////////////////            
+            
+            //Libero los objetos auxiliares.
+            tcmAux=null;
+        }
+        catch(Exception e)
+        {
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        return blnRes;
+    }
+    
+    public void setEditable(boolean editable)
+    {
+        if (editable==true)
+        {
+            objTblMod.setModoOperacion(objTblMod.INT_TBL_EDI);
+        }
+        else
+        {
+            objTblMod.setModoOperacion(objTblMod.INT_TBL_NO_EDI);
+        }
+    }
+    
+    //Funcion para verificar si campo escrito es Numerico//
+    public static boolean IsNumeric(String s)
+    {
+        for(int i=0; i<s.length(); i++)
+        {
+            if(s.charAt(i) < '0' || s.charAt(i) > '9')
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    /**
+     * Esta función configura la "Ventana de consulta" que será utilizada para
+     * mostrar los "Clientes/Proveedores".
+     */
+    private boolean configurarVenConCli()
+    {
+        boolean blnRes=true;
+        try
+        {
+            //Listado de campos.
+            ArrayList arlCam=new ArrayList();
+            arlCam.add("a1.co_cli");
+            arlCam.add("a1.tx_ide");
+            arlCam.add("a1.tx_nom");
+            arlCam.add("a1.tx_dir");
+            //Alias de los campos.
+            ArrayList arlAli=new ArrayList();
+            arlAli.add("Código");
+            arlAli.add("Identificación");
+            arlAli.add("Nombre");
+            arlAli.add("Dirección");
+            //Ancho de las columnas.
+            ArrayList arlAncCol=new ArrayList();
+            arlAncCol.add("50");
+            arlAncCol.add("100");
+            arlAncCol.add("284");
+            arlAncCol.add("110");
+            
+            if(objUti.utilizarClientesEmpresa(objParSis, objParSis.getCodigoEmpresa(), objParSis.getCodigoLocal(), objParSis.getCodigoUsuario()))
+            {
+                //Armar la sentencia SQL.
+                strSQL="";
+                strSQL+="SELECT a1.co_cli, a1.tx_ide, a1.tx_nom, a1.tx_dir";
+                strSQL+=" FROM tbm_cli AS a1";
+                strSQL+=" WHERE a1.st_cli='S'";
+                
+                if(objParSis.getCodigoEmpresa()==objParSis.getCodigoEmpresaGrupo())
+                {
+                    if (txtCodEmp.getText().length()>0)
+                        strSQL+=" AND a1.co_emp = " + txtCodEmp.getText();
+                    else
+                        strSQL+=" AND a1.co_emp IN (1,2,3,4)";
+                }
+                else
+                    strSQL+=" AND a1.co_emp=" + objParSis.getCodigoEmpresa();
+
+                strSQL+=" ORDER BY a1.tx_nom";
+            }
+            else
+            {
+                //Armar la sentencia SQL.
+                 strSQL="";
+                strSQL+="SELECT a1.co_cli, a2.tx_ide, a2.tx_nom, a2.tx_dir";
+                strSQL+=" FROM  tbr_cliloc AS a1";
+                strSQL+=" INNER JOIN tbm_cli AS a2 ON (a1.co_emp=a2.co_emp and a1.co_cli=a2.co_cli) ";
+                strSQL+=" WHERE a2.st_cli='S'";
+                
+                if(objParSis.getCodigoEmpresa()==objParSis.getCodigoEmpresaGrupo())
+                {
+                    if (txtCodEmp.getText().length()>0)
+                        strSQL+=" AND a1.co_emp = " + txtCodEmp.getText();
+                    else
+                        strSQL+=" AND a1.co_emp IN (1,2,3,4)";
+                }
+                else
+                {
+                    strSQL+=" AND a1.co_emp=" + objParSis.getCodigoEmpresa();
+                    strSQL+=" AND a1.co_loc=" + objParSis.getCodigoLocal();
+                }
+
+                strSQL+=" ORDER BY a2.tx_nom";
+            }
+            
+            vcoCli=new ZafVenCon(javax.swing.JOptionPane.getFrameForComponent(this), objParSis, "Listado de clientes/proveedores", strSQL, arlCam, arlAli, arlAncCol);
+            arlCam=null;
+            arlAli=null;
+            arlAncCol=null;
+            //Configurar columnas.
+            vcoCli.setConfiguracionColumna(1, javax.swing.JLabel.RIGHT);
+            vcoCli.setConfiguracionColumna(2, javax.swing.JLabel.RIGHT);
+        }
+        catch (Exception e)
+        {
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        return blnRes;
+    }
+    
+    
+    /**
+     * Esta función configura la "Ventana de consulta" que será utilizada para
+     * mostrar los "Empresa".
+     */
+    private boolean configurarVenConEmp()
+    {
+        boolean blnRes=true;
+        try
+        {
+            //Listado de campos.
+            ArrayList arlCam=new ArrayList();
+            arlCam.add("a1.co_emp");
+            arlCam.add("a1.tx_ruc");
+            arlCam.add("a1.tx_nom");
+            arlCam.add("a1.tx_dir");
+            //Alias de los campos.
+            ArrayList arlAli=new ArrayList();
+            arlAli.add("Código");
+            arlAli.add("Identificación");
+            arlAli.add("Nombre");
+            arlAli.add("Dirección");
+            //Ancho de las columnas.
+            ArrayList arlAncCol=new ArrayList();
+            arlAncCol.add("50");
+            arlAncCol.add("100");
+            arlAncCol.add("284");
+            arlAncCol.add("110");
+            //Armar la sentencia SQL.
+            strSQL="";
+            strSQL+="SELECT a1.co_emp, a1.tx_ruc, a1.tx_nom, a1.tx_dir";
+            strSQL+=" FROM tbm_emp AS a1";
+            ///strSQL+=" WHERE a1.co_emp=" + objParSis.getCodigoEmpresa();
+            strSQL+=" ORDER BY a1.co_emp";
+            vcoEmp=new ZafVenCon(javax.swing.JOptionPane.getFrameForComponent(this), objParSis, "Listado de clientes/proveedores", strSQL, arlCam, arlAli, arlAncCol);
+            arlCam=null;
+            arlAli=null;
+            arlAncCol=null;
+            //Configurar columnas.
+            vcoEmp.setConfiguracionColumna(1, javax.swing.JLabel.RIGHT);
+            vcoEmp.setConfiguracionColumna(2, javax.swing.JLabel.RIGHT);
+        }
+        catch (Exception e)
+        {
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        return blnRes;
+    }
+    
+    private boolean configurarVenConForPag()
+    {
+        boolean blnRes=true;
+        try
+        {
+            //Listado de campos.
+            ArrayList arlCam=new ArrayList();
+            arlCam.add("a1.co_forpag");
+            arlCam.add("a1.tx_des");
+            arlCam.add("a1.ne_numpag");
+            //Alias de los campos.
+            ArrayList arlAli=new ArrayList();
+            arlAli.add("Código For. Pag.");
+            arlAli.add("Des. Corta");
+            arlAli.add("Num. Pago");
+            //Ancho de las columnas.
+            ArrayList arlAncCol=new ArrayList();
+            arlAncCol.add("50");
+            arlAncCol.add("350");
+            arlAncCol.add("50");
+            //Armar la sentencia SQL.
+            strSQL="";
+            strSQL+="SELECT a1.co_forpag, a1.tx_des, a1.ne_numpag ";
+            strSQL+=" FROM tbm_cabforpag as a1 ";
+            strSQL+=" WHERE a1.co_emp=" + objParSis.getCodigoEmpresa();
+            strSQL+=" AND a1.st_reg <> 'E' ";
+            strSQL+=" ORDER BY a1.co_forpag ";
+            vcoForPag=new ZafVenCon(javax.swing.JOptionPane.getFrameForComponent(this), objParSis, "Listado de Formas de Pago", strSQL, arlCam, arlAli, arlAncCol);
+            arlCam=null;
+            arlAli=null;
+            arlAncCol=null;
+            //Configurar columnas.
+            vcoForPag.setConfiguracionColumna(1, javax.swing.JLabel.LEFT);
+            vcoForPag.setConfiguracionColumna(2, javax.swing.JLabel.LEFT);
+        }
+        catch (Exception e)
+        {
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        return blnRes;
+    }
+        
+    /**
+     * Esta función permite consultar los registros de acuerdo al criterio seleccionado.
+     * @return true: Si se pudo consultar los registros.
+     * <BR>false: En el caso contrario.
+     */
+    private boolean cargarDetReg()
+    {
+        int intCodEmp, intCodLoc, intNumTotReg, i;
+        
+        int intNumDia; 
+        String strFecSis, strFecIni;
+        int intFecIni[];
+        int intFecFin[];//para calcular los dias entre fechas
+        
+        double dblSub, dblIva;
+        
+        
+        String strEstAnaSolCre="";
+        String strFecUltAct="";
+        String strFecProAct = "";
+        
+        boolean blnRes=true;
+        
+        try
+        {
+            butCon.setText("Detener");
+            lblMsgSis.setText("Obteniendo datos...");
+            intCodEmp=objParSis.getCodigoEmpresa();//obtiene el codigo de la empresa que selecciono el usuario al ingresar al sistema
+            intCodLoc=objParSis.getCodigoLocal();//obtiene el codigo del local que selecciono el usuario al ingresar al sistema
+            con=DriverManager.getConnection(objParSis.getStringConexion(), objParSis.getUsuarioBaseDatos(), objParSis.getClaveBaseDatos());
+            if (con!=null)
+            {
+                stm=con.createStatement();
+                //Obtener la fecha del servidor.
+                datFecSer=objUti.getFechaServidor(objParSis.getStringConexion(), objParSis.getUsuarioBaseDatos(), objParSis.getClaveBaseDatos(), objParSis.getQueryFechaHoraBaseDatos());
+                if (datFecSer==null)
+                    return false;
+                datFecAux=datFecSer;
+                strFecSis=objUti.formatearFecha(datFecAux, "dd/MM/yyyy");
+                
+                ///System.out.println("---fecha--datFecAux "+ datFecAux);
+                System.out.println("---fecha--strFecSis "+ strFecSis);
+                STRFECSIS = strFecSis;
+
+                //Obtener la condición.
+                strAux="";
+                
+                //Condicion para filtro por cliente//
+                if(intCodEmp==0)
+                {
+                    if (txtCodEmp.getText().length()>0)
+                        strAux+=" AND a1.co_emp = " + txtCodEmp.getText();
+                }
+                else
+                {
+                    strAux+=" AND a1.co_emp = " + intCodEmp;
+                }
+                
+                //Condicion para filtro por cliente//
+                if (txtCodCli.getText().length()>0)
+                    strAux+=" AND a1.co_cli = " + txtCodCli.getText();
+                if (txtNomCliDes.getText().length()>0 || txtNomCliHas.getText().length()>0)
+                    strAux+=" AND ((LOWER(a1.tx_nom) BETWEEN '" + txtNomCliDes.getText().replaceAll("'", "''").toLowerCase() + "' AND '" + txtNomCliHas.getText().replaceAll("'", "''").toLowerCase() + "') OR LOWER(a1.tx_nom) LIKE '" + txtNomCliHas.getText().replaceAll("'", "''").toLowerCase() + "%')";
+                
+                //Condicion para filtro por Forma de Pago//
+                if (txtCodForPag.getText().length()>0)
+                    strAux+=" AND a1.co_forpag = " + txtCodForPag.getText();
+                
+                //Condicion para filtro por Monto de Credito//
+                if (txtMonCreDes.getText().length()>0 || txtMonCreHas.getText().length()>0)
+                    strAux+=" AND ((LOWER(a1.nd_moncre) BETWEEN '" + txtMonCreDes.getText().replaceAll("'", "''").toLowerCase() + "' AND '" + txtMonCreHas.getText().replaceAll("'", "''").toLowerCase() + "') OR LOWER(a1.nd_moncre) LIKE '" + txtMonCreHas.getText().replaceAll("'", "''").toLowerCase() + "%')";
+
+                //Obtener el número total de registros.
+                strSQL="";
+                strSQL+="SELECT COUNT(*)";
+                strSQL+=" FROM (";
+                strSQL+=" SELECT a1.co_emp, a1.co_cli, a1.tx_nom, a1.fe_ultactdat, a1.fe_proactdat ";
+                strSQL+=" FROM tbm_cli AS a1";
+                
+                if(objUti.utilizarClientesEmpresa(objParSis, objParSis.getCodigoEmpresa(), objParSis.getCodigoLocal(), objParSis.getCodigoUsuario()))
+                {
+                    strSQL+=strAux;
+                    strSQL+=" AND a1.st_reg='A'";
+                    strSQL+=" ORDER BY a1.tx_nom";
+                }
+                else
+                {
+                    strSQL+=" INNER JOIN tbr_cliloc AS a2 ON (a1.co_emp=a2.co_emp and a1.co_cli=a2.co_cli)";
+                    strSQL+=strAux;
+                    strSQL+=" AND a2.co_loc = " + intCodLoc + "";                    
+                    strSQL+=" AND a1.st_reg='A'";
+                    strSQL+=" ORDER BY a1.tx_nom";
+                }
+                
+//                strSQL+=" WHERE a1.st_reg IN ('A')";
+//                strSQL+=strAux;
+//                strSQL+=" ORDER BY a1.co_emp, a1.tx_nom ";
+                
+                strSQL+=" ) AS b1";
+                System.out.println("---Query de count(*)--cargarDetReg(): "+ strSQL);
+                
+                intNumTotReg=objUti.getNumeroRegistro(this, objParSis.getStringConexion(), objParSis.getUsuarioBaseDatos(), objParSis.getClaveBaseDatos(), strSQL);
+                if (intNumTotReg==-1)
+                    return false;
+
+                //Armar la sentencia SQL.
+                strSQL="";
+                strSQL+=" SELECT a1.co_emp, a1.co_cli, a1.tx_nom, a1.fe_ultactdat, a1.fe_proactdat ";
+                strSQL+=" FROM tbm_cli AS a1";
+                
+                if(objUti.utilizarClientesEmpresa(objParSis, objParSis.getCodigoEmpresa(), objParSis.getCodigoLocal(), objParSis.getCodigoUsuario()))
+                {
+                    strSQL+=strAux;
+                    strSQL+=" AND a1.st_reg='A'";
+                    strSQL+=" ORDER BY a1.tx_nom";
+                }
+                else
+                {
+                    strSQL+=" INNER JOIN tbr_cliloc AS a2 ON (a1.co_emp=a2.co_emp and a1.co_cli=a2.co_cli)";
+                    strSQL+=strAux;
+                    strSQL+=" AND a2.co_loc = " + intCodLoc + "";                    
+                    strSQL+=" AND a1.st_reg='A'";
+                    strSQL+=" ORDER BY a1.tx_nom";
+                }
+                
+//                strSQL+=" WHERE a1.st_reg IN ('A')";
+//                strSQL+=strAux;
+//                strSQL+=" ORDER BY a1.co_emp, a1.tx_nom ";
+                
+                System.out.println("---Query de cargarDetReg(): "+ strSQL);
+                
+                rst=stm.executeQuery(strSQL);
+                
+                //Limpiar vector de datos.
+                vecDat.clear();
+                //Obtener los registros.
+                lblMsgSis.setText("Cargando datos...");
+                pgrSis.setMinimum(0);
+                pgrSis.setMaximum(intNumTotReg);
+                pgrSis.setValue(0);
+                i=0;
+                
+                while (rst.next())
+                {
+                    if (blnCon)
+                    {
+                        vecReg=new Vector();
+                        vecReg.add(INT_TBL_DAT_LIN,"");///0                        
+                        vecReg.add(INT_TBL_DAT_COD_EMP,rst.getString("co_emp"));///1
+                        vecReg.add(INT_TBL_DAT_COD_CLI,rst.getString("co_cli"));///2
+                        vecReg.add(INT_TBL_DAT_NOM_CLI,rst.getString("tx_nom"));///3
+                        
+                        ///vecReg.add(INT_TBL_DAT_FEC_ULT_ACT,rst.getString("fe_ultactdat"));///4 ///original///
+                        
+                        strFecUltAct = rst.getString("fe_ultactdat");                        
+                        
+                        if(strFecUltAct==null)
+                        {
+                            ///System.out.println("---strFecUltAct es : "+ strFecUltAct);
+                            vecReg.add(INT_TBL_DAT_FEC_ULT_ACT,rst.getString("fe_ultactdat"));///4 ///original///
+                            
+                        }
+                        else
+                        {
+                            ///System.out.println("---strFecUltAct: "+ strFecUltAct);
+                            vecReg.add(INT_TBL_DAT_FEC_ULT_ACT, objUti.formatearFecha(rst.getDate("fe_ultactdat"), "dd/MM/yyyy"));////4                            
+                        }
+                        
+                        vecReg.add(INT_TBL_DAT_PRO_ACT,"");///5
+                        
+                        ///vecReg.add(INT_TBL_DAT_FEC_PRO_ACT,rst.getString("fe_proactdat"));///6  ////original///
+                        strFecProAct = rst.getString("fe_proactdat");
+                        
+                        if(strFecProAct==null)
+                        {
+                            ///System.out.println("---strFecUltAct es : "+ strFecUltAct);
+                            vecReg.add(INT_TBL_DAT_FEC_PRO_ACT,rst.getString("fe_proactdat"));///6 ///original///
+                            
+                        }
+                        else
+                        {
+                            ///System.out.println("---strFecUltAct: "+ strFecUltAct);
+                            vecReg.add(INT_TBL_DAT_FEC_PRO_ACT, objUti.formatearFecha(rst.getDate("fe_proactdat"), "dd/MM/yyyy"));////6
+                        }
+                        
+                        vecDat.add(vecReg);
+                        i++;
+                        pgrSis.setValue(i);
+                    }
+                    else
+                    {
+                        break;
+                    }
+                    
+                }///fin del while///
+                
+                rst.close();
+                stm.close();
+                con.close();
+                rst=null;
+                stm=null;
+                con=null;
+                
+                //Asignar vectores al modelo.
+                objTblMod.setData(vecDat);
+                tblDat.setModel(objTblMod);
+                vecDat.clear();
+                
+                if (intNumTotReg==tblDat.getRowCount())
+                    lblMsgSis.setText("Se encontraron " + intNumTotReg + " registros.");
+                else
+                    lblMsgSis.setText("Se encontraron " + intNumTotReg + " registros pero sólo se procesaron " + tblDat.getRowCount() + ".");
+                pgrSis.setValue(0);
+                butCon.setText("Consultar");
+            }
+        }
+        catch (java.sql.SQLException e)
+        {
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        catch (Exception e)
+        {
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        return blnRes;
+    }
+    
+    private boolean actualizarDatCli()
+    {
+        boolean blnRes=true;
+        int i=0, x=0;
+        String strEstAnaSol="";
+        try
+        {
+            con=DriverManager.getConnection(objParSis.getStringConexion(), objParSis.getUsuarioBaseDatos(), objParSis.getClaveBaseDatos());
+            con.setAutoCommit(false);
+            if (con!=null)
+            {
+                stm=con.createStatement();
+                String strFecSis = objUti.getFechaServidor(objParSis.getStringConexion(),objParSis.getUsuarioBaseDatos(),objParSis.getClaveBaseDatos(),objParSis.getQueryFechaHoraBaseDatos(),objParSis.getFormatoFechaHoraBaseDatos());
+                ///System.out.println("---ENTRO EN LA FUNCION actualizarSolCre()---");
+                ///System.out.println("---fecha--- strFecSis--- " + strFecSis);
+                
+                for (i=0; i<objTblMod.getRowCountTrue(); i++)
+                {
+                    if (objUti.parseString(objTblMod.getValueAt(i,0)).equals("M"))
+                    {
+                        //Armar la sentencia SQL.
+                        strSQL="";
+                        strSQL+="UPDATE tbm_cli";
+                        strSQL+=" SET ";
+                        ///strSQL+=" fe_ultActDat = '" + strFecSis + "'";
+                        strSQL+=" fe_proactdat = '" + objUti.formatearFecha(objUti.parseString(objTblMod.getValueAt(i,INT_TBL_DAT_FEC_PRO_ACT)), "dd/MM/yyyy", "yyyy/MM/dd") + "'";
+                        strSQL+=" WHERE co_emp = " + objUti.parseString(objTblMod.getValueAt(i,INT_TBL_DAT_COD_EMP));;
+                        strSQL+=" AND co_cli = " + objUti.parseString(objTblMod.getValueAt(i,INT_TBL_DAT_COD_CLI));
+                        System.out.println("---SQL del update tbm_cli---: " + strSQL);
+                        stm.executeUpdate(strSQL);
+                    }
+                }
+                con.commit();
+                blnRes=true;
+
+                stm.close();
+                stm=null;
+            }
+            else
+            {
+                System.out.println("---esta falso en con!=null---");
+            }
+        }
+        catch (java.sql.SQLException e)
+        {
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        catch (Exception e)
+        {
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        return blnRes;
+    }
+    
+    /**
+     * Esta función muestra un mensaje informativo al usuario. Se podría utilizar
+     * para mostrar al usuario un mensaje que indique el campo que es invalido y que
+     * debe llenar o corregir.
+     */
+    private void mostrarMsgInf(String strMsg)
+    {
+        javax.swing.JOptionPane oppMsg=new javax.swing.JOptionPane();
+        String strTit;
+        strTit="Mensaje del sistema Zafiro";
+        oppMsg.showMessageDialog(this,strMsg,strTit,javax.swing.JOptionPane.INFORMATION_MESSAGE);
+    }
+    
+    /**
+     * Esta función muestra un mensaje "showConfirmDialog". Presenta las opciones
+     * Si y No. El usuario es quien determina lo que debe hacer el sistema
+     * seleccionando una de las opciones que se presentan.
+     */
+    private int mostrarMsgCon(String strMsg)
+    {
+        javax.swing.JOptionPane oppMsg=new javax.swing.JOptionPane();
+        String strTit;
+        strTit="Mensaje del sistema Zafiro";
+        return oppMsg.showConfirmDialog(this,strMsg,strTit,javax.swing.JOptionPane.YES_NO_OPTION,javax.swing.JOptionPane.QUESTION_MESSAGE);
+    }
+    
+    /**
+     * Esta función muestra un mensaje de error al usuario. Se podría utilizar
+     * para mostrar al usuario un mensaje que indique que los datos no se grabaron
+     * y que debe comunicar de este particular al administrador del sistema.
+     */
+    private void mostrarMsgErr(String strMsg)
+    {
+        javax.swing.JOptionPane oppMsg=new javax.swing.JOptionPane();
+        String strTit;
+        strTit="Mensaje del sistema Zafiro";
+        oppMsg.showMessageDialog(this,strMsg,strTit,javax.swing.JOptionPane.ERROR_MESSAGE);
+    }
+    
+    /**
+     * Esta función permite utilizar la "Ventana de Consulta" para seleccionar un
+     * registro de la base de datos. El tipo de búsqueda determina si se debe hacer
+     * una búsqueda directa (No se muestra la ventana de consulta a menos que no 
+     * exista lo que se está buscando) o presentar la ventana de consulta para que
+     * el usuario seleccione la opción que desea utilizar.
+     * @param intTipBus El tipo de búsqueda a realizar.
+     * @return true: Si no se presentó ningún problema.
+     * <BR>false: En el caso contrario.
+     */
+    private boolean mostrarVenConCli(int intTipBus)
+    {
+        boolean blnRes=true;
+        try
+        {
+            switch (intTipBus)
+            {
+                case 0: //Mostrar la ventana de consulta.
+                    vcoCli.setCampoBusqueda(2);
+                    vcoCli.show();
+                    if (vcoCli.getSelectedButton()==vcoCli.INT_BUT_ACE)
+                    {
+                        txtCodCli.setText(vcoCli.getValueAt(1));
+                        txtDesLarCli.setText(vcoCli.getValueAt(3));
+                    }
+                    break;
+                case 1: //Búsqueda directa por "Código".
+                    if (vcoCli.buscar("a1.co_cli", txtCodCli.getText()))
+                    {
+                        txtCodCli.setText(vcoCli.getValueAt(1));
+                        txtDesLarCli.setText(vcoCli.getValueAt(3));
+                    }
+                    else
+                    {
+                        vcoCli.setCampoBusqueda(0);
+                        vcoCli.setCriterio1(11);
+                        vcoCli.cargarDatos();
+                        vcoCli.show();
+                        if (vcoCli.getSelectedButton()==vcoCli.INT_BUT_ACE)
+                        {
+                            txtCodCli.setText(vcoCli.getValueAt(1));
+                            txtDesLarCli.setText(vcoCli.getValueAt(3));
+                        }
+                        else
+                        {
+                            txtCodCli.setText(strCodCli);
+                        }
+                    }
+                    break;
+                case 2: //Búsqueda directa por "Descripción larga".
+                    if (vcoCli.buscar("a1.tx_nom", txtDesLarCli.getText()))
+                    {
+                        txtCodCli.setText(vcoCli.getValueAt(1));
+                        txtDesLarCli.setText(vcoCli.getValueAt(3));
+                    }
+                    else
+                    {
+                        vcoCli.setCampoBusqueda(2);
+                        vcoCli.setCriterio1(11);
+                        vcoCli.cargarDatos();
+                        vcoCli.show();
+                        if (vcoCli.getSelectedButton()==vcoCli.INT_BUT_ACE)
+                        {
+                            txtCodCli.setText(vcoCli.getValueAt(1));
+                            txtDesLarCli.setText(vcoCli.getValueAt(3));
+                        }
+                        else
+                        {
+                            txtDesLarCli.setText(strDesLarCli);
+                        }
+                    }
+                    break;
+            }
+        }
+        catch (Exception e)
+        {
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        return blnRes;
+    }
+    
+    
+    /**
+     * Esta función permite utilizar la "Ventana de Consulta" para seleccionar un
+     * registro de la base de datos. El tipo de búsqueda determina si se debe hacer
+     * una búsqueda directa (No se muestra la ventana de consulta a menos que no 
+     * exista lo que se está buscando) o presentar la ventana de consulta para que
+     * el usuario seleccione la opción que desea utilizar.
+     * @param intTipBus El tipo de búsqueda a realizar.
+     * @return true: Si no se presentó ningún problema.
+     * <BR>false: En el caso contrario.
+     */
+    private boolean mostrarVenConEmp(int intTipBus)
+    {
+        boolean blnRes=true;
+        try
+        {
+            switch (intTipBus)
+            {
+                case 0: //Mostrar la ventana de consulta.
+                    vcoEmp.setCampoBusqueda(2);
+                    vcoEmp.show();
+                    if (vcoEmp.getSelectedButton()==vcoEmp.INT_BUT_ACE)
+                    {
+                        txtCodEmp.setText(vcoEmp.getValueAt(1));
+                        txtNomEmp.setText(vcoEmp.getValueAt(3));
+                    }
+                    break;
+                case 1: //Búsqueda directa por "Código".
+                    if (vcoEmp.buscar("a1.co_emp", txtCodEmp.getText()))
+                    {
+                        txtCodEmp.setText(vcoEmp.getValueAt(1));
+                        txtNomEmp.setText(vcoEmp.getValueAt(3));
+                    }
+                    else
+                    {
+                        vcoEmp.setCampoBusqueda(0);
+                        vcoEmp.setCriterio1(11);
+                        vcoEmp.cargarDatos();
+                        vcoEmp.show();
+                        if (vcoEmp.getSelectedButton()==vcoEmp.INT_BUT_ACE)
+                        {
+                            txtCodEmp.setText(vcoEmp.getValueAt(1));
+                            txtNomEmp.setText(vcoEmp.getValueAt(3));
+                        }
+                        else
+                        {
+                            txtCodEmp.setText(strCodEmp);
+                        }
+                    }
+                    break;
+                case 2: //Búsqueda directa por "Descripción larga".
+                    if (vcoEmp.buscar("a1.tx_nom", txtNomEmp.getText()))
+                    {
+                        txtCodEmp.setText(vcoEmp.getValueAt(1));
+                        txtNomEmp.setText(vcoEmp.getValueAt(3));
+                    }
+                    else
+                    {
+                        vcoEmp.setCampoBusqueda(2);
+                        vcoEmp.setCriterio1(11);
+                        vcoEmp.cargarDatos();
+                        vcoEmp.show();
+                        if (vcoEmp.getSelectedButton()==vcoEmp.INT_BUT_ACE)
+                        {
+                            txtCodEmp.setText(vcoEmp.getValueAt(1));
+                            txtNomEmp.setText(vcoEmp.getValueAt(3));
+                        }
+                        else
+                        {
+                            txtNomEmp.setText(strNomEmp);
+                        }
+                    }
+                    break;
+            }
+        }
+        catch (Exception e)
+        {
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        return blnRes;
+    }
+    
+    /**
+     * Esta función permite utilizar la "Ventana de Consulta" para seleccionar un
+     * registro de la base de datos. El tipo de búsqueda determina si se debe hacer
+     * una búsqueda directa (No se muestra la ventana de consulta a menos que no 
+     * exista lo que se está buscando) o presentar la ventana de consulta para que
+     * el usuario seleccione la opción que desea utilizar.
+     * @param intTipBus El tipo de búsqueda a realizar.
+     * @return true: Si no se presentó ningún problema.
+     * <BR>false: En el caso contrario.
+     */
+    private boolean mostrarVenConForPag(int intTipBus)
+    {
+        boolean blnRes=true;
+        try
+        {
+            switch (intTipBus)
+            {
+                case 0: //Mostrar la ventana de consulta.
+                    vcoForPag.setCampoBusqueda(2);
+                    vcoForPag.show();
+                    if (vcoForPag.getSelectedButton()==vcoForPag.INT_BUT_ACE)
+                    {
+                        txtCodForPag.setText(vcoForPag.getValueAt(1));
+                        txtForPag.setText(vcoForPag.getValueAt(2));
+                    }
+                    break;
+                case 1: //Búsqueda directa por "Código".
+                    if (vcoForPag.buscar("a1.co_forpag", txtCodForPag.getText()))
+                    {
+                        txtCodForPag.setText(vcoForPag.getValueAt(1));
+                        txtForPag.setText(vcoForPag.getValueAt(2));
+                    }
+                    else
+                    {
+                        vcoForPag.setCampoBusqueda(0);
+                        vcoForPag.setCriterio1(11);
+                        vcoForPag.cargarDatos();
+                        vcoForPag.show();
+                        if (vcoForPag.getSelectedButton()==vcoForPag.INT_BUT_ACE)
+                        {
+                            txtCodForPag.setText(vcoForPag.getValueAt(1));
+                            txtForPag.setText(vcoForPag.getValueAt(2));
+                        }
+                        else
+                        {
+                            txtCodForPag.setText(strCodForPag);
+                        }
+                    }
+                    break;
+                case 2: //Búsqueda directa por "Descripción larga".
+                    if (vcoForPag.buscar("a1.tx_des", txtForPag.getText()))
+                    {
+                        txtCodForPag.setText(vcoForPag.getValueAt(1));
+                        txtForPag.setText(vcoForPag.getValueAt(2));
+                    }
+                    else
+                    {
+                        vcoForPag.setCampoBusqueda(2);
+                        vcoForPag.setCriterio1(11);
+                        vcoForPag.cargarDatos();
+                        vcoForPag.show();
+                        if (vcoForPag.getSelectedButton()==vcoForPag.INT_BUT_ACE)
+                        {
+                            txtCodForPag.setText(vcoForPag.getValueAt(1));
+                            txtForPag.setText(vcoForPag.getValueAt(2));
+                        }
+                        else
+                        {
+                            txtForPag.setText(strForPag);
+                        }
+                    }
+                    break;
+            }
+        }
+        catch (Exception e)
+        {
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        return blnRes;
+    }
+
+   
+    /**
+     * Esta clase crea un hilo que permite manipular la interface gráfica de usuario (GUI).
+     * Por ejemplo: se la puede utilizar para cargar los datos en un JTable donde la idea
+     * es mostrar al usuario lo que está ocurriendo internamente. Es decir a medida que se
+     * llevan a cabo los procesos se podría presentar mensajes informativos en un JLabel e
+     * ir incrementando un JProgressBar con lo cual el usuario estaría informado en todo
+     * momento de lo que ocurre. Si se desea hacer ésto es necesario utilizar ésta clase
+     * ya que si no sólo se apreciaría los cambios cuando ha terminado todo el proceso.
+     */
+    private class ZafThreadGUI extends Thread
+    {
+        public void run()
+        {
+            if (!cargarDetReg())
+            {
+                //Inicializar objetos si no se pudo cargar los datos.
+                lblMsgSis.setText("Listo");
+                pgrSis.setValue(0);
+                butCon.setText("Consultar");
+            }
+            //Establecer el foco en el JTable sólo cuando haya datos.
+            if (tblDat.getRowCount()>0)
+            {
+                tabFrm.setSelectedIndex(1);
+                tblDat.setRowSelectionInterval(0, 0);
+                tblDat.requestFocus();
+            }
+            objThrGUI=null;
+        }
+    }
+    
+    /**
+     * Esta clase hereda de la clase MouseMotionAdapter que permite manejar eventos de
+     * del mouse (mover el mouse; arrastrar y soltar).
+     * Se la usa en el sistema para mostrar el ToolTipText adecuado en la cabecera de
+     * las columnas. Es necesario hacerlo porque el ancho de las columnas a veces
+     * resulta muy corto para mostrar leyendas que requieren más espacio.
+     */
+    private class ZafMouMotAda extends java.awt.event.MouseMotionAdapter
+    {
+        public void mouseMoved(java.awt.event.MouseEvent evt)
+        {
+            int intCol=tblDat.columnAtPoint(evt.getPoint());
+            String strMsg="";
+            switch (intCol)
+            {
+                case INT_TBL_DAT_LIN:
+                    strMsg="";
+                    break;                
+                case INT_TBL_DAT_COD_EMP:
+                    strMsg="Código de la empresa";
+                    break;               
+                case INT_TBL_DAT_COD_CLI:
+                    strMsg="Código del cliente";
+                    break;
+                case INT_TBL_DAT_NOM_CLI:
+                    strMsg="Nombre del cliente";
+                    break;
+                case INT_TBL_DAT_FEC_ULT_ACT:
+                    strMsg="Fecha de Ultima Actualizacion de Datos";
+                    break;                
+                case INT_TBL_DAT_PRO_ACT:
+                    strMsg="Numero de meses para proxima actualizacion";
+                    break;
+                case INT_TBL_DAT_FEC_PRO_ACT:
+                    strMsg="Fecha de Proxima Actualizacion de Datos";
+                    break;         
+                default:
+                    strMsg="";
+                    break;
+            }
+            tblDat.getTableHeader().setToolTipText(strMsg);
+        }
+    }
+    
+}

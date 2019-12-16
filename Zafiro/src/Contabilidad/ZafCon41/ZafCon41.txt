@@ -1,0 +1,11 @@
+--CONTROL DE CAMBIOS--
+-----------------------------------
+v0.1 - 30/Jul/2007 - 09h38
+Nuevo programa que permite especificar detalle para una determinada cuenta y año.
+
+v0.1b2 - 20/Ago/2007 - 14h26
+Se hizo no visible el código de cuenta por estándares del sistema
+
+v0.2b1 - 18/Sep/2007 - 13h02
+----
+Se adicionó código para consulta por grupo

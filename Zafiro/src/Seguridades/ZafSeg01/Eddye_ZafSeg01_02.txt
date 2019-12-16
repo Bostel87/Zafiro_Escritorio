@@ -1,0 +1,86 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 17/Ene/2006)
+----
+Se restringió que en el menú sólo aparecieran las opciones permitidas al usuario.
+
+
+v0.2: (Eddye Lino - 02/Jul/2006)
+-----
+Se mejoró lo siguiente:
+1) La barra de estado presenta marcos que permiten diferenciar donde empieza y donde termina un JLabel.
+2) Se agregó un JProgressBar en la barra de estado para mostrar el consumo de memoria.
+3) Se agregó código para llamar al "Garbage Collector" cada vez que se cierra un JInternalFrame que es llamado desde el menú.
+4) Se agregó código para que apareciera el nombre de la empresa en la barra de título.
+
+
+v0.3: (Javier Ayapata - 05/Jul/2007)
+-----
+Se agrega para que presente listado de items que termninan en S y no tengas precio.
+
+
+v0.4: (Eddye Lino - 28/Ago/2007)
+-----
+Se agregó código en el constructor de la clase para que cargara los años creados en el sistema.
+
+
+v0.5: (Eddye Lino - 19/Mar/2008)
+----
+Se modificó el método: 
+   1) ZafSeg01_02(ZafParSis obj)
+Se agregó la siguiente línea:
+        objParSis.cargarParametrosSistema();
+
+
+v0.6: (Javier Ayapata - 30/May/2008)
+-----
+Se agrega para que envie el JDesktopPane a la clase ZafConItm.
+
+
+v0.7: (Eddye Lino - 13/Dic/2010)
+-----
+Se agregaron los métodos: 
+   1) minimizarTodVen()
+   2) restaurarTodVen()
+Dichos métodos permiten minimizar y restaurar todas las ventanas.
+
+
+v0.8: (Eddye Lino - 15/May/2012)
+-----
+Se agregaron los métodos: 
+   1) mosaicoHor()
+   2) mosaicoVer()
+   3) cascada()
+   4) organizar()
+Dichos métodos permiten organizar las ventanas.
+
+
+v0.9: (Roberto Flores - 12/Mar/2013)
+-----
+Se añaden validaciones para la presentación de las notificaciones de atrasos y vencimientos de contratos
+
+
+v1.0: (Roberto Flores - 15/Abr/2013)
+-----
+Se añade método permisoSegNov() para mostrar y validar el Seguimiento de novedades de recursos humanos que
+se encuentran pendientes según el usuario que ingresa al sistema.
+
+
+v1.01: (Roberto Flores - 23/May/2013)
+-----
+Mostrar a Juan Rodas todas las novedades de recursos humanos pendientes. Antes sólo se presentaban las suyas.
+
+
+v1.02: (Rosa Zambrano - 11/Nov/2016)
+-----
+Se agrega libreria ZafNotAle para presentar Notificaciones de Alertas Varias.
+
+
+v1.03: (Jose Mario Marin - 16/Jun/2017)
+-----
+Se agrega libreria ZafImpAut, para imprimir automaticamente las OD generadas por el sistema de reserva.

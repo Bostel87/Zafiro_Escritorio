@@ -1,0 +1,98 @@
+﻿Pendientes:
+1) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Alex Morán - 02/May/2013)
+----
+Clase nueva "Listado de ingresos físicos de mercadería pendientes de confirmar...". 
+
+
+v0.2: (Alex Morán - 03/May/2013)
+-----
+Llamada a constructor se realiza por código de registro en vez de código de item.
+
+
+v0.3: (Alex Morán - 03/Jun/2013)
+-----
+Se modifica query para agregar importaciones y corregir pendientes de confirmar en despachos parciales.
+
+
+v0.4: (Alex Morán - 29/Jul/2013)
+-----
+Se modifica para no permitir detener la consulta y de esta manera quede habilitado el botón cerrar.
+
+
+v0.5: (Alex Morán - 02/Sep/2013)
+-----
+Se modifica query por compras locales, se agrega código bodega de grupo.
+
+
+v0.6: (Rosa Zambrano - 26/May/2016)
+-----
+Se agrega confirmaciones de ingresos por motivo de solicitudes de transferencias de inventario.
+
+
+v0.7: (Rosa Zambrano - 26/Ago/2016)
+-----
+Se cambia query de consulta del listado de ítems pendientes de confirmar.
+
+
+v0.8: (Rosa Zambrano - 17/Oct/2016)
+-----
+Se cambia query de consulta, adaptando el listado para códigos L.
+
+
+v0.9: (Rosa Zambrano - 31/Oct/2016)
+-----
+Se agregan cambios para implementar opción de guardar para codigos L, cuando no deban confirmarse el ingreso.
+* En el query de consulta se agrego filtro para que solo presente los ítems con st_merIngEgrFisBod='S'.
+* Se agregan nuevas columnas:
+  - Columna de ChkBox para asignar confirmación Automática.
+  - Columna tx_tipMov para saber el tipo de Movimiento del Ingreso.
+
+
+v0.10: (Rosa Zambrano - 01/Nov/2016)
+-----
+Se agrega validación de códigos L en el Jtable.
+
+
+v0.11: (Rosa Zambrano - 07/Nov/2016)
+-----
+Se agrega validación de confirmaciones en el Jtable.
+
+
+v0.11.1: (Rosa Zambrano - 08/Nov/2016)
+-----
+Se agrega actualización de tx_obs1 en tbm_DetMovInv para saber cuando ha sido confirmada automáticamente la OC.
+
+
+v0.11.2: (Rosa Zambrano - 21/Nov/2016)
+-----
+Se realizan modificaciones en el query de consulta para que se adapte a la ventana de alerta de pendientes de confirmar ingresos.
+
+
+v0.11.3: (Rosa Zambrano - 28/Nov/2016)
+-----
+Se realizan modificaciones para que no presente los documentos con st_ConInv='F' en tbm_CabMovInv
+
+
+v0.11.4: (Rosa Zambrano - 08/Dic/2016)
+-----
+Se corrige color de bloqueo en la columna Local.
+
+
+v0.11.5: (Rosa Zambrano - 07/Feb/2017)
+-----
+Se agrega código de menú en el objeto de ZafCnfDoc.
+
+
+v0.11.6: (Rosa Zambrano - 24/Ene/2018)
+-----
+Se agregan mensajes informativos de los posibles errores al guardar.
+
+v0.11.7: (Boris Parrales - 25/Mar/2019)
+-----
+Se agrega el PopupMenu Para la seleccion de las celdas
+

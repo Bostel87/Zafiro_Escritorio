@@ -1,0 +1,8 @@
+﻿
+CONTROL DE VERSIONES:
+=====================
+
+
+v1.0: (Roberto Flores- 26/04/2013)
+----
+Clase nueva para la Autorización de almuerzos...

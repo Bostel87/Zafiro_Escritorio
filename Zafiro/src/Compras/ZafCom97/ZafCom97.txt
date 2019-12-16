@@ -1,0 +1,10 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Rosa Zambrano - 03/Ene/2017)
+----
+Clase nueva "Ingreso/Egreso en unidades y valores".

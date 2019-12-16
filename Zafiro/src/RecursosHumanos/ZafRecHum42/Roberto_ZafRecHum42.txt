@@ -1,0 +1,23 @@
+
+CONTROL DE VERSIONES:
+=====================
+
+v1.0: (Roberto Flores - 23/09/2013)
+----
+Clase nueva Listado de faltas de empleados (Por mes)...
+
+v1.01: (Roberto Flores - 24/09/2013)
+----
+Se realizan validaciones relacionadas a las autorizaciones de roles de pago.
+
+v1.02: (Roberto Flores - 10/10/2013)
+----
+Se realizan validaciones relacionadas a las autorizaciones de roles de pago.
+
+v1.03: (Roberto Flores - 18/01/2014)
+----
+Se realiza cambio para mostrar los años de manera descendente.
+
+v1.04: (Roberto Flores - 27/01/2014)
+----
+Se aumenta columna con la cédula del empleado.

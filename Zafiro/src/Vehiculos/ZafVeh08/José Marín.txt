@@ -1,0 +1,18 @@
+Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (José Marín - 19/Ago/2013)
+----
+Clase nueva.
+
+v0.1.1: (José Marín - 3/Dic/2013)
+----
+Se corrigio el boton de observaciones.
+
+v0.2: (José Marín - 25/Feb/2014)
+----
+Se corrigio la consulta solo por empresas.

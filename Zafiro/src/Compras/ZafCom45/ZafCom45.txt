@@ -1,0 +1,5 @@
+ver 0.1 javier ayapata (31-Agosto-2009)
+ se crea clase para poder obtener un listado saldo entra compañias.
+
+ver 0.2 javier ayapata (25-Febrero-2011)
+ se  corrigue para que sume los saldos de ventas y compras 

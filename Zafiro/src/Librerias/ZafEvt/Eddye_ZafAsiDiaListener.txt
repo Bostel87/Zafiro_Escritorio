@@ -1,0 +1,20 @@
+Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 10/Jul/2007)
+----
+Clase nueva.
+
+
+v0.2: (Eddye Lino - 12/Jul/2007)
+----
+Se agregaron los mátodos: 
+   1) beforeEditarCelda(ZafAsiDiaEvent evt)
+   2) afterEditarCelda(ZafAsiDiaEvent evt)
+   3) beforeConsultarCuentas(ZafAsiDiaEvent evt)
+   4) afterConsultarCuentas(ZafAsiDiaEvent evt)
+

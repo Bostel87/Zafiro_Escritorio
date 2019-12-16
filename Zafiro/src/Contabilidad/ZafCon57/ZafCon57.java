@@ -1,0 +1,4019 @@
+/*
+ * ZafCon06.java
+ *
+ *  Created on 02 de noviembre de 2005, 11:25 PM
+ */
+
+package Contabilidad.ZafCon57;
+import Librerias.ZafParSis.ZafParSis;
+import Librerias.ZafUtil.ZafUtil;
+import Librerias.ZafTblUti.ZafTblFilCab.ZafTblFilCab;
+import Librerias.ZafTblUti.ZafTblMod.ZafTblMod;
+import Librerias.ZafTblUti.ZafTblCelRenLbl.ZafTblCelRenLbl;
+import Librerias.ZafTblUti.ZafTblPopMnu.ZafTblPopMnu;
+import Librerias.ZafVenCon.ZafVenCon;
+import Librerias.ZafDate.ZafDatePicker;
+import Librerias.ZafToolBar.ZafToolBar;
+import Librerias.ZafAsiDia.ZafAsiDia;
+import Librerias.ZafTblUti.ZafTblCelEdiButGen.ZafTblCelEdiButGen;
+import java.util.Vector;
+import java.util.ArrayList;
+import java.sql.*;
+import Librerias.ZafTblUti.ZafTblCelEdiTxtVco.ZafTblCelEdiTxtVco;
+import Librerias.ZafTblUti.ZafTblCelRenBut.ZafTblCelRenBut;
+import Librerias.ZafTblUti.ZafTblCelEdiButDlg.ZafTblCelEdiButDlg;
+import Librerias.ZafTblUti.ZafTblCelEdiTxt.ZafTblCelEdiTxt;
+
+/**
+ *
+ * @author  Eddye Lino
+ */
+public class ZafCon57 extends javax.swing.JInternalFrame 
+{
+    //Constantes: Columnas del JTable.
+    final int INT_TBL_DAT_LIN=0;
+    final int INT_TBL_DAT_COD_CLI=1;
+    final int INT_TBL_DAT_BUT_CLI=2;
+    final int INT_TBL_DAT_NOM_CLI=3;
+    final int INT_TBL_DAT_RUC_CLI=4;
+    final int INT_TBL_DAT_DIR_CLI=5;
+    final int INT_TBL_DAT_VAL_DOC=6;
+    final int INT_TBL_DAT_OBS=7;
+    final int INT_TBL_DAT_BUT_OBS=8;
+    final int INT_TBL_DAT_EST_VAL_APL=9;
+    final int INT_TBL_DAT_COD_REG=10;
+    //Variables generales.
+    private ZafDatePicker dtpFecDoc;
+    private String strFecDocIni;
+    private ZafParSis objParSis;
+    private ZafUtil objUti;
+    private ZafTblFilCab objTblFilCab;
+    private ZafTblMod objTblMod;
+    private ZafTblCelRenLbl objTblCelRenLbl;            //Render: Presentar JLabel en JTable.
+    private ZafMouMotAda objMouMotAda;                  //ToolTipText en TableHeader.
+    private ZafTblPopMnu objTblPopMnu;                  //PopupMenu: Establecer PeopuMen� en JTable.
+    private ZafVenCon vcoTipDoc;                        //Ventana de consulta "Tipo de documento".
+    private ZafVenCon vcoCta;                           //Ventana de consulta "Cuenta".
+    private ZafVenCon vcoCli;                           //Ventana de consulta "Cuenta".
+    private MiToolBar objTooBar;
+    private ZafAsiDia objAsiDia;
+    private Connection con, conCab;
+    private Statement stm, stmCab;
+    private ResultSet rst, rstCab;
+    private String strSQL, strAux;
+    private Vector vecDat, vecCab, vecReg;
+    private Vector vecAux;
+    private boolean blnCon;                             //true: Continua la ejecuci�n del hilo.
+    private boolean blnHayCam;                          //Determina si hay cambios en el formulario.
+    private ZafDocLis objDocLis;
+    private String strDesCorTipDoc, strDesLarTipDoc;    //Contenido del campo al obtener el foco.
+    private String strDesCorCta, strDesLarCta;          //Contenido del campo al obtener el foco.
+    private String strNumDoc1;              //Contenido del campo al obtener el foco.
+    private String strMonDoc;                           //Contenido del campo al obtener el foco.
+    private int intSig=1;                               //Determina el signo de acuerdo al "Tipo de documento". Puede ser 1 o -1.
+    private java.util.Date datFecAux;                   //Auxiliar: Para almacenar fechas.
+    //Variables de la clase.
+    private String strUbiCta;                //Campos: Ubicaci�n y Estado de autorizaci�n de la cuenta.
+   
+     
+    private boolean blnNecAutAnu;//true si necesita de autorizacion el documento, si no necesita es false
+    private boolean blnDocAut;//true si el documento ya fue autorizado para ser anulado, false si falta todavia autorizarlo
+    private ZafTblCelEdiTxtVco objTblCelEdiButVcoValDep, objTblCelEdiButVcoCodCli;
+
+
+
+    private String strEstImpDoc;
+
+
+    private ZafTblCelEdiButGen objTblCelEdiButGenCli;
+    private ZafTblCelRenBut    objTblCelRenButCli;
+    private ZafCon57_01 objCon57_01;
+    private ZafTblCelRenBut objTblCelRenButObs1;
+    private ZafTblCelEdiButDlg objTblCelEdiButObs1;
+    private ZafTblCelEdiTxt objTblCelEdiTxt, objTblCelEdiTxtObs;
+
+    private String strTipDocNecAutAnu;//si el tipo de documento necesita autorizacion para anularlo
+
+
+    final int INT_ARL_COD_REG=0;
+
+    /** Crea una nueva instancia de la clase ZafCon06. */
+    public ZafCon57(ZafParSis obj)
+    {
+        try
+        {
+            initComponents();
+            //Inicializar objetos.
+            objParSis=(ZafParSis)obj.clone();
+
+            configurarFrm();
+            agregarDocLis();
+
+        }
+        catch (CloneNotSupportedException e)
+        {
+            this.setTitle(this.getTitle() + " [ERROR]");
+        }
+    }
+    
+   
+    /** This method is called from within the constructor to
+     * initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is
+     * always regenerated by the Form Editor.
+     */
+   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+   private void initComponents() {
+
+      panFrm = new javax.swing.JPanel();
+      lblTit = new javax.swing.JLabel();
+      tabFrm = new javax.swing.JTabbedPane();
+      panGen = new javax.swing.JPanel();
+      panGenCab = new javax.swing.JPanel();
+      txtDesCorTipDoc = new javax.swing.JTextField();
+      lblTipDoc = new javax.swing.JLabel();
+      lblCodDoc = new javax.swing.JLabel();
+      txtCodDoc = new javax.swing.JTextField();
+      butTipDoc = new javax.swing.JButton();
+      txtDesLarTipDoc = new javax.swing.JTextField();
+      lblFecDoc = new javax.swing.JLabel();
+      lblNumDoc1 = new javax.swing.JLabel();
+      txtNumDoc1 = new javax.swing.JTextField();
+      txtCodTipDoc = new javax.swing.JTextField();
+      lbCta = new javax.swing.JLabel();
+      txtCodCta = new javax.swing.JTextField();
+      txtDesCorCta = new javax.swing.JTextField();
+      txtDesLarCta = new javax.swing.JTextField();
+      butCta = new javax.swing.JButton();
+      lblMonDoc = new javax.swing.JLabel();
+      txtMonDoc = new javax.swing.JTextField();
+      panGenDet = new javax.swing.JPanel();
+      spnDat = new javax.swing.JScrollPane();
+      tblDat = new javax.swing.JTable();
+      panGenTot = new javax.swing.JPanel();
+      panGenTotLbl = new javax.swing.JPanel();
+      lblObs1 = new javax.swing.JLabel();
+      lblObs2 = new javax.swing.JLabel();
+      panGenTotObs = new javax.swing.JPanel();
+      spnObs1 = new javax.swing.JScrollPane();
+      txaObs1 = new javax.swing.JTextArea();
+      spnObs2 = new javax.swing.JScrollPane();
+      txaObs2 = new javax.swing.JTextArea();
+      panAsiDia = new javax.swing.JPanel();
+      panBar = new javax.swing.JPanel();
+
+      setClosable(true);
+      setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+      setIconifiable(true);
+      setMaximizable(true);
+      setResizable(true);
+      setTitle("Título de la ventana");
+      addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+         public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+         }
+         public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+         }
+         public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            exitForm(evt);
+         }
+         public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+         }
+         public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+         }
+         public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+         }
+         public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+         }
+      });
+      getContentPane().setLayout(new java.awt.GridLayout(1, 0));
+
+      panFrm.setLayout(new java.awt.BorderLayout());
+
+      lblTit.setFont(new java.awt.Font("MS Sans Serif", 1, 14)); // NOI18N
+      lblTit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+      lblTit.setText("Título");
+      panFrm.add(lblTit, java.awt.BorderLayout.NORTH);
+
+      panGen.setLayout(new java.awt.BorderLayout());
+
+      panGenCab.setPreferredSize(new java.awt.Dimension(0, 70));
+      panGenCab.setRequestFocusEnabled(false);
+      panGenCab.setLayout(null);
+
+      txtDesCorTipDoc.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            txtDesCorTipDocActionPerformed(evt);
+         }
+      });
+      txtDesCorTipDoc.addFocusListener(new java.awt.event.FocusAdapter() {
+         public void focusGained(java.awt.event.FocusEvent evt) {
+            txtDesCorTipDocFocusGained(evt);
+         }
+         public void focusLost(java.awt.event.FocusEvent evt) {
+            txtDesCorTipDocFocusLost(evt);
+         }
+      });
+      panGenCab.add(txtDesCorTipDoc);
+      txtDesCorTipDoc.setBounds(130, 4, 78, 20);
+
+      lblTipDoc.setText("Tipo de documento:");
+      lblTipDoc.setToolTipText("Tipo de documento");
+      panGenCab.add(lblTipDoc);
+      lblTipDoc.setBounds(0, 4, 128, 20);
+
+      lblCodDoc.setText("Código del documento:");
+      lblCodDoc.setToolTipText("Código del documento");
+      panGenCab.add(lblCodDoc);
+      lblCodDoc.setBounds(0, 44, 130, 20);
+      panGenCab.add(txtCodDoc);
+      txtCodDoc.setBounds(130, 44, 90, 20);
+
+      butTipDoc.setText("...");
+      butTipDoc.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            butTipDocActionPerformed(evt);
+         }
+      });
+      panGenCab.add(butTipDoc);
+      butTipDoc.setBounds(438, 4, 20, 20);
+
+      txtDesLarTipDoc.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            txtDesLarTipDocActionPerformed(evt);
+         }
+      });
+      txtDesLarTipDoc.addFocusListener(new java.awt.event.FocusAdapter() {
+         public void focusGained(java.awt.event.FocusEvent evt) {
+            txtDesLarTipDocFocusGained(evt);
+         }
+         public void focusLost(java.awt.event.FocusEvent evt) {
+            txtDesLarTipDocFocusLost(evt);
+         }
+      });
+      panGenCab.add(txtDesLarTipDoc);
+      txtDesLarTipDoc.setBounds(208, 4, 230, 20);
+
+      lblFecDoc.setText("Fecha del documento:");
+      lblFecDoc.setToolTipText("Fecha del documento");
+      panGenCab.add(lblFecDoc);
+      lblFecDoc.setBounds(460, 4, 124, 20);
+
+      lblNumDoc1.setText("Número de documento:");
+      lblNumDoc1.setToolTipText("Número alterno 1");
+      panGenCab.add(lblNumDoc1);
+      lblNumDoc1.setBounds(460, 24, 124, 20);
+
+      txtNumDoc1.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+      txtNumDoc1.setToolTipText("Número de egreso");
+      txtNumDoc1.addFocusListener(new java.awt.event.FocusAdapter() {
+         public void focusGained(java.awt.event.FocusEvent evt) {
+            txtNumDoc1FocusGained(evt);
+         }
+         public void focusLost(java.awt.event.FocusEvent evt) {
+            txtNumDoc1FocusLost(evt);
+         }
+      });
+      panGenCab.add(txtNumDoc1);
+      txtNumDoc1.setBounds(584, 24, 100, 20);
+      panGenCab.add(txtCodTipDoc);
+      txtCodTipDoc.setBounds(98, 4, 32, 20);
+
+      lbCta.setText("Cuenta:");
+      lbCta.setToolTipText("Cuenta");
+      panGenCab.add(lbCta);
+      lbCta.setBounds(0, 24, 90, 20);
+      panGenCab.add(txtCodCta);
+      txtCodCta.setBounds(98, 24, 32, 20);
+
+      txtDesCorCta.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            txtDesCorCtaActionPerformed(evt);
+         }
+      });
+      txtDesCorCta.addFocusListener(new java.awt.event.FocusAdapter() {
+         public void focusGained(java.awt.event.FocusEvent evt) {
+            txtDesCorCtaFocusGained(evt);
+         }
+         public void focusLost(java.awt.event.FocusEvent evt) {
+            txtDesCorCtaFocusLost(evt);
+         }
+      });
+      panGenCab.add(txtDesCorCta);
+      txtDesCorCta.setBounds(130, 24, 78, 20);
+
+      txtDesLarCta.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            txtDesLarCtaActionPerformed(evt);
+         }
+      });
+      txtDesLarCta.addFocusListener(new java.awt.event.FocusAdapter() {
+         public void focusGained(java.awt.event.FocusEvent evt) {
+            txtDesLarCtaFocusGained(evt);
+         }
+         public void focusLost(java.awt.event.FocusEvent evt) {
+            txtDesLarCtaFocusLost(evt);
+         }
+      });
+      panGenCab.add(txtDesLarCta);
+      txtDesLarCta.setBounds(208, 24, 230, 20);
+
+      butCta.setText("...");
+      butCta.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            butCtaActionPerformed(evt);
+         }
+      });
+      panGenCab.add(butCta);
+      butCta.setBounds(438, 24, 20, 20);
+
+      lblMonDoc.setText("Valor del documento:");
+      lblMonDoc.setToolTipText("Valor del documento");
+      panGenCab.add(lblMonDoc);
+      lblMonDoc.setBounds(460, 44, 122, 20);
+
+      txtMonDoc.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+      txtMonDoc.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            txtMonDocActionPerformed(evt);
+         }
+      });
+      txtMonDoc.addFocusListener(new java.awt.event.FocusAdapter() {
+         public void focusGained(java.awt.event.FocusEvent evt) {
+            txtMonDocFocusGained(evt);
+         }
+         public void focusLost(java.awt.event.FocusEvent evt) {
+            txtMonDocFocusLost(evt);
+         }
+      });
+      panGenCab.add(txtMonDoc);
+      txtMonDoc.setBounds(584, 44, 100, 20);
+
+      panGen.add(panGenCab, java.awt.BorderLayout.NORTH);
+
+      panGenDet.setLayout(new java.awt.BorderLayout());
+
+      tblDat.setModel(new javax.swing.table.DefaultTableModel(
+         new Object [][] {
+            {null, null, null, null},
+            {null, null, null, null},
+            {null, null, null, null},
+            {null, null, null, null}
+         },
+         new String [] {
+            "Title 1", "Title 2", "Title 3", "Title 4"
+         }
+      ));
+      tblDat.addFocusListener(new java.awt.event.FocusAdapter() {
+         public void focusLost(java.awt.event.FocusEvent evt) {
+            tblDatFocusLost(evt);
+         }
+      });
+      spnDat.setViewportView(tblDat);
+
+      panGenDet.add(spnDat, java.awt.BorderLayout.CENTER);
+
+      panGen.add(panGenDet, java.awt.BorderLayout.CENTER);
+
+      panGenTot.setPreferredSize(new java.awt.Dimension(34, 70));
+      panGenTot.setLayout(new java.awt.BorderLayout());
+
+      panGenTotLbl.setPreferredSize(new java.awt.Dimension(100, 30));
+      panGenTotLbl.setLayout(new java.awt.GridLayout(2, 1));
+
+      lblObs1.setText("Observación1:");
+      lblObs1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+      panGenTotLbl.add(lblObs1);
+
+      lblObs2.setText("Observación2:");
+      lblObs2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+      panGenTotLbl.add(lblObs2);
+
+      panGenTot.add(panGenTotLbl, java.awt.BorderLayout.WEST);
+
+      panGenTotObs.setLayout(new java.awt.GridLayout(2, 1));
+
+      spnObs1.setViewportView(txaObs1);
+
+      panGenTotObs.add(spnObs1);
+
+      spnObs2.setViewportView(txaObs2);
+
+      panGenTotObs.add(spnObs2);
+
+      panGenTot.add(panGenTotObs, java.awt.BorderLayout.CENTER);
+
+      panGen.add(panGenTot, java.awt.BorderLayout.SOUTH);
+
+      tabFrm.addTab("General", panGen);
+
+      panAsiDia.setLayout(new java.awt.BorderLayout());
+      tabFrm.addTab("Asiento de diario", panAsiDia);
+
+      panFrm.add(tabFrm, java.awt.BorderLayout.CENTER);
+
+      panBar.setLayout(new java.awt.BorderLayout());
+      panFrm.add(panBar, java.awt.BorderLayout.SOUTH);
+
+      getContentPane().add(panFrm);
+
+      java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+      setBounds((screenSize.width-700)/2, (screenSize.height-450)/2, 700, 450);
+   }// </editor-fold>//GEN-END:initComponents
+
+    private void txtNumDoc1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNumDoc1FocusGained
+        strNumDoc1=txtNumDoc1.getText();
+        txtNumDoc1.selectAll();
+    }//GEN-LAST:event_txtNumDoc1FocusGained
+
+    private void txtMonDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMonDocActionPerformed
+        txtMonDoc.transferFocus();
+    }//GEN-LAST:event_txtMonDocActionPerformed
+
+    private void txtMonDocFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtMonDocFocusGained
+        strMonDoc=txtMonDoc.getText();
+        txtMonDoc.selectAll();
+    }//GEN-LAST:event_txtMonDocFocusGained
+
+    private void txtNumDoc1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNumDoc1FocusLost
+        //Validar el contenido de la celda s�lo si ha cambiado.
+        if (!txtNumDoc1.getText().equalsIgnoreCase(strNumDoc1))
+        {
+            actualizarGlo();
+        }
+    }//GEN-LAST:event_txtNumDoc1FocusLost
+
+    private void txtMonDocFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtMonDocFocusLost
+        //Validar el contenido de la celda s�lo si ha cambiado.
+        if (!txtMonDoc.getText().equalsIgnoreCase(strMonDoc)){
+            //Desmarcar los documentos en el JTable.
+            objAsiDia.generarDiario(txtCodTipDoc.getText(), txtCodCta.getText(), strUbiCta, txtMonDoc.getText(), txtMonDoc.getText());
+        }
+    }//GEN-LAST:event_txtMonDocFocusLost
+
+    private void txtDesLarCtaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDesLarCtaFocusLost
+        //Validar el contenido de la celda s�lo si ha cambiado.
+        if (!txtDesLarCta.getText().equalsIgnoreCase(strDesLarCta))
+        {
+            if (txtDesLarCta.getText().equals(""))
+            {
+                txtCodCta.setText("");
+                txtDesCorCta.setText("");
+            }
+            else
+            {
+                mostrarVenConCta(2);
+            }
+        }
+        else
+            txtDesLarCta.setText(strDesLarCta);
+    }//GEN-LAST:event_txtDesLarCtaFocusLost
+
+    private void txtDesLarCtaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDesLarCtaFocusGained
+        strDesLarCta=txtDesLarCta.getText();
+        txtDesLarCta.selectAll();
+    }//GEN-LAST:event_txtDesLarCtaFocusGained
+
+    private void txtDesLarCtaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDesLarCtaActionPerformed
+        txtDesLarCta.transferFocus();
+    }//GEN-LAST:event_txtDesLarCtaActionPerformed
+
+    private void txtDesCorCtaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDesCorCtaFocusLost
+        //Validar el contenido de la celda s�lo si ha cambiado.
+        if (!txtDesCorCta.getText().equalsIgnoreCase(strDesCorCta))
+        {
+            if (txtDesCorCta.getText().equals(""))
+            {
+                txtCodCta.setText("");
+                txtDesLarCta.setText("");
+            }
+            else
+            {
+                mostrarVenConCta(1);
+ 
+            }
+        }
+        else
+            txtDesCorCta.setText(strDesCorCta);
+    }//GEN-LAST:event_txtDesCorCtaFocusLost
+
+    private void txtDesCorCtaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDesCorCtaFocusGained
+        strDesCorCta=txtDesCorCta.getText();
+        txtDesCorCta.selectAll();
+    }//GEN-LAST:event_txtDesCorCtaFocusGained
+
+    private void txtDesCorCtaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDesCorCtaActionPerformed
+        txtDesCorCta.transferFocus();
+    }//GEN-LAST:event_txtDesCorCtaActionPerformed
+
+    private void butCtaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butCtaActionPerformed
+        mostrarVenConCta(0);
+    }//GEN-LAST:event_butCtaActionPerformed
+
+    private void txtDesLarTipDocFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDesLarTipDocFocusLost
+        //Validar el contenido de la celda s�lo si ha cambiado.
+        if (!txtDesLarTipDoc.getText().equalsIgnoreCase(strDesLarTipDoc))
+        {
+            if (txtDesLarTipDoc.getText().equals(""))
+            {
+                txtCodTipDoc.setText("");
+                txtDesCorTipDoc.setText("");
+                txtCodCta.setText("");
+                txtDesCorCta.setText("");
+                txtDesLarCta.setText("");
+            }
+            else
+            {
+                mostrarVenConTipDoc(2);
+            }
+        }
+        else
+            txtDesLarTipDoc.setText(strDesLarTipDoc);
+    }//GEN-LAST:event_txtDesLarTipDocFocusLost
+
+    private void txtDesCorTipDocFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDesCorTipDocFocusLost
+        //Validar el contenido de la celda s�lo si ha cambiado.
+        if (!txtDesCorTipDoc.getText().equalsIgnoreCase(strDesCorTipDoc))
+        {
+            if (txtDesCorTipDoc.getText().equals(""))
+            {
+                txtCodTipDoc.setText("");
+                txtDesLarTipDoc.setText("");
+                txtCodCta.setText("");
+                txtDesCorCta.setText("");
+                txtDesLarCta.setText("");
+            }
+            else
+            {
+                mostrarVenConTipDoc(1);
+            }
+        }
+        else
+            txtDesCorTipDoc.setText(strDesCorTipDoc);
+    }//GEN-LAST:event_txtDesCorTipDocFocusLost
+
+    private void txtDesLarTipDocFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDesLarTipDocFocusGained
+        strDesLarTipDoc=txtDesLarTipDoc.getText();
+        txtDesLarTipDoc.selectAll();
+    }//GEN-LAST:event_txtDesLarTipDocFocusGained
+
+    private void txtDesLarTipDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDesLarTipDocActionPerformed
+        txtDesLarTipDoc.transferFocus();
+    }//GEN-LAST:event_txtDesLarTipDocActionPerformed
+
+    private void txtDesCorTipDocFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDesCorTipDocFocusGained
+        strDesCorTipDoc=txtDesCorTipDoc.getText();
+        txtDesCorTipDoc.selectAll();
+    }//GEN-LAST:event_txtDesCorTipDocFocusGained
+
+    private void txtDesCorTipDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDesCorTipDocActionPerformed
+        txtDesCorTipDoc.transferFocus();
+    }//GEN-LAST:event_txtDesCorTipDocActionPerformed
+
+    private void butTipDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butTipDocActionPerformed
+        mostrarVenConTipDoc(0);
+    }//GEN-LAST:event_butTipDocActionPerformed
+
+    /** Cerrar la aplicaci�n. */
+    private void exitForm(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_exitForm
+        String strTit, strMsg;
+        try
+        {
+            javax.swing.JOptionPane oppMsg=new javax.swing.JOptionPane();
+            strTit="Mensaje del sistema Zafiro";
+            strMsg="¿Está seguro que desea cerrar este programa?";
+            if (oppMsg.showConfirmDialog(this,strMsg,strTit,javax.swing.JOptionPane.YES_NO_OPTION,javax.swing.JOptionPane.QUESTION_MESSAGE)==javax.swing.JOptionPane.YES_OPTION)
+            {
+                //Cerrar la conexi�n si est� abierta.
+                if (rstCab!=null)
+                {
+                    rstCab.close();
+                    stmCab.close();
+                    conCab.close();
+                    rstCab=null;
+                    stmCab=null;
+                    conCab=null;
+                }
+                dispose();
+            }
+        }
+        catch (java.sql.SQLException e)
+        {
+            dispose();
+        }
+    }//GEN-LAST:event_exitForm
+
+   private void tblDatFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tblDatFocusLost
+      // TODO add your handling code here:
+      calcularAboTot();
+      objAsiDia.generarDiario(txtCodTipDoc.getText(), txtCodCta.getText(), strUbiCta, txtMonDoc.getText(), txtMonDoc.getText());
+      actualizarGlo();
+   }//GEN-LAST:event_tblDatFocusLost
+
+    /** Cerrar la aplicaci�n. */
+    private void exitForm() 
+    {
+        dispose();
+    }    
+        
+   // Variables declaration - do not modify//GEN-BEGIN:variables
+   private javax.swing.JButton butCta;
+   private javax.swing.JButton butTipDoc;
+   private javax.swing.JLabel lbCta;
+   private javax.swing.JLabel lblCodDoc;
+   private javax.swing.JLabel lblFecDoc;
+   private javax.swing.JLabel lblMonDoc;
+   private javax.swing.JLabel lblNumDoc1;
+   private javax.swing.JLabel lblObs1;
+   private javax.swing.JLabel lblObs2;
+   private javax.swing.JLabel lblTipDoc;
+   private javax.swing.JLabel lblTit;
+   private javax.swing.JPanel panAsiDia;
+   private javax.swing.JPanel panBar;
+   private javax.swing.JPanel panFrm;
+   private javax.swing.JPanel panGen;
+   private javax.swing.JPanel panGenCab;
+   private javax.swing.JPanel panGenDet;
+   private javax.swing.JPanel panGenTot;
+   private javax.swing.JPanel panGenTotLbl;
+   private javax.swing.JPanel panGenTotObs;
+   private javax.swing.JScrollPane spnDat;
+   private javax.swing.JScrollPane spnObs1;
+   private javax.swing.JScrollPane spnObs2;
+   private javax.swing.JTabbedPane tabFrm;
+   private javax.swing.JTable tblDat;
+   private javax.swing.JTextArea txaObs1;
+   private javax.swing.JTextArea txaObs2;
+   private javax.swing.JTextField txtCodCta;
+   private javax.swing.JTextField txtCodDoc;
+   private javax.swing.JTextField txtCodTipDoc;
+   private javax.swing.JTextField txtDesCorCta;
+   private javax.swing.JTextField txtDesCorTipDoc;
+   private javax.swing.JTextField txtDesLarCta;
+   private javax.swing.JTextField txtDesLarTipDoc;
+   public javax.swing.JTextField txtMonDoc;
+   private javax.swing.JTextField txtNumDoc1;
+   // End of variables declaration//GEN-END:variables
+
+    /** Configurar el formulario. */
+    private boolean configurarFrm()
+    {
+        boolean blnRes=true;
+        try
+        {
+            //Configurar ZafDatePicker:
+            dtpFecDoc=new ZafDatePicker(javax.swing.JOptionPane.getFrameForComponent(this),"d/m/y");
+            dtpFecDoc.setBackground(objParSis.getColorCamposObligatorios());
+            dtpFecDoc.setText("");
+            panGenCab.add(dtpFecDoc);
+            dtpFecDoc.setBounds(584, 4, 100, 20);
+            
+            
+            //Inicializar objetos.
+            objUti=new ZafUtil();
+            objTooBar=new MiToolBar(this);
+            objAsiDia=new ZafAsiDia(objParSis);
+            objAsiDia.addAsiDiaListener(new Librerias.ZafEvt.ZafAsiDiaAdapter() {
+                public void beforeConsultarCuentas(Librerias.ZafEvt.ZafAsiDiaEvent evt) {
+                    if (txtCodTipDoc.getText().equals(""))
+                        objAsiDia.setCodigoTipoDocumento(-1);
+                    else
+                        objAsiDia.setCodigoTipoDocumento(Integer.parseInt(txtCodTipDoc.getText()));
+                }
+            });
+            
+            objDocLis=new ZafDocLis();
+            panBar.add(objTooBar);
+            strAux=objParSis.getNombreMenu();
+            this.setTitle(strAux + " v0.1.3");//para codigo con autorizaciones es 0.16 y para produccion 0.13.1
+            lblTit.setText(strAux);
+            panAsiDia.add(objAsiDia,java.awt.BorderLayout.CENTER);
+            txtCodDoc.setBackground(objParSis.getColorCamposSistema());
+            txtDesCorTipDoc.setBackground(objParSis.getColorCamposObligatorios());
+            txtDesLarTipDoc.setBackground(objParSis.getColorCamposObligatorios());
+            txtDesCorCta.setBackground(objParSis.getColorCamposObligatorios());
+            txtDesLarCta.setBackground(objParSis.getColorCamposObligatorios());
+            txtMonDoc.setBackground(objParSis.getColorCamposObligatorios());
+            txtCodTipDoc.setVisible(false);
+            txtCodCta.setVisible(false);
+            //Configurar las ZafVenCon.
+            configurarVenConTipDoc();
+            configurarVenConCta();
+            configurarVenConCli();
+            //Configurar los JTables.
+            configurarTblDat();
+            
+                        
+
+        }
+        catch(Exception e)
+        {
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        return blnRes;
+    }
+
+    /**
+     * Esta funci�n configura el JTable "tblDat".
+     * @return true: Si se pudo configurar el JTable.
+     * <BR>false: En el caso contrario.
+     */
+    private boolean configurarTblDat()
+    {
+        boolean blnRes=true;
+        try
+        {
+            //Configurar JTable: Establecer el modelo.
+            vecDat=new Vector();    //Almacena los datos
+            vecCab=new Vector(9);  //Almacena las cabeceras
+            vecCab.clear();
+            vecCab.add(INT_TBL_DAT_LIN,"");
+            vecCab.add(INT_TBL_DAT_COD_CLI,"Cód.Cli.");
+            vecCab.add(INT_TBL_DAT_BUT_CLI,"");
+            vecCab.add(INT_TBL_DAT_NOM_CLI,"Cliente");
+            vecCab.add(INT_TBL_DAT_RUC_CLI,"Ruc.Cli.");
+            vecCab.add(INT_TBL_DAT_DIR_CLI,"Dir.Cli.");
+            vecCab.add(INT_TBL_DAT_VAL_DOC,"Valor");
+            vecCab.add(INT_TBL_DAT_OBS,"Observación");
+            vecCab.add(INT_TBL_DAT_BUT_OBS,"");
+            vecCab.add(INT_TBL_DAT_EST_VAL_APL,"Est.Val.Apl.");
+            vecCab.add(INT_TBL_DAT_COD_REG,"Cód.Reg.");
+
+
+
+            objTblMod=new ZafTblMod();
+            objTblMod.setHeader(vecCab);
+            //Configurar ZafTblMod: Establecer el tipo de dato de las columnas.
+            objTblMod.setColumnDataType(INT_TBL_DAT_VAL_DOC, objTblMod.INT_COL_DBL, new Integer(0), null);
+            //Configurar JTable: Establecer el modelo de la tabla.
+            tblDat.setModel(objTblMod);
+            //Configurar JTable: Establecer tipo de selecci�n.
+            tblDat.setRowSelectionAllowed(true);
+            tblDat.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+            //Configurar JTable: Establecer el men� de contexto.
+            objTblPopMnu=new ZafTblPopMnu(tblDat);
+            //Configurar JTable: Establecer el tipo de redimensionamiento de las columnas.
+            tblDat.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+            //Configurar JTable: Establecer el ancho de las columnas.
+            javax.swing.table.TableColumnModel tcmAux=tblDat.getColumnModel();
+            tcmAux.getColumn(INT_TBL_DAT_LIN).setPreferredWidth(30);
+            tcmAux.getColumn(INT_TBL_DAT_COD_CLI).setPreferredWidth(50);
+            tcmAux.getColumn(INT_TBL_DAT_BUT_CLI).setPreferredWidth(20);
+            tcmAux.getColumn(INT_TBL_DAT_NOM_CLI).setPreferredWidth(200);
+            tcmAux.getColumn(INT_TBL_DAT_RUC_CLI).setPreferredWidth(20);
+            tcmAux.getColumn(INT_TBL_DAT_DIR_CLI).setPreferredWidth(20);
+            tcmAux.getColumn(INT_TBL_DAT_VAL_DOC).setPreferredWidth(80);
+            tcmAux.getColumn(INT_TBL_DAT_OBS).setPreferredWidth(60);
+            tcmAux.getColumn(INT_TBL_DAT_BUT_OBS).setPreferredWidth(20);
+            tcmAux.getColumn(INT_TBL_DAT_EST_VAL_APL).setPreferredWidth(20);
+            tcmAux.getColumn(INT_TBL_DAT_COD_REG).setPreferredWidth(20);
+
+
+            
+            //Configurar JTable: Establecer el tipo de reordenamiento de columnas.
+            tblDat.getTableHeader().setReorderingAllowed(false);
+            
+            //Configurar JTable: Mostrar ToolTipText en la cabecera de las columnas.
+            objMouMotAda=new ZafMouMotAda();
+            tblDat.getTableHeader().addMouseMotionListener(objMouMotAda);
+            //Configurar JTable: Establecer la fila de cabecera.
+            objTblFilCab=new ZafTblFilCab(tblDat);
+            tcmAux.getColumn(INT_TBL_DAT_LIN).setCellRenderer(objTblFilCab);
+            //Configurar JTable: Establecer columnas editables.
+            vecAux=new Vector();
+            vecAux.add("" + INT_TBL_DAT_COD_CLI);
+            vecAux.add("" + INT_TBL_DAT_BUT_CLI);
+            vecAux.add("" + INT_TBL_DAT_VAL_DOC);
+            vecAux.add("" + INT_TBL_DAT_OBS);
+            vecAux.add("" + INT_TBL_DAT_BUT_OBS);
+            objTblMod.setColumnasEditables(vecAux);
+            vecAux=null;
+            
+            objTblCelRenLbl=new ZafTblCelRenLbl();
+            objTblCelRenLbl.setHorizontalAlignment(javax.swing.JLabel.RIGHT);
+            objTblCelRenLbl.setTipoFormato(objTblCelRenLbl.INT_FOR_NUM);
+            objTblCelRenLbl.setFormatoNumerico(objParSis.getFormatoNumero(),false,true);
+            tcmAux.getColumn(INT_TBL_DAT_VAL_DOC).setCellRenderer(objTblCelRenLbl);
+            objTblCelRenLbl=null;
+
+
+            //Configurar JTable: Editor de celdas.
+            int intColVen[]=new int[4];
+            intColVen[0]=1;
+            intColVen[1]=2;
+            intColVen[2]=3;
+            intColVen[3]=4;
+            int intColTbl[]=new int[4];
+            intColTbl[0]=INT_TBL_DAT_COD_CLI;
+            intColTbl[1]=INT_TBL_DAT_NOM_CLI;
+            intColTbl[2]=INT_TBL_DAT_RUC_CLI;
+            intColTbl[3]=INT_TBL_DAT_DIR_CLI;
+
+            //para cuando se ingresa en el campo de texto el valor
+            objTblCelEdiButVcoCodCli=new ZafTblCelEdiTxtVco(tblDat, vcoCli, intColVen, intColTbl);
+            tcmAux.getColumn(INT_TBL_DAT_COD_CLI).setCellEditor(objTblCelEdiButVcoCodCli);
+            objTblCelEdiButVcoCodCli.addTableEditorListener(new Librerias.ZafTblUti.ZafTblEvt.ZafTableAdapter() {
+                String strEstValAplReg="";
+                public void beforeConsultar(Librerias.ZafTblUti.ZafTblEvt.ZafTableEvent evt) {
+                    vcoCli.setCampoBusqueda(0);
+                    vcoCli.setCriterio1(7);
+                }
+                public void beforeEdit(Librerias.ZafTblUti.ZafTblEvt.ZafTableEvent evt) {
+                    strEstValAplReg=objTblMod.getValueAt(tblDat.getSelectedRow(), INT_TBL_DAT_EST_VAL_APL)==null?"":objTblMod.getValueAt(tblDat.getSelectedRow(), INT_TBL_DAT_EST_VAL_APL).toString();
+                    if(strEstValAplReg.equals("S"))
+                        objTblCelEdiButVcoCodCli.setCancelarEdicion(true);
+                    else
+                        objTblCelEdiButVcoCodCli.setCancelarEdicion(false);
+
+                }
+                public void afterEdit(Librerias.ZafTblUti.ZafTblEvt.ZafTableEvent evt) {
+                    if (objTblCelEdiButVcoCodCli.isConsultaAceptada()){
+                        objTblMod.setValueAt(vcoCli.getValueAt(1), tblDat.getSelectedRow(), INT_TBL_DAT_COD_CLI);
+                        objTblMod.setValueAt(vcoCli.getValueAt(2), tblDat.getSelectedRow(), INT_TBL_DAT_NOM_CLI);
+                        objTblMod.setValueAt(vcoCli.getValueAt(3), tblDat.getSelectedRow(), INT_TBL_DAT_RUC_CLI);
+                        objTblMod.setValueAt(vcoCli.getValueAt(4), tblDat.getSelectedRow(), INT_TBL_DAT_DIR_CLI);
+                        objTblMod.setModoOperacion(objTblMod.INT_TBL_EDI);
+                        objTblMod.removeEmptyRows();
+                        objTblMod.setModoOperacion(objTblMod.INT_TBL_INS);
+//                        objTblMod.insertRow();
+                    }
+                }
+            });
+
+
+            //PARA EL BOTON DE clientes
+            objTblCelRenButCli=new ZafTblCelRenBut();
+            tblDat.getColumnModel().getColumn(INT_TBL_DAT_BUT_CLI).setCellRenderer(objTblCelRenButCli);
+            objTblCelEdiButGenCli=new ZafTblCelEdiButGen();
+            tblDat.getColumnModel().getColumn(INT_TBL_DAT_BUT_CLI).setCellEditor(objTblCelEdiButGenCli);
+            objTblCelEdiButGenCli.addTableEditorListener(new Librerias.ZafTblUti.ZafTblEvt.ZafTableAdapter() {
+                int intFilSel;
+                String strEstValAplReg="";
+                public void beforeEdit(Librerias.ZafTblUti.ZafTblEvt.ZafTableEvent evt) {
+                    strEstValAplReg=objTblMod.getValueAt(tblDat.getSelectedRow(), INT_TBL_DAT_EST_VAL_APL)==null?"":objTblMod.getValueAt(tblDat.getSelectedRow(), INT_TBL_DAT_EST_VAL_APL).toString();
+                    if(strEstValAplReg.equals("S"))
+                        objTblCelEdiButGenCli.setCancelarEdicion(true);
+                    else{
+                        objTblCelEdiButGenCli.setCancelarEdicion(false);
+                        mostrarVenConCli(0);
+                    }
+                }
+            });
+
+
+            //para el boton de observqacion
+            objTblCelRenButObs1=new ZafTblCelRenBut();
+            tcmAux.getColumn(INT_TBL_DAT_BUT_OBS).setCellRenderer(objTblCelRenButObs1);
+            objCon57_01=new ZafCon57_01(javax.swing.JOptionPane.getFrameForComponent(this), true, objParSis);
+            objTblCelEdiButObs1= new ZafTblCelEdiButDlg(objCon57_01);
+            tcmAux.getColumn(INT_TBL_DAT_BUT_OBS).setCellEditor(objTblCelEdiButObs1);
+
+            objTblCelEdiButObs1.addTableEditorListener(new Librerias.ZafTblUti.ZafTblEvt.ZafTableAdapter() {
+                String strObs2="";
+                String strNueObs="";
+                String strEstValAplReg="";
+                public void beforeEdit(Librerias.ZafTblUti.ZafTblEvt.ZafTableEvent evt) {
+
+                    strEstValAplReg=objTblMod.getValueAt(tblDat.getSelectedRow(), INT_TBL_DAT_EST_VAL_APL)==null?"":objTblMod.getValueAt(tblDat.getSelectedRow(), INT_TBL_DAT_EST_VAL_APL).toString();
+                    if(strEstValAplReg.equals("S")){
+                        objTblCelEdiButObs1.setCancelarEdicion(true);
+                        objCon57_01.isEditable("N");
+                        strObs2=objTblMod.getValueAt(tblDat.getSelectedRow(), INT_TBL_DAT_OBS)==null?"":objTblMod.getValueAt(tblDat.getSelectedRow(), INT_TBL_DAT_OBS).toString();
+                        objCon57_01.setContenido("" + strObs2);
+                    }
+                    else{
+                        objTblCelEdiButObs1.setCancelarEdicion(false);
+                        objCon57_01.isEditable("S");
+                        strObs2=objTblMod.getValueAt(tblDat.getSelectedRow(), INT_TBL_DAT_OBS)==null?"":objTblMod.getValueAt(tblDat.getSelectedRow(), INT_TBL_DAT_OBS).toString();
+                        objCon57_01.setContenido("" + strObs2);
+                    }
+
+                }
+                public void afterEdit(Librerias.ZafTblUti.ZafTblEvt.ZafTableEvent evt) {
+                    strNueObs=objCon57_01.getContenido();
+                    objTblMod.setValueAt(strNueObs, tblDat.getSelectedRow(), INT_TBL_DAT_OBS);
+                }
+            });
+
+            //para el campo de valor
+            objTblCelEdiTxt=new ZafTblCelEdiTxt(tblDat);
+            tcmAux.getColumn(INT_TBL_DAT_VAL_DOC).setCellEditor(objTblCelEdiTxt);
+            objTblCelEdiTxt.addTableEditorListener(new Librerias.ZafTblUti.ZafTblEvt.ZafTableAdapter() {
+                String strEstValAplReg="";
+                public void beforeEdit(Librerias.ZafTblUti.ZafTblEvt.ZafTableEvent evt) {
+                    strEstValAplReg=objTblMod.getValueAt(tblDat.getSelectedRow(), INT_TBL_DAT_EST_VAL_APL)==null?"":objTblMod.getValueAt(tblDat.getSelectedRow(), INT_TBL_DAT_EST_VAL_APL).toString();
+                    if(strEstValAplReg.equals("S"))
+                        objTblCelEdiTxt.setCancelarEdicion(true);
+                    else
+                        objTblCelEdiTxt.setCancelarEdicion(false);
+                }
+                public void afterEdit(Librerias.ZafTblUti.ZafTblEvt.ZafTableEvent evt) {
+                    calcularAboTot();
+                    objAsiDia.generarDiario(txtCodTipDoc.getText(), txtCodCta.getText(), strUbiCta, txtMonDoc.getText(), txtMonDoc.getText());
+                    actualizarGlo();
+                    objTblMod.setModoOperacion(objTblMod.INT_TBL_EDI);
+                    objTblMod.removeEmptyRows();
+//                    objTblMod.insertRow();
+                    objTblMod.setModoOperacion(objTblMod.INT_TBL_INS);
+                }
+            });
+
+            //para el campo de texto de observacion
+            objTblCelEdiTxtObs=new ZafTblCelEdiTxt(tblDat);
+            tcmAux.getColumn(INT_TBL_DAT_OBS).setCellEditor(objTblCelEdiTxtObs);
+            objTblCelEdiTxtObs.addTableEditorListener(new Librerias.ZafTblUti.ZafTblEvt.ZafTableAdapter() {
+                String strEstValAplReg="";
+                public void beforeEdit(Librerias.ZafTblUti.ZafTblEvt.ZafTableEvent evt) {
+                    strEstValAplReg=objTblMod.getValueAt(tblDat.getSelectedRow(), INT_TBL_DAT_EST_VAL_APL)==null?"":objTblMod.getValueAt(tblDat.getSelectedRow(), INT_TBL_DAT_EST_VAL_APL).toString();
+                    if(strEstValAplReg.equals("S"))
+                        objTblCelEdiTxtObs.setCancelarEdicion(true);
+                    else
+                        objTblCelEdiTxtObs.setCancelarEdicion(false);
+                }
+            });
+
+
+
+            //Configurar ZafTblMod: Establecer las columnas obligatorias.
+            java.util.ArrayList arlAux=new java.util.ArrayList();
+            arlAux.add("" + INT_TBL_DAT_VAL_DOC);
+            objTblMod.setColumnasObligatorias(arlAux);
+            arlAux=null;
+            //Configurar ZafTblMod: Establecer el color de fondo de las filas incompletas.
+            objTblMod.setBackgroundIncompleteRows(objParSis.getColorCamposObligatorios());
+
+            //Configurar JTable: Ocultar columnas del sistema.
+            objTblMod.addSystemHiddenColumn(INT_TBL_DAT_RUC_CLI, tblDat);
+            objTblMod.addSystemHiddenColumn(INT_TBL_DAT_DIR_CLI, tblDat);
+            objTblMod.addSystemHiddenColumn(INT_TBL_DAT_EST_VAL_APL, tblDat);
+            objTblMod.addSystemHiddenColumn(INT_TBL_DAT_COD_REG, tblDat);
+
+
+            //Configurar ZafTblMod: Establecer las columnas ELIMINADAS
+            arlAux=new java.util.ArrayList();
+            arlAux.add("" + INT_TBL_DAT_COD_REG);
+            objTblMod.setColsSaveBeforeRemoveRow(arlAux);
+            arlAux=null;
+
+
+
+            //Libero los objetos auxiliares.
+            tcmAux=null;
+
+        }
+        catch(Exception e)
+        {
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        return blnRes;
+    }
+
+
+    /**
+     * Esta funci�n calcula el abono total.
+     */
+    private void calcularAboTot()
+    {
+        double dblVal=0, dblTot=0;
+        int intFilPro, i;
+        String strConCel;
+        try
+        {
+            intFilPro=objTblMod.getRowCount();
+            for (i=0; i<intFilPro; i++)
+            {
+                strConCel=(objTblMod.getValueAt(i, INT_TBL_DAT_VAL_DOC)==null)?"":objTblMod.getValueAt(i, INT_TBL_DAT_VAL_DOC).toString();
+                dblVal=(objUti.isNumero(strConCel))?Double.parseDouble(strConCel):0;
+                dblTot+=dblVal;
+            }
+            //Calcular la diferencia.
+            txtMonDoc.setText("" + objUti.redondeo(dblTot,objParSis.getDecimalesBaseDatos()));
+        }
+        catch (NumberFormatException e)
+        {
+            txtMonDoc.setText("[ERROR]");
+        }
+    }
+
+    /**
+     * Esta funci�n configura la "Ventana de consulta" que ser� utilizada para
+     * mostrar los "Proveedores".
+     */
+    private boolean configurarVenConCli(){
+        boolean blnRes=true;
+        String strTitVenCon="";
+        try{
+            //Listado de campos.
+            ArrayList arlCam=new ArrayList();
+            arlCam.add("a1.co_cli");
+            arlCam.add("a1.tx_nom");
+            arlCam.add("a1.tx_ide");
+            arlCam.add("a1.tx_dir");
+            //Alias de los campos.
+            ArrayList arlAli=new ArrayList();
+            arlAli.add("Código");
+            arlAli.add("Nombre");
+            arlAli.add("Identificación");
+            arlAli.add("Dirección");
+            //Ancho de las columnas.
+            ArrayList arlAncCol=new ArrayList();
+            arlAncCol.add("50");
+            arlAncCol.add("250");
+            arlAncCol.add("80");
+            arlAncCol.add("80");
+            //Armar la sentencia SQL.
+
+            if(objUti.utilizarClientesEmpresa(objParSis, objParSis.getCodigoEmpresa(), objParSis.getCodigoLocal(), objParSis.getCodigoUsuario())){
+                strSQL="";
+                strSQL+="SELECT a1.co_cli, a1.tx_ide, a1.tx_nom, a1.tx_dir";
+                strSQL+=" FROM tbm_cli AS a1";
+                strSQL+=" WHERE a1.co_emp=" + objParSis.getCodigoEmpresa();
+                strSQL+=" AND a1.st_cli='S'";
+                strSQL+=" ORDER BY a1.tx_nom";
+            }
+            else{
+                strSQL="";
+                strSQL+="SELECT a2.co_cli, a2.tx_ide, a2.tx_nom, a2.tx_dir";
+                strSQL+=" FROM tbr_cliLoc AS a1 INNER JOIN tbm_cli AS a2";
+                strSQL+=" ON a1.co_emp=a2.co_emp AND a1.co_cli=a2.co_cli";
+                strSQL+=" WHERE a1.co_emp=" + objParSis.getCodigoEmpresa();
+                strSQL+=" AND a1.co_loc=" + objParSis.getCodigoLocal() + "";
+                strSQL+=" AND a2.st_cli='S'";
+                strSQL+=" ORDER BY a2.tx_nom";
+            }
+
+            //Ocultar columnas.
+            int intColOcu[]=new int[1];
+            intColOcu[0]=4;
+            vcoCli=new ZafVenCon(javax.swing.JOptionPane.getFrameForComponent(this), objParSis, "Listado de Clientes", strSQL, arlCam, arlAli, arlAncCol, intColOcu);
+            arlCam=null;
+            arlAli=null;
+            arlAncCol=null;
+            intColOcu=null;
+            //Configurar columnas.
+            vcoCli.setConfiguracionColumna(1, javax.swing.JLabel.RIGHT);
+        }
+        catch (Exception e)
+        {
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        return blnRes;
+    }
+
+
+    /**
+     * Esta funci�n permite utilizar la "Ventana de Consulta" para seleccionar un
+     * registro de la base de datos. El tipo de b�squeda determina si se debe hacer
+     * una b�squeda directa (No se muestra la ventana de consulta a menos que no
+     * exista lo que se est� buscando) o presentar la ventana de consulta para que
+     * el usuario seleccione la opci�n que desea utilizar.
+     * @param intTipBus El tipo de b�squeda a realizar.
+     * @return true: Si no se present� ning�n problema.
+     * <BR>false: En el caso contrario.
+     */
+    private boolean mostrarVenConCli(int intTipBus){
+        boolean blnRes=true;
+        try{
+            switch (intTipBus){
+                case 0: //Mostrar la ventana de consulta.
+                    vcoCli.setCampoBusqueda(1);
+                    vcoCli.show();
+                    if (vcoCli.getSelectedButton()==vcoCli.INT_BUT_ACE){
+                        objTblMod.setValueAt(vcoCli.getValueAt(1), tblDat.getSelectedRow(), INT_TBL_DAT_COD_CLI);
+                        objTblMod.setValueAt(vcoCli.getValueAt(2), tblDat.getSelectedRow(), INT_TBL_DAT_NOM_CLI);
+                        objTblMod.setValueAt(vcoCli.getValueAt(3), tblDat.getSelectedRow(), INT_TBL_DAT_RUC_CLI);
+                        objTblMod.setValueAt(vcoCli.getValueAt(4), tblDat.getSelectedRow(), INT_TBL_DAT_DIR_CLI);
+                    }
+                    break;
+            }
+        }
+        catch (Exception e){
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        return blnRes;
+    }
+
+    /**
+     * Esta clase crea la barra de herramientas para el sistema. Dicha barra de herramientas
+     * contiene los botones que realizan las diferentes operaciones del sistema. Es decir,
+     * insertar, consultar, modificar, eliminar, etc. Adem�s de los botones de navegaci�n
+     * que permiten desplazarse al primero, anterior, siguiente y �ltimo registro.
+     */
+    private class MiToolBar extends ZafToolBar
+    {
+        public MiToolBar(javax.swing.JInternalFrame ifrFrm)
+        {
+            super(ifrFrm, objParSis);
+        }
+
+        public boolean anular()
+        {
+            if (!anularReg())
+                return false;
+            objTooBar.setEstadoRegistro("Anulado");
+            blnHayCam=false;
+            return true;
+        }
+
+        public void clickAceptar()
+        {
+            
+        }
+        
+        public void clickAnterior() 
+        {
+            try
+            {
+                if (!rstCab.isFirst())
+                {
+                    if (blnHayCam || objAsiDia.isDiarioModificado())
+                    {
+                        if (isRegPro())
+                        {
+                            rstCab.previous();
+                            cargarReg();
+                            if(  (objTooBar.getEstado()=='x') ||  (objTooBar.getEstado()=='m') ){
+                                if(camposInactivosPermisoModifi()){
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        rstCab.previous();
+                        cargarReg();
+                        if(  (objTooBar.getEstado()=='x') ||  (objTooBar.getEstado()=='m') ){
+                            if(camposInactivosPermisoModifi()){
+                            }
+                        }
+                    }
+                }
+            }
+            catch (java.sql.SQLException e)
+            {
+                objUti.mostrarMsgErr_F1(this, e);
+            }
+            catch (Exception e)
+            {
+                objUti.mostrarMsgErr_F1(this, e);
+            }
+        }
+
+        public void clickAnular()
+        {
+            cargarDetReg();
+        }
+
+        public void clickCancelar()
+        {
+
+        }
+
+        public void clickConsultar() 
+        {
+            cargarDetReg();
+            txtDesCorTipDoc.requestFocus();
+            objTblMod.setModoOperacion(objTblMod.INT_TBL_EDI);
+        }
+
+        public void clickEliminar()
+        {
+            cargarDetReg();
+        }
+
+        public void clickFin() 
+        {
+            try
+            {
+                if (!rstCab.isLast())
+                {
+                    if (blnHayCam || objAsiDia.isDiarioModificado())
+                    {
+                        if (isRegPro())
+                        {
+                            rstCab.last();
+                            cargarReg();
+                            if(  (objTooBar.getEstado()=='x') ||  (objTooBar.getEstado()=='m') ){
+                                if(camposInactivosPermisoModifi()){
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        rstCab.last();
+                        cargarReg();
+                        if(  (objTooBar.getEstado()=='x') ||  (objTooBar.getEstado()=='m') ){
+                            if(camposInactivosPermisoModifi()){
+                            }
+                        }
+                    }
+                }
+            }
+            catch (java.sql.SQLException e)
+            {
+                objUti.mostrarMsgErr_F1(this, e);
+            }
+            catch (Exception e)
+            {
+                objUti.mostrarMsgErr_F1(this, e);
+            }
+        }
+
+        public void clickImprimir(){
+            
+
+            
+            
+        }
+
+        public void clickInicio()
+        {
+            try
+            {
+                if (!rstCab.isFirst())
+                {
+                    if (blnHayCam || objAsiDia.isDiarioModificado())
+                    {
+                        if (isRegPro())
+                        {
+                            rstCab.first();
+                            cargarReg();
+                            if(  (objTooBar.getEstado()=='x') ||  (objTooBar.getEstado()=='m') ){
+                                if(camposInactivosPermisoModifi()){
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        rstCab.first();
+                        cargarReg();
+                        if(  (objTooBar.getEstado()=='x') ||  (objTooBar.getEstado()=='m') ){
+                            if(camposInactivosPermisoModifi()){
+                            }
+                        }
+                    }
+                }
+            }
+            catch (java.sql.SQLException e)
+            {
+                objUti.mostrarMsgErr_F1(this, e);
+            }
+            catch (Exception e)
+            {
+                objUti.mostrarMsgErr_F1(this, e);
+            }
+        }
+
+        public void clickInsertar()
+        {
+            try
+            {
+                if (blnHayCam)
+                {
+                    isRegPro();
+                }
+                if (rstCab!=null)
+                {
+                    rstCab.close();
+                    stmCab.close();
+                    conCab.close();
+                    rstCab=null;
+                    stmCab=null;
+                    conCab=null;
+                }
+                limpiarFrm();
+                txtCodDoc.setEditable(false);
+//                txtMonDoc.setEditable(false);
+                datFecAux=objUti.getFechaServidor(objParSis.getStringConexion(), objParSis.getUsuarioBaseDatos(), objParSis.getClaveBaseDatos(), objParSis.getQueryFechaHoraBaseDatos());
+                dtpFecDoc.setText(objUti.formatearFecha(datFecAux,"dd/MM/yyyy"));
+                datFecAux=null;
+                mostrarTipDocPre();
+                if (!txtCodTipDoc.getText().equals(""))
+                    mostrarCtaPre();
+                objTblMod.setModoOperacion(objTblMod.INT_TBL_INS);
+                objAsiDia.setEditable(true);
+                txtNumDoc1.selectAll();
+                txtNumDoc1.requestFocus();
+                //Inicializar las variables que indican cambios.
+                objAsiDia.setDiarioModificado(false);
+                blnHayCam=false;
+                txtMonDoc.setEditable(false);
+                
+                dtpFecDoc.setEnabled(true);
+                txtNumDoc1.setEnabled(false);
+                //objTblMod.insertRow();
+                objTblMod.setDataModelChanged(false);
+                tblDat.requestFocus();
+                
+            }
+            catch (java.sql.SQLException e)
+            {
+                objUti.mostrarMsgErr_F1(this, e);
+            }
+            catch (Exception e)
+            {
+                objUti.mostrarMsgErr_F1(this, e);
+            }
+        }
+
+        public void clickModificar(){
+            txtDesCorTipDoc.setEditable(false);
+            txtDesLarTipDoc.setEditable(false);
+            butTipDoc.setEnabled(false);
+            txtCodDoc.setEditable(false);
+            txtMonDoc.setEditable(false);            
+            objTblMod.setModoOperacion(objTblMod.INT_TBL_INS);
+            objAsiDia.setEditable(true);
+            cargarReg();
+            txtNumDoc1.selectAll();
+            txtNumDoc1.requestFocus();
+            if(camposInactivosPermisoModifi()){
+            }
+            tblDat.requestFocus();
+            
+        }
+
+        public void clickSiguiente()
+        {
+            try
+            {
+                if (!rstCab.isLast())
+                {
+                    if (blnHayCam || objAsiDia.isDiarioModificado())
+                    {
+                        if (isRegPro())
+                        {
+                            rstCab.next();
+                            cargarReg();
+                            if(  (objTooBar.getEstado()=='x') ||  (objTooBar.getEstado()=='m') ){
+                                if(camposInactivosPermisoModifi()){
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        rstCab.next();
+                        cargarReg();
+                        if(  (objTooBar.getEstado()=='x') ||  (objTooBar.getEstado()=='m') ){
+                            if(camposInactivosPermisoModifi()){
+                            }
+                        }
+                    }
+                }
+            }
+            catch (java.sql.SQLException e)
+            {
+                objUti.mostrarMsgErr_F1(this, e);
+            }
+            catch (Exception e)
+            {
+                objUti.mostrarMsgErr_F1(this, e);
+            }
+        }
+
+        public void clickVisPreliminar() 
+        {
+            
+        }
+
+        public boolean consultar() 
+        {
+            consultarReg();
+            return true;
+        }
+
+        public boolean eliminar()
+        {
+            try
+            {
+                if (!eliminarReg())
+                    return false;
+                //Desplazarse al siguiente registro si es posible.
+                if (!rstCab.isLast())
+                {
+                    rstCab.next();
+                    cargarReg();
+                }
+                else
+                {
+                    objTooBar.setEstadoRegistro("Eliminado");
+                    limpiarFrm();
+                }
+                blnHayCam=false;
+            }
+            catch (java.sql.SQLException e)
+            {
+                return true;
+            }
+            return true;
+        }
+
+        public boolean insertar()
+        {
+            if (!insertarReg())
+                return false;
+            return true;
+        }
+
+        public boolean modificar()
+        {
+            if (!actualizarReg())
+                return false;
+            return true;
+        }
+        
+        public boolean cancelar()
+        {
+            boolean blnRes=true;
+            try
+            {
+                if (blnHayCam || objAsiDia.isDiarioModificado())
+                {
+                    if (objTooBar.getEstado()=='n' || objTooBar.getEstado()=='m')
+                    {
+                        if (!isRegPro())
+                            return false;
+                    }
+                }
+                if (rstCab!=null)
+                {
+                    rstCab.close();
+                    stmCab.close();
+                    conCab.close();
+                    rstCab=null;
+                    stmCab=null;
+                    conCab=null;
+                }
+                objTblMod.setModoOperacion(objTblMod.INT_TBL_EDI);
+                objTblMod.removeEmptyRows();
+                objTblMod.removeAllRows();
+            }
+            catch (java.sql.SQLException e)
+            {
+                objUti.mostrarMsgErr_F1(this, e);
+            }
+            catch (Exception e)
+            {
+                objUti.mostrarMsgErr_F1(this, e);
+            }
+            limpiarFrm();
+            blnHayCam=false;
+            return blnRes;
+        }
+        
+        public boolean vistaPreliminar(){
+            return true;
+            
+        }
+        
+        public boolean aceptar()
+        {
+            return true;
+        }
+        
+        public boolean imprimir(){           
+            return true;
+            
+        }
+        
+        public boolean beforeInsertar(){
+            boolean blnRes=true;
+
+            if (!isCamVal())
+                return false;
+            if (objAsiDia.getGeneracionDiario()==2)
+                return regenerarDiario();
+
+            return blnRes;
+        }
+        
+        public boolean beforeConsultar()
+        {
+            return true;
+        }
+
+        public boolean beforeModificar()
+        {
+            boolean blnRes=true;
+            strAux=objTooBar.getEstadoRegistro();
+            if (strAux.equals("Eliminado"))
+            {
+                mostrarMsgInf("El documento está ELIMINADO.\nNo es posible modificar un documento eliminado.");
+                blnRes=false;
+            }
+            if (strAux.equals("Anulado"))
+            {
+                mostrarMsgInf("El documento está ANULADO.\nNo es posible modificar un documento anulado.");
+                blnRes=false;
+            }
+
+            
+            if (!isCamVal())
+                blnRes=false;
+            if (objAsiDia.getGeneracionDiario()==2)
+                return regenerarDiario();
+
+            return blnRes;
+        }
+
+        public boolean beforeEliminar()
+        {
+            strAux=objTooBar.getEstadoRegistro();
+            if (strAux.equals("Eliminado"))
+            {
+                mostrarMsgInf("El documento ya est� ELIMINADO.\nNo es posible eliminar un documento eliminado.");
+                return false;
+            }
+            return true;
+        }
+
+        public boolean beforeAnular()
+        {
+            strAux=objTooBar.getEstadoRegistro();
+            if (strAux.equals("Eliminado"))
+            {
+                mostrarMsgInf("El documento está ELIMINADO.\nNo es posible anular un documento eliminado.");
+                return false;
+            }
+            if (strAux.equals("Anulado"))
+            {
+                mostrarMsgInf("El documento ya está ANULADO.\nNo es posible anular un documento anulado.");
+                return false;
+            }
+            if((blnNecAutAnu) && (!blnDocAut)){
+                mostrarMsgInf("El documento requiere autorización para ser anulado.\nNo es posible anular un documento que requiere autorización y no está autorizado.");
+                return false;
+            }
+            if(isAplicado()){
+                mostrarMsgInf("El documento ya fue aplicado.\nNo es posible anular un documento con pagos asociados.");
+                return false;
+            }
+
+
+            return true;
+        }
+
+        public boolean beforeImprimir(){
+            boolean blnRes=true;
+//            if(strEstImpDoc.equals("N")){
+//            }
+//            else{
+//                mostrarMsgInf("<HTML>El documento tiene estado impreso.<BR>No se puede imprimir un documento impreso si no se cuenta con los permisos respectivos.<BR>Si necesita imprimir el documento, solicite al Administrador del Sistema le conceda los permisos respectivos.</HTML>");
+//                blnRes=false;
+//            }
+            return blnRes;
+        }
+
+        public boolean beforeVistaPreliminar()
+        {
+            boolean blnRes=true;
+//            if(strEstImpDoc.equals("N")){
+//            }
+//            else{
+//                mostrarMsgInf("<HTML>El documento tiene estado impreso.<BR>No se puede imprimir un documento impreso si no se cuenta con los permisos respectivos.<BR>Si necesita imprimir el documento, solicite al Administrador del Sistema le conceda los permisos respectivos.</HTML>");
+//                blnRes=false;
+//            }
+            return blnRes;
+        }
+
+        public boolean beforeAceptar()
+        {
+            return true;
+        }
+        
+        public boolean beforeCancelar()
+        {
+            return true;
+        }
+        
+        public boolean afterInsertar()
+        {
+            objAsiDia.setDiarioModificado(false);
+            blnHayCam=false;
+            //Configurar JFrame de acuerdo al estado del registro.
+            objTooBar.setEstado('w');
+            consultarReg();
+            objAsiDia.setDiarioModificado(false);
+            blnHayCam=false;
+            return true;
+        }
+
+        public boolean afterConsultar()
+        {
+            return true;
+        }
+
+        public boolean afterModificar()
+        {
+            objAsiDia.setDiarioModificado(false);
+            blnHayCam=false;
+            objTooBar.setEstado('w');
+            cargarReg();
+            strFecDocIni=dtpFecDoc.getText();
+            objTblMod.clearDataSavedBeforeRemoveRow();
+            return true;
+        }
+
+        public boolean afterEliminar()
+        {
+            return true;
+        }
+
+        public boolean afterAnular()
+        {
+            return true;
+        }
+
+        public boolean afterImprimir()
+        {
+            return true;
+        }
+
+        public boolean afterVistaPreliminar()
+        {
+            return true;
+        }
+
+        public boolean afterAceptar()
+        {
+            return true;
+        }
+        
+        public boolean afterCancelar()
+        {
+            return true;
+        }
+        
+    }
+    
+    /**
+     * Esta funci�n determina si los campos son v�lidos.
+     * @return true: Si los campos son v�lidos.
+     * <BR>false: En el caso contrario.
+     */
+    private boolean isCamVal(){
+        int intTipCamFec;
+        String strFecDocTmp="";
+        String strFecAuxTmp="";
+//        String strExiVal="";
+
+        objTblMod.setModoOperacion(objTblMod.INT_TBL_EDI);
+        objTblMod.removeEmptyRows();
+
+        if(objTblMod.getRowCountTrue()<=0){
+            tabFrm.setSelectedIndex(0);
+            mostrarMsgInf("<HTML>Se debe registrar algún valor para guardar el documento.<BR>Escriba un valor y vuelva a intentarlo.</HTML>");
+            return false;
+        }
+//        else{
+//            for(int i=0; i<objTblMod.getRowCountTrue(); i++){
+//                strExiVal=objTblMod.getValueAt(i, INT_TBL_DAT_EST_VAL_APL)==null?"":objTblMod.getValueAt(i, INT_TBL_DAT_EST_VAL_APL).toString();
+//                System.out.println("strExiVal: " +strExiVal);
+//                if(strExiVal.equals("")){
+//                    tabFrm.setSelectedIndex(0);
+//                    mostrarMsgInf("<HTML>Se debe registrar algún valor para guardar el documento.<BR>Escriba un valor y vuelva a intentarlo.</HTML>");
+//                    return false;
+//                }
+//            }
+//        }
+
+        
+        //Validar el "Tipo de documento".
+        if (txtCodTipDoc.getText().equals("")){
+            tabFrm.setSelectedIndex(0);
+            mostrarMsgInf("<HTML>El campo <FONT COLOR=\"blue\">Tipo de documento</FONT> es obligatorio.<BR>Escriba o seleccione un tipo de documento y vuelva a intentarlo.</HTML>");
+            txtDesCorTipDoc.requestFocus();
+            return false;
+        }
+        //Validar la "Cuenta".
+        if (txtCodCta.getText().equals("")){
+            tabFrm.setSelectedIndex(0);
+            mostrarMsgInf("<HTML>El campo <FONT COLOR=\"blue\">Cuenta</FONT> es obligatorio.<BR>Escriba o seleccione una cuenta y vuelva a intentarlo.</HTML>");
+            txtDesCorCta.requestFocus();
+            return false;
+        }
+        //Validar el "Fecha del documento".
+        if (!dtpFecDoc.isFecha()){
+            tabFrm.setSelectedIndex(0);
+            mostrarMsgInf("<HTML>El campo <FONT COLOR=\"blue\">Fecha del documento</FONT> es obligatorio.<BR>Escriba o seleccione una fecha para el documento y vuelva a intentarlo.</HTML>");
+            dtpFecDoc.requestFocus();
+            return false;
+        }
+        else{
+            intTipCamFec=canChangeDate();
+            switch(intTipCamFec){
+                case 0://esto lo coloque en caso que el registro no se encuentre en tbr_tipDocUsr porque devuelve 0 la función.
+                    if(objParSis.getCodigoUsuario()!=1){
+                        if(objTooBar.getEstado()=='n'){//insertar
+                            datFecAux=objUti.getFechaServidor(objParSis.getStringConexion(), objParSis.getUsuarioBaseDatos(), objParSis.getClaveBaseDatos(), objParSis.getQueryFechaHoraBaseDatos());
+                            
+                            dtpFecDoc.setText(objUti.formatearFecha(datFecAux,"dd/MM/yyyy"));
+                            String strMsj="";
+                            strMsj+="<HTML>EL documento se guardará pero tenga en cuenta las siguientes consideraciones: ";
+                            strMsj+="<BR>      Ud no cuenta con el permiso adecuado para trabajar con este documento.";
+                            strMsj+="<BR>      Por el momento está trabajando con el Tipo de Documento predeterminado.";
+                            strMsj+="<BR>      Solicite a su Administrador del Sistema le conceda los permisos adecuados.";
+                            strMsj+="<BR>      Mientras no los solicite, ud no podrá hacerle cambios a la fecha del documento.";
+                            strMsj+="<BR>      El documento se guardará con fecha del día así ud. coloque otra fecha.";
+                            strMsj+="<BR>  Está seguro que desea continuar?</HTML>";
+                            //mostrarMsgInf("<HTML> " + strMsj + "</HTML>");
+                            
+                            switch (mostrarMsgCon(strMsj)){
+                                case 0: //YES_OPTION
+                                    System.out.println("POR YES");
+                                    return true;
+                                case 1: //NO_OPTION
+                                    System.out.println("POR NO");
+                                    return false;
+                                case 2: //CANCEL_OPTION
+                                    System.out.println("POR CANCEL");
+                                    return false;
+                            }
+                            datFecAux=null;
+                        }
+                        else if(    (objTooBar.getEstado()=='x')  ||  (objTooBar.getEstado()=='m')   ){//modificar
+                            dtpFecDoc.setText(objUti.formatearFecha(strFecDocIni,"dd/MM/yyyy", "dd/MM/yyyy"));
+                            String strMsj="";
+                            strMsj+="<HTML>EL documento se guardará pero tenga en cuenta las siguientes consideraciones: ";
+                            strMsj+="<BR>      Ud no cuenta con el permiso adecuado para trabajar con este documento.";
+                            strMsj+="<BR>      Por el momento está trabajando con el Tipo de Documento predeterminado.";
+                            strMsj+="<BR>      Solicite a su Administrador del Sistema le conceda los permisos adecuados.";
+                            strMsj+="<BR>      Mientras no los solicite, ud no podrá hacerle cambios a la fecha del documento.";
+                            strMsj+="<BR>      El documento se guardará con la fecha inicialmente almacenada así ud. coloque otra fecha.";
+                            strMsj+="<BR>  Está seguro que desea continuar?</HTML>";
+                            //mostrarMsgInf("<HTML> " + strMsj + "</HTML>");
+                            
+                            switch (mostrarMsgCon(strMsj)){
+                                case 0: //YES_OPTION
+                                    return true;
+                                case 1: //NO_OPTION
+                                    return false;
+                                case 2: //CANCEL_OPTION
+                                    return false;
+                            }
+                            
+                        }
+                    }
+                    break;
+                case 1://no puede cambiarla para nada
+                    if(objTooBar.getEstado()=='n'){//insertar
+                        datFecAux=objUti.getFechaServidor(objParSis.getStringConexion(), objParSis.getUsuarioBaseDatos(), objParSis.getClaveBaseDatos(), objParSis.getQueryFechaHoraBaseDatos());
+                        strFecDocTmp="";strFecAuxTmp="";
+                        strFecDocTmp=objUti.formatearFecha(dtpFecDoc.getText(),"dd/MM/yyyy", "dd/MM/yyyy");
+                        strFecAuxTmp=objUti.formatearFecha(datFecAux,"dd/MM/yyyy");
+                        if(  (objUti.parseDate(strFecDocTmp, "dd/MM/yyyy")).compareTo(objUti.parseDate(strFecAuxTmp, "dd/MM/yyyy")) != 0 ){
+                            dtpFecDoc.setText(objUti.formatearFecha(datFecAux,"dd/MM/yyyy"));
+                            mostrarMsgInf("<HTML>La fecha del documento no puede ser cambiada.<BR>Ud. no tiene permisos para cambiar la fecha.<BR>Verifique y vuelva a intentarlo.</HTML>");
+                            datFecAux=null;
+                            return false;
+                        }
+                    }
+                    else if(    (objTooBar.getEstado()=='x')  ||  (objTooBar.getEstado()=='m')   ){//modificar
+                        strFecDocTmp="";
+                        strFecDocTmp=objUti.formatearFecha(dtpFecDoc.getText(),"dd/MM/yyyy", "dd/MM/yyyy");                        
+                        if(  (objUti.parseDate(strFecDocTmp, "dd/MM/yyyy")).compareTo( objUti.parseDate(strFecDocIni, "dd/MM/yyyy") ) != 0 ){
+                            dtpFecDoc.setText(objUti.formatearFecha(strFecDocIni,"dd/MM/yyyy", "dd/MM/yyyy"));
+                            mostrarMsgInf("<HTML>La fecha del documento no puede ser cambiada.<BR>Ud. no tiene permiso para cambiar la fecha.<BR>Verifique y vuelva a intentarlo.</HTML>");
+                            datFecAux=null;
+                            return false;
+                        }  
+                    }
+                    
+                    break;
+                case 2://la fecha puede ser menor o igual a la q se presenta
+                    if(objTooBar.getEstado()=='n'){//insertar
+                        datFecAux=objUti.getFechaServidor(objParSis.getStringConexion(), objParSis.getUsuarioBaseDatos(), objParSis.getClaveBaseDatos(), objParSis.getQueryFechaHoraBaseDatos());
+                        strFecDocTmp="";strFecAuxTmp="";
+                        strFecDocTmp=objUti.formatearFecha(dtpFecDoc.getText(),"dd/MM/yyyy", "dd/MM/yyyy");
+                        strFecAuxTmp=objUti.formatearFecha(datFecAux,"dd/MM/yyyy");
+                        if(  (objUti.parseDate(strFecDocTmp, "dd/MM/yyyy")).compareTo(objUti.parseDate(strFecAuxTmp, "dd/MM/yyyy")) > 0 ){
+                            dtpFecDoc.setText(objUti.formatearFecha(datFecAux,"dd/MM/yyyy"));
+                            mostrarMsgInf("<HTML>La fecha ingresada en el documento es mayor a la fecha del día.<BR>Ud. no tiene permiso para colocar fecha posterior a la del día.<BR>Verifique y vuelva a intentarlo.</HTML>");
+                            datFecAux=null;
+                            return false;
+                        }
+                    }
+                    else if(    (objTooBar.getEstado()=='x')  ||  (objTooBar.getEstado()=='m')   ){//modificar
+                        strFecDocTmp="";
+                        strFecDocTmp=objUti.formatearFecha(dtpFecDoc.getText(),"dd/MM/yyyy", "dd/MM/yyyy");                        
+                        if(  (objUti.parseDate(strFecDocTmp, "dd/MM/yyyy")).compareTo( objUti.parseDate(strFecDocIni, "dd/MM/yyyy") ) > 0 ){
+                            dtpFecDoc.setText(objUti.formatearFecha(strFecDocIni,"dd/MM/yyyy", "dd/MM/yyyy"));
+                            mostrarMsgInf("<HTML>La fecha de modificación del documento es mayor a la fecha ingresada inicialmente en el documento.<BR>Ud. no tiene permiso para colocar fecha posterior a la fecha ingresada inicialmente.<BR>Verifique y vuelva a intentarlo.</HTML>");
+                            datFecAux=null;
+                            return false;
+                        }  
+                    }
+                    break;
+                case 3://la fecha puede ser mayor o igual a la q se presenta
+                    if(objTooBar.getEstado()=='n'){//insertar
+                        datFecAux=objUti.getFechaServidor(objParSis.getStringConexion(), objParSis.getUsuarioBaseDatos(), objParSis.getClaveBaseDatos(), objParSis.getQueryFechaHoraBaseDatos());
+                        strFecDocTmp="";strFecAuxTmp="";
+                        strFecDocTmp=objUti.formatearFecha(dtpFecDoc.getText(),"dd/MM/yyyy", "dd/MM/yyyy");
+                        strFecAuxTmp=objUti.formatearFecha(datFecAux,"dd/MM/yyyy");
+                        if(  (objUti.parseDate(strFecDocTmp, "dd/MM/yyyy")).compareTo(objUti.parseDate(strFecAuxTmp, "dd/MM/yyyy")) < 0 ){
+                            dtpFecDoc.setText(objUti.formatearFecha(datFecAux,"dd/MM/yyyy"));
+                            mostrarMsgInf("<HTML>La fecha ingresada en el documento es menor a la fecha del día.<BR>Ud. no tiene permiso para colocar fecha anterior a la del día.<BR>Verifique y vuelva a intentarlo.</HTML>");
+                            datFecAux=null;
+                            return false;
+                        }
+                    }
+                    else if(    (objTooBar.getEstado()=='x')  ||  (objTooBar.getEstado()=='m')   ){//modificar
+                        strFecDocTmp="";
+                        strFecDocTmp=objUti.formatearFecha(dtpFecDoc.getText(),"dd/MM/yyyy", "dd/MM/yyyy");                        
+                        if(  (objUti.parseDate(strFecDocTmp, "dd/MM/yyyy")).compareTo( objUti.parseDate(strFecDocIni, "dd/MM/yyyy") ) < 0 ){
+                            dtpFecDoc.setText(objUti.formatearFecha(strFecDocIni,"dd/MM/yyyy", "dd/MM/yyyy"));
+                            mostrarMsgInf("<HTML>La fecha de modificación del documento es menor a la fecha ingresada inicialmente en el documento.<BR>Ud. no tiene permiso para colocar fecha anterior a la fecha ingresada inicialmente.<BR>Verifique y vuelva a intentarlo.</HTML>");
+                            datFecAux=null;
+                            return false;
+                        }  
+                    }
+                    break;
+                case 4:
+                    break;
+                default:
+                    break;
+            }
+        }
+        //Validar que el "C�digo alterno" no se repita.
+            if (!txtNumDoc1.getText().equals("")){
+                strSQL="";
+                strSQL+="SELECT a1.ne_numdoc1";
+                strSQL+=" FROM tbm_cabPag AS a1 ";
+                strSQL+=" WHERE a1.co_emp=" + objParSis.getCodigoEmpresa();
+                strSQL+=" AND a1.co_loc=" + objParSis.getCodigoLocal();
+                strSQL+=" AND a1.co_tipDoc=" + txtCodTipDoc.getText();
+                strSQL+=" AND a1.ne_numdoc1='" + txtNumDoc1.getText().replaceAll("'", "''") + "'";
+                strSQL+=" AND a1.st_reg<>'E'";
+                if (objTooBar.getEstado()=='m')
+                    strSQL+=" AND a1.co_doc<>" + txtCodDoc.getText();
+                if (!objUti.isCodigoUnico(this, objParSis.getStringConexion(), objParSis.getUsuarioBaseDatos(), objParSis.getClaveBaseDatos(), strSQL))
+                {
+                    tabFrm.setSelectedIndex(0);
+                    mostrarMsgInf("<HTML>El número de egreso <FONT COLOR=\"blue\">" + txtNumDoc1.getText() + "</FONT> ya existe.<BR>Escriba otro número de egreso y vuelva a intentarlo.</HTML>");
+                    txtNumDoc1.selectAll();
+                    txtNumDoc1.requestFocus();
+                    return false;
+                }
+            }
+        
+        
+        
+
+        //Validar que el "Diario est� cuadrado".
+        if (!objAsiDia.isDiarioCuadrado())
+        {
+            mostrarMsgInf("<HTML>El asiento de diario est� <FONT COLOR=\"blue\">descuadrado</FONT>.<BR>Cuadre el asiento de diario y vuelva a intentarlo.</HTML>");
+            return false;
+        }
+        //Validar que el "Monto del diario" sea igual al monto del documento.
+        if (!objAsiDia.isDocumentoCuadrado(txtMonDoc.getText()))
+        {
+            mostrarMsgInf("<HTML>El valor del documento no coincide con el valor del asiento de diario.<BR>Cuadre el valor del documento con el valor del asiento de diario y vuelva a intentarlo.</HTML>");
+            txtMonDoc.selectAll();
+            txtMonDoc.requestFocus();
+            return false;
+        }
+                
+        //PARA FILAS INCOMPLETAS(LA COLUMNA OBLIGATORIA ES LA DE VALOR)
+        String strLin="";
+        String strCodCli="";
+        String strObs="";
+        String strVal="";
+        
+        for(int i=0; i<objTblMod.getRowCountTrue(); i++){
+            strLin=objTblMod.getValueAt(i, INT_TBL_DAT_LIN)==null?"":objTblMod.getValueAt(i, INT_TBL_DAT_LIN).toString();
+            strCodCli=objTblMod.getValueAt(i, INT_TBL_DAT_COD_CLI)==null?"":objTblMod.getValueAt(i, INT_TBL_DAT_COD_CLI).toString();
+            strObs=objTblMod.getValueAt(i, INT_TBL_DAT_OBS)==null?"":objTblMod.getValueAt(i, INT_TBL_DAT_OBS).toString();
+            strVal=objTblMod.getValueAt(i, INT_TBL_DAT_VAL_DOC)==null?"":objTblMod.getValueAt(i, INT_TBL_DAT_VAL_DOC).toString();
+            
+            if (strCodCli.trim().equals(""))
+            {  mostrarMsgInf("<HTML>Se encontró un registro cuya columna <FONT COLOR=\"blue\">Cod.Cli.</FONT> está en blanco.<BR>Verifique el contenido de dicho registro y vuelva a intentarlo.</HTML>");
+               tblDat.setRowSelectionInterval(i, i);
+               tblDat.changeSelection(i, INT_TBL_DAT_COD_CLI, true, true);
+               tblDat.requestFocus();
+               return false;
+            }
+            
+            if(strLin.equals("I")){
+                if( (strVal.equals("")) &&  ((strCodCli.length()>0) || (strObs.length()>0))  ){
+                    if (!objTblMod.isRowComplete(i)){
+                        mostrarMsgInf("<HTML>El documento contiene registros con valor cero.<BR>Verifique el contenido de dichos registros y vuelva a intentarlo.</HTML>");
+                        tblDat.setRowSelectionInterval(i, i);
+                        tblDat.changeSelection(i, INT_TBL_DAT_VAL_DOC, true, true);
+                        tblDat.requestFocus();
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Esta funci�n muestra un mensaje informativo al usuario. Se podr�a utilizar
+     * para mostrar al usuario un mensaje que indique el campo que es invalido y que
+     * debe llenar o corregir.
+     */
+    private void mostrarMsgInf(String strMsg)
+    {
+        javax.swing.JOptionPane oppMsg=new javax.swing.JOptionPane();
+        String strTit;
+        strTit="Mensaje del sistema Zafiro";
+        oppMsg.showMessageDialog(this,strMsg,strTit,javax.swing.JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    /**
+     * Esta funci�n muestra un mensaje "showConfirmDialog". Presenta las opciones
+     * Si, No y Cancelar. El usuario es quien determina lo que debe hacer el sistema
+     * seleccionando una de las opciones que se presentan.
+     */
+    private int mostrarMsgCon(String strMsg)
+    {
+        javax.swing.JOptionPane oppMsg=new javax.swing.JOptionPane();
+        String strTit;
+        strTit="Mensaje del sistema Zafiro";
+        return oppMsg.showConfirmDialog(this,strMsg,strTit,javax.swing.JOptionPane.YES_NO_CANCEL_OPTION,javax.swing.JOptionPane.QUESTION_MESSAGE);
+    }
+
+    /**
+     * Esta funci�n muestra un mensaje de advertencia al usuario. Se podr�a utilizar
+     * para mostrar al usuario un mensaje que indique que los datos se han cargado
+     * con errores y que debe revisar dichos datos.
+     */
+    private void mostrarMsgAdv(String strMsg)
+    {
+        javax.swing.JOptionPane oppMsg=new javax.swing.JOptionPane();
+        String strTit;
+        strTit="Mensaje del sistema Zafiro";
+        if (strMsg.equals(""))
+            strMsg="<HTML>Este registro tiene <FONT COLOR=\"red\">problemas</FONT>. <BR>Notif�quelo a su administrador del sistema.</HTML>";
+        oppMsg.showMessageDialog(this,strMsg,strTit,javax.swing.JOptionPane.WARNING_MESSAGE);
+    }
+
+    /**
+     * Esta funci�n inserta el registro en la base de datos.
+     * @return true: Si se pudo insertar el registro.
+     * <BR>false: En el caso contrario.
+     */
+    private boolean insertarReg()
+    {
+        boolean blnRes=false;
+        try
+        {
+            con=DriverManager.getConnection(objParSis.getStringConexion(), objParSis.getUsuarioBaseDatos(), objParSis.getClaveBaseDatos());
+            con.setAutoCommit(false);
+            if (con!=null)
+            {
+                if (insertarCab()){
+                    if (insertarDet()){
+                            if (objAsiDia.insertarDiario(con, objParSis.getCodigoEmpresa(), objParSis.getCodigoLocal(), Integer.parseInt(txtCodTipDoc.getText()), txtNumDoc1.getText(), objUti.parseDate(dtpFecDoc.getText(),"dd/MM/yyyy"))){
+                                con.commit();
+                                blnRes=true;
+                            }
+                            else
+                                con.rollback();
+
+                    }
+                    else
+                        con.rollback();
+                }
+                else
+                    con.rollback();
+
+
+            }
+            con.close();
+            con=null;
+        }
+        catch (java.sql.SQLException e)
+        {
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        catch (Exception e)
+        {
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        return blnRes;
+    }
+
+
+    /**
+     * Esta funci�n permite consultar los registros de acuerdo al criterio seleccionado.
+     * @return true: Si se pudo consultar los registros.
+     * <BR>false: En el caso contrario.
+     */
+    private boolean consultarReg()
+    {
+        boolean blnRes=true;
+        try
+        {
+            conCab=DriverManager.getConnection(objParSis.getStringConexion(), objParSis.getUsuarioBaseDatos(), objParSis.getClaveBaseDatos());
+            if (conCab!=null)
+            {
+                stmCab=conCab.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+                //Validar que s�lo se muestre los documentos asignados al programa.
+                if (txtCodTipDoc.getText().equals(""))
+                {
+                    strSQL="";
+                    strSQL+="SELECT a1.co_emp, a1.co_loc, a1.co_tipDoc, a1.co_doc";
+                    strSQL+=" FROM tbm_cabPag AS a1";
+                    strSQL+=" LEFT OUTER JOIN tbm_cabTipDoc AS a2 ON (a1.co_emp=a2.co_emp AND a1.co_loc=a2.co_loc AND a1.co_tipDoc=a2.co_tipDoc)";
+                    strSQL+=" LEFT OUTER JOIN tbr_tipDocPrg AS a5 ON (a2.co_emp=a5.co_emp AND a2.co_loc=a5.co_loc AND a2.co_tipDoc=a5.co_tipDoc)";
+                    strSQL+=" WHERE a1.co_emp=" + objParSis.getCodigoEmpresa();
+                    strSQL+=" AND a1.co_loc=" + objParSis.getCodigoLocal() + "";
+                    strSQL+=" AND a5.co_mnu=" + objParSis.getCodigoMenu();
+                }
+                else
+                {
+                    strSQL="";
+                    strSQL+="SELECT a1.co_emp, a1.co_loc, a1.co_tipDoc, a1.co_doc";
+                    strSQL+=" FROM tbm_cabPag AS a1";
+                    strSQL+=" LEFT OUTER JOIN tbm_cabTipDoc AS a2 ON (a1.co_emp=a2.co_emp AND a1.co_loc=a2.co_loc AND a1.co_tipDoc=a2.co_tipDoc)";
+                    strSQL+=" WHERE a1.co_emp=" + objParSis.getCodigoEmpresa();
+                    strSQL+=" AND a1.co_loc=" + objParSis.getCodigoLocal() + "";
+                }
+                strAux=txtCodTipDoc.getText();
+                if (!strAux.equals(""))
+                    strSQL+=" AND a1.co_tipDoc=" + strAux + "";
+                strAux=txtCodCta.getText();
+                if (!strAux.equals(""))
+                    strSQL+=" AND a1.co_cta=" + strAux + "";
+                if (dtpFecDoc.isFecha())
+                    strSQL+=" AND a1.fe_doc='" + objUti.formatearFecha(dtpFecDoc.getText(),"dd/MM/yyyy",objParSis.getFormatoFechaBaseDatos()) + "'";
+                strAux=txtCodDoc.getText();
+                if (!strAux.equals(""))
+                    strSQL+=" AND a1.co_doc=" + strAux + "";
+                strAux=txtNumDoc1.getText();
+                if (!strAux.equals(""))
+                    strSQL+=" AND a1.ne_numDoc1=" + strAux + "";
+                strSQL+=" AND a1.st_reg<>'E'";
+                strSQL+=" ORDER BY a1.co_loc, a1.co_tipDoc, a1.co_doc";
+                rstCab=stmCab.executeQuery(strSQL);
+                if (rstCab.next())
+                {
+                    rstCab.last();
+                    objTooBar.setMenSis("Se encontraron " + rstCab.getRow() + " registros");
+                    rstCab.first();
+                    cargarReg();
+                }
+                else
+                {
+                    mostrarMsgInf("No se ha encontrado ningún registro que cumpla el criterio de búsqueda especificado.");
+                    limpiarFrm();
+                    objTooBar.setEstado('l');
+                    objTooBar.setMenSis("Listo");
+                }
+            }
+        }
+        catch (java.sql.SQLException e)
+        {
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        catch (Exception e)
+        {
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        return blnRes;
+    }
+    
+    /**
+     * Esta funci�n actualiza el registro en la base de datos.
+     * @return true: Si se pudo actualizar el registro.
+     * <BR>false: En el caso contrario.
+     */
+    private boolean actualizarReg(){
+        boolean blnRes=false;
+        try{
+            con=DriverManager.getConnection(objParSis.getStringConexion(), objParSis.getUsuarioBaseDatos(), objParSis.getClaveBaseDatos());
+            con.setAutoCommit(false);
+            if (con!=null){
+                if (actualizarCab()){
+                    if (eliminarDet()){
+                        if (insertarDet()){
+                            if (actualizarDet()){
+                                if (objAsiDia.actualizarDiario(con, objParSis.getCodigoEmpresa(), objParSis.getCodigoLocal(), Integer.parseInt(txtCodTipDoc.getText()), Integer.parseInt(txtCodDoc.getText()), txtNumDoc1.getText(), objUti.parseDate(dtpFecDoc.getText(),"dd/MM/yyyy"), "A"))
+                                {
+                                    con.commit();
+                                    blnRes=true;
+                                }
+                                else
+                                    con.rollback();
+                            }
+                            else
+                                con.rollback();
+                        }
+                        else
+                            con.rollback();
+                    }
+                    else
+                        con.rollback();
+                }
+                else
+                    con.rollback();
+
+
+            }
+            con.close();
+            con=null;
+        }
+        catch (java.sql.SQLException e)
+        {
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        catch (Exception e)
+        {
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        return blnRes;
+    }
+    
+    /**
+     * Esta funci�n elimina el registro de la base de datos.
+     * @return true: Si se pudo eliminar el registro.
+     * <BR>false: En el caso contrario.
+     */
+    private boolean eliminarReg()
+    {
+        boolean blnRes=false;
+        try
+        {
+            con=DriverManager.getConnection(objParSis.getStringConexion(), objParSis.getUsuarioBaseDatos(), objParSis.getClaveBaseDatos());
+            con.setAutoCommit(false);
+            if (con!=null)
+            {
+                if (eliminarCab())
+                {
+                    if (objAsiDia.eliminarDiario(con, objParSis.getCodigoEmpresa(), objParSis.getCodigoLocal(), Integer.parseInt(txtCodTipDoc.getText()), Integer.parseInt(txtCodDoc.getText())))
+                    {
+                        con.commit();
+                        blnRes=true;
+                    }
+                    else
+                        con.rollback();
+
+                }
+                else
+                    con.rollback();
+            }
+            con.close();
+            con=null;
+        }
+        catch (java.sql.SQLException e)
+        {
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        catch (Exception e)
+        {
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        return blnRes;
+    }
+    
+    /**
+     * Esta funci�n anula el registro de la base de datos.
+     * @return true: Si se pudo anular el registro.
+     * <BR>false: En el caso contrario.
+     */
+    private boolean anularReg()
+    {
+        boolean blnRes=false;
+        try
+        {
+            con=DriverManager.getConnection(objParSis.getStringConexion(), objParSis.getUsuarioBaseDatos(), objParSis.getClaveBaseDatos());
+            con.setAutoCommit(false);
+            if (con!=null)
+            {
+                if (anularCab())
+                {
+                    if (objAsiDia.anularDiario(con, objParSis.getCodigoEmpresa(), objParSis.getCodigoLocal(), Integer.parseInt(txtCodTipDoc.getText()), Integer.parseInt(txtCodDoc.getText())))
+                    {
+                        con.commit();
+                        blnRes=true;
+                    }
+                    else
+                        con.rollback();
+
+                }
+                else
+                    con.rollback();
+            }
+            con.close();
+            con=null;
+        }
+        catch (java.sql.SQLException e)
+        {
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        catch (Exception e)
+        {
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        return blnRes;
+    }
+
+    /**
+     * Esta funci�n permite insertar la cabecera de un registro.
+     * @return true: Si se pudo insertar la cabecera del registro.
+     * <BR>false: En el caso contrario.
+     */
+    private boolean insertarCab()
+    {
+        int intUltReg;
+        boolean blnRes=true;
+        try
+        {
+            if (con!=null)
+            {
+                stm=con.createStatement();
+                //Obtener el c�digo del �ltimo registro.
+                strSQL="";
+                strSQL+="SELECT MAX(a1.co_doc)";
+                strSQL+=" FROM tbm_cabPag AS a1";
+                strSQL+=" WHERE a1.co_emp=" + objParSis.getCodigoEmpresa();
+                strSQL+=" AND a1.co_loc=" + objParSis.getCodigoLocal();
+                strSQL+=" AND a1.co_tipDoc=" + txtCodTipDoc.getText();
+                intUltReg=objUti.getNumeroRegistro(this, objParSis.getStringConexion(), objParSis.getUsuarioBaseDatos(), objParSis.getClaveBaseDatos(), strSQL);
+                if (intUltReg==-1)
+                    return false;
+                intUltReg++;
+                txtCodDoc.setText("" + intUltReg);
+                //Obtener la fecha del servidor.
+                datFecAux=objUti.getFechaServidor(objParSis.getStringConexion(), objParSis.getUsuarioBaseDatos(), objParSis.getClaveBaseDatos(), objParSis.getQueryFechaHoraBaseDatos());
+                if (datFecAux==null)
+                    return false;
+                //Armar la sentencia SQL.
+                strSQL="";
+                strSQL+="INSERT INTO tbm_cabpag(co_emp, co_loc, co_tipdoc, co_doc, fe_doc, fe_ven, ne_numdoc1, ";
+                strSQL+="ne_numdoc2, co_cta, co_cli, tx_ruc, tx_nomcli, tx_dircli, nd_mondoc, ";
+                strSQL+="tx_obs1, tx_obs2, st_reg, fe_ing, fe_ultmod, co_usring, co_usrmod, ";
+                strSQL+="co_dia, co_ben, tx_benchq, tx_mondocpal, co_mnu, st_regrep, st_imp, ";
+                strSQL+="tx_obssolaut, tx_obsautsol, st_aut, ne_valaut, st_condepban, ";
+                strSQL+="st_autanu, fe_autanu, co_usrautanu, tx_comautanu, tx_coming, tx_commod)";
+                strSQL+=" VALUES (";
+                strSQL+="" + objParSis.getCodigoEmpresa() + "";//co_emp
+                strSQL+="," + objParSis.getCodigoLocal() + "";//co_loc
+                strSQL+=","+ txtCodTipDoc.getText() + "";//co_tipdoc
+                strSQL+="," + txtCodDoc.getText() + "";//co_doc
+                strSQL+=",'" + objUti.formatearFecha(dtpFecDoc.getText(),"dd/MM/yyyy",objParSis.getFormatoFechaBaseDatos()) + "'";//fe_doc
+                strSQL+=", Null";//fe_ven
+                strSQL+="," + txtNumDoc1.getText() + "";//ne_numdoc1
+                strSQL+=",Null";//ne_numdoc2
+                strSQL+="," + txtCodCta.getText() + "";//co_cta
+                strSQL+=",Null";//co_cli
+                strSQL+=",Null";//tx_ruc
+                strSQL+=",Null";//tx_nomcli
+                strSQL+=",Null";//tx_dircli
+                strSQL+="," + objUti.codificar((objUti.isNumero(txtMonDoc.getText())?"" + (intSig*Double.parseDouble(txtMonDoc.getText())):"0"),3) + "";//nd_mondoc
+                strSQL+="," + objUti.codificar(txaObs1.getText()) + "";//tx_obs1
+                strSQL+="," + objUti.codificar(txaObs2.getText()) + "";//tx_obs2
+                strSQL+=",'A'";//st_reg
+                strAux=objUti.formatearFecha(datFecAux, objParSis.getFormatoFechaHoraBaseDatos());
+                strSQL+=",'" + strAux + "'";//fe_ing
+                strSQL+=",'" + strAux + "'";//fe_ultmod
+                strSQL+="," + objParSis.getCodigoUsuario() + "";//co_usring
+                strSQL+="," + objParSis.getCodigoUsuario() + "";//co_usrmod
+                strSQL+=",Null";//co_dia
+                strSQL+=",Null";//co_ben
+                strSQL+=",Null";//tx_benchq
+                strSQL+=",Null";//tx_mondocpal
+                strSQL+="," + objParSis.getCodigoMenu() + "";//co_mnu
+                strSQL+=",'I'";//st_regrep
+                strSQL+=",'N'";//st_imp
+                strSQL+=",Null";//tx_obssolaut
+                strSQL+=",Null";//tx_obsautsol
+                strSQL+=",Null";//st_aut
+                strSQL+=",Null";//ne_valaut
+                strSQL+=",Null";//st_condepban
+                strSQL+="," + (strTipDocNecAutAnu.equals("")?"Null":strTipDocNecAutAnu) + "";//st_autanu
+                strSQL+=",Null";//fe_autanu
+                strSQL+=",Null";//co_usrautanu
+                strSQL+=",Null";//tx_comautanu
+                strSQL+="," + objUti.codificar(objParSis.getNombreComputadoraConDirIP()) + "";//tx_coming
+                strSQL+="," + objUti.codificar(objParSis.getNombreComputadoraConDirIP()) + "";//tx_commod
+                strSQL+=")";
+                System.out.println("INSERTAR CABECERA: " + strSQL);
+                stm.executeUpdate(strSQL);
+                stm.close();
+                stm=null;
+            }
+        }
+        catch (java.sql.SQLException e){
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        catch (Exception e){
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        return blnRes;
+    }
+    
+    /**
+     * Esta funci�n permite insertar el detalle de un registro.
+     * @return true: Si se pudo insertar el detalle del registro.
+     * <BR>false: En el caso contrario.
+     */
+    private boolean insertarDet()
+    {
+        int j, intCodEmp, intCodLoc, intUltCodReg;
+        String strCodTipDoc, strCodDoc;
+        boolean blnRes=true;
+        String strIns="";
+        objTblMod.setModoOperacion(objTblMod.INT_TBL_EDI);
+        objTblMod.removeEmptyRows();
+        String strEstValAplReg="";
+        try{
+            if (con!=null){
+                stm=con.createStatement();
+                intCodEmp=objParSis.getCodigoEmpresa();
+                intCodLoc=objParSis.getCodigoLocal();
+                strCodTipDoc=txtCodTipDoc.getText();
+                strCodDoc=txtCodDoc.getText();
+
+
+                strSQL="";
+                strSQL+="SELECT MAX(a1.co_reg)";
+                strSQL+=" FROM tbm_depcliregdirbanpag AS a1";
+                strSQL+=" WHERE a1.co_emp=" + intCodEmp;
+                strSQL+=" AND a1.co_loc=" + intCodLoc;
+                strSQL+=" AND a1.co_tipDoc=" + strCodTipDoc;
+                strSQL+=" AND a1.co_doc=" + strCodDoc;
+                intUltCodReg=objUti.getNumeroRegistro(this, objParSis.getStringConexion(), objParSis.getUsuarioBaseDatos(), objParSis.getClaveBaseDatos(), strSQL);
+                if (intUltCodReg==-1)
+                    return false;
+                intUltCodReg++;
+
+
+
+                for (int i=0;i<objTblMod.getRowCountTrue();i++){
+                    strEstValAplReg=objTblMod.getValueAt(i, INT_TBL_DAT_EST_VAL_APL)==null?"":objTblMod.getValueAt(i, INT_TBL_DAT_EST_VAL_APL).toString();
+                    if(strEstValAplReg.equals("")){
+                        //Armar la sentencia SQL.
+                        strSQL="";
+                        strSQL+="INSERT INTO tbm_depcliregdirbanpag(";
+                        strSQL+=" co_emp, co_loc, co_tipdoc, co_doc, co_reg, co_cli, nd_valdep,";
+                        strSQL+=" tx_obs1, st_valapl, st_reg, st_regrep)";
+                        strSQL+=" VALUES (";
+                        strSQL+=""+ intCodEmp + "";//co_emp
+                        strSQL+="," + intCodLoc + "";//co_loc
+                        strSQL+="," + strCodTipDoc + "";//co_tipdoc
+                        strSQL+="," + strCodDoc + "";//co_doc
+                        strSQL+="," + intUltCodReg + "";//co_reg
+                        strSQL+="," + (objTblMod.getValueAt(i, INT_TBL_DAT_COD_CLI)==null?"Null":(objTblMod.getValueAt(i, INT_TBL_DAT_COD_CLI).equals("")?"Null":objTblMod.getValueAt(i, INT_TBL_DAT_COD_CLI).toString())) + "";//co_cli
+                        strSQL+="," + intSig*Double.parseDouble(objUti.codificar(objTblMod.getValueAt(i,INT_TBL_DAT_VAL_DOC), 3)) + "";//nd_valdep
+                        strSQL+="," + objUti.codificar(objTblMod.getValueAt(i, INT_TBL_DAT_OBS)) + "";//tx_obs1
+                        strSQL+=",'N'";//st_valapl
+                        strSQL+=",'A'";//st_reg
+                        strSQL+=",'I'";//st_regrep
+                        strSQL+=");";
+                        strIns+=strSQL;
+                        intUltCodReg++;
+                    }
+                }
+                System.out.println("detalle: "+ strIns);
+                stm.executeUpdate(strIns);
+                stm.close();
+                stm=null;
+            }
+        }
+        catch (java.sql.SQLException e){
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        catch (Exception e){
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        return blnRes;
+    }
+    
+      
+    /**
+     * Esta funci�n permite cargar el registro seleccionado.
+     * @return true: Si se pudo cargar el registro.
+     * <BR>false: En el caso contrario.
+     */
+    private boolean cargarReg()
+    {
+        boolean blnRes=true;
+        try
+        {
+            if (cargarCabReg())
+            {
+                if (cargarDetReg())
+                {
+                    objAsiDia.consultarDiario(objParSis.getCodigoEmpresa(), objParSis.getCodigoLocal(), Integer.parseInt(txtCodTipDoc.getText()), Integer.parseInt(txtCodDoc.getText()));
+                }
+            }
+            objAsiDia.setDiarioModificado(false);
+            blnHayCam=false;
+        }
+        catch (Exception e)
+        {
+            blnRes=false;
+        }
+        return blnRes;
+    }
+    
+    /**
+     * Esta funci�n permite cargar la cabecera del registro seleccionado.
+     * @return true: Si se pudo cargar la cabecera del registro.
+     * <BR>false: En el caso contrario.
+     */
+    private boolean cargarCabReg()
+    {
+        int intPosRel;
+        boolean blnRes=true;
+        blnNecAutAnu=false;
+        blnDocAut=false;
+        try
+        {
+            con=DriverManager.getConnection(objParSis.getStringConexion(), objParSis.getUsuarioBaseDatos(), objParSis.getClaveBaseDatos());
+            if (con!=null)
+            {
+                stm=con.createStatement();
+                strSQL="";
+                strSQL+="SELECT a1.co_tipDoc, a2.tx_desCor, a2.tx_desLar, a2.tx_natDoc, a1.co_doc, a1.fe_doc, a1.fe_ven, a1.ne_numDoc1";
+                strSQL+=", a1.co_cta, a3.tx_codCta, a3.tx_desLar AS a3_tx_desLar";
+                strSQL+=", a1.nd_monDoc, a1.tx_obs1, a1.tx_obs2, a1.st_reg, a1.st_imp";
+                strSQL+=", a1.st_autAnu, a4.tx_ubiCta";
+                strSQL+=" FROM tbm_cabPag AS a1";
+                strSQL+=" LEFT OUTER JOIN (tbm_cabTipDoc AS a2 INNER JOIN tbm_detTipDoc AS a4 ON a2.co_emp=a4.co_emp AND a2.co_loc=a4.co_loc AND a2.co_tipDoc=a4.co_tipDoc)";
+                strSQL+=" ON a1.co_emp=a2.co_emp AND a1.co_loc=a2.co_loc AND a1.co_tipDoc=a2.co_tipDoc";
+                strSQL+=" LEFT OUTER JOIN tbm_plaCta AS a3 ON (a1.co_emp=a3.co_emp AND a1.co_cta=a3.co_cta)";
+                strSQL+=" WHERE a1.co_emp=" + rstCab.getString("co_emp");
+                strSQL+=" AND a1.co_loc=" + rstCab.getString("co_loc");
+                strSQL+=" AND a1.co_tipDoc=" + rstCab.getString("co_tipDoc");
+                strSQL+=" AND a1.co_doc=" + rstCab.getString("co_doc");
+                rst=stm.executeQuery(strSQL);
+                if (rst.next())
+                {
+                    strAux=rst.getString("co_tipDoc");
+                    txtCodTipDoc.setText((strAux==null)?"":strAux);
+                    strAux=rst.getString("tx_desCor");
+                    txtDesCorTipDoc.setText((strAux==null)?"":strAux);
+                    strAux=rst.getString("tx_desLar");
+                    txtDesLarTipDoc.setText((strAux==null)?"":strAux);
+                    strAux=rst.getString("tx_natDoc");
+                    intSig=(strAux.equals("I")?1:-1);
+                    strAux=rst.getString("co_doc");
+                    txtCodDoc.setText((strAux==null)?"":strAux);
+                    dtpFecDoc.setText(objUti.formatearFecha(rst.getDate("fe_doc"),"dd/MM/yyyy"));
+                    
+                    strFecDocIni=dtpFecDoc.getText();
+                    strEstImpDoc=rst.getString("st_imp");
+                    strUbiCta=rst.getString("tx_ubiCta");
+                                        
+                    strAux=rst.getString("ne_numDoc1");
+                    txtNumDoc1.setText((strAux==null)?"":strAux);
+                    strAux=rst.getString("co_cta");
+                    txtCodCta.setText((strAux==null)?"":strAux);
+                    strAux=rst.getString("tx_codCta");
+                    txtDesCorCta.setText((strAux==null)?"":strAux);
+                    strAux=rst.getString("a3_tx_desLar");
+                    txtDesLarCta.setText((strAux==null)?"":strAux);
+                    txtMonDoc.setText("" + Math.abs(rst.getDouble("nd_monDoc")));
+                    strAux=rst.getString("tx_obs1");
+                    txaObs1.setText((strAux==null)?"":strAux);
+                    strAux=rst.getString("tx_obs2");
+                    txaObs2.setText((strAux==null)?"":strAux);
+                    //Mostrar el estado del registro.
+                    strAux=rst.getString("st_reg");
+                    objTooBar.setEstadoRegistro(getEstReg(strAux));
+
+                    if((rst.getObject("st_autAnu")==null?"":rst.getString("st_autAnu")).equals("A"))
+                        blnDocAut=true;
+                }
+                else
+                {
+                    objTooBar.setEstadoRegistro("Eliminado");
+                    limpiarFrm();
+                    blnRes=false;
+                }
+
+
+                strSQL="";
+                strSQL+="SELECT st_necAutAnuDoc";
+                strSQL+=" FROM tbm_cabTipDoc AS a1";
+                strSQL+=" WHERE a1.co_emp=" + rstCab.getString("co_emp") + "";
+                strSQL+=" AND a1.co_loc=" + rstCab.getString("co_loc") + "";
+                strSQL+=" AND a1.co_tipDoc=" + rstCab.getString("co_tipDoc") + "";
+                strSQL+=" AND st_necAutAnuDoc='S'";
+                rst=stm.executeQuery(strSQL);
+                if(rst.next()){
+                    blnNecAutAnu=true;
+                }
+
+           
+
+            }
+            rst.close();
+            stm.close();
+            con.close();
+            rst=null;
+            stm=null;
+            con=null;
+            //Mostrar la posici�n relativa del registro.
+            intPosRel=rstCab.getRow();
+            rstCab.last();
+            objTooBar.setPosicionRelativa("" + intPosRel + " / " + rstCab.getRow());
+            rstCab.absolute(intPosRel);
+        }
+        catch (java.sql.SQLException e)
+        {
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        catch (Exception e)
+        {
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        return blnRes;
+    }
+
+    /**
+     * Esta funci�n permite cargar el detalle del registro seleccionado.
+     * @return true: Si se pudo cargar el detalle del registro.
+     * <BR>false: En el caso contrario.
+     */
+    private boolean cargarDetReg()
+    {
+        boolean blnRes=true;
+        try{
+            objTblMod.removeAllRows();
+            
+            if( ! txtCodTipDoc.getText().equals("")){
+                
+                con=DriverManager.getConnection(objParSis.getStringConexion(), objParSis.getUsuarioBaseDatos(), objParSis.getClaveBaseDatos());
+                if (con!=null){
+                    stm=con.createStatement();
+                    strSQL="";
+                    strSQL+="SELECT a1.co_emp, a1.co_loc, a1.co_tipDoc, a1.co_doc, a2.co_reg";
+                    strSQL+=", a2.co_cli, a3.tx_nom, a3.tx_ide, a3.tx_dir, a2.nd_valdep, a2.tx_obs1, a2.st_reg, a2.st_valApl, a2.co_reg";
+                    strSQL+=" FROM tbm_cabPag AS a1 INNER JOIN tbm_depCliRegDirBanPag AS a2";
+                    strSQL+=" ON a1.co_emp=a2.co_emp AND a1.co_loc=a2.co_loc AND a1.co_tipDoc=a2.co_tipDoc AND a1.co_doc=a2.co_doc";
+                    strSQL+=" LEFT OUTER JOIN tbm_cli AS a3";
+                    strSQL+=" ON a2.co_emp=a3.co_emp AND a2.co_cli=a3.co_cli";
+                    strSQL+=" WHERE a1.co_emp=" + rstCab.getString("co_emp");
+                    strSQL+=" AND a1.co_loc=" + rstCab.getString("co_loc");
+                    strSQL+=" AND a1.co_tipDoc=" + rstCab.getString("co_tipDoc");
+                    strSQL+=" AND a1.co_doc=" + rstCab.getString("co_doc");
+                    strSQL+=" AND a2.st_reg='A'";
+                    strSQL+=" ORDER BY a1.co_loc, a1.co_tipDoc, a1.co_doc, a2.co_reg";
+                    System.out.println("cargarDetReg: " + strSQL);
+                    rst=stm.executeQuery(strSQL);
+                    //Limpiar vector de datos.
+                    vecDat.clear();
+                    while (rst.next()){
+                        vecReg=new Vector();
+                        vecReg.add(INT_TBL_DAT_LIN,     "");
+                        vecReg.add(INT_TBL_DAT_COD_CLI, "" + rst.getObject("co_cli")==null?"":rst.getString("co_cli"));
+                        vecReg.add(INT_TBL_DAT_BUT_CLI, "");
+                        vecReg.add(INT_TBL_DAT_NOM_CLI, "" + rst.getObject("tx_nom")==null?"":rst.getString("tx_nom"));
+                        vecReg.add(INT_TBL_DAT_RUC_CLI, "" + rst.getObject("tx_ide")==null?"":rst.getString("tx_ide"));
+                        vecReg.add(INT_TBL_DAT_DIR_CLI, "" + rst.getObject("tx_dir")==null?"":rst.getString("tx_dir"));
+                        vecReg.add(INT_TBL_DAT_VAL_DOC, "" + rst.getString("nd_valdep"));
+                        vecReg.add(INT_TBL_DAT_OBS,     "" + rst.getObject("tx_obs1")==null?"":rst.getString("tx_obs1"));
+                        vecReg.add(INT_TBL_DAT_BUT_OBS, "");
+                        vecReg.add(INT_TBL_DAT_EST_VAL_APL, "" + rst.getObject("st_valApl")==null?"":rst.getString("st_valApl"));
+                        vecReg.add(INT_TBL_DAT_COD_REG, "" + rst.getObject("co_reg")==null?"":rst.getString("co_reg"));
+
+                        vecDat.add(vecReg);
+                    }
+                    rst.close();
+                    stm.close();
+                    con.close();
+                    rst=null;
+                    stm=null;
+                    con=null;
+                    //Asignar vectores al modelo.
+                    objTblMod.setData(vecDat);
+                    tblDat.setModel(objTblMod);
+                    vecDat.clear();
+                }
+            }
+
+        }
+        catch (java.sql.SQLException e)
+        {
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        catch (Exception e)
+        {
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        return blnRes;
+    }
+    
+    /**
+     * Esta funci�n permite actualizar la cabecera de un registro.
+     * @return true: Si se pudo actualizar la cabecera del registro.
+     * <BR>false: En el caso contrario.
+     */
+    private boolean actualizarCab()
+    {
+        boolean blnRes=true;
+        try
+        {
+            if (con!=null)
+            {
+                stm=con.createStatement();
+                //Obtener la fecha del servidor.
+                datFecAux=objUti.getFechaServidor(objParSis.getStringConexion(), objParSis.getUsuarioBaseDatos(), objParSis.getClaveBaseDatos(), objParSis.getQueryFechaHoraBaseDatos());
+                if (datFecAux==null)
+                    return false;
+                //Armar la sentencia SQL.
+                strSQL="";
+                strSQL+="UPDATE tbm_cabPag";
+                strAux=objUti.formatearFecha(dtpFecDoc.getText(),"dd/MM/yyyy",objParSis.getFormatoFechaBaseDatos());
+                strSQL+=" SET fe_doc='" + strAux + "'";
+                strSQL+=", ne_numDoc1=" + objUti.codificar(txtNumDoc1.getText(),2);
+                strSQL+=", co_cta=" + txtCodCta.getText();
+                strSQL+=", nd_monDoc=" + objUti.codificar((objUti.isNumero(txtMonDoc.getText())?"" + (intSig*Double.parseDouble(txtMonDoc.getText())):"0"),3);
+                strSQL+=", tx_obs1=" + objUti.codificar(txaObs1.getText());
+                strSQL+=", tx_obs2=" + objUti.codificar(txaObs2.getText());
+                strSQL+=", fe_ultMod='" + objUti.formatearFecha(datFecAux, objParSis.getFormatoFechaHoraBaseDatos()) + "'";
+                strSQL+=", co_usrMod=" + objParSis.getCodigoUsuario();
+                strSQL+=", tx_comMod=" + objUti.codificar(objParSis.getNombreComputadoraConDirIP()) + "";
+                strSQL+=" WHERE co_emp=" + rstCab.getString("co_emp");
+                strSQL+=" AND co_loc=" + rstCab.getString("co_loc");
+                strSQL+=" AND co_tipDoc=" + rstCab.getString("co_tipDoc");
+                strSQL+=" AND co_doc=" + rstCab.getString("co_doc");
+                stm.executeUpdate(strSQL);
+                stm.close();
+                stm=null;
+                datFecAux=null;
+            }
+        }
+        catch (java.sql.SQLException e)
+        {
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        catch (Exception e)
+        {
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        return blnRes;
+    }
+    
+    /**
+     * Esta funci�n permite eliminar la cabecera de un registro.
+     * @return true: Si se pudo eliminar la cabecera del registro.
+     * <BR>false: En el caso contrario.
+     */
+    private boolean eliminarCab()
+    {
+        boolean blnRes=true;
+        try
+        {
+            if (con!=null)
+            {
+                stm=con.createStatement();
+                //Obtener la fecha del servidor.
+                datFecAux=objUti.getFechaServidor(objParSis.getStringConexion(), objParSis.getUsuarioBaseDatos(), objParSis.getClaveBaseDatos(), objParSis.getQueryFechaHoraBaseDatos());
+                if (datFecAux==null)
+                    return false;
+                //Armar la sentencia SQL.
+                strSQL="";
+                strSQL+="UPDATE tbm_cabPag";
+                strSQL+=" SET st_reg='E'";
+                strSQL+=", fe_ultMod='" + objUti.formatearFecha(datFecAux, objParSis.getFormatoFechaHoraBaseDatos()) + "'";
+                strSQL+=", co_usrMod=" + objParSis.getCodigoUsuario();
+                strSQL+=", tx_comMod=" + objUti.codificar(objParSis.getNombreComputadoraConDirIP()) + "";
+                strSQL+=" WHERE co_emp=" + rstCab.getString("co_emp");
+                strSQL+=" AND co_loc=" + rstCab.getString("co_loc");
+                strSQL+=" AND co_tipDoc=" + rstCab.getString("co_tipDoc");
+                strSQL+=" AND co_doc=" + rstCab.getString("co_doc");
+                stm.executeUpdate(strSQL);
+                stm.close();
+                stm=null;
+                datFecAux=null;
+            }
+        }
+        catch (java.sql.SQLException e)
+        {
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        catch (Exception e)
+        {
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        return blnRes;
+    }
+    
+    /**
+     * Esta funci�n permite eliminar el detalle de un registro.
+     * @return true: Si se pudo eliminar el detalle del registro.
+     * <BR>false: En el caso contrario.
+     */
+    private boolean eliminarDet()
+    {
+        boolean blnRes=true;
+        int intCodReg=-1;
+        try
+        {
+            if (con!=null)
+            {
+                stm=con.createStatement();
+                java.util.ArrayList arlAux=objTblMod.getDataSavedBeforeRemoveRow();
+                System.out.println("arlAux.size(): " + arlAux.size());
+                if(arlAux.size()>0){
+                    for(int i=0;i<arlAux.size();i++){
+                        intCodReg=objUti.getIntValueAt(arlAux, i, INT_ARL_COD_REG);
+                        strSQL="";
+                        strSQL+="SELECT *FROM tbm_depcliregdirbanpag";
+                        strSQL+=" WHERE co_emp=" + rstCab.getString("co_emp") + "";
+                        strSQL+=" AND co_loc=" + rstCab.getString("co_loc") + "";
+                        strSQL+=" AND co_tipDoc=" + rstCab.getString("co_tipDoc") + "";
+                        strSQL+=" AND co_doc=" + rstCab.getString("co_doc") + "";
+                        strSQL+=" AND co_reg=" + intCodReg + "";
+                        strSQL+=" AND st_valapl='N'";
+                        System.out.println("select -> eliminarDet: " + strSQL);
+                        rst=stm.executeQuery(strSQL);
+                        if(rst.next()){
+                            strSQL="";
+                            strSQL+="UPDATE tbm_depcliregdirbanpag";
+                            strSQL+=" SET st_reg='E'";
+                            strSQL+=" WHERE co_emp=" + rstCab.getString("co_emp") + "";
+                            strSQL+=" AND co_loc=" + rstCab.getString("co_loc") + "";
+                            strSQL+=" AND co_tipDoc=" + rstCab.getString("co_tipDoc") + "";
+                            strSQL+=" AND co_doc=" + rstCab.getString("co_doc") + "";
+                            strSQL+=" AND co_reg=" + intCodReg + "";
+                            System.out.println("update -> eliminarDet: " + strSQL);
+                            stm.executeUpdate(strSQL);
+                        }
+                    }
+                    rst.close();
+                    rst=null;
+                    stm.close();
+                    stm=null;
+                }
+
+
+            }
+        }
+        catch (java.sql.SQLException e)
+        {
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        catch (Exception e)
+        {
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        return blnRes;
+    }
+
+
+    /**
+     * Esta funci�n permite eliminar el detalle de un registro.
+     * @return true: Si se pudo eliminar el detalle del registro.
+     * <BR>false: En el caso contrario.
+     */
+    private boolean actualizarDet()
+    {
+        boolean blnRes=true;
+        int intCodReg=-1;
+        String strEstValAplReg="", strEstRepDet="";
+        try
+        {
+            if (con!=null)
+            {
+                stm=con.createStatement();
+                for(int i=0;i<objTblMod.getRowCountTrue();i++){
+                    strEstValAplReg=objTblMod.getValueAt(i, INT_TBL_DAT_EST_VAL_APL)==null?"":objTblMod.getValueAt(i, INT_TBL_DAT_EST_VAL_APL).toString();
+                    intCodReg=objTblMod.getValueAt(i, INT_TBL_DAT_COD_REG)==null?-1:Integer.parseInt(objTblMod.getValueAt(i, INT_TBL_DAT_COD_REG).toString());
+                    if( (strEstValAplReg.equals("N")) || (strEstValAplReg.equals("S"))  ){//es modificacion del registro porq ya existia
+                        strSQL="";
+                        strSQL+="SELECT *FROM tbm_depcliregdirbanpag";
+                        strSQL+=" WHERE co_emp=" + rstCab.getString("co_emp") + "";
+                        strSQL+=" AND co_loc=" + rstCab.getString("co_loc") + "";
+                        strSQL+=" AND co_tipDoc=" + rstCab.getString("co_tipDoc") + "";
+                        strSQL+=" AND co_doc=" + rstCab.getString("co_doc") + "";
+                        strSQL+=" AND co_reg=" + intCodReg + "";
+                        strSQL+=" AND st_valapl='N'";
+                        rst=stm.executeQuery(strSQL);
+                        if(rst.next()){
+                            strSQL="";
+                            strSQL+="UPDATE tbm_depcliregdirbanpag";
+                            strSQL+=" SET ";
+                            strSQL+=" co_cli=" + (objTblMod.getValueAt(i, INT_TBL_DAT_COD_CLI)==null?"Null":(objTblMod.getValueAt(i, INT_TBL_DAT_COD_CLI).equals("")?"Null":objTblMod.getValueAt(i, INT_TBL_DAT_COD_CLI).toString())) + "";//co_cli
+                            strSQL+=", nd_valdep=" + intSig*Double.parseDouble(objUti.codificar(objTblMod.getValueAt(i,INT_TBL_DAT_VAL_DOC), 3)) + "";//nd_valdep
+                            strSQL+=", tx_obs1=" + objUti.codificar(objTblMod.getValueAt(i, INT_TBL_DAT_OBS)) + "";//tx_obs1
+
+                            strEstRepDet=rst.getObject("st_regRep")==null?"":rst.getString("st_regRep");
+
+                            if(strEstRepDet.equals("I"))
+                                strSQL+=", st_regrep='I'";//st_regrep
+                            else
+                                strSQL+=", st_regrep='M'";//st_regrep
+
+                            strSQL+=" WHERE co_emp=" + rstCab.getString("co_emp") + "";
+                            strSQL+=" AND co_loc=" + rstCab.getString("co_loc") + "";
+                            strSQL+=" AND co_tipDoc=" + rstCab.getString("co_tipDoc") + "";
+                            strSQL+=" AND co_doc=" + rstCab.getString("co_doc") + "";
+                            strSQL+=" AND co_reg=" + intCodReg + "";
+                            stm.executeUpdate(strSQL);
+                        }
+                    }
+
+                }
+                rst.close();
+                rst=null;
+                stm.close();
+                stm=null;
+            }
+        }
+        catch (java.sql.SQLException e)
+        {
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        catch (Exception e)
+        {
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        return blnRes;
+    }
+
+
+    /**
+     * Esta funci�n permite anular la cabecera de un registro.
+     * @return true: Si se pudo anular la cabecera del registro.
+     * <BR>false: En el caso contrario.
+     */
+    private boolean anularCab()
+    {
+        boolean blnRes=true;
+        try
+        {
+            if (con!=null)
+            {
+                stm=con.createStatement();
+                //Obtener la fecha del servidor.
+                datFecAux=objUti.getFechaServidor(objParSis.getStringConexion(), objParSis.getUsuarioBaseDatos(), objParSis.getClaveBaseDatos(), objParSis.getQueryFechaHoraBaseDatos());
+                if (datFecAux==null)
+                    return false;
+                //Armar la sentencia SQL.
+                strSQL="";
+                strSQL+="UPDATE tbm_cabPag";
+                strSQL+=" SET st_reg='I'";
+                strSQL+=", fe_ultMod='" + objUti.formatearFecha(datFecAux, objParSis.getFormatoFechaHoraBaseDatos()) + "'";
+                strSQL+=", co_usrMod=" + objParSis.getCodigoUsuario();
+                strSQL+=", tx_comMod=" + objUti.codificar(objParSis.getNombreComputadoraConDirIP()) + "";
+                strSQL+=" WHERE co_emp=" + rstCab.getString("co_emp");
+                strSQL+=" AND co_loc=" + rstCab.getString("co_loc");
+                strSQL+=" AND co_tipDoc=" + rstCab.getString("co_tipDoc");
+                strSQL+=" AND co_doc=" + rstCab.getString("co_doc");
+                stm.executeUpdate(strSQL);
+                stm.close();
+                stm=null;
+                datFecAux=null;
+            }
+        }
+        catch (java.sql.SQLException e)
+        {
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        catch (Exception e)
+        {
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        return blnRes;
+    }
+    
+    /**
+     * Esta funci�n permite limpiar el formulario.
+     * @return true: Si se pudo limpiar la ventana sin ning�n problema.
+     * <BR>false: En el caso contrario.
+     */
+    private boolean limpiarFrm()
+    {
+        boolean blnRes=true;
+        try
+        {
+            txtCodTipDoc.setText("");
+            txtDesCorTipDoc.setText("");
+            txtDesLarTipDoc.setText("");
+            txtCodCta.setText("");
+            txtDesCorCta.setText("");
+            txtDesLarCta.setText("");
+            dtpFecDoc.setText("");
+            txtCodDoc.setText("");
+            txtNumDoc1.setText("");
+            objTblMod.removeAllRows();
+            txtMonDoc.setText("");
+            objAsiDia.inicializar();
+            txaObs1.setText("");
+            txaObs2.setText("");
+        }
+        catch (Exception e)
+        {
+            blnRes=false;
+        }
+        return blnRes;
+    }
+
+    /**
+     * Esta funci�n configura la "Ventana de consulta" que ser� utilizada para
+     * mostrar los "Tipos de documentos".
+     */
+    private boolean configurarVenConTipDoc()
+    {
+        boolean blnRes=true;
+        try
+        {
+            //Listado de campos.
+            ArrayList arlCam=new ArrayList();
+            arlCam.add("a1.co_tipdoc");
+            arlCam.add("a1.tx_desCor");
+            arlCam.add("a1.tx_desLar");
+            arlCam.add("a1.ne_ultDoc");
+            arlCam.add("a1.tx_natDoc");
+            arlCam.add("a1.st_necautanudoc");
+            //Alias de los campos.
+            ArrayList arlAli=new ArrayList();
+            arlAli.add("Código");
+            arlAli.add("Tip.Doc.");
+            arlAli.add("Tipo de documento");
+            arlAli.add("Ult.Doc.");
+            arlAli.add("Nat.Doc.");
+            arlAli.add("Nec.Aut.Anu.");
+            //Ancho de las columnas.
+            ArrayList arlAncCol=new ArrayList();
+            arlAncCol.add("50");
+            arlAncCol.add("80");
+            arlAncCol.add("334");
+            arlAncCol.add("80");
+            arlAncCol.add("80");
+            arlAncCol.add("80");
+            //Armar la sentencia SQL.
+            if(objParSis.getCodigoUsuario()==1){
+                strSQL="";
+                strSQL+="SELECT a1.co_tipdoc, a1.tx_desCor, a1.tx_desLar, a1.ne_ultDoc";
+                strSQL+=" ,a1.tx_natDoc, CASE WHEN a1.st_necautanudoc IS NULL THEN '' ELSE a1.st_necautanudoc END AS st_necautanudoc";
+                strSQL+=" FROM tbm_cabTipDoc AS a1 ";
+                strSQL+=" INNER JOIN tbr_tipDocPrg AS a3";
+                strSQL+=" ON a1.co_emp=a3.co_emp AND a1.co_loc=a3.co_loc AND a1.co_tipDoc=a3.co_tipDoc";
+                strSQL+=" WHERE a1.co_emp=" + objParSis.getCodigoEmpresa();
+                strSQL+=" AND a1.co_loc=" + objParSis.getCodigoLocal();
+                strSQL+=" AND a3.co_mnu=" + objParSis.getCodigoMenu();
+                strSQL+=" ORDER BY a1.tx_desCor";
+            }
+            else{
+                strSQL="";
+                strSQL+="SELECT a1.co_tipdoc, a1.tx_desCor, a1.tx_desLar, a1.ne_ultDoc";
+                strSQL+=" ,a1.tx_natDoc, CASE WHEN a1.st_necautanudoc IS NULL THEN '' ELSE a1.st_necautanudoc END AS st_necautanudoc";
+                strSQL+=" FROM tbr_tipDocUsr AS a3 inner join  tbm_cabTipDoc AS a1 ";
+                strSQL+=" ON (a1.co_emp=a3.co_emp and a1.co_loc=a3.co_loc and a1.co_tipdoc=a3.co_tipdoc)";
+                strSQL+=" WHERE ";
+                strSQL+=" a3.co_emp=" + objParSis.getCodigoEmpresa() + "";
+                strSQL+=" AND a3.co_loc=" + objParSis.getCodigoLocal() + "";
+                strSQL+=" AND a3.co_mnu=" + objParSis.getCodigoMenu() + "";
+                strSQL+=" AND a3.co_usr=" + objParSis.getCodigoUsuario() + "";
+            }
+
+            vcoTipDoc=new ZafVenCon(javax.swing.JOptionPane.getFrameForComponent(this), objParSis, "Listado de tipos de documentos", strSQL, arlCam, arlAli, arlAncCol);
+            arlCam=null;
+            arlAli=null;
+            arlAncCol=null;
+            //Configurar columnas.
+            vcoTipDoc.setConfiguracionColumna(1, javax.swing.JLabel.RIGHT);
+            vcoTipDoc.setConfiguracionColumna(4, javax.swing.JLabel.RIGHT);
+            
+            
+        }
+        catch (Exception e)
+        {
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        return blnRes;
+    }
+    
+    /**
+     * Esta funci�n configura la "Ventana de consulta" que ser� utilizada para
+     * mostrar las "Cuentas".
+     */
+    private boolean configurarVenConCta()
+    {
+        boolean blnRes=true;
+        try
+        {
+            //Listado de campos.
+            ArrayList arlCam=new ArrayList();
+            arlCam.add("a1.co_cta");
+            arlCam.add("a1.tx_codCta");
+            arlCam.add("a1.tx_desLar");
+            arlCam.add("a2.tx_ubiCta");
+            //Alias de los campos.
+            ArrayList arlAli=new ArrayList();
+            arlAli.add("Código");
+            arlAli.add("Cuenta");
+            arlAli.add("Nombre");
+            arlAli.add("Ubicación");
+            //Ancho de las columnas.
+            ArrayList arlAncCol=new ArrayList();
+            arlAncCol.add("50");
+            arlAncCol.add("80");
+            arlAncCol.add("334");
+            arlAncCol.add("80");
+            //Armar la sentencia SQL.
+            vcoCta=new ZafVenCon(javax.swing.JOptionPane.getFrameForComponent(this), objParSis, "Listado de cuentas", strSQL, arlCam, arlAli, arlAncCol);
+            arlCam=null;
+            arlAli=null;
+            arlAncCol=null;
+            //Configurar columnas.
+            vcoCta.setConfiguracionColumna(1, javax.swing.JLabel.RIGHT);
+            vcoCta.setConfiguracionColumna(4, javax.swing.JLabel.CENTER);
+            
+        }
+        catch (Exception e)
+        {
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        return blnRes;
+    }
+    
+
+
+    /**
+     * Esta funci�n muestra el tipo de documento predeterminado del programa.
+     * @return true: Si se pudo mostrar el tipo de documento predeterminado.
+     * <BR>false: En el caso contrario.
+     */
+    private boolean mostrarTipDocPre()
+    {
+        boolean blnRes=true;
+        try
+        {
+            con=DriverManager.getConnection(objParSis.getStringConexion(), objParSis.getUsuarioBaseDatos(), objParSis.getClaveBaseDatos());
+            if (con!=null)
+            {
+                stm=con.createStatement();
+                //Armar la sentencia SQL.
+                if(objParSis.getCodigoUsuario()==1){
+                    strSQL="";
+                    strSQL+="SELECT a1.co_tipDoc, a1.tx_desCor, a1.tx_desLar, a1.ne_ultDoc, a1.tx_natDoc, CASE WHEN a1.st_necautanudoc IS NULL THEN '' ELSE a1.st_necautanudoc END AS st_necautanudoc";
+                    strSQL+=" FROM tbm_cabTipDoc AS a1";
+                    strSQL+=" WHERE a1.co_emp=" + objParSis.getCodigoEmpresa();
+                    strSQL+=" AND a1.co_loc=" + objParSis.getCodigoLocal();
+                    strSQL+=" AND a1.co_tipDoc=";
+                    strSQL+=" (";
+                    strSQL+=" SELECT co_tipDoc";
+                    strSQL+=" FROM tbr_tipDocPrg";
+                    strSQL+=" WHERE co_emp=" + objParSis.getCodigoEmpresa();
+                    strSQL+=" AND co_loc=" + objParSis.getCodigoLocal();
+                    strSQL+=" AND co_mnu=" + objParSis.getCodigoMenu();
+                    strSQL+=" AND st_reg='S'";
+                    strSQL+=" )";
+                }
+                else{
+                    strSQL="";
+                    strSQL+="SELECT a1.co_tipDoc, a1.tx_desCor, a1.tx_desLar, a1.ne_ultDoc, a1.tx_natDoc, CASE WHEN a1.st_necautanudoc IS NULL THEN '' ELSE a1.st_necautanudoc END AS st_necautanudoc";
+                    strSQL+=" FROM tbm_cabTipDoc AS a1 ";
+                    strSQL+=" WHERE a1.co_emp=" + objParSis.getCodigoEmpresa();
+                    strSQL+=" AND a1.co_loc=" + objParSis.getCodigoLocal();
+                    strSQL+=" AND a1.co_tipDoc=";
+                    strSQL+=" (";
+                    strSQL+=" SELECT co_tipDoc";
+                    strSQL+=" FROM tbr_tipDocUsr";
+                    strSQL+=" WHERE co_emp=" + objParSis.getCodigoEmpresa();
+                    strSQL+=" AND co_loc=" + objParSis.getCodigoLocal();
+                    strSQL+=" AND co_mnu=" + objParSis.getCodigoMenu();
+                    strSQL+=" AND co_usr=" + objParSis.getCodigoUsuario();
+                    strSQL+=" AND st_reg='S'";
+                    strSQL+=" )";
+                }
+                System.out.println("mostrarTipDocPre: " + strSQL);
+                rst=stm.executeQuery(strSQL);
+                if (rst.next())
+                {
+                    txtCodTipDoc.setText(rst.getString("co_tipDoc"));
+                    txtDesCorTipDoc.setText(rst.getString("tx_desCor"));
+                    txtDesLarTipDoc.setText(rst.getString("tx_desLar"));
+                    txtNumDoc1.setText("" + (rst.getInt("ne_ultDoc")+1));
+                    intSig=(rst.getString("tx_natDoc").equals("I")?1:-1);
+                    strTipDocNecAutAnu=rst.getString("st_necautanudoc");
+                    
+                }
+                rst.close();
+                stm.close();
+                con.close();
+                rst=null;
+                stm=null;
+                con=null;
+            }
+        }
+        catch (java.sql.SQLException e)
+        {
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        catch (Exception e)
+        {
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        return blnRes;
+    }
+    
+    /**
+     * Esta funci�n muestra la cuenta contable predeterminado del programa 
+     * de acuerdo al tipo de documento predeterminado.
+     * @return true: Si se pudo mostrar la cuenta contable predeterminado.
+     * <BR>false: En el caso contrario.
+     */
+    private boolean mostrarCtaPre()
+    {
+        boolean blnRes=true;
+        try
+        {
+            con=DriverManager.getConnection(objParSis.getStringConexion(), objParSis.getUsuarioBaseDatos(), objParSis.getClaveBaseDatos());
+            if (con!=null)
+            {
+                stm=con.createStatement();
+                //Armar la sentencia SQL.
+                strSQL="";
+                strSQL+="SELECT a1.co_cta, a1.tx_codCta, a1.tx_desLar, a2.tx_ubiCta, a1.st_aut, a1.ne_ultnumchq";
+                strSQL+=" FROM tbm_plaCta AS a1, tbm_detTipDoc AS a2";
+                strSQL+=" WHERE a1.co_emp=a2.co_emp AND a1.co_cta=a2.co_cta";
+                strSQL+=" AND a2.co_emp=" + objParSis.getCodigoEmpresa();
+                strSQL+=" AND a2.co_loc=" + objParSis.getCodigoLocal();
+                strSQL+=" AND a2.co_tipDoc=" + txtCodTipDoc.getText();
+
+                System.out.println("ESTADO: " + objTooBar.getEstado());
+
+                if(objTooBar.getEstado()=='n')
+                    strSQL+=" AND a2.st_reg='S'";
+
+                rst=stm.executeQuery(strSQL);
+                if (rst.next())
+                {
+                    txtCodCta.setText(rst.getString("co_cta"));
+                    txtDesCorCta.setText(rst.getString("tx_codCta"));
+                    txtDesLarCta.setText(rst.getString("tx_desLar"));
+                    strUbiCta=rst.getString("tx_ubiCta");
+                    
+                }
+                rst.close();
+                stm.close();
+                con.close();
+                rst=null;
+                stm=null;
+                con=null;
+            }
+        }
+        catch (java.sql.SQLException e)
+        {
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        catch (Exception e)
+        {
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        return blnRes;
+    }
+
+
+    /**
+     * Esta funci�n permite utilizar la "Ventana de Consulta" para seleccionar un
+     * registro de la base de datos. El tipo de b�squeda determina si se debe hacer
+     * una b�squeda directa (No se muestra la ventana de consulta a menos que no 
+     * exista lo que se est� buscando) o presentar la ventana de consulta para que
+     * el usuario seleccione la opci�n que desea utilizar.
+     * @param intTipBus El tipo de b�squeda a realizar.
+     * @return true: Si no se present� ning�n problema.
+     * <BR>false: En el caso contrario.
+     */
+    private boolean mostrarVenConTipDoc(int intTipBus)
+    {
+        boolean blnRes=true;
+        try
+        {
+            switch (intTipBus)
+            {
+                case 0: //Mostrar la ventana de consulta.
+                    vcoTipDoc.setCampoBusqueda(1);
+                    vcoTipDoc.show();
+                    if (vcoTipDoc.getSelectedButton()==vcoTipDoc.INT_BUT_ACE)
+                    {
+                        txtCodTipDoc.setText(vcoTipDoc.getValueAt(1));
+                        txtDesCorTipDoc.setText(vcoTipDoc.getValueAt(2));
+                        txtDesLarTipDoc.setText(vcoTipDoc.getValueAt(3));
+
+
+
+                        if (objTooBar.getEstado()=='n')
+                        {
+                            strAux=vcoTipDoc.getValueAt(4);
+                            txtNumDoc1.setText("" + (objUti.isNumero(strAux)?Integer.parseInt(strAux)+1:1));
+                        }
+                        intSig=(vcoTipDoc.getValueAt(5).equals("I")?1:-1);
+                        strTipDocNecAutAnu=vcoTipDoc.getValueAt(6);
+                        mostrarCtaPre();
+                        actualizarGlo();
+                        txtNumDoc1.selectAll();
+                        txtNumDoc1.requestFocus();
+                    }
+                    break;
+                case 1: //B�squeda directa por "Descripci�n corta".
+                    if (vcoTipDoc.buscar("a1.tx_desCor", txtDesCorTipDoc.getText()))
+                    {
+                        txtCodTipDoc.setText(vcoTipDoc.getValueAt(1));
+                        txtDesCorTipDoc.setText(vcoTipDoc.getValueAt(2));
+                        txtDesLarTipDoc.setText(vcoTipDoc.getValueAt(3));
+
+                        if (objTooBar.getEstado()=='n')
+                        {
+                            strAux=vcoTipDoc.getValueAt(4);
+                            txtNumDoc1.setText("" + (objUti.isNumero(strAux)?Integer.parseInt(strAux)+1:1));
+                        }
+                        intSig=(vcoTipDoc.getValueAt(5).equals("I")?1:-1);
+                        strTipDocNecAutAnu=vcoTipDoc.getValueAt(6);
+                        mostrarCtaPre();
+                        actualizarGlo();
+                        txtNumDoc1.selectAll();
+                        txtNumDoc1.requestFocus();
+                    }
+                    else
+                    {
+                        vcoTipDoc.setCampoBusqueda(1);
+                        vcoTipDoc.setCriterio1(11);
+                        vcoTipDoc.cargarDatos();
+                        vcoTipDoc.show();
+                        if (vcoTipDoc.getSelectedButton()==vcoTipDoc.INT_BUT_ACE)
+                        {
+                            txtCodTipDoc.setText(vcoTipDoc.getValueAt(1));
+                            txtDesCorTipDoc.setText(vcoTipDoc.getValueAt(2));
+                            txtDesLarTipDoc.setText(vcoTipDoc.getValueAt(3));
+                            if (objTooBar.getEstado()=='n')
+                            {
+                                strAux=vcoTipDoc.getValueAt(4);
+                                txtNumDoc1.setText("" + (objUti.isNumero(strAux)?Integer.parseInt(strAux)+1:1));
+                            }
+                            intSig=(vcoTipDoc.getValueAt(5).equals("I")?1:-1);
+                            strTipDocNecAutAnu=vcoTipDoc.getValueAt(6);
+                            mostrarCtaPre();
+                            actualizarGlo();
+                            txtNumDoc1.selectAll();
+                            txtNumDoc1.requestFocus();
+                        }
+                        else
+                        {
+                            txtDesCorTipDoc.setText(strDesCorTipDoc);
+                        }
+                    }
+                    break;
+                case 2: //B�squeda directa por "Descripci�n larga".
+                    if (vcoTipDoc.buscar("a1.tx_desLar", txtDesLarTipDoc.getText()))
+                    {
+                        txtCodTipDoc.setText(vcoTipDoc.getValueAt(1));
+                        txtDesCorTipDoc.setText(vcoTipDoc.getValueAt(2));
+                        txtDesLarTipDoc.setText(vcoTipDoc.getValueAt(3));
+                        if (objTooBar.getEstado()=='n')
+                        {
+                            strAux=vcoTipDoc.getValueAt(4);
+                            txtNumDoc1.setText("" + (objUti.isNumero(strAux)?Integer.parseInt(strAux)+1:1));
+                        }
+                        intSig=(vcoTipDoc.getValueAt(5).equals("I")?1:-1);
+                        strTipDocNecAutAnu=vcoTipDoc.getValueAt(6);
+                        mostrarCtaPre();
+                        actualizarGlo();
+                        txtNumDoc1.selectAll();
+                        txtNumDoc1.requestFocus();
+                    }
+                    else
+                    {
+                        vcoTipDoc.setCampoBusqueda(2);
+                        vcoTipDoc.setCriterio1(11);
+                        vcoTipDoc.cargarDatos();
+                        vcoTipDoc.show();
+                        if (vcoTipDoc.getSelectedButton()==vcoTipDoc.INT_BUT_ACE)
+                        {
+                            txtCodTipDoc.setText(vcoTipDoc.getValueAt(1));
+                            txtDesCorTipDoc.setText(vcoTipDoc.getValueAt(2));
+                            txtDesLarTipDoc.setText(vcoTipDoc.getValueAt(3));
+                            if (objTooBar.getEstado()=='n')
+                            {
+                                strAux=vcoTipDoc.getValueAt(4);
+                                txtNumDoc1.setText("" + (objUti.isNumero(strAux)?Integer.parseInt(strAux)+1:1));
+                            }
+                            intSig=(vcoTipDoc.getValueAt(5).equals("I")?1:-1);
+                            strTipDocNecAutAnu=vcoTipDoc.getValueAt(6);
+                            mostrarCtaPre();
+                            actualizarGlo();
+                            txtNumDoc1.selectAll();
+                            txtNumDoc1.requestFocus();
+                        }
+                        else
+                        {
+                            txtDesLarTipDoc.setText(strDesLarTipDoc);
+                        }
+                    }
+                    break;
+            }
+        }
+        catch (Exception e)
+        {
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        return blnRes;
+    }
+    
+    /**
+     * Esta funci�n permite utilizar la "Ventana de Consulta" para seleccionar un
+     * registro de la base de datos. El tipo de b�squeda determina si se debe hacer
+     * una b�squeda directa (No se muestra la ventana de consulta a menos que no 
+     * exista lo que se est� buscando) o presentar la ventana de consulta para que
+     * el usuario seleccione la opci�n que desea utilizar.
+     * @param intTipBus El tipo de b�squeda a realizar.
+     * @return true: Si no se present� ning�n problema.
+     * <BR>false: En el caso contrario.
+     */
+    private boolean mostrarVenConCta(int intTipBus)
+    {
+        boolean blnRes=true;
+        try
+        {
+            //Validar que s�lo se pueda seleccionar la "Cuenta" si se seleccion� el "Tipo de documento".
+            if (txtCodTipDoc.getText().equals(""))
+            {
+                txtCodCta.setText("");
+                txtDesCorCta.setText("");
+                txtDesLarCta.setText("");
+                strUbiCta="";
+                mostrarMsgInf("<HTML>Primero debe seleccionar un <FONT COLOR=\"blue\">Tipo de documento</FONT>.<BR>Escriba o seleccione un tipo de documento y vuelva a intentarlo.</HTML>");
+                txtDesCorTipDoc.requestFocus();
+            }
+            else
+            {
+                //Armar la sentencia SQL.
+                strSQL="";
+                strSQL+="SELECT a1.co_cta, a1.tx_codCta, a1.tx_desLar, a2.tx_ubiCta";
+                strSQL+=" FROM tbm_plaCta AS a1, tbm_detTipDoc AS a2";
+                strSQL+=" WHERE a1.co_emp=a2.co_emp AND a1.co_cta=a2.co_cta";
+                strSQL+=" AND a2.co_emp=" + objParSis.getCodigoEmpresa();
+                strSQL+=" AND a2.co_loc=" + objParSis.getCodigoLocal();
+                strSQL+=" AND a2.co_tipDoc=" + txtCodTipDoc.getText();
+                strSQL+=" ORDER BY a1.tx_codCta";
+                vcoCta.setSentenciaSQL(strSQL);
+                switch (intTipBus)
+                {
+                    case 0: //Mostrar la ventana de consulta.
+                        vcoCta.setCampoBusqueda(1);
+                        vcoCta.show();
+                        if (vcoCta.getSelectedButton()==vcoCta.INT_BUT_ACE)
+                        {
+                            txtCodCta.setText(vcoCta.getValueAt(1));
+                            txtDesCorCta.setText(vcoCta.getValueAt(2));
+                            txtDesLarCta.setText(vcoCta.getValueAt(3));
+                            strUbiCta=vcoCta.getValueAt(4);
+                            regenerarDiario();
+                            actualizarGlo();
+                            txtNumDoc1.selectAll();
+                            txtNumDoc1.requestFocus();
+                        }
+                        break;
+                    case 1: //B�squeda directa por "N�mero de cuenta".
+                        if (vcoCta.buscar("a1.tx_codCta", txtDesCorCta.getText()))
+                        {
+                            txtCodCta.setText(vcoCta.getValueAt(1));
+                            txtDesCorCta.setText(vcoCta.getValueAt(2));
+                            txtDesLarCta.setText(vcoCta.getValueAt(3));
+                            strUbiCta=vcoCta.getValueAt(4);
+                            regenerarDiario();
+                            actualizarGlo();
+                            txtNumDoc1.selectAll();
+                            txtNumDoc1.requestFocus();
+                        }
+                        else
+                        {
+                            vcoCta.setCampoBusqueda(0);
+                            vcoCta.setCriterio1(11);
+                            vcoCta.cargarDatos();
+                            vcoCta.show();
+                            if (vcoCta.getSelectedButton()==vcoCta.INT_BUT_ACE)
+                            {
+                                txtCodCta.setText(vcoCta.getValueAt(1));
+                                txtDesCorCta.setText(vcoCta.getValueAt(2));
+                                txtDesLarCta.setText(vcoCta.getValueAt(3));
+                                strUbiCta=vcoCta.getValueAt(4);
+                                regenerarDiario();
+                                actualizarGlo();
+                                txtNumDoc1.selectAll();
+                                txtNumDoc1.requestFocus();
+                            }
+                            else
+                            {
+                                txtDesCorCta.setText(strDesCorCta);
+                            }
+                        }
+                        break;
+                    case 2: //B�squeda directa por "Descripci�n larga".
+                        if (vcoCta.buscar("a1.tx_desLar", txtDesLarCta.getText()))
+                        {
+                            txtCodCta.setText(vcoCta.getValueAt(1));
+                            txtDesCorCta.setText(vcoCta.getValueAt(2));
+                            txtDesLarCta.setText(vcoCta.getValueAt(3));
+                            strUbiCta=vcoCta.getValueAt(4);
+                            regenerarDiario();
+                            actualizarGlo();
+                            txtNumDoc1.selectAll();
+                            txtNumDoc1.requestFocus();
+                        }
+                        else
+                        {
+                            vcoCta.setCampoBusqueda(1);
+                            vcoCta.setCriterio1(11);
+                            vcoCta.cargarDatos();
+                            vcoCta.show();
+                            if (vcoCta.getSelectedButton()==vcoCta.INT_BUT_ACE)
+                            {
+                                txtCodCta.setText(vcoCta.getValueAt(1));
+                                txtDesCorCta.setText(vcoCta.getValueAt(2));
+                                txtDesLarCta.setText(vcoCta.getValueAt(3));
+                                strUbiCta=vcoCta.getValueAt(4);
+                                regenerarDiario();
+                                actualizarGlo();
+                                txtNumDoc1.selectAll();
+                                txtNumDoc1.requestFocus();
+                            }
+                            else
+                            {
+                                txtDesLarCta.setText(strDesLarCta);
+                            }
+                        }
+                        break;
+                }
+
+                
+
+            }
+        }
+        catch (Exception e)
+        {
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        return blnRes;
+    }
+    
+
+
+    
+    /**
+     * Esta clase implementa la interface DocumentListener que observa los cambios que
+     * se presentan en los objetos de tipo texto. Por ejemplo: JTextField, JTextArea, etc.
+     * Se la usa en el sistema para determinar si existe alg�n cambio que se deba grabar
+     * antes de abandonar uno de los modos o desplazarse a otro registro. Por ejemplo: si
+     * se ha hecho cambios a un registro y quiere cancelar o moverse a otro registro se
+     * presentar� un mensaje advirtiendo que si no guarda los cambios los perder�.
+     */
+    class ZafDocLis implements javax.swing.event.DocumentListener 
+    {
+        public void changedUpdate(javax.swing.event.DocumentEvent evt)        {
+            blnHayCam=true;
+        }
+
+        public void insertUpdate(javax.swing.event.DocumentEvent evt) 
+        {
+            blnHayCam=true;
+        }
+
+        public void removeUpdate(javax.swing.event.DocumentEvent evt) 
+        {
+            blnHayCam=true;
+        }
+    }
+
+    /**
+     * Esta funci�n se encarga de agregar el listener "DocumentListener" a los objetos
+     * de tipo texto para poder determinar si su contenido a cambiado o no.
+     */
+    private void agregarDocLis()
+    {
+        txtCodTipDoc.getDocument().addDocumentListener(objDocLis);
+        txtDesCorTipDoc.getDocument().addDocumentListener(objDocLis);
+        txtDesLarTipDoc.getDocument().addDocumentListener(objDocLis);
+        txtCodDoc.getDocument().addDocumentListener(objDocLis);
+        txtNumDoc1.getDocument().addDocumentListener(objDocLis);
+        txtCodCta.getDocument().addDocumentListener(objDocLis);
+        txtDesCorCta.getDocument().addDocumentListener(objDocLis);
+        txtDesLarCta.getDocument().addDocumentListener(objDocLis);
+    }   
+
+    /**
+     * Esta funci�n se encarga de agregar el listener "DocumentListener" a los objetos
+     * de tipo texto para poder determinar si su contenido a cambiado o no.
+     */
+    private boolean isRegPro()
+    {
+        boolean blnRes=true;
+        strAux="¿Desea guardar los cambios efectuados a éste registro?\n";
+        strAux+="Si no guarda los cambios perderá toda la información que no haya guardado.";
+        switch (mostrarMsgCon(strAux))
+        {
+            case 0: //YES_OPTION
+                switch (objTooBar.getEstado())
+                {
+                    case 'n': //Insertar
+                        blnRes=objTooBar.insertar();
+                        break;
+                    case 'm': //Modificar
+                        blnRes=objTooBar.modificar();
+                        break;
+                }
+                break;
+            case 1: //NO_OPTION
+                blnHayCam=false;
+                blnRes=true;
+                break;
+            case 2: //CANCEL_OPTION
+                blnRes=false;
+                break;
+        }
+        return blnRes;
+    }
+    
+
+    /**
+     * Esta funci�n se utiliza para regenerar el asiento de diario. 
+     * La idea principal de �sta funci�n es regenerar el asiento de diario. Pero,
+     * puede darse el caso en el que el asiento de diario fue modificado manualmente
+     * por el usuario. En  cuyo caso, primero se pregunta si desea regenerar el asiento
+     * de diario, no regenerarlo o cancelar.
+     * @return true: Si se decidi� regenerar/no regenerar el asiento de diario.
+     * <BR>false: Si se cancel� la regeneraci�n del asiento de diario.
+     * Nota.- Como se puede apreciar la funci�n retorna "false" s�lo cuando se di�
+     * click en el bot�n "Cancelar".
+     */
+    private boolean regenerarDiario()
+    {
+        boolean blnRes=true;
+        if (objAsiDia.getGeneracionDiario()==2)
+        {
+            strAux="¿Desea regenerar el asiento de diario?\n";
+            strAux+="El asiento de diario ha sido modificado manualmente.";
+            strAux+="\nSi desea que el sistema regenere el asiento de diario de click en SI.";
+            strAux+="\nSi desea grabar el asiento de diario tal como está de click en NO.";
+            strAux+="\nSi desea cancelar ésta operación de click en CANCELAR.";
+            switch (mostrarMsgCon(strAux))
+            {
+                case 0: //YES_OPTION
+                    objAsiDia.setGeneracionDiario((byte)0);
+                    objAsiDia.generarDiario(txtCodTipDoc.getText(), txtCodCta.getText(), txtMonDoc.getText(), txtMonDoc.getText());
+                    break;
+                case 1: //NO_OPTION
+                    break;
+                case 2: //CANCEL_OPTION
+                    blnRes=false;
+            }
+        }
+        else
+        {
+            objAsiDia.setGeneracionDiario((byte)0);
+            objAsiDia.generarDiario(txtCodTipDoc.getText(), txtCodCta.getText(), txtMonDoc.getText(), txtMonDoc.getText());
+        }
+        return blnRes;
+    }
+
+    /**
+     * Esta funci�n obtiene la descripci�n larga del estado del registro.
+     * @param estado El estado del registro. Por ejemplo: A, I, etc.
+     * @return La descripción larga del estado del registro.
+     * <BR>Nota.- Si la cadena recibida es <I>null</I> la funci�n devuelve una cadena vac�a.
+     */
+    private String getEstReg(String estado)
+    {
+        if (estado==null)
+            estado="";
+        else
+            switch (estado.charAt(0))
+            {
+                case 'A':
+                    estado="Activo";
+                    break;
+                case 'I':
+                    estado="Anulado";
+                    break;
+                case 'P':
+                    estado="Pendiente de autorizar";
+                    break;
+                case 'D':
+                    estado="Autorización denegada";
+                    break;
+                case 'R':
+                    estado="Pendiente de impresión";
+                    break;
+                case 'C':
+                    estado="Pendiente confirmación de inventario";
+                    break;
+                case 'F':
+                    estado="Existen diferencias de inventario";
+                    break;
+                default:
+                    estado="Desconocido";
+                    break;
+            }
+        return estado;
+    }
+    
+    /**
+     * Esta funci�n se utiliza para actualizar la glosa del asiento de diario.
+     * Los usuarios necesitaban que aparecieran ciertos datos del documento en la glosa.
+     */
+    private void actualizarGlo(){
+        int i;
+        strAux="";
+        strAux+=txtDesCorTipDoc.getText() + ": " + txtNumDoc1.getText();
+        strAux+="; Cuenta: " + txtDesLarCta.getText();
+        strAux+="; Cliente/Valor: ";
+        for (i=0; i<objTblMod.getRowCountTrue(); i++){
+                strAux+=objTblMod.getValueAt(i, INT_TBL_DAT_NOM_CLI)==null?"":objTblMod.getValueAt(i, INT_TBL_DAT_NOM_CLI).toString() + " / ";
+                strAux+=objTblMod.getValueAt(i, INT_TBL_DAT_VAL_DOC)==null?"":objTblMod.getValueAt(i, INT_TBL_DAT_VAL_DOC).toString() + ", ";
+        }
+        objAsiDia.setGlosa(strAux);
+    }
+    
+    /**
+     * Esta clase crea un hilo que permite manipular la interface gr�fica de usuario (GUI).
+     * Por ejemplo: se la puede utilizar para cargar los datos en un JTable donde la idea
+     * es mostrar al usuario lo que est� ocurriendo internamente. Es decir a medida que se
+     * llevan a cabo los procesos se podr�a presentar mensajes informativos en un JLabel e
+     * ir incrementando un JProgressBar con lo cual el usuario estar�a informado en todo
+     * momento de lo que ocurre. Si se desea hacer �sto es necesario utilizar �sta clase
+     * ya que si no s�lo se apreciar�a los cambios cuando ha terminado todo el proceso.
+     */
+    private class ZafThreadGUI extends Thread
+    {
+        int intCodEmp, intLoc, intTipDoc, intCodDia;
+        
+        public ZafThreadGUI(int empresa, int local, int tipoDocumento, int diario)
+        {
+            intCodEmp=empresa;
+            intLoc=local;
+            intTipDoc=tipoDocumento;
+            intCodDia=diario;
+        }
+        
+        public void run()
+        {
+//            if (!cargarDetReg(intCodEmp,intLoc,intTipDoc,intCodDia))
+//            {
+//                //Inicializar objetos si no se pudo cargar los datos.
+////                lblMsgSis.setText("Listo");
+////                pgrSis.setValue(0);
+////                butCon.setText("Consultar");
+//                System.out.println("Carga Ok...");
+//            }
+//            //Establecer el foco en el JTable s�lo cuando haya datos.
+//            if (tblDat.getRowCount()>0)
+//            {
+////                tabFrm.setSelectedIndex(1);
+//                tblDat.setRowSelectionInterval(0, 0);
+//                tblDat.requestFocus();
+//            }
+//            objThrGUI=null;
+        }
+    }
+
+    /**
+     * Esta clase hereda de la clase MouseMotionAdapter que permite manejar eventos de
+     * del mouse (mover el mouse; arrastrar y soltar).
+     * Se la usa en el sistema para mostrar el ToolTipText adecuado en la cabecera de
+     * las columnas. Es necesario hacerlo porque el ancho de las columnas a veces
+     * resulta muy corto para mostrar leyendas que requieren m�s espacio.
+     */
+    private class ZafMouMotAda extends java.awt.event.MouseMotionAdapter
+    {
+        public void mouseMoved(java.awt.event.MouseEvent evt)
+        {
+            int intCol=tblDat.columnAtPoint(evt.getPoint());
+            String strMsg="";
+            switch (intCol)
+            {
+                case INT_TBL_DAT_COD_CLI:
+                    strMsg="Código del cliente";
+                    break;
+                case INT_TBL_DAT_NOM_CLI:
+                    strMsg="Nombre del Cliente";
+                    break;
+                case INT_TBL_DAT_RUC_CLI:
+                    strMsg="RUC del Cliente";
+                    break;
+                case INT_TBL_DAT_DIR_CLI:
+                    strMsg="Dirección del Cliente";
+                    break;
+                case INT_TBL_DAT_VAL_DOC:
+                    strMsg="Valor depositado";
+                    break;
+                case INT_TBL_DAT_OBS:
+                    strMsg="Observación";
+                    break;
+                default:
+                    strMsg="";
+                    break;
+            }
+            tblDat.getTableHeader().setToolTipText(strMsg);
+        }
+    }
+    
+        
+    /**
+     * Esta función obtiene el tipo de modificación de fecha que el usurio puede realizar en el tipo de documento
+     * <BR>Nota.- Los valores que puede tener son:
+     * <UL>
+     * <LI>1: No se puede modificar la fecha el tipo de documento
+     * <LI>2: Se puede modificar la fecha hacia atrás
+     * <LI>3: Se puede modificar la fecha hacia adelante
+     * <LI>4: Se puede modificar la fecha
+     * </UL>
+     * @return intTipModFec: El tipo de modificación de fecha que el usuario puede realizar en el tipo de documento
+     */
+    private int canChangeDate(){
+        Connection conChaDat;
+        Statement stmChaDat;
+        ResultSet rstChaDat;
+        int intTipModFec=0;
+        try{
+            conChaDat=DriverManager.getConnection(objParSis.getStringConexion(), objParSis.getUsuarioBaseDatos(), objParSis.getClaveBaseDatos());
+            if(conChaDat!=null){
+                stmChaDat=conChaDat.createStatement();
+                if(objParSis.getCodigoUsuario()==1){
+                    intTipModFec=4;
+                }
+                else{
+                    strSQL="";
+                    strSQL+="SELECT ne_tipresmodfecdoc";
+                    strSQL+=" FROM tbr_tipdocusr";
+                    strSQL+=" WHERE co_emp=" + objParSis.getCodigoEmpresa() + "";
+                    strSQL+=" AND co_loc=" + objParSis.getCodigoLocal() + "";
+                    strSQL+=" AND co_tipDoc=" + txtCodTipDoc.getText() + "";
+                    strSQL+=" AND co_mnu=" + objParSis.getCodigoMenu() + "";
+                    strSQL+=" AND co_usr=" + objParSis.getCodigoUsuario() + "";
+                    rstChaDat=stmChaDat.executeQuery(strSQL);
+                    while(rstChaDat.next()){
+                        intTipModFec=rstChaDat.getInt("ne_tipresmodfecdoc");
+                    }
+                    
+                    stmChaDat.close();
+                    stmChaDat=null;
+                    rstChaDat.close();
+                    rstChaDat=null;
+                }
+                conChaDat.close();
+                conChaDat=null;
+
+            }
+        }
+        
+        catch (java.sql.SQLException e){
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        catch (Exception e){
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        return intTipModFec;
+        
+    }    
+
+    /**
+     * Esta función obtiene el tipo de modificación que el usurio puede realizar en el tipo de documento
+     * <BR>Nota.- Los valores que puede tener son:
+     * <UL>
+     * <LI>1: No se puede modificar el tipo de documento
+     * <LI>2: Se puede modificar el tipo de documento si no ha sido impreso todavía
+     * <LI>3: El documento se puede modificar
+     * </UL>
+     * @return intTipModTipDocUsr: El tipo de modificación que el usuario puede realizar en el tipo de documento
+     */
+    private int canTipoModificacion(){
+        Connection conChaDat;
+        Statement stmChaDat;
+        ResultSet rstChaDat;
+        int intTipModTipDocUsr=0;
+        try{
+            conChaDat=DriverManager.getConnection(objParSis.getStringConexion(), objParSis.getUsuarioBaseDatos(), objParSis.getClaveBaseDatos());
+            if(conChaDat!=null){
+                stmChaDat=conChaDat.createStatement();
+                if(objParSis.getCodigoUsuario()==1){
+                    intTipModTipDocUsr=3;
+                }
+                else{
+                    strSQL="";
+                    strSQL+="SELECT ne_tipresmoddoc";
+                    strSQL+=" FROM tbr_tipdocusr";
+                    strSQL+=" WHERE co_emp=" + objParSis.getCodigoEmpresa() + "";
+                    strSQL+=" AND co_loc=" + objParSis.getCodigoLocal() + "";
+                    strSQL+=" AND co_tipDoc=" + txtCodTipDoc.getText() + "";
+                    strSQL+=" AND co_mnu=" + objParSis.getCodigoMenu() + "";
+                    strSQL+=" AND co_usr=" + objParSis.getCodigoUsuario() + "";
+                    rstChaDat=stmChaDat.executeQuery(strSQL);
+                    while(rstChaDat.next()){
+                        intTipModTipDocUsr=rstChaDat.getInt("ne_tipresmoddoc");
+                    }
+                    stmChaDat.close();
+                    stmChaDat=null;
+                    rstChaDat.close();
+                    rstChaDat=null;
+                }
+                conChaDat.close();
+                conChaDat=null;
+            }
+        }
+        catch (java.sql.SQLException e){
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        catch (Exception e){
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        return intTipModTipDocUsr;
+        
+    }
+
+    /**
+     * Esta función permite inactivar los campos del formulario
+     * de acuerdo al tipo de permiso que tenga el usuario para modificar el tipo de documento
+     * @return true: Si se realizó con éxito la conexión a la base de datos
+     * <BR>false: En el caso contrario.
+     */
+    private boolean camposInactivosPermisoModifi(){
+        boolean blnRes=true;
+        try{
+            //objTblMod.insertRow();
+            int intTipModDoc;
+            intTipModDoc=canTipoModificacion();
+            switch(intTipModDoc){
+                case 0://esto lo coloque en caso que el registro no se encuentre en tbr_tipDocUsr porque devuelve 0 la función.
+                    if(objParSis.getCodigoUsuario()!=1){
+                        if(    (objTooBar.getEstado()=='x')  ||  (objTooBar.getEstado()=='m')   ){//modificar
+                            dtpFecDoc.setEnabled(false);
+                            txtNumDoc1.setEditable(false);
+                            txtNumDoc1.setBackground(new java.awt.Color(255, 255, 255));
+                            txaObs1.setEditable(false);
+                            txaObs2.setEditable(false);
+                            objAsiDia.setEditable(false);
+                            objTblMod.setModoOperacion(objTblMod.INT_TBL_NO_EDI);
+                            if(   (objTooBar.getOperacionSeleccionada().equals("i")) || (objTooBar.getOperacionSeleccionada().equals("f"))  ||  (objTooBar.getOperacionSeleccionada().equals("a"))  || (objTooBar.getOperacionSeleccionada().equals("s"))    ){
+                            }
+                            else{
+                                String strMsj="";
+                                strMsj+="<HTML>EL documento no se puede modificar por las siguientes razones:";
+                                strMsj+="<BR>      Ud no cuenta con el permiso adecuado para trabajar con este documento.";
+                                strMsj+="<BR>      Por el momento está trabajando con el Tipo de Documento predeterminado.";
+                                strMsj+="<BR>      Solicite a su Administrador del Sistema le conceda los permisos adecuados.";
+                                strMsj+="<BR>      Mientras no los solicite, ud no podrá hacerle cambios al documento.";
+                                strMsj+="</HTML>";
+                                mostrarMsgInf(strMsj);
+                            }
+                        }
+                    }
+                    break;
+                case 1://no puede modificar nada, incluyendo fecha del documento
+                    if(    (objTooBar.getEstado()=='x')  ||  (objTooBar.getEstado()=='m')   ){//modificar
+                        dtpFecDoc.setEnabled(false);
+                        txtNumDoc1.setEditable(false);
+                        txtNumDoc1.setBackground(new java.awt.Color(255, 255, 255));
+                        txaObs1.setEditable(false);
+                        txaObs2.setEditable(false);
+                        objAsiDia.setEditable(false);
+                        objTblMod.setModoOperacion(objTblMod.INT_TBL_NO_EDI);
+                        if(   (objTooBar.getOperacionSeleccionada().equals("i")) || (objTooBar.getOperacionSeleccionada().equals("f"))  ||  (objTooBar.getOperacionSeleccionada().equals("a"))  || (objTooBar.getOperacionSeleccionada().equals("s"))    ){
+                        }
+                        else
+                            mostrarMsgInf("<HTML>Ud. no cuenta con ningún tipo de permiso para Modificar.<BR>.Solicite a su Adminsitrador del Sistema dicho permiso y vuelva a intentarlo.</HTML>");
+                    }
+                    
+                    break;
+                case 2://modificación parcial la modificación de la fecha dependerá de si se cuenta con este permiso
+                    if(    (objTooBar.getEstado()=='x')  ||  (objTooBar.getEstado()=='m')   ){//modificar
+                        if( ! strEstImpDoc.equals("S")){//si el documento no está impreso se puede modificar, la modif. de fecha depende de tbr_tipDocUsr.ne_tipresmodfecdoc
+                            dtpFecDoc.setEnabled(true);
+                            objTblMod.setModoOperacion(objTblMod.INT_TBL_EDI);
+                        }
+                        else{//si el documento está impreso no se permite modificar
+                            dtpFecDoc.setEnabled(false);
+                            dtpFecDoc.setEnabled(false);
+                            txtNumDoc1.setEditable(false);
+                            txtNumDoc1.setBackground(new java.awt.Color(255, 255, 255));
+                            txaObs1.setEditable(false);
+                            txaObs2.setEditable(false);
+                            objAsiDia.setEditable(false);
+                            objTblMod.setModoOperacion(objTblMod.INT_TBL_NO_EDI);
+                            if(   (objTooBar.getOperacionSeleccionada().equals("i")) || (objTooBar.getOperacionSeleccionada().equals("f"))  ||  (objTooBar.getOperacionSeleccionada().equals("a"))  || (objTooBar.getOperacionSeleccionada().equals("s"))    ){
+                            }
+                            else
+                                mostrarMsgInf("<HTML>El documento consultado no se puede modificar porque ya está impreso.</HTML>");
+                        }
+                    }
+                    break;
+                case 3://modificación completa, la modificación de la fecha dependerá de si se cuenta con este permiso
+                    dtpFecDoc.setEnabled(true);
+                    break;
+                default:
+                    break;
+            }
+
+            //si se puede o no modificar(cambiar) la cuenta
+            String strEstValApl="";
+            int intExiValApl=0;
+            for(int i=0;i<objTblMod.getRowCountTrue(); i++){
+                strEstValApl=objTblMod.getValueAt(i, INT_TBL_DAT_EST_VAL_APL)==null?"":objTblMod.getValueAt(i, INT_TBL_DAT_EST_VAL_APL).toString();
+                if(strEstValApl.equals("S")){
+                    intExiValApl++;
+                    break;
+                }
+            }
+            if(intExiValApl>0){
+                txtCodCta.setEditable(false);
+                txtDesCorCta.setEditable(false);
+                txtDesLarCta.setEditable(false);
+                butCta.setEnabled(false);
+            }
+            else{
+                txtCodCta.setEditable(true);
+                txtDesCorCta.setEditable(true);
+                txtDesLarCta.setEditable(true);
+                butCta.setEnabled(true);
+            }
+
+            objTooBar.setOperacionSeleccionada("n");
+        }
+        catch (Exception e){
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        return blnRes;
+    }
+
+
+
+
+    private boolean isAplicado(){
+        Connection conChaDat;
+        Statement stmChaDat;
+        ResultSet rstChaDat;
+        boolean blnRes=false;
+        try{
+            conChaDat=DriverManager.getConnection(objParSis.getStringConexion(), objParSis.getUsuarioBaseDatos(), objParSis.getClaveBaseDatos());
+            if(conChaDat!=null){
+                stmChaDat=conChaDat.createStatement();
+                strSQL="";
+                strSQL+=" SELECT st_valApl";
+                strSQL+=" FROM tbm_cabPag AS a1 INNER JOIN tbm_depCliRegDirBanPag AS A2";
+                strSQL+=" ON a1.co_emp=a2.co_emp AND a1.co_loc=a2.co_loc AND a1.co_tipDoc=a2.co_tipDoc AND a1.co_doc=a2.co_doc";
+                strSQL+=" WHERE a1.co_emp=" + objParSis.getCodigoEmpresa() + "";
+                strSQL+=" AND a1.co_loc=" + objParSis.getCodigoLocal() + "";
+                strSQL+=" AND a1.co_tipDoc=" + txtCodTipDoc.getText() + "";
+                strSQL+=" AND a1.co_doc=" + txtCodDoc.getText() + "";
+                strSQL+=" AND a1.st_reg NOT IN('I','E')";
+                strSQL+=" AND a2.st_reg NOT IN('I','E')";
+                strSQL+=" AND a2.st_valApl='S'";
+                rstChaDat=stmChaDat.executeQuery(strSQL);
+                if(rstChaDat.next()){
+                    blnRes=true;
+                }
+                stmChaDat.close();
+                stmChaDat=null;
+                rstChaDat.close();
+                rstChaDat=null;
+                conChaDat.close();
+                conChaDat=null;
+            }
+        }
+        catch (java.sql.SQLException e){
+            objUti.mostrarMsgErr_F1(this, e);
+            blnRes=true;
+        }
+        catch (Exception e){
+            objUti.mostrarMsgErr_F1(this, e);
+            blnRes=true;
+        }
+        return blnRes;
+
+    }
+    
+}

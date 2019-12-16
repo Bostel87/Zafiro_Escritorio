@@ -1,0 +1,166 @@
+PASO 1:
+-------
+Importar la clase.
+	import Librerias.ZafVenCon.ZafVenCon;
+
+PASO 2:
+-------
+Crear un objeto del tipo ZafVenCon.
+	private ZafVenCon objVenCon;
+
+PASO 3:
+-------
+Inicializar el objeto.
+Se recomienda crear una función que se encargue de la configuración del objeto.
+
+
+    EJEMPLO 1:
+    ----------
+    private boolean configurarVenConTipDoc()
+    {
+        boolean blnRes=true;
+        try
+        {
+            //Listado de campos.
+            ArrayList arlCam=new ArrayList();
+            arlCam.add("a1.co_tipdoc");
+            arlCam.add("a1.tx_desCor");
+            arlCam.add("a1.tx_desLar");
+            arlCam.add("a1.ne_ultDoc");
+            //Alias de los campos.
+            ArrayList arlAli=new ArrayList();
+            arlAli.add("Código");
+            arlAli.add("Tip.Doc.");
+            arlAli.add("Tipo de documento");
+            arlAli.add("Ult.Doc.");
+            //Ancho de las columnas.
+            ArrayList arlAncCol=new ArrayList();
+            arlAncCol.add("50");
+            arlAncCol.add("80");
+            arlAncCol.add("334");
+            arlAncCol.add("80");
+            //Armar la sentencia SQL.
+            strSQL="";
+            strSQL+="SELECT a1.co_tipdoc, a1.tx_desCor, a1.tx_desLar, a1.ne_ultDoc";
+            strSQL+=" FROM tbm_cabTipDoc AS a1";
+            strSQL+=" WHERE a1.co_emp=" + objParSis.getCodigoEmpresa();
+            strSQL+=" AND a1.co_loc=" + objParSis.getCodigoLocal();
+            //Ocultar columnas.
+            int intColOcu[]=new int[2];
+            intColOcu[0]=1;
+            intColOcu[1]=3;
+            objVenCon=new ZafVenCon(javax.swing.JOptionPane.getFrameForComponent(this), objParSis, "Listado de tipos de documentos", strSQL, arlCam, arlAli, arlAncCol, intColOcu);
+            arlCam=null;
+            arlAli=null;
+            arlAncCol=null;
+            intColOcu=null;
+            //Configurar columnas.
+            objVenCon.setConfiguracionColumna(1, javax.swing.JLabel.CENTER);
+//            objVenCon.setConfiguracionColumna(1, javax.swing.JLabel.RIGHT, objVenCon.INT_FOR_NUM, objParSis.getFormatoNumero(),false,true);
+        }
+        catch (Exception e)
+        {
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        return blnRes;
+    }
+
+
+    EJEMPLO 2:
+    ----------
+    private boolean configurarVenConTipDoc()
+    {
+        boolean blnRes=true;
+        try
+        {
+            //Listado de campos.
+            ArrayList arlCam=new ArrayList();
+            arlCam.add("a1.co_tipdoc");
+            arlCam.add("a1.tx_desCor");
+            arlCam.add("a1.tx_desLar");
+            arlCam.add("a1.ne_ultDoc");
+            //Alias de los campos.
+            ArrayList arlAli=new ArrayList();
+            arlAli.add("Código");
+            arlAli.add("Tip.Doc.");
+            arlAli.add("Tipo de documento");
+            arlAli.add("Ult.Doc.");
+            //Ancho de las columnas.
+            ArrayList arlAncCol=new ArrayList();
+            arlAncCol.add("50");
+            arlAncCol.add("80");
+            arlAncCol.add("334");
+            arlAncCol.add("80");
+            //Armar la sentencia SQL.
+            strSQL="";
+            strSQL+="SELECT a1.co_tipdoc, a1.tx_desCor, a1.tx_desLar, a1.ne_ultDoc";
+            strSQL+=" FROM tbm_cabTipDoc AS a1";
+            strSQL+=" WHERE a1.co_emp=" + objParSis.getCodigoEmpresa();
+            strSQL+=" AND a1.co_loc=" + objParSis.getCodigoLocal();
+            objVenCon=new ZafVenCon(javax.swing.JOptionPane.getFrameForComponent(this), objParSis, "Listado de tipos de documentos", strSQL, arlCam, arlAli, arlAncCol);
+            arlCam=null;
+            arlAli=null;
+            arlAncCol=null;
+            //Ocultar columnas.
+            int intColOcu[]=new int[1];
+            intColOcu[0]=3;
+            objVenCon.setColumnasOcultas(intColOcu);
+            intColOcu=null;
+            //Configurar columnas.
+            objVenCon.setConfiguracionColumna(0, javax.swing.JLabel.CENTER);
+//            objVenCon.setConfiguracionColumna(0, javax.swing.JLabel.RIGHT, objVenCon.INT_FOR_NUM, objParSis.getFormatoNumero(),false,true);
+        }
+        catch (Exception e)
+        {
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        return blnRes;
+    }
+
+Nota.- Se debe llamar a ésta función en "formInternalFrameOpened()" porque mientras no se carga el JInternalFrame
+completo el método "javax.swing.JOptionPane.getFrameForComponent(this)" no trabaja bien.
+
+PASO 4:
+-------
+Utilizar el objeto para consultar.
+
+        //Mostrar ventana de consulta.
+        objVenCon.show();
+        if (objVenCon.getSelectedButton()==objVenCon.INT_BUT_ACE)
+        {
+            System.out.println("" + objVenCon.getValueAt(1));
+            System.out.println("" + objVenCon.getValueAt(2));
+            System.out.println("" + objVenCon.getValueAt(3));
+            System.out.println("" + objVenCon.getValueAt(4));
+        }
+
+
+        //Búsqueda directa.
+        if (objVenCon.buscar("a1.tx_desCor", txtDesCorTipDoc.getText()))
+        {
+            System.out.println("" + objVenCon.getValueAt(1));
+            System.out.println("" + objVenCon.getValueAt(2));
+            System.out.println("" + objVenCon.getValueAt(3));
+            System.out.println("" + objVenCon.getValueAt(4));
+        }
+        else
+        {
+            System.out.println("No se encontró el valor...");
+            objVenCon.setCampoBusqueda(1);
+            objVenCon.setCriterio1(7);
+            objVenCon.setValorCriterio1("A");
+            objVenCon.setOperador(objVenCon.INT_OPE_O);
+            objVenCon.setCriterio2(7);
+            objVenCon.setValorCriterio2("B");
+            objVenCon.cargarDatos();
+            objVenCon.show();
+            if (objVenCon.getSelectedButton()==objVenCon.INT_BUT_ACE)
+            {
+                System.out.println("" + objVenCon.getValueAt(1));
+                System.out.println("" + objVenCon.getValueAt(2));
+                System.out.println("" + objVenCon.getValueAt(3));
+                System.out.println("" + objVenCon.getValueAt(4));
+            }
+        }

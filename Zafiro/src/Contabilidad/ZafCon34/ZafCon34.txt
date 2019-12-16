@@ -1,0 +1,66 @@
+realizado por Ingrid
+--------------------
+v0
+Se pasa el programa a revisián
+--------------------------
+v0.1 - 06/Jun/2007 - 12h50
+Se adicioná el tátulo de la ventana y el tátulo del programa
+--------------------------
+v0.2 - 11/Jun/2007 - 10h34
+Se ocultá la columna de cádigo de cuenta "INT_TBL_PLA_CTA_COD_CTA"
+----------------------------
+v0.2.1 - 17/Jul/2007 - 09h55
+Se adicioná que al dar click en aceptar por medio del modo MODIFICAR, salte al tab de datos tabFrm.setSelectedIndex(1); y cuando se cancele salte
+al tab de filtro tabFrm.setSelectedIndex(0);
+----------------------------
+v0.2.3 - 23/Ago/2007 - 11h17
+Se adicioná en el filtro de la funcián generaNumColChk() la tabla de tbr_usrEmp para que las columnas q se generan sean sálo de acuerdo a usuarios por empresa.
+----------------------------
+v0.2.4 - 23/Ago/2007 - 13h14
+Se adicioná listener para que al momento de dar un click sobre la cabecera de la tabla en la columna de seleccián(checked) se seleccionen todos o viceversa.
+Se adicioná la funcián tblEmpMouseClicked() y la clase ZafMouMotAda() átiles para el listener de la lánea 1145
+        tblDatPlaCta.getTableHeader().addMouseMotionListener(new ZafMouMotAda());
+        //Configurar JTable: Establecer los listener para el TableHeader.
+        tblDatPlaCta.getTableHeader().addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblEmpMouseClicked(evt);
+            }
+        });
+
+
+v0.2.5 - 18/Sep/2007 - 10h39
+-------
+Se corrigiá problema al momento de modificar, se estaba duplicando registros
+
+
+v0.3b1 - 27/Sep/2007 - 10h43
+-------
+        *- Se incluyá la presentacián de cuentas de cabecera y su seleccián.
+        *- Se adicioná al Editor del check que si se marca una cuenta de cabecera, se seleccionen sus cuentas de detalle y 
+           viceversa(si se desmarca una cuenta de cabecera se desmarquen sus cuentas de detalle)
+
+v0.3 - 10/Oct/2007 - 09h01
+-------
+Pase a produccián
+
+v0.4 - 16/Ene/2008 - 10h00
+-------
+Se cambiá el filtro en funcián cargarPlaCta(), solo se toma en cuenta la tabla tbm_plaCta y no las otras porque si no han sido ingresado datos,
+no se va a obtener todo el plan de cuentas.
+
+v0.4.1 - 26/Ene/2009 - 09h48
+-------
+-Se cambio el objeto de busqueda a la funcion que carga las columnas dinamicas de usuarios porq generaba un multicaster.
+ También se cambio en la función q inserta q dentro del for no se actualice sino que se mande un solo bloque.
+
+v0.4.3 - 17/Feb/2009 - 08h55
+-------
+Se cambió en eliminar los registros la variable q contiene el codigo de usuario, porq no estaba cogiendo el codigo de usuario sino el del grupo.
+
+v0.4.4 - 28/May/2010 - 16h45
+----
+Se adicionó filtro de usuarios además del filtro de grupo de usuarios
+
+v0.4.5 - 22/Dic/2010 - 12h16
+----
+El numero de columnas que se cargan en configurarForm() se coloca en una variable, esta se la inicializa en configurarForm() con el numero de columnas estaticas.

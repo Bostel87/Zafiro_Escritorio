@@ -1,0 +1,24 @@
+﻿
+CONTROL DE VERSIONES:
+=====================
+
+
+v1.0: (Roberto Flores- 10/01/2012)
+----
+Clase nueva
+
+v1.01: (Roberto Flores- 10/01/2012)
+----
+Corrección de query y proceso por cambios en tabla tbm_traemp
+
+v1.02: (Roberto Flores- 31/07/2013)
+----
+Se adiciona columna fecha de inicio de contrato
+
+v1.03: (Roberto Flores- 15/11/2013)
+----
+Se adiciona columna que contiene el estado del empleado (ACTIVO , INACTIVO)
+
+v1.04: (Roberto Flores- 21/11/2013)
+----
+Se realiza corrección en query a nivel de GRUPO.

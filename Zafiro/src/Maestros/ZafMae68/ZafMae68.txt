@@ -1,0 +1,7 @@
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Ingrid Lino - 15/Jul/2016)
+---
+Clase nueva para crear Grupos de Clientes por Actividad económica

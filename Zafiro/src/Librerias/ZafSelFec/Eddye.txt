@@ -1,0 +1,31 @@
+Pendientes:
+1) validar la fecha en los ZafDatePicker sea valida al aumentar/disminuir el año en el JSpinner.
+   Por ejemplo: Si la fecha en uno de los ZafDatePicker es "29/02/2004" y se aumenta el año en el
+   JSpinner se debería presentar "28/02/2005" en vez de "29/02/2005".
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 07/Abr/2007)
+----
+Clase nueva.
+
+
+v0.2: (Eddye Lino - 09/Nov/2009)
+-----
+Se modificó el método: 
+   1) configurarFrm()
+En dicho método se modificó el código para agrandar el ancho de los DatePicker porque en Linux
+la letra era más grande que en Windows y no se podía ver toda la fecha.
+
+
+v0.3: (Eddye Lino - 17/May/2010)
+-----
+Se agregó los métodos: 
+   1) isFlechaIzquierdaSeleccionada()
+   2) setFlechaIzquierdaSeleccionada(boolean seleccionada)
+   3) isFlechaDerechaSeleccionada()
+   4) setFlechaDerechaSeleccionada(boolean seleccionada)
+
+

@@ -1,0 +1,12 @@
+
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Jose Salazar - 13/Feb/2006)
+----
+Este reporte muestra los movimientos de las cuentas de detalle entre un periodo de tiempo 
+
+v0.2: (Rosa Zambrano - 30/Ago/2019)
+----
+Se realizan cambios para Jaspersoft Studio.

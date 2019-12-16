@@ -1,0 +1,18 @@
+Pendientes:
+1) 
+2) 
+3) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 02/Mar/2012)
+----
+Clase nueva
+
+
+v0.2: (Eddye Lino - 16/Mar/2012)
+----
+Se corrigió el método: 
+    1) cargarDetReg()
+Se contempló el caso de cotizaciones donde un mismo item aparece varias veces.

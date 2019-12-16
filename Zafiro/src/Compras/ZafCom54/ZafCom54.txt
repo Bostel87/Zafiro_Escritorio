@@ -1,0 +1,29 @@
+﻿Pendientes:
+1) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Javier Ayapata - 31/Ago/2009)
+----
+Se crea clase para poder hacer la recepción de guias de remisión.
+
+v0.2: (Javier Ayapata - 17/Dic/2009)
+----
+Se agrega columna para donde muestra el documento que origino la guia.
+
+v0.3: (Erik Flores - 18/Oct/2012)
+----
+Se agrega columna para registrar vehículo en que se movilizo la mercadería.
+
+v0.4: (Erik Flores - 19/Oct/2012)
+----
+Correcciones Varias.
+
+v0.5: (Erik Flores - 22/Oct/2012)
+----
+Se modifica para que asigne automaticamente el visto a las guias seleccionadas cuando detecte un cambio en la celda. 
+
+v0.6: (Rosa Zambrano - 30/Ago/2019)
+----
+Se realizan cambios para Jaspersoft Studio.

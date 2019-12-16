@@ -1,0 +1,15 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (José Marín - 16/Oct/2013)
+----
+Clase nueva
+
+v0.1.1: (José Marín - 16/Oct/2013)
+----
+Se agrego una validación en la modificación
+  

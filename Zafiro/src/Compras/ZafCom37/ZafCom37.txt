@@ -1,0 +1,53 @@
+Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1.1: (Ingrid Lino - 16/Ago/2010)
+----
+Nuevo programa que presenta los conteos realizados a los items.
+
+
+v0.1.2: (Ingrid Lino - 16/Ago/2010)
+-----
+Se adicionaron columnas en la tabla, la última ingresada es "cantidad sobrante".
+
+
+v0.1.4: (Ingrid Lino - 12/Jul/2011)
+-----
+Se adicionó el stock físico de inventario para items no contados. Se adicionó en el query para cuando se presentaban items no contados, el filtro de items desde-hasta.
+
+
+v0.1.5: (Ingrid Lino - 23/Sep/2011)
+-----
+Se cambia al nuevo esquema de Ordenes de despacho, ahora salen documentos pendientes en base a Ordenes de despacho y no de guias de remision.
+
+
+v0.1.6: (Ingrid Lino - 17/Abr/2012)
+-----
+Se adiciona en el filtro de la bodega la tabla tbr_bodLocPrgUsr.
+
+
+v0.1.7: (Rosa Zambrano - 18/Dic/2015)
+-----
+Se adicionan las columnas de Cod.Let.Itm., Ubicación, Can.Con.Bue.Est y Can.Con.Mal.Est en el reporte.
+Se elimina la columna Can.Con., en vez de esta columna se agrega Can.Con.Bue.Est y Can.Con.Mal.Est
+Se agrega en el query de la función cargarConReaUsuFec() los campos nd_canBueEst, nd_canMalEst y tx_codAlt2
+Se agrega en la función generaColumnasAdicionarConteo() las columnas Can.Con.Bue.Est. y Can.Con.Mal.Est.
+
+
+v0.1.8: (Rosa Zambrano - 19/Sep/2016)
+-----
+Se agrega búsqueda por código de 3 letras.
+
+
+v0.1.9: (Rosa Zambrano - 13/Dic/2016)
+-----
+Se realizan cambios para el proyecto de conteos de inventario, adaptandolo al nuevo esquema de inventario, solicitado por LSC.
+
+
+v0.2: (Rosa Zambrano - 11/May/2018)
+-----
+Se realizan mejoras.

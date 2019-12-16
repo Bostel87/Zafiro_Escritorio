@@ -1,0 +1,20 @@
+Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (José Marín - 19/Ago/2013)
+----
+Clase nueva.
+
+
+v0.2: (Rosa Zambrano - 25/May/2017)
+-----
+Se modifica la función cargarDetReg().
+
+
+v0.3: (José Marín - 25/May/2017)
+-----
+Se crea tabla historica, para controlar las modificaciones a cada vehiculo.

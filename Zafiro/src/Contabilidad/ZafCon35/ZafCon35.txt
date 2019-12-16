@@ -1,0 +1,30 @@
+Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Ingrid Lino - 17/Nov/2008)
+----
+Programa nuevo que presenta FACVEN, DEVVEN y N/C anulados(clientes).
+
+v0.2: (Ingrid Lino - 09/Jul/2010)
+----
+Se adicionaron columnas a la tabla, se cambió el query y se adicionó la opción de exportar a excel.
+
+v0.2.1: (Ingrid Lino - 20/Jun/2011)
+----
+Se cambia formato de datos en formulario y en archivo .xml. Se adicionó código para reporte en xls para linux.
+
+v0.2.2: (Ingrid Lino - 08/Ene/2015)
+----
+Se agregan tipos de documentos FACVENE(228) y DEVVENE(229)
+
+v0.2.3: (Dennis Betancourt - 11/May/2015)
+----
+En el query que trae el listado, se cambio la manera de traer el campo "Num. Aut." porque ahora, si el CodTipDoc = 230 (RFP1E), 228 (FACVENE) o 229 (DEVVENE), se va a buscar el numero de autorizacion en la tabla tbm_cabpag o tbm_cabmovinv segun el CodTipDoc. Si es diferente a 230, va a seguir buscando en tbm_datAutSri.
+
+v0.2.4: (Dennis Betancourt - 09/Feb/2017)
+----
+Al presentar el listado, se quito el guion al numero de serie que se presenta en la col. "Num.Ser.".

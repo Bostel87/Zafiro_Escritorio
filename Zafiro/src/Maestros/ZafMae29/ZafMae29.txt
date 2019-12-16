@@ -1,0 +1,12 @@
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Ingrid Lino - 26/Ene/2009)
+----
+Se creo clase para permisos de reportes de sistema por programa
+
+
+v0.2: (Rosa Zambrano - 10/Jun/2015)
+-----
+Se modifica consultarReg() debido a cambios a la nueva version de postgres 9.4

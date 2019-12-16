@@ -1,0 +1,173 @@
+﻿ ﻿Pendientes:
+1) Cada vez que se cambie el Sueldo Básico Unificado en el país, se debe actualizar la variable dblSueBas en la libreria ZafRecHumPar.
+
+﻿CONTROL DE VERSIONES:
+=====================
+
+v1.0: (Roberto Flores - 02/Jul/2012)
+----
+Clase nueva para el manejo de Roles de Pago.
+
+
+v1.08: (Roberto Flores - 11/Dic/2012)
+-----
+Se realizan cambios para el manejo de esquema: roles de pago, bono y movilización.
+
+
+v1.08: (Roberto Flores - 29/Abr/2013)
+-----
+Validaciones para mostrar en el reporte los días laborados y el sueldo de afiliación del empleado..
+
+
+v1.12: (Roberto Flores - 02/Abr/2013)
+-----
+Validaciones para uso de mismo reporte impresión de roles masivos y impresión de roles por empleado y rango de impresión...
+
+
+v1.13: (Roberto Flores - 14/Ago/2013)
+-----
+Se adiciona cuadro de dialogo para que el usuario elija el directorio donde se guardara el archivo que se genera para CM...
+
+
+v1.14: (Roberto Flores - 21/Ago/2013)
+-----
+Se realiza validación para que el usuario después de consultar se pueda mover entre los registros de la tabla...
+
+
+v1.15: (Roberto Flores - 30/Ago/2013)
+-----
+Se redondea los valores provisionados a 2 decimales (anteriormente se guardaban 6 decimales)
+
+
+v1.16: (Roberto Flores - 01/Oct/2013)
+-----
+Se realiza cambio para que al insertar el asiento de diario de roles quede como un predocumento.
+
+
+v1.17: (Roberto Flores - 10/Oct/2013)
+-----
+Se realiza:
+    Se aumenta botón para poder exportar el rol que se está visualizando. Solicitado por: Ing. Juan Rodas.
+    Se valida para mostrar solo los empleados que reciben Bono y Movilización. Solicitado por: Ing. Fernando Ruiz , Ing. Juan Rodas.
+    Se valida para que no permita guardar el rol de pagos si existen valores negativos en los totales a recibir de los empleados.
+    Se realizan validaciones para no permitir el guardado del rol de pagos si RRHH no ha realizado las revisiones para los períodos correspondientes.
+
+
+v1.18: (Roberto Flores - 19/Dic/2013)
+-----
+Se realiza corrección para setear nd_sue de bono y movilización de manera correcta en tbm_bensocmentra.
+
+
+v1.19: (Roberto Flores - 15/Ene/2014)
+-----
+tbm_ingegrmentra.st_rolpaggen ya no se setea a 'S' en este programa. Ahora se lo realiza en Autorización de roles de pago y envio de correo para proceso de registro de rol.
+
+
+v1.20: (Roberto Flores - 27/Ene/2014)
+-----
+Se realiza corrección al momento de hacer envio correo cuando área contable inserta el rol, se verififica si existe periodo y se crea método setearFechaDocumento()
+para validar que el rol sea registrado con el último día del mes (sólo si es rol de pagos).
+
+
+v1.21: (Roberto Flores - 13/Feb/2014)
+----
+Se aumentan columnas de totales al inicio (al lado de la columna EMPLEADO). Solicitado: Ing. Fernando Ruiz.
+
+
+v1.22: (Roberto Flores - 26/Feb/2014)
+-----
+Cambios relacionados a nuevo tipos de documentos PREFUN y REEMOV (REEGAS).
+
+
+v1.23: (Roberto Flores - 06/Mar/2014)
+-----
+Se aumenta campo que contiene la cédula del empleado para facilitar a RRHH la declaración de horas extras al IESS.
+
+
+v1.24: (Roberto Flores - 31/Mar/2014)
+-----
+Se realiza mejora en query al momento de obtener los empleados a ser considerados en rol de pagos.
+
+
+v1.25: (David Albuja - 16/Jun/2014)
+-----
+Se realizan validaciones para mostrar correctamente el periodo y mes de la última quincena al momento de presionar NUEVO.
+
+
+v1.26: (David Albuja - 17/Jun/2014)
+-----
+Corrección de error al coger las columnas de SUELDO, HE1, HE2. Para el cálculo de asiento de provisiones del fondo de reserva.
+
+
+v1.27: (Rosa Zambrano - 14/Ene/2016)
+-----
+Se actualiza la variable dblSBU con el sueldo básico unificado del año 2016 que es de $366  en ZafRecHum37.java.
+Se actualiza el valor de 318 (SBU) por el sueldo básico unificado del año 2016 que es de $366  en cada uno de los archivos XML.
+
+
+v1.28: (Rosa Zambrano - 28/Ene/2016)
+-----
+Mensualización Décimos: DTS, DCS.
+Se agrega valor de comisiones entre los valores de ingresos para calcular la base de remuneración. 
+Las funciones utilizadas para agregar el valor de comision son las siguientes: 
+  1) generaDetalleProvisiones()
+  2) generaAsientoProvisiones()
+  3) cargarRolPer()
+  4) generaAsiento()
+  5) insertarDetalleProvisiones()
+
+
+v1.29: (Rosa Zambrano - 29/Ene/2016)
+-----
+Se envia al asiento de provisiones los rubros de DTS y DCS.
+
+
+v1.30: (Rosa Zambrano - 30/Ene/2016)
+-----
+Se realiza validación para PREFUN y REEMOV para que no agregue valor de comisión al momento de calcular base de remuneración.
+
+
+v1.31: (Rosa Zambrano - 11/Feb/2016)
+-----
+Se realiza implementación de la nueva libreria ZafRecHumPar para obtener:
+  1) Sueldo basico unificado.
+  2) Porcentaje Aporte Patronal
+  3) Porcentaje Fondos de Reserva.
+
+
+v1.32: (Rosa Zambrano - 22/Feb/2016)
+-----
+Se realiza implementación de la nueva libreria ZafRecHumPar para calcular Aporte Patronal en el Asiento Diario de Provisiones.
+Se realiza corrección de diferencias de centavos en los asientos de diario de provisiones.
+Se agrega validación al momento de escoger las cuentas para realizar el asiento de diario de provisiones en Cosenco.
+Se agrega visualización del detalle de provisiones al momento de consultar.
+
+
+v1.33: (Rosa Zambrano - 30/Mar/2016)
+-----
+Se agrega validación para mostrar el detalle de provisiones solo cuando el código de menu sea 3138 - Rol de Pagos, ya que se esta utilizando esta clase en Autorizaciones de Rol de Pago.
+
+
+v1.34: (Rosa Zambrano - 24/May/2016)
+-----
+Se realizan algunas mejoras en el código.
+
+
+v1.35: (Tony Sanginez - 13/Jun/2016)
+-----
+Se resuelve error que daba al momento de consultar la pantalla respecto al orden en donde se agregaba a los vectores.
+
+
+v1.36: (Christian Mateo - 28/Mar/2018)
+-----
+Se corrige el error del TableHeader que sale al momento de insertar en pantalla en Rol de pagos.
+
+
+v1.37: (Rosa Zambrano - 30/Jul/2019)
+-----
+Se cambia en la clase enviarCorEle, el envio de correos para que utilice la libreria ZafNotCorEle.
+
+
+v1.40: (Rosa Zambrano - 31/Jul/2019)
+-----
+Se realizan cambios en el envio de correos, para que muestre la versión del programa.

@@ -1,0 +1,18 @@
+realizado por Ingrid
+--------------------
+v0
+Se pasa el programa a revisión
+--------------------------
+v0.1 - 30/Jul/2007 - 10h16
+Nuevo programa que permite agrupar cuentas en los grupos q ya se habian  creado. Esta configuración servirá para presentar la 
+información en el presupuesto general
+
+v0.1.1 - 03/Sep/2007 - 13h47
+-----
+Se agregó a la cabecera del checkbox el evento del mouse click para que cuando se de click, se seleccionen todos los registros q sean de detalle
+
+v0.1.2b1 - 21/Sep/2007 - 11h21
+-----
+Se cambió el esquema de agrupar cuentas:
+    *Antes se permitian seleccionar solo cuentas de detalle y no de mayor
+    *Ahora se permiten seleccionar las cuentas indistintamente

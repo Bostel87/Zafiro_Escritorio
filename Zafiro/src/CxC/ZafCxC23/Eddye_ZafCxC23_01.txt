@@ -1,0 +1,54 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 17/Abr/2007)
+----
+Clase nueva.
+
+
+v0.2: (Eddye Lino - 19/Abr/2007)
+-----
+Se cambió el valor del campo "st_regRep" de "I" a "M" en la función "insertarDet()".
+
+
+v0.3: (Eddye Lino - 11/Jul/2007)
+-----
+Se cambió el query para que el ordenamiento del JTable se realice por el campo "tx_des".
+Se mejoró el manejo de las casillas de verificación en el JTable.
+
+
+v0.4: (Eddye Lino - 13/Ago/2007)
+-----
+Se agregó la función "actualizarForPagPreCli()".
+
+
+v0.5: (Eddye Lino - 21/Feb/2008)
+-----
+Se agregó código para hacer que al dar click en el botón cerrar del JDialog no se cerrara.
+Para que se cerrara el JDialog se agregó:
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                exitForm(evt);
+            }
+        });
+        private void exitForm(java.awt.event.WindowEvent evt) {
+            intOpcSelDlg=0;
+            dispose();
+        }
+
+
+v0.6: (Eddye Lino - 04/Feb/2010)
+----
+Se modificaron los métodos: 
+   1) ZafCxC23_01(java.awt.Frame parent, boolean modal, ZafParSis obj, boolean blnHabButAce)
+Se agregó parámetro al constructor para poder habilitar/inhabilitar el botón "Aceptar".
+
+
+v0.7: (Rosa Zambrano - 27/Nov/2015)
+----
+Se agrega la funcionalidad de ordenamiento y búsqueda en el listado de formas de pago.

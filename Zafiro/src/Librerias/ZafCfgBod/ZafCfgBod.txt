@@ -1,0 +1,6 @@
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Ingrid Lino  - 07/Oct/2016)
+----
+Se cambia código para que trabaje con nueva tabla de configuración de bodegas tbm_cfgBod

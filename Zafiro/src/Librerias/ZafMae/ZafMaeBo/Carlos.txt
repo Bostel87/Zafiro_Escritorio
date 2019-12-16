@@ -1,0 +1,34 @@
+
+CONTROL DE VERSIONES:
+=====================
+
+Tbm_regBO v1.0: (Carlos Lainez- 13/05/2011)
+----
+Objeto se encarga de manejar las transacciones del bean ZafMae63Bean a la Base de Datos en un marco de conexión.
+
+
+Tbm_tipdocdigsisBO v1.0: (Carlos Lainez- 18/05/2011)
+----
+Objeto se encarga de manejar las transacciones a la Base de Datos en un marco de conexión.
+Por el momento esta siendo usado por el bean ZafRecHum03Bean
+
+
+Tbm_docdigsisBO v1.0: (Carlos Lainez- 24/05/2011)
+----
+Objeto se encarga de manejar las transacciones del bean ZafMae64Bean a la Base de Datos en un marco de conexión.
+
+
+Tbm_empBO v1.0: (Carlos Lainez- 23/06/2011)
+---
+Objeto se encarga de manejar las transacciones a la Base de Datos en un marco de conexión.
+Por el momento esta siendo usado por el bean ZafRecHum05Bean
+
+Tbm_ciuBO v1.0: (Roberto Flores - 24/10/2011)
+---
+Objeto se encarga de manejar las transacciones a la Base de Datos en un marco de conexión.
+Por el momento esta siendo usado por el bean ZafRecHum03Bean
+
+Tbm_varBO v1.0: (Roberto Flores - 24/10/2011)
+---
+Objeto se encarga de manejar las transacciones a la Base de Datos en un marco de conexión.
+Por el momento esta siendo usado por el bean ZafRecHum03Bean

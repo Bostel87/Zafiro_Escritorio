@@ -1,0 +1,75 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 02/Jul/2006)
+----
+Se agregó código para que se seleccionara el texto del cuadro de texto de usuario al obtener el foco.
+
+
+v0.2: (Eddye Lino - 22/Oct/2006)
+-----
+Se cambió el código para que grabe en: DirectorioSistema + "/config/ZafUsrSis.properties".
+
+
+v0.3: (Eddye Lino - 27/Ago/2008)
+----
+Se agregó código para que se valide caducidad de claves. Es decir, desde ésta actualización verifica
+si la clave es aún válida. Si ya no es válida solicita el cambio de la misma antes de poder ingresar
+al Sistema.
+
+
+v0.4: (Eddye Lino - 23/Jun/2009)
+----
+Se agregaron los métodos: 
+   1) getCodUsr()
+   2) cargarLoc()
+Se modificaron los métodos: 
+   1) configurarFrm()
+En dichos métodos se hizo cambios para que el JComboBox muestre los locales de acuerdo al usuario.
+Es decir, que se utilice la tabla "tbr_locUsr".
+
+
+v0.5: (Eddye Lino - 27/Ago/2009)
+----
+Se aumentó el ancho del JFrame porque no se alcanzaba a ver todo el nombre del local. 
+
+
+v0.6: (Eddye Lino - 26/Oct/2009)
+----
+Se modificó el método: 
+   1) getCodUsr()
+En dicho método se agregó la siguiente línea:
+    objParSis.setTipGrpClaInvPreUsr(rst.getString("tx_tipGrpClaInvPre").charAt(0));
+Esta línea sirve para determinar el "Tipo de grupo de clasificación predeterminado del usuario".
+
+
+v0.7: (Eddye Lino - 12/Oct/2011)
+----
+Se modificó los métodos: 
+   1) butAceActionPerformed(java.awt.event.ActionEvent evt)
+   2) validarUsr()
+Se agregó código para que el Sistema valide el ingreso por "Dirección IP" o por "MAC Address"
+de acuerdo a la configuración que tiene establecida el usuario.
+
+
+v0.8: (Eddye Lino - 15/Sep/2016)
+----
+Se modificó los métodos: 
+   1) butAceActionPerformed(java.awt.event.ActionEvent evt)
+Se creó la tabla "tbm_cfgImpLoc" para poder configurar los impuestos de acuerdo a la empresa, local y fecha.
+Se hizo cambios en la clase ZafParsis lo cual obligó a hacer cambios en ésta clase.
+Se aprovechó para mejorar la interface gráfica asignando una imagen y un fondo.
+
+
+v0.9: (Eddye Lino - 06/Jul/2017)
+----
+Se modificó el método: 
+   1) butAceActionPerformed(java.awt.event.ActionEvent evt)
+Se corrigió falta gramatical.
+Antes: "Su contraseña a caducado."
+Después: "Su contraseña ha caducado."
+

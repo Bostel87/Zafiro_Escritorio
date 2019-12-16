@@ -1,0 +1,20 @@
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Javier Ayapata - 27/Jun/2008)
+Clase nueva de agregar/quitar clientes-proveedores
+
+v0.2: (Javier Ayapata - 05/Feb/2009)
+se corrigue al consultar clientes-proveedor
+
+v0.3: (Javier Ayapata - 20/Agosto/2009)
+ se agrega filtro que sea clientes por local deacuerdo a la configuracion del usuario.
+
+v0.4: (Javier Ayapata - 09/Junio/2010)
+ se corrigue en ventana de consulta que presenta sin importar si es cliente
+
+
+ 
+
+

@@ -1,0 +1,101 @@
+﻿Pendientes:
+1) 
+2) 
+3) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Javier Ayapata - 24/Sep/2008)
+----
+Clase nueva de Seguimiento del estado de la solicitud 
+
+
+v0.2: (Javier Ayapata - 25/Sep/2008)
+----
+Se agrega para que se pueda hacer el seguimiento desde el grupo.
+
+
+v0.3: (Javier Ayapata - 29/Sep/2008)
+----
+Se agrega para que se pueda hacer el seguimiento desde el grupo.
+
+
+v0.4: (Javier Ayapata - 04/Nov/2008)
+----
+Se agrega la observacion de la autorizacion y fecha de la misma.
+
+
+v0.5: (Javier Ayapata - 06/Nov/2009)
+----
+Se corrigue el siguimiento al nuevo esquema de volver a facturar.
+
+
+v0.6: (Javier Ayapata - 16/Abr/2010)
+----
+Se agrega para que se pueda visualizar la solicitud, facturas, recmer,...
+
+
+v0.7: (Javier Ayapata - 18/Nov/2010)
+----
+Se agrega columna donde indica si tiene faltante fisico  marcado por ventas.
+
+
+v0.8: (Javier Ayapata - 23/Dic/2010)
+----
+Se agrega color a las celdas que corresponde a los pasos que se realizara.
+
+
+v0.9: (Javier Ayapata - 29/Ago/2011)
+----
+Se agrega cambio para que el paso 8 que es proceso completo sea marcado en casos no estaba marcado cuando se volvia a facturar.
+
+
+v1.0: (Javier Ayapata - 23/Sep/2011)
+----
+Se agrega cambios nuevo esquema Guías-OD
+
+
+v1.1: (Erik Flores - 14/Abr/2012)
+----
+Devoluciones de venta por descuento especial
+
+
+v1.2: (Erik Flores - 26/Abr/2012)
+----
+Mejoras a filtro de consulta solicitudes de devolucion pendientes en bodega
+
+
+v1.3: (Erik Flores - 22/Jun/2012)
+----
+Mejoras a filtro de consulta solicitudes de devolucion. Se elimina condiciones que buscan por nombre del cliente y por nombre del solicitante. 
+
+
+v1.4: (Erik Flores - 31/Jul/2012)
+----
+Mejora a filtros de consulta cuando se entra por el grupo.
+
+
+v1.5: (José Marín - 16/Ene/2014)
+----
+Se cambiaron los nombres de las columnas, se modifico el poder ver el boton al recibir devoluciones incompletas, se habilito elclick derecho.
+
+
+v1.6: (Eddye Lino - 23/Jun/2015)
+-----
+Se hizo lo siguiente:
+1) Se mejoró la interface gráfica.
+2) Se agregaron los siguientes filtros:
+   - Local
+   - Motivo
+   - Mostrar sólo los documentos que tienen "Volver a facturar"
+3) Se corrigió la columna "Pro.Com." porque en algunos casos el proceso ya estaba completo y aparecía desmarcado.
+
+v1.8: (Jose Mario Marin - 19/Abr/2018)
+-----
+Se agrega la columna de motivos de Devolucion.
+
+
+v1.9: (Jose Mario Marin - 20/Abr/2018)
+-----
+Se modifica un alias.

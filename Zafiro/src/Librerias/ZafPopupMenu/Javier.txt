@@ -1,0 +1,8 @@
+
+CONTROL DE VERSIONES:
+=====================
+
+v2.0: (Javier Ayapata- 10/Abr/2006)
+----
+    ZafPopupMenu2
+     se crea clase para la validacion de numero de item a nivel de cotizacion

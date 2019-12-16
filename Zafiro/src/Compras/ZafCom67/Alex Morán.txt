@@ -1,0 +1,50 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Alex Morán - 12/Jul/2013)
+-----
+Clase nueva ubicación de inventario en bodega
+
+
+v0.2: (Alex Morán - 23/Jul/2013)
+-----
+Se agregan columnas de stock y código alteno 2 a la consulta.
+
+
+v0.3: (Alex Morán - 24/Jul/2013)
+-----
+Se corrije query de bodegas permitidas por usuario.
+
+
+v0.4: (Alex Morán - 26/Jul/2013)
+-----
+Se corrije acceso a usuarios para actualizar ubicación de items en bodega.
+
+
+v0.5: (Alex Morán - 23/Ago/2013)
+-----
+Se modifica para que funcione con la clase ZafTblPopMnu.
+
+
+v0.6: (Eddye Lino - 11/Jul/2014)
+-----
+Se modificó el método: 
+   1) ZafTblCelEdiTxtFor()
+Se cambió la máscara. Antes "U-##-U-#U". Ahora "U-##-U-##U".
+
+
+v0.7: (Eddye Lino - 21/Jul/2014)
+-----
+Se modificó el método: 
+   1) configurarTblDat()
+En algún momento alguien solicitó hacer no editable la columna "Imp.Ord." para los usuarios.
+Se reactiva dicha opción a los usuarios para que puedan marcar los items y dejar lista "Vía Daule".
+
+
+v0.8: (Rosa Zambrano - 21/Dic/2015)
+-----
+Se agrega búsqueda por el código de 3 letras del ítem solicitado por Danny Obando para agilizar el proceso de ubicación de inventario desde las tablets.

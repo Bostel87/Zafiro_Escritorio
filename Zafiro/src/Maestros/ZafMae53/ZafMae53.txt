@@ -1,0 +1,12 @@
+
+v0.1:  Javier Ayapata   08 / Sep / 2009
+ Clase Nueva
+
+v0.2:  Javier Ayapata   18 / Sep / 2009
+ se corrigue al momento de actualizar proveedores.
+
+v0.3:  Javier Ayapata   12 / Oct / 2009
+ se corrigue filtro en sql estaba inner ahora es left .
+
+v0.4:  Javier Ayapata   06 / Nov / 2009
+ se agrega tipo de grupo

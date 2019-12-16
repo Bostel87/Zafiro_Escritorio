@@ -1,0 +1,51 @@
+Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+V 0.1: (Dario Cardenas - 20/May/2008)
+--------------------------------------
+Programa para Asignacion del banco deonde deben ser depositados los cheques...
+
+V 0.1.1: (Dario Cardenas - 11/Jun/2008)
+--------------------------------------
+Se agrego campo para sumar los valores de los cheques asignados a banco determinado por usuario, ademas filtro para
+consultar cheques por dia de vencimiento...
+
+V 0.1.2: (Dario Cardenas - 18/Jun/2008)
+--------------------------------------
+Se modifico nombras de campos de tabla de datos, ademas se agrego filtros para la consulta de datos...
+
+V 0.1.3: (Dario Cardenas - 24/Jun/2008)
+--------------------------------------
+Se modifico funcion para cargardet(), ademas se agrego un campo para consultar datos de cheques asignados...
+
+V 0.1.3.1: (Dario Cardenas - 04/Ago/2008)
+--------------------------------------
+Se modifico funcion para mostrar Datos de los cheques con sus facturas aplicadas...
+
+V 0.1.3.2: (Dario Cardenas - 11/Ago/2008)
+--------------------------------------
+Se modifico funcion para asignar bancos a los cheques que poseen facturas aplicadas y mostrar mensaje cuando no tiene facturas aplicadas
+
+V 0.1.3.3: (Dario Cardenas - 22/Ago/2008)
+--------------------------------------
+Se modifico funcion insertarReg() y actualizarPagMovInv() con nuevos filtros para aplicar facturas al cheque ingresado...
+
+V 0.1.3.4: (Dario Cardenas - 04/Sep/2008)
+--------------------------------------
+Se modifico funcion generarRpt(), para mostrar datos de facturas con banco asignado...
+
+V 0.1.3.5: (Dario Cardenas - 12/Sep/2008)
+--------------------------------------
+Se creo 2 nuevas columnas para anular un cheque que se devolvio al cliente...
+
+V 0.1.3.6: (Dario Cardenas - 16/Oct/2008)
+--------------------------------------
+Se modifico funcion para filtrar cheques con banco asignado y que seran anulados...
+
+V 0.1.3.7: (Dario Cardenas - 11/Nov/2008)
+--------------------------------------
+Se actualizo funcion para filtrar datos de cheques con banco asignado...

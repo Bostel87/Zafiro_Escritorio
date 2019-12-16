@@ -1,0 +1,80 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 18/Jun/2007)
+----
+Clase nueva "Reportes del Sistema"
+
+
+v0.2: (Eddye Lino - 03/Jul/2007)
+----
+Se corrigió el método: 
+   1) show()
+
+
+v0.3: (Eddye Lino - 20/Jul/2009)
+----
+Se modificó el método: 
+   1) generarReporte(String rutaReporte, String nombreReporte, java.util.Map parametros, int tipoReporte)
+   2) show()
+Se agregó el método: 
+   1) setVisible(boolean visible)
+Se reemplazó la clase "JasperManager" por "JasperFillManager" porque ya aparecía como deprecated.
+El método "show()" fue marcado como deprecated. En su lugar se agregó el método "setVisible".
+
+
+v0.4: (Eddye Lino - 26/Jul/2011)
+----
+Se corrigió el método: 
+   1) generarReporte(String rutaReporte, String nombreReporte, java.util.Map parametros, int tipoReporte)
+Antes:
+   if (con==null)
+Después:
+   if (con==null || con.isClosed())
+
+
+v0.5: (Tony Sanginez - 17/Mar/2016)
+----
+Se agregan dos métodos nuevos. Impresión en A5.
+	1)generarReporteA5(String rutaReporte, String nombreReporte, java.util.Map parametros, int tipoReporte)
+	2)printPDF(String filePath,String fileNumber, String printerName, String jobName, java.util.Map parametros, Connection con)
+
+
+v0.6: (Tony Sanginez - 29/Mar/2016)
+----
+Se modifican dos métodos. Impresión en A5.
+	1)generarReporteA5(String rutaReporte, String nombreReporte, java.util.Map parametros, int tipoReporte) para impresion de 	multiples paginas	
+	2)printPDF(String filePath,String fileNumber, String printerName, String jobName, java.util.Map parametros, Connection con) 		para impresion de multiples paginas	
+
+
+v0.7: (Tony Sanginez - 13/Jun/2016)
+----
+Se agregan dos métodos. Impresión en A5. Para Cotizaciones
+	1)generarReporteA5Cot(String rutaReporte, String nombreReporte, java.util.Map parametros, int tipoReporte) 	
+	2)printPDFCot(String filePath,String fileNumber, String printerName, String jobName, java.util.Map parametros, Connection con)
+
+
+v0.8: (Tony Sanginez - 11/Jul/2016)
+----
+Se modifica el metodo para imprimir cotizaciones en A5 en el cual desea que aparezca por default el nombre de la empresa al guardar
+
+
+v0.9: (Tony Sanginez - 29/Jun/2017)
+----
+Se modifica el metodo para imprimir cotizaciones en A5 ya que no aparecia la hoja completa al 100% al momento de visualizarla en el programa.
+
+
+v1.0: (Rosa Zambrano - 09/May/2019)
+----
+Se agregan dos métodos para obtener las rutas del reporte.
+ 1) getRutaRelativaReporte(fila)
+ 2) getRutaAbsolutaReporte(fila)
+
+
+v1.1: (Rosa Zambrano - 30/Ago/2019)
+-----
+Se realizan cambios para Jaspersoft Studio.

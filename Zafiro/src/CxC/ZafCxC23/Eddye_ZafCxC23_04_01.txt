@@ -1,0 +1,16 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 04/Ago/2008)
+----
+Clase nueva.
+
+
+v0.2: (Eddye Lino - 20/Oct/2008)
+-----
+Se agregó el método: 
+   1) getObsCxCSinMod()

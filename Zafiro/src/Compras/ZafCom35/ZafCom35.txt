@@ -1,0 +1,58 @@
+Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1 b1: (Ingrid Lino - 26/Ago/2008)
+----
+Programa que muestra las diferencias de inventario entre el stock contado y stock del sistema al
+momento de realizar el conteo.
+
+v0.1: (Ingrid Lino - 03/Sep/2008)
+----
+Pase a producción
+
+v0.2: (Ingrid Lino - 22/Jun/2009)
+----
+Inicialmente estaba que la diferencia entre lo q está en el sistema contra lo que dice el físico fuera
+diferencia negativa, Don Carlos solicitó que fuera lo contrario.
+    Cuando el valor contado es mayor a (stock sistema + ingreso - egreso) es positivo
+    caso contrario es negativo.
+
+v0.3: (Ingrid Lino - 20/Jul/2009)
+----
+Se cambió la forma de calcular las diferencias de stock.
+stock sistema - cantidad ingresada + cantidad egresada.
+
+v0.4: (Ingrid Lino - 11/Feb/2010)
+----
+Se adicionó una columna para presentar el número de veces que se ha contado un determinado item.
+También se adicionó el filtro por fecha de generación de la orden de conteo.
+
+v0.5: (Ingrid Lino - 16/Abr/2010)
+----
+Se cambió código para presentar conteos realizados sin haber generado Orden de Conteo.
+
+v0.6: (Ingrid Lino - 28/May/2010)
+----
+Se adiciono el filtro para presentar tambien items que no hayan sido contados.
+
+v0.7: (Ingrid Lino - 02/Jul/2010)
+----
+Se adicionó el filtro de "fecha de realización del conteo"
+
+v0.7.1: (Ingrid Lino - 29/Jul/2010)
+----
+Se agregó el filtro de "Utilizar en el cálculo las cantidades que están por ingresar/egresar".
+Si está seleccionado, la diferencia se calcula tomando en cuenta tambien la cantidad por ingresar/egresar, caso contrario el calculo es efectuado sin cantidades por ingresar/egresar.
+De este filtro tambien depende que se presenten o no las columnas donde se muestran las cantidades por ingresar/egresar.
+
+v0.7.2: (Ingrid Lino - 06/Ago/2010)
+----
+Se quitaron items con terminales "L" y se adicionó columna de stock actual(stock al momento de consultar).
+
+v0.7.3: (Ingrid Lino - 15/Dic/2010)
+----
+Se cambio el query de obtencion de bodegas(tbr_bodLocPrgUsr)

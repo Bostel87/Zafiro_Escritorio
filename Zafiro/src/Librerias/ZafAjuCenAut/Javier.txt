@@ -1,0 +1,21 @@
+﻿
+CONTROL DE VERSIONES:
+=====================
+
+v0.1:  Javier Ayapata  14/Junio/2010
+----
+   clase nueva de ajuste de centavo automatico.
+
+v0.2:  Javier Ayapata  15/Junio/2010
+----
+   se agrega para ajuste solo si hay algun abono caso contrario no es tomado en cuenta para ajuste y tamb que este
+   dentro del rango esta. el valor pendiente. para ajus
+
+v0.3:  Tony Sanginez  21/Febrero/2018
+-----
+   Se agrega método para corregir descuadres generados por ajustes de centavos. 
+
+v0.4: Christian Mateo 04/Enero/2019
+-----
+	Se modifico metodo corrigeDescuadrePorCtvs para que
+	solo afecte al año 2019 (Parche momentáneo)

@@ -1,0 +1,14 @@
+﻿Pendientes:
+1) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Tony Sanginez - 18/Oct/2016)
+----
+Clase nueva "Impresión masiva de documentos de ventas (Formato 1: Cabecera)...".
+
+
+v0.2: (Tony Sanginez - 02/Mar/2017)
+-----
+Se cambió el directorio al cual hace referencia a los reportes para el usuario pperez 

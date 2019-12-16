@@ -1,0 +1,266 @@
+﻿Pendientes:
+1) Enlazar CxC con CxP para hacer cruce de documentos entre estos dos modulos
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Leonardo Aguirre - 21/Abr/2006)
+----
+Programa que sirve para cruzar documentos de clientes (CxC). 
+Este mismo programa sirve para cruce de documentos de proveedores (CxP). 
+Se lo utiliza en el modulo de CxC y de CxP.
+Nota1.- El programa no genera contabilidad, todo lo que tiene que ver con asiento de diario esta comentado, no eliminado!!!.
+Nota2.- No olvidar crear el tipo de documento para este programa (CRUCXP y CRUCXC) en la base de datos y asignar los mismos al programa que corresponde...
+
+
+v0.2: (Leonardo Aguirre - 04/May/2006)
+-----
+Se realizo cambios de presentacion, se corrigio que el numero alterno 1 este correcto y se incremente
+
+
+v0.3: (Eddye Lino - 05/Jun/2006)
+-----
+Se corrigió query para que no mostrara los documentos reestructurados que s�lo deb�an ser
+considerados para ser mostrados en el m�dulo de ventas/compras.
+
+
+v0.4: (Ingrid  Lino - 03/Jul/2006)
+-----
+Se corrigió métodos de anulación y eliminación que no estaban reversando pagos.
+Cuando se ingresaba otro cliente después de una inserción se perdía el foco del código de cliente.
+Se dio formato a las casillas de montos.
+
+
+v0.5: (Darío Cardenas - 22/Nov/2006)
+-----
+Se modifico query a la hora de consultar facturas, N/C, DevVen, para realizar cruces de Documentos
+
+
+v0.6: (Ingrid Lino - 03/Ene/2007)
+-----
+Se corrigió la función cargarDocExc(), cargarDocPend() porque el query solo permitía la presentación de información
+de las tablas tbm_cabmovinv y tbm_pagmovinv, y se necesitaba presentar información del tipo de dcto EGRE, que se 
+guarda en tbm_cabpag y tbm_detpag, por lo que se adicionó otro query.
+También a petición de usuario, al aceptar la inserción ya no se limpia la pantalla.
+Se quitaron dos validaciones, las q ahora son controladas por una sola validación
+
+
+v0.6.1: (Ingrid Lino - 04/Ene/2007)
+-----
+Se quitó en la función cargarDocPend() el signo igual para que no presente facturas canceladas
+
+
+v0.6.2: (Darío Cardenas - 29/Ene/2007)
+-----
+Se agrego filtro a la hora de realizar cruce y los valores del DEBITO  y CREDITO no eran iguales.
+Se mostrara un mensaje de advertencia para que el usuario verifique esos valores ingresados.
+
+
+v0.6.3: (Darío Cardenas - 30/Ene/2007)
+-----
+Se corrigio estados de la barra de botones, ya que se inserta un registro aparece activo el boton insertar 
+y por error el usaurio vuelve a dar click y nuevamente inserta el mismo registro...
+
+
+v0.6.4: (Darío Cardenas - 07/Feb/2007)
+-----
+Se modifico filtro para motivos del documento, falta incluir la opcion 0...
+
+
+v0.6.5: (Darío Cardenas - 22/Feb/2007)
+-----
+Se agrego filtro en el JTable de Creditos y Debitos a la hora de insertar valores en el campo 
+"Valor Aplicar" que no sean mayores a los del campo "Valor Pendiente".
+
+
+v0.6.6: (Darío Cardenas - 03/May/2007)
+-----
+Se modifico funciones para quitar filtro por local ya que se generan cruces con facturas desde
+el local California y Carlos Julio.
+
+
+v0.6.7: (Darío Cardenas - 03/May/2007)
+-----
+Se modifico funciones para anular y eliminar registros, ya que los valores de la tabla tbm_pagmovinv
+no se reversaban...
+
+
+v0.6.8: (Darío Cardenas - 10/Jul/2007)
+-----
+Se modifico funcion para insertar registro, ya que a la hora de realizar el cruce de doc, el valor de
+credito no estaba bien almacenado...
+
+
+v0.6.9: (Darío Cardenas - 17/Jul/2007)
+-----
+Se modifico funcion para insertardet(), a la hora de realizar el cruce de doc, el valor de
+credito y debito no estaba afectando bien a los documentos de dicho cruce...
+
+
+v0.7.0: (Dario Cardenas - 24/Ago/2007)
+-----
+Se modifico varias funciones para almacenar registros en las tablas tbm_detpag y tbmpagmovinv
+
+
+v0.7.1: (Darío Cardenas - 27/Ago/2007)
+-----
+Se modifico funcion para cargar det en creditos y debitos para visualizar el loc de la factura
+
+
+v0.7.2: (Darío Cardenas - 20/Sep/2007)
+-----
+Se modifico funcion para cargar det en creditos y debitos cuando se selecciona un registro o
+cuando ingresan el valor  del documento desde el jtable
+
+
+v0.7.3: (Darío Cardenas - 13/Nov/2007)
+-----
+Se modifico funcion para cargar datos de clientes.
+
+
+v0.7.4: (Darío Cardenas - 15/Nov/2007)
+-----
+Se modifico variable para filtro a la hora de modificar un documento...
+
+
+v0.7.5: (Darío Cardenas - 19/Nov/2007)
+-----
+Se modifico filtro para modificar valores aplicados anteriormente...
+
+
+v0.7.6: (Darío Cardenas - 27/Nov/2007)
+-----
+Se modifico campo de texto para numero de documento...
+
+
+v0.7.7: (Darío Cardenas - 28/Nov/2007)
+-----
+Se modifico funciones para dejar establecido el ultimo numero de documento a la hora de Insertar un Doc.
+
+
+v0.7.8: (Darío Cardenas - 04/Dic/2007)
+-----
+Se modifico funcion para anular o eliminar un doc desde el area de doc x pagar...
+
+
+v0.7.9: (Darío Cardenas - 14/Ene/2008)
+-----
+Se modifico campos de la Cabecera del Dise�o, se agrego filtro para calcular la diferencia en decimales
+de los valores del credito y Debito...
+
+
+v0.8: (Darío Cardenas - 28/Ene/2008)
+-----
+Se modifico funciones para cuadrar los valores del detalle con la cabecera del documento...
+
+
+v0.8.1: (Darío Cardenas - 25/Mar/2008)
+-----
+Se creo clase para generar Ajustes Automaticos y se implemento clase para saber parametros del sistema por cliente...
+
+
+v0.8.2: (Darío Cardenas - 17/Abr/2008)
+-----
+Se modifico funciones para crear Ajustes Automaticos
+
+
+v0.8.3: (Darío Cardenas - 21/Abr/2008)
+-----
+Se agrego campo al query de actualizacion de tbm_pagMovInv para documentos Postfechados...
+
+
+v0.8.4: (Darío Cardenas - 28/Abr/2008)
+-----
+Se agrego filtro al query de rtnDocExi() para verificar si existe documentos ingresados...
+
+
+v0.8.5: (Darío Cardenas - 05/May/2008)
+-----
+Se agrego filtro a las funciones isCamVal() - isCamValMod() para verificar fechas antes o despues de la fecha actual...
+
+
+v0.8.6: (Darío Cardenas - 16/May/2008)
+-----
+Se agrego parametro a la funcion insertarAjusteAutomatico, para verificar la fecha del ajuste a la hora de insertar un registro...
+
+
+v0.8.7: (Darío Cardenas - 28/Nov/2008)
+-----
+Se agrego funcion GenerarRpt(), para utilizar la clase de Reportes y los botones de Vista Preliminar e Imprimir...
+
+
+v0.9.0: (Darío Cardenas - 09/Jul/2009)
+-----
+Se agrego funcion para seleccionar todos los registros desde la cabecera...
+
+
+v1.3: (Dario Cardenas - 02/Sep/2009)
+-----
+Se agrego filtros para guardar cambios antes de modificar el documento
+
+
+v0.2: (Eddye Lino - 15/Ene/2010)
+-----
+Se modificaron los métodos: 
+   1) cargarDocExc()
+   2) cargarDocPend()
+   3) mostrarTipDocPre()
+Se agregó el uso de la función "objUti.utilizarClientesEmpresa()" para presentar clientes por local o clientes por empresa.
+Además, se mejoró la interface gráfica del programa.
+
+
+v0.2.1: (Ingrid Lino - 06/May/2010)
+-----
+Se sobrecargo el constructor(Este es llamado desde el programa CxC58)
+
+
+v0.2.2: (Ingrid Lino - 13/May/2010)
+-----
+Se adicionaron campos en "tbm_cabPag.tx_comIng, tbm_cabPag.tx_comMod" para insercion, modificacion, anulacion y eliminacion respectivamente.
+
+
+v0.2.3: (Javier Ayapata - 14/Mar/2011)
+-----
+Se agrega cuando se anula o se realiza un cruce en ordenes de compra y devoluciones manejen cuentas transito.
+
+
+v0.3: (Javier Ayapata - 02/Ago/2011)
+-----
+Se quita para cuando se anule o se inserte un cruce no cambien cuentas contables en OC y DevCom.
+
+
+v0.4: (Eddye Lino - 09/Ago/2011)
+-----
+Se modificó el código donde se utiliza el campo "ne_mod". 
+Por error se lo había creado como CHAR en la Base de Datos cuando en realidad es SMALLINT.
+
+
+v0.5: (Javier Ayapata - 20/Actubre/2011)
+-----
+Se agrega reporte para Cruce CxC CxP.
+
+
+v0.6: (Christian Mateo -  21/Ago/2015)
+-----
+Se agrega el uso de ZafReglas para generación de OD Y G.R., en reemplazo del ZafSer01.
+
+v0.7: (Christian Mateo -  11/Sep/2015)
+-----
+Se modifica para que no genere od remotas por cruce de documentos. Solo debe generar las od locales y las confirmaciones y guias remision por terminales L.
+
+v0.8: (Christian Mateo -  01/Oct/2015)
+-----
+Se modifica para que no genere una nueva OD local, cuando la factura ya posee una OD local.
+
+v0.9: (Christian Mateo -  13/Ene/2016)
+-----
+Se modifica para que genere las OD Locales correctamente
+
+v1.0: (Christian Mateo -  13/Ene/2016)
+-----
+Se modifica el query para que no tome en cuenta las retenciones ya que las OD Locales no necesitan tener pagadas los valores de retenciones
+
+v1.1: (Tony Sanginez -  10/Nov/2017)
+-----
+Se agregan el tab de Asientos de Diarios.

@@ -1,0 +1,15 @@
+﻿Pendientes:
+1)  
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (José Marín - 4/Jun/2018)
+----
+Clase nueva. Modifica la configuracion de los vendedores segun lo que haya sido configurado en tbm_preCfgCliLoc.
+
+
+v0.02: (José Marín - 26/Nov/2018)
+----
+Se agrega un metodo mas al final de la transaccion.

@@ -1,0 +1,34 @@
+﻿Pendientes:
+1) 
+2) 
+3) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 03/Sep/2007)
+----
+Clase nueva.
+
+
+v0.2: (Eddye Lino - 14/Sep/2012)
+-----
+Se corrigió el método: 
+   1) isCellEditable(java.util.EventObject anEvent)
+Se eliminó el método: 
+   1) thisFocusGained(java.awt.event.FocusEvent evt)
+Se agregó código para trabajara con el evento "beforeEdit" ya que al parecer se había pasado por alto.
+Se eliminó el actionListener "focusGained" porque dicho
+código estaba presentando problemas cuando se mostraba un JOptionPane. Se analizó y se llegó a la conclusión de que no
+era necesario ese Listener.
+
+
+v0.3: (Eddye Lino - 27/Mar/2018)
+-----
+Se corrigió el método: 
+   1) stopCellEditing()
+Al migrar a Java 8 se presentó un problema en el programa "Documentos por autorizar".
+El problema consistía en que al dar click en el botón para ver el motivo por el cual se
+solicitaba autorización a veces no funcionaba. Aparentemente el problema era porque en
+Java 8 como que no se completaba el evento y quedaba pendiente. Para corregir el problema
+se agregó la llamada al método "setValCelEdi(true);".

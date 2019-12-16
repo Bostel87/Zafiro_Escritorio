@@ -1,0 +1,28 @@
+//revisar el codigo de la funcion insertar....
+de donde llamo a la funcion y porq tiene q ser po insercion
+
+version 1.0
+----------
+
+
+version 2.0 (Dario Cardenas  10/May/2007)
+----------------------------------------
+Se modifico funcion listaDocPostFechar(), ya que desde ahora se procesaran documentos de varios locales 
+de TUVAL, ademas se agrego columna codloc para visualizar el local del documento que se esta trabajando.
+En la funcion que ejecuta el boton GUARDAR, en el UPDATE se agrego el campo st_entsop para actualizarlo
+con estado 'S'.
+
+version 2.1 ()
+----------------------------------------
+
+version 2.2 (Dario Cardenas  10/May/2007)
+----------------------------------------
+Se modifico funcion listaDocPostFechar() y se oculto columnas del JTable...
+
+version 2.3 (Dario Cardenas  12/Nov/2007)
+----------------------------------------
+Se modifico dise�o del programa, ademas se cambio funciones para cargar datos.
+
+version 2.4 (Dario Cardenas  25/Mar/2008)
+----------------------------------------
+Se implemento clase para saber parametros del sistema por cliente...

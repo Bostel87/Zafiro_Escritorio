@@ -1,0 +1,16 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 19/Feb/2006)
+----
+Clase nueva.
+
+
+v0.2: (Eddye Lino - 17/Nov/2017)
+----
+Se agregó el método:
+   1) getTipoOrdenamiento()

@@ -1,0 +1,71 @@
+Observaciones:
+--------------
+Pendientes:
+1) 
+2) 
+3) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 09/Nov/2007)
+----
+Clase nueva.
+
+
+v0.2: (Eddye Lino - 21/Ene/2008)
+-----
+Se modificaron los controles existentes y se agregaron los controles del 10 al 13.
+
+
+v0.3: (Eddye Lino - 22/May/2008)
+-----
+Se agregó el control 14.
+
+
+v0.4: (Eddye Lino - 26/May/2010)
+-----
+Se modificó el método: 
+   1) configurarFrm()
+En dicho método se agregó en los controles 4 y 5 la siguiente condición:
+   AND b1.co_tipDoc NOT IN (124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 165, 166, 167, 168)
+Dicha condición es para que no se consideren los documentos intermedios correspondientes a las compras,
+ventas, devoluciones en compra y devoluciones en venta entre compañías.
+
+
+v0.5: (Eddye Lino - 01/Jul/2010)
+-----
+Se modificó el método: 
+   1) configurarFrm()
+En dicho método se agregó en el control 12 la siguiente condición:
+   AND a1.co_tipDoc NOT IN (107, 163, 164)
+Dicha condición es para que no se consideren los documentos correspondientes a "Confirmación de depósitos
+bancarios" ya que el detalle de dichos documentos se almacena en otra tabla.
+
+
+v0.6: (Eddye Lino - 02/Ago/2010)
+-----
+Se modificó el método: 
+   1) configurarFrm()
+En dicho método se agregó en el control 7 la siguiente condición:
+   AND b1.co_tipDoc NOT IN (173)
+Dicha condición es para que no se consideren los documentos correspondientes a ""Depósitos de clientes registrados
+directamente en el Banco" ya que el detalle de dichos documentos se almacena en otra tabla.
+
+
+v0.7: (Eddye Lino - 14/Oct/2010)
+----
+Se modificaron los métodos: 
+   1) configurarFrm()
+   2) cargarDetReg()
+En dichos métodos se agregó una condición en el query para que sólo se considerara los registros activos.
+Esto se hizo porque se agregó el campo "st_reg" en "tbm_detPag".
+
+
+v0.8: (Eddye Lino - 29/Dic/2010)
+----
+Se modificó el método: 
+   1) configurarFrm()
+Se agregó código en el control 13 para que en el caso de documentos donde tbm_cabTipDoc.st_docCua='S' sólo se considerara
+los valores positivos para la comparación. Ejemplo: en el caso de los "CRUDDC" al sumar el detalle daba cero porque son cruces.
+Es decir, tiene valores positivos que se cruzan con valores negativos.

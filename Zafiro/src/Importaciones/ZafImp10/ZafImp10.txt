@@ -1,0 +1,35 @@
+﻿Pendientes:
+1) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Rosa Zambrano - 12/Sep/2017)
+----
+Clase nueva "Listado de conteos asociados al pedido".
+
+
+v0.1.1: (Rosa Zambrano - 13/Sep/2017)
+-----
+Se cambia query de cargarDetReg para que muestre los items que se crearon despues del conteo.
+
+
+v0.1.2: (Rosa Zambrano - 16/Sep/2017)
+-----
+Se presenta la fecha de realización de conteo con minutos y el usuario que realiza el conteo.
+
+
+v0.1.3: (Rosa Zambrano - 06/Oct/2017)
+-----
+Se agrega que presente la observacion 1, la misma que indica si tiene baja de conteo.
+Se agrega que presente los items creados o agregados en el ajuste de inventario y que habian sido contados.
+
+
+v0.1.4: (Rosa Zambrano - 11/May/2018)
+-----
+Se agrega botón de histórico de conteos.
+
+
+
+
+

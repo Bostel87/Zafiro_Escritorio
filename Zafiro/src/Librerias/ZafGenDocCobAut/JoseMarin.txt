@@ -1,0 +1,15 @@
+﻿Pendientes:
+1)  
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (José Marín - 27/Ene/2017)
+----
+Clase nueva.
+
+v0.2: (Rosa Zambrano - 02/Ago/2019)
+----
+Se elimina el uso de la libreria correo anterior.
+

@@ -1,0 +1,13 @@
+﻿Pendientes:
+1)
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Ingrid Lino - 22/May/2014)
+----
+Nuevo programa "Proveedores del exterior" permite la creación de proveedores del exterior.
+
+v0.1.1: (Ingrid Lino - 22/May/2014)
+----
+Se quita el campo "Direccion Web" por solicitud de AP.

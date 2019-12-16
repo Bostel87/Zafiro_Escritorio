@@ -1,0 +1,139 @@
+
+<empresa>
+
+	<provision>
+		<nombre>DECIMO TERCER SUELDO</nombre>
+		<co_cta>566</co_cta>
+		<num_cta>6.01.01.01.03</num_cta>
+		<tipo_cuenta>1</tipo_cuenta>
+		<plantilla>1</plantilla>
+		<ndvalbase>-1</ndvalbase>
+	</provision>
+
+	<provision>
+		<nombre>DECIMO TERCER SUELDO</nombre>
+		<co_cta>678</co_cta>
+		<num_cta>6.01.02.01.04</num_cta>
+		<tipo_cuenta>1</tipo_cuenta>
+		<plantilla>2</plantilla>
+		<ndvalbase>-1</ndvalbase>		
+	</provision>
+	
+	<provision>
+		<nombre>DECIMO TERCER SUELDO</nombre>
+		<co_cta>277</co_cta>
+		<num_cta>2.01.08.03.77</num_cta>
+		<tipo_cuenta>2</tipo_cuenta>
+		<plantilla>-1</plantilla>	
+		<ndvalbase>-1</ndvalbase>
+	</provision>
+	
+	<provision>
+		<nombre>DECIMO CUARTO SUELDO</nombre>
+		<co_cta>567</co_cta>
+		<num_cta>6.01.01.01.04</num_cta>
+		<tipo_cuenta>1</tipo_cuenta>
+		<plantilla>1</plantilla>
+		<ndvalbase>366</ndvalbase>
+	</provision>
+
+	<provision>
+		<nombre>DECIMO CUARTO SUELDO</nombre>
+		<co_cta>679</co_cta>
+		<num_cta>6.01.02.01.05</num_cta>
+		<tipo_cuenta>1</tipo_cuenta>
+		<plantilla>2</plantilla>
+		<ndvalbase>366</ndvalbase>
+	</provision>
+	
+	<provision>
+		<nombre>DECIMO CUARTO SUELDO</nombre>
+		<co_cta>352</co_cta>
+		<num_cta>2.01.08.04.77</num_cta>
+		<tipo_cuenta>2</tipo_cuenta>
+		<plantilla>-1</plantilla>	
+		<ndvalbase>366</ndvalbase>
+	</provision>
+	
+	<provision>
+		<nombre>FONDO DE RESERVA</nombre>
+		<co_cta>569</co_cta>
+		<num_cta>6.01.01.01.06</num_cta>
+		<tipo_cuenta>1</tipo_cuenta>
+		<plantilla>1</plantilla>
+		<ndvalbase>-1</ndvalbase>
+	</provision>
+
+	<provision>
+		<nombre>FONDO DE RESERVA</nombre>
+		<co_cta>681</co_cta>
+		<num_cta>6.01.02.01.07</num_cta>
+		<tipo_cuenta>1</tipo_cuenta>
+		<plantilla>2</plantilla>	
+		<ndvalbase>-1</ndvalbase>
+	</provision>
+	
+	<provision>
+		<nombre>FONDO DE RESERVA</nombre>
+		<co_cta>459</co_cta>
+		<num_cta>2.01.08.07.32</num_cta>
+		<tipo_cuenta>2</tipo_cuenta>
+		<plantilla>-1</plantilla>
+		<ndvalbase>-1</ndvalbase>		
+	</provision>
+	
+	<provision>
+		<nombre>VACACIONES</nombre>
+		<co_cta>570</co_cta>
+		<num_cta>6.01.01.01.07</num_cta>
+		<tipo_cuenta>1</tipo_cuenta>
+		<plantilla>1</plantilla>
+		<ndvalbase>-1</ndvalbase>
+	</provision>
+
+	<provision>
+		<nombre>VACACIONES</nombre>
+		<co_cta>682</co_cta>
+		<num_cta>6.01.02.01.08</num_cta>
+		<tipo_cuenta>1</tipo_cuenta>
+		<plantilla>2</plantilla>
+		<ndvalbase>-1</ndvalbase>
+	</provision>
+	
+	<provision>
+		<nombre>VACACIONES</nombre>
+		<co_cta>427</co_cta>
+		<num_cta>2.01.08.06.77</num_cta>
+		<tipo_cuenta>2</tipo_cuenta>
+		<plantilla>-1</plantilla>
+		<ndvalbase>-1</ndvalbase>
+	</provision>
+	
+	<provision>
+		<nombre>APORTE PATRONAL, IECE-SECAP</nombre>
+		<co_cta>571</co_cta>
+		<num_cta>6.01.01.01.08</num_cta>
+		<tipo_cuenta>1</tipo_cuenta>
+		<plantilla>1</plantilla>
+		<ndvalbase>-1</ndvalbase>
+	</provision>
+
+	<provision>
+		<nombre>APORTE PATRONAL, IECE-SECAP</nombre>
+		<co_cta>683</co_cta>
+		<num_cta>6.01.02.01.09</num_cta>
+		<tipo_cuenta>1</tipo_cuenta>
+		<plantilla>2</plantilla>	
+		<ndvalbase>-1</ndvalbase>
+	</provision>
+	
+	<provision>
+		<nombre>APORTE PATRONAL IECE-SECAP GQUIL.</nombre>
+		<co_cta>251</co_cta>
+		<num_cta>2.01.06.05.01</num_cta>
+		<tipo_cuenta>2</tipo_cuenta>
+		<plantilla>-1</plantilla>	
+		<ndvalbase>-1</ndvalbase>
+	</provision>
+	
+</empresa>

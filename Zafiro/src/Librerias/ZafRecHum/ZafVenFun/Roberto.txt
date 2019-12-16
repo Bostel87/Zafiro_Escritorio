@@ -1,0 +1,23 @@
+
+CONTROL DE VERSIONES:
+=====================
+
+Mail v1.0: (Roberto Flores - 19/08/2013)
+----
+Clase nueva para el envío de correos.
+
+ZafVenFun v1.01: (Roberto Flores - 01/10/2013)
+----
+Se realiza cambio del directorio donde se toman las cuentas para las provisiones.
+
+ZafVenFun v1.02: (Roberto Flores - 10/10/2013)
+----
+Se agrega el método: directorioArchivo(FileNameExtensionFilter objFilNamExt) para poder presentar objeto JFileChooser desde cualquier pantalla que invoque el método.
+
+ZafVenFun v1.03: (Roberto Flores - 19/03/2014)
+----
+Se agrega método ZafVenAnlTra para realizar la anulación de un usuario mediante la cédula de identidad.
+
+ZafVenFun v1.04: (Tony Sanginez - 04/01/2016)
+----
+Se agrega validación para empresa Cosenco.

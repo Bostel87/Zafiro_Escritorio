@@ -1,0 +1,138 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 18/Ene/2006)
+----
+Se agregaron los métodos para obtener y establecer las nuevas propiedades del archivo "ZafParSis.properties".
+
+
+v0.2: (Eddye Lino - 16/Ene/2006)
+-----
+Se agregaron los métodos getCodigoEmpresaGrupo() y setCodigoEmpresaGrupo().
+
+
+v0.3: (Eddye Lino - 18/Jun/2007)
+-----
+Se agregaron los métodos getDirectorioSistema() y setDirectorioSistema().
+
+
+v0.4: (Eddye Lino - 20/Jun/2007)
+-----
+Se agregaron los métodos: 
+   1) cargarAniosCreadosSistema()
+   2) cargarAniCreSis()
+   3) getAniosCreadosSistema()
+   4) isAnioDocumentoCreadoSistema(int anio)
+   5) getFechaHoraServidorIngresarSistema()
+
+
+v0.5: (Eddye Lino - 10/Mar/2008)
+-----
+Se agregó el método: 
+   1) getCodigoLocal(byte fila)
+
+
+v0.6: (Eddye Lino - 19/Mar/2008)
+-----
+Se agregaron los métodos: 
+   1) cargarParametrosSistema()
+   2) getValoresParametroTbrParEmp(int codigoEmpresa, int codigoParametro)
+   3) getValoresParametroTbrParUsr(int codigoEmpresa, int codigoLocal, int codigoParametro, int codigoUsuario)
+
+
+v0.7: (Eddye Lino - 10/Abr/2008)
+-----
+Se agregaron los métodos: 
+   1) getDireccionIP()
+   2) getNombreComputadora()
+   3) getNombreComputadoraConDirIP()
+
+
+v0.8: (Eddye Lino - 26/Oct/2009)
+-----
+Se agregaron los métodos: 
+   1) getTipGrpClaInvPreUsr()
+   2) setTipGrpClaInvPreUsr(char chrTipGrpClaInvPreUsr)
+
+
+v0.9: (Eddye Lino - 15/Dic/2009)
+-----
+Se modificaron los métodos: 
+   1) getConfiguracion()
+   2) getListadoEmpresas()
+En estos métodos se agregó código para utilizar la clase "ZafJCEAlgAES" que se utiliza
+para encriptar/desencriptar utilizando el algoritmo AES.
+
+
+v0.10: (Ingrid Lino - 07/Oct/2010)
+-----
+Se adicionó el método setCodigoEmpresa() y se adicionó código en getCodigoEmpresa() que si la variable es "intCodEmp<>-1" coja el valor que se seteo con setCodigoEmpresa() caso contrario trabaja como hasta el momento lo ha hecho.
+
+
+v0.11: (Eddye Lino - 06/Oct/2011)
+-----
+Se agregaron los métodos: 
+   1) getMACAddress()
+
+
+v0.12: (Eddye Lino - 21/Ene/2013)
+-----
+Se modificaron los métodos: 
+   1) getConfiguracion()
+   2) getListadoEmpresas()
+Se cambió ciertos datos.
+
+
+v0.13: (Eddye Lino - 24/May/2016)
+-----
+Se modificó el método: 
+   1) setFilaSeleccionada(int fila)
+Se agregaron los métodos: 
+   1) cargarDatosEmpresaSelecionada()
+   2) getPorcentajeIvaCompras()
+   3) getPorcentajeIvaVentas()
+
+
+v0.14: (Eddye Lino - 15/Sep/2016)
+-----
+Se eliminó el método: 
+   1) cargarDatosEmpresaSelecionada()
+Se agregaron los métodos: 
+   1) cargarConfiguracionImpuestos()
+   2) getCodigoCuentaContableIvaCompras()
+   3) getCodigoCuentaContableIvaVentas()
+   4) getPorImp(int intCodEmp, int intCodLoc, int intCodImp, Date datFec)
+   5) getCodCtaConImp(int intCodEmp, int intCodLoc, int intCodImp, Date datFec)
+   6) getPorcentajeIvaCompras(int codigoEmpresa, int codigoLocal, Date fecha)
+   7) getPorcentajeIvaVentas(int codigoEmpresa, int codigoLocal, Date fecha)
+   8) getCodigoCuentaContableIvaCompras(int codigoEmpresa, int codigoLocal, Date fecha)
+   9) getCodigoCuentaContableIvaVentas(int codigoEmpresa, int codigoLocal, Date fecha)
+Se creó la tabla "tbm_cfgImpLoc" para poder configurar los impuestos de acuerdo a la empresa, local y fecha.
+Se hizo el cambio en ésta clase para que funcione con dicha tabla.
+
+
+v0.15: (Rosa Zambrano - 17/Ago/2018)
+-----
+Se actualizaron los métodos: 
+   1) getPorImp()
+   2) getCodCtaConImp()
+Se cambiaron de métodos privados a métodos públicos..
+
+
+v0.16: (Rosa Zambrano - 11/Jun/2019)
+-----
+Se agregó el método: 
+   1) isCosenco()
+Función determina si es la empresa Cosenco por la cual se esta ingresando.
+
+
+v0.17: (Eddye Lino - 08/Nov/2019)
+-----
+Se modificaron los métodos: 
+   1) getCodigoEmpresa(byte fila)
+   2) getCodigoLocal(byte fila)
+Se cambió el tipo "byte" por el tipo "int".

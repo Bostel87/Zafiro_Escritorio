@@ -1,0 +1,17 @@
+Creado por: Jose Salazar
+
+v0.1 - 26/ene/2006  - 11h00
+Se creo un nuevo reporte de IE para Contabilidad para mostrar calculo de totales
+reporte FormatoDocIE2.xls 
+Esta quemado el usuario en la clase para usuario 30
+Solicitado de esta forma por el Jefe
+
+v0.1.1 - 27/ene/2006 - 9h45
+Se arreglo reporte de devoluciones en venta 
+
+v0.1.2 - 13/feb/2006 - 13h00
+Se agrego linea de forma de pago para tipo de documento FormatoCompra()
+
+v0.1.3  (Javier Ayapata 31/Mar/2006)
+   se corrige el query para ordenes de compras ordenado por registro
+ 

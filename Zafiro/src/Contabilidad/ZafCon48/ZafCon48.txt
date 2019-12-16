@@ -1,0 +1,35 @@
+Pendientes:
+1) Opciones de presentación de información de datos reales
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1b1: (Ingrid Lino - 24/Ago/2007)
+----
+Programa de configuración y generación del reporte de Formularios financieros personalizados
+
+v0.1b2: (Ingrid Lino - 27/Ago/2007)
+----
+*- Se bloqueo proceso de permitir acceso al botón de porcentajes cuando es cuenta de grupo.
+*- Se limpiaron los vectores que permiten calcular los porcentajes al momento de modificar.
+*- Si no se ha efectuado ningún cambio no se guarda nada y envia un msj de información mas no de excepción
+
+v0.1b3: (Ingrid Lino - 27/Ago/2007)
+------
+Se colocaron validaciones antes de ingresar y modificar para que no se permite hacer un "insert" o "modificar" sino se han realizado cambios en el modelo
+
+v0.1: (Ingrid Lino - 28/Ago/2007)
+------
+pase a producción
+
+v0.1b4: (Ingrid Lino - 03/Sep/2007)
+------
+Se agregó código para presentación de información del grupo
+
+v0.1: (Ingrid Lino - 05/Sep/2007)
+------
+Se ocultaron columnas no necesarias para el usuario y se realizó el pase a producción 
+
+v0.1.1: (Ingrid Lino - 05/Sep/2007) 9h50
+------
+Se cambio la clase desde Librerias.ZafTblUti.ZafTblPopMnuIncDec.ZafTblPopMnuIncDec a Contabilidad.ZafCon48.ZafTblPopMnuIncDec por ser clase solo utilizada por este programa

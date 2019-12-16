@@ -1,0 +1,13 @@
+
+
+CONTROL DE VERSIONES:
+=====================
+
+v1.0: (Roberto Flores- 19/Mar/2012)
+----
+Clase nueva.
+
+
+v1.1: (Rosa Zambrano - 19/Oct/2015)
+-----
+Se corrige la función modificarCab(), para que siempre elimine todos los registros asignados al departamento e inserte nuevamente desde el registro 1.

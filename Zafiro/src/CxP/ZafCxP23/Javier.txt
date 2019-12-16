@@ -1,0 +1,12 @@
+﻿
+CONTROL DE VERSIONES:
+=====================
+
+v0.1:  Javier Ayapata  29/Noviembre/2010
+----
+   clase nueva 
+
+v0.2:  Javier Ayapata  02/Diciembre/2010
+---
+  se agrega para evento para cargar ventana de recepccion de facturas .
+

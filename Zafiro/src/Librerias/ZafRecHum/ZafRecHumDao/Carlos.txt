@@ -1,0 +1,246 @@
+﻿
+CONTROL DE VERSIONES:
+=====================
+
+Tbm_comsecDAOInterface v1.0: (Carlos Lainez- 24/03/2011)
+----
+Interfaz con metodos definidos para el manejo de la tabla tbm_comsec
+
+
+Tbm_comsecDAO(Data Access Object) v1.0: (Carlos Lainez- 24/03/2011)
+----
+Implementacion de la interfaz Tbm_comsecDAOInterface
+Contiene los metodos y las sentencias SQL necesarias para manipular los datos de la tabla tbm_comsec
+
+
+Tbm_tipconDAOInterface v1.0: (Carlos Lainez- 29/03/2011)
+----
+Interfaz con metodos definidos para el manejo de la tabla tbm_tipcon
+
+
+Tbm_tipconDAO(Data Access Object) v1.0: (Carlos Lainez- 29/03/2011)
+----
+Implementacion de la interfaz Tbm_tipconDAOInterface
+Contiene los metodos y las sentencias SQL necesarias para manipular los datos de la tabla tbm_tipcon
+
+
+Tbm_traDAOInterface v1.0: (Carlos Lainez- 01/04/2011)
+----
+Interfaz con metodos definidos para el manejo de la tabla tbm_tra
+
+
+Tbm_traDAO(Data Access Object) v1.0: (Carlos Lainez- 01/04/2011)
+----
+Implementacion de la interfaz tbm_traDAOInterface
+Contiene los metodos y las sentencias SQL necesarias para manipular los datos de la tabla tbm_tra
+
+
+Tbm_contraDAOInterface v1.0: (Carlos Lainez- 05/04/2011)
+----
+Interfaz con metodos definidos para el manejo de la tabla tbm_contra
+
+
+Tbm_contraDAO(Data Access Object) v1.0: (Carlos Lainez- 05/04/2011)
+----
+Implementacion de la interfaz tbm_contraDAOInterface
+Contiene los metodos y las sentencias SQL necesarias para manipular los datos de la tabla tbm_contra
+
+
+Tbm_tipfamconDAOInterface v1.0: (Carlos Lainez- 15/04/2011)
+----
+Interfaz con metodos definidos para el manejo de la tabla tbm_tipfamcon
+
+
+Tbm_tipfamconDAO(Data Access Object) v1.0: (Carlos Lainez- 15/04/2011)
+----
+Implementacion de la interfaz tbm_tipfamconDAOInterface
+Contiene los metodos y las sentencias SQL necesarias para manipular los datos de la tabla tbm_tipfamcon
+
+
+Tbm_docdigtraDAOInterface v1.0: (Carlos Lainez- 19/05/2011)
+----
+Interfaz con metodos definidos para el manejo de la tabla tbm_docdigtra
+
+
+Tbm_docdigtraDAO(Data Access Object) v1.0: (Carlos Lainez- 19/05/2011)
+----
+Implementacion de la interfaz tbm_docdigtraDAOInterface
+Contiene los metodos y las sentencias SQL necesarias para manipular los datos de la tabla tbm_docdigtra
+
+
+Tbm_traempDAOInterface v1.0: (Carlos Lainez- 17/06/2011)
+----
+Interfaz con metodos definidos para el manejo de la tabla tbm_traemp
+
+
+Tbm_traempDAO(Data Access Object) v1.0: (Carlos Lainez- 17/06/2011)
+----
+Implementacion de la interfaz tbm_traempDAOInterface
+Contiene los metodos y las sentencias SQL necesarias para manipular los datos de la tabla tbm_traemp
+
+
+Tbm_hortraDAOInterface v1.0: (Roberto Flores - 08/09/2011)
+----
+Interfaz con metodos definidos para el manejo de las tablas relacionadas a los horarios de trabajo Tbm_hortra
+
+
+Tbm_hortraDAO(Data Access Object) v1.0: (Roberto Flores - 08/09/2011)
+----
+Implementacion de la interfaz tbm_conasitraDAOInterface
+Contiene los metodos y las sentencias SQL necesarias para manipular los datos de las tablas relacionadas a los horarios de trabajo Tbm_hortra
+
+
+Tbm_callabDAOInterface v1.0: (Roberto Flores - 16/09/2011)
+----
+Interfaz con metodos definidos para el manejo de la tabla tbm_callab
+
+
+Tbm_callabDAO(Data Access Object) v1.0: (Roberto Flores - 16/09/2011)
+----
+Implementacion de la interfaz Tbm_callabDAOInterface
+Contiene los metodos y las sentencias SQL necesarias para manipular los datos de las tablas relacionadas a los calendarios laborales
+
+
+Tbm_carlabDAOInterface v1.0: (Roberto Flores - 17/11/2011)
+----
+Interfaz con metodos definidos para el manejo de la tabla Tbm_carlab
+
+
+Tbm_carlabDAO(Data Access Object) v1.0: (Roberto Flores - 17/11/2011)
+----
+Implementacion de la interfaz Tbm_carlabDAOInterface
+Contiene los metodos y las sentencias SQL necesarias para manipular los datos de las tablas relacionadas a los cargos laborales
+
+
+Tbm_depDAOInterface v1.0: (Roberto Flores - 21/11/2011)
+----
+Interfaz con metodos definidos para el manejo de la tabla tbm_dep
+
+
+Tbm_depDAO(Data Access Object) v1.0: (Roberto Flores - 21/11/2011)
+----
+Implementacion de la interfaz tbm_depDAOInterface
+Contiene los metodos y las sentencias SQL necesarias para manipular los datos de la tabla tbm_dep
+
+
+Tbm_conasitraDAOInterface v1.0: (Roberto Flores - 26/12/2011)
+----
+Interfaz con metodos definidos para el manejo de las tablas relacionadas al control de asistencias Tbm_conasitra
+
+
+Tbm_conasitraDAO(Data Access Object) v1.0: (Roberto Flores - 26/12/2011)
+----
+Implementacion de la interfaz tbm_conasitraDAOInterface
+Contiene los metodos y las sentencias SQL necesarias para manipular los datos de las tablas relacionadas al control de asistencias
+
+
+Tbm_MotHorSupExtDAOInterface v1.0: (Roberto Flores - 26/03/2012)
+----
+Interfaz con metodos definidos para el manejo de las tablas relacionadas a los motivos de horas suplementarias/extraordinarias Tbm_motHorExtSup
+
+
+Tbm_MotHorSupExtDAO(Data Access Object) v1.0: (Roberto Flores - 26/03/2012)
+----
+Implementacion de la interfaz Tbm_motHorExtSup
+Contiene los metodos y las sentencias SQL necesarias para manipular los datos de las tablas relacionadas a los motivos de horas suplementarias/extraordinarias Tbm_motHorExtSup
+
+
+Tbm_TraDAO(Data Access Object) v1.02: (Roberto Flores - 06/06/2013)
+----
+validaciones para mostrar empleados anulados y configuración de almuerzos
+
+
+Tbm_TraDAO(Data Access Object) v1.03: (Roberto Flores - 04/07/2013)
+----
+Se realizan validaciones para ingresar la oficina a la cual pertenece el empleado
+
+
+Tbm_TraEmpDAO(Data Access Object) v1.01: (Roberto Flores - 18/07/2013)
+----
+Se realiza validación para solo mostrar empleados por la empresa que se encuentran activos
+
+
+Tbm_TraDAO(Data Access Object) v1.04: (Roberto Flores - 22/08/2013)
+----
+Se realizan validaciones para ingresar el cargo laboral del empleado
+
+
+RRHHDao v0.2: (David Albuja - 16/06/2014)
+----
+Se creo clase para generar la programacion BM
+Se agregaron los campos de Año mes y periodo, para q el usuario pueda elgir el periodo correcto.
+Nuevo metodo para invocar al servico9
+
+RRHHDao v0.3: (David Albuja - 27/06/2014)
+Correccion generar la programacion BM 
+
+RRHHDao v0.4: (Tony Sanginez - 08/01/2018)
+Corrección de mes al momento de generar la programación BM.. estaba antes en 13 y era 12.
+
+
+Tbm_TraEmpDAO v1.02: (Tony Sanginez - 21/09/2015)
+-----
+Se agrega metodo nuevo para obtener si un trabajador tiene horario fijo o no.
+
+
+Tbm_traempDAOInterface v1.1: (Tony Sanginez- 21/Sep/2015)
+-----
+Se agrega metodo nuevo para obtener si un trabajador tiene horario fijo o no.
+
+
+Tbm_traDAOInterface v1.2: (Tony Sanginez- 11/Feb/2016)
+-----
+Se agrega para recibir objeto zafparsis en el metodo grabar.
+
+
+Tbm_TraDAO v1.05: (Tony Sanginez - 11/Feb/2016)
+-----
+Se modifica método grabar para mantener sincronizado el codigo del empleado en las dos bases. Grupo y Cosenco.
+
+
+Tbm_TraDAO v1.06: (Christian Mateo - 18/Ene/2019)
+-----
+Se modifica para que la consulta de empleado se pueda realizar ya que postgres maneja timestamp without time zone y with time zone
+Al momento de consultar es necesario especificar de alguna manera cual se va a utilizar y es por eso que se modifica el codigo.
+
+
+Tbm_TraDAOInterface v1.3: (Christian Mateo - 18/Ene/2019)
+-----
+Se modifica para que la consulta de empleado se pueda realizar ya que postgres maneja timestamp without time zone y with time zone
+Al momento de consultar es necesario especificar de alguna manera cual se va a utilizar y es por eso que se modifica el codigo.
+
+
+Tbm_ContraDAO v1.01: (Christian Mateo - 18/Ene/2019)
+-----
+Se modifica para que la consulta de empleado se pueda realizar ya que postgres maneja timestamp without time zone y with time zone
+Al momento de consultar es necesario especificar de alguna manera cual se va a utilizar y es por eso que se modifica el codigo.
+
+
+Tbm_tipfamconDAO v1.01: (Christian Mateo - 18/Ene/2019)
+-----
+Se modifica para que la consulta de empleado se pueda realizar ya que postgres maneja timestamp without time zone y with time zone
+Al momento de consultar es necesario especificar de alguna manera cual se va a utilizar y es por eso que se modifica el codigo.
+
+
+Tbm_docdigtraDAO v1.01: (Christian Mateo - 18/Ene/2019)
+-----
+Se modifica para que la consulta de empleado se pueda realizar ya que postgres maneja timestamp without time zone y with time zone
+Al momento de consultar es necesario especificar de alguna manera cual se va a utilizar y es por eso que se modifica el codigo.
+
+
+Tbm_TraDAO v1.02: (Christian Mateo - 28/Ene/2019)
+-----
+Se modifica uno de los métodos consultarLisGen para que pueda consultar por el problema de TimeStamp without time zone
+
+RRHHDao v0.5: (Rosa Zambrano - 30/Jul/2019)
+-----
+Se cambia en la función callServicio9 el envio de correo, para que utilice la libreria correo anterior.
+
+RRHHDao v0.6: (Rosa Zambrano - 06/Ago/2019)
+-----
+Se agrega el objeto de parametros del sistema para envios de correos.
+
+
+
+
+

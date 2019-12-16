@@ -1,0 +1,11 @@
+Pendientes:
+1)  
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (José Marín - 16/Jun/2017)
+----
+Clase nueva.
+

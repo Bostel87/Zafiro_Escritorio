@@ -1,0 +1,21 @@
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Ingrid Lino - 11/Jun/2007)
+----
+Programa nuevo, que permite realizar "Cierre/Reapertura mensual de Cuentas Contables", este programa permite realizar cierre de cuentas,
+siempre y cuando no este cerrado el mes.
+
+v0.1b2: (Ingrid Lino - 22/Ago/2007)
+----
+Se adicion� validaci�n que no permite insertar a�os menores al a�o 2006
+
+v0.2: (Ingrid Lino - 31/Dic/2008)
+----
+Se cambió línea "objTblBus= new ZafTblBus(tblDat);" a líneas después de haber asignado el modelo a la tabla.
+
+
+v0.2.1: (Ingrid Lino - 26/Ene/2009)
+----
+-Se adiciono en la cabecera de la columna del checked evento al dar click se seleccionen o no seleccionen todos
+    los registros de la columna.

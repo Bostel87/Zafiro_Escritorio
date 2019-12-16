@@ -1,0 +1,14 @@
+Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (José Marín - 1/Jul/2017)
+----
+Clase nueva (Pedidos a otras bodegas en Reserva, Facturacion Automatica).
+
+v0.02: (José Marín - 28/Ago/2017)
+----
+Se abre para que en la ventana de pedidos aparezcan los terminales que esten configurados para los vendedores.

@@ -1,0 +1,106 @@
+﻿Pendientes:
+1) 
+2) 
+
+﻿CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Ingrid Lino - 12/Sep/2017)
+----
+Libreria nueva para el módulo de importaciones - Ajustes de inventario
+
+v0.1.1: (Ingrid Lino - 05/Dic/2017)
+----
+Tipo de documento Orden de Distribución para inmaconsa
+
+v0.1.2: (Ingrid Lino - 07/Dic/2017)
+----
+Nuevo esquema de Provisiones ( Pedido Embarcado )
+
+v0.1.3: (Ingrid Lino - 04/Ene/2018)
+----
+Se cambia el valor asignado en variable "INT_COD_TIP_DOC_PRO" porque el código 297 ya habia sido aplicado en la DB de producción y se cambió a 299.
+
+v0.1.4: (Rosa Zambrano -21/Feb/2018)
+-----
+Se agrega el valor asignado en variable "INT_COD_TIP_DOC_AJU_PRO" con 302.
+
+v0.1.5: (Rosa Zambrano - 15/Mar/2018)
+-----
+Se agrega función getPorcentajeISD: que obtiene el porcentaje de isd del 5%.
+
+v0.1.6: (Ingrid Lino - 19/Mar/2018)
+-----
+En la función isConteoPendienteTransferir.transferencia: Se elimina tx_codAlt de query para poder cerrar pedidos.
+
+v0.1.7: (Rosa Zambrano - 25/Jun/2018)
+-----
+Proyecto de segmentación de compras locales.
+Se agregan nuevas constantes de codigo de menu: INT_COD_MNU_PRG_ING_IMP, INT_COD_MNU_PRG_COM_LOC, INT_COD_MNU_PRG_SOTRINI, INT_COD_MNU_PRG_SOTRINC.
+
+v0.1.8: (Rosa Zambrano - 10/Oct/2018)
+-----
+Se trabaja el costeo dentro de la transacción.
+
+v0.1.9: (Rosa Zambrano - 25/Oct/2018)
+-----
+Se agrega función existeIngresoImportacion para validar si existe o no un ingreso por importación.
+
+v0.2.0: (Rosa Zambrano - 05/Nov/2018)
+-----
+Se agregan cambios en la clase ZafPagImp.*
+
+v0.2.1: (Rosa Zambrano - 05/Nov/2018)
+-----
+Se agregan cambios en la clase ZafPagImp.*
+
+v0.2.2: (Rosa Zambrano - 05/Nov/2018)
+-----
+Se agregan cambios en la clase ZafImp.*
+Se crean nuevas constantes para códigos de menú de DxP.
+
+v0.2.3: (Ingrid Lino - 17/Ene/2019)
+-----
+Se agrega método "isCuentaBancoPrvExt" para validar que exista por lo menos alguna cuenta bancaria asociada al proveedor del exterior.
+
+v0.2.4: (Ingrid Lino - 07/Feb/2019)
+-----
+Se agrega en métodos "getOpenInstanciaPedido" el código de importador
+
+v0.2.5: (Rosa Zambrano - 18/Feb/2019)
+-----
+Se agrega variables de TRBADA para Pagos de Impuestos.
+
+v0.2.6: (Rosa Zambrano - 19/Feb/2019)
+-----
+Se cambia en la función de getPorcentajeISD, para que lea los datos de la configuración de la BD.
+
+v0.10: (Ingrid Lino - 17/Jun/2019)
+-----
+Nuevo esquema de asiento de diario y proceso de reversiones
+
+v0.11: (Rosa Zambrano - 20/Jun/2019)
+-----
+Se cambia consulta de pedidos para que muestre st_doc='A', es decir, solo los pedidos activos.
+Se cambia consulta para que muestre el número de pedido actual.
+
+v0.12: (Rosa Zambrano - 24/Jun/2019)
+-----
+Se agrega query para obtener la última instancia de un pedido en especifico.
+
+v0.13: (Rosa Zambrano - 27/Jun/2019)
+-----
+Se agregan funciones para obtener las notas de pedidos, pedidos embarcados e ingresos por importación abiertos.
+
+v0.14: (Rosa Zambrano - 20/Ago/2019)
+-----
+Se elimina actualización de fecha de documento, cuando se deniega ajuste. 
+Corriendo error de que fecha de documento del ajuste, sea distinta a la fecha del diario.
+
+v0.14.1: (Ingrid - 04/Sep/2019)
+-----
+Se agrega codificación para ISD Crédito Tributario, Gastos que genere movimiento contable.
+
+v0.14.2: (Ingrid - 25/Oct/2019)
+-----
+Variables de ISD de Crédito Tributario y Gasto.

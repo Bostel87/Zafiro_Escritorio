@@ -1,0 +1,51 @@
+
+CONTROL DE VERSIONES:
+=====================
+
+ZafVenTra v1.0: (Carlos Lainez- 04/04/2011)
+----
+Ventana de Consulta de Trabajadores.
+
+ZafVenComSec v1.0: (Carlos Lainez- 04/04/2011)
+----
+Ventana de Consulta de Comisiones Sectoriales.
+
+ZafVenTipCon v1.0: (Carlos Lainez- 05/04/2011)
+----
+Ventana de Consulta de Tipos de Contrato.
+
+ZafVenTipFamCon v1.0: (Carlos Lainez- 18/04/2011)
+----
+Ventana de Consulta de Tipos de Familiares y Contactos
+
+ZafVenTipFamCon v1.0: (Carlos Lainez- 18/04/2011)
+----
+Ventana de Consulta de Tipos de Familiares y Contactos
+
+ZafVenCarLab v1.0: (Roberto Flores - 17/11/2011)
+----
+Ventana de Consulta de Cargos Laborales
+
+ZafVenDep v1.0: (Roberto Flores - 21/11/2011)
+----
+Ventana de Consulta de Departamentos
+
+ZafVenCiu v1.0: (Roberto Flores - 04/01/2012)
+---
+Ventana de Consulta de Ciudades
+
+ZafVenEmp v1.0: (Roberto Flores - 28/02/2012)
+----
+Ventana de Consulta de Empleados
+
+ZafVenUsr v1.0: (Roberto Flores - 23/03/2012)
+----
+Ventana de Consulta de Usuarios
+
+ZafVenMotHorSupExt v1.0: (Roberto Flores - 29/03/2012)
+----
+Ventana de Consulta de Motivos de horas suplementarias/extraordinarias
+
+ZafVenOfi v1.0: (Roberto Flores - 19/04/2012)
+----
+Ventana de Consulta de Oficinas

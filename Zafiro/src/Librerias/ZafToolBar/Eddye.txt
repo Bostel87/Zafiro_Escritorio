@@ -1,0 +1,114 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 19/Ene/2006)
+----
+Se corrigió que después de Insertar se regresara al modo inicial.
+Se corrigió problemas en los botones Imprimir y Vista Preliminar. Ahora el orden de invocaci�n es: beforeMETODO()->METODO()->afterMETODO()
+
+
+v0.2: (Eddye Lino - 07/Abr/2006)
+-----
+Se agregó color de fondo al botón Insertar.
+
+
+v0.3: (Eddye Lino - 11/Nov/2007)
+----
+Se agregaron los métodos: 
+   1) getEstadoAnterior()
+Se modificaron los métodos: 
+   1) estAceAnula()
+   2) estAceConsulta()
+   3) estAceElimina()
+   4) estAceModifica()
+   5) estAnula()
+   6) estConsulta()
+   7) estElimina()
+   8) estInserta()
+   9) estListo()
+   10) estModifica()
+Se modificó lo siguiente:
+   1) Se agregó código para que se almacenara el estado antes de cambiarse a un nuevo estado.
+
+
+v0.3.1: (Eddye Lino - 12/Nov/2007)
+----
+    -Se adicionó el evento MousePressed en cada uno de los botones desplazadores:
+        -click inicio, click fin, click anterior, click siguiente
+     esto me va a permitir saber el momento en el que se está presionando cada uno de los botones del Tool Bar ya mencionados.
+
+
+v0.4: (Eddye Lino - 04/Ago/2009)
+----
+Se agregaron los métodos: 
+   1) beforeClickInicio()
+   2) beforeClickAnterior()
+   3) beforeClickSiguiente()
+   4) beforeClickFin()
+   5) beforeClickInsertar()
+   6) beforeClickConsultar()
+   7) beforeClickModificar()
+   8) beforeClickEliminar()
+   9) beforeClickAnular()
+   10) beforeClickImprimir()
+   11) beforeClickVistaPreliminar()
+   12) beforeClickAceptar()
+   13) beforeClickCancelar()
+   14) getBotonClick()
+Se modificaron los métodos: 
+   1) butIniActionPerformed(java.awt.event.ActionEvent evt)
+   2) butAntActionPerformed(java.awt.event.ActionEvent evt)
+   3) butSigActionPerformed(java.awt.event.ActionEvent evt)
+   4) butFinActionPerformed(java.awt.event.ActionEvent evt)
+   5) butInsActionPerformed(java.awt.event.ActionEvent evt)
+   6) butConActionPerformed(java.awt.event.ActionEvent evt)
+   7) butModActionPerformed(java.awt.event.ActionEvent evt)
+   8) butEliActionPerformed(java.awt.event.ActionEvent evt)
+   9) butAnuActionPerformed(java.awt.event.ActionEvent evt)
+   10) butImpActionPerformed(java.awt.event.ActionEvent evt)
+   11) butImpActionPerformed(java.awt.event.ActionEvent evt)
+   12) butAceActionPerformed(java.awt.event.ActionEvent evt)
+   13) butCanActionPerformed(java.awt.event.ActionEvent evt)
+
+
+v0.5: (Eddye Lino - 10/Sep/2009)
+----
+Se agregó el método: 
+   1) isOpcionEnabled(int codigoMenu)
+Se modificó el método: 
+   1) ZafToolBar(javax.swing.JInternalFrame ifrVen, Librerias.ZafParSis.ZafParSis objParSis)
+Al principio sólo se podía configurar el acceso a los botones de la barra de botones. Es decir:
+Insertar, Consultar, Modificar, etc. Pero en algunos programas era necesario configurar otras
+opciones. Por ejemplo: se puede conceder permiso para que unos usuarios puedan agregar teléfonos
+pero no eliminarlos. Mientras que a otros usuarios se les puede conceder acceso para que puedan
+agregar, modificar o eliminar teléfonos.
+
+
+v0.6: (Eddye Lino - 28/Sep/2009)
+----
+Se agregaron los métodos: 
+   1) agregarSeparador()
+   2) agregarBoton(javax.swing.JButton boton)
+Se modificó el método: 
+   1) estListo()
+Se agregó estos métodos para poder agregar dinámicamente separadores y botones en el ZafToolBar.
+
+
+
+v0.7: (Christian Mateo - 10/01/2015)
+----
+Se crea un getter a  la variable estAct para poder controlar en los diferentes modos de insercion, modificacion 
+Fue realizado para controlar en la opcion de Devolucion de ventas un control tanto en ingreso , como en modificacion
+que solo puedan modificar o ingresar documentos que sean predeterminados (relacionados con la facturacion electronica).
+
+
+v0.8: (Rosa Zambrano - 10/Jul/2018)
+----
+Se modificó el método: 
+   1) setEstadoRegistro()
+Se agregó estado de predocumento, es decir, st_Reg='O', para que muestre el label cuando son predocumentos.
+

@@ -1,0 +1,10 @@
+Pendientes:
+1) Todavia no esta en produccion
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (José Marín - 1/Jul/2017)
+----
+Clase nueva (Pedidos a otras bodegas segun el cliente, nueva tabla con formas de despacho).

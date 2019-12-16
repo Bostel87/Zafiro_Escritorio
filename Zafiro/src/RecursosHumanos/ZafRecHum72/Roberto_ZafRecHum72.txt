@@ -1,0 +1,30 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v1.0: (Roberto Flores - 10/Jul/2013)
+----
+Clase nueva
+
+
+v1.01: (Roberto Flores - 12/Mar/2014)
+-----
+Validaciones para empleados nuevos y se mueven las columnas de totales al inicio.
+
+
+v1.02: (Rosa Zambrano - 14/Ene/2016)
+-----
+Se actualiza la variable dblSBU con el sueldo básico unificado del año 2016 que es de $366
+
+
+v1.03: (Rosa Zambrano - 04/Feb/2016)
+-----
+Se elimina la variable dblSBU porque no se estaba utilizando.
+
+
+v1.04: (Rosa Zambrano - 24/May/2016)
+-----
+Se elimina objeto objInvItm, el cual no estaba siendo utilizado.

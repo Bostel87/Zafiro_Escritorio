@@ -1,0 +1,10 @@
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Ingrid Lino - 22/Oct/2009)
+----
+Nuevo programa para asignar nuevos usuarios a grupos creados en tbm_grpClaInv.
+
+v0.2: (Ingrid Lino - 09/Nov/2009)
+----
+Sólo se presentan grupos privados.

@@ -1,0 +1,390 @@
+﻿
+﻿CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Javier Ayapata - 28/Oct/2008)  
+---- 
+Clase nueva de confirmación de inventario.
+
+
+v0.2: (Javier Ayapata - 27/May/2009)  
+-----  
+Clase nueva de confirmación de ingreso y salida de bodega.
+
+
+v0.3: (Javier Ayapata - 01/Jun/2009)
+----- 
+Agrega para cambiar estado st_regrep en tabla tbm_detmovinv.
+
+
+v0.4: (Javier Ayapata - 11/Jun/2009)
+----- 
+Corrige estado de confirmación del documento.
+
+
+v0.5: (Javier Ayapata - 30/Jun/2009)
+----- 
+Corrige la confirmación se separa ingreso y egreso por separado.
+
+
+v0.6: (Javier Ayapata - 02/Jul/2009)
+----- 
+Se corrige la confirmación ingreso y egreso por separado.
+
+
+v0.7: (Javier Ayapata - 09/Jul/2009)
+----- 
+Se corrige para salga todos los ingreso - egreso dependiendo de la bodega sin importar empresa.
+
+
+v0.8: (Javier Ayapata - 09/Jul/2009)
+----- 
+Se corrige para salga la bodega  que corresponde.
+
+
+v0.9: (Javier Ayapata - 28/Jul/2009)
+----- 
+Se agrega solo que lea las que no tienes gu?as secundarias.
+
+
+v1.0: (Javier Ayapata - 06/Ago/2009)
+----- 
+Se corrige para que no tome en cuenta los ?tem que no ingresen o egresen f?sicamente a bodega. para cambiar de estado a confirmado.
+
+
+v1.1: (Javier Ayapata - 20/Ago/2009)
+----- 
+Se corrige al momento de consultar las confirmaciones de ingreso.
+
+
+v1.2: (Javier Ayapata - 21/Oct/2009)
+----- 
+Se corrige para que trabaje ingreso provincial.
+
+
+v1.3: (Javier Ayapata - 22/Oct/2009)
+----- 
+Se agrega mensaje cuando una factura tiene pago de contado o cheque pendiente.
+
+
+v1.4: (Javier Ayapata - 12/Mar/2010)
+----- 
+Se agrega constructor para mostrar documento.
+
+
+v1.5: (Javier Ayapata - 31/Mar/2010)
+----- 
+Se corrige estado de confirmación, cuando se confirma ingreso cuando es transferencia.
+
+
+v1.6: (Javier Ayapata - 10/Jun/2010)
+----- 
+Se corrige carga en las transferencia solo que sea de la bodega que esta trabajando.
+
+
+v1.7: (Javier Ayapata - 17/Jun/2010)
+----- 
+Se agrega para que tome tambi?n cantidad nunca recibida.
+
+
+v1.8: (Javier Ayapata - 07/Jul/2010)
+----- 
+Se agrega para que almacene un log histórico de proceso de insertar confirmación de egreso.
+
+
+v1.9: (Javier Ayapata - 26/Oct/2010)
+----- 
+Se modifica ruta zafiro a Zafiro.
+
+
+v2.0: (Javier Ayapata - 10/Nov/2010)
+----- 
+Se corrige que actualice cuando ponen cantidad nunca recibida en ingreso.
+
+
+v2.1: (Javier Ayapata - 24/Nov/2010)
+----- 
+Se agrega para que no aparezcan las gu?as con numero 0. 
+
+
+v2.2: (Javier Ayapata - 21/Dic/2010)
+----- 
+Se corrige para que  cargue la bodega predeterminado.
+
+
+v2.3: (Javier Ayapata - 08/Feb/2011)
+----- 
+Se corrige para que aparezca seleccionado  mostrar los ?tem que est?n confirmado parcialmente.
+
+
+v2.4: (Javier Ayapata - 18/May/2011)
+----- 
+Se agrega campo para cantidades en mal estado.
+
+
+v2.5: (Javier Ayapata - 30/Jun/2011)
+----- 
+Se agrega cambios de confirmación de egreso se env?e mail a Jimmy de cantidad que no se enviare solo entre compa??as.
+
+
+v2.6: (Javier Ayapata - 04/Jul/2011)
+----- 
+Se agrega nombre a la cabecera de la tabla en cantidad en mal estado que no tenia.
+
+
+v2.7: (Javier Ayapata - 12/Jul/2011)
+----- 
+Se corrige para que almacene null en campo de nunca recibido cuando no tenga.
+
+
+v2.8: (Javier Ayapata - 23/Sep/2011)
+----- 
+Se agrega cambios nuevo esquema Gu?as-OD
+
+
+v2.9: (Javier Ayapata - 23/Sep/2011)
+----- 
+Se agrega cambio al presentar los ?tems faltantes de confirmar.
+
+
+v3.0: (Javier Ayapata - 27/Sep/2011)
+----- 
+Se corrige al consultar la orden de despacho.
+
+
+v3.1: (Javier Ayapata - 04/Oct/2011)
+----- 
+Se agrega para que al confirmar el egreso verifique si el ingreso relacional este tambi?n confirmado.
+
+
+v3.2: (Javier Ayapata - 05/Oct/2011)
+----- 
+Se quita validación de ingreso moment?neamente.
+
+
+v3.3: (Javier Ayapata - 07/Nov/2011)
+----- 
+Se agrega esquema cliente retira en otro local.
+
+
+v3.4: (Javier Ayapata - 28/Nov/2011)
+----- 
+Se agrega para que se pueda consultar confirmaciones de egreso ( cliente retira ). y poder anular la misma.
+
+
+v3.4: (Erik Flores - 23/Ene/2012) 
+-----  
+Se modifica función anularDetConfEgrEsqAnt para utilizar PreparedStatements 
+en lugar de Statement. Motivo: Al anular, la pantalla se bloquea porque los valores que se enviaban eran negativos y con el signo - de la sentencia la base se bloqueaba al no saber que hacer.
+
+
+v3.5: (Erik Flores - 26/Jun/2012)
+----- 
+Se modifica confirmación de egresos para que al momento de hacer la confirmación 
+Se incluyan los ?tems de servicio y aparezcan impresos en la gu?a.
+
+
+v3.6: (Erik Flores - 4/Sep/2012)
+----- 
+Se modifica por motivo que esta permitiendo confirmar mercader?a que cliente retira en otra bodega.
+AP Gerencia. se bloquea confirmación de ORDDES con fecha menor al 01/08/2012. Solo se permite confirmar con el usuario ADMIN.
+
+
+v3.7: (Alex Morán - 22/Mar/2013)
+----- 
+Se agrega en confirmación de egresos datos complementarios como placa, identificaci?n y nombre del transportista.
+
+
+v3.8: (Alex Morán - 30/Abr/2013)
+----- 
+Se identifica origen de orden de despacho para bodega Inmaconsa.
+
+
+v3.9: (Alex Morán - 02/May2013)
+----- 
+Se agrega constructor cuando es llamado del formulario listado de ingresos f?sicos de mercader?a pendientes de confirmar.
+
+
+v4.0: (Alex Morán - 03/May/2013)
+----- 
+Se modifica constructor indicando c?digo de registro en vez de c?digo de ?tem.
+
+
+v4.1: (Alex Morán - 06/May/2013)
+----- 
+Se corrige seteo de c?digo de men? en objeto. 
+
+
+v4.2: (Alex Morán - 15/05/2013)
+----- 
+Se corrige consulta para presentar listado total de veh?culos.
+
+
+v4.3: (Alex Morán - 13/Ago/2013)
+----- 
+Se modifica para no permitir confirmar egresos por cliente retira si la factura no ha sido impresa.
+
+
+V4.4: (Alex Morán - 02/Sep/2013)
+----- 
+Se modifica para permitir confirmar egresos utilizando el c?digo alterno 2 del ?tem.
+
+
+v4.5: (Alex Morán - 07/Oct/2013)
+----- 
+Se agrega condici?n de empleados activos por empresa en consulta de choferes
+
+
+v4.6: (José Marín - 02/Abr/2014)
+----- 
+Se desactiva la funcion tblDatMouseClicked()  
+
+
+v4.7: (Eddye Lino - 11/Jun/2014)
+----- 
+Se corrigió el método: 
+   1) configurarTablaConf()
+Cuando se utilizaba el código de 3 letras había ocasiones en las que no salía la cantidad a confirmar.
+Al revisar se encontró que dicho problema era porque en algunos casos al obtener el contenido de una celda
+se obtenía NULL y se lo trataba de convertir a String. Eso hacía que internamente se caiga el programa y
+no asigne la cantidad con lo cual no podían confirmar.
+
+
+v4.8: (Ingrid Lino - 23/Jul/2014)
+----- 
+Se agrega formato de impresión para Órdenes de Almacenamiento
+
+
+v4.9: (Ingrid Lino - 28/Jul/2014)
+----- 
+Se adiciona codificación para presentar el motivo por el que se generó la transacción.
+
+
+v4.10: (Ingrid Lino - 29/Jul/2014)
+-----
+Se adicionan los tipos de documentos TRINDI(58), TRIADI(96), TRIACQ(97), TRIACM(98), TRINAU(153)
+
+
+v4.11: (Ingrid Lino - 31/Jul/2014)
+-----
+Se adiciona el printServer de dimulti para las órdenes de almcenamiento.
+
+
+v4.13: (Ingrid Lino - 05/Ago/2014)
+-----
+Se adiciona el tipo de motivo de la transaccion cuando es Confirmacion por ingreso porque daba un error. Se le envia ''.
+
+
+v4.14: (Ingrid Lino - 05/Ago/2014)
+-----
+Se agrega filtro de cuando la bodega es inmaconsa(15) no se genere Orden de Almacenamiento.
+
+
+v4.15: (Ingrid Lino - 16/Dic/2014)
+-----
+Se agrega código para usar Guías de Remisión Electrónica. COIEBOE
+
+
+v4.16: (Ingrid Lino - 17/Dic/2014)
+-----
+Se cambia el dato como cargar la fecha al dar click en insertar.
+
+
+v4.17: (Ingrid Lino - 17/Dic/2014)
+-----
+Se valida que cuando se escoja vehiculo y chofer los datos se guarden en la db, antes no se estaban guardando
+
+
+v4.18: (José Marín M. - 18/Dic/2014)
+-----
+Se modifica el metodo para tomar la hora en, ingCabConfIng() 
+
+
+v4.19: (Ingrid Lino. - 22/Dic/2014)
+-----
+Se añaden los campos tx_motMovInv y co_empComRel en txtNumDocConKeyPressed();
+
+
+v4.20: (Ingrid Lino. - 24/Dic/2014)
+-----
+Se cambia en cargarTipoDoc() para que muestre los tipos de documentos por usuario y no por asociados al programa.
+
+
+v4.21: (Ingrid Lino. - 08/Ene/2015)
+-----
+Se cambia esquema para imprimir Órdenes de Almacenamiento, antes validaba por empresa, ahora por bodega, puesto que inmaconsa funciona por las 3 empresas, mejor trabajar con código de bodega
+
+
+v4.22: (José Marín M. - 27/Mar/2015)
+-----
+Se agrega una validación por petición de Werner Campoverde, de que no se pueda despachar nada de mas de 30 dias. validaFechaConfirmacionWerner2015()
+
+
+v4.23: (José Marín M. - 01/Abr/2015)
+----- 
+Se valida que la validacion de los 30 dias sea sola para egresos, se agrega al administrador, para que tambien pueda confirmar egresos
+
+
+v4.24: (Rosa Zambrano - 02/Abr/2015)
+----- 
+Se corrige la validación del ingreso.
+
+
+v4.25: (Rosa Zambrano - 29/Jun/2015)
+----- 
+Se agrega en la función cargarGuiDes() los tipos de documentos, cuando el motivo de traslado sea VENTA. 
+Se agrega filtro para que busque el documento a confirmar de acuerdo a la configuración de la tabla tbr_tipdocdetprg.
+Se cambia ruta de busqueda de reporte de orden de almacenamiento, para que busque el formato de reporte en la 172.16.1.2, en vez de getDirectorioSistema().
+
+
+v4.26: (Rosa Zambrano - 03/Ago/2015)
+-----
+Se agrega validación para que cuando confirme un ingreso el Ing. Werner Campoverde no se impriman las Ordenes de Almacenamiento.
+
+
+v4.27: (Christian Mateo -  21/Ago/2015)
+-----
+Se agrega el uso de ZafReglas para generación de OD Y G.R., en reemplazo del ZafSer01.
+
+
+v4.28: (Rosa Zambrano - 26/Sep/2015)
+-----
+Se agrega impresión de Ordenes de Almacenamiento en Manta, Sto Domingo y Cuenca.
+
+
+v4.29: (Rosa Zambrano - 24/Dic/2015)
+-----
+Se agrega vista preliminar de Ordenes de Almacenamiento cuando se ingrese por el menu de Confirmación de Ingreso.
+
+
+v4.30: (Rosa Zambrano - 30/Dic/2015)
+-----
+Se agrega configuración a los usuarios en la ventana de consulta de tipos de documentos de acuerdo a la tabla tbr_tipDocUsr.
+
+
+v4.31: (Rosa Zambrano - 13/Ene/2016)
+-----
+Se modifica en la función configurarVenConChofer(), para que aparezcan en la ventana de consulta de choferes los que estan desactivados en la tabla tbm_TraEmp.
+Este cambio es TEMPORAL hasta unificacion de Bases.
+
+
+v4.32: (Christian Mateo - 14/Ene/2016)
+-----
+Se hace transaccional para que genere la confirmacion y la guia remision en una sola transaccion.
+
+
+v4.33: (Christian Mateo - 15/Ene/2016)
+-----
+Se retorna a la versión v4.31 
+
+
+v4.34: (Rosa Zambrano - 10/Mar/2016)
+-----
+Se agrega el código de 3 letras para confirmación de ingreso autorizado por el Ing. Werner Campoverde para mejorar las confirmaciones de ingreso desde Importaciones a Inmaconsa.
+
+
+v4.35: (José Marín M. - 15/Jul/2016)
+-----
+Se agrega cambios para el proceso de solicitudes de transferencias de inventario.
+
+

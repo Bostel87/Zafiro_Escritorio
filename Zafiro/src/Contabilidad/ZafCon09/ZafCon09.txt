@@ -1,0 +1,383 @@
+Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 19/Ene/2006)
+----
+Se actualizá el cádigo para que funcione con la correccián hecha en ZafToolBar.
+Ahora luego de "Insertar" se envia el registro al modo "Consultar".
+
+
+v0.2: (Eddye Lino - 25/Abr/2006)
+----
+Se agregá cádigo para que mostrara la cantidad en palabras.
+
+
+v0.2.3: (Javier Ayapata - 28/Jul/2006)
+----
+Se  agregá en la impresion que si esta en tuval escoja el esquema 2.
+
+
+v0.2.4: (Javier Ayapata - 31/Jul/2006)
+----
+Se  corrigue colocando la nueva clase de transformar de numeros a letras.
+
+
+v0.3: (Eddye Lino - 09/Nov/2006)
+----
+Se reemplazá el uso de la clase "ZafConsulta" por "ZafVenCon".
+Se mejoraron alunos procesos.
+Se cambiá la forma de eliminar documentos.
+Antes: Se hacáa una eliminacián fásica.
+Ahora: Se hace una eliminacián lágica.
+El cádigo anterior era:
+    private boolean eliminarReg()
+    {
+        boolean blnRes=false;
+        try
+        {
+            con=DriverManager.getConnection(objParSis.getStringConexion(), objParSis.getUsuarioBaseDatos(), objParSis.getClaveBaseDatos());
+            con.setAutoCommit(false);
+            if (con!=null)
+            {
+                if (eliminarDet())
+                {
+                    if (eliminarCab())
+                    {
+                        if (actualizarTbmPagMovInv(2))
+                        {
+                            if (objAsiDia.eliminarDiario(con, objParSis.getCodigoEmpresa(), objParSis.getCodigoLocal(), Integer.parseInt(txtCodTipDoc.getText()), Integer.parseInt(txtCodDoc.getText())))
+                            {
+                                con.commit();
+                                blnRes=true;
+                            }
+                            else
+                                con.rollback();
+                        }
+                        else
+                            con.rollback();
+                    }
+                    else
+                        con.rollback();
+                }
+                else
+                    con.rollback();
+            }
+            con.close();
+            con=null;
+        }
+        catch (java.sql.SQLException e)
+        {
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        catch (Exception e)
+        {
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        return blnRes;
+    }
+
+    private boolean eliminarCab()
+    {
+        boolean blnRes=true;
+        try
+        {
+            if (con!=null)
+            {
+                stm=con.createStatement();
+                //Armar la sentencia SQL.
+                strSQL="";
+                strSQL+="DELETE FROM tbm_cabPag";
+                strSQL+=" WHERE co_emp=" + rstCab.getString("co_emp");
+                strSQL+=" AND co_loc=" + rstCab.getString("co_loc");
+                strSQL+=" AND co_tipDoc=" + rstCab.getString("co_tipDoc");
+                strSQL+=" AND co_doc=" + rstCab.getString("co_doc");
+                stm.executeUpdate(strSQL);
+                stm.close();
+                stm=null;
+            }
+        }
+        catch (java.sql.SQLException e)
+        {
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        catch (Exception e)
+        {
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        return blnRes;
+    }
+
+v0.4: (Eddye Lino - 13/Nov/2006)
+----
+Se corrigiá problema que se presentaba al generar la glosa automáticamente en documentos que ya se encontraban en la base de datos.
+
+
+v0.5: (Eddye Lino - 13/Nov/2006)
+----
+Se corrigiá problema que se presentaba al validar "txtNumDoc1" en la funcián "isCamVal()".
+
+
+v0.6: (Javier Ayapata - 15/Nov/2006)
+----
+Se agrega para que al momento imprimir sea por formato de cada empresa. 
+
+
+v0.7: (Dario Cardenas - 13/Abr/2007)
+----
+Se modifico funcion cosultarDocPnd(), se le quito filtro por codLoc ya que desde ahora se podra
+cancelar doc de cualquiera de los locales en un mismo programa...
+
+v0.8: (Ingrid Lino - 24/May/2007)
+----
+Se quito el filtro de local de la funcion q se carga al momento de dar click en modificar y tambien se coloco la funcion mostrarCtaPre, para cargar el dato de strUbiCta que se necesita para el metodo generarDiario
+
+v0.9: (Ingrid Lino - 11/Jul/2007)
+----
+Se quitá al momento de dar click en modificar que se cargue la cuenta predeterminada.
+
+v0.9.2: (Ingrid Lino - 03/Ago/2007)
+----
+Al momento de insertar, modificar, anular y eliminar se cambiá el esquema de guardar en tbm_detpag y en tbm_pagmovinv segán esquema de signos por tipo de documento
+
+v0.9.3: (Ingrid Lino - 09/Ago/2007)
+----
+En la funcián isCamVal() se condicioná para que valide si el
+
+v0.9.2: (Ingrid Lino - 23/Ago/2007)
+-----
+Se adicioná cádigo para presentar tipos de documentos por usuarios y cuentas por usuarios
+
+v0.9.4
+------
+Para el caso de insercián se presentará la cuenta predeterminada, en cualquier otro caso se presentará la cuenta que fue grabada en ese documento,
+para ello se adicioná en la lánea 3724 el filtro 
+    AND a2.co_cta=" + txtCodCta.getText()
+
+v0.9.5
+------
+Se cambiá el programa al nuevo esquema de Reportes. para Vista Preliminar e Imprimir.
+
+v0.11b1: (Ingrid Lino - 21/Ene/2008)
+-----
+Se adicioná cádigo para cuando se grabe un cheque en el q se especifica solo el monto en la cabecera se genere un registro
+automático que guarde la clave primaria de tbm_detPag y el valor del dcto en nd_abo.
+
+v0.11: (Ingrid Lino - 23/Ene/2008)
+-----
+Pase a produccián
+
+v0.12: (Ingrid Lino - 31/Ene/2008)
+-----
+Se corrigiá el parámetro de local, q no estaba tomando el parámetro de local de la cabecera sino del local por donde se ingresaba,
+y eso estaba mal porq presentaba la informacián del documento pero con asiento de diario de otro local.
+
+v0.13: (Ingrid Lino - 07/Feb/2008)
+-----
+El parámetro para LOCAL corregido en la versián anterior, no se lo habáa pasado para el mátodo afterInsertar() q llama a la funcián consultarRegIns.
+
+
+v0.14: (Ingrid Lino - 06/Ago/2008)
+-----
+Se modificó la forma de llamar al reporte .jrxml. El motivo es por cambio del SO Windows al SO Linux, y en
+el código se está colocando quemada la ruta de ubicación del reporte.
+Ejm:
+    "C://Zafiro//Reportes_impresos//RptDebBan.jrxml"   -->Para Windows
+    "//Zafiro//Reportes_impresos//RptDebBan.jrxml"     -->Para Linux
+
+v0.15 b1: (Ingrid Lino - 11/Ago/2008)
+-----
+Se adicionó código en la función cargarDocPen() para que sólo presente documentos que han sido autorizados y a los que se les ha asignado un banco.
+
+v0.15: (Ingrid Lino - 11/Ago/2008)
+-----
+Pase a producción
+
+v0.16 b1: (Ingrid Lino - 22/Ago/2008)
+-----
+Se adicionó mensaje de confirmación para antes de insertar en el que se debe confirmar que el banco seleccionado es el adecuado.
+Esto fue solicitud del Sr. Luigui Sensi, la finalidad es que el usuario confirme que el cheque que se va a imprimir sea el mismo que consta
+en la pantalla del sistema.
+
+v0.16: (Ingrid Lino - 03/Sep/2008)
+-----
+Pase a producción
+
+v0.16.1: (Ingrid Lino - 25/Sep/2008)
+-----
+    - Se adicionó columna para guardar observación de porque no se ha realizado el cheque,
+      esta columna contiene un botón el mismo q abre una ventana de dialogo donde se ingresará la obs.
+
+v0.16.3: (Ingrid Lino - 29/Sep/2008)
+-----
+    - Se cambió la validación del número de egreso.
+        - Antes estaba validando por número de diario que es de tipo String, ahora lo valida contra numero alterno 1 de 
+            tbm_cabPag que es un número.
+
+v0.17 b1: (Ingrid Lino - 12/Nov/2008)
+-----
+    -Se adiciona parámetros de permisos de modificación para fecha del documento y para modificación del 
+    documento.
+    Ver diccionario de datos:
+        tbr_tipdocusr.ne_tipresmodfecdoc
+        tipdocusr.ne_tipresmoddoc
+    -Se adiciona código para actualizar en tbm_cabDia.st_imp='S' cuando se realice la impresión.
+    -Se adiciona código para actualizar en tbm_cabPag.st_imp='S' cuando se realice la impresión.
+    -Aparece el esquema de "cheque a fecha", el mismo que será:
+        -Si a través del programa de Autorizaciones de pago, cuando se realiza la autorización de pago se le da 
+         una fecha de vencimiento de cheque está será aplicada a ese cliente/proveedor sino, la fecha de vencimiento
+         del cheque será la fecha del día(ésta será la fecha del servidor).
+    -Se agregó un JDialogo donde aparecerán las fechas del cheque que se le han asignado previamente en el programa
+     de Autorización de Pagos, se escogerá una fecha y sólo se cargarán en el programa de emisión de cheque los
+     documentos que tengan esa fecha de cheque, ese cliente y ese banco asignado.
+
+    -Se adiciona esquema de "número de documentos por grupo" cuyo esquema se ve en tbm_cabGrpTipDoc.ne_ultDoc,
+     con esto se consigue que si un documento está configurado en tbm_cabTipDoc.co_grptipdoc, este documento
+     tendrá como "número de documento" el que se lee en tbm_cabGrpTipDoc.ne_ultDoc y no el de tbm_cabTipDoc.ne_ultDoc.
+    -Se incrementará en uno el "número del documento" de la tabla donde se lo haya tomado, la otra tabla mantiene el campo
+     sin incrementar.
+    -Se usa el mismo programa para realizar cheques a clientes, cuyo mecanismo será mostrar documentos que tengan
+     exceso de pago(en el caso de facturas) y las DEVVEN y N/C que se hayan emitido al cliente y que no hayan sido 
+     cruzadas hasta el momento(es decir que cuenten como pendientes).
+
+v0.17: (Ingrid Lino - 17/Nov/2008)
+-----
+Pase a producción.
+
+
+v0.18: (Ingrid Lino - 29/Dic/2008)
+-----
+Se adicionó el campo tbm_plaCta.ne_ultChq para tomar en cuenta el número de cheque desde tbm_plaCta y no desde 
+tbm_cabMovInv.ne_numDoc2.
+
+v0.19: (Ingrid Lino - 26/Ene/2009)
+-----
+-Se bloquearon los campos numero de documento 1(#EGRE) y numero de documento 2(#CHQ) al momento de insertar.
+
+v0.20: (Ingrid Lino - 23/Jun/2009)
+-----
+Se adicionó en imprimir para que no se permita imprimir si el estado del documento es 'S'
+
+v0.21: (Ingrid Lino - 29/Jun/2009)
+-----
+Se colocó filtro en cargarDocPen() para q cuando sean determinados bancos en determinadas empresas, la fecha de
+vencimiento sea 30/06/2009.
+
+v0.22: (Ingrid Lino - 30/Jun/2009)
+-----
+Se hizo una función que se carga al momento de cambiar el banco, para que actualice el numero de cheque, puesto q cogia el q estaba en la ventana sin actualizar(o sea el q se habia cargado en la primera consulta).
+
+v0.23: (Ingrid Lino - 01/Jul/2009)
+-----
+Se quitó filtro en cargarDocPen() para q cuando sean determinados bancos en determinadas empresas, la fecha de
+vencimiento sea 30/06/2009.(Disposición de Gerencia, notificado por Gina).
+
+v0.3: (Ingrid Lino - 18/Ago/2009)
+-----
+Se presentan tb Notas de crédito y devoluciones de modo informativo.
+Ahora solo se puede abonar (valor pendiente - valor de la devolucion si es q tiene).
+Se siguen presentando los registros mientras se tenga algún valor pendiente así el valor aplicado esté en 0 o en negativo.
+
+v0.3.1: (Ingrid Lino - 25/Sep/2009)
+-----
+Se adicionó código de impresión y vista prelimiar para Linux
+
+v0.4: (Ingrid Lino - 28/Sep/2009)
+-----
+Se unificaron los reportes(solo se dejo una para impresión de todas las empresas.
+
+v0.5: (Ingrid Lino - 04/Nov/2009)
+-----
+Se adicionó reporte para el Banco Amazonas porq no tiene el mismo formato físico que los otros bancos.
+
+v0.7: (Ingrid Lino - 02/Feb/2010)
+-----
+Se cambió el formato para la impresión del cheque cuando es del amazonas y machala en castek y dimulti.
+
+v0.7.1: (Ingrid Lino - 08/Abr/2010)
+-----
+Se adicionó reporte de cheques del produbanco para castek.
+
+
+v0.7.2: (Ingrid Lino - 11/May/2010)
+-----
+Se adicionó un constructor que es llamado para presentar información del egreso(se llama desde ZafVen07).
+
+v0.7.3: (Ingrid Lino - 17/May/2010)
+----
+Se adicionaron campos en "tbm_cabPag.tx_comIng, tbm_cabPag.tx_comMod" para insercion, modificacion, anulacion y eliminacion respectivamente.
+
+v0.7.4: (Ingrid Lino - 08/Jul/2010)
+----
+Se adicionó formato de impresión para Ecuatosa.
+
+v0.7.5: (Ingrid Lino - 07/Oct/2010)
+----
+Se cambió el formato de impresión para Bco. Machala en Tuval.
+
+v0.7.6: (Ingrid Lino - 28/Oct/2010)
+----
+Se cambió el esquema de impresión, se dejó un solo reporte para todas las cías y se está usando ahora la clase ZafRpt
+
+
+v0.7.7: (Ingrid Lino - 05/Nov/2010)
+----
+Se quitaron campos de los queries debido a que esos campos van a desaparecer de la db. También se cambió el parámetro de presentación de ventana de impresión(Ahora es directa).
+
+v0.7.8: (Ingrid Lino - 10/Nov/2010)
+----
+Se quitó en insertarCab la linea donde se llamaba nuevamente al método actualizarGlo();
+
+v0.7.9: (Ingrid Lino - 14/Mar/2011)
+----
+Se cambió el campo donde se leía la fecha de vencimiento del cheque a un campo nuevo.
+
+v0.8: (Ingrid Lino - 14/Dic/2011)
+----
+Para empresa Castek el diario de Emisión de cheques para clientes, se genera un diario nulo(la cuenta del banco seleccionado para hacer el pago aparece en Debe y en Haber. El usuario deberá cambiarlo. El método usado antes daba error en el caso de CASTEK
+
+v0.8.2: (Ingrid Lino - 15/Ago/2012)
+----
+Se cambia la forma de obtener el numero de retencion para la glosa. Cuando se seleccionaban muchos documentos, el programa se demoraba en marcardo porque regeneraba la glosa por cada documento iba a buscar en la db la retencion.
+
+v0.8.3: (Ingrid Lino - 16/Ago/2012)
+----
+Correccion: Al momento de insertar cuando previamente se habia intentado y no se habia podido(hacian la correccion), cuando daban insertar nuevamente no actualizaba en tbm_pagMovInv. 
+
+v0.9: (Ingrid Lino - 06/Feb/2014)
+----
+Se agrega codificación para que este programa trabaje con la opción de pagos por transferencia, se configuran nuevos campos, nuevo tipo documento y nuevo reporte impreso.
+
+v0.9.1: (Ingrid Lino - 04/Jul/2014)
+----
+Se agrega en el código de transferencias, que permita procesar clientes.
+
+v0.9.2: (Ingrid Lino - 29/Jul/2014)
+----
+Se adiciona el filtro por transferencia en la ventana de fecha.
+
+v0.9.3: (Ingrid Lino - 15/Oct/2014)
+----
+Se cambia el formato de la fecha del cheque, según lo solicitado por las entidades bancarias.
+
+v0.9.4: (Dennis Betancourt - 05/Feb/2018)
+----
+Se agrega un nuevo menu: Pagos a clientes utilizando transferencias bancarias.
+
+v0.9.5: (Dennis Betancourt - 01/Mar/2018)
+----
+1) Cuando el programa opera como opcion de menu "Pagos a clientes utilizando transferencias bancarias", se agrego una configuracion cuando se ingresa por Dimulti. Para los locales de Duran se usa la cuenta "CLIENTES DURAN". Para el resto de locales se usa la cuenta "CLIENTES GUAYAQUIL".
+2) En el reporte, se modifico para que, de acuerdo a la opcion de menu escogida, aparezca la leyenda correspondiente en la parte superior del reporte.
+
+v0.9.6: (Dennis Betancourt - 06/Nov/2018)
+----
+Se puso una validacion para que sea obligatorio el ingreso de datos en los campos "Numero alterno 1 " y "Numero alterno 2". Ademas, se esta validando que dichos datos sean numericos.
+
+v0.9.7: (Dennis Betancourt - 26/Dic/2018)
+----
+Se puso una validacion para que no permita grabar el documento si no se ha seleccionado alguna fila del detalle.

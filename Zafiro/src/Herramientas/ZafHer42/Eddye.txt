@@ -1,0 +1,28 @@
+﻿Pendientes:
+1) 
+2) 
+3) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 15/Abr/2008)
+----
+Clase nueva.
+
+
+v0.2: (Eddye Lino - 01/Dic/2008)
+----
+Se modificaron los métodos: 
+   1) configurarFrm()
+   2) cargarDetReg()
+En dichos métodos se agregó código para que cierta información sea visible en la empresa Grupo
+pero no por empresa.
+
+
+v0.3: (Eddye Lino - 02/Oct/2015)
+----
+Se modificó el método: 
+   1) tblDatKeyPressed(java.awt.event.KeyEvent evt)
+Se reemplazó "evt.setKeyCode(0);" por "evt.consume();" porque a partir de "Java 7" ya no consumía el ENTER.
+

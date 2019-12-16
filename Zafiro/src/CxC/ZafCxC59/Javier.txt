@@ -1,0 +1,25 @@
+﻿
+CONTROL DE VERSIONES:
+=====================
+
+
+v0.1:  Javier Ayapata  03/Junio/2010
+----
+   clase nueva
+
+v0.2:  Javier Ayapata  23/Agosto/2010
+----
+   se agrega el usuario de busqueda 
+
+
+v0.3:  Javier Ayapata  25/Agosto/2010
+----
+   se agrega el usuario de busqueda en reporteria.
+
+
+v0.4:  Javier Ayapata  25/Octubre/2010
+----
+  se cambia configuracion de reporteria que esta en el servidor.
+
+
+

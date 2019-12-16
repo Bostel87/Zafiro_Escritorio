@@ -1,0 +1,31 @@
+Pendientes:
+1) 
+2)
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Javier Ayapata - 17/Sep/2008)
+----
+Clase nueva.
+
+
+v0.2: (Javier Ayapata - 02/Mar/2009)
+----
+Se invierte estado de incluir y excluir ventas de contado.
+
+
+v0.3: (Javier Ayapata - 09/Sep/2009)
+----
+Se agrega columna de valor pendiente sin retención.
+
+
+v0.4: (Eddye Lino - 22/Ago/2013)
+----
+Se agregó código para que los botones "Consultar", "Guardar" y "Cerrar" se habiliten
+de acuerdo a los permisos que tiene asignado el usuario.
+
+v0.5: (Christian Mateo - 12/dic/2013)
+------
+
+Se agregaron cambios para que aparezcan los documentos configurados para el programa  y para los usuarios registrados

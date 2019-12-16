@@ -1,0 +1,32 @@
+﻿Pendientes:
+1) Modo Eliminar, Anular, Imprimir, Vista preliminar.
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 01/Oct/2007)
+----
+Clase nueva.
+
+
+v0.2: (Eddye Lino - 15/Oct/2007)
+-----
+Se corrigieron los métodos: 
+   1) insertarDet()
+En dicho método estaba faltando insertar el campo "st_regRep".
+
+
+v0.3: (Eddye Lino - 05/Jun/2008)
+-----
+Se agregó el método: 
+   1) getPesForPag()
+Se corrigieron los métodos: 
+   1) insertarCab()
+   2) actualizarCab()
+En dicho método se modificó el código para que use el método "getPesForPag()".
+
+
+v0.4: (Rosa Zambrano - 29/Jun/2015)
+-----
+Se corrige query en la función consultarReg() cuando se realice la búsqueda por código de forma de pago.

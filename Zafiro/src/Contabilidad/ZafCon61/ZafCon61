@@ -1,0 +1,14 @@
+Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Ingrid Lino - 12/Ene/2012)
+----
+Clase nueva que permite configurar cuentas por programa(usado para panel de control gerencial).
+
+v0.1.1: (Ingrid Lino - 12/Ene/2012)
+----
+Se corrige validacion de consulta.

@@ -1,0 +1,30 @@
+Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Dario Cardenas - 03/Ene/2007)
+------------------------------------
+Programa para ingresar los datos necesarios para el SRI...
+
+
+v0.2: (Javier Ayapata - 26/Mayo/2010)
+------------------------------------
+ Se corrigue al consultar el tipo de documento.
+
+v0.3: (Javier Ayapata - 01/Junio/2010)
+------------------------------------
+ Se corrigue al anular el registro
+
+v0.4: (Javier Ayapata - 22/Septiembre/2011)
+------------------------------------
+ Se reestructura todo el programa..
+
+v0.5: (Javier Ayapata - 14/Octubre/2011)
+  agrega selector de fecha para fecha de caducidad.
+
+
+
+

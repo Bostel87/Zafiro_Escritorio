@@ -1,0 +1,69 @@
+Pendientes:
+1) 
+2) 
+3) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 29/Mar/2006)
+----
+Se hizo reingeniería de ésta clase.
+
+
+v0.2: (Eddye Lino - 03/Abr/2006)
+-----
+Se corrigieron problemas varios.
+
+
+v0.3: (Eddye Lino - 06/Abr/2006)
+-----
+Se corrigió query para que ya no muestra documentos vencidos.
+
+
+v0.4: (Eddye Lino - 10/Abr/2006)
+-----
+Se corrigió query para que ya no muestra documentos vencidos.
+
+
+v0.5: (Eddye Lino - 12/Abr/2007)
+-----
+Se corrigió query para que ya no muestre las retenciones.
+
+
+v0.6: (Eddye Lino - 04/Oct/2007)
+-----
+Se agregaron columnas al JTable para que muestre los datos de los cheques recibidos. Esto por lo general se 
+presenta para los cheques a fecha. La idea es poder determinar de forma sencilla los documentos que están
+vencidos pero que tienen su soporte. En otra palabras, el cheque ya fue recibido e ingresado al sistema. 
+
+
+v0.7: (Eddye Lino - 18/Jun/2008)
+----
+Se corrigió el método: 
+   1) cargarDetReg()
+En dicho método se corrigió el query.
+El código está así:
+   strSQL+=" AND a2.nd_porRet=0";
+Quedó así:
+   strSQL+=" AND (a2.nd_porRet=0 OR a2.nd_porRet IS NULL)";
+
+
+v0.8: (Eddye Lino - 10/Dic/2010)
+----
+Se modificó el método: 
+   1) cargarDetReg()
+Se puso como comentario ésta línea porque Alfredo Paulson solicitó que tambien se incluyeran las retenciones.
+   //strSQL+=" AND (a2.nd_porRet=0 OR a2.nd_porRet IS NULL)";
+
+
+v0.9: (Eddye Lino - 11/Jun/2015)
+----
+Se modificó el método: 
+   1) cargarDetReg()
+En el query se agregó la tabla "tbm_catTipDocSis" para que sólo se consideraran las "Facturas de ventas".
+
+
+v0.10: (Eddye Lino - 27/Nov/2018)
+----
+Se agregó el uso de la clase "ZafTblOrd".

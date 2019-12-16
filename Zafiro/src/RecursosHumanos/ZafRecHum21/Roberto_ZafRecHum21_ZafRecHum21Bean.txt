@@ -1,0 +1,9 @@
+
+
+CONTROL DE VERSIONES:
+=====================
+
+v1.0: (Roberto Flores- 15/11/2011)
+----
+Clase nueva para el manejo de la interfaz de usuario para la creacion y mantenimiento de Cargo Laborales.
+Clase nueva del bean manejador de la interfaz de usuario para la creacion y mantenimiento de Cargo Laborales.

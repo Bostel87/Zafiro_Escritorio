@@ -1,0 +1,23 @@
+
+CONTROL DE VERSIONES:
+=====================
+Clase nueva.
+v1.0: (Javier Ayapata - 10/Septiembre/2007)
+----
+  clase que permite mostrar listado de documentos por cobrar y pagar.
+
+v1.1: (Javier Ayapata - 20/Septiembre/2007)
+ se agrega busqueda por fecha de documento.
+
+
+v1.2: (Javier Ayapata - 21/Septiembre/2007)
+ se corrigue la vista preliminar y al momento de imprimir.
+
+v1.3: (Javier Ayapata - 24/Septiembre/2007)
+ se corrigue query para obtener datos y tambien en los reportes de vista preliminar.
+
+v1.4: (Javier Ayapata - 26/Septiembre/2007)
+ se corrigue el query de tipo de documento.
+
+v1.5: (Dario Cardenas - 13/Mayo/2008)
+ se agrega Filtro tipo chek para mostrar retenciones desde el modulo de CxC...

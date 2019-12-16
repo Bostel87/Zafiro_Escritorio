@@ -1,0 +1,16 @@
+Pendientes:
+1)  Hacer que genere los documentos segun la fecha, no se puede usar en epoca de FACTURAS ENTRE EMPRESAS
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (José Marín - 10/Jun/2016)
+----
+Clase nueva.
+
+
+v 0.01.01: (José Marín - 12/Sep/2017)
+-----
+Modificaciones para obtener los datos del item.
+

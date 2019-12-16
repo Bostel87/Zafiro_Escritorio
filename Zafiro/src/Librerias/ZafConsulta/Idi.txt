@@ -1,0 +1,21 @@
+Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 21/Feb/2006)
+----
+ZafConItm: Se cambió el query para que tomara el stock global de la empresa grupo.
+
+
+v0.2: (Eddye Lino)
+-----
+
+
+v0.3: (Javier Ayapata - 02/Mar/2006)
+----
+ZafConItm: Se cambió al momento de la presentacion que no salga null si no 0.
+
+ZafConsulta: Se cambió al momento de la presentacion que no salga null si no 0.

@@ -1,0 +1,18 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Rosa Zambrano - 10/Nov/2016)
+----
+Clase Nueva ZafNotAle, para presentar varias notificaciones de alerta.
+Se crea esta libreria para tener unificada todas las notificaciones de alertas del sistema.
+La primera idea fue presentar una imagen a los usuarios por su cumpleaños.
+
+
+v0.1.01: (Rosa Zambrano - 30/Dic/2016)
+-----
+Se realizan varias mejoras en el código.
+

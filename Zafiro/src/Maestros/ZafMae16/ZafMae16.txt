@@ -1,0 +1,18 @@
+CONTROL DE VERSIONES:
+=====================
+
+versión : v0.1 b1 (Lizbeth Muñoz - 23/Sep/2008)
+Programa: 
+          - Tipo de documento por Cabecera programa
+          - Tipo de documento por detalle del programa
+
+Nuevos programas que permiten asignar los tipos de documentos junto con su tipo 
+de documento predeterminado en relación al programa que se especifique en la 
+cabecera.
+Los programas se graban en las tablas que se nombran a continuación:
+Tipo de documento por Cabecera de programa.- Guarda los datos en la tabla tbr_tipdocprg
+Tipo de documento por detalle  de programa.- Guarda los datos en la tabla tbr_tipdocdetprg
+
+v0.1.1: Ingrid Lino(26/Sep/2011)
+-----
+Se recontruye el programa.

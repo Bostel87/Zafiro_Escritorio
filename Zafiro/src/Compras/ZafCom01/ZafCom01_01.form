@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.2" maxVersion="1.2" type="org.netbeans.modules.form.forminfo.JDialogFormInfo">
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="2"/>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="formSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,1,-112,0,0,2,88"/>
+    <SyntheticProperty name="formSizePolicy" type="int" value="0"/>
+    <SyntheticProperty name="generateSize" type="boolean" value="true"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="true"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
+  <SubComponents>
+    <Container class="javax.swing.JPanel" name="PanFrm">
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
+          <BorderConstraints direction="Center"/>
+        </Constraint>
+      </Constraints>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="lblTit">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="MS Sans Serif" size="14" style="1"/>
+            </Property>
+            <Property name="horizontalAlignment" type="int" value="0"/>
+            <Property name="text" type="java.lang.String" value="T&#xed;tulo"/>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
+              <BorderConstraints direction="North"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Container class="javax.swing.JTabbedPane" name="tabFrm">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
+              <BorderConstraints direction="Center"/>
+            </Constraint>
+          </Constraints>
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
+          <SubComponents>
+            <Container class="javax.swing.JPanel" name="panGen">
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+                  <JTabbedPaneConstraints tabName="General">
+                    <Property name="tabTitle" type="java.lang.String" value="General"/>
+                  </JTabbedPaneConstraints>
+                </Constraint>
+              </Constraints>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
+              <SubComponents>
+                <Container class="javax.swing.JPanel" name="panGenCab">
+                  <Properties>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[0, 24]"/>
+                    </Property>
+                  </Properties>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
+                      <BorderConstraints direction="North"/>
+                    </Constraint>
+                  </Constraints>
+
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
+                    <Property name="useNullLayout" type="boolean" value="true"/>
+                  </Layout>
+                </Container>
+                <Container class="javax.swing.JPanel" name="panGenDet">
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
+                      <BorderConstraints direction="Center"/>
+                    </Constraint>
+                  </Constraints>
+
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
+                  <SubComponents>
+                    <Container class="javax.swing.JScrollPane" name="spnDat">
+                      <Constraints>
+                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
+                          <BorderConstraints direction="Center"/>
+                        </Constraint>
+                      </Constraints>
+
+                      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                      <SubComponents>
+                        <Component class="javax.swing.JTable" name="tblDat">
+                          <Properties>
+                            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                              <Table columnCount="4" rowCount="4">
+                                <Column editable="true" title="Title 1" type="java.lang.Object"/>
+                                <Column editable="true" title="Title 2" type="java.lang.Object"/>
+                                <Column editable="true" title="Title 3" type="java.lang.Object"/>
+                                <Column editable="true" title="Title 4" type="java.lang.Object"/>
+                              </Table>
+                            </Property>
+                          </Properties>
+                        </Component>
+                      </SubComponents>
+                    </Container>
+                  </SubComponents>
+                </Container>
+              </SubComponents>
+            </Container>
+            <Container class="javax.swing.JPanel" name="jPanel1">
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+                  <JTabbedPaneConstraints tabName="tab2">
+                    <Property name="tabTitle" type="java.lang.String" value="tab2"/>
+                  </JTabbedPaneConstraints>
+                </Constraint>
+              </Constraints>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
+              <SubComponents>
+                <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+                  <AuxValues>
+                    <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                  </AuxValues>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
+                      <BorderConstraints direction="Center"/>
+                    </Constraint>
+                  </Constraints>
+
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                  <SubComponents>
+                    <Component class="javax.swing.JTextArea" name="txtSqlUptCC">
+                      <Properties>
+                        <Property name="columns" type="int" value="20"/>
+                        <Property name="lineWrap" type="boolean" value="true"/>
+                        <Property name="rows" type="int" value="5"/>
+                        <Property name="text" type="java.lang.String" value="/* CASO QUE COMPRA DE TUVAL A DOMULTI  PROBLEMAS IVA EN COMPRA */&#xa;UPDATE tbm_detdia SET co_cta=584  FROM ( &#xa;&#xa;select * from (&#xa;select a1.* from  tbm_cabmovinv as a &#xa;inner join tbm_detdia as a1 on (a1.co_emp=a.co_emp and a1.co_loc=a.co_loc and a1.co_tipdoc=a.co_tipdoc and a1.co_dia=a.co_doc)&#xa;where a.co_emp=1 and a.co_loc=5 and a.co_tipdoc in (2,4) and a.fe_doc &gt;= &apos;2011-01-01&apos;  &#xa;and a1.co_cta= 2949&#xa;) as x &#xa;&#xa;) AS x &#xa;WHERE tbm_detdia.co_emp=x.co_emp and tbm_detdia.co_loc=x.co_loc and tbm_detdia.co_tipdoc=x.co_tipdoc and tbm_detdia.co_dia=x.co_dia and tbm_detdia.co_reg=x.co_reg&#xa;;&#xa;&#xa;&#xa;/* CASO QUE COMPRA DE TUVAL A DOMULTI */&#xa;UPDATE tbm_detdia SET co_cta=733  FROM ( &#xa;&#xa;select * from (&#xa;select a1.* from  tbm_cabmovinv as a &#xa;inner join tbm_detdia as a1 on (a1.co_emp=a.co_emp and a1.co_loc=a.co_loc and a1.co_tipdoc=a.co_tipdoc and a1.co_dia=a.co_doc)&#xa;where a.co_emp=1 and a.co_loc=5 and a.co_tipdoc in (2,4) and a.fe_doc &gt;= &apos;2011-01-01&apos;  &#xa;and a1.co_cta= 2950&#xa;) as x &#xa;&#xa;) AS x &#xa;WHERE tbm_detdia.co_emp=x.co_emp and tbm_detdia.co_loc=x.co_loc and tbm_detdia.co_tipdoc=x.co_tipdoc and tbm_detdia.co_dia=x.co_dia and tbm_detdia.co_reg=x.co_reg&#xa;;&#xa;&#xa;&#xa;/* CASO QUE COMPRA DE CASTEK A TUVAL */&#xa;UPDATE tbm_detdia SET co_cta=94  FROM ( &#xa;&#xa;select * from (&#xa;select a1.* from  tbm_cabmovinv as a &#xa;inner join tbm_detdia as a1 on (a1.co_emp=a.co_emp and a1.co_loc=a.co_loc and a1.co_tipdoc=a.co_tipdoc and a1.co_dia=a.co_doc)&#xa;where a.co_emp=2 and a.co_loc=5 and a.co_tipdoc in (2,4) and a.fe_doc &gt;= &apos;2011-01-01&apos;  &#xa;and a1.co_cta= 1250&#xa;) as x &#xa;&#xa;) AS x &#xa;WHERE tbm_detdia.co_emp=x.co_emp and tbm_detdia.co_loc=x.co_loc and tbm_detdia.co_tipdoc=x.co_tipdoc and tbm_detdia.co_dia=x.co_dia and tbm_detdia.co_reg=x.co_reg&#xa;;&#xa;&#xa;&#xa;/* CASO QUE COMPRA DE CASTEK A TUVAL */&#xa;UPDATE tbm_detdia SET co_cta=154  FROM ( &#xa;&#xa;select * from (&#xa;select a1.* from  tbm_cabmovinv as a &#xa;inner join tbm_detdia as a1 on (a1.co_emp=a.co_emp and a1.co_loc=a.co_loc and a1.co_tipdoc=a.co_tipdoc and a1.co_dia=a.co_doc)&#xa;where a.co_emp=2 and a.co_loc=5 and a.co_tipdoc in (2,4) and a.fe_doc &gt;= &apos;2011-01-01&apos;  &#xa;and a1.co_cta= 1251&#xa;) as x &#xa;&#xa;) AS x &#xa;WHERE tbm_detdia.co_emp=x.co_emp and tbm_detdia.co_loc=x.co_loc and tbm_detdia.co_tipdoc=x.co_tipdoc and tbm_detdia.co_dia=x.co_dia and tbm_detdia.co_reg=x.co_reg&#xa;;&#xa;&#xa;&#x9;&#xa;&#xa;/* CASO QUE COMPRA DE DIMULTI A CASTEK   */&#xa;UPDATE tbm_detdia SET co_cta=545  FROM ( &#xa;&#xa;select * from (&#xa;select a1.* from  tbm_cabmovinv as a &#xa;inner join tbm_detdia as a1 on (a1.co_emp=a.co_emp and a1.co_loc=a.co_loc and a1.co_tipdoc=a.co_tipdoc and a1.co_dia=a.co_doc)&#xa;where a.co_emp=4 and a.co_loc=2 and a.co_tipdoc in (2,4) and a.fe_doc &gt;= &apos;2011-01-01&apos; &#xa;and a1.co_cta= 2226&#xa;) as x &#xa;&#xa;) AS x &#xa;WHERE tbm_detdia.co_emp=x.co_emp and tbm_detdia.co_loc=x.co_loc and tbm_detdia.co_tipdoc=x.co_tipdoc and tbm_detdia.co_dia=x.co_dia and tbm_detdia.co_reg=x.co_reg&#xa;&#xa;&#xa;;&#xa;/* CASO QUE COMPRA DE DIMULTI A CASTEK   */&#xa;UPDATE tbm_detdia SET co_cta=688  FROM ( &#xa;&#xa;select * from (&#xa;select a1.* from  tbm_cabmovinv as a &#xa;inner join tbm_detdia as a1 on (a1.co_emp=a.co_emp and a1.co_loc=a.co_loc and a1.co_tipdoc=a.co_tipdoc and a1.co_dia=a.co_doc)&#xa;where a.co_emp=4 and a.co_loc=2 and a.co_tipdoc in (2,4) and a.fe_doc &gt;= &apos;2011-01-01&apos; &#xa;and a1.co_cta= 2227&#xa;) as x &#xa;&#xa;) AS x &#xa;WHERE tbm_detdia.co_emp=x.co_emp and tbm_detdia.co_loc=x.co_loc and tbm_detdia.co_tipdoc=x.co_tipdoc and tbm_detdia.co_dia=x.co_dia and tbm_detdia.co_reg=x.co_reg&#xa;&#xa;&#xa;/********************************************************************************/&#xa;&#xa;;&#xa;&#xa;/* CASO QUE VENTA DE TUVAL A CASTEK */&#xa;UPDATE tbm_detdia SET co_cta=2690  FROM ( &#xa;&#xa;select * from (&#xa;select a1.* from  tbm_cabmovinv as a &#xa;inner join tbm_detdia as a1 on (a1.co_emp=a.co_emp and a1.co_loc=a.co_loc and a1.co_tipdoc=a.co_tipdoc and a1.co_dia=a.co_doc)&#xa;where a.co_emp=1 and a.co_loc=5 and a.co_tipdoc in (1,3) and a.fe_doc &gt;= &apos;2011-01-01&apos; and a.co_cli=603  &#xa;and a1.co_cta= 29&#xa;) as x &#xa;&#xa;) AS x &#xa;WHERE tbm_detdia.co_emp=x.co_emp and tbm_detdia.co_loc=x.co_loc and tbm_detdia.co_tipdoc=x.co_tipdoc and tbm_detdia.co_dia=x.co_dia and tbm_detdia.co_reg=x.co_reg&#xa;;&#xa;&#xa;&#xa;&#xa;&#xa;/* CASO QUE VENTA DE TUVAL A DIMULTI */&#xa;UPDATE tbm_detdia SET co_cta=2691  FROM ( &#xa;&#xa;select * from (&#xa;select a1.* from  tbm_cabmovinv as a &#xa;inner join tbm_detdia as a1 on (a1.co_emp=a.co_emp and a1.co_loc=a.co_loc and a1.co_tipdoc=a.co_tipdoc and a1.co_dia=a.co_doc)&#xa;where a.co_emp=1 and a.co_loc=5 and a.co_tipdoc in (1,3) and a.fe_doc &gt;= &apos;2011-01-01&apos; and a.co_cli= 1039  &#xa;and a1.co_cta= 29&#xa;) as x &#xa;&#xa;) AS x &#xa;WHERE tbm_detdia.co_emp=x.co_emp and tbm_detdia.co_loc=x.co_loc and tbm_detdia.co_tipdoc=x.co_tipdoc and tbm_detdia.co_dia=x.co_dia and tbm_detdia.co_reg=x.co_reg&#xa;&#xa;;&#xa;/* CASO QUE COMPRA DE TUVAL A CASTEK */&#xa;UPDATE tbm_detdia SET co_cta=2692  FROM ( &#xa;&#xa;select * from (&#xa;select a1.* from  tbm_cabmovinv as a &#xa;inner join tbm_detdia as a1 on (a1.co_emp=a.co_emp and a1.co_loc=a.co_loc and a1.co_tipdoc=a.co_tipdoc and a1.co_dia=a.co_doc)&#xa;where a.co_emp=1 and a.co_loc=5 and a.co_tipdoc in (2,4) and a.fe_doc &gt;= &apos;2011-01-01&apos; and a.co_cli=603  &#xa;and a1.co_cta= 733&#xa;) as x &#xa;&#xa;) AS x &#xa;WHERE tbm_detdia.co_emp=x.co_emp and tbm_detdia.co_loc=x.co_loc and tbm_detdia.co_tipdoc=x.co_tipdoc and tbm_detdia.co_dia=x.co_dia and tbm_detdia.co_reg=x.co_reg&#xa;;&#xa;&#xa;&#xa;&#xa;&#xa;/* CASO QUE COMPRA DE TUVAL A DOMULTI */&#xa;UPDATE tbm_detdia SET co_cta=2693  FROM ( &#xa;&#xa;select * from (&#xa;select a1.* from  tbm_cabmovinv as a &#xa;inner join tbm_detdia as a1 on (a1.co_emp=a.co_emp and a1.co_loc=a.co_loc and a1.co_tipdoc=a.co_tipdoc and a1.co_dia=a.co_doc)&#xa;where a.co_emp=1 and a.co_loc=5 and a.co_tipdoc in (2,4) and a.fe_doc &gt;= &apos;2011-01-01&apos; and a.co_cli=1039  &#xa;and a1.co_cta= 733&#xa;) as x &#xa;&#xa;) AS x &#xa;WHERE tbm_detdia.co_emp=x.co_emp and tbm_detdia.co_loc=x.co_loc and tbm_detdia.co_tipdoc=x.co_tipdoc and tbm_detdia.co_dia=x.co_dia and tbm_detdia.co_reg=x.co_reg&#xa;;&#xa;&#xa;&#xa;&#xa;&#xa;&#xa;/* CASO QUE VENTA DE CASTEK A TUVAL */&#xa;UPDATE tbm_detdia SET co_cta=1186  FROM ( &#xa;&#xa;select * from (&#xa;select a1.* from  tbm_cabmovinv as a &#xa;inner join tbm_detdia as a1 on (a1.co_emp=a.co_emp and a1.co_loc=a.co_loc and a1.co_tipdoc=a.co_tipdoc and a1.co_dia=a.co_doc)&#xa;where a.co_emp=2 and a.co_loc=5 and a.co_tipdoc in (1,3) and a.fe_doc &gt;= &apos;2011-01-01&apos; and a.co_cli=2854  &#xa;and a1.co_cta= 1156&#xa;) as x &#xa;&#xa;) AS x &#xa;WHERE tbm_detdia.co_emp=x.co_emp and tbm_detdia.co_loc=x.co_loc and tbm_detdia.co_tipdoc=x.co_tipdoc and tbm_detdia.co_dia=x.co_dia and tbm_detdia.co_reg=x.co_reg&#xa;;&#xa;&#xa;&#xa;/* CASO QUE VENTA DE CASTEK A TUVAL */&#xa;UPDATE tbm_detdia SET co_cta=1186  FROM ( &#xa;&#xa;select * from (&#xa;select a1.* from  tbm_cabmovinv as a &#xa;inner join tbm_detdia as a1 on (a1.co_emp=a.co_emp and a1.co_loc=a.co_loc and a1.co_tipdoc=a.co_tipdoc and a1.co_dia=a.co_doc)&#xa;where a.co_emp=2 and a.co_loc=5 and a.co_tipdoc in (1,3) and a.fe_doc &gt;= &apos;2011-01-01&apos; and a.co_cli=2854  &#xa;and a1.co_cta= 24&#xa;) as x &#xa;&#xa;) AS x &#xa;WHERE tbm_detdia.co_emp=x.co_emp and tbm_detdia.co_loc=x.co_loc and tbm_detdia.co_tipdoc=x.co_tipdoc and tbm_detdia.co_dia=x.co_dia and tbm_detdia.co_reg=x.co_reg&#xa;;&#xa;/* CASO QUE VENTA DE CASTEK A DIMULTI */&#xa;UPDATE tbm_detdia SET co_cta=1187  FROM ( &#xa;&#xa;select * from (&#xa;select a1.* from  tbm_cabmovinv as a &#xa;inner join tbm_detdia as a1 on (a1.co_emp=a.co_emp and a1.co_loc=a.co_loc and a1.co_tipdoc=a.co_tipdoc and a1.co_dia=a.co_doc)&#xa;where a.co_emp=2 and a.co_loc=5 and a.co_tipdoc in (1,3) and a.fe_doc &gt;= &apos;2011-01-01&apos; and a.co_cli=789  &#xa;and a1.co_cta= 24&#xa;) as x &#xa;&#xa;) AS x &#xa;WHERE tbm_detdia.co_emp=x.co_emp and tbm_detdia.co_loc=x.co_loc and tbm_detdia.co_tipdoc=x.co_tipdoc and tbm_detdia.co_dia=x.co_dia and tbm_detdia.co_reg=x.co_reg&#xa;&#xa;;&#xa;&#xa;/* CASO QUE COMPRA DE CASTEK A TUVAL */&#xa;UPDATE tbm_detdia SET co_cta=1188  FROM ( &#xa;&#xa;select * from (&#xa;select a1.* from  tbm_cabmovinv as a &#xa;inner join tbm_detdia as a1 on (a1.co_emp=a.co_emp and a1.co_loc=a.co_loc and a1.co_tipdoc=a.co_tipdoc and a1.co_dia=a.co_doc)&#xa;where a.co_emp=2 and a.co_loc=5 and a.co_tipdoc in (2,4) and a.fe_doc &gt;= &apos;2011-01-01&apos; and a.co_cli=2854  &#xa;and a1.co_cta= 154&#xa;) as x &#xa;&#xa;) AS x &#xa;WHERE tbm_detdia.co_emp=x.co_emp and tbm_detdia.co_loc=x.co_loc and tbm_detdia.co_tipdoc=x.co_tipdoc and tbm_detdia.co_dia=x.co_dia and tbm_detdia.co_reg=x.co_reg&#xa;;&#xa;&#xa;/* CASO QUE COMPRA DE CASTEK A DIMULTI */&#xa;UPDATE tbm_detdia SET co_cta=1189  FROM ( &#xa;&#xa;select * from (&#xa;select a1.* from  tbm_cabmovinv as a &#xa;inner join tbm_detdia as a1 on (a1.co_emp=a.co_emp and a1.co_loc=a.co_loc and a1.co_tipdoc=a.co_tipdoc and a1.co_dia=a.co_doc)&#xa;where a.co_emp=2 and a.co_loc=5 and a.co_tipdoc in (2,4) and a.fe_doc &gt;= &apos;2011-01-01&apos; and a.co_cli=789  &#xa;and a1.co_cta= 154&#xa;) as x &#xa;&#xa;) AS x &#xa;WHERE tbm_detdia.co_emp=x.co_emp and tbm_detdia.co_loc=x.co_loc and tbm_detdia.co_tipdoc=x.co_tipdoc and tbm_detdia.co_dia=x.co_dia and tbm_detdia.co_reg=x.co_reg&#xa;&#xa;;&#xa;&#xa;&#xa;/* CASO QUE VENTA DE DIMULTI A TUVAL */&#xa;UPDATE tbm_detdia SET co_cta=2128  FROM ( &#xa;&#xa;select * from (&#xa;select a1.* from  tbm_cabmovinv as a &#xa;inner join tbm_detdia as a1 on (a1.co_emp=a.co_emp and a1.co_loc=a.co_loc and a1.co_tipdoc=a.co_tipdoc and a1.co_dia=a.co_doc)&#xa;where a.co_emp=4 and a.co_loc=2 and a.co_tipdoc in (1,3) and a.fe_doc &gt;= &apos;2011-01-01&apos; and a.co_cli=3117  &#xa;and a1.co_cta= 28&#xa;) as x &#xa;&#xa;) AS x &#xa;WHERE tbm_detdia.co_emp=x.co_emp and tbm_detdia.co_loc=x.co_loc and tbm_detdia.co_tipdoc=x.co_tipdoc and tbm_detdia.co_dia=x.co_dia and tbm_detdia.co_reg=x.co_reg&#xa;;&#xa;/* CASO QUE VENTA DE DIMULTI A CASTEK   */&#xa;UPDATE tbm_detdia SET co_cta=2129  FROM ( &#xa;&#xa;select * from (&#xa;select a1.* from  tbm_cabmovinv as a &#xa;inner join tbm_detdia as a1 on (a1.co_emp=a.co_emp and a1.co_loc=a.co_loc and a1.co_tipdoc=a.co_tipdoc and a1.co_dia=a.co_doc)&#xa;where a.co_emp=4 and a.co_loc=2 and a.co_tipdoc in (1,3) and a.fe_doc &gt;= &apos;2011-01-01&apos; and a.co_cli=498  &#xa;and a1.co_cta= 28&#xa;) as x &#xa;&#xa;) AS x &#xa;WHERE tbm_detdia.co_emp=x.co_emp and tbm_detdia.co_loc=x.co_loc and tbm_detdia.co_tipdoc=x.co_tipdoc and tbm_detdia.co_dia=x.co_dia and tbm_detdia.co_reg=x.co_reg&#xa;&#xa;;&#xa;&#xa;&#xa;/* CASO QUE COMPRA DE DIMULTI A TUVAL */&#xa;UPDATE tbm_detdia SET co_cta=2130  FROM ( &#xa;&#xa;select * from (&#xa;select a1.* from  tbm_cabmovinv as a &#xa;inner join tbm_detdia as a1 on (a1.co_emp=a.co_emp and a1.co_loc=a.co_loc and a1.co_tipdoc=a.co_tipdoc and a1.co_dia=a.co_doc)&#xa;where a.co_emp=4 and a.co_loc=2 and a.co_tipdoc in (2,4) and a.fe_doc &gt;= &apos;2011-01-01&apos; and a.co_cli=3117  &#xa;and a1.co_cta= 688&#xa;) as x &#xa;&#xa;) AS x &#xa;WHERE tbm_detdia.co_emp=x.co_emp and tbm_detdia.co_loc=x.co_loc and tbm_detdia.co_tipdoc=x.co_tipdoc and tbm_detdia.co_dia=x.co_dia and tbm_detdia.co_reg=x.co_reg&#xa;;&#xa;/* CASO QUE COMPRA DE DIMULTI A CASTEK   */&#xa;UPDATE tbm_detdia SET co_cta=2131  FROM ( &#xa;&#xa;select * from (&#xa;select a1.* from  tbm_cabmovinv as a &#xa;inner join tbm_detdia as a1 on (a1.co_emp=a.co_emp and a1.co_loc=a.co_loc and a1.co_tipdoc=a.co_tipdoc and a1.co_dia=a.co_doc)&#xa;where a.co_emp=4 and a.co_loc=2 and a.co_tipdoc in (2,4) and a.fe_doc &gt;= &apos;2011-01-01&apos; and a.co_cli=498  &#xa;and a1.co_cta= 688&#xa;) as x &#xa;&#xa;) AS x &#xa;WHERE tbm_detdia.co_emp=x.co_emp and tbm_detdia.co_loc=x.co_loc and tbm_detdia.co_tipdoc=x.co_tipdoc and tbm_detdia.co_dia=x.co_dia and tbm_detdia.co_reg=x.co_reg&#xa;&#xa;&#xa;;&#xa;&#xa;UPDATE tbm_detdia SET co_cta= 545  FROM ( &#xa;&#xa;select * from (&#xa;select a1.* from  tbm_cabmovinv as a &#xa;inner join tbm_detdia as a1 on (a1.co_emp=a.co_emp and a1.co_loc=a.co_loc and a1.co_tipdoc=a.co_tipdoc and a1.co_dia=a.co_doc)&#xa;where a.co_emp=2 and a.co_loc=5 and a.co_tipdoc in (1,3) and a.fe_doc &gt;= &apos;2011-01-01&apos; and a.co_cli in ( 789 , 2854 )  &#xa;and a1.co_cta in (1163, 1037 , 551 )&#xa;) as x &#xa;&#xa;&#xa;) AS x &#xa;WHERE tbm_detdia.co_emp=x.co_emp and tbm_detdia.co_loc=x.co_loc and tbm_detdia.co_tipdoc=x.co_tipdoc and tbm_detdia.co_dia=x.co_dia and tbm_detdia.co_reg=x.co_reg&#xa;&#xa;&#xa;;&#xa;update tbm_pagmovinv set  tx_codsri=&apos;312&apos; where co_emp=1 and co_loc=5 and co_tipdoc=1 and nd_porret != 0 and  fe_ven &gt;= &apos;2011-01-01&apos; and tx_codsri is null&#xa;&#xa;;&#xa;update tbm_pagmovinv set  tx_codsri=&apos;312&apos; where co_emp=2 and co_loc=5 and co_tipdoc=1 and nd_porret != 0 and  fe_ven &gt;= &apos;2011-01-01&apos; and tx_codsri is null&#xa;&#xa;;&#xa;update tbm_pagmovinv set  tx_codsri=&apos;312&apos; where co_emp=4 and co_loc=2 and co_tipdoc=1 and nd_porret != 0 and  fe_ven &gt;= &apos;2011-01-01&apos; and tx_codsri is null&#xa;&#xa;&#xa;&#xa;&#x9;"/>
+                      </Properties>
+                    </Component>
+                  </SubComponents>
+                </Container>
+              </SubComponents>
+            </Container>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="panBar">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
+              <BorderConstraints direction="South"/>
+            </Constraint>
+          </Constraints>
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
+          <SubComponents>
+            <Container class="javax.swing.JPanel" name="panBot">
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
+                  <BorderConstraints direction="Center"/>
+                </Constraint>
+              </Constraints>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.DesignFlowLayout">
+                <Property name="alignment" type="int" value="2"/>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JButton" name="butCan">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Cancelar"/>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[92, 25]"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="butCanActionPerformed"/>
+                  </Events>
+                </Component>
+              </SubComponents>
+            </Container>
+          </SubComponents>
+        </Container>
+      </SubComponents>
+    </Container>
+  </SubComponents>
+</Form>

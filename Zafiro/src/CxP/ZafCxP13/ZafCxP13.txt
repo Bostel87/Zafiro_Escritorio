@@ -1,0 +1,11 @@
+﻿
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Dennis Betancourt - 20/Oct/2017)
+----
+Clase nueva.
+
+v0.1.1: (Dennis Betancourt - 25/Oct/2017)
+----
+En la clase "ZafCxP13_VenCon" funcion cargarDetReg(), se quito la condicion "and a3.st_autpag = 'N'". Se tuvo que quitar para que en el listado aparezcan tambien los documentos que ya fueron autorizados para pagar.

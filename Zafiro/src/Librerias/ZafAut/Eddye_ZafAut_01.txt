@@ -1,0 +1,33 @@
+Pendientes:
+1) 
+2) 
+3) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 29/Mar/2006)
+----
+Clase nueva
+
+
+v0.2: (Eddye Lino - 03/Abr/2006)
+-----
+Se corrigieron problemas varios.
+
+
+v0.3: (Eddye Lino - 05/Abr/2006)
+-----
+Se cambió la sentencia SQL para que no trabajara con el costo promedio del grupo sino el precio de compra de la cotización de venta.
+
+
+v0.4: (Eddye Lino - 07/Abr/2006)
+-----
+Se volvió a cambiar la sentencia SQL para que trabajara con el precio de compra de la cotización de venta sólo si no existe costo promedio.
+Se asumió que si el artículo tiene costo promedio es porque tiene stock.
+
+
+v0.5: (Eddye Lino - 15/Jun/2007)
+-----
+Se cambió el código de "cargarDetReg()" para que primero validara por el "Precio de compra", luego por el "Precio de Lista" y finalmente por el "Costo promedio".
+

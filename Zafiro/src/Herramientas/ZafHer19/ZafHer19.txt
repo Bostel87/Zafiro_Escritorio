@@ -1,0 +1,11 @@
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Ingrid Lino - 11/Jun/2007)
+----
+Programa nuevo, que permite realizar "Hist�rico de cierre/reapertura mensual del sistema", este programa presenta los hist�ricos que se han generado
+por cierre/reapertura a trav�s del programa de "Cierre/reapertura mensual del sistema-ZafHer17"
+
+v0.2: (Ingrid Lino - 31/Dic/2008)
+----
+Se cambió línea "objTblBus= new ZafTblBus(tblDat);" a líneas después de haber asignado el modelo a la tabla.

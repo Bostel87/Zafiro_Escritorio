@@ -1,0 +1,8 @@
+﻿
+CONTROL DE VERSIONES:
+=====================
+
+
+v1.0: (Roberto Flores- 22/01/2013)
+----
+Clase nueva para la Programación de Revisión de Sueldos.

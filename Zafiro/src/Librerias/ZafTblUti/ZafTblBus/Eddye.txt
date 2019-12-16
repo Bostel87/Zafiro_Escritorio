@@ -1,0 +1,20 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 07/May/2005)
+----
+Clase nueva.
+
+
+v0.2: (Eddye Lino - 17/Oct/2008)
+-----
+Se modificó el método: 
+   1) tblDatKeyPressed(java.awt.event.KeyEvent evt)
+Se corrigió lo siguiente:
+   1) Se agregó condición para que sólo se buscara en celdas de columnas editables.
+      La condición que se agregó se muestra a continuación:
+        if (!objTblMod.isColumnaEditable(tblDat.getSelectedColumn()))

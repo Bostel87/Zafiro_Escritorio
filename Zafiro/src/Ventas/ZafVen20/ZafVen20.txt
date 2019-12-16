@@ -1,0 +1,26 @@
+Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Ingrid Lino - 09/Ago/2011)
+----
+Listado de ventas(Análisis de Pareto)
+
+v0.1.1: (Ingrid Lino - 10/Ago/2011)
+----
+Las columnas de calculo de Pareto se las seteo con 0.00000001 para que el usuario no vea los valores usados para el calculo, no se puso cero porque debo tener un dato > 0 para que se cambie de color. Se ocultaron las columnas.
+
+v0.1.2: (Ingrid Lino - 26/Ago/2011)
+----
+Se corrige el query donde se presentaba la información de stock por bodegas, estaba presentando el valor duplicado, eso lo reporto Peter Graf.
+
+v0.1.3: (Ingrid Lino - 23/Sep/2011)
+----
+Se deja en blanco las columnas usadas para el cálculo de pareto.
+
+v0.1.4: (Tony Sanginez - 18/Sep/2017)
+----
+Se filtro por el codigo de usuario 24 ya que botaba error.

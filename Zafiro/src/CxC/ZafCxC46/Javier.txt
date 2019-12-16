@@ -1,0 +1,48 @@
+﻿
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Javier Ayapata - 01/Jul/2010)
+----
+Clase nueva "Cobros en Efectivo".
+
+
+v0.2: (Javier Ayapata - 22/Oct/2010)
+-----
+Se cambia configuración de reporteria que esta en el servidor.
+
+
+v0.3: (Javier Ayapata - 08/Abr/2011)
+-----
+Se agrega clase para saber si se imprime guia.
+
+
+v0.4: (Javier Ayapata - 24/Ago/2011)
+-----
+Se corrige al obtener ip de envio de imp. guía.
+
+
+v0.5: (Alex Morán - 02/Sep/2013)
+-----
+Se agrega validación para verificar que el documento a registrar no se encuentre anulado.
+
+
+v0.6: (Christian Mateo -  21/Ago/2015)
+-----
+Se agrega el uso de ZafReglas para generación de OD Y G.R., en reemplazo del ZafSer01.
+
+v0.7: (Christian Mateo -  11/Sep/2015)
+-----
+Se modifica para que no genere od remotas por cobros en efectivo. Solo debe generar las od locales y las confirmaciones y guias remision por terminales L.
+
+v0.8: (Christian Mateo - 20/Nov/2015)
+----
+Se modifica en ingreso y en modificacion no existan registros repetidos en el detalle referentes a pagos de factura
+
+v0.9: (Christian Mateo - 08/Mar/2016)
+----
+Se modifica para que cuando cobren facturas de volver a facturar y la factura original no tenga OD el cobro genere la OD tomando la factura original
+
+v0.10: (Christian Mateo - 26/Jul/2016)
+----
+Se modifica para el proyecto de transferencias

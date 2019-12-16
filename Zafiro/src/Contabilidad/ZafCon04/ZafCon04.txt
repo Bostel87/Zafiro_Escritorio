@@ -1,0 +1,283 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Ingrid Lino - 30/Nov/2010)
+----
+Programa nuevo para ingresar documentos por pagar.
+
+
+v0.1.1: (Ingrid Lino - 01/Dic/2010)
+-----
+Se realizaron cambios varios porque generaba unos errores al insertar y modificar.
+
+
+v0.1.5: (Ingrid Lino - 08/Dic/2010)
+-----
+Cambios en el query, se quito regenerar diario para cuando se selecciona motivo o forma de pago, se adiciono columna de valor sin iva.
+
+
+v0.1.7: (Ingrid Lino - 13/Dic/2010)
+-----
+Se aperturó la posibilidad de ingresar datos de factura de proveedor asi se cuente con dos motivos seleccionados.
+
+
+v0.1.8: (Ingrid Lino - 16/Dic/2010)
+-----
+Al momento de insertar se colocaron ciertos campos que antes no se guardaban en tbm_pagMovInv y solo en tbm_detRecDoc
+
+
+v0.1.9: (Ingrid Lino - 20/Dic/2010)
+-----
+Se quitó bloqueo de detalle de documento, este no se permitia modificar solo insertar.
+
+
+v0.1.10: (Ingrid Lino - 22/Dic/2010)
+-----
+Al momento de ingresar el valor de la factura se calcula automaticamente el valor del documento sin iva y se recalcula en base a esto.
+
+
+v0.1.11: (Ingrid Lino - 24/Dic/2010)
+-----
+Se quitó validación en campos de datos de la factura del proveedor.
+
+
+v0.1.12: (Ingrid Lino - 05/Ene/2011)
+-----
+Se cambiaron parametros de envio al reporte impreso.
+
+
+v0.1.13: (Ingrid Lino - 25/Ene/2011)
+-----
+Se colocó en el update de tbm_cabmovinv el seteo de "nd_sub, nd_poriva, nd_valiva, nd_tot" estos campos se deben actualizar ahora debido a que se aperturo la opción de modificar el detalle del documento por pagar.
+
+
+v0.1.14: (Ingrid Lino - 08/Feb/2011)
+-----
+Se adiciono la opcion de poder colocar en el asiento de diario un valor mayor o igual al valor del documento, esto se configura en tbm_cabtipdoc.st_perasidiadob='S'
+
+
+v0.1.15: (Ingrid Lino - 16/Feb/2011)
+----
+Se cambio el orden de llamado de la funcion existeDocumentoAsociado(), se la coloco antes de if (objAsiDia.getGeneracionDiario()==2)  porque al estar despues no estaba ejecutando bien la validacion de documentos asociados.
+
+
+v0.1.17: (Ingrid Lino - 14/Mar/2011)
+-----
+Se realizaron cambios para generar documentos que tienen IVA pero no generan retencion y a esos registros se le coloquen tambien la informacion del proveedor.
+
+
+v0.1.18: (Ingrid Lino - 05/Abr/2011)
+-----
+Se adicionó validación para no ingresar varias veces una misma Factura de Proveedor(se verifican los campos NUMERO DE FACTURA y NUMERO DE SERIE).
+
+
+v0.1.19: (Ingrid Lino - 07/Jun/2011)
+-----
+Se quitó la validación de factura de proveedor ingresada.
+
+
+v0.1.20: (Ingrid Lino - 16/Jun/2011)
+-----
+Se adicionó un estado para permitir o no que aparezca el documento en "Autorizacion de Pagos/Bancos"
+
+
+v0.1.21: (Ingrid Lino - 17/Jun/2011)
+-----
+Al ingresar el documento desde DxP no generaba los datos de la factura para todos los registros. Y esto no permitia que salieran en el programa de Autorizacion de Pagos/Bancos.
+
+
+v0.1.22: (Ingrid Lino - 23/Jun/2011)
+-----
+Se reactivó la validación de "Factura de Proveedor" ya ingresado. Se valida llevandolo a numero y no como es su naturaleza(texto).
+
+
+v0.1.23: (Ingrid Lino - 06/Jul/2011)
+-----
+validacion de factura de proveed. Se adicionó restricción para personas naturales en LIQCOM.  se adicionó politica de retencion para PAGOS DE BIENES O SERVICIOS NO SUJETOS A RETENCION.
+
+
+v0.1.24: (Ingrid Lino - 18/Jul/2011)
+-----
+Al cambiar el reporte de impresión, los parámetros para LiqCom se estaban enviando mal, se corrigió esto.
+
+
+v0.2: (Ingrid Lino - 06/Oct/2011)
+-----
+Se adiciona codificación para tarjetas de crédito y se eliminan ciertas cosas.
+
+
+v0.2.1: (Ingrid Lino - 20/Oct/2011)
+-----
+Cuando se daba click en modificar el valor del iva de la tabla de Factura de proveedor no se estaba recalcaulando.
+
+
+v0.2.2: (Ingrid Lino - 17/Nov/2011)
+-----
+Se adiciona codificación para poder procesar documentos por T/C.
+
+
+v0.2.3: (Ingrid Lino - 22/Nov/2011)
+-----
+Se setea el modo de operacion en la tabla de de Factura, en el clickModificar
+
+
+v0.2.4: (Ingrid Lino - 01/Dic/2011)
+-----
+Se valida que los registros del documento no hayan sido modificados mientras estaban cargados en memoria de este programa.
+
+
+v0.2.5: (Ingrid Lino - 27/Abr/2012)
+-----
+Se bloquea el detalle del formulario.(Solicitado por Eddye).
+
+
+v0.2.6: (Ingrid Lino - 27/Ago/2012)
+-----
+Se setea unas variables que estaban generando valores de retenciones a registros que no debian, esto empezo a darse cuando se configuraron los motivos de pagos y retenciones.
+
+
+v0.2.7: (Ingrid Lino - 02/Oct/2012)
+-----
+Se valida en Forma de Pago que cargue los dias de credito almacenados en la DB y no calcular en base a 30 dias como se lo hacia en el programa.
+
+
+v0.2.9: (Ingrid Lino - 09/Ene/2013)
+-----
+Se valida campo de numeroAutorizacionFacturaProveedor que sea 10 digitos y fechaCaducidad obligatoria; =37 fechaCaducidad NO obligatoria, si el campo no tiene alguno de esos 2 size, no permite guardar.
+
+
+v0.2.10: (Ingrid Lino - 31/Ene/2013)
+-----
+Al mommento de cargar el detalle se estaba presentando la informacion a 2 decimales cuando la data si tenia 6 decimales diferentes a cero, esto daba problemas al modificar para ponerle el motivo y generar el registro de retencion y base imponible.
+
+
+v0.2.11: (Ingrid Lino - 07/Feb/2013)
+-----
+Se quito la validación de ingreso de factura de proveedor ya ingresada porque no permitia ingresar datos porque estan con "cast" a integer y ahora el campo se amplio, por tanto ya no lo valida correctamente y genera error al momento de intentar grabar no permitiendolo. 
+Queda pendiente revisar y hacerle los cambios para activar esta validacion.
+
+
+v0.2.12: (Ingrid Lino - 19/Jun/2013)
+-----
+Se adiciona el co_reg en el query para obtener el detalle de la factura asociada al documento.
+
+
+v0.2.13: (Ingrid Lino - 23/Jul/2013)
+-----
+Se descomenta parte de codificación donde se valida que el número no se repita.
+
+
+v0.2.14: (Ingrid Lino - 23/Jul/2014)
+-----
+Se agrega validación para que el valor del documento sea el mismo valor de la sumatoria de la forma de pago.
+
+
+v0.2.15: (Ingrid Lino - 14/Ago/2014)
+-----
+Se cambia el tipo de dato de BigDecimal a Double de la validación agregada anteriormente
+
+
+v0.2.16: (Dennis Betancourt - 3/Sep/2014)
+-----
+Se puso que, para los TipDoc OPSLC, no valide que la suma total del Documento por pagar sea diferente al valor del asiento de diario.
+
+
+v0.2.17: (Ingrid Lino - 03/Sep/2014)
+-----
+En el método isCamVal(), al momento de obtener la suma de los valores de la forma de pago, se coloque el valor sumado dentro de la variable. bdeTotForPag=bdeTotForPag.add(bdeValForPag).
+
+
+v0.2.18: (Dennis Betancourt - 04/Sep/2014)
+-----
+En el método isCamVal(), en los valores que devuelven objAsiDia.getMontoDebeBde() y bdeTotForPag, se puso que se haga un redondeo de decimales indicado por objParSis.getDecimalesMostrar(), debido a que, para ciertos casos, el valor retornado a veces no venia con 2 decimales ocasionando que no se permita grabar el documento.
+
+
+v0.2.19: (Dennis Betancourt - 02/Mar/2015)
+-----
+Se agrega validacion para que el numero de la factura sea ingresada con una longitud de 9 digitos, y para que el numero de serie sea ingresado con una longitud de 7 caracteres en el formato "999-999".
+
+
+v0.2.20: (Rosa Zambrano - 08/Abr/2015)
+-----
+Se crea el método eliminaCeros() que permite eliminar los 0 a la izquierda del string ingresado en la celda del Jtable.
+Se crea la función facturaProveedorExisteSistema() utilizando eliminaCeros() para validar que el número de la factura no haya sido ingresado en un documento anterior.
+Se modifica el isCamVal()=> Agregando las siguientes líneas:  
+  String strFac=eliminaCeros(strNumFac); 
+  if (facturaProveedorExisteSistema(strFac)) {    return false;    }
+
+
+v0.2.21: (Rosa Zambrano - 13/Abr/2015)
+-----
+Se agrega validación en isCamVal() para que solo cuando es la opción insertar valide si la factura del proveedor existe. 
+
+
+v0.2.22: (Ingrid Lino - 20/Abr/2015)
+-----
+Se adiciona el tipo de documento OPCOLO(246) que permite procesar órdenes de pago por compras locales.
+
+
+v0.2.23: (Rosa Zambrano - 22/May/2015)
+-----
+Se agrega validación en facturaProveedorExisteSistema() para que valide el número de serie de la factura.
+
+
+v0.2.24: (Dennis Betancourt - 29/Mar/2016)
+-----
+Se modifico la condicion para que el Numero_Autorizacion_SRI ademas de tener 10 o 37 digitos, ahora pueda tener 49 digitos de longitud debido al esquema OffLine del SRI.
+
+
+v0.2.25: (Rosa Zambrano - 31/May/2016)
+-----
+Se agrega configuración del iva con la libreria ZafParSis.
+
+
+v0.2.26: (Dennis Betancourt - 14/Jun/2016)
+-----
+1) Se corrige para que se guarde el porcentaje de IVA correcto. Por ejemplo, si se creaba una OPADM con fecha 06/Jun/2016, tanto en pantalla como en la base de datos se hacia el calculo correcto con el IVA 14%. Pero en tbm_cabmovinv.nd_poriva se guardaba el valor de 12, lo cual estaba erroneo.
+2) Se corrige para que en el detalle del Documento por pagar se muestre el calculo correcto de acuerdo al IVA guardado en tbm_cabmovinv. Para realizar el calculo estaba tomando el IVA del objeto ZafParSis lo cual estaba erroneo pues si se mostraba una OPADM del 31/May/2016, en el detalle se mostraba con los calculos del IVA 14% lo cual estaba erroneo.
+
+v0.2.27: (Dennis Betancourt - 16/Jun/2016)
+-----
+En la funcion actualizarCabMovInv() estaba quemado el valor de IVA con 12%. Se modifico para que tome el IVA guardado en tbm_cabmovinv.nd_poriva.
+
+v0.2.28: (Dennis Betancourt - 25/Ago/2016)
+-----
+En la funcion 'generarRpt()', para el reporte de 'Documentos por pagar (Liquidaciones)' se tuvo que cambiar el tipo de dato de los parametros enviados (co_emp, co_loc, co_tipdoc, co_doc) de String a Integer, tanto a nivel del programa como del reporte, debido a que daba un error al momento de realizar la Vista Preliminar y no mostraba el reporte.
+
+v0.2.29: (Dennis Betancourt - 11/Feb/2017)
+-----
+1) Se agrega validacion para que, basado en la fecha de emision del Documento por pagar, no se permita guardar documentos con mas de 60 dias de antiguedad.
+2) Para Tuval, Castek y Dimulti se agrega validacion para que, basado en el detalle del documento si es que el item tiene o no IVA, se verifique si el asiento de diario tiene o no una cuenta de IVA. Dependiendo de esto se va a permitir guardar el documento.
+
+v0.2.30: (Dennis Betancourt - 13/Feb/2017)
+-----
+Para la validacion del punto 2 de la version 0.2.29, se la quito en el modo Insertar. Solo se la dejo en el modo Modificar.
+
+v0.2.31: (Dennis Betancourt - 20/Abr/2017)
+-----
+Se puso una validacion de que los valores de Subtotal e IVA de la pestaña 'General' deben ser iguales a los valores de Subtotal e IVA de la pestaña 'Facturas'.
+
+v0.2.32: (Dennis Betancourt - 07/Nov/2017)
+-----
+En la pestaña 'Facturas' se puso editable las cols. 'Sub.Fac.Prv.' y 'Iva.Fac.Prv.'.
+
+v0.2.33: (Dennis Betancourt - 26/Feb/2018)
+-----
+1) Se valida que no permita grabar un mismo num_factura y num_serie para 2 proveedores diferentes. Caso Castek Quito reportado por Alfredo Paulson, donde para un mismo num_factura y num_serie se permitio guardar los datos de dicha factura en 2 OPCOLO de proveedores distintos. OPCOLO 2015211 (guardo datos de la fact, no debio permitirse), OPCOLO 2015219 (correcto).
+2) Se valida que permita grabar la Cta.IVA 12% o 14% de acuerdo a la fecha de emision del Documento por pagar y de acuerdo a lo indicado en tbm_cfgimploc.
+3) Se valida que los valores que se van a guardar en tbm_pagmovinv sean correctos de acuerdo a lo indicado en la pestaña 'General'.
+4) Caso presentado en el cual se podia guardar una factura con 10 digitos, cuando lo correcto es 9 digitos. Esto se presentaba al momento de grabar cuando el programa mostraba un mensaje indicando que la factura debe ser de 9 digitos. El usuario presionaba el boton de <Cancelar>, salia el mensaje "Desea guardar los cambios efectuados a este registro". El usuario daba click en <Si> y el programa no llamaba a la funcion de validacion isCamVal(). Esto fue corregido.
+
+v0.2.34: (Dennis Betancourt - 26/Feb/2018)
+-----
+En el metodo actualizarReg() se realizo una correccion. Se agrego una condicion adicional al IF ya que, en la opcion Modificar, no permitia guardar Documentos que no tengan IVA.
+Antes: if ( blnDetDocTieIva == true && blnVrfExiCtaIvaCrrAsiDia == true )
+Ahora: if ( blnDetDocTieIva == false || (blnDetDocTieIva == true && blnVrfExiCtaIvaCrrAsiDia == true) )
+
+v0.2.35: (Dennis Betancourt - 27/Feb/2018)
+-----
+La funcion verificarExisteCtaIvaCorrectaAsientoDiario() se la quito en el modo Insertar. Solo se la dejo en el modo Modificar.

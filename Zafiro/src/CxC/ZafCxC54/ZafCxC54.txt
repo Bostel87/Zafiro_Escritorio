@@ -1,0 +1,18 @@
+Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Dar�o C�rdenas - 01/Abr/2009)
+------
+Se creo Programa tipo Reporte para mostrar un Listado de Cobros en Efectivo Vs Cierres de Caja
+
+v0.1.1: (Ingrid Lino - 19/Oct/2011)
+------
+Se adicionó en los queries los filtros de estado de registro del documento(solo documentos activos).
+
+v0.1.2: (Rosa Zambrano - 05/Feb/2019)
+-----
+Se elimina uso de libreria obsoleta, para el uso de Jasper Studio.

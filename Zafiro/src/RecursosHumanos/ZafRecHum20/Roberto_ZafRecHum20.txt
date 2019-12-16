@@ -1,0 +1,22 @@
+
+CONTROL DE VERSIONES:
+=====================
+
+ZafRecHum20 v1.0: (Roberto Flores - 07/11/2011)
+----
+Se creo la Pantalla de Empleados por horario de trabajo
+siendo manejado por el bean ZafRecHum20Bean
+
+
+ZafRecHum20Bean v1.0: (Roberto Flores - 07/11/2011)
+----
+Se creo bean manejador de la Pantalla de de Empleados por horario de trabajo ZafRecHum20
+
+ZafRecHum20Bean v1.1: (Tony Sanginez - 21/09/2015)
+----
+Aumento de variable String y convocar a un metodo para verificar los trabajadores que tiene horario fijo. 
+El campo de "Horario Fijo" se vuelve no editable.
+
+ZafRecHum20Bean v1.2: (Tony Sanginez - 20/02/2018)
+-----
+Activa el servicio 09 al guardar

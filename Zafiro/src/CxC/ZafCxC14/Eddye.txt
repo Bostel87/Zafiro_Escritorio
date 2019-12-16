@@ -1,0 +1,111 @@
+﻿Observaciones:
+--------------
+Este programa sirve para CxC y CxP.
+Los códigos en tbm_mnuSis son:
+	319: Cartera de clientes
+	515: Catera de proveedores
+
+Pendientes:
+1) 
+2) 
+3) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 10/Abr/2006)
+----
+Se agregaron las columnas con información de cheques.
+
+
+v0.2: (Eddye Lino - 22/May/2006)
+-----
+Se agregó el tab "Créditos/Débitos".
+
+
+v0.3: (Eddye Lino - 30/May/2006)
+-----
+Se agregó el tab "Pagos realizados".
+
+
+v0.4: (Eddye Lino - 31/May/2006)
+-----
+Se agregó código para que tambien funcionara con CxP.
+
+
+v0.5: (Eddye Lino - 07/Jun/2006)
+-----
+Se corrigió problema de que no consultaba luego de abrir otra ventana (No se había clonado el objeto ZafParSis).
+Se corrigió que no estaba limpiando los JTables cuando no encontraba un cliente/proveedor.
+
+
+v0.6: (Eddye Lino - 11/Jun/2006)
+-----
+Se agregó ToolTipText para los demás JTables.
+
+
+v0.7: (Eddye Lino - 23/Sep/2006)
+-----
+Se hizo que las casillas de verificación "Mostrar los créditos/débitos del cliente seleccionado" y
+"Mostrar los pagos realizados por el cliente seleccionado" aparecieran marcadas desde el principio.
+
+
+v0.8: (Dario Cardenas - 23/Abr/2007)
+-----
+Se modificó la función cargarDetReg, se dejó en comentario la linea donde se pregunta el código del local
+en la empresa que se esta trabajando, ya que dicha función muestra un listado de clientes por locales, 
+por lo que desde ahora no deberá filtrar a los clientes por local.
+
+
+v0.9: (Dario Cardenas - 09/May/2007)
+-----
+Se modificó la funcion cargarDetReg, se dejo en comentario la linea donde se pregunta el codigo del local
+en la empresa que se esta trabajando, ya que dicha funcion muestra un listado de clientes por locales, 
+por lo que desde ahora no debera filtrar a los clientes por local.
+
+
+v0.10: (Dario Cardenas - 14/Jun/2007)
+-----
+Se modificó la funcion que muestra el detalle de pagos asociados a las facturas, para que no 
+muestre los pagos por locales aplicados...
+
+
+v0.11: (Dario Cardenas - 03/Jul/2007)
+-----
+Se modifico variables de conexion, resultset, Statement, para las diferentes tablas que manejan los tab...
+
+
+v0.12: (Dario Cardenas - 09/Jul/2007)
+-----
+Se modificó funcion cargarCreDebMovReg() para mostrar datos filtrados por locales donde se realizo el pago (depositos - retenciones etc.)
+
+
+v0.13: (Dario Cardenas - 24/Abr/2008)
+-----
+Se modificó query de la funcion configurarVenConCli(), para mostrar datos de clientes por empresa y local...
+
+
+v0.14: (Dario Cardenas - 29/Ago/2008)
+-----
+Se agregó función para mostrar datos de clientes por local desde Castek Manta...
+
+
+v0.15: (Eddye Lino - 30/Sep/2009)
+----
+Se modificó el código para corregir unas cosas y mejorar el rendimiento del reporte.
+
+
+v0.16: (Eddye Lino - 28/Sep/2010)
+------
+Se modificó el método: 
+   1) cargarCreDebMovReg()
+   2) cargarPagRea()
+Se agregó la condición "AND a2.st_reg='A'" porque se agregó el campo st_reg en tbm_detPag para
+poder hacer eliminación lógica y poder replicar dichos datos.
+
+
+v0.17: (Eddye Lino - 02/Oct/2015)
+------
+Se modificó el método: 
+   1) tblDatKeyPressed(java.awt.event.KeyEvent evt)
+Se reemplazó "evt.setKeyCode(0);" por "evt.consume();" porque a partir de "Java 7" ya no consumía el ENTER.

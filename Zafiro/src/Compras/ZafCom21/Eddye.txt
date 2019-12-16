@@ -1,0 +1,253 @@
+﻿Pendientes:
+1) Inabilité el cambio de bodega hasta que valide dicho cambio de bodega.
+2) Agregar el uso de la tabla que filtra las bodegas de acuerdo al tipo de documento.
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino)
+----
+Programa nuevo.
+
+
+v0.2: (Eddye Lino)
+-----
+Se agregó la opción "Consultar".
+
+
+v0.3: (Eddye Lino - 29/Jun/2006)
+-----
+Se corrigió problema de validación de stock de bodega.
+
+
+v0.4: (Eddye Lino - 03/Jul/2006)
+-----
+Se corrigió problema de validación de stock de bodega.
+
+
+v0.5: (Eddye Lino - 04/Jul/2006)
+-----
+Se cambió la forma de calcular el costo por un nuevo esquema.
+
+
+v0.6: (Eddye Lino - 05/Jul/2006)
+-----
+Se corrigió falla al calcular el costo en el nuevo esquema de calculo de costo.
+
+
+v0.7: (Eddye Lino - 17/Jul/2006)
+-----
+Se agregó la opción "Imprimir" y "Vista preliminar".
+
+
+v0.8: (Eddye Lino - 20/Jul/2006)
+-----
+Se movió la función de calcular el costo a la clase ZafUtil.
+
+
+v0.9: (Eddye Lino - 02/Oct/2006)
+-----
+Se corrigió problema en el proceso de recosteo y validación de cambios en el documento.
+El programa estaba detectando cambios de forma incorrecta.
+
+
+v0.10: (Eddye Lino - 19/Oct/2006)
+-----
+Se agregó código para que grabara nuevos campos que se agregaron a la base de datos.
+Se cambió la forma de recosteo por el nuevo esquema de recosteo.
+
+
+v0.11: (Eddye Lino - 31/Ene/2007)
+-----
+Se corrigió código de anulación y eliminación porque estaba utilizando un método de recosteo antiguo.
+
+
+v0.12: (Eddye Lino - 07/Feb/2007)
+-----
+Se agregó campo de replicación "st_regRep" para las tablas "tbm_cabMovInv" y "tbm_detMovInv".
+
+
+v0.13: (Eddye Lino - 18/Jun/2007)
+-----
+Se agregó código para utilizar la clase ZafRptSis.
+
+
+v0.14: (Eddye Lino - 29/Feb/2008)
+-----
+Se agregó código para grabar el campo "tbm_detMovInv.co_itmAct". Dicho campo fue creado para mejorar la forma
+de unificar items. Antes la unificación actualizaba el campo "tbm_detMovInv.co_itm" para todos los movimientos
+de los items a unificar. Ahora sólo actualiza dicho campo a partir de la fecha de unificación y en el nuevo campo
+(co_itmAct) queda el código actual del item. Es decir, el código del último item con el que fue unificado.
+Se corrigió el método: 
+   1) isRegPro()
+En dicho mdicho método se corrigió el código que validaba las modificaciones porque no validaba correctamente cuando
+se seguí la secuencia: insertar documento, modificar luego de insertar, click en "Cancelar", el sistema detecta que
+hay cambios en el documento y pregunta si se desea guardar los cambios, el usuario responde que "Si". Es aquí donde
+estaba el problema ya que no se validaba sino que directamente se procedía a guardar.
+Así estaba al principio:
+    case 'm': //Modificar
+        blnRes=objTooBar.modificar();
+        break;
+Así quedó:
+    case 'm': //Modificar
+        blnRes=objTooBar.beforeModificar();
+        if (blnRes)
+            blnRes=objTooBar.modificar();
+        break;
+Se corrigió el método: 
+   1) configurarVenConItm()
+En dicho método se agregó al query una condición para que sólo se mostrara los items activos.
+Al query se agregó la siguiente condición:
+    strSQL+=" AND a1.st_reg='A'";
+
+
+v0.15: (Eddye Lino - 29/Oct/2008)
+-----
+Se modificó el método: 
+   1) insertarDet()
+En dicho método se cambió el query para que almacene "0" ya que antes el campo "nd_canCon" almacenaba "Null".
+El query quedó así:
+    strSQL+=", 0"; //nd_canCon
+
+
+v0.16: (Eddye Lino - 18/Nov/2008)
+-----
+Se modificaron los métodos: 
+   1) mostrarTipDocPre()
+   2) configurarVenConTipDoc()
+   3) mostrarVenConTipDoc(int intTipBus)
+   4) actualizarTbmInvBod(int intTipOpe)
+En dichos métodos se agregó código para que se pueda guardar datos en los campos "tbm_invBod.nd_canIngBod" y
+"tbm_invBod.nd_canEgrBod" de acuerdo al valor del campo "tbm_cabTipDoc.st_merIngEgrFisBod".
+
+
+v0.17: (Eddye Lino - 18/May/2009)
+-----
+Se modificaron los métodos: 
+   1) configurarVenConItm()
+   2) configurarTblDat()
+   3) insertarReg()
+   4) getStkBod(int intCodEmp, int intCodBod, int intCodItm)
+   5) actualizarTbmInvBod(int intTipOpe)
+   6) actualizarTbmInv()
+   7) recostearItm()
+   8) cargarCabReg()
+   9) afterInsertar()
+   10)afterModificar()
+Se cambió el código para que ya no trabaje con la empresa grupo sino con la empresa individual.
+
+
+v0.18: (Eddye Lino - 11/Ago/2009)
+-----
+Se agregaron los métodos: 
+   1) beforeClickInicio()
+   2) beforeClickAnterior()
+   3) beforeClickSiguiente()
+   4) beforeClickFin()
+   5) beforeClickInsertar()
+   6) beforeClickConsultar()
+   7) beforeClickModificar()
+   8) beforeClickEliminar()
+   9) beforeClickAnular()
+   10) beforeClickImprimir()
+   11) beforeClickVistaPreliminar()
+   12) beforeClickAceptar()
+   13) beforeClickCancelar()
+   14) cargarDocumento(Integer codigoEmpresa, Integer codigoLocal, Integer codigoTipoDocumento, Integer codigoDocumento)
+   15) actualizarSecUltDocTbmCabMovInv()
+   16) actualizarSecUltDocTbmCabMovInv()
+   17) cargarDocumento(Integer codigoEmpresa, Integer codigoLocal, Integer codigoTipoDocumento, Integer codigoDocumento)
+Se agregó las variables intCodEmp y intCodLoc a nivel de clase para que se pudiera utilizar
+el código de empresa y local recibidos como parámetros. Antes se tenía establecido en el código
+que siempre se utilizara la empresa y local al cual se ingresó. Pero en la clase ZafCom31 era
+necesario desde una empresa poder abrir documentos que correspondían a otras empresas y locales.
+Se modificaron los métodos: 
+   1) isRegPro()
+   2) ...
+   3) insertarReg()
+   4) insertarCab()
+   5) isRegPro()
+Se modificó algunos métodos para utilizar los nuevos métodos que se agregaron.
+Además, se agregó código para que en lugar de ir a obtener los valores para "ne_secGrp" y "ne_secEmp" de la tabla
+"tbm_cabMovInv" se lo obtenga de la tabla "tbm_emp".
+
+
+v0.19: (Eddye Lino - 22/Dic/2009)
+-----
+Se corrigió el método: 
+   1) insertarDet()
+Se agregó código para que almacenara el campo "st_merIngEgrFisBod".
+
+
+v0.20: (Eddye Lino - 16/Mar/2010)
+-----
+Se agregó el constructor: 
+   1) ZafCom21(ZafParSis obj, Integer codigoEmpresa, Integer codigoLocal, Integer codigoTipoDocumento, Integer codigoDocumento)
+Se eliminó el método:
+   1) formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt)
+Se modificaron los métodos: 
+   1) ZafCom21(ZafParSis obj)
+   2) configurarVenConBod()
+   3) txtCodBodFocusLost
+   4) txtNomBodFocusLost
+   5) butBodActionPerformed
+   6) txtDesCorTipDocFocusLost(java.awt.event.FocusEvent evt)
+   7) txtDesLarTipDocFocusLost(java.awt.event.FocusEvent evt)
+   8) mostrarVenConTipDoc(int intTipBus)
+Se agregó código para utilizar la tabla "tbr_bodTipDocPrgUsr" mediante la cual se puede dar
+permiso a la bodegas de acuerdo al tipo de documento, programa y usuario.
+
+
+v0.21: (Eddye Lino - 07/Jun/2010)
+-----
+Se modificaron los métodos: 
+   1) insertarCab()
+   2) actualizarCab()
+   3) anularCab()
+   4) eliminarCab()
+Se agregó código para que se almacenara los campos de auditoría correspondientes a la computadora en
+la cual se ingresó, modificó o anuló un documento.
+
+
+v0.22: (Eddye Lino - 15/Ago/2011)
+-----
+Se modificaron los métodos: 
+   1) consultarReg()
+   2) generarRpt(int intTipRpt)
+Se agregó código para corregir cosas que no funcionaban en la nueva versión de PostgreSQL.
+
+
+v0.23: (Eddye Lino - 03/Ago/2016)
+-----
+Se modificaron los métodos: 
+   1) configurarFrm()
+   2) actualizarTbmInvBod(int intTipOpe)
+Se agregó código para manejar actualizar nuevo campo "tbm_invBod.nd_canDis".
+Además se hizo invisible el botón "Modificar".
+
+
+v0.24: (Rosa Zambrano - 08/Ago/2016)
+-----
+Se hizo visible el botón "Modificar" solicitado por LSC vía telefónica.
+
+
+v0.25: (José Mario Marín - 29/Dic/2016)
+-----
+Se agregó código para manejar actualizar nuevo campo "tbm_invBod.nd_canDis", manejo de nulos.
+
+
+v0.26: (Eddye Lino - 11/Sep/2017)
+-----
+Se agregó el método:
+   1) existeCodAlt()
+Se modificaron los métodos: 
+   1) configurarTblDat()
+   2) calcularTotFil()
+Se agregó validación para evitar que se repitan los items.
+
+
+v0.27: (Eddye Lino - 26/Sep/2017)
+-----
+Se modificó el método: 
+   1) recostearItm()
+Se agregó código para que cuando se inserte se llame al método "costearDocumento" en lugar de "recostearItm2009DesdeFecha".

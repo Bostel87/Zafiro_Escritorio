@@ -1,0 +1,2321 @@
+/*
+ * ZafVen10.java
+ * "Listado de ventas (Detallado por cliente)"
+ * Created on September 20, 2007, 1:52 PM
+ */
+package Ventas.ZafVen10;
+
+import Librerias.ZafParSis.ZafParSis;
+import java.sql.Connection;
+import java.sql.Statement;
+import java.sql.ResultSet;
+import java.sql.DriverManager;
+import Librerias.ZafUtil.ZafUtil;
+import java.util.Vector;
+import Librerias.ZafTblUti.ZafTblMod.ZafTblMod;
+import Librerias.ZafColNumerada.ZafColNumerada;
+import Librerias.ZafTblUti.ZafTblPopMnu.ZafTblPopMnu;
+import Librerias.ZafTblUti.ZafTblBus.ZafTblBus;
+import Librerias.ZafTblUti.ZafTblCelRenLbl.ZafTblCelRenLbl;
+import Librerias.ZafSelFec.ZafSelFec;
+import Librerias.ZafTblUti.ZafTblOrd.ZafTblOrd;
+import Librerias.ZafTblUti.ZafTblTot.ZafTblTot;
+import java.util.ArrayList;
+import Librerias.ZafVenCon.ZafVenCon;
+import Librerias.ZafPerUsr.ZafPerUsr;
+import Librerias.ZafTblUti.ZafTblCelEdiChk.ZafTblCelEdiChk;
+import Librerias.ZafTblUti.ZafTblCelRenChk.ZafTblCelRenChk;
+import Librerias.ZafTblUti.ZafTblFilCab.ZafTblFilCab;
+import Librerias.ZafUtil.ZafLocPrgUsr;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
+import java.sql.SQLException;
+
+/**
+ *
+ * @author ilino
+ */
+public class ZafVen10 extends javax.swing.JInternalFrame 
+{
+    //Constantes
+    //JTable: Tabla de Datos-Cabecera.
+    private final int INT_TBL_DAT_CAB_LIN = 0;
+    private final int INT_TBL_DAT_CAB_COD_CLI = 1;
+    private final int INT_TBL_DAT_CAB_RUC_CLI = 2;
+    private final int INT_TBL_DAT_CAB_NOM_CLI = 3;
+    private final int INT_TBL_DAT_CAB_VAL_VNT_BRU = 4;
+    
+    //JTable: Tabla de Datos-Detalle.
+    private final int INT_TBL_DAT_DET_LIN = 0;
+    private final int INT_TBL_DAT_DET_TIP_DOC_DSC_COR = 1;
+    private final int INT_TBL_DAT_DET_TIP_DOC_DSC_LAR = 2;
+    private final int INT_TBL_DAT_DET_COD_DOC = 3;
+    private final int INT_TBL_DAT_DET_NUM_DOC = 4;
+    private final int INT_TBL_DAT_DET_FEC_DOC = 5;
+    private final int INT_TBL_DAT_DET_VAL_SUB = 6;
+    
+    //JTable: Tabla de Locales.
+    private final int INT_TBL_LOC_LIN=0;
+    private final int INT_TBL_LOC_CHKSEL=1;
+    private final int INT_TBL_LOC_CODEMP=2;
+    private final int INT_TBL_LOC_NOMEMP=3;
+    private final int INT_TBL_LOC_CODLOC=4;
+    private final int INT_TBL_LOC_NOMLOC=5;
+    
+    //Variables   
+    private Connection con;
+    private Statement stm;
+    private ResultSet rst;
+    
+    private ZafParSis objParSis;
+    private ZafUtil objUti;
+    private ZafTblMod objTblModCab, objTblModDet;
+    private ZafTblMod objTblModLoc;
+    private ZafColNumerada objColNum, objColNumDet;
+    private ZafTblPopMnu objTblPopMnu, objTblPopMnuDet;
+    private ZafSelFec objSelFec;
+    private ZafMouMotAdaCab objMouMotAdaCab;
+    private ZafMouMotAdaDet objMouMotAdaDet;
+    private ZafMouMotAdaLoc objMouMotAdaLoc;      
+    private ZafTblFilCab objTblFilCab;
+    private ZafTblBus objTblBus, objTblBusDet;
+    private ZafTblCelRenLbl objTblCelRenLblCab, objTblCelRenLblDet;
+    private ZafTblCelRenChk objTblCelRenChk;
+    private ZafTblCelEdiChk objTblCelEdiChk;
+    private ZafTblOrd objTblOrd, objTblOrdDet;
+    private ZafTblTot objTblTotCab, objTblTotDet; 
+    private ZafVenCon vcoCli, vcoVen;
+    private ZafThreadGUI objThrGUI;
+    private ZafPerUsr objPerUsr;
+    private ZafLocPrgUsr objLocPrgUsr;                           //Objeto que almacena los locales por usuario y programa.
+    private Vector vecDat, vecCab, vecReg, vecAux;
+    private Vector vecDatMov, vecCabMov, vecRegMov, vecAuxMov;
+    private java.util.Date datFecAux;
+    private boolean blnMarTodChkTblLoc=true;                     //Marcar todas las casillas de verificación del JTable de Locales.
+    private boolean blnHayCam;                                   //Determina si hay cambios en el formulario.
+    private boolean blnCon;
+    private String strSQL, strAux;
+    private String strIdeCli, strDirCli, strIdeVen, strDirVen;
+    private String strCodCli, strDesLarCli, strCodVen, strDesLarVen;
+    
+    /**
+     * Creates new form ZafVen10
+     */
+    public ZafVen10(ZafParSis obj)
+    {
+        try 
+        {
+            //Inicializar objetos.
+            objParSis = (ZafParSis) obj.clone();
+            objPerUsr = new ZafPerUsr(objParSis);
+            //Obtener los locales por Usuario y Programa.
+            objLocPrgUsr=new ZafLocPrgUsr(objParSis);
+            
+            if(objParSis.getCodigoEmpresa()!=objParSis.getCodigoEmpresaGrupo()) 
+            {
+                initComponents();
+            }
+            else
+            {
+                mostrarMsgInf("Este programa sólo puede ser ejecutado desde EMPRESAS.");
+                dispose();
+            }
+        } catch (CloneNotSupportedException e) { this.setTitle(this.getTitle() + " [ERROR]"); }
+    }
+
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        panFrm = new javax.swing.JPanel();
+        tabFrm = new javax.swing.JTabbedPane();
+        spnFil = new javax.swing.JScrollPane();
+        panFil = new javax.swing.JPanel();
+        lblTit = new javax.swing.JLabel();
+        chkVenCli = new javax.swing.JCheckBox();
+        chkVenRel = new javax.swing.JCheckBox();
+        chkPre = new javax.swing.JCheckBox();
+        optTodCli = new javax.swing.JRadioButton();
+        optCliSel = new javax.swing.JRadioButton();
+        lblCli = new javax.swing.JLabel();
+        txtCodCli = new javax.swing.JTextField();
+        txtDesLarCli = new javax.swing.JTextField();
+        butCli = new javax.swing.JButton();
+        panFilCliDesHas = new javax.swing.JPanel();
+        lblDes = new javax.swing.JLabel();
+        txtNomCliDes = new javax.swing.JTextField();
+        lblHas = new javax.swing.JLabel();
+        txtNomCliHas = new javax.swing.JTextField();
+        lblVen = new javax.swing.JLabel();
+        txtCodVen = new javax.swing.JTextField();
+        txtDesLarVen = new javax.swing.JTextField();
+        butVen = new javax.swing.JButton();
+        chkMosMovCon = new javax.swing.JCheckBox();
+        chkMosMovCre = new javax.swing.JCheckBox();
+        panLoc = new javax.swing.JPanel();
+        spnLoc = new javax.swing.JScrollPane();
+        tblDatLoc = new javax.swing.JTable();
+        panRep = new javax.swing.JPanel();
+        sppRpt = new javax.swing.JSplitPane();
+        panFilGrlCli = new javax.swing.JPanel();
+        spnCabDat = new javax.swing.JScrollPane();
+        tblCabDat = new javax.swing.JTable();
+        spnCabTot = new javax.swing.JScrollPane();
+        tblCabTot = new javax.swing.JTable();
+        panFilDetCli = new javax.swing.JPanel();
+        chkMosMovReg = new javax.swing.JCheckBox();
+        jPanel1 = new javax.swing.JPanel();
+        spnDetDat = new javax.swing.JScrollPane();
+        tblDetDat = new javax.swing.JTable();
+        spnDetTot = new javax.swing.JScrollPane();
+        tblDetTot = new javax.swing.JTable();
+        panBar = new javax.swing.JPanel();
+        panBot = new javax.swing.JPanel();
+        butCon = new javax.swing.JButton();
+        butCer = new javax.swing.JButton();
+        panBarEst = new javax.swing.JPanel();
+        lblMsgSis = new javax.swing.JLabel();
+        panPrgSis = new javax.swing.JPanel();
+        pgrSis = new javax.swing.JProgressBar();
+
+        setClosable(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+                exitForm(evt);
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameOpened(evt);
+            }
+        });
+
+        panFrm.setLayout(new java.awt.BorderLayout());
+
+        spnFil.setName(""); // NOI18N
+        spnFil.setPreferredSize(new java.awt.Dimension(0, 700));
+
+        panFil.setPreferredSize(new java.awt.Dimension(10, 520));
+        panFil.setLayout(null);
+
+        lblTit.setFont(new java.awt.Font("MS Sans Serif", 1, 14)); // NOI18N
+        lblTit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTit.setText("Título de la ventana");
+        panFil.add(lblTit);
+        lblTit.setBounds(0, 0, 660, 19);
+
+        chkVenCli.setSelected(true);
+        chkVenCli.setText("Ventas a clientes");
+        panFil.add(chkVenCli);
+        chkVenCli.setBounds(20, 100, 520, 14);
+
+        chkVenRel.setSelected(true);
+        chkVenRel.setText("Ventas a empresas relacionadas");
+        panFil.add(chkVenRel);
+        chkVenRel.setBounds(20, 120, 590, 14);
+
+        chkPre.setSelected(true);
+        chkPre.setText("Préstamos");
+        panFil.add(chkPre);
+        chkPre.setBounds(20, 140, 510, 14);
+
+        optTodCli.setText("Todos los clientes");
+        optTodCli.setPreferredSize(new java.awt.Dimension(113, 16));
+        optTodCli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                optTodCliActionPerformed(evt);
+            }
+        });
+        panFil.add(optTodCli);
+        optTodCli.setBounds(20, 170, 560, 16);
+
+        optCliSel.setText("Sólo los clientes que cumplan el criterio seleccionado");
+        optCliSel.setPreferredSize(new java.awt.Dimension(91, 16));
+        optCliSel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                optCliSelActionPerformed(evt);
+            }
+        });
+        panFil.add(optCliSel);
+        optCliSel.setBounds(20, 190, 560, 16);
+
+        lblCli.setText("Cliente:");
+        lblCli.setToolTipText("Cliente");
+        panFil.add(lblCli);
+        lblCli.setBounds(50, 210, 70, 20);
+
+        txtCodCli.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtCodCliFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCodCliFocusLost(evt);
+            }
+        });
+        txtCodCli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCodCliActionPerformed(evt);
+            }
+        });
+        panFil.add(txtCodCli);
+        txtCodCli.setBounds(123, 210, 56, 20);
+
+        txtDesLarCli.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtDesLarCliFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtDesLarCliFocusLost(evt);
+            }
+        });
+        txtDesLarCli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDesLarCliActionPerformed(evt);
+            }
+        });
+        panFil.add(txtDesLarCli);
+        txtDesLarCli.setBounds(180, 210, 380, 20);
+
+        butCli.setText("...");
+        butCli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                butCliActionPerformed(evt);
+            }
+        });
+        panFil.add(butCli);
+        butCli.setBounds(560, 210, 20, 20);
+
+        panFilCliDesHas.setBorder(javax.swing.BorderFactory.createTitledBorder("Nombre del Cliente"));
+        panFilCliDesHas.setPreferredSize(new java.awt.Dimension(12, 37));
+        panFilCliDesHas.setLayout(null);
+
+        lblDes.setText("Desde:");
+        panFilCliDesHas.add(lblDes);
+        lblDes.setBounds(10, 20, 55, 14);
+
+        txtNomCliDes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNomCliDesActionPerformed(evt);
+            }
+        });
+        panFilCliDesHas.add(txtNomCliDes);
+        txtNomCliDes.setBounds(60, 20, 180, 20);
+
+        lblHas.setText("Hasta:");
+        panFilCliDesHas.add(lblHas);
+        lblHas.setBounds(260, 20, 40, 14);
+
+        txtNomCliHas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNomCliHasActionPerformed(evt);
+            }
+        });
+        panFilCliDesHas.add(txtNomCliHas);
+        txtNomCliHas.setBounds(300, 20, 210, 20);
+
+        panFil.add(panFilCliDesHas);
+        panFilCliDesHas.setBounds(50, 230, 530, 50);
+
+        lblVen.setText("Vendedor:");
+        lblVen.setToolTipText("Vendedor");
+        panFil.add(lblVen);
+        lblVen.setBounds(50, 290, 70, 20);
+
+        txtCodVen.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtCodVenFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCodVenFocusLost(evt);
+            }
+        });
+        txtCodVen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCodVenActionPerformed(evt);
+            }
+        });
+        panFil.add(txtCodVen);
+        txtCodVen.setBounds(123, 290, 56, 20);
+
+        txtDesLarVen.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtDesLarVenFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtDesLarVenFocusLost(evt);
+            }
+        });
+        txtDesLarVen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDesLarVenActionPerformed(evt);
+            }
+        });
+        panFil.add(txtDesLarVen);
+        txtDesLarVen.setBounds(180, 290, 380, 20);
+
+        butVen.setText("...");
+        butVen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                butVenActionPerformed(evt);
+            }
+        });
+        panFil.add(butVen);
+        butVen.setBounds(560, 290, 20, 20);
+
+        chkMosMovCon.setText("Sólo mostrar movimientos de contado");
+        panFil.add(chkMosMovCon);
+        chkMosMovCon.setBounds(50, 320, 330, 14);
+
+        chkMosMovCre.setText("Sólo mostrar movimientos a crédito");
+        panFil.add(chkMosMovCre);
+        chkMosMovCre.setBounds(50, 340, 330, 14);
+
+        panLoc.setBorder(javax.swing.BorderFactory.createTitledBorder("Listado de Locales"));
+        panLoc.setAutoscrolls(true);
+        panLoc.setPreferredSize(new java.awt.Dimension(464, 439));
+        panLoc.setLayout(new java.awt.BorderLayout());
+
+        tblDatLoc.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        spnLoc.setViewportView(tblDatLoc);
+
+        panLoc.add(spnLoc, java.awt.BorderLayout.CENTER);
+
+        panFil.add(panLoc);
+        panLoc.setBounds(20, 370, 600, 122);
+        panLoc.getAccessibleContext().setAccessibleParent(panFil);
+
+        spnFil.setViewportView(panFil);
+
+        tabFrm.addTab("Filtro", spnFil);
+        spnFil.getAccessibleContext().setAccessibleParent(tabFrm);
+
+        panRep.setLayout(new java.awt.BorderLayout());
+
+        sppRpt.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
+        sppRpt.setResizeWeight(0.5);
+        sppRpt.setOneTouchExpandable(true);
+
+        panFilGrlCli.setPreferredSize(new java.awt.Dimension(452, 402));
+        panFilGrlCli.setLayout(new java.awt.BorderLayout());
+
+        tblCabDat.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        spnCabDat.setViewportView(tblCabDat);
+
+        panFilGrlCli.add(spnCabDat, java.awt.BorderLayout.CENTER);
+
+        spnCabTot.setPreferredSize(new java.awt.Dimension(454, 18));
+
+        tblCabTot.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        spnCabTot.setViewportView(tblCabTot);
+
+        panFilGrlCli.add(spnCabTot, java.awt.BorderLayout.SOUTH);
+
+        sppRpt.setTopComponent(panFilGrlCli);
+
+        panFilDetCli.setLayout(new java.awt.BorderLayout());
+
+        chkMosMovReg.setText("Mostrar el movimiento del cliente seleccionado");
+        chkMosMovReg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkMosMovRegActionPerformed(evt);
+            }
+        });
+        panFilDetCli.add(chkMosMovReg, java.awt.BorderLayout.NORTH);
+
+        jPanel1.setLayout(new java.awt.BorderLayout());
+
+        tblDetDat.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        spnDetDat.setViewportView(tblDetDat);
+
+        jPanel1.add(spnDetDat, java.awt.BorderLayout.CENTER);
+
+        spnDetTot.setPreferredSize(new java.awt.Dimension(454, 18));
+
+        tblDetTot.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        spnDetTot.setViewportView(tblDetTot);
+
+        jPanel1.add(spnDetTot, java.awt.BorderLayout.SOUTH);
+
+        panFilDetCli.add(jPanel1, java.awt.BorderLayout.CENTER);
+
+        sppRpt.setBottomComponent(panFilDetCli);
+
+        panRep.add(sppRpt, java.awt.BorderLayout.CENTER);
+
+        tabFrm.addTab("Reporte", panRep);
+
+        panFrm.add(tabFrm, java.awt.BorderLayout.CENTER);
+
+        panBar.setPreferredSize(new java.awt.Dimension(320, 54));
+        panBar.setLayout(new java.awt.BorderLayout());
+
+        panBot.setPreferredSize(new java.awt.Dimension(199, 32));
+
+        butCon.setText("Consultar");
+        butCon.setToolTipText("Ejecuta la consulta de acuerdo al filtro especificado.");
+        butCon.setPreferredSize(new java.awt.Dimension(92, 25));
+        butCon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                butConActionPerformed(evt);
+            }
+        });
+        panBot.add(butCon);
+
+        butCer.setText("Cerrar");
+        butCer.setToolTipText("Cierra la ventana.");
+        butCer.setPreferredSize(new java.awt.Dimension(92, 25));
+        butCer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                butCerActionPerformed(evt);
+            }
+        });
+        panBot.add(butCer);
+
+        panBar.add(panBot, java.awt.BorderLayout.EAST);
+        panBot.getAccessibleContext().setAccessibleName("");
+
+        panBarEst.setLayout(new java.awt.BorderLayout());
+
+        lblMsgSis.setText("Listo");
+        lblMsgSis.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
+        panBarEst.add(lblMsgSis, java.awt.BorderLayout.CENTER);
+
+        panPrgSis.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
+        panPrgSis.setMinimumSize(new java.awt.Dimension(24, 26));
+        panPrgSis.setPreferredSize(new java.awt.Dimension(200, 15));
+        panPrgSis.setLayout(new java.awt.BorderLayout());
+
+        pgrSis.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
+        pgrSis.setBorderPainted(false);
+        pgrSis.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        pgrSis.setPreferredSize(new java.awt.Dimension(100, 16));
+        panPrgSis.add(pgrSis, java.awt.BorderLayout.CENTER);
+
+        panBarEst.add(panPrgSis, java.awt.BorderLayout.EAST);
+
+        panBar.add(panBarEst, java.awt.BorderLayout.SOUTH);
+
+        panFrm.add(panBar, java.awt.BorderLayout.SOUTH);
+
+        getContentPane().add(panFrm, java.awt.BorderLayout.CENTER);
+
+        setBounds(0, 0, 700, 450);
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void chkMosMovRegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkMosMovRegActionPerformed
+        if (chkMosMovReg.isSelected())
+        {
+            cargarMovReg(sqlConFilMovReg());
+        } 
+        else 
+        {
+            objTblModDet.removeAllRows();
+        }
+    }//GEN-LAST:event_chkMosMovRegActionPerformed
+
+    private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
+        configurarFrm();
+        //agregarDocLis();
+    }//GEN-LAST:event_formInternalFrameOpened
+
+    private void exitForm(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_exitForm
+        String strTit, strMsg;
+        javax.swing.JOptionPane oppMsg = new javax.swing.JOptionPane();
+        strTit = "Mensaje del sistema Zafiro";
+        strMsg = "¿Está seguro que desea cerrar este programa?";
+        if (oppMsg.showConfirmDialog(this, strMsg, strTit, javax.swing.JOptionPane.YES_NO_OPTION, javax.swing.JOptionPane.QUESTION_MESSAGE) == javax.swing.JOptionPane.YES_OPTION) {
+            dispose();
+        }
+    }//GEN-LAST:event_exitForm
+
+    //<editor-fold defaultstate="collapsed" desc=" /* EVENTOS */">
+    private void butCerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butCerActionPerformed
+        String strTit, strMsg;
+        javax.swing.JOptionPane oppMsg = new javax.swing.JOptionPane();
+        strTit = "Mensaje del sistema Zafiro";
+        strMsg = "¿Está seguro que desea cerrar este programa?";
+        if (oppMsg.showConfirmDialog(this, strMsg, strTit, javax.swing.JOptionPane.YES_NO_OPTION, javax.swing.JOptionPane.QUESTION_MESSAGE) == javax.swing.JOptionPane.YES_OPTION) {
+            dispose();
+        }
+    }//GEN-LAST:event_butCerActionPerformed
+
+    private void butConActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butConActionPerformed
+        //Realizar acción de acuerdo a la etiqueta del botón ("Consultar" o "Detener").
+        if (isCamVal())
+        {
+            //Realizar acción de acuerdo a la etiqueta del botón ("Consultar" o "Detener").
+            if (butCon.getText().equals("Consultar")) {
+                blnCon = true;
+                if (objThrGUI == null) {
+                    objThrGUI = new ZafThreadGUI();
+                    objThrGUI.start();
+                }
+            } else {
+                blnCon = false;
+            }
+        }
+    }//GEN-LAST:event_butConActionPerformed
+
+    private void optTodCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optTodCliActionPerformed
+        if (optTodCli.isSelected())
+        {
+            optCliSel.setSelected(false);
+            txtCodCli.setText("");
+            txtDesLarCli.setText("");
+            txtNomCliDes.setText("");
+            txtNomCliHas.setText("");
+            txtCodVen.setText("");
+            txtDesLarVen.setText("");
+        }
+    }//GEN-LAST:event_optTodCliActionPerformed
+
+    private void optCliSelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optCliSelActionPerformed
+        if (optCliSel.isSelected())
+        {
+            optTodCli.setSelected(false);
+        }
+    }//GEN-LAST:event_optCliSelActionPerformed
+
+    private void txtCodCliFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCodCliFocusGained
+        strCodCli = txtCodCli.getText();
+        txtCodCli.selectAll();
+    }//GEN-LAST:event_txtCodCliFocusGained
+
+    private void txtCodCliFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCodCliFocusLost
+        //Validar el contenido de la celda sólo si ha cambiado.
+        if (!txtCodCli.getText().equalsIgnoreCase(strCodCli)) {
+            if (txtCodCli.getText().equals("")) {
+                txtCodCli.setText("");
+                txtDesLarCli.setText("");
+                objTblModCab.removeAllRows();
+                objTblModDet.removeAllRows();
+            } else {
+                mostrarVenConCli(1);
+            }
+        } else {
+            txtCodCli.setText(strCodCli);
+        }
+        if (txtCodCli.getText().length() > 0) 
+        {
+            optCliSel.setSelected(true);
+            optTodCli.setSelected(false);
+        }
+    }//GEN-LAST:event_txtCodCliFocusLost
+
+    private void txtCodCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodCliActionPerformed
+        txtCodCli.transferFocus();
+        optCliSel.setSelected(true);
+        optTodCli.setSelected(false);
+    }//GEN-LAST:event_txtCodCliActionPerformed
+
+    private void txtDesLarCliFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDesLarCliFocusGained
+        strDesLarCli = txtDesLarCli.getText();
+        txtDesLarCli.selectAll();
+    }//GEN-LAST:event_txtDesLarCliFocusGained
+
+    private void txtDesLarCliFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDesLarCliFocusLost
+        //Validar el contenido de la celda sólo si ha cambiado.
+        if (!txtDesLarCli.getText().equalsIgnoreCase(strDesLarCli)) {
+            if (txtDesLarCli.getText().equals("")) {
+                txtCodCli.setText("");
+                txtDesLarCli.setText("");
+                objTblModCab.removeAllRows();
+                objTblModDet.removeAllRows();
+            } else {
+                mostrarVenConCli(2);
+            }
+        } else {
+            txtDesLarCli.setText(strDesLarCli);
+        }
+        //Seleccionar el JRadioButton de filtro si es necesario.
+        if (txtDesLarCli.getText().length()>0)
+        {
+            optCliSel.setSelected(true);
+            optTodCli.setSelected(false);
+        }
+    }//GEN-LAST:event_txtDesLarCliFocusLost
+
+    private void txtDesLarCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDesLarCliActionPerformed
+        txtDesLarCli.transferFocus();
+        optCliSel.setSelected(true);
+        optTodCli.setSelected(false);
+    }//GEN-LAST:event_txtDesLarCliActionPerformed
+
+    private void butCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butCliActionPerformed
+        mostrarVenConCli(0);
+        //Seleccionar el JRadioButton de filtro si es necesario.
+        if (txtCodCli.getText().length()>0)
+        {
+            optCliSel.setSelected(true);
+            optTodCli.setSelected(false);
+        }
+    }//GEN-LAST:event_butCliActionPerformed
+
+    private void txtNomCliDesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomCliDesActionPerformed
+        optCliSel.setSelected(true);
+        optTodCli.setSelected(false);
+    }//GEN-LAST:event_txtNomCliDesActionPerformed
+
+    private void txtNomCliHasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomCliHasActionPerformed
+        optCliSel.setSelected(true);
+        optTodCli.setSelected(false);
+    }//GEN-LAST:event_txtNomCliHasActionPerformed
+
+    private void butVenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butVenActionPerformed
+        strCodVen = txtCodVen.getText();
+        mostrarVenConVen(0);
+    }//GEN-LAST:event_butVenActionPerformed
+
+    private void txtCodVenFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCodVenFocusGained
+        strCodVen = txtCodVen.getText();
+        txtCodVen.selectAll();
+    }//GEN-LAST:event_txtCodVenFocusGained
+
+    private void txtCodVenFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCodVenFocusLost
+        //Validar el contenido de la celda sólo si ha cambiado.
+        if (!txtCodVen.getText().equalsIgnoreCase(strCodVen)) {
+            if (txtCodVen.getText().equals("")) {
+                txtCodVen.setText("");
+                txtDesLarVen.setText("");
+                objTblModCab.removeAllRows();
+                objTblModDet.removeAllRows();
+            } else {
+                mostrarVenConVen(1);
+            }
+        } else {
+            txtCodVen.setText(strCodVen);
+        }
+        if (txtCodVen.getText().length() > 0) 
+        {
+            optCliSel.setSelected(true);
+            optTodCli.setSelected(false);
+        }
+    }//GEN-LAST:event_txtCodVenFocusLost
+
+    private void txtCodVenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodVenActionPerformed
+        txtCodVen.transferFocus();
+        optCliSel.setSelected(true);
+        optTodCli.setSelected(false);
+    }//GEN-LAST:event_txtCodVenActionPerformed
+
+    private void txtDesLarVenFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDesLarVenFocusGained
+        strDesLarVen = txtDesLarVen.getText();
+        txtDesLarVen.selectAll();
+    }//GEN-LAST:event_txtDesLarVenFocusGained
+
+    private void txtDesLarVenFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDesLarVenFocusLost
+        //Validar el contenido de la celda sólo si ha cambiado.
+        if (!txtDesLarVen.getText().equalsIgnoreCase(strDesLarVen)) {
+            if (txtDesLarVen.getText().equals("")) {
+                txtCodVen.setText("");
+                txtDesLarVen.setText("");
+                objTblModCab.removeAllRows();
+                objTblModDet.removeAllRows();
+            } else {
+                mostrarVenConVen(2);
+            }
+        } else {
+            txtDesLarVen.setText(strDesLarVen);
+        }
+    }//GEN-LAST:event_txtDesLarVenFocusLost
+
+    private void txtDesLarVenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDesLarVenActionPerformed
+        optCliSel.setSelected(true);
+        optTodCli.setSelected(false);
+        txtDesLarVen.transferFocus();
+    }//GEN-LAST:event_txtDesLarVenActionPerformed
+
+    //</editor-fold>
+    
+       
+    /**
+     * Cerrar la aplicación.
+     */
+    private void exitForm()
+    {
+        dispose();
+    }
+    
+    //<editor-fold defaultstate="collapsed" desc="/* VARIABLES - DO NOT MODIFY */">
+    
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton butCer;
+    private javax.swing.JButton butCli;
+    private javax.swing.JButton butCon;
+    private javax.swing.JButton butVen;
+    private javax.swing.JCheckBox chkMosMovCon;
+    private javax.swing.JCheckBox chkMosMovCre;
+    private javax.swing.JCheckBox chkMosMovReg;
+    private javax.swing.JCheckBox chkPre;
+    private javax.swing.JCheckBox chkVenCli;
+    private javax.swing.JCheckBox chkVenRel;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblCli;
+    private javax.swing.JLabel lblDes;
+    private javax.swing.JLabel lblHas;
+    private javax.swing.JLabel lblMsgSis;
+    private javax.swing.JLabel lblTit;
+    private javax.swing.JLabel lblVen;
+    private javax.swing.JRadioButton optCliSel;
+    private javax.swing.JRadioButton optTodCli;
+    private javax.swing.JPanel panBar;
+    private javax.swing.JPanel panBarEst;
+    private javax.swing.JPanel panBot;
+    private javax.swing.JPanel panFil;
+    private javax.swing.JPanel panFilCliDesHas;
+    private javax.swing.JPanel panFilDetCli;
+    private javax.swing.JPanel panFilGrlCli;
+    private javax.swing.JPanel panFrm;
+    private javax.swing.JPanel panLoc;
+    private javax.swing.JPanel panPrgSis;
+    private javax.swing.JPanel panRep;
+    private javax.swing.JProgressBar pgrSis;
+    private javax.swing.JScrollPane spnCabDat;
+    private javax.swing.JScrollPane spnCabTot;
+    private javax.swing.JScrollPane spnDetDat;
+    private javax.swing.JScrollPane spnDetTot;
+    private javax.swing.JScrollPane spnFil;
+    private javax.swing.JScrollPane spnLoc;
+    private javax.swing.JSplitPane sppRpt;
+    private javax.swing.JTabbedPane tabFrm;
+    private javax.swing.JTable tblCabDat;
+    private javax.swing.JTable tblCabTot;
+    private javax.swing.JTable tblDatLoc;
+    private javax.swing.JTable tblDetDat;
+    private javax.swing.JTable tblDetTot;
+    private javax.swing.JTextField txtCodCli;
+    private javax.swing.JTextField txtCodVen;
+    private javax.swing.JTextField txtDesLarCli;
+    private javax.swing.JTextField txtDesLarVen;
+    private javax.swing.JTextField txtNomCliDes;
+    private javax.swing.JTextField txtNomCliHas;
+    // End of variables declaration//GEN-END:variables
+
+    //</editor-fold>
+    
+    
+    private boolean configurarFrm() 
+    {
+        boolean blnRes = true;
+        try 
+        {
+            objUti = new ZafUtil();
+
+            //Configurar ZafSelFec.
+            objSelFec = new ZafSelFec();
+            objSelFec.setCheckBoxVisible(false);
+            panFil.add(objSelFec);
+            objSelFec.setBounds(20, 20, 560, 72);
+            strAux = objParSis.getNombreMenu();
+            this.setTitle(strAux + " v0.4.7 ");
+            lblTit.setText(strAux);
+            
+            //Configurar Tablas
+            configurarTablaGrlCli();
+            configurarTablaDetCli();
+            configurarTblLoc();
+            cargarTblLoc();
+            
+            //Configurar ZafVenCon
+            configurarVenConCli();
+            configurarVenConVen();
+
+            optTodCli.setSelected(true);
+            optCliSel.setSelected(false);
+            if (objParSis.getCodigoMenu() == 232) 
+            {
+                lblCli.setText("Cliente: ");
+                optTodCli.setText("Todos los clientes");
+                optCliSel.setText("Sólo los clientes que cumplan el criterio seleccionado");
+                panFilCliDesHas.setBorder(new javax.swing.border.TitledBorder("Nombre del Cliente"));
+                chkMosMovReg.setText("Mostrar el movimiento del cliente seleccionado");
+            }
+            else 
+            {
+                lblCli.setText("Proveedor: ");
+                optTodCli.setText("Todos los proveedores");
+                optCliSel.setText("Sólo los proveedores que cumplan el criterio seleccionado");
+                panFilCliDesHas.setBorder(new javax.swing.border.TitledBorder("Nombre del Proveedor"));
+                chkMosMovReg.setText("Mostrar el movimiento del proveedor seleccionado");
+            }
+
+            if (!objPerUsr.isOpcionEnabled(3900)) 
+            {
+                chkVenCli.setSelected(false);
+                chkVenCli.setEnabled(false);
+            }
+            if (!objPerUsr.isOpcionEnabled(3901)) 
+            {
+                chkVenRel.setSelected(false);
+                chkVenRel.setEnabled(false);
+            }
+            if (!objPerUsr.isOpcionEnabled(3902)) 
+            {
+                chkPre.setSelected(false);
+                chkPre.setEnabled(false);
+            }
+
+            if (objParSis.getCodigoMenu() == 232) 
+            {
+                if (!objPerUsr.isOpcionEnabled(407)) //Consultar
+                {
+                    butCon.setVisible(false);
+                    butCon.setEnabled(false);
+                }
+                if (!objPerUsr.isOpcionEnabled(408))  //Cerrar
+                {
+                    butCer.setVisible(false);
+                    butCer.setEnabled(false);
+                }
+                if (!objPerUsr.isOpcionEnabled(2589)) //Otros vendedores
+                {
+                    lblVen.setVisible(false);
+                    lblVen.setEnabled(false);
+                    txtCodVen.setVisible(false);
+                    txtCodVen.setEditable(false);
+                    txtDesLarVen.setVisible(false);
+                    txtDesLarVen.setEditable(false);
+                    butVen.setVisible(false);
+                    butVen.setEnabled(false);
+                }
+            } 
+            else if (objParSis.getCodigoMenu() == 895) 
+            {
+                if (!objPerUsr.isOpcionEnabled(896)) //Consultar
+                {
+                    butCon.setVisible(false);
+                    butCon.setEnabled(false);
+                }
+                if (!objPerUsr.isOpcionEnabled(897)) //Cerrar
+                {
+                    butCer.setVisible(false);
+                    butCer.setEnabled(false);
+                }
+            }
+        } catch (Exception e) {
+            blnRes = false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        return blnRes;
+    }
+
+    private boolean configurarTablaGrlCli() 
+    {
+        boolean blnRes = true;
+        String strCab = "";
+        if (objParSis.getCodigoMenu() == 232) 
+        {
+            strCab = "Cliente";
+        } 
+        else 
+        {
+            strCab = "Proveedor";
+        }
+
+        try 
+        {
+            //Configurar JTable: Establecer el modelo.
+            vecDat = new Vector();    //Almacena los datos
+            vecCab = new Vector(5);  //Almacena las cabeceras
+            vecCab.clear();
+            vecCab.add(INT_TBL_DAT_CAB_LIN, "");
+            vecCab.add(INT_TBL_DAT_CAB_COD_CLI, "Código " + strCab + "");
+            vecCab.add(INT_TBL_DAT_CAB_RUC_CLI, "Identificación " + strCab + "");
+            vecCab.add(INT_TBL_DAT_CAB_NOM_CLI, "Nombre " + strCab + "");
+            vecCab.add(INT_TBL_DAT_CAB_VAL_VNT_BRU, "Venta Bruta");//sin iva
+
+            objTblModCab = new ZafTblMod();
+            objTblModCab.setHeader(vecCab);
+            tblCabDat.setModel(objTblModCab);
+            //Configurar JTable: Establecer tipo de selección.
+            objColNum = new ZafColNumerada(tblCabDat, INT_TBL_DAT_CAB_LIN);
+            //objColNum=new ZafColNumerada(tblCabTot,INT_TBL_DAT_CAB_LIN);     
+            tblCabDat.setRowSelectionAllowed(true);
+            tblCabDat.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+            //Configurar JTable: Establecer el menú de contexto.
+            objTblPopMnu = new ZafTblPopMnu(tblCabDat);
+            //Configurar JTable: Establecer el tipo de redimensionamiento de las columnas.
+            tblCabDat.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+            //Configurar JTable: Establecer el ancho de las columnas.
+            javax.swing.table.TableColumnModel tcmAux = tblCabDat.getColumnModel();
+            tcmAux.getColumn(INT_TBL_DAT_CAB_LIN).setPreferredWidth(30);
+            tcmAux.getColumn(INT_TBL_DAT_CAB_COD_CLI).setPreferredWidth(90);
+            tcmAux.getColumn(INT_TBL_DAT_CAB_RUC_CLI).setPreferredWidth(120);
+            tcmAux.getColumn(INT_TBL_DAT_CAB_NOM_CLI).setPreferredWidth(300);
+            tcmAux.getColumn(INT_TBL_DAT_CAB_VAL_VNT_BRU).setPreferredWidth(100);
+
+            //Configurar JTable: Establecer el tipo de reordenamiento de columnas.
+            tblCabDat.getTableHeader().setReorderingAllowed(false);
+            //Configurar JTable: Mostrar ToolTipText en la cabecera de las columnas.
+            objMouMotAdaCab = new ZafMouMotAdaCab();
+            tblCabDat.getTableHeader().addMouseMotionListener(objMouMotAdaCab);
+            //Configurar JTable: Editor de búsqueda.
+            objTblBus = new ZafTblBus(tblCabDat);
+
+            //Configurar JTable: Renderizar celdas.
+            objTblCelRenLblCab = new ZafTblCelRenLbl();
+            objTblCelRenLblCab.setHorizontalAlignment(javax.swing.JLabel.RIGHT);
+            objTblCelRenLblCab.setTipoFormato(objTblCelRenLblCab.INT_FOR_NUM);
+            objTblCelRenLblCab.setFormatoNumerico(objParSis.getFormatoNumero(), false, true);
+            tcmAux.getColumn(INT_TBL_DAT_CAB_VAL_VNT_BRU).setCellRenderer(objTblCelRenLblCab);
+            objTblCelRenLblCab = null;
+
+            //Configurar JTable: Establecer la clase que controla el ordenamiento.
+            objTblOrd = new ZafTblOrd(tblCabDat);
+            //Configurar JTable: Establecer relación entre el JTable de datos y JTable de totales.
+            int intCol[] = {INT_TBL_DAT_CAB_VAL_VNT_BRU};
+            objTblTotCab = new ZafTblTot(spnCabDat, spnCabTot, tblCabDat, tblCabTot, intCol);
+            //Configurar JTable: Establecer el ListSelectionListener.
+            javax.swing.ListSelectionModel lsm = tblCabDat.getSelectionModel();
+            lsm.addListSelectionListener(new ZafLisSelLis());
+            //Libero los objetos auxiliares.
+            tcmAux = null;
+        } catch (Exception e) {
+            objUti.mostrarMsgErr_F1(this, e);
+            blnRes = false;
+        }
+        return blnRes;
+    }
+
+    private boolean configurarTablaDetCli() 
+    {
+        boolean blnRes = true;
+        try 
+        {
+            //Configurar JTable: Establecer el modelo.
+            vecDatMov = new Vector();    //Almacena los datos
+            vecCabMov = new Vector(7);  //Almacena las cabeceras
+            vecCabMov.clear();
+            vecCabMov.add(INT_TBL_DAT_DET_LIN, "");
+            vecCabMov.add(INT_TBL_DAT_DET_TIP_DOC_DSC_COR, "Tip.Doc.");
+            vecCabMov.add(INT_TBL_DAT_DET_TIP_DOC_DSC_LAR, "Tipo de Documento");
+            vecCabMov.add(INT_TBL_DAT_DET_COD_DOC, "Cód.Doc.");
+            vecCabMov.add(INT_TBL_DAT_DET_NUM_DOC, "Núm.Doc.");
+            vecCabMov.add(INT_TBL_DAT_DET_FEC_DOC, "Fecha Documento");
+            vecCabMov.add(INT_TBL_DAT_DET_VAL_SUB, "Subtotal");
+
+            objTblModDet = new ZafTblMod();
+            objTblModDet.setHeader(vecCabMov);
+            tblDetDat.setModel(objTblModDet);
+            objColNumDet = new ZafColNumerada(tblDetDat, INT_TBL_DAT_DET_LIN);
+
+            //Configurar JTable: Establecer tipo de selección.
+            tblDetDat.setRowSelectionAllowed(true);
+            tblDetDat.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+            //Configurar JTable: Establecer el menú de contexto.
+            objTblPopMnuDet = new ZafTblPopMnu(tblDetDat);
+            //Configurar JTable: Establecer el tipo de redimensionamiento de las columnas.
+            tblDetDat.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+            //Configurar JTable: Establecer el ancho de las columnas.
+            javax.swing.table.TableColumnModel tcmAux = tblDetDat.getColumnModel();
+            tcmAux.getColumn(INT_TBL_DAT_DET_LIN).setPreferredWidth(30);
+            tcmAux.getColumn(INT_TBL_DAT_DET_TIP_DOC_DSC_COR).setPreferredWidth(70);
+            tcmAux.getColumn(INT_TBL_DAT_DET_TIP_DOC_DSC_LAR).setPreferredWidth(90);
+            tcmAux.getColumn(INT_TBL_DAT_DET_COD_DOC).setPreferredWidth(90);
+            tcmAux.getColumn(INT_TBL_DAT_DET_NUM_DOC).setPreferredWidth(90);
+            tcmAux.getColumn(INT_TBL_DAT_DET_FEC_DOC).setPreferredWidth(110);
+            tcmAux.getColumn(INT_TBL_DAT_DET_VAL_SUB).setPreferredWidth(100);
+            //Configurar JTable: Establecer el tipo de reordenamiento de columnas.
+            tblDetDat.getTableHeader().setReorderingAllowed(false);
+            //Configurar JTable: Mostrar ToolTipText en la cabecera de las columnas.
+            objMouMotAdaDet = new ZafMouMotAdaDet();
+            tblDetDat.getTableHeader().addMouseMotionListener(objMouMotAdaDet);
+            //Configurar JTable: Editor de búsqueda.
+            objTblBusDet = new ZafTblBus(tblDetDat);
+            //Configurar JTable: Renderizar celdas.
+            objTblCelRenLblDet = new ZafTblCelRenLbl();
+            objTblCelRenLblDet.setHorizontalAlignment(javax.swing.JLabel.RIGHT);
+            objTblCelRenLblDet.setTipoFormato(objTblCelRenLblDet.INT_FOR_NUM);
+            objTblCelRenLblDet.setFormatoNumerico(objParSis.getFormatoNumero(), false, true);
+            tcmAux.getColumn(INT_TBL_DAT_DET_VAL_SUB).setCellRenderer(objTblCelRenLblDet);
+            objTblCelRenLblDet = null;
+            //Configurar JTable: Establecer la clase que controla el ordenamiento.
+            objTblOrdDet = new ZafTblOrd(tblDetDat);
+            //Configurar JTable: Establecer relación entre el JTable de datos y JTable de totales.
+            int intCol[] = {INT_TBL_DAT_DET_VAL_SUB};
+            objTblTotDet = new ZafTblTot(spnDetDat, spnDetTot, tblDetDat, tblDetTot, intCol);
+            //Libero los objetos auxiliares.
+            tcmAux = null;
+        } catch (Exception e) {
+            objUti.mostrarMsgErr_F1(this, e);
+            blnRes = false;
+        }
+        return blnRes;
+    }
+
+     /**
+     * Esta función configura el JTable "tblDat".
+     *
+     * @return true: Si se pudo configurar el JTable.
+     * <BR>false: En el caso contrario.
+     */
+    private boolean configurarTblLoc()
+    {
+        boolean blnRes=true;
+        try
+        {
+            //Configurar JTable: Establecer el modelo.
+            vecDat = new Vector();    //Almacena los datos
+            vecCab = new Vector();  //Almacena las cabeceras
+            vecCab.clear();
+            vecCab.add(INT_TBL_LOC_LIN, "");
+            vecCab.add(INT_TBL_LOC_CHKSEL, " ");
+            vecCab.add(INT_TBL_LOC_CODEMP, "Cod.Emp");
+            vecCab.add(INT_TBL_LOC_NOMEMP, "Empresa");
+            vecCab.add(INT_TBL_LOC_CODLOC, "Cod.Loc");
+            vecCab.add(INT_TBL_LOC_NOMLOC, "Local");
+            
+            objTblModLoc = new ZafTblMod();
+            objTblModLoc.setHeader(vecCab);
+            tblDatLoc.setModel(objTblModLoc);
+
+            //Configurar JTable: Establecer tipo de selección.
+            tblDatLoc.setRowSelectionAllowed(true);
+            tblDatLoc.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+            //Configurar JTable: Establecer el menú de contexto.
+            objTblPopMnu=new ZafTblPopMnu(tblDatLoc);
+            //Configurar JTable: Establecer el tipo de redimensionamiento de las columnas.
+            tblDatLoc.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+            
+            //Configurar JTable: Establecer el ancho de las columnas.
+            javax.swing.table.TableColumnModel tcmAux = tblDatLoc.getColumnModel();
+            tcmAux.getColumn(INT_TBL_LOC_LIN).setPreferredWidth(20);
+            tcmAux.getColumn(INT_TBL_LOC_CHKSEL).setPreferredWidth(25);
+            tcmAux.getColumn(INT_TBL_LOC_CODEMP).setPreferredWidth(60);
+            tcmAux.getColumn(INT_TBL_LOC_NOMEMP).setPreferredWidth(190);
+            tcmAux.getColumn(INT_TBL_LOC_CODLOC).setPreferredWidth(60);
+            tcmAux.getColumn(INT_TBL_LOC_NOMLOC).setPreferredWidth(220);
+            
+            //Configurar JTable: Establecer las columnas que no se pueden redimensionar.
+            tcmAux.getColumn(INT_TBL_LOC_CHKSEL).setResizable(false);
+
+            //new Librerias.ZafColNumerada.ZafColNumerada(tblDatLoc, INT_TBL_LOC_LIN);
+            
+            //Configurar JTable: Establecer el menú de contexto.
+            objTblPopMnu = new ZafTblPopMnu(tblDatLoc);
+            
+            //Configurar JTable: Mostrar ToolTipText en la cabecera de las columnas.
+            objMouMotAdaLoc=new ZafMouMotAdaLoc();
+            tblDatLoc.getTableHeader().addMouseMotionListener(objMouMotAdaLoc);
+            //Configurar JTable: Editor de búsqueda.
+            objTblBus=new ZafTblBus(tblDatLoc);
+            //Configurar JTable: Establecer la fila de cabecera.
+            objTblFilCab=new ZafTblFilCab(tblDatLoc);
+            tcmAux.getColumn(INT_TBL_LOC_LIN).setCellRenderer(objTblFilCab);
+   
+            //Configurar JTable: Establecer la clase que controla el ordenamiento.
+            objTblOrd=new ZafTblOrd(tblDatLoc);
+            
+            
+            tblDatLoc.getTableHeader().addMouseMotionListener(new ZafMouMotAdaLoc());
+            tblDatLoc.getTableHeader().addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mouseClicked(java.awt.event.MouseEvent evt) {
+                    tblLocMouseClicked(evt);
+                }
+            });
+            
+            //Configurar JTable: Establecer columnas editables.
+            Vector vecAux = new Vector();
+            vecAux.add("" + INT_TBL_LOC_CHKSEL);
+            objTblModLoc.setColumnasEditables(vecAux);
+            vecAux = null;
+            
+            //Configurar JTable: Establecer la fila de cabecera.
+            objTblFilCab = new ZafTblFilCab(tblDatLoc);
+            tcmAux.getColumn(INT_TBL_LOC_CHKSEL).setCellRenderer(objTblFilCab);
+
+            //Configurar JTable: Renderizar celdas.
+            objTblCelRenChk = new Librerias.ZafTblUti.ZafTblCelRenChk.ZafTblCelRenChk();
+            tcmAux.getColumn(INT_TBL_LOC_CHKSEL).setCellRenderer(objTblCelRenChk);
+            objTblCelRenChk = null;
+
+            objTblCelEdiChk = new Librerias.ZafTblUti.ZafTblCelEdiChk.ZafTblCelEdiChk();
+            tcmAux.getColumn(INT_TBL_LOC_CHKSEL).setCellEditor(objTblCelEdiChk);
+            objTblCelEdiChk = null;
+            
+            objTblModLoc.setModoOperacion(objTblModLoc.INT_TBL_EDI);
+            
+            //Libero los objetos auxiliares.
+            tcmAux=null;
+            
+        }
+        catch(Exception e)  {    blnRes=false;    objUti.mostrarMsgErr_F1(this, e);       }
+        return blnRes;
+    }
+    
+     
+    private void cargarTblLoc() 
+    {
+        java.sql.Connection conn;
+        java.sql.Statement stm;
+        java.sql.ResultSet rst;
+        int intTipLoc=1; //Tipo de Consulta para generar query de locales. 1=Código Local; 2=Todos los datos del local.
+        try 
+        {
+            conn = DriverManager.getConnection(objParSis.getStringConexion(), objParSis.getUsuarioBaseDatos(), objParSis.getClaveBaseDatos());
+            if (conn != null) 
+            {
+                stm=conn.createStatement();
+                if(objParSis.getCodigoEmpresa()==objParSis.getCodigoEmpresaGrupo())
+                {
+                    //Arma la sentencia.
+                    strSQL ="";
+                    strSQL+=" SELECT a.co_emp, b.co_loc, a.tx_nom as empresa, b.tx_nom as local ";
+                    strSQL+=" FROM tbm_emp as a ";
+                    strSQL+=" INNER JOIN tbm_loc as b  ON (b.co_emp=a.co_emp) ";
+                    strSQL+=" WHERE a.co_emp <> "+objParSis.getCodigoEmpresaGrupo();
+                    strSQL+=" AND a.st_reg != 'I' ";         
+                    strSQL+=" ORDER BY a.co_emp, b.co_loc ";
+                }
+                else
+                {
+                    //Arma la sentencia.
+                    strSQL ="";
+                    strSQL+=" SELECT a.co_emp, b.co_loc, a.tx_nom as empresa, b.tx_nom as local ";
+                    strSQL+=" FROM tbm_emp as a ";
+                    strSQL+=" INNER JOIN tbm_loc as b  ON (b.co_emp=a.co_emp) ";
+                    strSQL+=" WHERE a.co_emp=" + objParSis.getCodigoEmpresa();
+                    //Valida si el usuario tiene acceso a locales.
+                    if (objParSis.getCodigoUsuario() != 1) 
+                    {
+                        if ((objLocPrgUsr.validaLocUsr())) 
+                        {
+                            strSQL += " AND b.co_loc in (" + objLocPrgUsr.cargarLocUsr(intTipLoc) + ")";
+                        } 
+                        else 
+                        {
+                            strSQL += " AND b.co_loc not in (" + objLocPrgUsr.cargarLoc(intTipLoc) + ")";
+                        }
+                    }
+                    strSQL+=" AND a.st_reg != 'I' ";
+                    strSQL+=" ORDER BY a.co_emp, b.co_loc ";
+                }
+                //System.out.println("cargarTblLoc: "+strSQL);
+                rst=stm.executeQuery(strSQL);
+                vecDat.clear();
+                while(rst.next())
+                {
+                    vecReg = new Vector();
+                    vecReg.add(INT_TBL_LOC_LIN,"");
+                    vecReg.add(INT_TBL_LOC_CHKSEL,true);
+                    vecReg.add(INT_TBL_LOC_CODEMP, rst.getString("co_emp") );
+                    vecReg.add(INT_TBL_LOC_NOMEMP, rst.getString("empresa") );
+                    vecReg.add(INT_TBL_LOC_CODLOC, rst.getString("co_loc") );
+                    vecReg.add(INT_TBL_LOC_NOMLOC, rst.getString("local") );
+                    vecDat.add(vecReg);
+                 }
+                 objTblModLoc.setData(vecDat);
+                 tblDatLoc.setModel(objTblModLoc);
+                 
+                 rst.close();
+                 stm.close();
+                 conn.close();
+                 rst=null;
+                 stm=null;
+                 conn=null;
+            }
+        } 
+        catch (SQLException Evt) {  objUti.mostrarMsgErr_F1(this, Evt);  } 
+        catch (Exception e){ objUti.mostrarMsgErr_F1(this, e);   } 
+    }
+    
+    
+    
+    private boolean configurarVenConCli() 
+    {
+        boolean blnRes = true;
+        String strTitVenCon = "";
+        int intTipLoc=1; //Tipo de Consulta para generar query de locales. 1=Código Local; 2=Todos los datos del local.
+        
+        try 
+        {
+            //Listado de campos.
+            ArrayList arlCam = new ArrayList();
+            arlCam.add("a1.co_cli");
+            arlCam.add("a1.tx_ide");
+            arlCam.add("a1.tx_nom");
+            arlCam.add("a1.tx_dir");
+            //Alias de los campos.
+            ArrayList arlAli = new ArrayList();
+            arlAli.add("Código");
+            arlAli.add("Identificación");
+            arlAli.add("Nombre");
+            arlAli.add("Dirección");
+            //Ancho de las columnas.
+            ArrayList arlAncCol = new ArrayList();
+            arlAncCol.add("50");
+            arlAncCol.add("80");
+            arlAncCol.add("414");
+            arlAncCol.add("80");
+            
+            strAux="";
+            if (objParSis.getCodigoMenu() == 232) 
+            {
+                strTitVenCon = "Listado de Clientes";
+                if(objParSis.getCodigoUsuario()==1)
+                {
+                    strAux+=" AND a1.st_cli='S'";
+                }
+                else
+                {
+                    strAux+=" AND a2.st_cli='S'";
+                }
+            } 
+            else 
+            {
+                strTitVenCon = "Listado de Proveedores";
+                if(objParSis.getCodigoUsuario()==1)
+                {
+                    strAux+=" AND a1.st_prv='S'";
+                }
+                else
+                {
+                    strAux+=" AND a2.st_prv='S'";
+                }
+                
+            }
+       
+            if(objParSis.getCodigoEmpresa()!=objParSis.getCodigoEmpresaGrupo())
+            {
+                //Armar la sentencia SQL.            
+                if (objParSis.getCodigoUsuario() == 1) //Admin            
+                {
+                  strSQL ="";
+                  strSQL+=" SELECT a1.co_cli, a1.tx_ide, a1.tx_nom, a1.tx_dir";
+                  strSQL+=" FROM tbm_cli AS a1";
+                  strSQL+=" WHERE a1.co_emp=" + objParSis.getCodigoEmpresa();
+                  strSQL+=strAux;
+                  strSQL+=" ORDER BY a1.tx_nom";
+                }
+                else //Otros Usuarios
+                {
+                  strSQL = "";
+                  strSQL+=" SELECT a2.co_cli, a2.tx_ide, a2.tx_nom, a2.tx_dir";
+                  strSQL+=" FROM tbr_cliLoc AS a1 INNER JOIN tbm_cli AS a2";
+                  strSQL+=" ON a1.co_emp=a2.co_emp AND a1.co_cli=a2.co_cli";
+                  strSQL+=" WHERE a1.co_emp=" + objParSis.getCodigoEmpresa();
+                  strSQL+=strAux;
+                  //Valida si el usuario tiene acceso a locales.
+                  if ((objLocPrgUsr.validaLocUsr())) 
+                  {
+                      strSQL += " AND a1.co_loc in (" + objLocPrgUsr.cargarLocUsr(intTipLoc) + ")";
+                  }
+                  else
+                  {
+                      strSQL += " AND a1.co_loc not in (" + objLocPrgUsr.cargarLoc(intTipLoc) + ")";
+                  }
+                  strSQL+=" GROUP BY a2.co_cli, a2.tx_ide, a2.tx_nom, a2.tx_dir ";
+                  strSQL+=" ORDER BY a2.tx_nom";
+                }
+            }
+            else
+            {
+                //Armar la sentencia SQL.
+                strSQL = "";
+                strSQL+=" SELECT a.co_cli, a.tx_ide, a.tx_nom, a.tx_dir, '' as tx_tel ";
+                strSQL+=" FROM ";
+                strSQL+=" ( ";
+                strSQL+="   select b2.co_emp, ' ' as co_cli, b2.tx_ide, b2.tx_nom, b2.tx_dir "; 
+                strSQL+="   from ";
+                strSQL+="   ( "; 
+                strSQL+="     select a2.co_emp, MAX(a2.co_cli) as co_cli, a2.tx_ide ";  
+                strSQL+="     from ( select MIN(co_emp) as co_emp, tx_ide from tbm_cli group by tx_ide  ) as a1 ";
+                strSQL+="     inner join tbm_cli as a2 on (a1.co_emp=a2.co_emp and a1.tx_ide=a2.tx_ide) ";     
+                strSQL+="     group by a2.co_emp, a2.tx_ide ";
+                strSQL+="   ) as b1 ";
+                strSQL+="   inner join tbm_cli as b2 on (b1.co_emp=b2.co_emp and b1.co_cli=b2.co_cli) ";
+                strSQL+="   where b2.co_Emp not in (select  co_Emp from tbm_Emp where st_reg='I') ";
+                strSQL+="   order by b2.tx_nom ";  
+                strSQL+=" ) AS a ";
+            }
+            
+            //System.out.println("configurarVenConCli: " + strSQL);
+            //Ocultar columnas.
+            int intColOcu[] = new int[1];
+            intColOcu[0] = 4;
+            vcoCli = new ZafVenCon(javax.swing.JOptionPane.getFrameForComponent(this), objParSis, strTitVenCon, strSQL, arlCam, arlAli, arlAncCol, intColOcu);
+            arlCam = null;
+            arlAli = null;
+            arlAncCol = null;
+            intColOcu = null;
+            //Configurar columnas.
+            vcoCli.setConfiguracionColumna(1, javax.swing.JLabel.RIGHT);
+        } catch (Exception e) {
+            blnRes = false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        return blnRes;
+    }
+    
+
+    private boolean configurarVenConVen() 
+    {
+        boolean blnRes = true;
+        int intTipLoc=1; //Tipo de Consulta para generar query de locales. 1=Código Local; 2=Todos los datos del local.
+        try
+        {
+            //Listado de campos.
+            ArrayList arlCam = new ArrayList();
+            arlCam.add("a1.co_usr");
+            arlCam.add("a1.tx_usr");
+            arlCam.add("a1.tx_nom");
+            arlCam.add("a1.tx_dir");
+            //Alias de los campos.
+            ArrayList arlAli = new ArrayList();
+            arlAli.add("Código");
+            arlAli.add("Usuario");
+            arlAli.add("Nombre");
+            arlAli.add("Dirección");
+            //Ancho de las columnas.
+            ArrayList arlAncCol = new ArrayList();
+            arlAncCol.add("50");
+            arlAncCol.add("80");
+            arlAncCol.add("414");
+            arlAncCol.add("80");
+            
+            //Armar la sentencia SQL.
+            strSQL = "";
+            strSQL += "SELECT a1.co_usr, a1.tx_usr, a1.tx_nom, a1.tx_dir";
+            strSQL += " FROM tbm_usr AS a1 INNER JOIN tbr_usrEmp AS a2";
+            strSQL += " ON a1.co_usr=a2.co_usr";
+            strSQL += " INNER JOIN tbr_locusr AS a3";
+            strSQL += " ON a2.co_emp=a3.co_emp AND a2.co_usr=a3.co_usr";
+            strSQL += " WHERE a1.st_reg='A' ";
+            
+            if(objParSis.getCodigoEmpresa()!=objParSis.getCodigoEmpresaGrupo())
+            {
+                strSQL += " AND a2.co_emp=" + objParSis.getCodigoEmpresa() + "";
+                if (objParSis.getCodigoUsuario() != 1) 
+                {
+                    //Valida si el usuario tiene acceso a locales.
+                    if ((objLocPrgUsr.validaLocUsr())) 
+                    {
+                        strSQL += " AND a3.co_loc in (" + objLocPrgUsr.cargarLocUsr(intTipLoc) + ")";
+                    } 
+                    else
+                    {
+                        strSQL += " AND a3.co_loc not in (" + objLocPrgUsr.cargarLoc(intTipLoc) + ")";
+                    }
+                }
+            }
+
+            if (objParSis.getCodigoMenu() == 232)
+            {
+                strSQL += " AND a2.st_ven='S'";
+            }
+            else 
+            {
+                strSQL += " AND a2.st_com='S'";
+            }
+     
+            strSQL += " GROUP BY a1.co_usr, a1.tx_usr, a1.tx_nom, a1.tx_dir ";
+            strSQL += " ORDER BY a1.tx_nom";
+            //System.out.println("configurarVenConVen: " + strSQL);
+            
+            //Ocultar columnas.
+            int intColOcu[] = new int[1];
+            intColOcu[0] = 4;
+            vcoVen = new ZafVenCon(javax.swing.JOptionPane.getFrameForComponent(this), objParSis, "Listado de Vendedores", strSQL, arlCam, arlAli, arlAncCol, intColOcu);
+            arlCam = null;
+            arlAli = null;
+            arlAncCol = null;
+            intColOcu = null;
+            //Configurar columnas.
+            vcoVen.setConfiguracionColumna(1, javax.swing.JLabel.RIGHT);
+        } catch (Exception e) {
+            blnRes = false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        return blnRes;
+    }
+
+    private boolean mostrarVenConCli(int intTipBus) 
+    {
+        boolean blnRes = true;
+        try 
+        {
+            switch (intTipBus) 
+            {
+                case 0: //Mostrar la ventana de consulta.
+                    vcoCli.setCampoBusqueda(2);
+                    vcoCli.show();
+                    if (vcoCli.getSelectedButton() == vcoCli.INT_BUT_ACE)
+                    {
+                        txtCodCli.setText(vcoCli.getValueAt(1));
+                        strIdeCli = vcoCli.getValueAt(2);
+                        txtDesLarCli.setText(vcoCli.getValueAt(3));
+                        strDirCli = vcoCli.getValueAt(4);
+                    }
+                    break;
+                case 1: //Búsqueda directa por "Número de cuenta".
+                    if (vcoCli.buscar("a1.co_cli", txtCodCli.getText())) {
+                        txtCodCli.setText(vcoCli.getValueAt(1));
+                        strIdeCli = vcoCli.getValueAt(2);
+                        txtDesLarCli.setText(vcoCli.getValueAt(3));
+                        strDirCli = vcoCli.getValueAt(4);
+                    } else {
+                        vcoCli.setCampoBusqueda(0);
+                        vcoCli.setCriterio1(11);
+                        vcoCli.cargarDatos();
+                        vcoCli.show();
+                        if (vcoCli.getSelectedButton() == vcoCli.INT_BUT_ACE) {
+                            txtCodCli.setText(vcoCli.getValueAt(1));
+                            strIdeCli = vcoCli.getValueAt(2);
+                            txtDesLarCli.setText(vcoCli.getValueAt(3));
+                            strDirCli = vcoCli.getValueAt(4);
+                        } else {
+                            txtCodCli.setText(strCodCli);
+                        }
+                    }
+                    break;
+                case 2: //Búsqueda directa por "Descripción larga".
+                    if (vcoCli.buscar("a1.tx_nom", txtDesLarCli.getText())) {
+                        txtCodCli.setText(vcoCli.getValueAt(1));
+                        strIdeCli = vcoCli.getValueAt(2);
+                        txtDesLarCli.setText(vcoCli.getValueAt(3));
+                        strDirCli = vcoCli.getValueAt(4);
+                    } else {
+                        vcoCli.setCampoBusqueda(2);
+                        vcoCli.setCriterio1(11);
+                        vcoCli.cargarDatos();
+                        vcoCli.show();
+                        if (vcoCli.getSelectedButton() == vcoCli.INT_BUT_ACE) {
+                            txtCodCli.setText(vcoCli.getValueAt(1));
+                            strIdeCli = vcoCli.getValueAt(2);
+                            txtDesLarCli.setText(vcoCli.getValueAt(3));
+                            strDirCli = vcoCli.getValueAt(4);
+                        } else {
+                            txtDesLarCli.setText(strDesLarCli);
+                        }
+                    }
+                    break;
+            }
+        } catch (Exception e) {
+            blnRes = false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        return blnRes;
+    }
+
+    private boolean mostrarVenConVen(int intTipBus) 
+    {
+        boolean blnRes = true;
+        try 
+        {
+            switch (intTipBus) 
+            {
+                case 0: //Mostrar la ventana de consulta.
+                    vcoVen.setCampoBusqueda(2);
+                    vcoVen.show();
+                    if (vcoVen.getSelectedButton() == vcoVen.INT_BUT_ACE) {
+                        txtCodVen.setText(vcoVen.getValueAt(1));
+                        strIdeVen = vcoVen.getValueAt(2);
+                        txtDesLarVen.setText(vcoVen.getValueAt(3));
+                        strDirVen = vcoVen.getValueAt(4);
+                    }
+                    break;
+                case 1: //Búsqueda directa por "Número de cuenta".
+                    if (vcoVen.buscar("a1.co_usr", txtCodVen.getText())) {
+                        txtCodVen.setText(vcoVen.getValueAt(1));
+                        strIdeVen = vcoVen.getValueAt(2);
+                        txtDesLarVen.setText(vcoVen.getValueAt(3));
+                        strDirVen = vcoVen.getValueAt(4);
+                    } else {
+                        vcoVen.setCampoBusqueda(0);
+                        vcoVen.setCriterio1(11);
+                        vcoVen.cargarDatos();
+                        vcoVen.show();
+                        if (vcoVen.getSelectedButton() == vcoVen.INT_BUT_ACE) {
+                            txtCodVen.setText(vcoVen.getValueAt(1));
+                            strIdeVen = vcoVen.getValueAt(2);
+                            txtDesLarVen.setText(vcoVen.getValueAt(3));
+                            strDirVen = vcoVen.getValueAt(4);
+                        } else {
+                            txtCodVen.setText(strCodVen);
+                        }
+                    }
+                    break;
+                case 2: //Búsqueda directa por "Descripción larga".
+                    if (vcoVen.buscar("a1.tx_nom", txtDesLarVen.getText())) {
+                        txtCodVen.setText(vcoVen.getValueAt(1));
+                        strIdeVen = vcoVen.getValueAt(2);
+                        txtDesLarVen.setText(vcoVen.getValueAt(3));
+                        strDirVen = vcoVen.getValueAt(4);
+                    } else {
+                        vcoVen.setCampoBusqueda(2);
+                        vcoVen.setCriterio1(11);
+                        vcoVen.cargarDatos();
+                        vcoVen.show();
+                        if (vcoVen.getSelectedButton() == vcoVen.INT_BUT_ACE) {
+                            txtCodVen.setText(vcoVen.getValueAt(1));
+                            strIdeVen = vcoVen.getValueAt(2);
+                            txtDesLarVen.setText(vcoVen.getValueAt(3));
+                            strDirVen = vcoVen.getValueAt(4);
+                        } else {
+                            txtDesLarVen.setText(strDesLarVen);
+                        }
+                    }
+                    break;
+            }
+            
+        } catch (Exception e) {
+            blnRes = false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        return blnRes;
+    }
+    
+    
+    private class ZafMouMotAdaCab extends java.awt.event.MouseMotionAdapter 
+    {
+        public void mouseMoved(java.awt.event.MouseEvent evt) {
+            int intCol = tblCabDat.columnAtPoint(evt.getPoint());
+            String strMsg = "";
+            switch (intCol) {
+                case INT_TBL_DAT_CAB_LIN:
+                    strMsg = "";
+                    break;
+                case INT_TBL_DAT_CAB_COD_CLI:
+                    strMsg = "Código del Cliente";
+                    break;
+                case INT_TBL_DAT_CAB_RUC_CLI:
+                    strMsg = "Identificación del Cliente";
+                    break;
+                case INT_TBL_DAT_CAB_NOM_CLI:
+                    strMsg = "Nombre del Cliente";
+                    break;
+                case INT_TBL_DAT_CAB_VAL_VNT_BRU:
+                    strMsg = "Venta Neta Bruta(sin I.V.A.)";
+                    break;
+            }
+            tblCabDat.getTableHeader().setToolTipText(strMsg);
+        }
+    }
+
+    private class ZafMouMotAdaDet extends java.awt.event.MouseMotionAdapter 
+    {
+        public void mouseMoved(java.awt.event.MouseEvent evt)
+        {
+            int intCol = tblDetDat.columnAtPoint(evt.getPoint());
+            String strMsg = "";
+            switch (intCol) {
+                case INT_TBL_DAT_DET_LIN:
+                    strMsg = "";
+                    break;
+                case INT_TBL_DAT_DET_TIP_DOC_DSC_COR:
+                    strMsg = "Tipo Documento";
+                    break;
+                case INT_TBL_DAT_DET_TIP_DOC_DSC_LAR:
+                    strMsg = "Descripción Larga Tipo Documento";
+                    break;
+                case INT_TBL_DAT_DET_COD_DOC:
+                    strMsg = "Código del Documento";
+                    break;
+                case INT_TBL_DAT_DET_NUM_DOC:
+                    strMsg = "Número del Documento";
+                    break;
+                case INT_TBL_DAT_DET_FEC_DOC:
+                    strMsg = "Fecha del Documento";
+                    break;
+                case INT_TBL_DAT_DET_VAL_SUB:
+                    strMsg = "Subtotal";
+                    break;
+            }
+            tblDetDat.getTableHeader().setToolTipText(strMsg);
+        }
+    }
+    
+     private class ZafMouMotAdaLoc extends MouseMotionAdapter 
+     {
+        @Override
+        public void mouseMoved(MouseEvent evt) 
+        {
+            int intCol = tblDatLoc.columnAtPoint(evt.getPoint());
+            String strMsg = "";
+            switch (intCol)
+            {
+                case INT_TBL_LOC_LIN:
+                    strMsg="";
+                    break;
+                case INT_TBL_LOC_CODEMP:
+                    strMsg="Código de la empresa";
+                    break;
+                case INT_TBL_LOC_NOMEMP:
+                    strMsg="Nombre de la empresa";
+                    break;
+                case INT_TBL_LOC_CODLOC:
+                    strMsg="Código del local";
+                    break;
+                case INT_TBL_LOC_NOMLOC:
+                    strMsg="Nombre del local";
+                    break;
+                default:
+                    strMsg="";
+                    break;
+            }
+            tblDatLoc.getTableHeader().setToolTipText(strMsg);
+        }
+    }
+    
+
+    private class ZafLisSelLis implements javax.swing.event.ListSelectionListener 
+    {
+        public void valueChanged(javax.swing.event.ListSelectionEvent e) 
+        {
+            javax.swing.ListSelectionModel lsm = (javax.swing.ListSelectionModel) e.getSource();
+            int intMax = lsm.getMaxSelectionIndex();
+            if (!lsm.isSelectionEmpty()) 
+            {
+                if (chkMosMovReg.isSelected()) 
+                {
+                    cargarMovReg(sqlConFilMovReg());
+                } 
+                else 
+                {
+                    objTblModDet.removeAllRows();
+                }
+            }
+        }
+    }
+
+    
+    private class ZafThreadGUI extends Thread 
+    {
+        public void run() 
+        {
+            //Limpiar objetos.
+            objTblModCab.removeAllRows();
+            objTblModDet.removeAllRows();
+            if (!cargarDetReg(sqlConFil())) 
+            {
+                //Inicializar objetos si no se pudo cargar los datos.
+                lblMsgSis.setText("Listo");
+                pgrSis.setValue(0);
+                butCon.setText("Consultar");
+            }
+            //Establecer el foco en el JTable sólo cuando haya datos.
+            if (tblCabDat.getRowCount() > 0) 
+            {
+                tabFrm.setSelectedIndex(1);
+                tblCabDat.setRowSelectionInterval(0, 0);
+                tblCabDat.requestFocus();
+            }
+            objThrGUI = null;
+        }
+    }
+    
+    
+    private String sqlConFilMovReg() 
+    {
+        String sqlFil = "";
+        String strAuxVen = "", strLoc="";
+        boolean blnLoc=false;
+        int intTipLoc = 1; //Tipo de Consulta para generar query de locales. 1=Código Local; 2=Todos los datos del local.
+
+        if(objParSis.getCodigoEmpresa()== objParSis.getCodigoEmpresaGrupo())
+        {
+             sqlFil += " WHERE ";
+        }
+        else
+        {
+            sqlFil += " AND ";
+        }
+        
+        //Rango de Fechas
+        switch (objSelFec.getTipoSeleccion()) 
+        {
+            case 0: //Búsqueda por rangos
+                sqlFil += " a2.fe_doc BETWEEN '" + objUti.formatearFecha(objSelFec.getFechaDesde(), objSelFec.getFormatoFecha(), objParSis.getFormatoFechaBaseDatos()) + "' AND '" + objUti.formatearFecha(objSelFec.getFechaHasta(), objSelFec.getFormatoFecha(), objParSis.getFormatoFechaBaseDatos()) + "'";
+                break;
+            case 1: //Fechas menores o iguales que "Hasta".
+                sqlFil += " a2.fe_doc<='" + objUti.formatearFecha(objSelFec.getFechaHasta(), objSelFec.getFormatoFecha(), objParSis.getFormatoFechaBaseDatos()) + "'";
+                break;
+            case 2: //Fechas mayores o iguales que "Desde".
+                sqlFil += " a2.fe_doc>='" + objUti.formatearFecha(objSelFec.getFechaDesde(), objSelFec.getFormatoFecha(), objParSis.getFormatoFechaBaseDatos()) + "'";
+                break;
+            case 3: //Todo.
+                break;
+        }
+        
+        if (!(txtCodVen.getText().equals(""))) 
+        {
+            sqlFil += " AND a2.co_com=" + txtCodVen.getText() + "";
+        }
+
+        //Filtro: Ventas a clientes, Ventas a empresas relacionadas, Préstamos.
+        if (chkVenCli.isSelected() || chkVenRel.isSelected() || chkPre.isSelected()) 
+        {
+            sqlFil += " AND (";
+            if (chkVenCli.isSelected()) 
+            {
+                if (objParSis.getCodigoMenu() == 232)//Ventas
+                {
+                    strAuxVen += " a1.co_cat IN (3, 4) AND a3.co_empGrp IS NULL";
+                } else if (objParSis.getCodigoMenu() == 895)//Compras
+                {
+                    strAuxVen += " a1.co_cat IN (1, 2) AND a3.co_empGrp IS NULL";
+                }
+            }
+            if (chkVenRel.isSelected())
+            {
+                if (objParSis.getCodigoMenu() == 232)//Ventas
+                {
+                    strAuxVen += (strAuxVen.equals("") ? "" : " OR ") + "a1.co_cat IN (3, 4) AND a3.co_empGrp IS NOT NULL";
+                } else if (objParSis.getCodigoMenu() == 895)//Compras
+                {
+                    strAuxVen += (strAuxVen.equals("") ? "" : " OR ") + "a1.co_cat IN (1, 2) AND a3.co_empGrp IS NOT NULL";
+                }
+            }
+            if (chkPre.isSelected()) 
+            {
+                strAuxVen += (strAuxVen.equals("") ? "" : " OR ") + "a1.co_cat IN (23)";
+            }
+            strAuxVen += ") ";
+            sqlFil += strAuxVen;
+        }
+        
+        if (objParSis.getCodigoMenu() == 232) 
+        {
+            sqlFil += " AND a1.ne_mod IN (1)";
+        }
+        else 
+        {
+            sqlFil += " AND a1.ne_mod IN (2)";
+        }
+        
+        sqlFil+=" AND a2.st_reg NOT IN ('I','E')";
+        
+        sqlFil+=" AND a2.co_cli=" + objTblModCab.getValueAt(tblCabDat.getSelectedRow(), INT_TBL_DAT_CAB_COD_CLI) + "";
+ 
+        //sqlFil +=" AND (a2.st_tipDev IS NULL OR a2.st_tipDev='C')";
+        
+        if (!((chkMosMovCon.isSelected()) && (chkMosMovCre.isSelected())) )
+        {
+            if (chkMosMovCon.isSelected()) 
+            {
+                sqlFil += " AND a2.co_forPag IN(1)";
+            }
+            if (chkMosMovCre.isSelected())
+            {
+                sqlFil += " AND a2.co_forPag NOT IN(1)";
+            }
+        }
+        
+        //Locales Seleccionados.
+        for (int j = 0; j < tblDatLoc.getRowCount(); j++) 
+        {
+            if (tblDatLoc.getValueAt(j, INT_TBL_LOC_CHKSEL).toString().equals("true")) 
+            {
+                if(!blnLoc) //Primera vez que ingresa.
+                {
+                    strLoc+=" AND ( ";
+                }
+                else 
+                {
+                    strLoc+=" OR ";
+                }
+                strLoc+=" (a2.co_emp=" + tblDatLoc.getValueAt(j, INT_TBL_LOC_CODEMP).toString() + " and a2.co_loc=" + tblDatLoc.getValueAt(j, INT_TBL_LOC_CODLOC).toString() + ") ";
+                blnLoc=true;
+            }
+        }
+        if (blnLoc)
+        {
+            strLoc+= " ) ";
+            sqlFil+= strLoc;
+        }
+        
+        return sqlFil;
+    }
+    
+    
+    private boolean cargarMovReg(String strFil) 
+    {
+        boolean blnRes = true;
+        try 
+        {
+            if (tblCabDat.getSelectedRow() != -1) 
+            {
+                con = DriverManager.getConnection(objParSis.getStringConexion(), objParSis.getUsuarioBaseDatos(), objParSis.getClaveBaseDatos());
+                if (con != null)
+                {
+                    stm = con.createStatement();
+
+                    if (objParSis.getCodigoUsuario()==1) 
+                    {
+                        strSQL ="";
+                        strSQL+=" SELECT a1.tx_desCor, a1.tx_desLar, a2.co_doc, a2.ne_numDoc, a2.fe_doc, a2.nd_sub";
+                        strSQL+=" FROM tbm_cabTipDoc AS a1 INNER JOIN tbm_cabMovInv AS a2";
+                        strSQL+=" ON a1.co_emp=a2.co_emp AND a1.co_loc=a2.co_loc AND a1.co_tipDoc=a2.co_tipDoc";
+                        strSQL+=" INNER JOIN tbm_cli AS a3";
+                        strSQL+=" ON a2.co_emp=a3.co_emp AND a2.co_cli=a3.co_cli";
+                        strSQL+=" INNER JOIN tbm_cabTipDoc AS a4 ON (a1.co_emp=a4.co_emp AND a1.co_loc=a4.co_loc AND a1.co_tipDoc=a4.co_tipDoc)";
+                        if(objParSis.getCodigoEmpresa()!= objParSis.getCodigoEmpresaGrupo())
+                        {
+                            strSQL+=" WHERE a2.co_emp=" + objParSis.getCodigoEmpresa() + "";
+                        }
+                        strSQL+= strFil;
+                        strSQL+=" ORDER BY a1.co_tipDoc, a2.ne_numDoc"; 
+                    } 
+                    else //Otros Usuarios
+                    {
+                        strSQL ="";
+                        strSQL+=" SELECT a1.tx_desCor, a1.tx_desLar, a2.co_doc, a2.ne_numDoc, a2.fe_doc, a2.nd_sub";
+                        strSQL+=" FROM tbm_cabTipDoc AS a1 INNER JOIN tbm_cabMovInv AS a2";
+                        strSQL+=" ON a1.co_emp=a2.co_emp AND a1.co_loc=a2.co_loc AND a1.co_tipDoc=a2.co_tipDoc";
+                        strSQL+=" INNER JOIN tbr_cliLoc AS a4 ";
+                        strSQL+=" ON a2.co_emp=a4.co_emp AND a2.co_loc=a4.co_loc AND a2.co_cli=a4.co_cli";
+                        strSQL+=" INNER JOIN tbm_cli AS a3";
+                        strSQL+=" ON a4.co_emp=a3.co_emp AND a4.co_cli=a3.co_cli ";
+                        if(objParSis.getCodigoEmpresa()!= objParSis.getCodigoEmpresaGrupo())
+                        {
+                            strSQL+=" WHERE a2.co_emp=" + objParSis.getCodigoEmpresa() + "";
+                        }  
+                        strSQL+= strFil;
+                        strSQL+=" ORDER BY a1.co_tipDoc, a2.ne_numDoc"; 
+                    }
+                  
+                    //System.out.println("cargarMovReg:" + strSQL);
+                    rst = stm.executeQuery(strSQL);
+                    vecDatMov.clear();
+                    while (rst.next()) 
+                    {
+                        vecRegMov = new Vector();
+                        vecRegMov.add(INT_TBL_DAT_DET_LIN, "");
+                        vecRegMov.add(INT_TBL_DAT_DET_TIP_DOC_DSC_COR, "" + rst.getString("tx_desCor"));
+                        vecRegMov.add(INT_TBL_DAT_DET_TIP_DOC_DSC_LAR, "" + rst.getString("tx_desLar"));
+                        vecRegMov.add(INT_TBL_DAT_DET_COD_DOC, "" + rst.getString("co_doc"));
+                        vecRegMov.add(INT_TBL_DAT_DET_NUM_DOC, "" + rst.getString("ne_numDoc"));
+                        vecRegMov.add(INT_TBL_DAT_DET_FEC_DOC, "" + rst.getString("fe_doc"));
+                        vecRegMov.add(INT_TBL_DAT_DET_VAL_SUB, "" + rst.getString("nd_sub"));
+                        vecDatMov.add(vecRegMov);
+                    }
+                    con.close();
+                    con = null;
+                    stm.close();
+                    stm = null;
+                    rst.close();
+                    rst = null;
+                    //Asignar vectores al modelo.
+                    objTblModDet.setData(vecDatMov);
+                    tblDetDat.setModel(objTblModDet);
+                    objTblTotDet.calcularTotales();
+                    vecDatMov.clear();
+                }
+            }
+        } catch (java.sql.SQLException e) {
+            blnRes = false;
+            objUti.mostrarMsgErr_F1(this, e);
+        } catch (Exception e) {
+            blnRes = false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        return blnRes;
+    }
+
+       
+    private String sqlConFil() 
+    {
+        String sqlFil = "";
+        String strAuxVen = "", strLoc="";
+        boolean blnLoc=false;
+        int intTipLoc = 1; //Tipo de Consulta para generar query de locales. 1=Código Local; 2=Todos los datos del local.
+
+        if(objParSis.getCodigoEmpresa()== objParSis.getCodigoEmpresaGrupo())
+        {
+             sqlFil += " WHERE ";
+        }
+        else
+        {
+            sqlFil += " AND ";
+        }
+        
+        
+        //Rango de Fechas
+        switch (objSelFec.getTipoSeleccion()) 
+        {
+            case 0: //Búsqueda por rangos
+                sqlFil+=" a2.fe_doc BETWEEN '" + objUti.formatearFecha(objSelFec.getFechaDesde(), objSelFec.getFormatoFecha(), objParSis.getFormatoFechaBaseDatos()) + "' AND '" + objUti.formatearFecha(objSelFec.getFechaHasta(), objSelFec.getFormatoFecha(), objParSis.getFormatoFechaBaseDatos()) + "'";
+                break;
+            case 1: //Fechas menores o iguales que "Hasta".
+                sqlFil+=" a2.fe_doc<='" + objUti.formatearFecha(objSelFec.getFechaHasta(), objSelFec.getFormatoFecha(), objParSis.getFormatoFechaBaseDatos()) + "'";
+                break;
+            case 2: //Fechas mayores o iguales que "Desde".
+                sqlFil+=" a2.fe_doc>='" + objUti.formatearFecha(objSelFec.getFechaDesde(), objSelFec.getFormatoFecha(), objParSis.getFormatoFechaBaseDatos()) + "'";
+                break;
+            case 3: //Todo.
+                break;
+        }
+        
+        //Código de Cliente
+        if (txtCodCli.getText().length() > 0) 
+        {
+            sqlFil += " AND a2.co_cli=" + txtCodCli.getText();
+        }
+
+        //Rango de Clientes.
+        if (txtNomCliDes.getText().length() > 0 || txtNomCliHas.getText().length() > 0) 
+        {
+            sqlFil += " AND ((LOWER(a3.tx_nom) BETWEEN '" + txtNomCliDes.getText().replaceAll("'", "''").toLowerCase() + "' AND '" + txtNomCliHas.getText().replaceAll("'", "''").toLowerCase() + "') OR LOWER(a3.tx_nom) LIKE '" + txtNomCliHas.getText().replaceAll("'", "''").toLowerCase() + "%')";
+        }
+        
+        //Código de Vendedores.
+        if (objParSis.getCodigoUsuario() == 1)
+        {
+            if (txtCodVen.getText().length() > 0)
+            {
+                sqlFil += " AND a2.co_com=" + txtCodVen.getText();
+            }
+        }
+        else
+        {
+            if (objPerUsr.isOpcionEnabled(2589))
+            {
+                if (txtCodVen.getText().length() > 0)
+                {
+                    sqlFil += " AND a2.co_com=" + txtCodVen.getText();
+                }
+            }
+            else 
+            {
+                sqlFil += " AND a2.co_com=" + objParSis.getCodigoUsuario();
+            }
+        }
+
+        //Filtro: Ventas a clientes, Ventas a empresas relacionadas, Préstamos.
+        if (chkVenCli.isSelected() || chkVenRel.isSelected() || chkPre.isSelected()) 
+        {
+            sqlFil += " AND (";
+            if (chkVenCli.isSelected()) 
+            {
+                if (objParSis.getCodigoMenu() == 232)//Ventas
+                {
+                    strAuxVen += " a1.co_cat IN (3, 4) AND a3.co_empGrp IS NULL";
+                } else if (objParSis.getCodigoMenu() == 895)//Compras
+                {
+                    strAuxVen += " a1.co_cat IN (1, 2) AND a3.co_empGrp IS NULL";
+                }
+            }
+            if (chkVenRel.isSelected())
+            {
+                if (objParSis.getCodigoMenu() == 232)//Ventas
+                {
+                    strAuxVen += (strAuxVen.equals("") ? "" : " OR ") + "a1.co_cat IN (3, 4) AND a3.co_empGrp IS NOT NULL";
+                } else if (objParSis.getCodigoMenu() == 895)//Compras
+                {
+                    strAuxVen += (strAuxVen.equals("") ? "" : " OR ") + "a1.co_cat IN (1, 2) AND a3.co_empGrp IS NOT NULL";
+                }
+            }
+            if (chkPre.isSelected()) 
+            {
+                strAuxVen += (strAuxVen.equals("") ? "" : " OR ") + "a1.co_cat IN (23)";
+            }
+            strAuxVen += ") ";
+            sqlFil += strAuxVen;
+        }           
+                    
+        
+        if (objParSis.getCodigoMenu() == 232) 
+        {
+            sqlFil += " AND a1.ne_mod IN (1)";
+        } 
+        else
+        {
+            sqlFil += " AND a1.ne_mod IN (2)";
+        }
+
+        sqlFil += " AND a2.st_reg NOT IN ('I','E')";
+
+       //sqlFil+=" AND (a2.st_tipDev IS NULL OR a2.st_tipDev='C')";
+        
+        if (!((chkMosMovCon.isSelected()) && (chkMosMovCre.isSelected())))
+        {
+            if ((chkMosMovCon.isSelected()) && (!chkMosMovCre.isSelected())) 
+            {
+                sqlFil += " AND a2.co_forPag IN(1)";
+            }
+            if ((!chkMosMovCon.isSelected()) && (chkMosMovCre.isSelected()))
+            {
+                sqlFil += " AND a2.co_forPag NOT IN(1)";
+            }
+        }
+        
+        //Locales Seleccionados.
+        for (int j = 0; j < tblDatLoc.getRowCount(); j++) 
+        {
+            if (tblDatLoc.getValueAt(j, INT_TBL_LOC_CHKSEL).toString().equals("true")) 
+            {
+                if(!blnLoc) //Primera vez que ingresa.
+                {
+                    strLoc+=" AND ( ";
+                }
+                else 
+                {
+                    strLoc+=" OR ";
+                }
+                strLoc+=" (a2.co_emp=" + tblDatLoc.getValueAt(j, INT_TBL_LOC_CODEMP).toString() + " and a2.co_loc=" + tblDatLoc.getValueAt(j, INT_TBL_LOC_CODLOC).toString() + ") ";
+                blnLoc=true;
+            }
+        }
+        if (blnLoc)
+        {
+            strLoc+= " ) ";
+            sqlFil+= strLoc;
+        }
+        
+        return sqlFil;
+    }
+    
+    
+    private boolean cargarDetReg(String strFil) 
+    {
+        boolean blnRes = true;
+        int intTipLoc=1; //Tipo de Consulta para generar query de locales. 1=Código Local; 2=Todos los datos del local.
+
+        try
+        {           
+            butCon.setText("Detener");
+            lblMsgSis.setText("Obteniendo datos...");
+            con = DriverManager.getConnection(objParSis.getStringConexion(), objParSis.getUsuarioBaseDatos(), objParSis.getClaveBaseDatos());
+            if (con != null) 
+            {
+                stm = con.createStatement();
+
+                //Armar la sentencia SQL.
+                if (objParSis.getCodigoUsuario()==1)  //Admin
+                {
+                    //Armar la sentencia SQL.
+                    strSQL = "";
+                    strSQL+=" SELECT a3.co_cli, a3.tx_ide, a3.tx_nom, SUM(nd_sub) AS venBru";
+                    strSQL+=" FROM tbm_cabTipDoc AS a1 INNER JOIN tbm_cabMovInv AS a2";
+                    strSQL+=" ON a1.co_emp=a2.co_emp AND a1.co_loc=a2.co_loc AND a1.co_tipDoc=a2.co_tipDoc";
+                    strSQL+=" INNER JOIN tbm_cli AS a3";
+                    strSQL+=" ON a2.co_emp=a3.co_emp AND a2.co_cli=a3.co_cli";
+                    if(objParSis.getCodigoEmpresa()!= objParSis.getCodigoEmpresaGrupo())
+                    {
+                        strSQL+=" WHERE a2.co_emp=" + objParSis.getCodigoEmpresa() + "";
+                    }
+                    strSQL+= strFil;
+                    strSQL+=" GROUP BY a3.co_cli, a3.tx_ide, a3.tx_nom";
+                    strSQL+=" ORDER BY a3.tx_nom, a3.co_cli";
+                } 
+                else //Otros Usuarios
+                {
+                    strSQL= "";
+                    strSQL+=" SELECT a3.co_cli, a3.tx_ide, a3.tx_nom, SUM(nd_sub) AS venBru";
+                    strSQL+=" FROM tbm_cabTipDoc AS a1 INNER JOIN tbm_cabMovInv AS a2";
+                    strSQL+=" ON a1.co_emp=a2.co_emp AND a1.co_loc=a2.co_loc AND a1.co_tipDoc=a2.co_tipDoc";
+                    strSQL+=" INNER JOIN tbr_cliLoc AS a4 ";
+                    strSQL+=" ON a2.co_emp=a4.co_emp AND a2.co_loc=a4.co_loc AND a2.co_cli=a4.co_cli";
+                    strSQL+=" INNER JOIN tbm_cli AS a3";
+                    strSQL+=" ON a4.co_emp=a3.co_emp AND a4.co_cli=a3.co_cli ";
+                    if(objParSis.getCodigoEmpresa()!= objParSis.getCodigoEmpresaGrupo())
+                    {
+                        strSQL+=" WHERE a2.co_emp=" + objParSis.getCodigoEmpresa() + "";
+                    }
+                    strSQL += strFil;
+                    strSQL += " GROUP BY a3.co_cli, a3.tx_ide, a3.tx_nom";
+                    strSQL += " ORDER BY a3.tx_nom, a3.co_cli";
+                }
+                //System.out.println("cargarDetReg: " + strSQL);
+                rst = stm.executeQuery(strSQL);
+                //Limpiar vector de datos.
+                vecDat.clear();
+                //Obtener los registros.
+                lblMsgSis.setText("Cargando datos...");
+                while (rst.next())
+                {
+                    if (blnCon) 
+                    {
+                        vecReg = new Vector();
+                        vecReg.add(INT_TBL_DAT_CAB_LIN, "");
+                        vecReg.add(INT_TBL_DAT_CAB_COD_CLI, rst.getString("co_cli"));
+                        vecReg.add(INT_TBL_DAT_CAB_RUC_CLI, rst.getString("tx_ide"));
+                        vecReg.add(INT_TBL_DAT_CAB_NOM_CLI, rst.getString("tx_nom"));
+                        vecReg.add(INT_TBL_DAT_CAB_VAL_VNT_BRU, rst.getString("venBru"));
+                        vecDat.add(vecReg);
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                rst.close();
+                stm.close();
+                con.close();
+                rst = null;
+                stm = null;
+                con = null;
+                //Asignar vectores al modelo.
+                objTblModCab.setData(vecDat);
+                tblCabDat.setModel(objTblModCab);
+                vecDat.clear();
+                objTblTotCab.calcularTotales();
+                
+                if (blnCon)
+                    lblMsgSis.setText("Se encontraron " + tblCabDat.getRowCount() + " registros.");
+                else
+                    lblMsgSis.setText("Interrupción del usuario. Sólo se procesaron " + tblCabDat.getRowCount() + " registros.");
+                butCon.setText("Consultar");
+                pgrSis.setIndeterminate(false);
+            }
+        } 
+        catch (java.sql.SQLException e) {  blnRes = false;  objUti.mostrarMsgErr_F1(this, e); } 
+        catch (Exception e) {  blnRes = false;  objUti.mostrarMsgErr_F1(this, e);   }
+        return blnRes;
+    }
+
+    /**
+     * Esta función muestra un mensaje informativo al usuario. Se podría
+     * utilizar para mostrar al usuario un mensaje que indique el campo que es
+     * invalido y que debe llenar o corregir.
+     */
+    private void mostrarMsgInf(String strMsg) 
+    {
+        String strTit;
+        strTit = "Mensaje del sistema Zafiro";
+        javax.swing.JOptionPane.showMessageDialog(this, strMsg, strTit, javax.swing.JOptionPane.INFORMATION_MESSAGE);
+    }
+    
+    
+    /**
+     * Esta función determina si los campos son válidos.
+     * @return true: Si los campos son válidos.
+     * <BR>false: En el caso contrario.
+     */
+    private boolean isCamVal() 
+    {
+        int intNumFilTblBod, i, j;
+        if ((!chkVenCli.isSelected()) && (!chkVenRel.isSelected()) && (!chkPre.isSelected())) 
+        {
+            tabFrm.setSelectedIndex(0);
+            mostrarMsgInf("<HTML>El siguiente filtro es obligatorio:<BR><UL><LI>Ventas a clientes<LI>Ventas a empresas relacionadas<LI>Préstamos</UL>Seleccione al menos una de las opciones y vuelva a intentarlo.</HTML>");
+            chkVenCli.requestFocus();
+            return false;
+        }
+        
+        //Valida que se seleccione al menos un local.
+        intNumFilTblBod=objTblModLoc.getRowCountTrue();
+        i=0;
+        for (j=0; j<intNumFilTblBod; j++)
+        {
+            if (objTblModLoc.isChecked(j, INT_TBL_LOC_CHKSEL))
+            {
+                i++;
+                break;
+            }
+        }
+        if (i==0)
+        {
+            tabFrm.setSelectedIndex(0);
+            mostrarMsgInf("<HTML>Debe seleccionar al menos un Local.<BR>Seleccione un Local y vuelva a intentarlo.</HTML>");
+            tblDatLoc.requestFocus();
+            return false;
+        }
+
+        return true;
+    }
+
+    
+    /**
+     * Esta función se ejecuta cuando se hace el "MouseClicked" en la cabecera del JTable.
+     * Se utiliza ésta función especificamente para marcar todas las casillas de verificación
+     * de la columna que indica el Local seleccionado en el el JTable de Locales.
+     */
+    private void tblLocMouseClicked(java.awt.event.MouseEvent evt)
+    {
+        int i, intNumFil;
+        try 
+        {
+            intNumFil=objTblModLoc.getRowCountTrue();
+            //Marcar la casilla sólo si se da 1 click con el botón izquierdo.
+            if (evt.getButton()==evt.BUTTON1 && evt.getClickCount()==1 && tblDatLoc.columnAtPoint(evt.getPoint())==INT_TBL_LOC_CHKSEL)
+            {
+                if (blnMarTodChkTblLoc)
+                {
+                    //Mostrar todas las columnas.
+                    for (i=0; i<intNumFil; i++)
+                    {
+                        objTblModLoc.setChecked(true, i, INT_TBL_LOC_CHKSEL);
+                    }
+                    blnMarTodChkTblLoc=false;
+                }
+                else
+                {
+                    //Ocultar todas las columnas.
+                    for (i=0; i<intNumFil; i++)
+                    {
+                        objTblModLoc.setChecked(false, i, INT_TBL_LOC_CHKSEL);
+                    }
+                    blnMarTodChkTblLoc=true;
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+    }
+    
+    
+
+}

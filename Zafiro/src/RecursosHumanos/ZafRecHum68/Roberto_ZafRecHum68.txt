@@ -1,0 +1,8 @@
+﻿
+CONTROL DE VERSIONES:
+=====================
+
+
+v1.0: (Roberto Flores- 15/07/2013)
+----
+Recursos humanos - Cargos laborales - Sectoriales por cargos laborales...

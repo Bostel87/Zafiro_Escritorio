@@ -1,0 +1,99 @@
+﻿Pendientes:
+1) 
+2) 
+3) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 05/Abr/2006)
+----
+Clase nueva.
+
+
+v0.2: (Eddye Lino - 06/Abr/2006)
+-----
+Se agregó el botón "Limpiar".
+
+
+v0.3: (Eddye Lino - 08/Abr/2006)
+-----
+Se arreglaron problemas varios.
+
+
+v0.4: (Eddye Lino - 24/Sep/2006)
+-----
+Se agregaron los métodos "isBarraProgresoIndeterminada()" y "setBarraProgresoIndeterminada()" que permiten
+que la barra de progreso se comporte como una barra de progreso determinada o indeterminada.
+De manera predeterminada se comporta como una barra de progreso indeterminada.
+
+
+v0.5: (Eddye Lino - 11/Jul/2007)
+-----
+Se agregaron los métodos: 
+   1) getCondicionesSQL()
+   2) setCondicionesSQL(String condiciones)
+Estos métodos permiten que se puedan agregar condiciones adicionales a la sentencia SQL original.
+
+
+v0.6: (Eddye Lino - 26/Nov/2008)
+-----
+Se corrigió el método: 
+   1) buscar(String campo, String valor)
+Se detectó que éste método no estaba considerando las condiciones adicionales.
+Al principio el código era:
+    strSQL="";
+    strSQL+="SELECT " + strAliCamSenSQL;
+    strSQL+=" FROM (";
+    strSQL+=strSenSQL;
+    strSQL+=" ) AS zaf";
+Finalmente quedó así:
+    strSQL="";
+    strSQL+="SELECT " + strAliCamSenSQL;
+    strSQL+=" FROM (";
+    //Insertar la condición adicional a la sentencia SQL base.
+    intPosClaOrd=strSenSQL.toLowerCase().lastIndexOf(" order by ");
+    if (intPosClaOrd==-1)
+    {
+        strSQL+=strSenSQL + strConSQLAdi;
+    }
+    else
+    {
+        strSQL+=strSenSQL.substring(0, intPosClaOrd) + strConSQLAdi + strSenSQL.substring(intPosClaOrd);
+    }
+    strSQL+=" ) AS zaf";
+
+
+v0.7: (Eddye Lino - 11/Mar/2010)
+-----
+Se agregó el método: 
+   1) limpiar()
+Se modificó el método: 
+   1) butLimActionPerformed(java.awt.event.ActionEvent evt)
+Este método permite limpiar la ventana de consulta.
+
+
+v0.8: (Eddye Lino - 24/Jun/2010)
+-----
+Se corrigió los métodos: 
+   1) buscar(String campo, String valor)
+   2) cargarDetReg()
+Se hizo un casting a los campos de búsqueda porque en la nueva versión de PostgreSQL ya no se permite
+comparar campos que son enteros como si fueran texto.
+Ejemplo:
+   Antes:   WHERE LOWER(zaf.co_bod) LIKE '1'
+   Después: WHERE LOWER(CAST(zaf.co_bod AS VARCHAR)) LIKE '1'
+
+
+v0.9: (Christian Mateo - 15/Ene/2015)
+----
+Se agrega validacion para que en insercion puedan escoger solamente los tipos de documentos
+que sean predeterminados
+Se debe establecer que el tipo de documento predeterminado para una devolucion en el 2015 es la devolucion electronica - facturacion electronica
+   
+
+v0.10: (Eddye Lino - 20/Oct/2017)
+------
+Se modificó el método: 
+   1) tblDatKeyPressed(java.awt.event.KeyEvent evt)
+Se reemplazó "evt.setKeyCode(0);" por "evt.consume();" porque a partir de "Java 7" ya no consumía el ENTER.

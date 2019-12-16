@@ -1,0 +1,95 @@
+﻿Pendientes:
+1)Se encuentra quemado código desde la linea 1836 hasta 1874. Pendiente de hacerlo dinámico 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v1.0: (Roberto Flores - 24/Sep/2013)
+----
+Clase nueva
+
+
+v1.01: (Roberto Flores - 10/Oct/2013)
+-----
+Se realiza:
+Se permite la autorización de todos los roles de manera simúltanea. Solicitado por: Ing. Fernando Ruiz.
+Se realizan validaciones para trabajar con la tabla de fecha de cortes de rol de pagos para permitir la autorización por períodos (quincena y fin de mes).
+
+
+v1.02: (Roberto Flores - 15/Oct/2013)
+-----
+Se realiza corrección en query al momento de realizar consulta de ROLES pendientes de ser autorizados.
+
+
+v1.03: (Roberto Flores - 15/Ene/2014)
+-----
+Autorización de roles de pago - Se realizan validaciones para mejora en query, corrección en asientos de diarios DIGECO para saldar cuenta de BANCOS, 
+después de generar el archivo de banco tbm_ingegrmentra.st_rolpaggen='S' en función creada para conciliar el periodo y envio de correos para estados en el proceso de autorización.
+
+
+v1.04: (Roberto Flores - 27/En/2014)
+-----
+Se realiza corrección al momento de hacer envio de correo para la primera quincena.
+
+
+v1.05: (Roberto Flores - 26/Feb/2014)
+-----
+Se realiza corrección al momento de hacer envio de correo y cambios relacionados a nuevo tipos de documentos PREFUN y REEMOV (REEGAS)
+
+
+v1.06: (Roberto Flores - 05/Mar/2014)
+-----
+Se realiza cambio momentaneo al consultar roles pendientes de autorización para poder ser autorizados. Solicitado por: Fernando Ruiz.
+
+
+v1.07: (Roberto Flores - 14/Mar/2014)
+-----
+Se realizan validaciones para mostrar todo lo pendiente por autorizar.
+
+
+v1.08: (David Albuja - 27/Jun/2014)
+------
+Se agregó JCombobox para consultar por año, mes, período.
+
+
+v1.09: (Eddye Lino - 14/Jul/2014)
+-----
+Se corrigió el método: 
+   1) butGuaActionPerformed(java.awt.event.ActionEvent evt)
+Se puso un parche hasta que se valide bien el período a autorizar.
+
+
+
+v1.10: (Ingrid Lino - 01/Dic/2014)
+-----
+Se cambia         
+        if (!(cboPerAAAA.getSelectedIndex()==1 && cboPerMes.getSelectedIndex()==8 && cboPer.getSelectedIndex()==1))
+        {
+            mostrarMsgInf("Período invalido. Comuníquese con su administrador del Sistema.");
+            return;
+        }
+
+
+por 
+
+        if (!(cboPerAAAA.getSelectedIndex()==1 && cboPerMes.getSelectedIndex()==11 && cboPer.getSelectedIndex()==2))
+        {
+            mostrarMsgInf("Período invalido. Comuníquese con su administrador del Sistema.");
+            return;
+        }
+al momento de guardar la autorización Werner Campoverde no podía por esta validación(autorizar fin de mes de Noviembre el 01Diciembre2014).
+
+
+v1.11: (Rosa Zambrano - 16/Jun/2015)
+-----
+Se corrige query en guardarDat() por cambios de version de postgres 9.4
+
+
+v1.12: (Rosa Zambrano - 17/Jun/2015)
+-----
+Se corrige query en guardarDat() tx_numdia='' para que se actualice el registro de asiento de diarios.
+
+v1.13: (Tony Sanginez - 29/Dic/2015)
+-----
+Se agrega validación para Cosenco ya que no encontraba codigo de cuenta.

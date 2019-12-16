@@ -1,0 +1,61 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v1.0: (Roberto Flores- 02/Ago/2012)
+----
+Clase nueva Porcentajes de egreso a descontar en la primera quincena
+
+
+v1.01: (Roberto Flores- 14/Ago/2013)
+-----
+Corrección en query consulta
+
+
+v1.02: (Roberto Flores- 17/Sep/2013)
+-----
+Validación para manejar los porcentajes de manera correcta
+
+
+v1.03: (Roberto Flores- 15/Oct/2013)
+-----
+Se realiza validación en query para la verificación si el rol de pagos del período a asignar porcentajes ya existe.
+
+
+v1.04: (Roberto Flores- 17/Feb/2014)
+-----
+Se realiza corrección en query para usuarios que no son administrador.
+
+
+v1.05: (Eddye Lino - 14/Ago/2014)
+-----
+Se corrigió el método: 
+   1) cargarDat()
+Se corrigió query porque había mal puesto un paréntesis y eso generaba un error al consultar.
+
+
+v1.06: (Tony Sanginez - 24/Nov/2015)
+-----
+Se corrigió el método: 
+   1) guardarDat()
+Se corrigio la linea en donde se obtenia la diferencia del valor del rubro en donde se dividia para 100 y habia una inconsistencia ya que en el primer rubro se ingresaba sin dividirse para 100. 
+
+
+v1.07: (Tony Sanginez - 15/Feb/2016)
+-----
+Se corrigio query en donde no traia los datos ordenados y no organizaba bien los valores de los rubros.
+Se corrigio el metodo en donde se setea valor null en los porcentajes en vez de 0.00
+
+
+v1.08: (Tony Sanginez - 15/Mar/2016)
+-----
+Se corrigio query en donde el query tenia mal posicionado un left outer join.
+Se corrio que seteaba null en porcentaje de rubros
+
+
+v1.09: (Tony Sanginez - 12/Oct/2016)
+-----
+Se agrega validación para evitar que se guardar modificaciones de porcentaje cuando este generado el primer paso para generar roles de pago.

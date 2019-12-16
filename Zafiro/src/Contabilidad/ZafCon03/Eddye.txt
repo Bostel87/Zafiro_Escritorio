@@ -1,0 +1,38 @@
+Pendientes:
+1) Agregar un JTable para mostrar los meses que están mayorizados/desmayorizados.
+2) 
+3) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 13/Oct/2006)
+----
+Clase nueva.
+
+
+v0.1.1: (Ingrid Lino - XX/XXX/2006)
+----
+En la función procesar() se adicionó filtros de meses que no tengan 31 días por problemas de Calendario en Server
+
+
+v0.3: (Ingrid Lino - 22/Mar/2007)
+----
+Se agregó código para desmayorizar/mayorizar la empresa grupo.
+
+v0.4: (Ingrid Lino - 02/Abr/2007)
+----
+Se corrigió problema de mayorización por la cuenta de utilidad o perdida
+
+v0.5: (Ingrid Lino - 15/Jun/2007)
+----
+Se cambió el esquema de mayorización:
+ - Antes: eliminaba(desmayorización) e insertaba8mayorización)
+ - Ahora: Se realizan solo UPDATES
+        desmayorización: update a las cuentas con saldos ceros(0.00)
+        mayorización: update a las cuentas con sus respectivos saldos
+
+
+v0.6: (Ingrid Lino - 22/Abr/2008)
+----
+Se adicionó el filtro para que no permita la desmayorización/mayorización en períodos de meses cerrados.

@@ -1,0 +1,11 @@
+Creado por: Jose Salazar 
+
+v0.1 - 18-ene-2006 - 13h20
+Se creo nueva clase ZafTreeCellRenderer para renderizar celda del arbol
+Pendiente rederizar celda de la tabla (colores, formato,etc)
+
+v0.1.1 - 27/ene/2006 - 11h20
+Se modifico clases:
+    TreeTableModelAdapter
+    ZafJTreeTable
+Se creo constructores que reciban un boolean para determinar si se expande o no el arbol de datos

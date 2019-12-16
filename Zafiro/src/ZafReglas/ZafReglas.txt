@@ -1,0 +1,35 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Christian Mateo - 21/Ago/2015)
+-----
+Clase nueva para el nuevo esquema de generación de Ordenes de Despacho y Guías de Remisión, reemplazando el ZafSer01.
+    ZafCiePerCnt: Usada en la devolucion volver a facturar para cierre periodos contables.
+    ZafClassImpGuia_01: Usada para envio de mail en la impresion.
+    ZafCliRet: Usada para el uso de cliente retira.
+    ZafCliTra: Usada para los datos de transportista.
+    ZafCnfEgrDAO: Usada Acceso a datos para confirmaciones de egreso.
+    ZafCtaCtb_dat.java: Usada para manejar las cuentas contables.
+    ZafDetFac: Usada para manejar los detalles de las facturas.
+    ZafFac:Usada para manejar las facturas.
+    ZafGenFac: Usada para genera la nueva factura.
+    ZafGenFacDAO: Usada para manejar los acceso a datos de la factura
+    ZafGenGuiRem Clase usada para generar OD y guias de remision.
+    ZafGenGuiRemDAO Usada para manejar los accesos a datos de procesos de GUIAS y OD.
+    ZafImp Usada para generar OD locales .
+    ZafImpGuiRem Clase usada para impresion de OD.(Contiene los reportes.)
+    ZafImpOrd Clase usada para imprimir OD locales.
+    ZafMetImp Clase usada para imprimir OD.
+    ZafPagFac Clase usada para generar los pagos.
+    ZafVal Usada para las validaciones.
+    
+Paquete ZafReglas.ZafGuiRem
+
+    ZafGenGuiRem usada para generar confirmaciones de OD.
+    ZafImpConGuiRem usada para generar guias de remision.
+    ZafPesCabGuiRem usada los manejar pesos en Confirmaciones de OD (Cabecera)
+    ZafPesDetGuiRem usada los manejar pesos en Confirmaciones de OD (Detalle)

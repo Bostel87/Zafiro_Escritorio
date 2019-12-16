@@ -1,0 +1,54 @@
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1:  (Javier Ayapata  16/Abr/2011)
+-----
+   clase nueva 
+
+v0.2:  (Javier Ayapata  14/May/2011)
+-----
+   se corrigue que no salia la fila numerada de la tabla.
+
+
+v0.3:  (Javier Ayapata  09/Ago/2011)
+-----
+   se corrigue el que sea entero campo ne_mod
+
+v0.4:  (Erik Flores - 2012/mar/23)
+-----
+Analisis detallado de antiguedad de saldo de clientes. se modificaron las funciones FILTRO, CARGARDETREGCORFEC, CARGARDETREGCORFECCLI
+     * Se modifica la columna DIAS del select para que la consulta se haga con la fecha de la condicion y no con la fecha del sistema.
+
+v0.5: (Erik Flores - 2012/Abr/04)
+-----
+Analisis detallado de antiguedad de saldo de clientes. se modifica la funcion configurarVenConCli()
+     * SE HACE LA CONSULTA SOLO LOS CLIENTES DEL LOCAL SELECCIONADO O EMPRESA/GRUPO
+
+v0.6: (Alex Morán - 2013/Mar/06)
+-----
+Analisis detallado de antiguedad de saldo de clientes.
+     * SE AGREGA FILTRO VENDEDOR EN CONSULTA
+
+v0.7: (Alex Morán - 2013/May/15)
+-----
+     * Se modifica para considerar saldos de provedores.
+
+v0.8: (Alex Morán - 2013/Ago/21)
+-----
+     * Se corrije consulta, cuando el usuario no es admin no filtra por el local seleccionado.
+
+v0.9: (Alex Morán - 2013/Ago/23)
+-----
+     * Se corrije criterio clientes empresa y local seleccionado.
+     
+v0.10: (Mayra Cortez - 03/Jun/2014)
+-----
+Se quita el filtro de "Excluir ventas entre compañias" y se coloca el filtro para Empresas relacionadas, el filtro para Prestamos , el filtro para Clientes y el filtro para todos.
+Se cambio la pantallade diseño las opciones de filtrado
+Se posiciono la fecha mas arriba
+
+     
+v0.11: (Mayra Cortez - 12/Jun/2014)
+-----
+Se agrego la codificacion para los permisos de acceso

@@ -1,0 +1,7 @@
+
+CONTROL DE VERSIONES:
+=====================
+
+v1.0: (Roberto Flores - 24/01/2014)
+----
+Clase nueva

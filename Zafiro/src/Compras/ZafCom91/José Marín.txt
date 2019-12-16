@@ -1,0 +1,78 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (José Marín - 09/Mar/2015)
+----
+Clase nueva.
+
+
+v0.1.01: (José Marín - 11/Ago/2016)
+----
+Se modifica la ventana de por modificaciones del proyecto de transferencias.
+
+
+v0.1.02: (José Marín - 17/Ago/2016)
+-----
+Se modifica el metodo llamado desde cotizaciones de venta para que cuando la solicitud de transferencia se de entre la misma
+bodega los estados de confirmacion y de autorizacion sean los adecuados.
+
+
+v0.1.03: (José Marín - 18/Ago/2016)
+-----
+Se modifica que las bodegas se recarguen al momento de cambiar el tipo de documento.
+
+
+v0.1.04: (José Marín - 24/Ago/2016)
+-----
+Se modifica la instancia de consulta.
+
+
+v0.1.05: (Rosa Zambrano - 05/Sep/2016)
+-----
+Se cambia en la funcion insertarSolicitudTransferenciaReposicion() para que se guarden las SOTRINR con st_aut=null, 
+ya que estas se consideran Preautorizadas.
+
+
+v0.1.06: (José Marín - 14/Sep/2016)
+-----
+Se cambia en la funcion insertarSolicitudTransferenciaPreFactura() para que valide si la solicitud generada es en la misma bodega 
+el estado de confirmacion sea N.
+
+ 
+v0.1.07: (José Marín - 10/Nov/2016)
+-----
+Se muestran solo las bodegas activas para el Admin, solicitado por Rosa Zambrano.
+
+
+v0.1.08: (José Marín - 07/Mar/2017)
+-----
+Se agrega metodo para clase especial.
+
+
+v0.1.09: (José Marín - 11/Mar/2017)
+-----
+Se modifican metodos de insercion de cuando llaman a la clase.
+
+
+v0.2: (José Marín - 14/Jun/2017)
+-----
+Se agrega validacion para que no se pueda agregar el mismo item.
+
+
+v0.2.1: (Rosa Zambrano - 20/Jun/2017)
+-----
+Se agrega ubicación de inventario para la impresión de las solicitudes de transferencias.
+
+
+v0.2.2: (Rosa Zambrano - 12/Sep/2017)
+-----
+Se realizan cambios para el adaptar proyecto de importaciones con ajustes de inventario, para manejo de costos.
+    1) Se modifica metodo de insertarSolicitudTransferenciaImportaciones().
+    2) Se agregan nuevas constantes para arreglo de solicitudes de transferencia importaciones.
+Se agrega constructor con HashMap para llamar la clase de forma dinámica.
+Se cambia para que al consultar no queden abiertas las conexiones.
+

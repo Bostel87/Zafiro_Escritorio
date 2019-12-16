@@ -1,0 +1,30 @@
+﻿
+CONTROL DE VERSIONES:
+=====================
+
+v1.0: (Roberto Flores - 29/Feb/2012)
+----
+Clase nueva 
+
+
+v1.33: (Roberto Flores - 04/Nov/2013)
+-----
+Se aumenta las justificaciones de las salidas adelantadas y marcaciones incompletas.
+
+
+v1.34: (Roberto Flores - 21/Nov/2013)
+-----
+Se valida para poder visualizar las marcaciones de empleados que ya han sido anulados en el sistema.
+
+
+v1.35: (Sandra Pinargote - 19/Ago/2015)
+-----
+Se corrige query en la función generarRpt() para presentar las marcaciones de empleados sin horario fijo, por empresa y por Grupo.
+
+v1.40: (Tony Sanginez - 16/Ene/2016)
+-----
+Se hizo un cambio en para que se puedan visualizar los reportes mediante el horario que haya tenido asignado para ese dia laborado.
+
+v1.5: (Tony Sanginez - 23/May/2017)
+-----
+Se agregó una columna para que se pueda visualizar cuando se ha dado un permiso.

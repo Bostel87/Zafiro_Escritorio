@@ -1,0 +1,6 @@
+CONTROL DE VERSIONES:
+=====================
+
+v0: (Ingrid Lino - 19/Ene/2007)
+----
+Se creó esta clase para presentar los grupos y subgrupos usados en el reporte del Flujo de Efectivo.

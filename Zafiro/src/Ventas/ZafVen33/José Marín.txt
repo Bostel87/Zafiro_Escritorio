@@ -1,0 +1,56 @@
+Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (José Marín - 12/Jul/2013)
+----
+Clase nueva.
+
+v0.2: (José Marín  22/Jul/2013)
+---   
+Se elimino colores de la tabla, se modificaron nombres de las cabeceras, se le dio sangria a los filtros a mostrar en el formulario,
+se agrego una fila te totales por grupo, se modifico el query para los totales por grupo    
+
+v0.3: (José Marín - 26/Jul/2013)
+----
+Se agrego un Chekbox, para filtrar mostrar grupos de items con items, o mostrar solo los grupos con sus totales
+
+v0.4: (José Marín - 31/Jul/2013)
+----
+Se corrigio la consulta de items, se habilito los textBox de codEmpresa, codLocal, se oculto el textBox de codItem y se agrego el codAltItem. Se formateo los numeros para que se muestren dos decimales   
+
+v0.5: (José Marín - 2/Ago/2013)
+----
+Se agregaron dos checkBox para filtrar por: ventas entre empresas relasionas, o ventas a clientes, o ambas al mismo tiempo 
+
+v0.6: (José Marín - 5/Ago/2013)
+----
+Se modifico la consulta para poder encontrar documentos contra la tbm_cabtipdoc, con el campo ne_mod=1  
+
+v0.7: (José Marín - 8/Ago/2013)
+----
+Se corrigio el poder buscar dentro de la tabla y se modifico la forma de agrupar de la consulta   
+
+v0.8: (José Marín - 16/Ago/2013)
+----
+Se corrigio el poder buscar dentro de la tabla y se agrego un if en el select de la consulta general   
+
+v0.9: (José Marín - 20/Ago/2013)
+----
+Se agrego a el filtro la consulta por prestamos   
+
+v1.0: (José Marín - 23/Ago/2013)
+----
+Se modifico la seguridad por el campo st_reg de la tabla tbm_locprgUsr    
+
+v1.1: (José Marín - 27/Ago/2013)
+----
+Se modifico el ingreso por grupo LSC, como admiistrador y como usuario
+
+v1.2: (José Marín - 3/Ene/2014)
+----
+Se modifico el reporte para que ahora, mustra tambien cantidades vendidas, precio total por cantidades vendidas, estos nuevos datos son solo vistos con autorizaciones
+

@@ -1,0 +1,34 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (José Mario Marín - 3/Jul/2019)
+----
+Clase nueva (Clasificación de items)...
+ 
+
+v 0.02: (José Mario Marín - 17/Jul/2019)
+----
+Se agrega una tabla de usuarios donde se debe seleccionar alguno, dependiendo de los usuarios elegidos se cargaran las clasificaciones, 
+tambien se agrega que cada usuario solo pueda modificar lo que el ha creado. Se modifico la tabla tbm_claModInv, se agregaron los campos co_usrDueCla, st_solDueMod. 
+Solicitado por Wcampoverde y LSC.
+
+
+v 0.03: (José Mario Marín - 17/Jul/2019)
+----
+if(objTblModUsr.isCheckedAnyRow(INT_TBL_USR_CHK)) se modifica esta validacion al momento de consultar, estaba usando la de columnas por error.
+
+
+v 0.04: (José Mario Marín - 22/Ago/2019)
+----
+Se modifican los filtros ahora tambien se muestra la descripción larga.
+
+
+
+v 0.05: (José Mario Marín - 27/Oct/2019)
+----
+Se modifican la ventana de grupos, v 0.02 se agrega codificar al UPDATE, se cambia la validacion de la descripcion corta pasa de 6 a 10.
+Se reordena los datos por codigo de grupo.

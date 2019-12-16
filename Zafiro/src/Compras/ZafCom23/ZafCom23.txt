@@ -1,0 +1,321 @@
+﻿
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Javier Ayapata - 09/Jul/2008)
+----
+Clase nueva de guia de remisión y Ordenes de Despacho.
+
+
+v0.2: (Javier Ayapata - 16/Jul/2008) 
+-----
+Se agrega filtro en la búsqueda de transferencia.
+
+
+v0.3: (Javier Ayapata - 18/Jul/2008)
+-----
+Se corrige al momento de insertar y consultar las transferencias.
+ 
+
+v0.4: (Javier Ayapata - 21/Jul/2008)
+-----
+Se corrige al momento modificar la guía de remision.
+ 
+
+v0.5: (Javier Ayapata - 16/Mar/2009)
+-----
+Se corrige al momento de consultar.
+
+
+v0.6: (Javier Ayapata - 23/Mar/2009)
+-----
+Se quita al momento de anular que no cambie de estado Si esta en guia remisión o no en transferencia.
+
+
+v0.7: (Javier Ayapata - 02/Jul/2009)
+-----
+Se agrega para que la cantidad no Salga en negativo.
+
+
+v0.8: (Javier Ayapata - 28/Jul/2009)
+-----
+Se agrega para que realize GuíaSecundaria.
+
+
+v0.9: (Javier Ayapata - 06/Ago/2009)
+-----
+Se corrige que al momento de imprimir se envien bien los datos.
+
+
+v1.0: (Javier Ayapata - 20/Ago/2009)
+-----
+Se habilita para que se pueda modificar la descripción del item cuando se crea la guia Secundaria.
+
+
+v1.1: (Javier Ayapata - 09/Feb/2010)
+-----
+Se agrega para que Solo guarde en detalle la cantidad en positivo.
+
+
+v1.2: (Javier Ayapata - 12/Mar/2010)
+-----
+Se agrega constructor para mostrar documento.
+
+
+v1.3: (Javier Ayapata - 23/Mar/2010)
+-----
+Se corrige al cargar el documento desde el constructor.
+
+
+v1.5: (Javier Ayapata - 14/Jul/2010)
+-----
+Se agrega para que envie mensaje de impresion de guia.
+
+
+v1.6: (Javier Ayapata - 12/Ago/2010)
+-----
+Se agrega para que busque por documento origen.
+
+
+v1.7: (Javier Ayapata - 22/Oct/2010)
+-----
+Se cambia configuración de reporteria que esta en el Servidor.
+
+
+v1.8: (Javier Ayapata - 08/Dic/2010)
+-----
+Se agrega para que cuando carga la guia calcule el peso.
+
+
+v1.9: (Javier Ayapata - 15/Dic/2010)
+-----
+Se agrega un nuevo constructor.
+
+
+v2.0: (Javier Ayapata - 25/Feb/2011)
+-----
+Se agrega para cuandoSe realiza guia Secundaria arrastre en numero de pedido.
+
+
+v2.1: (Javier Ayapata - 13/May/2011)
+-----
+Se agrega el estado de predeterminado en bodega.
+
+
+v2.2: (Javier Ayapata - 24/May/2011)
+-----
+Se agrega  para que Solo cuando Se quiera hacer guia Secundaria Solo Sea guia que tenga numeración.
+
+
+v2.3: (Javier Ayapata - 15/Jun/2011)
+-----
+Se agrega para que almacene el punto de destino.
+
+
+v2.4: (Javier Ayapata - 16/Jun/2011)
+-----
+Se corrige error al crear guiaSecundaria.
+
+
+v2.5: (Javier Ayapata - 05/Jul/2011)
+-----
+Se agrega para que en el reporte al momento de imprimir aparesca el usuario que invia a la  impresora.
+
+
+v2.6: (Javier Ayapata - 14/Jul/2011)
+-----
+Se agrega estado de registro en para consulta de guía
+
+
+v2.7: (Javier Ayapata - 23/Sep/2011)
+-----
+Se agrega cambios nuevo esquema Guías-OD
+
+
+v2.8: (Javier Ayapata - 26/Sep/2011)
+-----
+Se corriegue cambios al consultar OD.
+
+
+v2.9: (Erik Flores - 31/Jul/2012)
+-----
+Mejora a navegacion de registros. Mejora a consulta de ordenes de despacho/guias de remision. 
+Mejora a llamada a reportes y Subreportes.
+
+
+v3.0: (Erik Flores - 04/Sep/2012)
+-----
+Mejora a consulta de ordenes de despacho/guias de remision. 
+
+
+v3.1: (Erik Flores - 03/Dic/2012)
+-----
+Mejora a consulta de ordenes de despacho/guias de remision. 
+
+
+v3.2: (Erik Flores - 13/Dic/2012)
+-----
+Mejora a consulta de ordenes de despacho/guias de remision. 
+
+
+v3.3: (Erik Flores - 17/Ene/2013)
+-----
+Mejora a consulta de ordenes de despacho. Mostrar ordenes anuladas/que aun no tienen asignado numero de orden. 
+
+
+v3.4: (Alex Morán - 31/Ene/2013)
+-----
+Corrección de condicion estadosSt_reg in ('A','P') en tbr_bodlocprgusr.
+
+
+v3.5: (Ingrid Lino - 08/Feb/2013)
+-----
+Se adiciona reporte para impresión de orden de despacho y guías de remisión para bodega Importaciones.
+
+
+v3.6: (Ingrid Lino - 25/Feb/2013)
+-----
+En el query del reporteSe quita el campo de peso del reporte principal, porque este campo es de detalle y me estaba haciendo generar en la guía la repetición de los items.
+
+
+v3.7: (Alex Morán - 30/Abr/2013)
+-----
+Se modifica para manejar consultas de orden de despacho y guia de remisión de forma independiente.
+Se identifica origen de orden de despacho para bodega inmaconsa.
+Se agrega impresión directa de orden de despacho.
+
+
+v3.8: (Alex Morán - 17/Jun/2013)
+-----
+Se modifica query para presentar detalle confirmado de items con terminal L y Servicios.
+
+
+v3.9: (Dennis Betancourt - 15/Ene/2015)
+-----
+Se agrega query para que, en la vista preliminar, aparezca el reporte de la Guia de remision con los campos de autorizacion del SRI.
+
+
+v3.10: (Dennis Betancourt - 16/Ene/2015)
+-----
+Se puso una condicion para que,Si CodMnu = 1793 (Guia de remision) tome en cuenta el query queSe agrego en la version 3.9. Caso contrario,Se trata de una Orden de despacho y por tanto tomara en cuenta el query que ya estaba en el programa.
+
+
+v3.11: (Dennis Betancourt - 20/Ene/2015)
+-----
+Para el reporte de Guia de remision electronica,Se puso que la ruta absoluta la tome del campo tbm_rptsis.tx_rutAbsRpt (antes estaba la ruta quemada).
+
+
+v3.12: (Dennis Betancourt - 21/Ene/2015)
+-----
+Para el reporte de Guia de remision electronica,Se puso que la ruta absoluta, en caso de que ZafiroSe ejecute en Linux,Sea '/Zafiro'. Caso contrario, tomara la ruta del campo tbm_rptsis.tx_rutAbsRpt.
+
+
+v3.13: (Rosa Zambrano - 23/Abr/2015)
+-----
+Se agrega el Tipo de Documento TRINCL en la función generarRpt() para el Reporte de Ordenes de Despacho (Importaciones) que será también utilizado para Compras Locales.
+
+
+v3.14: (Rosa Zambrano - 26/May/2015)
+-----
+Se corrige query de consulta en configurarVenConGuiPrin() para que consulte las OD/GR de acuerdo al tipo de documento que tenga acceso el usuario en el programa.
+
+
+v3.15: (Jose Mario Marin - 16/Jul/2015)
+-----
+Se agrega el nombre de la persona que imprime en la OD, en el caso de imprimir por el programa.
+
+
+v3.16: (Rosa Zambrano - 09/Sep/2015)
+-----
+Se realizaron cambios en las siguientes funciones:
+ 1) generarRpt(): 
+    Se agrega la hora y fecha de re-impresión de la Orden de Despacho, en el caso de imprimir a traves del programa.
+    Se agrega en el query de guía de remisión que muestre el estado de impresión.
+ 2) afterImprimir():
+     Se agrega la función cambiarEstadoImpresion() para actualizar el estado de impresión al escoger la opción imprimir.
+
+
+v3.17: (Rosa Zambrano - 23/Sep/2015)
+-----
+Se agrega en la función generarRpt() el campo de tx_CodAlt2 para que presente el código de 3 letras en las Ordenes de Despacho de Importaciones y Compras Locales.
+
+
+v3.18: (Rosa Zambrano - 19/Nov/2015)
+-----
+Se agrega en la función generarRpt() el campo de tx_CodAlt2 para que presente el código de 3 letras en las Guías de Remisión.
+
+
+v3.19: (Rosa Zambrano - 15/Dic/2015)
+-----
+Se cambia en las funciones cargarDetReg(), recargarDetReg() la forma de presentar las cantidades totales y cantidades pendientes en Ordenes de Despacho.
+  1) Si st_meregrfisbod = 'N' => nd_cantotguisec=nd_cantotguisec, caso contrario nd_cantotguisec=nd_cancon + nd_cannunrec de la tbm_detGuiRem.
+  2) Si st_meregrfisbod = 'N' => ndcanpen= nd_can - nd_cantotguisec, caso contrario ndcanpen=nd_can - (nd_cancon + nd_cannunrec) de la tbm_detGuiRem.
+Esta validación se realiza porque los ítems con st_merEgrFisBod='N' no tienen nd_CanCon porque se confirman automáticamente, afectando solo el campo nd_cantotguisec.
+Se realizan otras mejoras en la búsqueda de ordenes de despacho y guías de remisión.
+Se corrige query de la función cambiarEstadoImpresión() para que se cambie el estado de las guías de remisión y ordenes de despacho de Inmaconsa (Castek-Dimulti).
+
+
+v3.20: (Christian Mateo - 03/Feb/2016)
+-----
+Se agrega columna de codigo de 3 letras en la consulta.
+
+
+v3.21: (Rosa Zambrano - 27/Abr/2016)
+-----
+Se agrega campo de usuario (tx_usr) que confirma la mercadería por egresar en el query del reporte de guía de remisión.
+
+
+v3.22: (Christian Mateo - 26/Jul/2016)
+-----
+Se cambia query de reportes de ordenes de despachos y guias de remision para realizar la reimpresion.
+
+
+v3.23: (Rosa Zambrano - 27/Jul/2016)
+-----
+Se cambia formula de cantidad pendiente nd_canPen=nd_CanPen-nd_CanTra
+
+
+v3.24: (Rosa Zambrano - 29/Jul/2016)
+-----
+Se cambia en las funciones cargarDetReg(), recargarDetReg() la forma de presentar las cantidades totales y cantidades pendientes en Ordenes de Despacho.
+adaptando el nuevo esquema de transferencias de inventario.
+
+
+v3.25: (Rosa Zambrano - 01/Ago/2016)
+-----
+Se agrega dato de devolucion para ver si las ordenes de despacho estan enlazadas a una solicitud de devolucion.
+
+
+v3.26: (Rosa Zambrano - 08/Ago/2016)
+-----
+Se cambia en las funciones cargarDetReg(), recargarDetReg() la formula de calcular cantidad pendiente para que se adapte a los items "L" y de servicio.
+
+
+v3.27: (Rosa Zambrano - 11/Ago/2016)
+-----
+Se agrega tx_obs1 al query de guias de remisión.
+
+
+v3.28: (Rosa Zambrano - 11/Ago/2016)
+-----
+Se cambia consulta de orden de despacho y guias de remision al momento de presionar enter.
+
+
+v3.29: (Rosa Zambrano - 20/Oct/2016)
+-----
+Se cambia consulta de orden de despacho y guias de remision para nuevo esquema de manejo para códigos L.
+
+
+v3.30: (Christian Mateo - 08/Feb/2018)
+------
+Se agrega cambio al momento de reimprimir la guia remision por el problema del local de duran
+
+
+v3.31: (Christian Mateo - 09/Abr/2018)
+------
+LineWrap de la observacion 1-2
+
+
+v3.32: (Christian Mateo - 23/May/2018)
+------
+Se cambia el query del reporte de guia para incluir el numero de autorizacion y numero de documento de la factura.

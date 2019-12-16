@@ -1,0 +1,41 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 07/Nov/2004)
+----
+Clase nueva.
+
+
+v0.2: (Eddye Lino - 10/Sep/2009)
+-----
+Se agregó el método: 
+   1) isOpcionEnabled(int codigoMenu)
+Se modificaron los métodos: 
+   1) ZafPerUsr(ZafParSis obj)
+   2) getPerUsr()
+Al principio sólo se podía configurar el acceso a los botones de la barra de botones. Es decir:
+Insertar, Consultar, Modificar, etc. Pero en algunos programas era necesario configurar otras
+opciones. Por ejemplo: se puede conceder permiso para que unos usuarios puedan agregar teléfonos
+pero no eliminarlos. Mientras que a otros usuarios se les puede conceder acceso para que puedan
+agregar, modificar o eliminar teléfonos.
+
+
+v0.3: (Rosa Zambrano - 03/Sep/2015)
+-----
+Se agregó el método: 
+   1) validaLocUsr()
+Valida si el usuario tiene acceso a locales dentro del programa, en base a la configuración de la tabla tbr_locPrgUsr.
+
+
+v0.4: (Rosa Zambrano - 10/Sep/2015)
+-----
+Se realizan cambios en el método validaLocUsr().
+
+
+v0.5: (Rosa Zambrano - 13/Nov/2015)
+-----
+Se traslada la función validaLocUsr() a la nueva clase ZafLocPrgUsr en la librería ZafUtil.

@@ -1,0 +1,15 @@
+
+CONTROL DE VERSIONES:
+=====================
+Clase nueva.
+v 0.1 : (Javier Ayapata - 22/Enero/2010)
+----
+  clase nueva
+
+v 0.2 : (Javier Ayapata - 19/Febrero/2010)
+----
+ se agrega otra tabla donde presenta informacion por mes totalizado.
+
+
+
+

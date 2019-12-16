@@ -1,0 +1,27 @@
+﻿Pendientes:
+1) Reemplazar los "JTextField" que se utilizan para seleccionar el rango de fechas por la clase "ZafSelectDate".
+2) Agregar filtro por "Vendedor".
+3) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 21/Ene/2007)
+----
+Clase nueva.
+
+
+v0.2: (Eddye Lino - 14/May/2007)
+----
+Se agregó JTable para filtrar las cotizaciones de venta por empresa. Es decir, el programa ahora permite consultar las
+cotizaciones de venta de todas las empresas del grupo o de una o más empresas en particular.
+El JTable de empresas sólo aparece en la empresa grupo.
+
+
+v0.3: (Eddye Lino - 02/Oct/2015)
+----
+Se modificó el método: 
+   1) tblDatKeyPressed(java.awt.event.KeyEvent evt)
+Se reemplazó "evt.setKeyCode(0);" por "evt.consume();" porque a partir de "Java 7" ya no consumía el ENTER.
+
+

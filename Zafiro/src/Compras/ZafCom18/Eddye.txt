@@ -1,0 +1,217 @@
+﻿Pendientes:
+1) Hay que corregir el código que valida los datos luego de ser pegados en la columna de unidad de medida.
+2) 
+
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino)
+----
+Clase nueva.
+
+
+v0.2: (Eddye Lino - 15/Mar/2006)
+-----
+Se agregó código para que funcione con la empresa Grupo.
+
+
+v0.3: (Eddye Lino - 19/Abr/2006)
+-----
+Se cambió el query con un "LEFT OUTER JOIN" porque no estaban apareciendo algunos items.
+El problema era porque no tenían asignado unidad de medida.
+
+
+v0.4: (Eddye Lino - 12/May/2006)
+-----
+Se cambió el código para que la actualización afectara a todas las empresas del grupo.
+Antes sólo afectaba a la empresa en la que se ingresaba.
+
+
+v0.5: (Eddye Lino - 19/Jul/2006)
+-----
+Se agregó código temporal para que al actualizar se multiplicara el precio de DIMULTI por el marge establecido.
+Este cambio es temporal hasta que se busque una manera de hacerlo parametrizado.
+
+
+v0.6: (Eddye Lino - 19/Dic/2006)
+-----
+Se agregó código para que almacenara el código y la fecha y hora de última modificación.
+
+
+v0.7: (Eddye Lino - 20/Abr/2007)
+-----
+Se quitó código en el query para que el precio sea el mismo en todas las empresas.
+Anteriormente Dimulti tenía un precio diferente al de las demás empresas.
+
+
+v0.8: (Eddye Lino - 08/May/2007)
+-----
+Se agregó código para que no se permita cambiar el precio de los items que terminan en "L".
+
+
+v0.9: (Eddye Lino - 06/Sep/2007)
+-----
+Se agregó lo siguiente:
+   1) Columna de "Margen de utilidad" en el JTable.
+   2) Filtro para los items que "Terminan con" .
+   3) Validación para las opciones "Borrar contenido" y "Pegar" del ZafTblPopMnu.
+
+
+v0.10: (Eddye Lino - 25/Mar/2008)
+-----
+Se corrigió los métodos: 
+   1) configurarVenConItm()
+   2) cargarDetReg()
+En dichos métodos se agregó al query una condición para que sólo se mostrara los items activos.
+Al query se agregó la siguiente condición:
+    strSQL+=" AND a1.st_reg='A'";
+
+
+v0.11: (Eddye Lino - 16/Jul/2008)
+-----
+Se modificó los métodos: 
+   1) configurarTblDat()
+   2) cargarDetReg()
+   3) actualizarDet()
+Se agregó la columna "Peso(Kg)" en el JTable lo que originó que se modificaran dichos métodos.
+Además, se agregó condiciones para que la columna "Mar.Uti." sólo pudiera ser modificada por
+el usuario "administrador" y el usuario "lsensi". También se agregó código para que si no es
+uno de los dos usuarios mencionados anteriormente sólo se permita modificar el precio de los
+artículos que terminan en "S".
+
+
+v0.12: (Eddye Lino - 22/Jul/2008)
+-----
+Se modificó los métodos: 
+   1) configurarTblDat()
+Se agregó código para que el usuario "38=cbetancourt" pueda editar sólo la columna del peso y
+el usuario "12=mbohorquez" todas las columnas a excepción de las columnas: margen y peso.
+
+
+v0.13: (Eddye Lino - 07/Ene/2009)
+-----
+Se modificó los métodos: 
+   1) configurarTblDat()
+Se agregó código para que el usuario "12=mbohorquez" también pueda editar la columna "peso".
+
+
+v0.14: (Eddye Lino - 21/May/2009)
+-----
+Se modificó los métodos: 
+   1) configurarVenConItm()
+   2) configurarTblDat()
+   3) cargarDetReg()
+Se agregó ZafTblBus. Se modificó el query para que el stock lo tome de la tabla "tbm_inv".
+Si es la empresa grupo se suma el stock de todas las empresas que pertenecen al grupo.
+
+
+v0.15: (Eddye Lino - 30/Jul/2010)
+-----
+Se modificó el método: 
+   1) configurarTblDat()
+Se le concedió acceso al usuario "cbetancourt" para que pueda editar las columnas a las que tenía
+acceso el usuario "mbohorquez".
+El código que se agregó fue:
+    vecAux.add("" + INT_TBL_DAT_NOM_ITM);
+    vecAux.add("" + INT_TBL_DAT_DEC_UNI);
+    vecAux.add("" + INT_TBL_DAT_BUT_UNI);
+    vecAux.add("" + INT_TBL_DAT_PRE_VTA1);
+
+
+v0.16: (Eddye Lino - 16/Nov/2011)
+-----
+Se modificó el método: 
+   1) configurarTblDat()
+Se hizo cambios para que el programa funcionara con las nuevas opciones de menú creadas.
+   2960: Ficha "Reporte": Tabla->Modificar "Nombre del item"
+   2961: Ficha "Reporte": Tabla->Modificar "Unidad de medida"
+   2962: Ficha "Reporte": Tabla->Modificar "Precio de venta 1"
+   2963: Ficha "Reporte": Tabla->Modificar "Margen de utilidad"
+   2964: Ficha "Reporte": Tabla->Modificar "Peso (Kg)"
+
+
+v0.17: (Eddye Lino - 08/Dic/2011)
+-----
+Se modificó el método: 
+   1) configurarTblDat()
+Antes:
+   if (objParSis.getCodigoUsuario()==1 || objParSis.getCodigoUsuario()==24)
+Después:
+   if (objParSis.getCodigoUsuario()==1 || objPerUsr.isOpcionEnabled(2962))
+
+
+v0.18: (Eddye Lino - 29/Feb/2012)
+-----
+Se modificaron los métodos: 
+   1) configurarTblDat()
+   2) cargarDetReg()
+   3) actualizarDet()
+Se hizo cambios para que el programa funcionara con las nuevas opciones de menú creadas.
+   2989: Ficha "Reporte": Tabla->Modificar "Cantidad máxima para la venta".
+   2990: Ficha "Reporte": Tabla->Mostrar "Costo unitario".
+
+
+v0.19: (Eddye Lino - 09/Mar/2012)
+-----
+Se modificó el método: 
+   1) configurarTblDat()
+Se agregó que lsensi, fruiz y cbetancourt puedan cambiar precios de terminales "P".
+
+
+v0.20: (Eddye Lino - 31/Ago/2012)
+-----
+Se modificaron los métodos: 
+   1) configurarTblDat()
+   2) cargarDetReg()
+   3) actualizarDet()
+Se agregó el método: 
+   1) calcularCosUniFac()
+Se agregaron las columnas "Fac.Cos.Uni." y "Cos.Uni.Fac.".
+
+
+v0.21: (Eddye Lino - 21/Feb/2013)
+-----
+Se modificaron los métodos: 
+   1) configurarTblDat()
+   2) cargarDetReg()
+Se agregó el método: 
+   1) calcularMarUtiCos()
+Se agregó la columna "Mar.Uti.Cos." y color rojo de fondo cuando "Mar.Uti.Cos." es menor que "Mar.Uti.".
+
+
+v0.22: (Eddye Lino - 22/Feb/2013)
+-----
+Se modificaron los métodos: 
+   1) cargarDetReg()
+   2) calcularMarUtiCos()
+Se cambió la formula. En lugar de dividir para el "Cos.Uni." solicitaron que se dividiera para "Pre.Vta.1".
+
+
+v0.23: (Eddye Lino - 07/Ene/2014)
+-----
+Se modificó el método: 
+   1) configurarFrm()
+Se agregó código para habilitar/inhabilitar los botones según el perfil del usuario.
+
+
+v0.24: (Eddye Lino - 16/Abr/2015)
+-----
+Se incorporó el uso de la clase "ZafTblOrd" para poder ordenar los datos de la tabla.
+
+
+v0.25: (Eddye Lino - 20/Jul/2017)
+-----
+Se modificaron los métodos: 
+   1) configurarTblDat()
+   2) cargarDetReg()
+Se agregó la columna "Cód.Alt.2.".
+
+
+v0.26: (Eddye Lino - 16/Ago/2017)
+-----
+Se modificaron los métodos: 
+   1) configurarTblDat()
+   2) cargarDetReg()
+   3) actualizarDet()
+Se agregó la columna "Histórico de items".

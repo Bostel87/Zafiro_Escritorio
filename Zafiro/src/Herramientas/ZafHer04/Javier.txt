@@ -1,0 +1,16 @@
+﻿
+CONTROL DE VERSIONES:
+=====================
+
+v0.1:  Javier Ayapata  20/Julio/2010
+----
+   clase nueva
+
+v0.2:  Javier Ayapata  23/Diciembre/2010
+----
+ se agrega cada vez que consulte un empresa en el grupo consulte los datos.
+
+v0.3:  Javier Ayapata  31/Agosto/2011
+----
+ se agrega cada que se cambie y se envie correo electronico al area de ventas informandole el cambio.
+

@@ -1,0 +1,13 @@
+Pendientes:
+1)
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Ingrid Lino - 09/Ago/2011)
+----
+Listado de ventas(Detallado por documento)
+
+v0.1.1: (Ingrid Lino - 23/Sep/2011)
+----
+Se quitó en el formulario el Absolut Layout, este genera una excepcion al abrir el programa. parece q no es soportado.

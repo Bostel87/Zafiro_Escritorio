@@ -1,0 +1,30 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.01: (José Marín - 16/May/2018)
+----
+Clase nueva (Asignación de clientes a vendedores…).
+
+
+v0.02: (José Marín - 17/Jul/2018)
+----
+Se modifica los vendedores a mostrar ahora se toman de lo que este configurado en tbr_usrLocPrgUsr.
+
+
+v0.03: (José Marín - 6/Nov/2018)
+----
+Se agrega una columna con la fecha de asignacion del vendedor.
+
+
+v0.04: (José Marín - 26/Nov/2018)
+----
+Se agrega un metodo mas al final de la transaccion, y que envie un correo despues de generada la asignación.
+
+
+v0.05: (Rosa Zambrano - 06/Ago/2019)
+-----
+Se agrega el objeto de parametros del sistema para envios de correos.

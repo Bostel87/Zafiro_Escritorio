@@ -1,0 +1,11 @@
+﻿Pendientes:
+1) 
+2) 
+
+﻿CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Ingrid Lino - 12/Sep/2017)
+----
+Programa que permite crear items en Ajustes de inventario
+

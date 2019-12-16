@@ -1,0 +1,25 @@
+﻿Pendientes:
+1) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Rosa Zambrano - 22/Jul/2016)
+----
+Clase nueva.
+"Listado de solicitudes de transferencias de inventario autorizadas..."
+
+
+v0.2: (Rosa Zambrano - 29/Dic/2016)
+-----
+Se agrega la columna de observación de la solicitud, donde presenta el numero de pedido.
+Se cambia los filtros para la búsqueda de estado de autorización, presentando en checkbox solicitado por Ing.Alfredo Paulson.
+Se corrige query para que presente todas las solicitudes que se han realizado inclusive las que no tengan seguimiento.
+
+
+v0.3: (Tony Sanginez - 27/Sep/2017)
+-----
+Se agrega filtro para que se puedan ver las cancelaciones de una solicitud.
+Se agrega campos de visualización para identificar si es una cancelación.
+Se agrega botón de busqueda de seguimiento de la solicitud de devolución en Cabecera.
+

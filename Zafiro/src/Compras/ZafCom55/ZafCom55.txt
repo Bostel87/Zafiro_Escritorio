@@ -1,0 +1,333 @@
+﻿Pendientes:
+1) 
+2)
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Ingrid Lino - 07/Oct/2009)
+----
+Programa que realiza la reposición de inventario desde otras bodegas(Grupo).
+
+
+v0.5.1: (Ingrid Lino - 04/Nov/2009)
+-----
+Se adicionaron cambios al momento de seleccionar los items que se van a reponer, se ajustan decimales en minimos
+y en valor a reponer(a 6 casos).
+
+
+v0.6: (Ingrid Lino - 04/Nov/2009)
+-----
+Se adicionó la opción de procesar los primeros 13 items sin aplicar porcentaje de variación.
+
+
+v0.7: (Ingrid Lino - 12/Nov/2009)
+-----
+Se cambió la forma de obtener el valor disponible
+    antes:   SUMA STOCK EMPRESAS - SUMA MINIMO EMPRESAS + SUMA EXCESO EMPRESAS
+    ahora:   SUMA STOCK EMPRESAS - MINIMO GRUPO + EXCESO GRUPO
+También se puso como obligatorio la selección de la bodega destino en modo consultar y se habilitó la edición del botón de consulta de tx.
+
+
+v0.8: (Ingrid Lino - 01/Dic/2009)
+-----
+Se cambió el esquema de cargar datos a reponer, cuando la bodega origen es california se repone según
+ lo que requiera la bodega destino. Cuando la bodega origen es una diferente a california, se repone en
+base a lo que la bodega destino tiene en exceso(stock - (minimo + exceso)).
+
+
+v0.9: (Ingrid Lino - 17/Dic/2009)
+-----
+Se adicionó la opción de selección de <=13 registros solo para la sra Mary. Tambien se cambio el proceso
+de la opcion de los primeros 13 items aplicables.
+
+
+v0.10: (Ingrid Lino - 04/Ene/2010)
+-----
+Se probaron cambios diversos mínimos(validaciones).
+
+
+v0.11: (Ingrid Lino - 21/Ene/2010)
+-----
+Se agregó el ordenamiento de la tabla.
+
+
+v0.12: (Ingrid Lino - 21/Ene/2010)
+-----
+Se ocultó las columnas que no deben presentarse al usuario.
+
+
+v0.13: (Ingrid Lino - 29/Ene/2010)
+-----
+Se adicionó que el campo "cantidad a reponer" sea editable cuando esté seleccionado y la unidad de medida sea "MTS" y debe estar entre un rango
+    valor minimo
+    (cantidad a reponer -6 MTS)
+    valor maximo
+    cantidad a reponer
+
+
+v0.14: (Ingrid Lino - 11/Feb/2010)
+-----
+Se colocó formato de 2 decimales al peso que calcula el programa de acuerdo a los items a reponer seleccionados.
+Se adicionaron funciones de carga de bodegas predeterminadas al dar click en insertar y en consultar.
+Se adicionó codificación para permitir que si el usuario tiene opción de "insertar" trabaje normalmente, pero si solo tiene
+para consulta, se debe activar el botón de "Cargar items".
+Ya no aparecen seleccionados por defecto los criterios de obtención de los items a reponer, esto se cambio por el esquema de consulta.
+
+
+v0.14.1: (Ingrid Lino - 12/Feb/2010)
+-----
+Se adicionó en el query que obtiene la información de las bodegas(también en los predeterminados) que el campo tx_natbod lea tb el estado "A".
+Esto es para los casos de don Luigui y Carlos Betancourt porque ellos necesitan ver todas las bodegas contra todas las bodegas.
+
+
+v0.14.2: (Ingrid Lino - 19/May/2010)
+-----
+En la función "validaCantidad()" se le colocó a la variable "bdePorVarGrl" el valor "1" porque al ejecutar la validación generaba una exepción
+
+
+v0.14.3: (Ingrid Lino - 02/Jun/2010)
+-----
+Se ocultaron columnas que no deberian ver los usuarios y que por prueba yo los comente haciendo que se presenten.
+
+
+v0.14.4: (Ingrid Lino - 07/Jun/2010)
+-----
+Se adicionó en el query la restricción:
+   si el "tipo de unidad de medida del item es E entonces se presenta solo parte entera"
+   else si el "tipo de unidad de medida del item es F entonces se presenta el valor completo(parte entera y fraccionaria)".
+
+
+v0.14.5: (Ingrid Lino - 10/Jun/2010)
+-----
+Se cambió el valor de INT_COD_TIP_DOC_TRA_NSF=153(TRINAU) a INT_COD_TIP_DOC_TRA_NSF=172(TRINRB) porque se cambió el tipo de documento
+
+
+v0.14.6: (Ingrid Lino - 12/Jul/2010)
+-----
+El filtro de presentación de datos para stock de grupo de la bodega que repone(california) estaba mal, porq presentaba stock disponible en negativo.
+
+
+v0.14.7: (Ingrid Lino - 15/Jul/2010)
+-----
+En el order by se colocó que se ordene no por srock faltante, sino por codigo alterno del item, pero solo para usuario Luigui Sensi
+
+
+v0.14.8: (Ingrid Lino - 15/Jul/2010)
+-----
+Se adiciona código que permite enviar mensajes para impresión de Guia(Envia a todos los puntos).
+
+
+v0.14.9: (Ingrid Lino - 30/Ago/2010)
+-----
+Se adicionaron las cuentas de bodega para Santo Domingo. Estas cuentas están quemadas en el código y antes no estaban para Santo Domingo, asi que al momento de insertar el diario se producia en error porq no encontraba la cuenta para Sto. Domingo.
+
+
+v0.15: (Ingrid Lino - 05/Nov/2010)
+-----
+Se quitaron campos de los queries debido a que esos campos van a desaparecer de la db.
+
+
+v0.15.1: (Ingrid Lino - 08/Nov/2010)
+-----
+Se adicionó al usuario jcabezas para que pueda realizar reposicion seleccionando la opcion(3), misma que permite checkar los items a reponer.
+
+
+v0.15.2: (Ingrid Lino - 24/Dic/2010)
+-----
+Se adicionó codigo para que genere compra y venta entre compañías en caso de ser necesario después de haber realizado la transferencia.
+Y se corrigió la opción "1" que escoge los items a ser repuestos por medio de un porcentaje de variación.
+
+
+v0.15.3: (Ingrid Lino - 25/Ene/2011)
+-----
+Al momento de guardar se leía los items que solo tuvieran terminales 'I' y se estaba dejando de lado las terminales 'i' entonces se adiciono el UPPER a    a1.tx_codAlt
+
+
+v0.15.4: (Ingrid Lino - 11/Abr/2011)
+-----
+Se adicionó código para en tbm_detmovinv.tx_nomBodOrgDes almacenar la bodega de donde proviene la transferencia de reposición.
+
+
+v0.15.5: (Ingrid Lino - 09/May/2011)
+-----
+Se adicionó INSERT tbr_detMovInv de la relación entre la empresa de donde sale la mercaderia con la empresa de donde ingresa la mercaderia. Ejm:
+    4, 1, 172, 100, 1        4, 1, 172, 100 2   donde el registro uno contiene la informacion de donde sale la mercaderia y el otro de donde ingresa(estan diferenciados por el codigo del registro).
+
+
+v0.15.6: (Ingrid Lino - 31/May/2011)
+-----
+Se cambiaron las cuentas para generar el asiento de diario de la transferencia(El asiento de diario da un efecto nulo).
+
+
+v0.16: (Ingrid Lino - 10/Jun/2011)
+-----
+Se adicionaron los criterios de minimos y maximos para calculo de cantidad a reponer. Se quito validacion en el query que no permitia presentar items cuya cantidad no podia satisfacer por completo el valor a reponer. Ahora repone el stock que se pueda asi no cubra todo el valor, solo lo disponible.
+
+
+v0.16.1: (Ingrid Lino - 13/Jun/2011)
+-----
+Se cambió el query para obtención de información en cuanto a calculo de disponibilidad, y cantidad a reponer, ahora esta basado en minimos y maximos y no solo con fijo.
+
+
+v0.16.2: (Ingrid Lino - 16/Jun/2011)
+-----
+Para California se repone tomando en cuenta lo sgt: (Stock empresa - Minimo - Exceso)    eso va a ser el disponible.Para cualquier otra bodega se repone en base a minimos y maximos, siempre y cuando california tenga stock disponible, los excesos siguen trabajando de la misma forma que antes.
+
+
+v0.16.3: (Ingrid Lino - 01/Jul/2011)
+-----
+Se cambia el como calcular el valor disponible para reponer solo en la bodega california. Antes era en base a valores de fijo, exceso de la empresa, ahora es el disponible pero del grupo(stock debe ser mayor al maximo y tomar en cuenta exceso).
+
+
+v0.16.4: (Ingrid Lino - 12/Jul/2011)
+-----
+La función "enviarRequisitoImp" se quitó del código de este programa y se colocó en ZafInvItm.
+
+
+v0.16.5: (Ingrid Lino - 21/Jul/2011)
+----
+Se cambio el proceso para impresión de guias, nuevos procesos en funcion creada por Javier y usada por este programa.
+
+
+v0.16.6: (Ingrid Lino - 18/Oct/2011)
+-----
+Se adicionó a Fernando Ruiz para que pueda realizar Reposiciones seleccionando items.
+
+
+v0.16.7: (Ingrid Lino - 25/Oct/2011)
+-----
+Se restringue los filtros de bodegas origen y destino, se quemo en el codigo si origen=California -> destino carga bodegas permitidas sin california. si origen=bodega diferente a california, destino=california.
+
+
+v0.16.9: (Ingrid Lino - 29/Feb/2012)
+-----
+Se adiciona en el código al usuario Hugo de Bodega para que pueda reponer seleccionando items.
+
+
+v0.17: (Eddye Lino - 08/Abr/2014)
+-----
+Se modificó el método: 
+   1) mostrarVenConBodDes(int intTipBus)
+Se puso como comentario el código que estaba quemado que hacía que sólo se pudiera devolver la mercadería a "California".
+
+
+v0.17.1: (Ingrid Lino - 27/Jun/2014)
+-----
+Se cambia bodega California por la bodega de distribución
+
+
+v0.17.2: (José Marín M. - 27/Jun/2014)
+-----
+Se crea un nuevo tipo de documento REINBD, este programa se manejara con dos tipos de documentos, estableciendo en la configuración
+el tipo de documento 161 REINBO para cuando los items se tomen desde INMACONSA, y 223 REINBD para cuando los items se tomen desde las demas
+bodegas para regresar a INMACONSA, donde se volveran a distribuir.
+Se agrega una nueva columna Peso Total en Kilogramos, Si el chk NO esta seleccionado, se multiplica Can.Rep.Cal. * Peso(kg),
+Si el chk ESTA seleccionado se multiplica Can.Rep.Sel. * Peso(kg)
+
+
+v0.17.3: (José Marín M. - 18/Jul/2014)
+-----
+Se modifica el programa para que el usuario, pueda ditectamen escribir la cantidad que desea reponer.
+
+
+v0.17.4: (Ingrid Lino. - 05/Dic/2014)
+-----
+Se agregan en "Reposición de inventario desde otras bodegas" los códigos "S". Solicitado por Alfredo Paulson y Werner Campoverde.
+
+
+v0.17.5: (Ingrid Lino. - 12/Feb/2015)
+-----
+Se adiciona columna donde se presenta el stock de la bodega de Centro de Distribución(Inmaconsa).
+
+
+v0.17.6: (Ingrid Lino. - 13/Feb/2015)
+-----
+Se agrega columna de Cantidad disponible.
+
+
+v0.17.7: (Christian Mateo -  21/Ago/2015)
+-----
+Se agrega el uso de ZafReglas para generación de OD Y G.R., en reemplazo del ZafSer01.
+
+
+v0.17.8: (Christian Mateo - 09/Sep/2015)
+-----
+Se comentan commit externos en la función generarODLocRem().
+
+
+v0.17.9: (Rosa Zambrano -  11/Sep/2015)
+-----
+Se agrega nueva columnas con código de 3 letras, ubicación de bodega, solicitado por Alfredo Paulson 10/Sep/2015.
+
+
+v0.17.10: (Christian Mateo -  22/Sep/2015)
+-----
+Se modifica para que no genere errores por cambios en los nombres de items con caracteres especiales.
+
+
+v0.18.0: (Rosa Zambrano -  28/Dic/2015)
+-----
+Se agrega cambio de Ingrid del 21/Dic/2015 que valida por tipo de documento de retorno que no verifique stock de la bodega de distribución en configurarTblDat().
+
+
+v0.18.1: (Ingrid Lino -  19/Ene/2016)
+-----
+Se valida el tipo de documento de retorno para cuando es bodega de Centro de Distribución no valide sobre columna de valor disponible de grupo. 
+Esto ya existia cuando era California, cuando se creo el tipo de documento de retorno se olvido validar.
+La idea es que cuando la bodega de centro de distribución no tenga stock, se traiga la mercadería. Valida que en la otra bodega se traiga la mercadería y deje el mínimo configurado.
+
+
+v0.18.2: (Jose Mario Marin -  20/Jun/2016)
+-----
+Se modifica para que trabaje con el nuevo esquema de Transferencias de inventario 
+
+
+v0.18.3: (Jose Mario Marin -  19/Jul/2016)
+-----
+Se realizan modificaciones para el nuevo esquema de Solicitudes de Transferencias de Inventario.
+
+
+v0.18.4: (Jose Mario Marin -  29/Jul/2016)
+-----
+Se realizan correcciones para el nuevo esquema de Solicitudes de Transferencias de Inventario.
+
+
+v0.18.5: (Jose Mario Marin -  08/Ago/2016)
+-----
+Se cambia el disponible - reserva por venta.
+
+
+v0.18.6: (Jose Mario Marin -  11/Ago/2016)
+-----
+Se agrega columna de disponible.
+
+
+v0.18.7: (Jose Mario Marin -  11/Ago/2016)
+-----
+Se agrega columna de disponible, se agrega validacion de Ingid y se corrige el disponible.
+
+
+v0.18.8: (Jose Mario Marin -  23/Ago/2016)
+-----
+Se corrige el query para Retorno de mercaderia a bodega de distribucion.
+
+
+v0.18.9: (Jose Mario Marin -  24/Ago/2016)
+-----
+Se corrige la consulta, por la columna.
+
+
+v0.18.10: (Ingrid Lino -  21/Nov/2016)
+-----
+Se adiciona columnas de disponible de stock.
+
+
+v0.18.12: (Rosa Zambrano -  28/Nov/2016)
+-----
+Se corrige cargarDetReg, debido a error en la consulta.
+
+
+v0.18.13: (Rosa Zambrano -  29/Nov/2016)
+-----
+Se cambia para que al consultar no queden abiertas las conexiones.

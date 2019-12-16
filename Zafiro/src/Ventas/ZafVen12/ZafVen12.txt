@@ -1,0 +1,16 @@
+﻿Pendientes:
+1) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Javier Ayapata - 14/Abr/2008)
+----
+Clase nueva "Listado de Cotizaciones de Venta"
+
+
+v0.2: (Rosa Zambrano - 18/Nov/2015)
+-----
+Se realizaron varias mejoras.
+Se agrego por empresa la búsqueda por locales, en base a las configuraciones de la tabla tbr_locPrgUsr.
+

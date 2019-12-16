@@ -1,0 +1,72 @@
+Pendientes:
+1) 
+2) 
+3) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 06/Jul/2007)
+----
+Clase nueva
+
+
+v0.2: (Eddye Lino - 04/Oct/2007)
+----
+Se corrigieron los métodos: 
+    1) configurarTblDatVenConCli()
+    2) configurarTblDatVenConLoc()
+En ambos métodos se agregó código para que se excluyera de las ventas de contado las ventas donde el cliente
+tiene establecido días de gracia. Según las últimas conversaciones tenidas con el Gerente se llegó a la
+conclusión de que una venta de contado debe cumplir las siguientes condiciones:
+1)Forma de pago="Contado".
+2)Días de gracia del cliente=0.
+
+
+v0.3: (Eddye Lino - 23/Jun/2008)
+----
+Se corrigieron los métodos: 
+    1) cargarVenConCli()
+    2) cargarVenConLoc()
+En ambos métodos se agregó código para que se excluyera de las ventas de contado las ventas que todavía no han
+sido impresas. El código que se agregó es el siguiente:
+    strSQL+=" AND a1.st_imp='S'";
+
+
+v0.4: (Eddye Lino - 17/Sep/2008)
+----
+Se corrigieron los métodos: 
+    1) cargarVenConCli()
+    2) cargarVenConLoc()
+En ambos métodos se agregó código para que se excluyera de las ventas de contado las ventas que fueron autorizadas
+ser excluidas. El código que se agregó es el siguiente:
+    strSQL+=" AND (a1.st_excDocConVenCon IS NULL OR a1.st_excDocConVenCon='N')";
+
+
+v0.5: (Eddye Lino - 22/Oct/2010)
+----
+Se corrigieron los métodos: 
+    1) cargarVenConCli()
+    2) cargarVenConLoc()
+    3) configurarTblDatVenConCli()
+    4) configurarTblDatVenConLoc()
+En ambos métodos se agregó código para que se excluyera de las ventas de contado las ventas que ya tienen ingresado
+el cheque. El código que se agregó es el siguiente:
+    strSQL+=" AND (a2.fe_venChq IS NULL OR a2.nd_monChq IS NULL OR a2.fe_ven<a2.fe_venChq OR (a2.mo_pag+a2.nd_monChq)<0)";
+Además se agregaron 2 columnas en el JTable para mostrar: "Fecha de vencimiento del cheque" y "Valor del cheque".
+
+
+v0.6: (Eddye Lino - 27/Jul/2011)
+----
+Se modificaron los métodos: 
+    1) cargarVenConCli()
+    2) cargarVenConLoc()
+En ambos métodos se modificó la sentencia SQL para que en lugar de validar con la fecha de vencimiento se valide
+con la fecha actual.Se reemplazó a2.fe_ven por " + objParSis.getFuncionFechaHoraBaseDatos() + "
+Antes:
+    strSQL+=", -(a2.mo_pag+a2.nd_abo+(CASE WHEN a2.nd_monChq IS NULL THEN 0 ELSE (CASE WHEN a2.fe_ven<a2.fe_venChq THEN 0 ELSE a2.nd_monChq END) END)) AS nd_pen, a2.fe_venChq, a2.nd_monChq";
+Después:
+    strSQL+=", -(a2.mo_pag+a2.nd_abo+(CASE WHEN a2.nd_monChq IS NULL THEN 0 ELSE (CASE WHEN " + objParSis.getFuncionFechaHoraBaseDatos() + "<a2.fe_venChq THEN 0 ELSE a2.nd_monChq END) END)) AS nd_pen, a2.fe_venChq, a2.nd_monChq";
+Con este cambio se logra que si la factura es del 15/Abr/2011, el cheque tiene fecha de 21/Abr/2011 y hoy es 18/Abr/2011
+sólo se considere dicha factura en el control el 15, 16, 17, 18, 19 y 20 de abril porque el cheque es del 21. Es decir,
+si hoy fuera 21 ya no se consideraría dicha factura en el control de ventas de contado.

@@ -1,0 +1,20 @@
+﻿
+CONTROL DE VERSIONES:
+=====================
+
+
+v1.0: (Roberto Flores- 22/01/2013)
+----
+Clase nueva para la Programación de Revisión de Sueldos.
+
+v1.01: (Roberto Flores- 13/09/2013)
+----
+Corrección al momento de realizar cálculo de Bono y Movilización programado.
+
+v1.02: (David Albuja- 06/06/2014)
+----
+Corrección al momento de realizar cálculo de Bono y Movilización programado y el reporte.
+
+v1.03: (David Albuja- 24/06/2014)
+----
+Al grabar invoca al Servicio9.

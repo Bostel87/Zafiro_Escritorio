@@ -1,0 +1,7 @@
+v0.1  (27-junio-2011)
+  clase nueva para el control de facturar y vrificar confirmaciones de ingreso.
+
+ 
+v0.1.1:  (Ingrid Lino - 29/Sep/2014)
+----
+Se adiciona bodega 28 para nueva sucursal de Cuenca(No estoy segura si esta clase debió actualizarse).

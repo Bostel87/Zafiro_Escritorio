@@ -1,0 +1,17 @@
+Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 29/Sep/2006)
+----
+Se corrigió el siguiente problema:
+Cuando se edita la celda con doble click la clase invoca el "actionPerformed" y luego "focusLost".
+Para evitar que se repita la llamada a "thisActionPerformed" se agregó la variable "blnActLisEje" y se 
+validó el estado de dicha variable en "focusLost".
+
+
+v0.2: (Eddye Lino - XX/XXX/2006)
+-----

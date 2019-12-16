@@ -1,0 +1,16 @@
+﻿
+CONTROL DE VERSIONES:
+=====================
+
+
+v1.0: (Roberto Flores- 04/07/2013)
+----
+Clase nueva Recursos humanos - Roles de pago - Beneficios sociales - Décimo tercer sueldo...
+
+v1.01: (Roberto Flores- 13/12/2013)
+----
+Se realizan validaciones para considerar las comisiones aportables al seguro y comisiones de vendedoras como bono...
+
+v1.02: (Roberto Flores- 18/12/2013)
+----
+Se realizan validaciones para regresar al período anterior de la movilización(Diciembre-Noviembre).

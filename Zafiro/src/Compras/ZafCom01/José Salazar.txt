@@ -1,0 +1,191 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (José Salazar - 06/Ene/2006)
+-----
+Se agrego columna de telefono a la ventana de consulta de Proveedor
+metodo FndProveedor(string,int)
+
+
+v.1.1: (José Salazar - 06/ene/2006)
+------
+Se corrigio error al insertar el subtotal 
+
+
+v0.2: (José Salazar - 19/Ene/2006)
+-----
+Se actualizo metodos para usar actualizacion de ZafToolBar
+
+
+v0.2.1: (José Salazar - 24/Ene/2006)
+-------
+Se arreglo problemas al mostrar valor de costeo 
+
+
+v0.2.1: (José Salazar - 24/Ene/2006)
+-------
+Se arreglo problemas al mostrar valor de costeo 
+
+
+v0.2.2: (Javier Ayapata - 27/Mar/2006)
+-------
+Se agrego una ventana de ayuda cuando se preciona F8 en un item, tambien se Agrego
+la ventan de confirmacion de cerrar ventana 
+
+
+v0.2.3: (Javier Ayapata - 18/Abr/2006)
+-------
+Se agrega la vista preliminar y la impresion del Ireport
+
+
+v0.2.4: (Javier Ayapata - 03/May/2006)
+-------
+Se corrigue para que coloque el iva cuando se busca por el boton de item
+
+
+v0.2.5: (Javier Ayapata - 10/May/2006)
+-------
+Se corrigue para que funcione con la clase ZafPopupmenu
+
+
+v0.2.8: (Javier Ayapata - 21/May/2006)
+-------
+se optimiza la conexion a base en la funcion de calculaPagos()
+
+
+v0.3: (Javier Ayapata - 10/Jul/2006)
+-----
+Se obtimiza en la forma de pago
+
+
+v0.4: (Javier Ayapata - 22/Ago/2006)
+-----
+Se agrega que actualiza precios 
+
+
+v0.5: (Javier Ayapata - 23/Oct/2006)
+-----
+Se agrega un filtro de las terminales en listado de items.
+
+
+v0.6: (Javier Ayapata - 31/Oct/2006)
+-----
+Se corrigue al momento de consultar listado de item de compras.
+
+
+v1.0: (Javier Ayapata - 28/Oct/2006)
+-----
+Se quita validacion de item de servicion, ahora salen todos.
+
+
+v1.1: (Javier Ayapata - 05/Dic/2006)
+-----
+Se corrigue al momento de elegir el proveedor y comprador.
+
+
+v1.4: (Javier Ayapata - 08/Feb/2007)
+-----
+Se agrega el estado de replicacion.
+
+
+v1.5: (Javier Ayapata - 20/Abr/2007)
+-----
+Se agrega el uso de las terminales.
+
+
+v1.6: (Javier Ayapata - 09/May/2007)
+-----
+Se agrega valisacion en el listado de item que no aparescan los estado Inactivos.
+
+
+v1.7: (Javier Ayapata - 20/Jul/2007)
+-----
+Se agrega para que no coja los items que tienen estado E eliminado.
+
+
+v1.8: (Javier Ayapata - 22/Ene/2008)
+-----
+Se agrega en listado de items  para que no aparescan los estado Unificado.
+
+
+v1.8.1: (Javier Ayapata - 28/Ene/2008)
+-------
+Se agrega que almecene el campo co_itmact en tbm_detmovinv 
+
+ 
+v1.8.2: (Javier Ayapata - 11/Mar/2008)
+-------
+Se corrigue el query que extraer los proveedores agregando la tabla tbr_cliloc
+
+ 
+v1.8.2: (Javier Ayapata - 17/Jun/2008)
+-------
+Se corrigue el query que extraer los proveedores agregando la tabla tbr_cliloc
+
+  
+v1.8.3: (Javier Ayapata - 31/Jul/2008)
+-------
+Se agrega para que pueda ser tomado tambien estado los estado de cliente Nuevo 'N'.
+
+
+v1.8.4: (Javier Ayapata - 28/Oct/2008)
+-------
+Se corrigue la funcion de insertar datos.
+
+
+v1.8.5: (Javier Ayapata - 26/Nov/2008)
+-------
+Se corrigue error al consultar.
+
+
+v1.9: (Javier Ayapata - 11/May/2009)
+-----
+Se agrega para que pueda escojer bodega.
+
+
+v2.0: (Javier Ayapata - 15/Oct/2009)
+-----
+Se agrega constructor de la cotizacion cuando es llamado de la pantalla de reposición.
+
+
+v2.1: (Javier Ayapata - 22/Oct/2010)
+-----
+Se cambia configuracion de reporteria que esta en el servidor.
+
+
+v2.2: (Javier Ayapata - 17/Ene/2011)
+-----
+Se agrega en ventana de consulta de item columna si el item es de servicio.
+
+
+v2.3: (Erik Flores - 07/May/2012)
+-----
+Se modifica para que no se permita hacer cotizaciones/ordenes de compra para items terminal L
+
+
+v2.4: (Erik Flores - 09/May/2012)
+-----
+Se modifica para que en COSENCO se permita hacer la cotizacion de compra de items terminal L 
+
+
+v2.5: (Alex Morán - 02/Ene/2013)
+-----
+Se modifica para utilizar correctamente la funcion de redondeo
+
+
+v2.6: (Alex Morán - 03/Jun/2013)
+-----
+Se modifica redondeo en totales
+
+
+v2.7: (Eddye Lino - 24/Dic/2013)
+-----
+Se corrigió la validación de los terminales "L". La idea era que no se pueda utilizar terminales "L".
+Sin embargo el programa estaba bloqueando items que en alguna parte tuvieran una "L" y no sólo los items
+que terminaban en "L".
+
+

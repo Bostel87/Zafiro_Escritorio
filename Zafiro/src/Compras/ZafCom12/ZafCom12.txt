@@ -1,0 +1,29 @@
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Javier Ayapata - 29/May/2006)
+----
+Clase nueva "Listado de ingresos/egresos de inventario..."
+
+
+v0.2: (Javier Ayapata - 28/Abr/2007)
+-----
+Se agrega para que escoja reporte solo para tuval donde aparece la orden de compra  asociada a la factura.
+
+
+v0.3: (Javier Ayapata - 09/May/2007)
+-----
+Se agrega para que escoja reporte solo para grupo.
+
+
+v0.4: (Javier Ayapata - 16/Sep/2008)
+-----
+Se agrega tipos de documento por usuario y tambien ruta de reporte dependiendo del sistema operativo.
+
+
+v0.5: (Rosa Zambrano - 05/Feb/2019)
+-----
+Se elimina uso de libreria obsoleta, para el uso de jasper Studio.
+
+

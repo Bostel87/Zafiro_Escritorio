@@ -1,0 +1,23 @@
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1:  Javier Ayapata  18/Mayo/2011
+  clase nueva autorizaion de cantidad en mal estado
+
+v0.2:  Javier Ayapata  08/Junio/2011
+  agrega para tome el codigo de cuenta desde la base.
+
+v0.3:  Javier Ayapata  30/Junio/2011
+  agrega tambien que funcione con la cantidad nunca recibida.
+
+v0.4:  Javier Ayapata  12/Julio/2011
+  se agrega que tambien considere espacio en blanco en cantidad nunca recibida.
+
+v0.5:  Javier Ayapata  14/Julio/2011
+  se agrega para que se envie correo ha alfredo al momento que se autorize mercederia por faltante.
+
+
+
+
+

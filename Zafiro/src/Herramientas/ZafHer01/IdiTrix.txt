@@ -1,0 +1,14 @@
+Pendientes:
+1) 
+2) 
+
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (IdiTrix)
+----
+	Implementacion de Autorizaciones
+
+v0.2: ()
+-----

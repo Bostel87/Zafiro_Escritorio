@@ -1,0 +1,7 @@
+﻿
+CONTROL DE VERSIONES:
+=====================
+
+v0.1:  Javier Ayapata  12/Oct/2008
+----
+   clase nueva de Seguimiento de reposición

@@ -1,0 +1,25 @@
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Javier Ayapata - 20/Agosto/2007)
+----
+ Clase nueva Configuracion de flujo.
+
+v0.1 BETA 2: (Javier Ayapata - 23/Agosto/2007)
+  se corrigue al momento de modificar, y validar que no se ingrese dos cuentas repetidas.
+
+v0.1 BETA 3: (Javier Ayapata - 27/Agosto/2007)
+  se corrigue al momento de modificar, y validar que no se ingrese cuentas teniendo como padre a una cuenta
+  de mayor o detalle.
+ 
+
+v0.2 BETA 1: (Javier Ayapata - 03/Septiembre/2007)
+  se agrega para que almacene la configuracion a nivel de grupo.
+
+v0.3: (Javier Ayapata - 11/Septiembre/2007)
+  se corrigue al momento de modificar una cuenta. 
+
+v0.4: (Javier Ayapata - 25/Septiembre/2007)
+  se corrigue al momento de insertar cuando es empresa colocando tambien en co_empgrp.
+

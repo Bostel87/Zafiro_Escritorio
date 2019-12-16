@@ -1,0 +1,14 @@
+Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Tony Sanginez - 01/Nov/2016)
+----
+Nuevo programa para imprimir en forma masiva documentos de retenciones.
+
+v0.2: (Tony Sanginez - 09/Jun/2016)
+----
+Se agregan tipos de documentos de retenciones recibidas.

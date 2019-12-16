@@ -1,0 +1,14 @@
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Ingrid Lino - 05/May/2011)
+----
+Nuevo programa para ingresar cuentas bancarias.Esta informaci�n es usada para Cartas que se imprimen a traves del programa OTROS MOVIMIENTOS BANCARIOS EN GRUPO.
+
+v0.1.1: (Ingrid Lino - 16/Jun/2011)
+----
+Se adiciono el campo tx_rucBan. Este campo se usa en el formulario del SRI.
+
+v0.1.2: (Ingrid Lino - 09/Sep/2011)
+----
+Se elimina en toda relacion con tbm_expImp el campo tx_emp y co_emp

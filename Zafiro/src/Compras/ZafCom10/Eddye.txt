@@ -1,0 +1,84 @@
+﻿Pendientes:
+1) 
+2) 
+3) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 08/Abr/2006)
+----
+Se reemplazo la clase "ZafConsulta" por "ZafVenCon".
+
+
+v0.2: (Eddye Lino - 06/Jun/2006)
+-----
+Se agregó nuevos estados en el JComboBox "Estado del documento".
+
+
+v0.3: (Eddye Lino - 18/Oct/2007)
+-----
+Se hizo lo siguiente: 
+   1) Se cambio los JTextField que permitían ingresar el rango de fechas por la clase "ZafSelFec".
+   2) Se agregó filtro por local.
+
+
+v0.4: (Eddye Lino - 26/Nov/2007)
+----
+Se agregó al filtro el JComboBox "Estado de confirmación".
+Se modificaron los métodos: 
+   1) configurarFrm()
+   2) cargarDetReg()
+En ambos métodos se agregó código para manejar dicho filtro.
+
+
+v0.5: (Eddye Lino - 17/May/2010)
+----
+Se modificaron los métodos: 
+   1) configurarTblDat()
+   2) cargarDetReg()
+   3) configurarVenConLoc()
+   4) configurarVenConTipDoc()
+   5) configurarVenConCli()
+Se agregó en el JTable campos de auditoría para poder determinar la fecha, usuario y computadora
+de ingreso y última modificación del documento. Dichas columnas se presentan sólo si el usuario 
+tiene permiso para poder verlas. Además se agregó el uso de la función "objUti.utilizarClientesEmpresa()".
+
+
+v0.6: (Eddye Lino - 05/Jul/2010)
+----
+Se agregó filtro por "Vendedor/Comprador".
+
+
+v0.7: (Eddye Lino - 07/Ene/2014)
+----
+Se modificó el método: 
+   1) cargarDetReg()
+Se cambió el campo "nd_porIva" por "nd_valIva" ya que era más útil el valor que el porcentaje de IVA.
+
+
+v0.8: (Eddye Lino - 02/Oct/2015)
+----
+Se modificó el método: 
+   1) tblDatKeyPressed(java.awt.event.KeyEvent evt)
+Se reemplazó "evt.setKeyCode(0);" por "evt.consume();" porque a partir de "Java 7" ya no consumía el ENTER.
+
+
+v0.9: (Rosa Zambrano - 25/Nov/2015)
+-----
+Se utiliza la función validaLocUsr() en las siguientes funciones:
+ 1) cargarDetReg()
+ 2) configurarVenConLoc() 
+ 3) configurarVenConCli()
+Se agrega permisos de usuarios para configuración de locales en la tabla tbr_locPrgUsr, en reemplazo de los parametros de la tabla tbr_parUsr.
+Se agrega filtro para que se presenten solo los tipos de documentos de acuerdo a la tabla tbr_tipdocprg.
+
+
+v0.10: (Eddye Lino - 09/Abr/2018)
+-----
+Se habilitó el reporte para que funcione por el Grupo.
+
+
+v0.11: (Rosa Zambrano - 29/Nov/2018)
+-----
+Se agrega grupo de cliente, solicitado por Werner Campoverde.

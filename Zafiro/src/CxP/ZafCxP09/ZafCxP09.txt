@@ -1,0 +1,137 @@
+﻿Pendientes:
+1) ﻿
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Javier Ayapata - 29/Nov/2010)
+----
+Clase nueva "Recepción de Facturas de Proveedores".
+
+
+v0.2: (Javier Ayapata - 02/Dic/2010)
+-----
+Se agrega constructor.
+
+
+v0.3: (Javier Ayapata - 04/Mar/2011)
+-----
+Se agrega cambios al momento de agregar una orden de compra.
+
+
+v0.4: (Javier Ayapata - 02/Ago/2011)
+-----
+Se agrega para que cuando se cambie cuentas contables en OC verifique si tiene DEVCOM y también las cambie.
+
+
+v0.5: (Eddye Lino - 27/Feb/2013)
+-----
+Se modificó el método: 
+   1) isCamVal()
+Se validó que el campo "Núm.Aut." sólo admita 10 o 37 caracteres.
+El campo "Fec.Cad." sólo es obligatorio cuando "Núm.Aut." tiene 10 caracteres.
+
+
+v0.6: (Alex Morán - 02/Sep/2013)
+-----
+Se agrega validación para verificar que la factura a ingresar no haya sido registrado anteriormente.
+
+
+v0.7: (Dennis Betancourt - 27/Feb/2015)
+-----
+Se agrega validación para que el numero de la factura sea ingresada con una longitud de 9 digitos, y para que el numero de serie sea ingresado con una longitud de 7 caracteres en el formato "999-999".
+
+
+v0.8: (Rosa Zambrano - 01/Abr/2015)
+-----
+Se agrega el método eliminaCeros() que permite eliminar los 0 a la izquierda del string ingresado en la celda del Jtable.
+Se modifica el isCamVal(): Agregando la siguiente línea =>  String strFac=eliminaCeros(strNumFac); 
+Se corrige la función facturaProveedorExisteSistema() utilizando eliminaCeros() para validar que el número de la factura no haya sido ingresado anteriormente.
+
+
+v0.9: (Rosa Zambrano - 14/Abr/2015)
+-----
+Se agrega validación en isCamVal() para que solo cuando es la opción insertar valide si la factura del proveedor existe. 
+
+
+v1.0: (Rosa Zambrano - 22/May/2015)
+-----
+Se agrega validación en facturaProveedorExisteSistema() para que valide el número de serie de la factura.
+
+
+v1.1: (Dennis Betancourt - 22/Feb/2017)
+-----
+En el detalle al pustar el boton donde aparece el JDialogo que muestra las FACCOM asocidadas al proveedor, para Tuval se valido que si es el local de Inmaconsa nuevo, entonces se va a agregar en la condicion del query para que tambien traiga documentos del local de Inmaconsa cerrado (CodLoc 10).
+
+
+v1.2: (Dennis Betancourt - 02/Mar/2017)
+-----
+Se modifico la condicion para que el Numero_Autorizacion_SRI ademas de tener 10 o 37 digitos, ahora pueda tener 49 digitos de longitud debido al esquema OffLine del SRI.
+
+
+v1.3: (Tony Sanginez - 22/Mar/2017)
+-----
+En el detalle al pulsar el boton donde aparece el JDialogo que muestra las FACCOM asociadas al proveedor, 
+se agregó validación por medio de los abonos si la resta del abono da un valor mayor a cero se van a mostrar los documentos como pendientes.
+
+
+v1.4: (Tony Sanginez - 04/Abr/2017)
+-----
+Se reversa la version v1.3 por la v1.2
+
+
+v1.5: (Tony Sanginez - 04/Abr/2017)
+-----
+Se agrega filtro en query para evitar que aparezcan documentos ya seleccionados.
+
+
+v1.6: (Tony Sanginez - 06/Abr/2017)
+-----
+Se agrego filtro en el query para que realice esta validación "and nd_tot+abono>0.00" asi no apareceran las que ya se encuentran canceladas.
+
+
+v1.7: (Rosa Zambrano - 05/Mar/2018)
+-----
+* Se agrega en la función actualizaPagMoviInv() la actualización de tbm_pagMovInv.fe_ven basado en la fecha de la factura, este cambio aplica solo para OPIMPO y OPCOLO. 
+  - Se valida que para actualizar la fecha de vencimiento en los registros de retenciones, no existan retenciones realizadas.
+  - Se valida que para actualizar la fecha de vencimiento en los pagos no deben haber sido autorizados ni pagados.
+  
+* Solicitado po Alfredo Paulson 05Ene2018: Castek: Caso OPCOLO#2015211 (Incorrecta)  / OPCOLO#2015219 (Correcto).
+  Se agrega validación de facturas para que no se repitan indiferente de la empresa y proveedor.
+  - Validar en facturas electronicas no se repita el numero de autorizacion.
+  - Validar en facturas preimpresas no se repita el numero de autorizacion  y factura (las 2 deben validarse al mismo tiempo).
+
+
+v1.8: (Rosa Zambrano - 03/Ago/2018)
+-----
+Se agrega en la función actualizaPagMoviInv(), cambio aplica solo para OPIMPO y OPCOLO: 
+* Actualización de fecha de factura en tbm_pagMovInv.fe_venChq
+
+
+v1.9: (Rosa Zambrano - 28/Sep/2018)
+-----
+Se realizan cambios varios.
+Se agrega la opción de búsqueda y ordenamiento en el listado de facturas de compra.
+
+
+v2.0: (Rosa Zambrano - 09/Oct/2018)
+-----
+Se bloquea para que no se puedan realizar recepciones de documentos de importaciones opimpo, opcolo.
+Validar que no se presenten recepciones de opimpo, opcolo.
+
+
+v2.1: (Dennis Betancourt - 17/Oct/2018)
+-----
+Se agrega la funcion validarExiFacPrv_TodasEmpresas() la cual se encargara de validar que el Num.Serie y Num.Factura de un proveedor no se repita a nivel de todas las empresas que esten en la base de datos.
+
+
+v2.2: (Dennis Betancourt - 29/Nov/2018)
+-----
+Se valida que la fecha de la col. "Fec.Cad." no sea menor que la fecha de la col. "Fec.Fac.".
+
+
+v2.3: (Rosa Zambrano - 24/Jun/2019)
+-----
+Se corrige al momento de asignar facturas, para que anule registros anteriores e inserte nuevos.
+Estaba generando duplicidad en el detalle de recepción de documentos.

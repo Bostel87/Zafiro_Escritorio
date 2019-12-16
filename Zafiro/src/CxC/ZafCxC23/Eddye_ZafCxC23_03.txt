@@ -1,0 +1,28 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 11/Mar/2008)
+----
+Clase nueva.
+
+
+v0.2: (Eddye Lino - 11/Jun/2008)
+----
+Se agregaron los métodos: 
+   1) ZafCxC23_03(ZafParSis obj, String identificacionCliente)
+Se modificaron los métodos: 
+   1) consultarReg()
+   2) ZafThreadGUI.run()
+En dichos métodos se modificó el código para que funcionaran con el nuevo constructor.
+
+
+v0.3: (Eddye Lino - 02/Sep/2008)
+----
+Se agregaron los siguientes campos: 
+   1) Cabecera: Propietario, Actividad
+   2) Referencias comerciales: Observación1
+   3) Referencias bancarias: Fecha de apertura de la cuenta, Observación1

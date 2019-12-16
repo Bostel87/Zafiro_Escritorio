@@ -1,0 +1,78 @@
+﻿Pendientes:
+1) 
+2) 
+
+﻿CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Rosa Zambrano - 15/Ago/2018)
+----
+Clase para "Pagos de Importaciones".
+
+
+v0.1.1: (Rosa Zambrano - 25/Oct/2018)
+-----
+Se agrega función para realizar cierre de pagos.
+Se agrega función para modificar pedido embarcado.
+
+v0.1.2: (Rosa Zambrano - 31/Oct/2018)
+-----
+Según lo indicado por Alfredo Paulson se realizan los siguiente cambios en la generación del TRBADA:
+ * El valor de la cuenta de IVA de Importaciones, debe tener exclusivamente el valor del cargo IVA.
+ * El valor de la cuenta del Pedido, será la diferencia del Valor total del documento y el Valor del cargo IVA.
+
+v0.1.3: (Rosa Zambrano - 05/Nov/2018)
+-----
+Se almacenará en tbm_CabPag y tbm_DetPag.
+
+v0.1.4: (Rosa Zambrano - 14/Nov/2018)
+-----
+Se renombra tabla relacional de detalle de consumo interno con cargos a pagar del pedido embarcado.
+
+v0.1.5: (Rosa Zambrano - 26/Nov/2018)
+-----
+Se agrega actualización de fecha y usuario de autorización en DxP.
+Se agrega actualización de fecha y usuario de autorización en TRBADA.
+Se reestructura clase.
+
+v0.1.6: (Rosa Zambrano - 17/Dic/2018)
+-----
+Se cambia constructor de pago de impuestos de importaciones.
+
+v0.1.7: (Rosa Zambrano - 02/Ene/2019)
+-----
+Se cambia constructor de pago de impuestos de importaciones con el estandar (ZafParSis, componente).
+
+v0.1.8: (Rosa Zambrano - 07/Ene/2019)
+-----
+Se agregan más validaciones para que cuando se quiera procesar un pago de impuestos, y actualizar los cargos del pedido embarcado. No permita insertar sin detalle.
+
+v0.1.9: (Rosa Zambrano - 18/Feb/2019)
+-----
+Se modifica la función insertarDetOtrMovBan, para que solo guarde un registro y lo guarde con el valor total. Revisado con Ingrid Lino.
+
+v0.2.0: (Rosa Zambrano - 28/Feb/2019)
+-----
+Se modifica la función insertarDetOtrMovBan, para que guarde el valor en BigDecimal.
+
+v0.2.1: (Rosa Zambrano - 20/Jun/2019)
+-----
+Según lo conversado y analizado con Alfredo Paulson, Ingrid Lino y Eddye Lino el día 20Jun2019:
+- Se modifica actualizarPedEmb, para que no modifique el Pedido Embarcado al momento de autorizar.
+  Este cambio se realizó debido al nuevo esquema de asientos de diario y reversión en el Pedido Embarcado.
+  Anteriormente se actualizaba el pedido embarcado al autorizar, porque este no manejaba contabilidad.
+- Esta actualización de datos del cargo a pagar tipo aranceles, se traslada a la instancia de Ingreso por Importación,
+  se irá a leer el pago de arancel para obtener los nuevos valores de los cargos de aranceles y guardar la información actualizada.
+
+v0.2.2: (Rosa Zambrano - 21/Jun/2019)
+-----
+Solicitado por Alfredo Paulson 21Jun2019:
+ - Pagos de aranceles contabilizarán en la cuenta contable del pasivo.
+
+v0.2.3: (Rosa Zambrano - 12/Ago/2019)
+-----
+Se realizan cambios para el asiento de diario de aranceles, contemple pedidos consolidados.
+
+v0.2.4: (Rosa Zambrano - 20/Ago/2019)
+-----
+Se agregan campos de auditoria para cierre de pagos locales.

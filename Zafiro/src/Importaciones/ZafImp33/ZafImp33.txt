@@ -1,0 +1,399 @@
+﻿Pendientes:
+1) Unificación NP, PE, II.
+2)
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Ingrid Lino - 15/Mar/2012)
+----
+Programa que permite ingresar las Pedido Embarcado - IMPORTACIONES
+
+v0.1.1: (Ingrid Lino - 16/Mar/2012)
+----
+Se quita todo campo o relación con tabla creada para puertos porque se va a trabajar con tabla de ciudades.
+A nivel de db se cambia en el constraint "$8" de tbm_cabPedEmbImp el campo co_emp por co_imp. Generaba error al tratar de crear la cuenta de activo y pasivo.
+
+v0.1.2: (Ingrid Lino - 02/Abr/2012)
+----
+Se realizan cambios para en lugar de tomar el valor del pedido embarcado como principal, se toma el valor de la pieza, se realizan cambios basado en esto.
+
+v0.1.3: (Ingrid Lino - 17/Abr/2012)
+----
+Nada
+
+v0.1.4: (Ingrid Lino - 25/Abr/2012)
+----
+Se adiciona campo de fecha de arribo y se cambia esquema a valor de pieza y no tonelada metrica.
+
+v0.2: (Ingrid Lino - 02/May/2012)
+----
+Se cambia el esquema a piezas
+
+v0.2.1: (Ingrid Lino - 04/May/2012)
+----
+En la busqueda por campo Numero de Pedido se le adiciono funcionalidad de buscar por dato contenido y no directa.
+
+v0.2.2: (Ingrid Lino - 27/Jun/2012)
+----
+Se cambia el numero del documento por el numero del pedido en el nombre de la cuenta del diario.
+
+v0.2.3: (Ingrid Lino - 12/Jul/2012)
+----
+Se cambio en el reporte de impresion el valor en palabras. Antes se presentaba el valor del documento y Alfredo y Karem solicitaron que fuera el valor del CFR.
+Se añade en el reporte el Tnan.
+
+v0.2.4: (Ingrid Lino - 24/Jul/2012)
+----
+Se cambia el formato de impresion. Se coloca Tabla de Totales de las columnas y se quita lo que estaba anterior a eso, tambien se presenta el valor correcto en la columna segun sea TM o PZA.(solicitado por Alfredo).
+
+v0.2.5: (Ingrid Lino - 13/Ago/2012)
+----
+Se cambia en el query del reporte el campo de tbm_expImp, para el reporte del seguro de muestra tx_nom2 y para el reporte interno tx_nom. Se configura la modificacion para la columna de Precios Unitarios y se corrige falla al momento de insertar un nuevo item que no habia sido ingresado en la Nota de Pedido y lo ingresaban en Pedido Embarcado.
+
+v0.2.6: (Ingrid Lino - 21/Ago/2012)
+----
+Se cambia el mensaje que se presenta cuando el valor ingresado es diferente al del inicio.
+
+v0.2.7: (Ingrid Lino - 22/Ago/2012)
+----
+Se agrega validación para no poder anular/eliminar un Pedido Embarcado del cual ya se haya ingresado la Factura de Proveedor por Importación.
+
+v0.2.8: (Ingrid Lino - 03/Sep/2012)
+----
+Alfredo solicita que al dar click en modificar, tambien se pueda modificar el item(antes el boton de item solo era editable para la insercion, ahora es para insercion y modificacion, siempre y cuando se tenga acceso al menu 2925= porder insertar items, yo lo asumo como si fuese tambien modificar el item.)
+
+v0.2.9: (Ingrid Lino - 18/Sep/2012)
+----
+Se adiciona filtro para poder cerrar la nota de pedido a traves del pedido embarcado, esto servira por el momento solo para que cantidades q no se embarquen, dejen de salir en Configurción de parámetros por importación(Tampoco se permite seguir embarcando si la nota de pedido está cerrada.
+
+v0.2.10: (Ingrid Lino - 24/Sep/2012)
+----
+Se adiciona un filtro en el formulario para poder modificar el mes de embarque y arribo, incluyendo si el documento esta cerrado.
+
+v0.2.11: (Ingrid Lino - 11/Oct/2012)
+----
+Se corrige problema al momento de guardar cambios en fecha arribo/embarque
+
+v0.2.12: (Ingrid Lino - 08/Nov/2012)
+----
+Se quita validación de si la Nota de Pedido esta cerrada, antes no se podia modificar el Pedido Embarcado. AP solicitó quitar ese bloqueo.
+
+v0.3: (Ingrid Lino - 16/Ago/2013)
+----
+Se adiciona un constructor de consulta para poder ser llamada la pantalla desde otros programas a manera de consulta.
+
+v0.4: (Ingrid Lino - 10/Oct/2013)
+----
+Se agregan campos de forma de pago y otros que serán útiles para la impresión de la factura de importación.
+
+v0.4.1: (Ingrid Lino - 14/Oct/2013)
+----
+Se cambia el código del reporte, lo había dejado con el de pruebas
+
+v0.4.2: (Ingrid Lino - 16/Oct/2013)
+----
+Se adiciona filtro en el query para obtener el valor del flete.
+
+v0.4.3: (Ingrid Lino - 21/Oct/2013)
+----
+Se descomenta la creación de cuentas de activo, pasivo, etc. Estaban comentadas porque estoy trabajando en el nuevo esquema de pedidos embarcados donde no se creará cuentas.
+
+v0.4.4: (Ingrid Lino - 15/Oct/2014)
+----
+Se agrega en el proceso la creación de cuentas de activo y pasivo, y flete aproximado. 
+
+v0.4.5: (Ingrid Lino - 11/Dic/2014)
+----
+Se cambia en el método de factor de flete y calcular flete cuando es TM FOB/CFR antes cantidad Pedido Embarcado, Alfredo Paulson indica que debe ser cantidad de tonelada metrica.
+
+v0.4.6: (Ingrid Lino - 05/Feb/2015)
+----
+El valor que contiene la  variable strValFle que se envia como parámetro al reporte de "Pedido Embarcado(Factura)". Ahora se presenta siempre el valor del Flete Aproximado, no importa si es FOB o CFR.
+
+v0.4.7: (Ingrid Lino - 14/Abr/2015)
+----
+Se adiciona codificación para Compras Locales.
+
+v0.4.8: (Ingrid Lino - 26/Jun/2015)
+----
+Se realizan cambios para calcular la columna de Arancel, si arancel=0 en cargo a pagar se toma columna "Valor CFR ARA", y si arancel!=0 en tabla de cargos a pagar entonces es la formula anterior quitandole el 1 + (....) se quita el "uno mas"
+
+v0.4.9: (Ingrid Lino - 15/Sep/2015)
+----
+Se valida que no lea la última línea al momento de validar items con terminales "S".
+
+v0.4.10: (Ingrid Lino - 13/Nov/2015)
+----
+Se añade método isValPreVta para verificar si existen items que reflejen valores menores al margen de precio de venta. Solicitado por LSC y AP.
+
+v0.4.11: (Ingrid Lino - 13/Nov/2015)
+----
+Se valida mensaje informativo de revisar margen de precio para que salga una vez y no en el for
+
+v0.4.12: (Ingrid Lino - 25/Nov/2015)
+----
+Se añade codificación para enviar correo de todos los items segmentados por colores según margen de precio de venta.
+
+v0.4.13: (Ingrid Lino - 27/Nov/2015)
+----
+Se añade factor +-0.5% como validador, se añade número de pedido en el Subject
+
+v0.4.14: (Ingrid Lino - 06/Abr/2016)
+----
+Se añade la columna de código del item en letras, solicitado por Alfredo Paulson.
+
+v0.4.15: (Ingrid Lino - 20/Abr/2016)
+----
+Se añade el título de Código en letras del item en el correo que se envía por Problemas de precios.
+
+v0.4.16: (Ingrid Lino - 19/Jul/2016)
+----
+Implementacion de nuevo proceso de solicitudes de transferencia de inventario.
+
+v0.4.17: (Ingrid Lino - 23/Ene/2017)
+----
+Se agrega en el correo(Subject), el número de documento ingresado en el día. Solicitado por Werner Campoverde.
+
+v0.4.18: (Ingrid Lino - 12/Sep/2017)
+----
+Se añade en la tabla del detalle de los items la casilla de Marcar/Desmarcar casillas de verificación
+
+v0.4.19: (Ingrid Lino - 12/Sep/2017)
+----
+Nuevo esquema de Provisiones ( Pedido Embarcado )
+
+v0.4.20: (Ingrid Lino - 29/Dic/2017)
+-----
+Se valida el Arancel de "Cargos a Pagar" y el "Detalle".
+
+v0.4.21: (Rosa Zambrano - 10/May/2018)
+-----
+En el correo de revisión de precios, se cambia query para que se ordene por Código Alterno.
+Se cambia forma de consultar no queden abiertas las conexiones.
+
+v0.4.22: (Rosa Zambrano - 24/May/2018)
+-----
+Se agrega valor de factura con Iva para compras locales, solicitado por Michelle Sánchez por motivo de Acerimallas.
+
+v0.5: (Rosa Zambrano - 30/May/2018)
+-----
+Segmentación de compras locales.
+Se asigna la misma versión para los programas NP, PE, II.
+Se traslada el exportador de "Cabecera" al "Detalle".
+
+v0.6: (Rosa Zambrano - 11/Jul/2018)
+-----
+Se agrega unidad de medida en la tabla de items, solicitado por AP.
+
+v0.7: (Rosa Zambrano - 12/Jul/2018)
+-----
+Se agrega función actualizar_Tbm_CarPagPedEmbImp para que al momento de modificar no mande error.
+
+v0.7.1: (Rosa Zambrano - 24/Jul/2018)
+-----
+Se agrega validación para que muestre pedidos embarcados del nuevo menu.
+
+v0.7.2: (Rosa Zambrano - 01/Oct/2018)
+-----
+Se agrega columna de registro en el método enviarCorElePreVta(). 
+Se corrige envio de correos en enviarCorEle, ya que no se enviaba el ultimo item.
+
+v0.7.3: (Rosa Zambrano - 04/Oct/2018)
+-----
+Cambio solicitado por AP: Se agrega función validarRangoPza(), que valida que esten las cantidades dentro del rango permitido.
+
+v0.7.4: (Rosa Zambrano - 18/Oct/2018)
+-----
+* Se presenta mensaje, cuando el peso es 0, para que le asignen un peso al item.
+  - Reportado por Michelle, El motivo de este mensaje, era que se quedaba colgado el proceso de inserción cuando un item no tenia peso.
+
+v0.7.5: (Rosa Zambrano - 25/Oct/2018)
+-----
+- Se cambia en la función setCabeceraPedidoEmbarcado la tabla tbm_detPedEmbImp por tbm_detNotPedImp, por tal motivo no obtenia el importador.
+
+v0.7.6: (Rosa Zambrano - 25/Oct/2018)
+-----
+- Se almacena la versión en el campo observación 1 del pedido embarcado, para saber en que versión se guardo el pedido en el sistema Zafiro.
+Cambios para "Pago de Impuestos"
+  - Se vuelven publicos los objetos objImp33_01, objImp33_02 para poder setear los cargos de impuestos del pedido embarcado.
+  - Se agrega nuevo constructor para modificar pagos de importaciones.
+  - Se crea nueva función para que actualice los datos del pedido embarcado, relacionado con los cargos pagados en aranceles.
+  - Se agrega el campo st_ciePagImp en la inserción del pedido embarcado.
+  
+v0.7.9: (Ingrid Lino - 30/Oct/2018)
+-----
+Se adiciona esquema de cargos a pagar que generan provisiones (st_genPro). Y se añade permiso para poder Cerrar Pedido Embarcado, mediante permisos a usuariis. "Ficha "General": Casilla "Cerrar pedido embarcado".
+
+
+v0.8.0: (Rosa Zambrano - 05/Nov/2018)
+-----
+Se agregan cambios del 29/Oct/2018:
+   * Se agrega versión 
+   * Cargar el listado de cargos a pagar por orden de ubicación.
+     - Se actualiza la función actualizar_tbmCarPagPedEmbImp, para que inserte un nuevo registro 
+       y no enlace el codigo de cargo como codigo de registro.
+   * Se agrega columna “Cos/Kg”. 
+   * Se corrige en función isNotaPedidoDesmarcadaItemsDesmarcados, para que no genere error al marcar/desmarcar.
+   * Se actualiza función actualizar_tbmCarPagPedEmbImp.
+   * Se agrega fecha de puerto, solicitado por Alfredo Paulson.
+
+v0.8.1: (Rosa Zambrano - 26/Nov/2018)
+-----
+Se realizan cambios para actualizar los cargos de acuerdo a los aranceles pagados.
+
+v0.8.2: (Rosa Zambrano - 10/Dic/2018)
+-----
+Se agrega validación isCuentaAsociadaSaldo al modificar.
+
+v0.8.3: (Rosa Zambrano - 17/Dic/2018)
+-----
+Se realizan mejoras.
+
+v0.8.4: (Rosa Zambrano - 18/Dic/2018)
+-----
+Se comenta validación isCuentaAsociadaSaldo al modificar.
+
+v0.8.5: (Rosa Zambrano - 27/Dic/2018)
+-----
+Se agrega validación isCuentaAsociadaSaldo al modificar.
+Se agrega validación para verificar que no exista el mismo pedido.
+Se agrega validación para que ingrese el valor de la factura, y el valor ingresado sea igual al Tot.Fob.Cfr.
+
+v0.8.6: (Rosa Zambrano - 02/Ene/2018)
+-----
+Se agrega validación al insertar para que no exista el mismo pedido.
+
+v0.8.7: (Rosa Zambrano - 03/Ene/2018)
+-----
+Se cambia validación de Valor factura, solicitado por Alfredo Paulson, el IL FREIGHT, GTO ORIGEN EN FACT se incluya para validación.
+
+v0.8.8: (Rosa Zambrano - 04/Ene/2018)
+-----
+Se corrige error de st_pagExt, correo enviado por Ing. Werner.
+
+v0.8.9: (Rosa Zambrano - 07/Ene/2019)
+-----
+Se agregan más validaciones para que cuando se quiera procesar un pago de impuestos, y actualizar los cargos del pedido embarcado. No permita insertar sin detalle.
+
+v0.9.0: (Rosa Zambrano - 14/Ene/2019)
+-----
+Se corrige al cargar notas de pedido.
+
+v0.9.1: (Rosa Zambrano - 11/Feb/2019)
+-----
+Se cambia el envío de correos, por la configuración de la tabla tbm_notSisCorEleLoc.
+
+v0.9.2: (Rosa Zambrano - 03/Abr/2019)  OK
+-----
+Se agrega en creación de cuentas, que se guarde el numero y nombre de la cuenta en la tabla tbm_salCta.
+
+v0.9.3: (Rosa Zambrano - 08/Abr/2019)  
+-----
+Se agrega validación de nuevo cargo "Intereses" cambios para factura de importación.
+
+v0.9.4: (Rosa Zambrano - 10/Abr/2019)
+-----
+Se agrega valor de ISD, en el detalle.
+
+v0.9.5: (Rosa Zambrano - 16/Abr/2019)
+-----
+Se corrige error al insertar cuenta
+
+v0.9.6: (Rosa Zambrano - 22/Abr/2019)
+-----
+Se agregan nuevos campos ne_pad y ne_niv en tabla tbm_salCta
+
+v0.9.7: (Rosa Zambrano - 12/Jun/2019)
+-----
+Se agrega fecha de colocación del pedido.
+
+v0.9.8: (Ingrid Lino - 10/Jun/2019) 
+----- 
+Asientos de diarios de reversión.
+
+v0.9.9: (Ingrid Lino - 17/Jun/2019)
+-----
+Nuevo esquema de asiento de diario y proceso de reversiones
+
+v0.10: (Ingrid Lino - 17/Jun/2019)
+-----
+Se agrega correcion de nuevos estados en nulos.
+
+v0.10.1: (Ingrid Lino - 19/Jun/2019)
+-----
+Se añade validación de modificación para esquema anterior y esquema nuevo de Modificación de Pedidos Embarcados(Antiguos/Nuevos).
+
+v0.10.2: (Ingrid Lino - 20/Jun/2019)
+-----
+Se coloca asignación en objeto de "chkCerPedEmb.setEnabled(false)" antes de validación de estado de documento st_doc='A'.
+
+v0.10.3: (Ingrid Lino - 20/Jun/2019)
+-----
+Al momento de generar la cuenta contable -Nombre- se cambia el número de pedido+versión por el número de pedido.
+
+v0.10.4: (Ingrid Lino - 24/Jun/2019)
+-----
+Se cambia el nombre del exportador por el de la dirección del exportador que se estaba colocando en el nombre que se crea en la cuenta contable.
+
+v0.10.5: (Ingrid Lino - 28/Jun/2019)
+-----
+Se valida el cambio de importador del existente en la Nota de Pedido al del Pedido Embarcado.
+
+v0.10.6: (Rosa Zambrano - 02/Jul/2019)
+-----
+Se agrega la función modifica_tbrDetConIntCarPagInsImp para actualizar la relación del pedido seleccionado con los pagos.
+
+v0.10.7: (Ingrid Lino - 03/Jul/2019)
+-----
+Se valida correctamente la edición de checkbox "Cambiar sólo el valor del flete aproximado", según permiso de usuario. Se valida en beforeUpdate el método isCamval para este checkbox, y se cambia el método de actualización de flete aproximado porque no sólo actualizaba este cargo sino todos los que eran 'O', y sólo debía ser el cargo 13.
+
+v0.10.8: (Rosa Zambrano - 03/Jul/2019)
+-----
+Se habilita consulta de asiento de diario del pedido embarcado.
+Se agrega tbm_cabPedEmbImp.nd_porISD en inserción, modificación y reversión.  
+Se agrega botón para generar provisión, sólo usuario admin.
+Se cambia en la función isExisteNumeroPedido, para que valide que no se repita el número del pedido con el número de pedido original y solo entre los pedidos con st_doc='A'.
+Búsqueda por número de pedido original.
+Se agrega check "Mostrar versiones de pedidos inactivos y de reversión."
+Se modifica para que al crear la cuenta de provisión, el nombre sea el "Número del pedido original" y no el número de la versión.
+
+v0.10.9: (Rosa Zambrano - 03/Jul/2019)
+-----
+Se presenta el número de pedido original.
+
+v0.11: (Rosa Zambrano - 04/Jul/2019)
+-----
+Se obtiene el local predeterminado al insertar registro, para poder leer la configuración del impuesto ISD.
+
+v0.11.1: (Rosa Zambrano - 04/Jul/2019)
+-----
+Se permite editar el número de pedido cuando insertas.
+
+v0.12: (Ingrid Lino - 30/Jul/2019)
+-----
+Se agrega código para Pedido Embarcado de Consolidados.
+
+v0.12.1: (Ingrid Lino - 31/Jul/2019)
+-----
+En afterClick del objTblPopMnu de la tabla ZafImp33_02, se comenta objTblMod.removeEmptyRows();   porque daba problemas al momento de consultar y luego dar click en seleccionar, no permitia seleccionar. Reportado por fruiz el 30/Jul/2019.
+
+v0.12.2: (Ingrid Lino - 05/Ago/2019)
+-----
+Problemas con diario de Ajuste de la Nota de Pedido al momento de modificar.
+
+v0.12.3: (Ingrid Lino - 05/Ago/2019)
+-----
+Se coloca en actualización de programa la opción de generación de provisión mejorada.
+
+v0.12.5: (Ingrid Lino - 12/Ago/2019)
+-----
+Validación para cerrar Pedido.
+
+v0.12.6: (Ingrid Lino - 15/Ago/2019)
+-----
+Se agrega código para poder cambiar el Importador y se generen adecuadamente todos los diarios.
+
+v0.12.7: (Ingrid Lino - 22/Ago/2019)
+-----
+En método: "modificar_tbmCabNotPedImp_asiDiaAjuPedEmb" se valida el llamado a "getQueryUpdate_tbmCabNotPedImp" por if(chkCerNotPed.isSelected());

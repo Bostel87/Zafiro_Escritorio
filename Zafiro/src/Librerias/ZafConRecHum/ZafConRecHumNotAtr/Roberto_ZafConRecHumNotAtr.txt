@@ -1,0 +1,52 @@
+﻿
+CONTROL DE VERSIONES:
+=====================
+
+
+v1.0: (Roberto Flores- 08/01/2013)
+----
+Clase nueva para mostrar los empleados que llegan atrasados a los jefes respectivos.
+
+v1.02: (Roberto Flores- 10/09/2013)
+----
+Se realizan cambios para mostrar los empleados que tienen faltas (suma de faltas y detalle) dentro de las fechas de corte del mes en curso...
+
+v1.03: (Roberto Flores- 10/09/2013)
+----
+Se añade código de usuario 207 para validación de que María Eugenia es la encargada del área de RRHH.
+
+v1.04: (Roberto Flores- 10/12/2013)
+----
+Se realizan cambios para mostrar los empleados que tienen marcaciones incompletas  (suma de faltas y detalle) dentro de las fechas de corte del mes en curso...
+
+v1.05: (Roberto Flores- 06/01/2014)
+----
+Se realizan validaciones para mostrar las pestañas así no hayan información alguna que mostrar.
+
+v1.06: (Roberto Flores- 09/01/2014)
+----
+Se añade código de usuario 220 para validación de que Ronnie es la encargado del área de RRHH.
+
+v1.07: (Roberto Flores- 26/02/2014)
+----
+Se añade código de usuario 225 para validación de que Mercedes que es ayudante del área de RRHH.
+
+v1.08: (Roberto Flores- 06/03/2014)
+----
+Se añade la versión para que aparezca en el recuadro de notificación y se realiza corrección al mostrar marcaciones incompletas.
+
+v1.09: (Roberto Flores- 04/04/2014)
+----
+Se realiza validación para mostrar las faltas solo de lunes a viernes ya que los sábados ya no serán catalogados como falta para justificar.Solicitado por: Johanna Cedeño
+
+v1.10: (David Albuja- 12/06/2014)
+----
+Se agrego al usuario jzapata y se quitaron a los codigo de usuario (166, 207)
+
+v1.11: (David Albuja- 17/06/2014)
+----
+Se agrego al usuario pmarin
+
+v1.12: (David Albuja- 26/06/2014)
+----
+Se corrigió el query para que aparezcan las faltas y atrasos de los subordinados de la persona que se ingresa al sistema.

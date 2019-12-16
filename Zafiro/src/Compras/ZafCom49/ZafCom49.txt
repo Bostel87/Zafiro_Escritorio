@@ -1,0 +1,19 @@
+Pendientes:
+1)
+2)
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Ingrid Lino - 24/Jun/2010)
+-----
+Nuevo programa para presentar las transferencias físicas de Inventario(Bodega Faltantes)
+
+v0.1.1: (Ingrid Lino - 24/Jun/2010)
+-----
+Se ocultó la columna de empresas cuando se ingresa por empresa. Por grupo si se la presenta.
+Los valores de cantidades ingresadas y egresadas se presentan en valor absoluto.
+
+v0.1.2: (Ingrid Lino - 25/Jun/2010)
+-----
+Se adicionó filtro de empresas, se permite la edición en la observación 2 y se coloca la columna de empresa como No oculta.

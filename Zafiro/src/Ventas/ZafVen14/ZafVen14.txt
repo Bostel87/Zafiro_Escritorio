@@ -1,0 +1,12 @@
+
+ver 0.1 javier ayapata (09-Septiembre-2009)
+  se crea clase para sabe valor entre compañias
+
+
+ver 0.2 javier ayapata (17-Septiembre-2009)
+  se agrega totales y los valores son absoluto.
+
+
+ver 0.3 javier ayapata (15-Octubre-2009)
+  se agrega totales y los valores son absoluto.
+

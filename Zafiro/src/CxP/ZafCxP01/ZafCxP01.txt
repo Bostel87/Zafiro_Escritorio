@@ -1,0 +1,25 @@
+﻿Pendientes:
+1) Revisar el código de la función insertar, de donde se llama la función porque debe ser por inserción.
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Darío Cárdenas - 10/Nov/2006)
+----
+Clase Nueva "Retenciones".
+
+v0.1.1: (Darío Cárdenas - 10/Nov/2006)
+-----
+Se corrigio Query para Eliminacion Logica en la funcion eliminarCab(), se elimino la funcion eliminarDet().
+
+v0.1.2: (Rosa Zambrano - 05/Feb/2019)
+-----
+Se elimina uso de libreria obsoleta, para el uso de jasper Studio.
+
+
+
+
+
+
+

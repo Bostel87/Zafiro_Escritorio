@@ -1,0 +1,10 @@
+Pendientes:
+1)
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Rosa Zambrano - 19/Abr/2018)
+----
+Nuevo programa "Reporte de importaciones con informacion de pedidos".
+

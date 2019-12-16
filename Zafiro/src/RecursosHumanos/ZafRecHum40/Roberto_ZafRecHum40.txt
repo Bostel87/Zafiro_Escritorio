@@ -1,0 +1,8 @@
+﻿
+CONTROL DE VERSIONES:
+=====================
+
+
+v1.0: (Roberto Flores- 24/07/2012)
+----
+Clase nueva para el mantenimiento de cuentas contables por empleado y por rubro

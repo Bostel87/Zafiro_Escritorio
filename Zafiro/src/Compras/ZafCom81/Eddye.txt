@@ -1,0 +1,39 @@
+﻿Pendientes:
+1) 
+2) 
+3) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 22/Oct/2014)
+----
+Clase nueva.
+
+
+v0.2: (Eddye Lino - 18/Feb/2015)
+----
+Se agregó en la tabla el campo "Dirección del cliente".
+
+
+v0.3: (Eddye Lino - 02/Oct/2015)
+----
+Se modificó el método: 
+   1) tblDatKeyPressed(java.awt.event.KeyEvent evt)
+Se reemplazó "evt.setKeyCode(0);" por "evt.consume();" porque a partir de "Java 7" ya no consumía el ENTER.
+
+
+v0.4: (Eddye Lino - 17/Ene/2018)
+----
+Se modificó el método: 
+   1) cargarDetReg()
+Werner solicitó que se agregara una columna para presentar el número de la factura a la que corresponde la guía de remisión.
+El campo "tbm_cabGuiRem.tx_obs2" almacena dicha información. Para evitar agregar al query una nueva relación y hacer el query
+más pesado se utilizó el campo "tx_obs2".
+
+
+v0.5: (Eddye Lino - 17/Ene/2018)
+----
+Se modificó el método: 
+   1) cargarDetReg()
+Werner solicitó que se agregara una columna para presentar la empresa. Para no perder mucho tiempo se agregó "co_emp".

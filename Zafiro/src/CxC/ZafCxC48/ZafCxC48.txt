@@ -1,0 +1,56 @@
+Pendientes:
+1) Revisar la presentación al momento de anular y eliminar
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1 b1: (Ingrid Lino - 24/Abr/2008)
+----
+Programa que permite generar "Notas de Débito por Intereses".
+Opciones de Inserci�n, Consulta, Modificaci�n, Anulaci�n, Eliminaci�n(l�gica), Impresi�n y Vista Preliminar.
+
+
+v0.1: (Ingrid Lino - 06/May/2008)
+----
+Pase a producción
+
+
+v0.1.1: (Ingrid Lino - 12/May/2008)
+----
+Se cambiaron los campos para calcular columna de intereses y gastos de cobranzas.
+  - antes el programa los calculaba en base al monto a pagar
+  - ahora el programa los calcula en base al valor pendiente.
+Además, para la columna de intereses, el valor de la tasa de interés se la estaba dividiendo para 100, esto se quitó.
+
+
+v0.2: (Ingrid Lino - 28/Ago/2008)
+----
+Se adicionó el campo de Gastos de Cobranzas para que sea ingresado por el usuario y asi no sea un cálculo estático(En Cobranzas no siempre 
+usan el mismo % para gastos de cobranzas).
+La fecha de cálculos ya no está dada al día(fecha del servidor), sino por la fecha de vencimiento del documento.
+
+
+v0.3: (Ingrid Lino - 29/Ago/2008)
+----
+Se cambió fórmula para calcular datos de interes y gastos de cobranzas para documentos cerrados.
+
+
+v0.4: (Ingrid Lino - 12/Ago/2009)
+----
+Se cambiaron líneas 2896,2897 el llamado a la funcion q obtiene el numero de secuencia de grupo y empresa.
+
+
+v0.4.1: (Ingrid Lino - 05/Nov/2010)
+----
+Se quitaron campos de los queries debido a que esos campos van a desaparecer de la db.
+
+
+v0.4.2: (Rosa Zambrano - 05/Feb/2019)
+-----
+Se elimina uso de libreria obsoleta, para el uso de jasper Studio.
+
+
+v0.4.3: (Rosa Zambrano - 10/Abr/2019)  
+-----
+Se realizan cambios para JaspersoftStudio.

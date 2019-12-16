@@ -1,0 +1,42 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 02/Ago/2005)
+----
+Clase nueva.
+
+
+v0.2: (Eddye Lino - 28/Jun/2010)
+-----
+Se modificó el método: 
+   1) getTableCellEditorComponent(javax.swing.JTable table, Object value, boolean isSelected, int row, int column)
+   2) isCellEditable(java.util.EventObject anEvent)
+   3) setValCelEdi(boolean hayCambios)
+   4) thisActionPerformed(java.awt.event.ActionEvent evt)
+Se agregó código para que si la celda no es editable se deje la casilla como estaba al principio.
+El código como estaba al principio funcionaba muy bien hasta la versión 6 Update 6. Pero en el Update
+20 ya no funcionaba bien. Por eso hubo que hacer la corrección.
+
+
+v0.3: (Eddye Lino - 19/Jul/2010)
+-----
+Se modificó el método: 
+   1) ZafTblCelEdiChk(javax.swing.JTable tabla)
+Se eliminó el método: 
+   1) thisFocusGained(java.awt.event.FocusEvent evt)
+Se agregó código para corregir que cuando se edita la celda la clase invoca el "actionPerformed" y luego
+"focusGained". Para evitar que se repita la llamada a "thisActionPerformed" se agregó la variable "blnActLisEje"
+y se validó el estado de dicha variable en "focusGained".
+
+
+v0.4: (Eddye Lino - 27/Jul/2010)
+-----
+Se modificó el método: 
+   1) ZafTblCelEdiChk(javax.swing.JTable tabla)
+Se eliminó el actionListener "focusGained" y la variable "blnActLisEje" que se había creado anteriormente porque dicho
+código estaba presentando problemas cuando se mostraba un JOptionPane. Se analizó y se llegó a la conclusión de que no
+era necesario ese Listener.

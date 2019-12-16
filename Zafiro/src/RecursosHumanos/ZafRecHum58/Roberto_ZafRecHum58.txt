@@ -1,0 +1,26 @@
+﻿
+CONTROL DE VERSIONES:
+=====================
+
+
+v1.0: (Roberto Flores- 14/03/2013)
+----
+Clase nueva para el Seguimiento de Novedades de recursos humanos...
+
+v1.01: (Roberto Flores- 15/04/2013)
+----
+Se contemplan validaciones al momento de inicializar el programa de
+Seguimiento de Novedades de recursos humanos al abrir Zafiro.
+
+v1.02: (Roberto Flores- 20/04/2013)
+----
+Se realiza corrección en query al momento de abrir el Seguimiento de novedades
+al ingresar al sistema.
+
+v1.03: (Roberto Flores - 23/05/2013)
+----
+Mostrar a Juan Rodas todas las novedades de recursos humanos pendientes. Antes sólo se presentaban las suyas.
+
+v1.04: (Roberto Flores - 10/07/2013)
+----
+Se aumenta la columna Tip. Nov. para mostrar la descripción larga de la novedad y se realizan Validaciones para poder imprimir reporte desde Seguimiento de novedades de recursos humanos

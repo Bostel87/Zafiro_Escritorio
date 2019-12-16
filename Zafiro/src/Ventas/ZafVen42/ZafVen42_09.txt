@@ -1,0 +1,14 @@
+Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (José Marín - 1/Jul/2017)
+----
+Clase nueva (Muestra un listado de las facturas que corresponden a una cotizacion).
+
+v0.02: (José Marín - 5/Sep/2017)
+----
+Se amodifica el Query de la consulta reserva en la propia empresa.

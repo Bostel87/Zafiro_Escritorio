@@ -1,0 +1,15 @@
+﻿
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Tony Sanginez- 01/09/2014)
+----
+Clase nueva.
+
+v0.2: (Tony Sanginez- 25/09/2014)
+----
+Aumento temporal de validación para poder modificarse en 30 dias. Correccion de filtro de fecha forma ascendente. Aumento de validacion si es que en un mes determinado se hace el corte el 28 pero tiene un sabado el 29; aparecera en el siguiente mes.
+
+v0.3: (Tony Sanginez- 20/02/2018)
+-----
+Se agrego servicio 09 al guardar.

@@ -1,0 +1,52 @@
+Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (José Marín - 26/Jun/2013)
+-----
+Clase nueva.
+
+
+v0.2: (José Marín - 27/Jun/2013)
+-----
+Eliminar tabla de empresas que se habia quedado por equivocación. 
+
+
+v0.3: (José Marín - 28/Jun/2013)
+-----  
+Eliminar filas y columnas, que aparecian en blanco.
+
+
+v0.4: (José Marín - 3/Jul/2013)
+----- 
+Agregar columna con ratio de ventas (% Facturas ($)=(Facturas ($)/Cotizaciones(#))*100 \n % Devoluciones ($)=(Devoluciones ($)/Cotizaciones(#))*100).
+
+ 
+v0.5: (José Marín - 4/Jul/2013)
+----- 
+Consultas mejoradas.  
+
+
+v0.6: (José Marín - 24/Oct/2013)
+-----  
+Se corrigio la busqueda.
+
+
+v0.7: (Rosa Zambrano - 23/Ene/2015)
+-----
+Se agrega la configuración para búsqueda por tipo de Documentos Nuevos (Facturación Electrónica) en Empresas y Grupo.
+
+
+v0.8: (Rosa Zambrano - 01/Jul/2015)
+-----
+Se corrige query en la función cargarDetReg() por cambios a la nueva versión de postgres 9.4 
+
+
+v0.9: (Rosa Zambrano - 30/Nov/2015)
+-----
+Se oculta los campos de empresa cuando se ingrese por empresa.
+
+

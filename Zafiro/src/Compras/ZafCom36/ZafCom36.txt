@@ -1,0 +1,40 @@
+Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Ingrid Lino - 03/Sep/2008)
+----
+Clase nueva "Histórico de conteo de items..."
+
+
+v0.1.1: (Ingrid Lino - 17/Nov/2008)
+-----
+Se ocultaron columnas del sistema.
+
+
+v0.2: (Ingrid Lino - 22/Jun/2009)
+-----
+Inicialmente estaba que la diferencia entre lo q está en el sistema contra lo que dice el físico fuera
+diferencia negativa, Don Carlos solicitó que fuera lo contrario.
+* Cuando el valor contado es mayor a (stock sistema + ingreso - egreso) es positivo, caso contrario es negativo.
+
+
+v0.3: (Ingrid Lino - 20/Jul/2009)
+-----
+Se cambió la forma de calcular las diferencias de stock.
+stock sistema - cantidad ingresada + cantidad egresada.
+
+
+v0.3.1: (Ingrid Lino - 29/Jul/2010)
+-----
+Se agregó el filtro de "Utilizar en el cálculo las cantidades que están por ingresar/egresar".
+Si está seleccionado, la diferencia se calcula tomando en cuenta tambien la cantidad por ingresar/egresar, caso contrario el calculo es efectuado sin cantidades por ingresar/egresar.
+De este filtro tambien depende que se presenten o no las columnas donde se muestran las cantidades por ingresar/egresar.
+
+
+v0.3.2: (Rosa Zambrano - 08/May/2018)
+-----
+Se cambia consulta de tbm_conInv por tbh_conInv.

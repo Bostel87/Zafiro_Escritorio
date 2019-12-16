@@ -1,0 +1,21 @@
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Ingrid Lino - 11/Jun/2007)
+----
+Programa nuevo, que permite iniciar el aáo en el sistema
+
+v0.1b1: (Ingrid Lino - 22/Ago/2007)
+Se adicioná validacián que no permite iniciar aáos menores al aáo presente
+
+v0.1.1: (Ingrid Lino - 28/Ago/2007)
+--------
+Se adicioná en el filtro de la funcián existeAnioInicia() el cádigo de empresa
+
+v0.1.2: (Ingrid Lino - 28/Ago/2007)
+--------
+Se activa codificación para mercado de valores
+
+v0.1.3: (Ingrid Lino - 29/Dic/2017)
+--------
+Se agrega saldos para "Cuentas de Formato de Mercado de Valores"

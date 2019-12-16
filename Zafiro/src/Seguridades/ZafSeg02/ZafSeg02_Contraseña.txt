@@ -1,0 +1,15 @@
+ver 1.0 Javier Ayapata (11/10/2006)
+  se genera una nueva ventana de para poder actualizar las contrase�as 
+  del sistema y de autorizaciones de documentos.
+
+ver 1.2 Javier Ayapata (06-Dic-2006)
+  se corrigue al momento de cambiar la contrase�a.
+
+ver 1.3 Javier Ayapata (08-Abril-2009)
+  se agrega cuando se cambia clave se actualiza fechas de cambios.
+
+
+
+
+
+

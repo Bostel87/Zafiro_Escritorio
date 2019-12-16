@@ -1,0 +1,42 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Javier Ayapata - 07/Ene/2009)
+----
+Clase Nueva "Ingreso/Egreso de valores".
+
+
+v0.2: (Javier Ayapata - 11/Ago/2009)
+-----
+se agrega para que actualice secuencia de empresa y grupo tomando la secuencia de la tabla tbm_emp.
+
+
+v0.3: (José Marín M - 01/Mar/2016)
+-----
+Se actualiza el programa.
+
+
+v0.4: (Rosa Zambrano - 26/Dic/2017)
+-----
+Se actualiza el programa con los nuevos procesos del sistema.
+Se agrega costeo en línea.
+
+
+v0.5: (Rosa Zambrano - 27/Dic/2017)
+-----
+Se actualiza la versión para corrección de comillas simples. Se utiliza función de codificar.
+
+
+v0.6: (Rosa Zambrano - 28/Dic/2017)
+-----
+Se elimina función de codificar de codigo de item.
+Se valida que no aparezca el numero de documento al consultar.
+
+
+v0.7: (Rosa Zambrano - 29/Mar/2018)
+-----
+Se Cambia en insertarDet que guarde tbm_detMovInv.st_Reg con NULL, solicitado por Ing.Eddye Lino.

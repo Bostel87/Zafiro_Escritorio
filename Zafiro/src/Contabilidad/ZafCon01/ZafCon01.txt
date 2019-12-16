@@ -1,0 +1,105 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 19/Ene/2006)
+----
+Se actualizó el código para que funcione con la corrección hecha en ZafToolBar.
+Ahora luego de "Insertar" se envia el registro al modo "Consultar".
+
+
+v0.2: (Ingrid Lino - 05/Abr/2006)
+-----
+Se adicionó validación al campo de tx_codcta, el mismo que permite ingresar el mismo código varias veces.
+
+
+v0.3: (Ingrid Lino - 09/Jun/2006)
+-----
+Se corrigio falla al intentar modificar, salia un mensaje q el documento ya existia, esta falla era porq estaba llamando a la función isCamVal()
+
+
+v0.4: (Eddye Lino - 05/Oct/2006)
+-----
+Se agregó código para que trabaje con los campos "ne_pad" y "ne_niv" que se agregaron a la tabla "tbm_plaCta".
+
+
+v0.5: (Eddye Lino - 03/Nov/2006)
+-----
+Se agregó ventana de consulta "Listado de cuentas contables" y se mejoró validaciones.
+
+
+v0.6: (Ingrid Lino - 15/Jun/2007)
+-----
+Se modificó el programa al momento de ingresar una nueva cuenta para que genere en tbm_salcta los 12 meses con saldo cero (0.00)
+
+
+v0.7b1: (Ingrid Lino - 27/Sep/2007 - 10h49)
+-----
+Se adicionó codificación para opción de insertar y modificar:
+        *-Insertar:
+            -*Si se desea insertar una cuenta, se verifica si a su cuenta(s) padre(s) se le ha concedido permisos de cuenta por tipo de dcto,
+              si tiene permiso alguna de sus cuentas padres entonces se le concede tambión permiso a la nueva cuenta sino tiene no se le concede.
+
+        *-Modificar:
+            -*Si se desea modificar el nómero de cuenta, se verifica si la cuenta que se estó ingresando tiene nodos padres a los que se le
+              haya concedido permisos de cuenta por tipo de documento, si tiene alguna de estas cuentas permiso(s) entonces se le concede tambión
+              a la nueva cuenta, sino no se concede permisos.
+
+Pendiente: SE REALIZó ESTE PENDIENTE EN v0.7b2
+    Verificar si a la cuenta que se desea modificar el nómero de cuenta es cuenta de cabecera y contiene cuentas hijas, no lo debe permitir o
+    debe redireccionar a sus respectivas cuentas de detalle
+
+
+v0.7b2: (Ingrid Lino - 27/Sep/2007 - 11h55)
+-----
+Verificar si a la cuenta que se desea modificar el nómero de cuenta es cuenta de cabecera y contiene cuentas hijas, si las llegase a tener,
+entonces no se puede realizar la modificación, caso contrario si se modifica
+
+
+v0.7b3: (Ingrid Lino - 27/Sep/2007 - 13h01)
+-----
+Se adicionó la validación de eliminación de cuenta para que si una cuenta contiene saldo no se permita eliminar la cuenta.
+
+
+v0.7: (Ingrid Lino - 10/Oct/2007 - 09h00)
+-----
+Pase a producción.
+
+
+v0.8: (Ingrid Lino - 02/Jun/2011)
+-----
+Se cambió el esquema para conceder permisos a una cuenta cuya cuenta padre tiene permiso un determinado usuario en un tipo de documento.
+
+
+v0.9: (Ingrid Lino - 17/Nov/2011)
+-----
+Se comentó la inserción en tabla de permisos de usuarios a cuentas según cuenta padre por petición de Juan Rodas.
+
+
+v1.0: (Rosa Zambrano - 04/Sep/2015)
+-----
+Se corrige query de la función consultarReg(), debido a cambios en la base de postgres 9.4
+
+
+v1.1: (Dennis Betancourt - 29/Oct/2015)
+-----
+Al crearse una cuenta contable, la misma se creara en todas las empresas activas indicadas en la tabla tbm_emp.
+
+v1.1.1: (Dennis Betancourt - 25/Nov/2015)
+-----
+Al crearse una cuenta contable (accion Insertar), la misma se creara en todas las empresas activas indicadas en la tabla tbm_emp. Cuando se vaya a aplicar una accion distinta a Insertar, solo se la realizara para la empresa en la cual esta conectado el usuario en el menu de Zafiro.
+
+v1.1.2: (Dennis Betancourt - 04/Ene/2016)
+-----
+Al crearse una cuenta contable, para cada empresa se va a verificar que el "Numero de cuenta contable" no exista en la Base de Datos para realizar la insercion.
+
+v1.1.3: (Dennis Betancourt - 11/Feb/2016)
+-----
+Al crearse una cuenta contable, si el "Numero de cuenta" ya existe en la Base de Datos, se va a buscar en todas las empresas y se va a obtener el mayor numero secuencial de las Cuentas Hijas perteneciente a la misma Cuenta padre. Esto se hace para mostrarle un mensaje al usuario para que sepa cual es el numero secuencial que debera usar.
+
+v1.1.4: (Tony Sanginez - 17/Abr/2017)
+-----
+Al modificar una cuenta verifica si no tiene movimientos, si ya los tiene. No va a poder guardarlos.

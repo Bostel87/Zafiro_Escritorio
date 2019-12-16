@@ -1,0 +1,40 @@
+﻿Pendientes:
+1) 
+2) 
+3) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Rosa Zambrano - 07/Feb/2018)
+----
+Clase nueva "Autorización de mercaderia importada".
+Esta clase se traslado de ZafImp08 y se rehizo totalmente para adaptarlo al proyecto de costos.
+Las bodegas para admin se presentarán todas, excluyendo las de exposición.
+
+
+v0.1.1: (Rosa Zambrano - 15/Feb/2018)
+-----
+Se agrega calculo para que aparezca de color los items pendientes de procesar para poder cerrarse.
+Se muestran las solicitudes de transferencias que han sido denegadas.
+
+
+v0.1.2: (Rosa Zambrano - 09/Mar/2018)
+-----
+Se agrega validación para que sólo se pueda autorizar un ítem a la vez.
+
+
+v0.1.3: (Rosa Zambrano - 12/Mar/2018)
+-----
+Se cambia el esquema de guardado, de conexión a StringBuffer.
+
+
+v0.1.4: (Rosa Zambrano - 16/Mar/2018)
+-----
+Se corrige validación de cantidades permitidas a autorizar en las bodegas.
+
+
+v0.1.5: (Rosa Zambrano - 26/Mar/2018)
+-----
+Alfredo Paulson solicitó por defecto solo se presenten pedidos que podrían autorizarse.
+Se agrega filtro de pedidos cerrados, para que cuando se seleccione presentar pedidos cerrados.

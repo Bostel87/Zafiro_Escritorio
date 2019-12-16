@@ -1,0 +1,21 @@
+﻿Pendientes:
+1) Queda quemado Código Rubro Comisiones con la constante STRCODRUBCOM.
+2) Queda quemado Código Tipo Documento RolPag con la constante INTCODTIPDOCROLPAG.
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Rosa Zambrano - 10/Feb/2016)
+----
+Clase nueva "Ingresos Programados Masivos".
+Permite ingresar y actualizar el valor del rubro de comisiones de los empleados configurados para recibir comisiones.
+Adicional permite actualizar e ingresar valores de los rubros de bono y movilización.
+
+
+v0.2: (Rosa Zambrano - 18/Feb/2016)
+-----
+Se valida si existen o no registros ingresados con el rubro seleccionado al momento de guardar.
+Si en el periodo seleccionado no hay valores de comisiones ingresados en la tabla tbm_ingEgrMenPrgTra, se realizará el ingreso al momento de guardar, caso contrario se actualizarán los rubros.
+Este cambio se realizó para evitar que el servicio 9 necesite ingresar los rubros de comisiones, en vez de eso se lo realice directamente a traves de este programa.
+
+

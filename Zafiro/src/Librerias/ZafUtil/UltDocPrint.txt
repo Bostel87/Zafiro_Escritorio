@@ -1,0 +1,110 @@
+CONTROL DE VERSIONES:
+=====================
+
+v2.1: (Javier Ayapata - 06/Mar/2006)
+----
+ 
+v2.0: (Javier Ayapata - 29/May/2006)
+----
+UltDocPrint:
+ se crea funcion para obtener el maximo numero de grupo y de empresa
+  v2.1: (Javier Ayapata - 07/Jun/2006)
+UltDocPrint:
+ se crea funcion para poder saber si se puede anular o eliminar cuando el documento a sido confirmado
+  
+ 
+ v2.4: (Javier Ayapata - 30/Oct/2006)
+UltDocPrint:
+ se crea funcion para poder saber si tiene un documento pagos asociados.
+ 
+ v2.5: (Javier Ayapata - 10/Nov/2006)
+UltDocPrint:
+ se crea funcion para la validacion de cliente
+
+ v2.6: (Javier Ayapata - 28/Nov/2006)
+   UltDocPrint:
+   Se corrigue la funcion ValidarCodigoCliente. 
+
+ 
+
+ v2.7: (Javier Ayapata - 31/Mayo/2007)
+   UltDocPrint:
+   Se agrega funcion isPagoDocumento_aso. 
+
+ v2.8: (Javier Ayapata - 25/Junio/2007)
+   UltDocPrint:
+   Se corrigue la funcion getCodigoDocumento. 
+
+ v2.8: (Javier Ayapata - 25/Junio/2007)
+   UltDocPrint:
+   Se corrigue la funcion getCodigoDocumento. 
+ 
+
+ v2.9: (Javier Ayapata - 11/Mar/2008)
+   UltDocPrint:
+   Se corrigue la funcion getCodigoDocumento que reciva la coneccion de la base. 
+ 
+ v3.0: (Javier Ayapata - 31/Jul/2008)
+   UltDocPrint:
+   Se corrigue funciones de verrificar dosumento donfirmado.
+
+ v3.1: (Javier Ayapata - 22/Ago/2008)
+   UltDocPrint:
+   Se corrigue funciones de ValidarCodigoCliente.
+
+v3.2: (Javier Ayapata - 11/Dic/2008)
+   UltDocPrint:
+   Se corrigue funciones de ValidarCodigoCliente.
+
+v3.3: (Javier Ayapata - 09/Mar/2008)
+   UltDocPrint:
+   Se corrigue funciones de verificarsiesconfirmado.
+  
+v3.4: (Javier Ayapata - 30/Jun/2009)
+   UltDocPrint:
+   se agrega condicion en la funcion de confirmacion.
+
+v3.5: (Javier Ayapata - 02/Jul/2009)
+   UltDocPrint:
+   se agrega condicion en la funcion de confirmacion.
+
+v3.6: (Javier Ayapata - 11/Ago/2009)
+   UltDocPrint:
+   se agrega una funciones para que pueda extraer la secuenda del documento en tbm_cabmovinv donde la secuencia la toma de la tabla tbm_emp.
+
+
+v3.7: (Javier Ayapata - 18/Ago/2009)
+   UltDocPrint:
+   se agrega funciones para que realize las reestructuracion de la orden de compra cuando realizan la dev.compra.
+
+
+v3.8: (Javier Ayapata - 2/Sep/2009)
+   UltDocPrint:
+   se agrega funciones para saber si se realiza cruce de orden de compra con la dev compra
+
+
+v3.9: (Javier Ayapata - 5/Julio/2010)
+   UltDocPrint:
+   se agrega reemplaze al nuevo registro de autorizacion de pago.
+
+
+v4.0: (Javier Ayapata - 03/Diciembre/2010)
+   UltDocPrint:
+
+    se quita campo que seran eliminados en funciones.
+
+v4.1: (Javier Ayapata - 23/Mayo/2010)
+   UltDocPrint:
+
+    se agrega funcion que valida si la guia tiene  genreda guia secundaria.
+
+
+v 0.05: (Jose Mario - 10/Oct/2017)
+-----
+Se modifica el metodo,  Verificar_Doc_Asociado() se agreaga el tipo de documento EgresosPreFactura
+
+
+
+
+
+

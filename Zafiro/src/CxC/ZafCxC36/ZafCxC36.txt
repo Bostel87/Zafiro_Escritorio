@@ -1,0 +1,41 @@
+﻿
+CONTROL DE VERSIONES: 
+clase: ZafCxC36
+=====================
+
+v0.1: (Lizbeth Muñoz - 28/diciembre/2008)
+----
+Nuevos programas que sirve para cruzar documentos.
+Los programas que se detallan a continuación son llamados del mismo
+1.- cruce de documentos de diferentes Clientes (CxC). 
+2.- cruce de documentos de diferentes proveedores (CxP)
+3.- cruce de cuentas de proveedores (CxC)
+4.- cruce de cuentas de clientes (CxP).
+
+
+v0.1.4: (Dario Cardenas - 23/Julio/2009)
+----
+Se modifico funcion para mostrar datos de credito al momento de seleccionar un cliente...
+
+
+v0.1.5: (Ingrid Lino - 06/May/2010)
+----
+Se sobrecargo el constructor(Este es llamado desde el programa CxC58)
+
+
+v0.1.6: (Ingrid Lino - 13/May/2010)
+----
+Se adicionaron campos en "tbm_cabPag.tx_comIng, tbm_cabPag.tx_comMod" para insercion, modificacion, anulacion y eliminacion respectivamente.
+
+
+v0.2: (Eddye Lino - 09/Ago/2011)
+-----
+Se modificó el código donde se utiliza el campo "ne_mod". Por error se lo había creado como
+CHAR en la Base de Datos cuando en realidad es SMALLINT.
+
+
+v0.3: (Javier Ayapata - 20/Octubre/2011)
+se agrega reporte.
+
+
+

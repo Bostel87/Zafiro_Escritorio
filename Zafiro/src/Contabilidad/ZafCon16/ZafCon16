@@ -1,0 +1,78 @@
+Pendientes:
+1) 
+2) 
+3) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.2.3: (Eddye Lino - 15/May/2006)
+----
+Se agregá el ZafTblPopMnu al JTable y se cambiá el tipo de seleccián de la tabla a "MULTIPLE_INTERVAL_SELECTION".
+
+v0.3.1: (Javier Ayapata - 04/Ago/2006)
+--- 
+Corregir query  para obtener el descuento en ventas 
+
+v0.3.3: (Ingrid - 25/Sep/2006)
+--- 
+Cambio completo de queries para notas de credito y facturas, para que coincidan en # de decimales 
+entre facturacián y contabilidad.
+
+v0.3.4: (Ingrid - 10/Oct/2006)
+--- 
+Se cambiá el query para obtencián de N/C, porque estaba presentando no solo cuentas de ventas sino tambián
+la cuenta de Otros descuentos.
+
+v0.3.5: (Ingrid - 09/Nov/2006)
+--- 
+Sea adicioná la columna de Ruc del cliente al reporte por peticián del Ing. Villán
+
+v0.3.6: (Ingrid - 20/Nov/2006)
+--- 
+Se corrigiá en la funcián de cargarDetNC() porque estaba presentando otro valor en el campo subtotal
+
+v0.4: (Ingrid - 23/Feb/2007)
+--- 
+Se corrigieron los queries para obtener la informacián de devoluciones por nuevo esquema de devoluciones
+de venta(por descto, por valores, por item)
+
+v0.5: (Ingrid - 19/Jun/2007)
+--- 
+Se cambio el query que obtiene devoluciones de venta en cargarDetReg() y en cargarDetNC(), ahora no se calcula los valores a 
+presentar, sino que se toman de la tabla tbm_cabmovinv; los cálculos que se estaban realizando no estaban tomando los campos correctos
+por tanto los valores que se presentaba en el informe no era el correcto
+
+
+v1b1: (Ingrid - 11/Feb/2008)
+---
+Se cambiá queries para obtencián de informacián
+    - Ya no se calculan en base a lo guardado en tbm_detmovinv, sino a lo q esta almacenado en tbm_cabMovInv
+Se adicionaron dos columnas q se usarán en el proceso nuevo de declaraciones(a travás del mádulo de CxC).
+v1: (Ingrid - 12/Feb/2008  08h35)
+---
+Pase a producciá
+
+v1.1: (Ingrid - 08/Jul/2008  12h40)
+---
+Se adicionó el documento 99 para funcion que presenta todos los registros y para los q presenta devoluciones.
+
+v1.3: (Ingrid - 18/Sep/2008  12h40)
+---
+Pase a producción.
+
+v1.4: (Ingrid - 03/Jun/2010  16h41)
+---
+Se quitaron todos los queries que se realizaban para obtener solo el número de registros devueltos por el query principal.
+
+v1.5: (Ingrid Lino - 21/Sep/2010)
+----
+Se adicionaron dos columnas al modelo donde se colocan valores con forma de pago "contado" y "credito".
+
+v1.6: (Ingrid Lino - 25/Abr/2012)
+----
+Se adiciona en el query de N/C las cuentas 551,1037,1163 que faltaban(Ventas UIO, Ventas StoDomingo, etc).
+
+v1.7: (Rosa Zambrano - 30/Ago/2019)
+----
+Se realizan cambios para Jaspersoft Studio.

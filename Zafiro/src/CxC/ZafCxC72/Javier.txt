@@ -1,0 +1,6 @@
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1:  Javier Ayapata  03/Mayo/2011
+  clase nueva. solicitud y autorizacion de postergacion de cheques.

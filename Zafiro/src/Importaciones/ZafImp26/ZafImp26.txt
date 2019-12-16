@@ -1,0 +1,19 @@
+Pendientes:
+1)
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Rosa Zambrano - 12/Sep/2017)
+----
+Nuevo programa "Cierre de Pedido".
+
+
+v0.1.1: (Rosa Zambrano - 25/Oct/2017)
+-----
+Se cambia forma de mostrar dias pendientes de cierre, para los pedidos cerrados.
+
+
+v0.1.2: (Rosa Zambrano - 26/Jun/2018)
+-----
+Se agrega validación de permisos de usuarios.

@@ -1,0 +1,27 @@
+Pendientes:
+1) 
+2) 
+3) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 08/May/2006)
+----
+Clase nueva.
+
+
+v0.2: (Eddye Lino - 27/Jul/2010)
+-----
+Se corrigió el método: 
+   1) isCellEditable(java.util.EventObject anEvent)
+Se eliminó el método: 
+   1) thisFocusGained(java.awt.event.FocusEvent evt)
+Se agregó código para trabajara con el evento "beforeEdit" ya que al parecer se había pasado por alto.
+Se eliminó el actionListener "focusGained" y la variable "blnActLisEje" que se había creado anteriormente porque dicho
+código estaba presentando problemas cuando se mostraba un JOptionPane. Se analizó y se llegó a la conclusión que no
+era necesario ese Listener.
+
+v0.3: (Ingrid Lino - 12/Sep/2017)
+-----
+Se añade validación a través de variable "blnMosVenCon" para saber si la ventana de consulta debe visualizarse o no.

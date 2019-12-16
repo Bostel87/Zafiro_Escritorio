@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE attributes PUBLIC "-//NetBeans//DTD DefaultAttributes 1.0//EN" "http://www.netbeans.org/dtds/attributes-1_0.dtd">
+<attributes version="1.0">
+    <fileobject name="ZafCon06.java">
+        <attr name="class_dependency_Librerias.ZafToolBar.ZafToolBar" stringvalue="ZafCon06.MiToolBar"/>
+        <attr name="class_dependency_javax.swing.JInternalFrame" stringvalue="ZafCon06"/>
+        <attr name="class_dependency_javax.swing.event.DocumentListener" stringvalue="ZafCon06.ZafDocLis"/>
+    </fileobject>
+</attributes>

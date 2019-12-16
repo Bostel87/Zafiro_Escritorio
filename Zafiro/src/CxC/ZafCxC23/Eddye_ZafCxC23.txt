@@ -1,0 +1,140 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 15/Ene/2006)
+----
+Clase nueva.
+
+
+v0.2: (Eddye Lino - 13/Abr/2007)
+-----
+Se agregaron los campos "Días de gracia" y "Cierre por retención" al JTable.
+
+
+v0.3: (Eddye Lino - 17/Abr/2007)
+-----
+Se cambió el código del botón "Forma de pago" en el JTable para que utilice la tabla "tbm_forPagCli".
+Mediante este cambio es posible asignar varias formas de pago a un cliente.
+
+
+v0.4: (Eddye Lino - 04/Jul/2007)
+-----
+Se agregó la columna "Dia.Gra.Doc.Sop." que maneja los "Días de gracia (Documentos que necesitan soporte. Ej: Cheques a fecha).".
+
+
+v0.5: (Eddye Lino - 13/Ago/2007)
+-----
+Se agregó código en la función configurarTblDat->afterEdit para que reciba la forma de pago predeterminada de "ZafCxC23_01".
+
+
+v0.6: (Eddye Lino - 22/Feb/2008)
+-----
+Se modificó el código para que funcionara con la empresa grupo.
+
+
+v0.7: (Eddye Lino - 25/Jun/2008)
+-----
+Se modificó el código para que se pudiera presentar más información.
+Se hizo lo siguiente:
+1) Antes habían dos columnas (Casilla de verificación y botón) por cada empresa para ver las "Solicitudes de crédito".
+   Ahora sólo hay una columna (Botón) para todas las empresas. En vez de la casilla de verificación se hizo que el botón
+   presentara los puntos "..." s�lo cuando hay una solicitud de crédito ingresada para el cliente sin importar la empresa.
+2) Se agregó una columna "Observación CxC" para todas las empresas.
+3) Se disminuyó el ancho de algunas columna para que se pudiera presentar más información.
+
+
+v0.8: (Eddye Lino - 02/Sep/2008)
+-----
+Se agregó una columna de botones en el JTable para llamar a la clase "ZafCxC45". La clase "ZafCxC45"
+muestra el historial de pago de clientes.
+
+
+v0.9: (Eddye Lino - 23/Oct/2008)
+-----
+Se agregó la clase "ZafTblBus" para permitir búsqueda en el JTable en las columnas que no son editables.
+
+
+v0.10: (Eddye Lino - 25/Sep/2009)
+-----
+Se modificaron los métodos: 
+   1) cargarEmp()
+   2) agregarColTblDat()
+Se modificó el código para hacer lo siguiente:
+1) Que aparezcan desmarcadas las empresas que están inactivas.
+2) Ocultar las columnas que corresponden a empresas que están inactivas.
+
+
+v0.11: (Eddye Lino - 28/Oct/2009)
+-----
+Se modificaron los métodos: 
+   1) configurarFrm()
+   2) configurarTblDat()
+   3) agregarColTblDat()
+   4) cargarDetReg()
+   5) configurarVenConCli()
+   6) abrirFrm(int intFrmAbr)
+En dichos métodos se hizo cambios para que el mismo programa fuera llamado desde otro lado.
+Ahora también es llamado desde "co_mnu=2327(Actualización de datos de crédito...)" donde se ocultan algunas columnas.
+Además se agregó una columna de tipo Button para llamar al reporte "Historial de transacciones de clientes...".
+
+
+v0.12: (Eddye Lino - 04/Feb/2010)
+-----
+Se modificaron los métodos: 
+   1) configurarFrm()
+   2) configurarTblDat()
+   3) agregarColTblDat()
+En dichos métodos se agregó el uso de la clase "ZafPerUsr" para poder habilitar/inhabilitar algunas opciones del programa.
+
+
+v0.13: (Eddye Lino - 03/May/2011)
+-----
+Se adicionó código para mostrar botón para "Historial de postergaciones de cheques de clientes".
+
+
+v0.13.1: (Ingrid Lino - 23/Abr/2012)
+-----
+Se corrige Boton final del modelo de datos presentaba error en lugar de presentar ventana con informacion adecuada y programada para este boton.
+
+
+v0.14: (Eddye Lino - 23/Abr/2012)
+-----
+Se modificaron los métodos: 
+   1) configurarFrm()
+   2) configurarTblDat()
+   3) agregarColTblDat()
+   4) cargarDetReg()
+   5) actualizarDet()
+En dichos métodos se agregó código para que funcionara la columna "Porcentaje de descuento especial".
+
+
+v0.15: (Rosa Zambrano - 03/Sep/2015)
+-----
+Se agrega segmentación por locales, solicitado por Werner Campoverde y Patricio Marin para visualizar los clientes por sucursal.
+Se agrega permisos de usuarios para configuración de locales en la tabla tbr_locPrgUsr.
+
+
+v0.16: (Rosa Zambrano - 08/Sep/2015)
+-----
+Se configuran en la función configurarFrm() los nuevos componentes del formulario: lblLoc, txtCodLoc, txtLoc y butLoc  para que sean visibles cuando se ingrese por empresa.
+
+
+v0.17: (Rosa Zambrano - 23/Sep/2015)
+-----
+Se regresa al esquema anterior.
+
+
+v0.18: (Rosa Zambrano - 27/Nov/2015)
+-----
+Se agrega permisos de usuarios para configuración de locales en la tabla tbr_locPrgUsr.
+Se utiliza la función validaLocUsr() en la  función cargarDetReg() para validar si el usuario tiene locales permitidos.
+Se agrega filtro para búsqueda de datos de crédito de los clientes por local de acuerdo a los locales permitidos al usuario.
+
+
+v0.19: (Rosa Zambrano - 28/Jul/2016)
+-----
+Se cambia validación de clientes repetidos para que valide de acuerdo al modulo.

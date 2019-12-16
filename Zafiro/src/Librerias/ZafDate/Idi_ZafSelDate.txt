@@ -1,0 +1,21 @@
+Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Idi Reyes - 05/Abr/2006)
+-----
+Clase nueva.
+
+
+v0.2: (Eddye Lino - 31/Ago/2009)
+-----
+Se corrigió el método: 
+   1) ZafSelectDate(javax.swing.JFrame Principal , String strFormatDate)
+En dicho método se agregó la siguiente línea:
+    MiCal.set(java.util.Calendar.DATE, 1);
+Con esta línea se inicializa el día ya que se estaba dando el problema de que febrero
+estaba devolviendo 31 en algunos meses cuando en realidad debería devolver 28 o 29
+depedendiendo de si es bisiesto o no.

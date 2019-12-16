@@ -1,0 +1,38 @@
+﻿Pendientes:
+1)  
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (José Marín - 25/Abr/2017)
+----
+Clase nueva "Envia correos electronicos".
+
+
+v0.2: (Rosa Zambrano - 03/Ago/2019)
+----
+Se agrega codigo para obtener sesion, de forma que lea el dato password de un string y no de forma quemada.
+Session session = Session.getInstance(props,
+    new javax.mail.Authenticator() {
+        protected PasswordAuthentication getPasswordAuthentication() { 
+            return new PasswordAuthentication(userName, password);
+        }
+    }
+);
+
+
+v0.3: (Rosa Zambrano - 06/Ago/2019)
+----
+Se lee password del correo de zafiro, desde la base de datos en la tabla tbm_notSisCorEleLoc.
+Se agrega objeto de parametros del sistema, para obtener informacion del servidor de correo.
+
+
+v0.4: (Rosa Zambrano - 07/Ago/2019)
+----
+Se comenta direccion destino para que lea la que envia el usuario y no la que esta configurada en la bd.
+
+
+v0.5: (Rosa Zambrano - 07/Ago/2019)
+----
+Solicitado por Jose Mario se agrega que se envie correo masivo con copia configurada en la bd.

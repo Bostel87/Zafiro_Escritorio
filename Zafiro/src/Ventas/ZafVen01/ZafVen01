@@ -1,0 +1,1343 @@
+﻿Pendientes:
+1) 
+2) 
+
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (IdiTrix)
+----
+Implementacion de Autorizaciones
+  	
+
+v0.2: (IdiTrix)
+----
+Para que no salga error a lo que se pone 0 en stkbod 
+correccion en boton de facturar para ke envie todos los datos
+Control de precio, costo y descuento en uno solo ... Validacion para venta de contado
+
+
+v0.3: (IdiTrix)
+----
+Correccion de evento para controlar cambios en el documento.
+Cambios en metodos addLisCamTbls, removeLisCamTbls 
+Se elimino metodo addListenerCambio
+
+
+v0.3.1: (IdiTrix)
+-------
+Agrego para que no ponga los vendedores predeterminados 
+cuando elijen un cliente, que solo lo haga al modificar o insertar.
+
+
+v0.3.2: (IdiTrix)
+------
+poner un boton para copiar las cotizaciones
+en cotizaciones cuando pasa a la factura no estaba grabando el total
+Corregir el iva parece que lo pone asi no tenga iva la factura.
+
+
+v0.4: (IdiTrix)
+----
+Presenta una se�al de color el la fila que tiene problemas de precios
+
+	
+v0.4.1: (IdiTrix)
+------
+Corregir porke esta haciendo retencion a personas naturales	
+
+
+v0.4.2: (José - 16/Feb/2006)
+------
+Se actualizo metodo de SisCon actualizarInventario requiere local
+
+
+v0.4.3: (José - 17/Feb/2006)
+------
+Se actualizo metodo getCosUni segun nuevo requerimiento usar empresa grupo
+
+
+v0.4.4: (Javier Ayapata - 08/Mar/2006)
+------
+Se Agrego al momento de ingresar y modificar el campo nd_tot de la tabla tbm_CabCotVen
+tambien se quito en la tabla de cotizacion los campos el boton  de cantitidad y el StkActBod 
+se corrigio el ingreso buscando que el codigo de la bodega  
+
+
+v0.4.5: (Javier Ayapata - 08/Mar/2006)
+------
+se agrego una ventana de ayuda  que al precionar F8 en la celda de codItem mostrar las cotizaciones 
+que se an hecho con ese item
+se modifico tambien cuando el usuario ponga en codigo del item el producto se ponga automaticamente 
+en caso que exista si no llama a la ventana de consulta   
+
+
+v0.4.6: (Javier Ayapata - 14/Mar/2006)
+------
+Se corrigio al llamar la ventana de ayuda con F8, se corrigio tamb al momento de facturar
+
+
+v0.4.7: (Javier Ayapata - 15/Mar/2006)
+------
+se corrigo que al cambiar un item o se quite el iva se actualiza la forma de pago
+se corrigo en la ayuda al press F8 que no salga los ventas anuladas y pendientes
+
+
+v0.4.8: (Javier Ayapata - 15/Mar/2006)
+------
+se corrigio datos en la ventana de ayudad
+
+
+v0.4.9: (Javier Ayapata - 15/Mar/2006)
+------
+se corrigio la validacion de precio del item
+
+
+v0.5: (Javier Ayapata - 15/Mar/2006)
+----
+se corrigio la validacion de precio del Costo Unitario.
+
+
+v0.5.1: (Javier Ayapata - 15/Mar/2006)
+------
+se corrigio que se actualize el precio cuando se de un enter en el item
+tambien que no desaparesca la cantidad cuando se cambia el item si que actulize los totales
+
+
+v0.5.2: (Javier Ayapata - 27/Mar/2006)
+------
+Se Agrega un Tab de forma de retiro esto solo es validado cuando se va a Facturar
+
+
+v0.5.3: (Javier Ayapata - 29/Mar/2006)
+------
+Se corrige cuando hay problemas de precio, manda a pedir autorizacion una vez que solicite 
+la cotizacion es ingresda o modificada pero no puede imprimir hasta que tenga la autorizacion
+
+
+v0.5.4: (Javier Ayapata - 29/Mar/2006)
+------
+Se corrige la Validacion de documentos vencidos y validacion de precio 
+
+
+v0.5.5: (Javier Ayapata - 29/Mar/2006)
+------
+Se  quita la validacion de Porcentaje de descuento en cada item
+
+
+v0.5.6: (Javier Ayapata - 30/Mar/2006)
+------
+se corrige que no puede tener acceso a vista preliminar hasta que tenga la autorizacion en problemas de precio de item
+
+
+
+v0.5.7: (Javier Ayapata - 30/Mar/2006)
+------
+se corrige el query de documentos vencidos y se corrige al cerrar la ventana
+
+
+v0.5.8: (Javier Ayapata - 30/Mar/2006)
+------
+Se modifica la forma  de retiro ahora abre una ventana de  dialogo  
+
+
+v0.5.9: (Javier Ayapata - 30/Mar/2006)
+------
+Se corrige query que verifica si puede imprimir      
+
+
+v0.6: (Javier Ayapata - 31/Mar/2006)
+----
+Se agrega un mesaje de corfirmacion antes de llenar la forma de retiro      
+
+
+v0.6.1: (Javier Ayapata - 05/Abr/2006)
+------
+Se agrega dos columnas esta servira cuando no aya precio de venta en el item, que pedira ingresar el proveedor
+y el costo de compra del item que servira para comparar con el precio de venta mas la utilidad,
+se reemplaza la ventana de consulta de item   
+
+
+v0.6.2: (Javier Ayapata - 05/Abr/2006)
+------
+Se reemplaza la ventana de consulta de Cliente y Vendedores y actualiza la ventana de busqueda
+
+ 
+v0.6.3: (Javier Ayapata - 06/Abr/2006)
+------
+Se corrige al validar el precio de venta y se corrige los tama�os de la ventana de consulta 
+
+
+v0.6.4: (Javier Ayapata - 06/Abr/2006)
+------
+Se corrige en el campo proveedor cuando de escribe que llame a la ventana de consulta 
+
+
+v0.6.5: (Javier Ayapata - 07/Abr/2006)
+------
+Se Agrega en el campo de descuento, cuando el usuario inserta una nueva fila se copiara en el desc lo mismo que puso en la primera fila
+
+  
+v0.6.6: (Javier Ayapata - 10/Abr/2006)
+------
+Se agrega para que solo contenga un numero de lineas asiganada y tambien que cuadre la fecha de factura con el diario
+
+
+v0.6.7: (Javier Ayapata - 12/Abr/2006)
+------
+Se corrige al ingresar la forma de pago con la fecha de la factura     
+
+  
+v0.6.8: (Javier Ayapata - 18/Abr/2006)
+------
+Se agrega la validacion de dias de vencimiento de la cotizacion, que esta quemado para 15 dias
+
+
+v0.6.9: (Javier Ayapata - 21/Abr/2006)
+------
+Se Obtimiza la busqueda de la unidad.
+
+
+v0.7: (Javier Ayapata - 21/Abr/2006)
+----
+se corrige al momento de buscar la cotizacion cuando es buscada desde las autorizaciones
+
+
+v0.7.1: (Javier Ayapata - 24/Abr/2006)
+------
+Se quita codigo que no se utiliza en el programa.
+
+
+v0.7.2: (Javier Ayapata - 03/May/2006)
+------
+Se corrigue al momento de autorizar y que tenga stock el item
+Se corrigue decimales de los precios a dos 
+
+
+v0.7.3: (Javier Ayapata - 06/May/2006)
+------
+Se corrigue, se redondea a dos decimales 
+
+
+v0.7.4: (Javier Ayapata - 09/May/2006)
+------
+Se corrigue que se ingremente el numero del documento al ultimo
+
+
+v0.7.5: (Javier Ayapata - 10/May/2006)
+------
+Se corrigue al momento de facturar que no se repita el numero de factura
+
+
+v0.7.6: (Javier Ayapata - 11/May/2006)
+------
+Se crea una funcion que permite obtener el numero de telefono de la empresa para colocar en el reporte
+
+
+v0.7.7: (Javier Ayapata - 15/May/2006)
+------
+Se corrige para guarde los valores redondeado a dos decimales
+
+
+v0.7.8: (Javier Ayapata - 16/May/2006)
+------
+Se corrige problema al modificar.
+
+
+v0.7.9: (Javier Ayapata - 22/May/2006)
+------
+Se corrige al calcular el total del item
+
+
+v0.8: (Javier Ayapata - 29/May/2006)
+----
+Se obtimiza al utilizar los objetos,se agrema al insertar en tbm_cabmovinv el secuencial de empresa y grupo 
+
+
+v0.8.1: (Javier Ayapata - 07/Jun/2006)
+------
+se corrigue que abra el objeto de listado de producto al cargar la ventana y que se marque los item que tienen problema querer imprimir
+
+
+v10.0: (Javier Ayapata - 13/Jun/2006)
+-----
+Se implemeta una nueva ventana para el ingreso de cotizacion   
+
+
+v10.1: (Javier Ayapata - 14/Jun/2006)
+-----
+se corrigue al momento de buscar por cliente y vendedor
+
+
+v10.2: (Javier Ayapata - 15/Jun/2006)
+-----
+Se corrigue problemas de asignacion de items
+
+
+v10.3: (Javier Ayapata - 20/Jun/2006)
+-----
+Se optimiza la conexion en la funcion de calculaPagos()
+
+
+v10.4: (Javier Ayapata - 22/Jun/2006)
+-----
+Se corrigue para que coloque el precio cuando se de doble click
+
+
+v10.6: (Javier Ayapata - 23/Jun/2006)
+-----
+Se corrigue la validacion de precio
+
+
+v10.7: (Javier Ayapata - 26/Jun/2006)
+-----
+Se corrigue para que ponga el cursor en la cantidad cuando se eligue el items
+
+
+v10.8: (Javier Ayapata - 26/Jun/2006)
+-----
+Se corrigue que no mueva inventario en grupo si algun cliente es empresa de la misma cuando se factura
+
+
+v10.9: (Javier Ayapata - 27/Jun/2006)
+-----
+Se bloquea casilla de Iva
+
+
+v11.0: (Javier Ayapata - 03/Jul/2006)
+-----
+Se corrigue para que pueda seleccionar algunas filas
+
+
+v11.1: (Javier Ayapata - 05/Jul/2006)
+-----
+Se quita la libreria Librerias.ZafUtil.ZafCtaCtb
+
+
+v11.2: (Javier Ayapata - 05/Jul/2006)
+-----
+Se quita corrigue la validacion en el query 
+
+
+v11.4: (Javier Ayapata - 10/Jul/2006)
+-----
+Se agrega que inserte total y valor del iva en la base
+
+
+v11.6: (Javier Ayapata - 17/Jul/2006)
+-----
+Se verifica problema de marcar iva se corrige la validacion 
+
+
+v11.7: (Javier Ayapata - 17/Jul/2006)
+-----
+Antes de imprimir se actualiza los valores de subtotal iva y total para problemas de  impresi�n
+
+
+v12.0: (Javier Ayapata - 19/Jul/2006)
+-----
+Se agrega codigo alterno2 del item
+
+
+v12.1: (Javier Ayapata - 20/Jul/2006)
+-----
+Se agrega validacion de los campos al momento de facturar y tamb que imprima la factura en empreaa dimulti y castek
+
+
+v12.2: (Javier Ayapata - 21/Jul/2006)
+-----
+Se corrigue el error al eliminar lineas 
+
+
+v12.3: (Javier Ayapata - 04/Ago/2006)
+-----
+Se agrega para que imprima la guia de remision despues de imprimir la factura pero solo para dimulti
+
+
+v12.5: (Javier Ayapata - 09/Ago/2006)
+-----
+Se agrega para un campo numero de pedido
+
+
+v12.8: (Javier Ayapata - 04/Sep/2006)
+-----
+Se obtimiza al momento de insertar la factura y se corrigue al momento de la autorizacion 
+
+
+v12.9: (Javier Ayapata - 07/Sep/2006)
+-----
+Se obtimiza al momento de insertar la factura 
+
+
+v13.0: (Javier Ayapata - 08/Sep/2006)
+-----
+Se corrigue al momento de autorizar
+
+
+v14.0: (Javier Ayapata - 12/Sep/2006)
+-----
+Se corrigue al momento que se va ha facturar, validacion de precio
+
+
+v15.1: (Javier Ayapata - 02/Oct/2006)
+-----
+Se agrega para que se visualize si es item de servicio en listado de item.
+
+
+v15.2: (Javier Ayapata - 02/Oct/2006)
+-----
+Se corrigue la validacion de Documentos vencidos se corrigui el boolean
+
+
+v15.4: (Javier Ayapata - 13/Oct/2006)
+-----
+Se se corrigue al momento de obtener el descuento.
+
+
+v15.5: (Javier Ayapata - 18/Oct/2006)
+-----
+Se corrigue problemas de disminuir el stock, al momento de ingresar la factura   
+
+
+v15.6: (Javier Ayapata - 18/Oct/2006)
+-----
+Se agraga en campo nd_costotgrp al momento de ingresar la factura.
+
+ 
+v15.7: (Javier Ayapata - 31/Oct/2006)
+-----
+Se corrgue al momento de consultar los ventas del item. 
+
+
+v15.8: (Javier Ayapata - 06/Nov/2006)
+-----
+Se corrgue al momento insertar la factura. 
+
+
+v15.9: (Javier Ayapata - 06/Nov/2006)
+-----
+Se corrigue al momento de v aloidar el cliente. 
+
+
+v16.0: (Javier Ayapata - 20/Nov/2006)
+-----
+Se corrigue el cambio de estado al cancelar. 
+
+
+v16.2: (Javier Ayapata - 28/Nov/2006)
+-----
+Se corrigue la validacion de ventas entre compa�ias. 
+
+
+v16.3: (Javier Ayapata - 01/Dic/2006)
+-----
+Se corrigue estado de la tabla.
+
+
+v16.4: (Javier Ayapata - 06/Dic/2006)
+-----
+Se Corrigue al momento de seleccinar el cliente y el vendedor.
+
+
+v16.5: (Javier Ayapata - 11/Dic/2006)
+-----
+Se corrigue al momento de validar stock cuando hay una venta entre compa�ias
+
+
+v16.6: (Javier Ayapata - 27/Dic/2006)
+-----
+Se corrigue al consultar desde el grupo.
+
+
+v16.7: (Javier Ayapata - 11/Ene/2007)
+-----
+Se corrigue al consultar documento vencidos.
+
+
+v16.8: (Javier Ayapata - 12/Ene/2007)
+-----
+Se corrigue funcion de VerificaPermisodeImpresion se corrigue query.
+
+
+v16.9: (Javier Ayapata - 14/Mar/2007)
+-----
+Se agrega una vefificacion cuando no haya conneccion con el servidor central
+
+
+v17.2: (Javier Ayapata - 17/Abr/2007)
+-----
+Se controla las coneccion al realizar la Factura
+
+
+v17.5: (Javier Ayapata - 26/Abr/2007)
+-----
+Se agrega la columna de porcentaje de descuento de precio de compra.
+
+
+v17.7: (Javier Ayapata - 14/May/2007)
+-----
+Se agrega para que la orden de compra aparesca la misma descriccion del item que puso en la cotizacion 
+se corrigue al cancelar.
+
+
+v17.8: (Javier Ayapata - 24/May/2007)
+-----
+Se agrega el codigo de retencion para las facturas y las ordenes de compra
+
+
+v17.9: (Javier Ayapata - 30/May/2007)
+-----
+Se agrega parq que el st_reg almacene estado A en factura y en ordenes de compra.
+
+
+v18.0: (Javier Ayapata - 30/Jun/2007)
+-----
+Se agrega en la funcion calcularPagos la forma de retencion del 1 % para los fletes.
+
+
+v18.1: (Javier Ayapata - 2/Jul/2007)
+-----
+Se corrigue en la funcion calcularPagos la forma de retencion del 1 % para los fletes.
+
+
+v18.2: (Javier Ayapata - 07/Ago/2007)
+-----
+Se agrega para que se pueda realizar factura con fecha del mes siguiente del primer dia laborable.
+
+
+v18.3: (Javier Ayapata - 24/Ago/2007)
+-----
+Se agrega la moyorizacion en linea..
+
+
+v18.4 b1: (Javier Ayapata - 27/Ago/2007)
+--------
+Se corrigue al momento al realizar facturas del siguiente mes.
+
+
+v18.4 b2: (Javier Ayapata - 30/Ago/2007)
+--------
+Se agrega nueva validacion de precion cuya formula es ( 1 - ((valorCompra-desc)/(valorVenta-desc)))*100
+
+
+v18.5: (Javier Ayapata - 05/Sep/2007)
+-----
+Se agrega nueva validacion de precion cuya formula es ( 1 - ((valorCompra-desc)/(valorVenta-desc)))*100 
+
+
+v18.6: (Javier Ayapata - 10/Sep/2007)
+-----
+Se agrega dos combo una de empresa y otra de local esto servira para poder realizar busqueda por empresa y local.
+
+
+v18.7: (Javier Ayapata - 27/Sep/2007)
+-----
+Se agrega configuracion para la forma de pago, la cual trabajara la configuracion de forma de pago validacion de peso de forma de pago.
+
+ 
+v18.8: (Javier Ayapata - 02/Oct/2007)
+-----
+Se agrega para realizar las transferencia en linea al momento de facturar.
+
+
+v18.9: (Javier Ayapata - 04/Oct/2007)
+-----
+Se modifica la forma de validacion de las ventas de contado y tambien se corrigue en las transferencias.
+
+
+v18.9.1: (Javier Ayapata - 29/Oct/2007)
+-------
+Se corrigue al momento de validar las ventas de contado se verifica si el cliente tiene  dias de gracias asignado.
+
+
+v18.9.2: (Javier Ayapata - 05/Nov/2007)
+-------
+Se corrigue al momento de validar las impresiones que tienen problemas de forma de pago y precio..
+
+
+v18.9.3: (Javier Ayapata - 14/Nov/2007)
+-------
+Se agrega validacion de sistema operativo para las impresiones.
+
+
+v18.9.4: (Javier Ayapata - 04/Dic/2007)
+-------
+Se agrega para coloque la forma predeterminado del cliente.
+
+
+v18.9.5: (Javier Ayapata - 22/Ene/2008)
+-------
+Se corrigue en la secuencia de empresa y grupo en facturas que sean primero las ordenes de compras. se agrega listado de item que no salgan los estado unificados.
+
+
+v18.9.6: (Javier Ayapata - 28/Ene/2008)
+-------
+Se agrega que almecene el campo co_itmact en tbm_detmovinv.
+
+
+v18.9.7: (Javier Ayapata - 11/Mar/2008)
+-------
+Se corrigue el query pata obtner listado de clente/proveedor, 
+
+
+v18.9.8: (Javier Ayapata - 26/Mar/2008)
+-------
+Se agrega telefono al listado de direcciones de clientes, tambien se agrega boton para vista previa de la OC antes de facturar.
+
+
+v19.0: (Javier Ayapata - 02/Abr/2008)
+-----
+Se agrega para que tome el telefono en vace a la direccion que seleccionado.
+
+
+v19.1: (Javier Ayapata - 14/Abr/2008)
+-----
+Se agrega nueva configuracion de tabla politicas de retenciones, se corrigue la ventana que muestra
+cotizacion historica.
+
+
+v19.2: (Javier Ayapata - 21/Abr/2008)
+-----
+Se agrega en la funcion  isDocSinSop que valide si tiene saldo a favor no toma encuenta soporte de cheque.
+
+
+v19.3: (Javier Ayapata - 28/Abr/2008)
+-----
+Se corrigue estado de replica de informacion...
+
+  
+v19.4: (Javier Ayapata - 07/May/2008)
+-----
+Se agrega para que el iva calcule si el cliente tiene asignado o no.
+
+
+v19.5: (Javier Ayapata - 13/May/2008)
+-----
+Se agrega para que se realize las transferencia de manera automaticas.
+
+
+v19.7: (Javier Ayapata - 16/May/2008)
+-----
+Se corrigue en la transf. se quema el codigo local para grupo. a 1
+
+
+v19.8: (Javier Ayapata - 29/May/2008)
+-----
+Se agrega cuando no se imprima por estar pendiente la fecha  actual de impresion, esto es solo para castek.
+
+
+v19.9: (Javier Ayapata - 05/Jun/2008)
+-----
+Se agrega cuando se inserta o se modifica siempre mantenga la fecha de hoy.
+
+
+v20.0: (Javier Ayapata - 06/Jun/2008)
+-----
+Se corrigue al momento de seleccionar el cliente.
+
+
+v20.1: (Javier Ayapata - 12/Jun/2008)
+-----
+Se corrigue al momento de realizar la transferencia que no tome en cuenta los de servicio.
+
+
+v20.2: (Javier Ayapata - 17/Jun/2008)
+-----
+   se agrega para que realize la transferencia total o solo el restante que falta del item.
+
+v20.3: (Javier Ayapata - 20/Jun/2008)
+-----
+Se corrigue query en credito de cliente.
+
+
+v20.4: (Javier Ayapata - 24/Jun/2008)
+-----
+Se agrega en las ventas de contado que solo tome en cuenta las facturas impresas.
+
+
+v20.5: (Javier Ayapata - 27/Jun/2008)
+-----
+Se agrega qué almacene código de menú en la tabla tbm_cabmovinv 
+
+
+v20.6: (Javier Ayapata - 02/Jul/2008)
+-----
+Se agrega para que almacene hístorico cuando insertar una nueva cotización e imprimen
+
+
+v20.7: (Javier Ayapata - 08/Jul/2008)
+-----
+Se corrigue la parte donde se realiza las transferencia automatica.
+
+
+v20.8: (Javier Ayapata - 10/Jul/2008)
+-----
+Se agrega para que ingrese un nombre al cliente en caso que el campo del cliente st_peringnomclicotven este en S 
+
+
+v20.9: (Javier Ayapata - 11/Jul/2008)
+-----
+Se agrega al insertar en la factura el campo tbm_cabmovinv.st_coninvtraaut con estado 'S' de confirmado transferencia 
+
+
+v21.0: (Javier Ayapata - 21/Jul/2008)
+-----
+Se agrega que al momento de elejir proveedor verifique el estado del regsitro que sea solo A
+
+
+v21.1: (Javier Ayapata - 31/Jul/2008)
+-----
+Se agrega validación de clientes y proveedores que esten dados de alta al momento de facturar.
+
+
+v21.2: (Javier Ayapata - 04/Ago/2008)
+-----
+Se corrigue al momento de realizar transferencia.
+
+
+v21.3: (Javier Ayapata - 05/Ago/2008)
+-----
+Se corrigue al momento de realizar transferencia y se carrigue cambio en control de ventas de contado.
+
+
+v21.4: (Javier Ayapata - 19/Ago/2008)
+-----
+Se agrega para que no marque iva en el item cuando el cliente tiene asignado que no lleve iva.
+
+
+v21.5: (Javier Ayapata - 25/Ago/2008)
+-----
+Se corrigue la funcion que verifica cliente nuevos que no puedan ser facturado.
+
+
+v21.6: (Javier Ayapata - 29/Ago/2008)
+-----
+Se quita restricción al momento asignar numero a una factura no impresa, esto permite asignar fecha en la que se imprime la factura.  
+
+
+v21.7: (Javier Ayapata - 09/Sep/2008)
+-----
+Se agrega que al momento de seleccionar el cliente aparesca la pantalla de autorizacion, mostrando los controles que tiene problema.
+
+
+v21.8: (Javier Ayapata - 17/Sep/2008)
+-----
+Se agrega fecha de recordatorio a la cotizacion esto permite mostrar un listado de las cotizaciones no facturadas que tengas fecha de recordatorio.
+
+
+v21.9: (Javier Ayapata - 22/Sep/2008)
+-----
+Se actualiza al momento de presentar listado autorizacion del cliente solo cuando se va ha insertar o modificar.
+
+
+v22.0: (Javier Ayapata - 22/Sep/2008)
+-----
+Se agrega en la autorizacion si no tiene precio de lista pida autorizacion ha execcion de las terminales L.
+
+
+v22.1: (Javier Ayapata - 28/Oct/2008)
+-----
+Se agrega para que acutaliza los de campos de tbm_invbod nd_canegre  
+
+
+v22.2: (Javier Ayapata - 04/Nov/2008)
+-----
+Se agrega para que almacene el cod Sri en pagmovinv al realizar la orden de compra.
+
+
+v22.3: (Javier Ayapata - 24/Nov/2008)
+-----
+Se agrega impresion directa y un botton donde aparece las colicitudes pendiente a facturar.
+
+
+v22.4: (Javier Ayapata - 26/Nov/2008)
+-----
+Se agrega impresion directa y un botton donde aparece las colicitudes pendiente a facturar.
+
+
+v22.5: (Javier Ayapata - 30/04/2009)
+-----
+Se agrega compras y ventas entre compañias.
+
+
+v22.6: (Javier Ayapata - 08/05/2009)
+-----
+Se agrega cambios en listado de item se presenta de color solo las que se puede comprar.
+
+
+v22.7: (Javier Ayapata - 20/05/2009)
+-----
+Se agrega agrega para realize transferencia automatica en la mista empresa.
+
+
+v22.8: (Javier Ayapata - 27/05/2009)
+-----
+Se agrega para que se realize las transferencia automaticas.
+
+
+v22.9: (Javier Ayapata - 28/05/2009)
+-----
+Se agrega para que se realize las transferencia automaticas en base a la configuracion de la tabla tbr_bodemp.
+
+
+v23.01: (Javier Ayapata - 03/Jul/2009)
+------
+Se agrega para que realize devoluciones entre las compañias.
+
+
+v23.03: (Javier Ayapata - 09/Jul/2009)
+------
+Se agrega para que realize devoluciones entre las compañias solo de las bodegas permitidas.
+
+
+v23.05: (Javier Ayapata - 11/Ago/2009)
+------
+Se agrega para que actualize secuencia de empresa y grupo tomando la secuencia de la tabla tbm_emp
+
+
+v23.06: (Javier Ayapata - 20/Ago/2009)
+------
+Se agrega que unifique compras y ventas, agrega numero que corresponde ventas y compras, agrega que utilize bodega en la pide se aga trans.
+
+
+v23.07: (Javier Ayapata - 25/Ago/2009)
+------
+Se agrega control dia del mes a facturar y dias de semana que se facturara.
+
+
+v23.08: (Javier Ayapata - 26/Ago/2009)
+------
+Se corrigue esta de confirmacion cuando se genera devoluciones automaticas.
+
+
+v23.09: (Javier Ayapata - 28/Ago/2009)
+------
+Se agrega para que se aga devoluciones a la misma bodega fisica se tambien parcial.
+
+
+v23.10: (Javier Ayapata - 08/Sep/2009)
+------
+Se agrega para que se guarde los datos de la cotizacion cuando se factura.
+
+
+v23.11: (Javier Ayapata - 05/Oct/2009)
+------
+Se agrega cuando se realiza dev solo se devuelva de la bodega fisica la solicita. 
+
+
+v23.12: (Javier Ayapata - 12/Oct/2009)
+------
+Se agrega cuando se factura mercaderia que se vuelve a facturar no se genere guia de remision.
+
+
+v23.13: (Javier Ayapata - 20/Oct/2009)
+------
+Se agrega cuando vuelvan a facturar se controle la cantidad vuelta a facturar, tambien se puso tooltit en ventas entre compañias.
+
+
+v23.13: (Javier Ayapata - 22/Oct/2009)
+------
+Se agrega que aparesca en el tooltik los decimales que no se presenta.
+
+
+v23.14: (Javier Ayapata - 30/Oct/2009)
+------
+Se corrogue estado de marcar iva.
+
+
+v23.15: (Javier Ayapata - 06/Nov/2009)
+------
+Se agrega que solo puedan seleccionar cliente del mismo grupo cuando se vuelve a facturar.
+
+
+v23.18: (Javier Ayapata - 03/Dic/2009)
+------
+Se agrega para que no se imprima de manera automatica para santo domingo.
+
+
+v23.19: (Javier Ayapata - 09/Dic/2009)
+------
+Se corrigue nombre de ciudad en local santo de domingo
+
+
+v23.20: (Javier Ayapata - 11/Dic/2009)
+------
+Se agrega cuando hay cualquier modificacion es almacenado en historicos para luego ser presentado cuando consulten en autorizacione de cotizacion.
+
+
+v23.21: (Javier Ayapata - 16/Dic/2009)
+------
+Se canbia forma de presentar historicos de cotizacion en autorizacion.
+
+
+v23.22: (Javier Ayapata - 23/Dic/2009)
+------
+Se quita para que pida autorizacion cuando se cambia observacion.
+
+
+v23.23: (Javier Ayapata - 18/Ene/2010)
+------
+Se agrega para que presente los stock de la base central en caso que sean locales remotos.
+
+
+v23.24: (Javier Ayapata - 18/Ene/2010)
+------
+Se agrega columna nueva en asiento de diario
+
+
+v23.25: (Javier Ayapata - 25/Ene/2010)
+------
+Se deja para recalcule los pagos y no los carge de la base.
+
+
+v23.26: (Javier Ayapata - 01/Feb/2010)
+------
+Se agrega para que guarde historial cuando solicita autorizacion.
+
+
+v23.27: (Javier Ayapata - 03/Feb/2010)
+------
+Se corrigue cambios en compras y ventas entre conpañias agregando la bodega santoDomingo para transferencia
+
+
+v23.28: (Javier Ayapata - 10/Feb/2010)
+------
+Se agrega para que se realize compra automatica a la bodega fisica que ingresa.
+
+
+v23.29: (Javier Ayapata - 02/Mar/2010)
+------
+Se agrega para que cambie de estado de impresion en guias de remision.
+
+
+v23.30: (Javier Ayapata - 12/Mar/2010)
+------
+Se agrega columna de peso, y se agrega que no imprima guia cuando es de contado o cheque
+
+
+v23.31: (Javier Ayapata - 31/Mar/2010)
+------
+Se agrega para actualize las cantidades de ingreso y egreso cuando se realiza la orden de compre.
+
+
+v23.32: (Javier Ayapata - 23/Abr/2010)
+------
+Se agrega cuando se realiza la compra se pueda elegir la bodega a donde va ingresar la mercaderia para lo cual realiza una trans de la bodega a donde ing a bode ori.
+
+
+v23.33: (Javier Ayapata - 12/May/2010)
+------
+Se agrega para que aparesca las bodegas donde compran en la guia como por ejem. BQ, BM
+
+
+v23.34: (Javier Ayapata - 17/May/2010)
+------
+Se agrega para que presente el boton de facturar si el usuario tiene permiso.
+
+
+v23.35: (Javier Ayapata - 29/Jun/2010)
+------
+Se agrega para que se imprima en impresora de bodega 2 solo para tuval.
+
+
+v23.36: (Javier Ayapata - 09/Ago/2010)
+------
+Se pasa lo nuevo de validacion de precion y tiempo de validez.
+
+
+v23.37: (Javier Ayapata - 12/Ago/2010)
+------
+Se agrega para que no pida autorizaion para facturar en cosenco a los clientes tuval castek dimulti.
+
+
+v23.38: (Javier Ayapata - 20/Ago/2010)
+------
+Se agrega que la momento de generar la orden de compra entre compañia almacene de que bodega biene solo inicial.
+
+v23.39: (Javier Ayapata - 24/Ago/2010)
+------
+Se agrega para que almecene en la observacion 2 en faccom el codigo documento y cliente de la factura ventas.
+
+
+v23.40: (Javier Ayapata - 22/Oct/2010)
+------
+Se cambia configuracion de reporteria que esta en el servidor.
+
+
+v23.41: (Javier Ayapata - 25/Oct/2010)
+------
+Se cambia en control de ventas de contado que tome en cuenta tamb cuando hay pago con cheque.
+
+
+v23.42: (Javier Ayapata - 26/Oct/2010)
+------
+Se bloquea comtrol cuando es cosenco.
+
+
+v23.43: (Javier Ayapata - 28/Oct/2010)
+------
+Se corrogue cuando carga la solicitud de devolucion al volver a facturar.
+
+
+v23.44: (Javier Ayapata - 08/Nov/2010)
+------
+Se corrigue el contructor de condulta de la cotización.
+
+
+v23.45: (Javier Ayapata - 15/Nov/2010)
+------
+Se agrega al control al momento de insertar y facturar verificando fraccion.
+
+
+v23.46: (Javier Ayapata - 16/Nov/2010)
+------
+Se corrigue cuando agregan item se coloque el porcentaje de descuento .
+
+
+v23.47: (Javier Ayapata - 02/Dic/2010)
+------
+Se agrega para que coloque el punto de destino cuando es comp. vent. entre compañias.
+
+
+v23.48: (Javier Ayapata - 03/Dic/2010)
+------
+Cambio en control de clientes nuevos.
+
+
+v23.49: (Javier Ayapata - 06/Dic/2010)
+------
+Se agrega para que aparesca la cantidad que esta por ingresar.
+
+
+v23.50: (Javier Ayapata - 08/Dic/2010)
+------
+Se agrega para q no aparesca cantidad por ingresar en bod importacion.
+
+
+v23.51: (Javier Ayapata - 10/Dic/2010)
+------
+Se agrega en la guia en los items que coloque un ** cuando no hay mercaderia fisicamente.
+
+
+v23.52: (Javier Ayapata - 17/Ene/2011)
+------
+Se agrega en forma de pago para que divida cuando es servicio y transporte. en ordenes de compra.
+
+
+v23.53: (Javier Ayapata - 08/Feb/2011)
+------
+Se agrega en forma de pago para que coja fecha de retencion primera fecha de pago.
+
+
+v23.54: (Javier Ayapata - 09/Feb/2011)
+------
+Se agrega en forma de pago cuando el año es superior al año actual tome 31 dic del año actual.
+
+
+v23.55: (Javier Ayapata - 25/Feb/2011)
+------
+Se cambia esquema de compra venta entre compañias.
+
+
+v23.56: (Javier Ayapata - 02/Mar/2011)
+------
+Se valida al momento de realizar devoluciones entre compañias que la cantidad a devolver sea Mayr a 0
+
+
+v23.57: (Javier Ayapata - 03/Mar/2011)
+------
+Se agregas cuando es el caso prefacturas la fecha fecha pago que es retencion mantenga el plazo minimo de pogo en fecha
+
+
+v23.58: (Javier Ayapata - 14/Mar/2011)
+------
+Se agrega cuando no lleve iva en forma de pago no retenga iva en ordernes de compra.
+
+
+v23.59: (Javier Ayapata - 28/Mar/2011)
+------
+Se agrega en la devolucion para almacene la punto de destino.
+
+
+v23.60: (Javier Ayapata - 1/Abr/2011)
+------
+Se agrega para que las guias cuando se imprima salga con fecha del momento que se imprime.
+
+
+v23.61: (Javier Ayapata - 29/Abr/2011)
+------
+Se agrega para que en las transferencia tome la cuenta de bodega de la base.
+
+
+v23.62: (Javier Ayapata - 06/May/2011)
+------
+Se agrega para que almacena la relacion entre la venta y la compras en la tabla relacional tbr_detmvoinv
+
+
+v23.70: (Javier Ayapata - 27/Jun/2011)
+------
+Se agrega cambios que genere la factura en la base central y se relacione con los ingresos.
+
+
+v23.71: (Javier Ayapata - 29/Jun/2011)
+------
+Se agrega cuando de un error al realizar la orden de compra el boton de aceptar se desactive.
+
+
+v23.72: (Javier Ayapata - 07/Jul/2011)
+------
+Se agrega para que envie solicitud al servidor e imprima la guia desde el mismo servidor..
+
+
+v23.73: (Javier Ayapata - 11/Jul/2011)
+------
+Se agrega hilo en el envio de requisito al servidor de impresion de guia.
+
+
+v23.74: (Javier Ayapata - 15/Jul/2011)
+------
+Se agrega para que se rentenga el 2% cuando sea items de servicio.
+
+
+v23.75: (Javier Ayapata - 26/Jul/2011)
+------
+Se cambia el control de ventas de contado que se calcule con la fecha de hoy.
+
+
+v23.76: (Javier Ayapata - 28/Jul/2011)
+------
+Se agrega cuando se pida a otro punto que verfique el tipo de medidad si es entero solo se pueda pedir cantidades enteras.
+
+
+v23.77: (Javier Ayapata - 08/Ago/2011)
+------
+Se corrigue al consultar cotizacion..
+
+
+v23.78: (Javier Ayapata - 09/Ago/2011)
+------
+Se actualiza que no utilize el campo st_bie en cot_his  
+
+
+v23.79: (Javier Ayapata - 23/Ago/2011)
+------
+Se corrigue cuando vuleve a factura una solucitud  problema de generacion de guia.
+
+
+v23.80: (Javier Ayapata - 24/Ago/2011)
+------
+Se corrigue para obtner ip de envio de imp. guía.
+
+
+v23.81: (Javier Ayapata - 31/Ago/2011)
+------
+Se corrigue validaciones de campo de la tabla cuando tiene un vacio.
+
+ 
+v23.82: (Javier Ayapata - 23/Septiembre/2011)
+------
+Se actualiza para el nuevo cambio de guias - orden de despacho.
+
+
+v23.83: (Javier Ayapata - 07/Oct/2011)
+------
+Se corrigue cuando se desea imprimir la factura que actualize la fecha del documento para caso de impresion de OD.
+
+
+v23.84: (Javier Ayapata - 11/Oct/2011)
+------
+Se corrigue problema de fecha en forma de pago .problema con el caso anterior  [1]
+
+
+v23.85: (Javier Ayapata - 24/Nov/2011)
+------
+Se agrega cliente retira.
+
+
+v23.86: (Javier Ayapata - 04/Dic/2011)
+------
+Se agrega validacion de campos de cliente retira
+
+
+v23.87: (Javier Ayapata - 05/Dic/2011)
+------
+Se corrigue error al guardar compra/venta  ya que faltaba agrega campos nuevos.
+
+
+v23.88: (Erik Flores - 22/Feb/2012)
+------
+ZafVen01.verificarMerEnvBodCalABodQuiStd
+Se agrega envio de correo a administracion@castek.ec para que le lleguen las notificaciones de 
+transferencias de inventario. 
+
+
+v23.89: (Erik Flores - 22/Mar/2012)
+------
+ZafVen01.ZafAutPrg.isItmCanMaxVen
+Funcion que determina si se excedio la cantidad maxima para la venta del item seleccionado. Terminales "P"
+  * false: Excedio la cantidad maxima, se debe solicitar autorizacion
+  * true: No hay problema.
+
+
+v23.90: (Erik Flores - 25/Abr/2012)
+------
+Se agrega nuevo constructor para las consultas de ultima cotizacion y factura, donde no se muestra el toolbar
+
+
+v23.91: (Erik Flores - 02/May/2012)
+------
+Modificaciones para esquema cliente retira en otra bodega.
+
+
+v23.92: (Erik Flores - 21/May/2012)
+------
+ZafVen01 y ZafVen01_OC: Uso de la funcion CODIFICAR para la descripcion de los items que tienen comillas simples.
+
+
+v23.93: (Erik Flores - 29/May/2012)
+------
+Presenta ventana para escoger la impresora para maquinas con S.O Windows; para las maquinas Linux sigue como hasta ahora. 
+
+
+v23.94: (Erik Flores - 09/Jul/2012)
+------
+Prefacturas que se imprimen por cotizacion del siguiente mes, asignar la fecha del siguiente mes. Sin el cambio, asigna a la factura la fecha actual.
+
+
+v23.95: (Erik Flores - 16/Ago/2012)
+------
+ZafVen01_06: No realizar devoluciones de compra/venta. AP. Contabilidad-sistemas.
+
+
+v23.96: (Erik Flores - 31/Oct/2012)
+------
+ZafVen01_06: BLOQUEO CLIENTE RETIRA EN MANTA Y SANTO DOMINGO.
+
+
+v23.97: (Erik Flores - 07/Nov/2012)
+------
+ZafVen01_06: Si realizar devoluciones de compra/venta. AP. Contabilidad-sistemas.
+
+
+v23.98: (Erik Flores - 30/Nov/2012)
+------
+ZafVen01_06: No realizar devoluciones de compra/venta. AP. Contabilidad-sistemas. 
+Se crea variable BOOLEAN blnReaDevComVen para setear si se realiza o no devoluciones entre empresas: TRUE si realiza FALSE no
+
+
+v23.99: (Erik Flores - 04/Dic/2012)
+------
+ZafVen01_04: Formas de pago, permitir reordenamiento.
+ZafVen01: Mejora a consulta. 
+
+
+v24.0: (Erik Flores - 19/Dic/2012)
+-----
+ZafVen01: Correccion de sentencia de consulta de facturas pendientes de imprimir. Esta llamando a una tabla que no existe aun. 
+
+
+v24.1: (Erik Flores - 09/Ene/2013)
+-----
+ZafVen01: Tarjetas de crédito
+
+
+v24.2: (Alex Morán - 31/Ene/2013)
+-----
+ZafVen01_06: Se modifica variable BOOLEAN blnReaDevComVen para que no genere devoluciones de compra/venta
+
+
+v24.3: (Alex Morán - 02/May/2013)
+-----
+ZafVen01_06: Se modifica para mantener el mismo orden de artículos de la cotización al presentar distibución de inventarios por bodega.
+ZafVen01: Se modifica para considerar tabla calendario por ciudad en reemplazo de tablas de feriados por ciudad.
+          Se corrige caso de cotizaciones de ventas que se desautorizan.
+
+
+v24.4: (Alex Morán - 03/Jun/2013)
+-----
+Se corrije validación para que no permita generar factura siguiente mes, 5 días antes de terminar el mes actual.
+
+
+v24.5: (Alex Morán - 05/Ago/2013)
+-----
+Se modifica para que al momento de seleccionar el cliente, si el vendedor asociado está inactivo se considere el usuario vendedor que ingrese al sistema.
+
+
+v24.6: (Alex Morán - 13/Ago/2013)
+-----
+Se corrige, al momento de seleccionar cliente por nombre no se estaba asignando valor a variable strStaVen.
+
+
+v24.7: (Alex Morán - 09/Sep/2013)
+-----
+Se modifica para considerar contabilización de ventas por intereses, gestion de cobranzas, arriendos, etc.
+
+
+v24.8: (Eddye Lino - 30/Oct/2013)
+-----
+Sólo funcionaba con "Medianet". Se agregó código para que funcionara con "Datafast".
+
+
+v24.9: (José Marín M. - 05/Mar/2014)
+-----
+Se agrega la opcion de hacer pedidos de mercaderia a la bodega de INMACONSA, con autorización.
+
+
+v25.0: (José Marín M. - 31/Mar/2014)
+-----
+Se agrega Datafast, para los conbros con tarjeta de credito
+
+
+v25.1: (José Marín M. - 1/Abr/2014)
+-----
+Se hacen modificaciónes a las direcciones de la factura y la guia, que estaban fallando
+
+
+v25.2: (Ingrid Lino. - 25/Jun/2014)
+-----
+Se adiciona codificación para que se genere el pulso hacia el servicio y se genere 
+
+
+v25.3: (Ingrid Lino. - 26/Jun/2014)
+-----
+Se quita codificación de pulso por empresa y bodega y se genera el pulso general.
+
+v25.4: (Ingrid Lino. - 02/Jul/2014)
+-----
+Se quita codificación para pulso general y se agrega codificación para enviar pulso sólo a empresas donde se inserta la Orden de Despacho.
+
+v25.5: (Ingrid Lino. - 04/Ago/2014)
+-----
+Se cambia el query que permite enviar el pulso al servicio para que genere la OD.
+
+v25.5: (José Marín M. - 7/Jul/2014)
+----
+Se corrigio al guardar historico de cotización
+
+v25.6: (José Marín M. - 4/Sep/2014)
+----
+Se quita el bloqueo, para que ahora todos los locales puedan pedir a todas las bodegas (según la configuracion en la tabla tbr_bodemp)
+el nuevo estado C, es para cliente retira obligatorio 
+   
+v25.7: (José Marín M. - 5/Sep/2014)
+----
+_generaDevoluciones se modifica el ultimo query de esa funcion se le agrega el local 
+
+v25.8: (José Marín M. - 5/Sep/2014)
+----
+Se ocultan las columnas del pedido
+
+v25.9: (José Marín M. - 8/Sep/2014)
+----
+Se reporta que atraves de los botones en la cotizaciones, los valores presentados no eran los correctos, 
+se corrige el query en el ZafVen01_07 en cargarDat() 
+
+v26.0: (José Marín M. - 8/Sep/2014)
+----
+Modificaciones para el Proyecto de Transferencias de Inventario.
+ 
+v26.4: (José Marín M. - 8/Sep/2014)
+----
+Modificaciones para el Proyecto de Transferencias de Inventario OC arreglado.
+ 

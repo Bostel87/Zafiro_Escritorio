@@ -1,0 +1,15 @@
+Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.01: (Jose Mario Marin)
+----
+Clase nueva ventana de pedidos de reservas en propia empresa cotizaciones de venta.
+
+
+v0.01: (Jose Mario Marin - 16/Oct/2017)
+----
+Modificacion de la version.

@@ -1,0 +1,12 @@
+Pendientes:
+1) Cancelaciones Parciales
+2) Generacion de Documentos de cancelacion
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (José Marín - 1/Jul/2017)
+----
+Clase nueva (Muestra un listado de los items en la cotizacion que seran cancelados).
+
+ 

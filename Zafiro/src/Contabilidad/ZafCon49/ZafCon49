@@ -1,0 +1,19 @@
+v0.1: (Ingrid Lino - 12/Jun/2009)
+----
+Libro de ventas
+
+v0.2: (Ingrid Lino - 07/Feb/2011)
+----
+Se adicionó en el filtro del query la tabla tbr_tipDocPrg o tbr_tipDocUsr dependiendo del caso.
+
+v0.2.1: (Ingrid Lino - 30/Abr/2012/)
+----
+Se coloca group by en el query porque estaba presentando registro duplicados.
+
+v0.2.2: (Ingrid Lino - 06/Jun/2012/)
+----
+Se adicionan filtros en diseño y programacion para obtener datos reales de comisiones a vendedoras.
+
+v0.2.3: (Ingrid Lino - 17/Sep/2012/)
+----
+Se coloca en filtro del query al momento de tipoDocumento(3,99) hay un nuevo tipo de dato en st_tipDev ('E') y al presentarlo los valores se los mostraba en positivo, siendo DEVOLUC., deberian ser en Negativo.

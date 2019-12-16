@@ -1,0 +1,130 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1 : (Ingrid Lino - 21/Sep/2015)
+----
+Se cambia programa para ajustar a migración de código web a código de java swing. "Transferencia de inventario(Importaciones)"
+
+
+v0.1.1 : (Ingrid Lino - 22/Sep/2015)
+-----
+Se añade en el query de cargar items, que valide si el documento está anulado o no en la Distribución.
+
+
+v0.1.2 : (Ingrid Lino - 23/Sep/2015)
+-----
+Se realizan cambios según solicitud de AP a nivel de elementos del diseño del formulario
+
+
+v0.1.3: (Ingrid Lino - 24/Sep/2015)
+-----
+Se valida el campo "Nombre de item" con el método "codificar()" de la clase ZafUtil, para que no de problemas cuando el nombre tiene caracteres especiales. Ejm: ' comilla simple.
+
+
+v0.1.4: (Ingrid Lino - 25/Sep/2015)
+-----
+Se cambió el campo código en letras del item porque estaba presentando el código alterno, debido a que en el ingreso por importación se guarda el código alterno en ese campo de código en letras.
+
+
+v0.1.5: (Ingrid Lino - 25/Sep/2015)
+-----
+Se valida el campo combo del pedido que cuando se cambiaba de tipo de documento, se blanqueaba. Se corrgie error al ingresar bodega por medio del campo código.
+
+
+v0.1.6: (Ingrid Lino - 03/Feb/2016)
+-----
+Se valida que en isCamVal en validacion mostrarMsgInf("<HTML>La cantidad que se desea transferir no ha sido autorizada en ...... " se validen solo los registros seleccionados.
+
+
+v0.1.7: (Ingrid Lino - 11/Mar/2016)
+-----
+Se valida que solo tome las tx que estan activas.
+
+
+v0.1.8: (Rosa Zambrano - 29/Jun/2016)
+-----
+Se agrega impresion de solicitud de transferencia automática y relacion de pedido con solicitud. 
+
+
+v0.1.9: (José Marín - 19/Jul/2016)
+-----
+Se modifica para que trabaje con el nuevo esquema de Transferencias de inventario.
+
+
+v0.1.10: (Rosa Zambrano - 26/Jul/2016)
+-----
+Se cambia para que el objeto ZafCom91 trabaje con el constructor de documentos automaticos.
+
+
+v0.1.11: (Rosa Zambrano - 26/Jul/2016)
+-----
+Se reversa la version anterior y se cambia el nombre del printserver de importaciones.
+
+
+v0.1.12: (Rosa Zambrano - 01/Ago/2016)
+-----
+Se agrega impresion para bodega compras locales.
+
+
+v0.1.13: (Rosa Zambrano - 11/Ago/2016)
+-----
+Se configura la impresora printOrdDesBodImp.
+
+
+v0.1.14: (Rosa Zambrano - 01/Nov/2016)
+-----
+Se cambia en la función isCamVal() la validacion de la cantidad transferida total (bgdCanTrsOk) se la multiplica * -1, ya que las transferencias se estan guardando con negativos en el nuevo proceso de transferencias.
+
+
+v0.1.15: (Rosa Zambrano - 07/Nov/2016)
+-----
+Se cambia el query de consulta para que la cantidad de cantidad transferida ok , se cargue en el jtable de forma absoluta, ya que los egresos se estan guardando en negativo en la bd.
+
+
+v0.1.16: (Rosa Zambrano - 18/May/2017)
+-----
+Se cambia el query de consulta en la funcion cargarItmPenTrs() para que la sumatoria de cantidad transferida se calcule dentro del query de transferencia y no al final del query.
+La sumatoria al final estaba trayendo el dato incorrecto del total transferido cuando era una bodega distinta a Inmaconsa.
+Esto lo reporto Miguel Montezuma cuando queria solicitar transferir a la bodega Faltante.
+Se comenta la funcion cargarDetIngImp() al momento de cargar items sea mas rapido, esta funcion no estaba siendo utilizada.
+
+
+v0.1.17: (Rosa Zambrano - 12/Sep/2017)
+-----
+Se adapta el programa para el proyecto de costos.
+Se agrega función de consultarReg().
+Se agrega constructor para consulta en reporte de ZafImp08.
+Se realizan validaciones de cantidades pendientes a transferir.
+Se cambia para que al consultar no queden abiertas las conexiones.
+
+
+v0.1.18: (Rosa Zambrano - 14/Sep/2017)
+-----
+Se mejora el proceso de inserción.
+
+
+v0.1.20: (Rosa Zambrano - 13/Oct/2017)
+-----
+En la función cargarItmPenTrs se agrega validacion para ajustes con autorizacion de mercaderia en las distintas bodegas, solicitado por AP 12/Oct/2017.
+
+
+v0.1.21: (Rosa Zambrano - 13/Abr/2018)
+-----
+Se valida que se limpien las bodegas de origen y destino cuando cambias el tipo de documento, solicitado por Carlos Chiriguaya.
+
+
+v0.1.22: (Rosa Zambrano - 18/Abr/2018)
+-----
+Se cambia query de cargar items para que este más rapido.
+Se comenta la eliminación de items pendientes, se maneja en query que no devuelva los items con cantidades pendientes.
+
+
+v0.1.23: (Rosa Zambrano - 25/Jun/2018)
+-----
+Se agrega constantes de código de menú de objImp para segmentación de compras locales.
+
+

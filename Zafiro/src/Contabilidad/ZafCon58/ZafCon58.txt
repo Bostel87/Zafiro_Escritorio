@@ -1,0 +1,11 @@
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Ingrid Lino - 22/Jul/2010)
+----
+Programa nuevo que permite la "Asignación de clientes a depósitos registrados directamente en el banco"
+
+
+v0.1.1: (Ingrid Lino - 26/Jul/2010)
+----
+Se adicionó una columna en la q se muestra un botón, mismo que al dar click, presentará el programa de ZafCxC76

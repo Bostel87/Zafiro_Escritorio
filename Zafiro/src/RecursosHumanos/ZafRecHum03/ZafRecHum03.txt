@@ -1,0 +1,135 @@
+﻿
+CONTROL DE VERSIONES:
+=====================
+
+ZafRecHum03 v1.0: (Carlos Lainez- 01/04/2011)
+----
+Clase nueva Maestros de "Empleados..."
+Se creo la Pantalla de Mantenimiento para Empleados siendo manejado por el bean ZafRecHum03Bean.
+
+
+ZafRecHum03Bean v1.0: (Carlos Lainez- 01/04/2011)
+-----
+Se creo bean manejador de la Pantalla de Mantenimiento para Empleados ZafRecHum03
+
+
+ZafRecHum03 v1.01: (Roberto Flores - 28/10/2011)
+-----
+Se valida para que la cedula ingresada consulte si es valida en la pagina del
+registro civil.
+
+
+ZafRecHum03 v1.02: (Roberto Flores - 13/11/2012)
+-----
+Se valida para que cuando se inserte un empleado se inserten los rubros existentes
+en tbm_suetra.
+
+
+ZafRecHum03 v1.03: (Roberto Flores - 25/01/2013)
+----
+Se añade campos para el control de fechas de inicio de contrato, periodos de prueba, fecha de finalizacion de contrato, fecha fe finalizacion real de contrato.
+
+
+ZafRecHum03 v1.04: (Roberto Flores - 11/04/2013)
+-----
+Validación para capturar excepciones en el constructor, corrección en la validación de los departamentos a mostrar
+
+
+ZafRecHum03 v1.05: (Roberto Flores - 11/04/2013)
+-----
+Se añaden validaciones para:
+	a)ingreso de horario de trabajo la primera vez que se ingresa un empleado.
+	b)se establecen como obligatorio los tipos de documentos digitales: Cédula, certificado de votación, hoja de vida, record policial y de en caso de ser chofer
+	  se deberá incluir la licencia de conducir.
+
+
+ZafRecHum03 v1.06: (Roberto Flores - 17/04/2013)
+-----
+Se realiza mejora en query de consulta y actualización al momento de anular un empleado.
+
+
+ZafRecHum03 v1.07: (Roberto Flores - 07/06/2013)
+-----
+Se aumenta validación para otorgar permisos a las cuentas por cobrar que se crean cuando se inserta un empleado a todo los usuarios que pertenecen al grupo contabilidad.
+Se aumentan validaciones para contemplar la configuración de la alimentación.
+
+
+ZafRecHum03 v1.08: (Roberto Flores - 13/06/2013)
+-----
+Correccion se quita validación RC al momento de hacer el guardado del registro
+
+
+ZafRecHum03 v1.08: (Roberto Flores - 18/06/2013)
+-----
+Visualizar empleados anulados y poder consultar alimentacion
+
+
+ZafRecHum03 v1.09: (Roberto Flores - 04/07/2013)
+-----
+Se realizan validaciones para ingresar la oficina a la cual pertenece el empleado
+
+
+ZafRecHum03 v1.10: (Roberto Flores - 22/08/2013)
+-----
+Se realizan validaciones para ingresar el cargo laboral del empleado
+
+
+ZafRecHum03 v1.11: (Roberto Flores - 05/11/2013)
+-----
+Se realizan validaciones para el envío de correo al momento de realizar la insercion/anulacion de un empleado.
+
+
+ZafRecHum03 v1.12: (Roberto Flores - 13/11/2013)
+-----
+Se realiza corrección en mensaje al momento de enviar correo cuando se inserta un empleado.
+
+
+ZafRecHum03 v1.13: (Roberto Flores - 11/02/2014)
+-----
+Cierro objetos Connection que no cerraban anteriormente.
+
+
+ZafRecHum03 v1.14: (Roberto Flores - 19/03/2014)
+-----
+Se valida mediante función para anular el usuario cuando se anula un empleado y se realiza corrección para asignar correctamente
+la cuenta padre al crear cuenta por cobrar al empleado
+
+
+v1.15: (David Albuja - 27/05/2014)
+-----
+Se agrego el correo vicepresidencia@tuvalsa.com en el metodo blnEnvioCorreo().
+
+
+v1.16: (David Albuja - 19/06/2014)
+-----
+Al grabar invoca al Servicio9.
+
+
+v1.17: (José Marín M - 21/Nov/2014)
+-----
+Se quita la validación de revisar la CI (temporal)
+
+
+v1.18: (Tony Sanginez - 11/Feb/2016)
+-----
+Se agregan validaciones para la seleccion de horario que no permite seleccionar que tiene un horario fijo sin seleccionar una horario especifico.
+
+
+v1.19: (Tony Sanginez - 22/Ene/2018)
+-----
+Se modifica el valor del almuerzo ya que se encuentra quemado con el valor de $2 y ahora es $2.5
+
+
+ZafRecHum03Bean v1.1: (Christian Mateo - 19/Ene/2019)
+-----
+Se realizan modificaciones para que la conexion secundaria sea manejada en una sola transaccion, evitando hacer varios commits a lo largo del metodo grabar.
+
+
+ZafRecHum03Bean v1.2: (Christian Mateo - 13/May/2019)
+-----
+Se modifica el metodo insertaTbmSalCta para que permita grabar los nuevos campos de la tabla tbm_salcta que son :  tx_codcta ,  tx_deslar ,  ne_pad ,  ne_niv.
+
+
+v1.20: (Rosa Zambrano - 30/Jul/2019)
+-----
+Se cambia en la clase ZafRecHum03Bean, el envio de correos para que utilice la libreria ZafNotCorEle.

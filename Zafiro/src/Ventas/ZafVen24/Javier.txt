@@ -1,0 +1,159 @@
+
+CONTROL DE VERSIONES:
+=====================
+
+v 1.0: (Javier Ayapata  04/Junio/2007)
+  se  agrega  clase nueva para realizar reemplazo de factura.
+
+
+v 1.1: (Javier Ayapata  06/Junio/2007)
+  se  corrigue al momento de reemplazar la factura.
+  
+
+v 1.2: (Javier Ayapata  27/Junio/2007)
+  se corrigue al momento de insertar la factura. 
+
+v 1.3 - (Javier Ayapata - 2/Julio/2007)
+  se corrigue en la funcion calcularPagos la forma de retencion del 1 % para los fletes.
+
+v 1.4 - (Javier Ayapata - 4/Julio/2007)
+  se corrigue al momento de crear la nueva factura se obtiene la informacion del cliente el Ruc
+
+
+v 1.5 - (Javier Ayapata - 9/Julio/2007)
+  se corrigue al momento obtener el calculo de subtotal y total de la devolucion.
+
+
+v 1.6 - (Javier Ayapata - 02/Agosto/2007)
+  se agrega para que se pueda buscar por local y porder hacer el reemplazo de factura, se quita la validacion de confirmacion.
+
+v 1.7 - (Javier Ayapata - 03/Agosto/2007)
+  se agrega que se guarde el numero de factura de la cual se esta reemplazando.  
+
+
+v 1.8 - (Javier Ayapata - 06/Agosto/2007)
+  se agrega validacion al momento de anular que no puedan anular hasta 5 dias antes y que genera la nueva factura al primer dia del mes siguiente laborable.
+
+v 1.9 - (Javier Ayapata - 24/Agosto/2007)
+ se agrega mayorizacion en linea.
+
+v 2.0 beta 1 - (Javier Ayapata - 27/Agosto/2007)
+  agrega para que puedan cambiar el cliente cuando se realiza el reemplazo de la factura.
+
+
+v 2.1 - (Javier Ayapata - 10/Ene/2008)
+ se agrega control al realizar el reemplazo de factura que no tenga pagos asociados.
+
+v 2.2 - (Javier Ayapata - 28/Ene/2008)
+ se agrega que almecene el campo co_itmact en tbm_detmovinv 
+
+v 2.3 - (Javier Ayapata - 11/Mar/2008)
+ se corrigue query para obtener listado de cliente y no se permite reeplazar factura si tiene unificacion en los item.
+
+v 2.4 - (Javier Ayapata - 25/Mar/2008)
+   se agrega para que realize de forma automatica los cruces entre la devolucion y la factura.
+
+v 2.5 - (Javier Ayapata - 02/Abril/2008)
+   se agrega para que realice cruce de manera automatica entre la devolucion y la factura.
+
+v 2.6 - (Javier Ayapata - 24/Abril/2008)
+   se agrega filtro para las retenciones.
+
+v 2.7- (Javier Ayapata - 07/May/2008)
+ se agrega para que el iva calcule si el cliente tiene asignado o no.
+
+v 2.8- (Javier Ayapata - 09/May/2008)
+ se corrigue el secuencial de la factura que sea priemero la devolucion y desp. la factura.
+
+v 2.9- (Javier Ayapata - 11/Jun/2008)
+ se corrigue al reemplazar la factura en la tabla tbr_cabmovinv .
+ 
+v 3.0- (Javier Ayapata - 05/Ago/2008)
+ se corrigue al realizar la devolucion y se abilita en el campo de tx_obs1 en factura.
+
+v 3.1- (Javier Ayapata - 14/Ago/2008)
+ se corrigue al momento de hacer cruce automatico tomando en cuenta los estado A y C en pagmovinv
+
+v 3.2- (Javier Ayapata - 14/Ene/2009)
+ se agrega impresión directa a la factura de facturación.
+
+v 3.3- (Javier Ayapata - 26/Ene/2009)
+ se agrega cambio al momento de enviar parametros al asiento de diario.
+
+v 3.4- (Javier Ayapata - 29/Ene/2009)
+ se agrega nueva clase de inventario.
+
+v 3.5- (Javier Ayapata - 09/Mar/2009)
+ se corrigue al momento de hacer reemplazo por anulacion.
+
+v 3.6- (Javier Ayapata - 01/Abril/2009)
+ se quita la impresion automatica de guia.
+
+v 3.7- (Javier Ayapata - 02/Abril/2009)
+ se corrigue cuando se hace devolucion de venta por problema de iva.
+
+v 3.8- (Javier Ayapata - 24/Abril/2009)
+ se corrigue cuando se cambia de cliente verifique si marca iva o no .
+
+
+v 3.9- (Javier Ayapata - 19/May/2009)
+ se agrega para que eliga local para dimulti.
+
+v 4.0- (Javier Ayapata - 11/Ago/2009)
+se agrega para que actualize secuencia de empresa y grupo tomando la secuencia de la tabla tbm_emp
+
+v 4.1- (Javier Ayapata - 17/Sep/2009)
+ se agrega para que almecene el estado confirmacion en null en devven
+
+v 4.2- (Javier Ayapata - 06/Nov/2009)
+ se agrega filtro que solo aparesca cliente del mismo grupo de la facturar nueva.
+
+v 4.3- (Javier Ayapata - 14/Dic/2009)
+ se agrega para que solo aparesca el local en cual esta trabajando.
+
+v 4.4- (Javier Ayapata - 08/Ene/2010)
+ se agrega al reemplazar la factura el filtro de cliente por local
+
+
+v 4.5 - (Javier Ayapata - 18/Enero/2010)
+ se agrega columna nueva en asiento de diario
+
+
+v 4.6 - (Javier Ayapata - 10/Febrero/2010)
+ se agrega validacion si ya tiene solicitud de dev avtida no permite reemplasar
+
+v 4.7 - (Javier Ayapata - 5/Julio/2010)
+ se agrega codigo de menu de devolucion nueva .
+
+v 4.8 - (Javier Ayapata - 23/Agosto/2010)
+ se agrega para que la nueva factura lleve el mismo numero de guia al cual reemplazo.
+
+v 4.9 - (Javier Ayapata - 25/Febrero/2011)
+ se agrega para que reemlace la guia que corresponde a la factura que se reemplaza.
+
+v 5.0 - (Javier Ayapata - 02/Marzo/2011)
+ se agrega validacion de fecha del primer corte en forma de pago.
+
+v 5.1 - (Javier Ayapata - 27/Junio/2011)
+ se cirrigue al cargar la factura.
+
+v 5.2 - (Javier Ayapata - 18/Julio/2011)
+ se agrega para que al momento de reemplazar facturar tambien calcule los items de servicio para que separe la retencion del mismo.
+
+v 5.4 - (Javier Ayapata - 25/Octubre/2011)
+ se corrigue problema que no generaba devolucion en ciertos casos.
+
+v 5.5 - (Javier Ayapata - 16/Noviembre/2011)
+ se agrega el numero de orden de despacho que no tenia cuando se realizaba el reemplazo
+
+v. 5.6 ERIK FLORES 2012-09-06
+RELACIONAR EN TBR_DETMOVINV LA NUEVA FACTURA CON LOS DOCUMENTOS INTERMEDIOS ANTERIORES.CASO OPCION CLIENTE RETIRA, NO SE PUEDE CONFIRMAR EL EGRESO EN OTRA BODEGA.
+
+v. 5.7 ERIK FLORES 2013-01-09
+TARJETAS DE CREDITO.
+
+v. 6.0 ALEX MORAN 2013-01-29
+ZafVen24_01. Corrección en porcentajes de descuento, se modificaba al momento de cambiar tab de forma de pago a general
+
+v. 6.1 Alex Morán 2013-05-02
+Se modifica para considerar tabla calendario por ciudad en reemplazo de tablas de feriados por ciudad.

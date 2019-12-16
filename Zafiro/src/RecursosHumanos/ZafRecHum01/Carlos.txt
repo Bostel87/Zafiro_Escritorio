@@ -1,0 +1,13 @@
+
+CONTROL DE VERSIONES:
+=====================
+
+ZafRecHum01 v1.0: (Carlos Lainez- 22/03/2011)
+----
+Se creo la pantalla de Mantenimiento para las Comisiones Sectoriales 
+siendo manejado por el bean ZafRecHum01Bean
+
+
+ZafRecHum01Bean v1.0: (Carlos Lainez- 24/03/2011)
+----
+Se creo bean manejador de la pantalla de Mantenimiento para las Comisiones Sectoriales ZafRecHum01

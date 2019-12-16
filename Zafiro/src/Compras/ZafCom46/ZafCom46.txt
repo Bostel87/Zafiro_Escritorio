@@ -1,0 +1,64 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Ingrid Lino - 15/Sep/2010)
+----
+Programa nuevo que permite mostrar los valores sobrantes de las bodegas. Este programa solo trabaja en el grupo.
+
+
+v0.1.2: (Ingrid Lino - 17/Abr/2012)
+-----
+Se adiciona en el filtro de la bodega la tabla tbr_bodLocPrgUsr.
+
+
+v0.1.3: (Ingrid Lino - 11/Abr/2013)
+-----
+Se adiciona la opcion de permisos a los botones
+
+
+v0.2: (Ingrid Lino - 14/Jun/2013)
+----
+Se adiciona botón con información de históricos. Se adiciona al momento de guardar la información en tabla histórica.
+
+
+v0.2.1: (Ingrid Lino - 17/Jun/2013)
+-----
+Se corrige la forma de ocultar las columnas. Se muestran los registros históricos =0 antes, solo los >0.
+
+
+v0.2.2: (Ingrid Lino - 06/Ago/2015)
+-----
+Se cambia el tipo de dato aceptado por el elemento número de meses a reponer, antes sólo valor entero, ahora permite valores decimales.
+
+
+v0.2.5: (Ingrid Lino - 21//Dic/2015)
+----
+Cuando se quite checkbox se modifica línea antes "objTblMod.addSystemHiddenColumn(INT_TBL_DAT_CDI_SOB+i, tblDat);" por objTblMod.addSystemHiddenColumn(INT_TBL_DAT_CDI_SOB+(i*2), tblDat);
+
+
+v0.2.6: (Tony Sanginez - 22/Dic/2015)
+-----
+Linea se aumento *2 ya que ocasionaba un aumento de columna innecesario. objTblMod.removeSystemHiddenColumn(INT_TBL_DAT_CDI_SOB+((i*2)+1), tblDat);
+En ZafCom46_01.java se modifico el campo ne_nummesrep por nd_nummesrep ya que se hizo un cambio de campo en la base.
+
+
+v0.2.7: (Rosa Zambrano - 31/May/2017)
+-----
+Se agrega columna de código de 3 letras solicitado por Carlos Chiriguaya.
+Se agrega búsqueda por código de 3 letras.
+
+
+v0.2.8: (Rosa Zambrano - 25/Sep/2017)
+-----
+Se Agrega histórico de ítems tbh_invBod.
+
+
+v0.2.9: (Rosa Zambrano - 20/Oct/2017)
+-----
+En la clase ZafCom46_01: Se modifican campos fe_his por fe_ultMod, co_usrHis por co_usrMod de la tabla tbh_invBod.
+
+

@@ -1,0 +1,52 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 11/Feb/2006)
+----
+Se corrigió problema de columnas ocultas. Las columnas ocultas no se estaban ocultando en el JTable de totales.
+
+
+v0.2: (Eddye Lino - 19/Feb/2006)
+-----
+Se agregaron los métodos getValueAt() y setValueAt()
+
+
+v0.3: (Eddye Lino - 16/Abr/2006)
+-----
+Se agregó código para que la clase redondeara los totales a "n" decimales.
+Se agregaron los métodos getNumeroDecimales() y setNumeroDecimales().
+
+
+v0.3.1: (Eddye Lino - 23/May/2011)
+-----
+Se adicionó método insertMoreRows(int numeroFilas). Este método es usado por el programa ZafCon13, especificamente en el Estado Resultados.
+
+
+v0.4: (Eddye Lino - 29/Sep/2017)
+-----
+Se agregaron los constructores:
+   1) ZafTblTot(JScrollPane panelDatos, JScrollPane panelTotales, JTable datos, JTable totales, int columnas[], int filas)
+   2) ZafTblTot(JScrollPane panelDatos, JScrollPane panelTotales, JTable datos, JTable totales, int columnas[], String formato, int filas)
+   3) ZafTblTot(JScrollPane panelDatos, JScrollPane panelTotales, JTable datos, JTable totales, int columnasTotales[], String formato, int filas)
+   4) ZafTblTot(JScrollPane panelDatos, JScrollPane panelTotales, JTable datos, JTable totales, ArrayList<Integer> columnasTotales)
+   5) ZafTblTot(JScrollPane panelDatos, JScrollPane panelTotales, JTable datos, JTable totales, ArrayList<Integer> columnasTotales, String formato)
+   6) ZafTblTot(JScrollPane panelDatos, JScrollPane panelTotales, JTable datos, JTable totales, ArrayList<Integer> columnasTotales, int filas)
+   7) ZafTblTot(JScrollPane panelDatos, JScrollPane panelTotales, JTable datos, JTable totales, ArrayList<Integer> columnasTotales, String formato, int filas)
+Se agregaron los métodos:
+   1) ArrayList pasarArrayToArrayList(int arreglo[])
+   2) igualarAnchoColumnas()
+
+
+v0.5: (Eddye Lino - 24/Ene/2018)
+-----
+Se modificó el método:
+   1) calcularTotales()
+Se corrigió el siguiente problema:
+Cuando la tabla de datos tenía muchas filas y aparecía la barra de desplazamiento vertical ocasionaba que se descuadren
+las celdas del final de la tabla de datos. Para solucionar éste problema se hizo que cuando se presente la barra de desplazamiento
+vertical en la tabla de datos también se presente la barra de desplazamiento vertical en la tabla de totales.
+

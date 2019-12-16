@@ -1,0 +1,25 @@
+Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 20/Abr/2006)
+-----
+Se cambió el query con un "LEFT OUTER JOIN" porque no estaban apareciendo algunos items.
+El problema era porque no tenían asignado unidad de medida.
+
+
+v0.2: (Eddye Lino - 03/May/2007)
+-----
+Se agregó la clase "ZafTblOrd" para que permitiera ordenar los datos al dar click en la cabecera del JTable.
+
+
+v0.3: (Eddye Lino - 06/Mar/2008)
+----
+Se corrigió el método: 
+   1) cargarDetReg()
+En dicho método se hizo lo siguiente:
+1) Se configuró el JProgressBar para que trabajara de forma indeterminada.
+2) Se agregó código al query para que sólo presentara los items donde tbm_inv.st_reg='A'.

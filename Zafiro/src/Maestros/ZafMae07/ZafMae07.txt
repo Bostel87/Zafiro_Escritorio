@@ -1,0 +1,403 @@
+﻿Pendientes:
+1) En la función ValDat() queda quemado el codigo de tipo de persona.
+2) Buscar la forma de validar que el Ing. Ruiz modifique vendedores a los clientes, sin pedirle parroquia y demás validaciones obligatorias de la DINARDAP.
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Javier Ayapata - 05/Jun/2008)
+----
+Clase nueva "Maestro de clientes/proveedores".
+
+
+v0.2: (Javier Ayapata - 06/Jun/2008)
+-----
+Se agrega que se ingrese como predeterminado la forma de pago: contado=1, ne_maxdes=25 y ne_maruti=25.
+
+
+v0.3: (Javier Ayapata - 17/Jun/2008)
+-----
+Se agrega en observaciones datos de auditoria.
+
+
+v0.4: (Javier Ayapata - 19/Jun/2008)
+-----
+Se corrige al momento de insertar dato de fecha de propietario.
+
+
+v0.5: (Javier Ayapata - 10/Jul/2008)
+-----
+Se agrega en Tab de ventas que permita ingresar nombre de cliente en las cotizaciones de ventas.
+
+
+v0.6: (Javier Ayapata - 16/Jul/2008)
+-----
+Se quita validacion del tipo de persona.
+
+
+v0.7: (Javier Ayapata - 21/Jul/2008)
+-----
+Se agrega al momento de insertar el estado del cliente si tiene que ser revisado por cobranzas sea 'N' caso contrario sea 'A'.
+
+
+v0.8: (Javier Ayapata - 22/Jul/2008)
+-----
+Se agrega para que se bloquee el tab general execto los telefonos en el modulo de ventas e inventario.
+
+
+v0.9: (Javier Ayapata - 31/Jul/2008)
+-----
+Se corrige en la forma de modificacion de cliente en el Tab General se bloque si el estado del Clientes es 'A' o desbloquea si es lo contrario.
+
+
+v1.0: (Javier Ayapata - 01/Ago/2008)
+-----
+Tambien se desbloquea el fax y el vendedor.
+
+
+v1.1: (Javier Ayapata - 14/Ago/2008)
+-----
+Se valida que aparezca clientes libre o proveedores libres.
+
+
+v1.2: (Javier Ayapata - 27/Ago/2008)
+-----
+Se corrige al insertar Observacion y modificar.
+
+
+v1.3: (Javier Ayapata - 10/Sep/2008)
+-----
+Se corrige al actualizar o insertar contactos.
+
+
+v1.4: (Javier Ayapata - 04/Nov/2008)
+-----
+Se corrige al insertar observacion.
+
+
+v1.5: (Javier Ayapata - 12/Nov/2008)
+-----
+Se agrega que solo aparezca en el maestro el popup menu la opción de eliminar.
+
+
+v1.6: (Javier Ayapata - 03/Mar/2009)
+-----
+Se agrega codificador en las observaciones al momento de insertar y actualizar.
+
+
+v1.7: (Javier Ayapata - 09/Mar/2009)
+-----
+Se agrega al cargar datos generales por grupo.
+
+
+v1.8: (Javier Ayapata - 19/Mar/2009)
+-----
+Se agrega al cargar datos de observacion ordenado por fecha.
+
+
+v1.9: (Javier Ayapata - 31/Mar/2009)
+-----
+Se agrega en la observacion que el texto no se escriba de largo sino con salto de linea.
+
+
+v2.0: (Javier Ayapata - 07/Ago/2009)
+-----
+Se agrega para que la modificar tambien se actualize en la base local y remoto si es que tiene.
+
+
+v2.1: (Javier Ayapata - 18/Ago/2009)
+-----
+Se corrige error al momento de insertar el cliente.
+
+
+v2.2: (Javier Ayapata - 25/Ago/2009)
+-----
+Se agrega en el tab de credito dos opciones dias del mes que se facturar y dia de la semana que se puede facturar.
+
+
+v2.3: (Javier Ayapata - 31/Ago/2009)
+-----
+Se agrega que cargue dias a factur cuando se crea funcion.
+
+
+v2.4: (Javier Ayapata - 02/Feb/2010)
+-----
+Se agrega un label donde indica si el cliente tiene que ser dado de alta.
+
+
+v2.5: (Javier Ayapata - 10/Jun/2010)
+-----
+Se agrega filtro para la busqueda por grupo de cliente.
+
+
+v2.6: (Javier Ayapata - 04/Abr/2011)
+-----
+Se agrega al validar numero de decula o ruc con la nueva funcion creada por carlos.
+
+
+v2.7: (Javier Ayapata - 21/Abr/2011)
+-----
+Se cambia funcion al validar numero de decula o ruc con la nueva funcion creada por carlos.
+
+
+v2.8: (Javier Ayapata - 30/May/2011)
+-----
+Se agrega una funcion que permite obtener el estado de registro del cliente cuando se modifica.
+
+
+v2.9: (Erik Flores - 25/Abr/2012)
+-----
+Se agrega un constructor a la clase para ser invocado desde el reporte de listado de clientes. 
+
+
+v3.0: (Erik Flores - 16/May/2012)
+-----
+Se habilita boton de listado de ciudades.
+
+
+v3.1: (Erik Flores - 24/Jul/2012)
+-----
+Se modifica creacion de clientes/proveedores; ya no se registra campo de usuario y fecha de modificacion.
+
+
+v3.2: (Erik Flores - 27/Jul/2012)
+-----
+Se modifica la consulta del tab de auditoria. 
+En los casos que exista la informacion, se consulta el codigo del usuario que ingresó el cliente desde la tabla TBH_CLI.
+
+
+v3.3: (Erik Flores - 17/Ago/2012)
+-----
+Se cambia manera de dar permisos de modificacion de datos de acuerdo al modulo (ventas/inventario/cxc/cxp) y tab.
+
+
+v3.4: (Erik Flores - 28/Sep/2012)
+-----
+Correcciones varias. 
+
+
+v3.5: (Roberto Flores - 14/May/2013)
+-----
+Se aumentan validaciones para la conexión con la página del registro civil y sri en el caso de que se ingrese una cédula o ruc. Cédula y RUC no pueden ser repetidos.
+Deben de existir para poder continuar con el proceso de guardado.
+
+
+v3.5.2: (José Marín - 28/Nov/2013)
+-----
+Se aumentan validaciones para saber si el cliente tiene documentos pendientes.
+
+
+v3.5.3: (José Marín - 03/Dic/2013)
+-----
+Se cambio en la modificación de un cliente por el lado de ventas, se valida primero si tiene permisos de modificación para poder escribir en las tablas.
+
+
+v3.5.4: (José Marín - 03/Dic/2013)
+-----
+En las observaciones se modifico la tabla para solo poder insertar nuevas observaciones.
+
+
+v3.5.5: (José Marín - 07/Ene/2014)
+-----
+Se agrego una seguridad mas, en CxC, ventas.
+
+
+v3.5.6: (José Marín - 15/Oct/2014)
+-----
+Se agrega el correo electronico, para Facturación Electronica
+
+
+v3.5.7: (José Marín - 07/Nov/2014)
+-----
+Se agrega el correo electronico dos, para Facturación Electronica
+
+
+v3.5.8: (José Marín - 12/Nov/2014)
+-----
+Se agrega el estado para los correos electronicos de Facturación Electronica (st_proCorEleFacElec = null (Pendiente), S (Si tiene), N (No tiene). 
+
+
+v3.5.9: (José Marín - 13/Nov/2014)
+-----
+Se agranda el tamaño de una caja de texto, se agrega pasaporte en tipo de documento de identificación, se se cambia el campo st_proCorEleFacElec por st_proCorEleFacEle. 
+
+
+v3.6.0: (José Marín - 05/Ene/2015)
+-----
+Se agrega el estado para los correos electronicos de Facturación Electronica desde proveedores
+
+
+v3.6.1: (José Marín - 06/Ene/2015)
+-----
+Se agrega una nueva pestaña para facturación electronica.
+
+
+v3.6.2: (Rosa Zambrano - 18/Feb/2015)
+-----
+En la función actualizarTabFacEle() se agrega actualización de datos de auditoría (co_usrmod y fe_ultmod), para la pestaña Facturación Electrónica.
+
+
+v3.6.3: (Dennis Betancourt - 03/Mar/2015)
+-----
+Se puso una validacion para verificar que los nombres de las cuentas de correo de facturacion electronica sean correctos (tengan el caracter @, no tengan tilde, tengan el caracter punto, no tengan espacios en blanco, etc).
+
+
+v3.7: (Eddye Lino - 27/Abr/2015)
+-----
+Se mejoró la interface gráfica y se agregó campos para la DINARDAP (Sexo, Estado civil, Parroquia y Origen de ingresos).
+
+
+v3.7.1: (Angie Bajaña - 14/May/2015)
+-----
+Se habilita campos de (sexo , estado civil , origen de ingreso y listado de parroquias ) 
+
+
+v3.7.2: (Angie Bajaña - 16/May/2015)
+-----
+Se valida que se muestre todas las parroquias existentes en la base de datos en el caso que no se selecione la ciudad  
+
+
+v3.7.3: (Angie Bajaña - 20/May/2015)
+-----
+Se cambia origen de ingresos de la pestaña Credito a la pestaña General, se crea la funcion "remplazarEspacios "para valida que el (Nombre Cliente) no guarde en la base espacios en blanco 
+Se cambia en los campos (sexo,estado civil, origen ingreso) la opcion de null por la opcion (NO APLICA)
+
+
+v3.7.4: (Angie Bajaña - 19/Jun/2015)
+-----
+Se agrega filtrado para poder consultar los clientes por ciudades.
+
+
+v3.7.5:  (Angie Bajaña - 23/Jun/2015)
+-----
+Se corrige query en insertTabGen() por cambios de postgres 9.4
+
+
+v3.7.6: (Angie Bajaña - 02/Jul/2015)
+-----
+Se modifica proceso que realizaba internamente el "TxtIde" en la consulta del cliente/proveedor atravez del ID
+Se habilita el metodo ActualizarTabFacEle() para modificar correo en Maestro Cliente/proveedor
+Se modifica el metodo actualizarTabCre() para que se guarden correctamente las modificaciones en Pestaña Credito.
+
+
+v3.7.7: (José Marín - 27/Oct/2015)
+-----
+Se agrega validación para que solo se puedan agregar direcciones y no eliminarlas.
+
+
+v3.7.8: (Rosa Zambrano - 12/Nov/2015)
+-----
+Se agrega en la función valDat() la validación para que se ingresen obligatoriamente los campos de sexo, estado civil y origen de ingresos cuando sea Persona Natural. 
+Se agrega en la función valDat() la validación para que se ingresen obligatoriamente los campos de ciudad y parroquia para todos los clientes/proveedores.
+Se agrega en la función valDat() la validación para que se ingrese obligatoriamente la dirección principal del cliente.
+
+
+v3.7.9: (Rosa Zambrano - 16/Nov/2015)
+-----
+Se agrega en la función valDat() la validación para que solo a los clientes se pidan los datos obligatorios como: ciudad, parroquia, sexo, estado civil y origen de ingresos.
+
+
+v3.8: (Dennis Betancourt - 23/Nov/2015)
+-----
+Se agrega validacion para que se ingresen RUC/Cedulas correctas.
+
+
+v3.8.1: (Rosa Zambrano - 24/Nov/2015)
+-----
+Se agrega filtro para búsqueda por tipo de persona.
+Se agrega que se presente la ciudad en el listado de parroquias para saber a que ciudad pertenece.
+Adicional se actualizará de los datos del cliente el campo de ciudad de acuerdo a la parroquia seleccionada.
+
+
+v3.8.2: (Rosa Zambrano - 26/Nov/2015)
+-----
+Se agrega busqueda de clientes por vendedor asignado.
+Se modifica en la función configurarVenConVendedor() para que solo se presenten los usuarios asignados como vendedores de acuerdo a la empresa.
+Se agrega validación temporal para que el Ing. Ruiz al modificar no se le aplican las nuevas validaciones para la DINARDAP.
+
+
+v3.8.3: (Rosa Zambrano - 11/Dic/2015)
+-----
+Se agrega busqueda de clientes por parroquia.
+Se agrega validación para que al usuario admin no se le realicen las validaciones de DINARDAP, ya que afectaba al actualizar los clientes por local.
+
+
+v3.8.4: (Rosa Zambrano - 03/Feb/2016)
+-----
+Se corrigen errores en querys con relación a los nuevos campos st_estCiv, st_oriIng, st_sex.
+Se agrega tipo de identificación: Consumidor Final e Identificación del Exterior.
+Se agrega validación para que cuando se ingrese al programa "Proveedores" no se le realicen las validaciones de DINARDAP, ya que afectaba al actualizar los proveedores.
+
+
+v3.8.5: (Dennis Betancourt - 10/Feb/2016)
+-----
+Se comenta la validacion para que se verifique que en una cuenta de correo de facturacion electronica, si aparecia un numero despues del caracter arroba no permita grabar. Se tuvo que comentar esta validacion debido a que hay casos en que viene algun numero despues del caracter arroba.
+
+
+v3.8.6: (Rosa Zambrano - 02/Mar/2016)
+-----
+Se agrega validación para que cuando sea Tipo de Identificación del exterior no se le realicen las validaciones de DINARDAP, ya que solicitaba parroquia, ciudad a clientes del exterior.
+
+
+v3.8.7: (Rosa Zambrano - 31/Mar/2016)
+-----
+Se agrega en la función actualizarTabVen() la actualización de los campos ne_diaMesMaxEmiFacVen, ne_diaSemEmiFacVen para que actualice la fecha maxima de emisión de las facturas de los clientes.
+
+
+v3.9.0: (Tony Sanginez - 28/Nov/2016)
+-----
+Se agregan modificaciones para guardar los locales y validacion para tener un historico en tiempo real de las veces que se selecciona un checkbox de los locales.
+
+
+v3.9.1: (Dennis Betancourt - 25/Sep/2017)
+-----
+1) En la clase ZafMae07_03 funcion 'validarRucInsPub()' se agrego una validacion especial cuando el 3er. digito del RUC es 6, debido a los casos de RUC 0960805711001 (DIAZ DIAZ HECTOR JULIO) y 0960905123001 (LUCIO LOPEZ YEISON PAUL) los cuales son RUC validos comprobados en la pagina web del SRI.
+2) En la pestaña 'Beneficiario' se modifico para que se guarde correctamente los datos en tbm_benchq de acuerdo a lo indicado por el JTable de dicha pestaña.
+
+
+v3.9.2: (Dennis Betancourt - 20/Oct/2017)
+-----
+En la pestaña 'Beneficiario' se realizo una correccion para que se guarde correctamente los datos en tbm_benchq de acuerdo a lo indicado por el JTable de dicha pestaña.
+
+
+v3.9.3: (Dennis Betancourt - 05/Dic/2017)
+-----
+En la clase ZafMae07_03 funcion 'validarRucPerNat()' se agrego una validacion especial cuando los 2 primeros digitos del RUC es 30, debido al caso de RUC 3050382427001 (ZAMBRANO SORNOZA ALEJANDRO ANDRE) el cual es un RUC valido comprobado en la pagina web del SRI.
+
+
+v3.9.4: (Tony Sanginez - 23/Ene/2018)
+-----
+Se agrega validación para que al momento de actualizar el codigo del vendedor sea guardado en la tbr_cliloc que es de donde se carga la información en la pantalla.
+
+
+v3.9.5: (Rosa Zambrano - 19/Abr/2018)
+-----
+Se agrega order by en pestaña de beneficiarios y se muestra la columna de codigo de beneficiario, debido a que creaba confusión al momento de modificar.
+
+
+v3.9.6: (Rosa Zambrano - 23/Abr/2018)
+-----
+Se corrige error de inserción de clientes por local.
+Se cambia la función consultar para que no queden conexiones abiertas.
+
+
+v3.9.7: (Rosa Zambrano - 17/May/2018)
+-----
+En la función actualizarReg (modulo maestros), se habilita para que siempre guarde el histórico.
+
+
+v3.9.8: (Rosa Zambrano - 23/May/2018)
+-----
+Se agrega validación para que ningún usuario pueda modificar Iva en Venta/Compras.Sólo admin podrá modificar, solicitado por Ing.Eddye Lino.
+Se agrega mensaje:"<HTML>Solo usuario admin puede marcar/desmarcar: Iva en ventas/Iva en compras para el cliente</HTML>"
+Este mensaje aparece en actualizarTabImp Y en eventos de chkIvaVen/chkIvaCom.
+
+
+v4.0: (José Marín - 2/Jul/2018)
+-----
+Se modifica para que configure el vendedor oficina siempre que se cree un cliente. 
+
+
+v4.0.1: (Dennis Betancourt - 24/Oct/2018)
+-----
+En la funcion actualizarTabBen() se comento una seccion de codigo para que ya no se ejecute el Delete en tbm_benchq. Este Delete se ejecutaba si es que no se encontraba el nom_beneficiario del JTable de la pestaña 'Beneficiario' en tbm_benchq.tx_benchq.

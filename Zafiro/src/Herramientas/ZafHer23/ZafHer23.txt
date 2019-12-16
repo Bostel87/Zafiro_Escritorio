@@ -1,0 +1,29 @@
+Pendientes:
+1)
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Ingrid Lino - 10/Oct/2011)
+----
+Programa nuevo "Panel de control gerencial".
+
+v0.1.1: (Ingrid Lino - 12/Nov/2011)
+----
+Se arreglo el dato para obtener el dia ultimo del mes actual(2011-13-31)
+
+v0.2: (Ingrid Lino - 12/Ene/2012)
+----
+Se adicionan tablas para presentar informacion de COSTOS, RENTABILIDAD, GASTOS.
+
+v0.2.1: (Ingrid Lino - 01/Jun/2012)
+----
+Se valida en "calculaPorcentajesGastos()" que no se divida para CERO
+
+v0.2.2: (Ingrid Lino - 23/Oct/2015)
+----
+Se añade los tipos de documentos 235,236 para COSVENE y COSDEVE(antes sólo se mostraba 48 y 49).
+
+v0.2.3: (Tony Sanginez - 04/Sep/2017)
+----
+Se quita el tipo de documento EGBOPF=294 del query de consulta ya que no hay que tomarlo en consideración.

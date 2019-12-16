@@ -1,0 +1,16 @@
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (José Marín- 16/01/2013)
+----
+Clase nueva.
+
+v0.2: (José Marín - 22/Ene/2013)
+---
+Se modifico tamaño y posición de cajas de texto 
+
+
+v0.3: (José Marín - 17/Mar/2014)
+---
+Se modifico la funcion isRegInsertados() 

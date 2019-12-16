@@ -1,0 +1,115 @@
+Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 04/Ago/2006)
+----
+Clase nueva.
+
+
+v0.2: (Eddye Lino - 13/Dic/2007)
+-----
+Se agregó el uso de la clase ZafTblHeaGrp que permite agrupar columnas.
+
+
+v0.3: (Eddye Lino - 26/Mar/2008)
+-----
+Se corrigieron los métodos: 
+   1) cargarDetReg()
+   2) configurarVenConItm()
+En dichos métodos se agregó al query una condición para que sólo se mostrara los items activos.
+Al query se agregó la siguiente condici�n:
+    strSQL+=" AND a1.st_reg='A'";
+
+
+v0.4: (Eddye Lino - 29/Jul/2008)
+-----
+Se modificaron los métodos: 
+   1) cargarBod()
+   2) agregarColTblDat()
+En dichos métodos se modificó el código para que sólo se marcaran las casillas de verificación en la
+tabla de bodegas si la bodega está activa. Caso contrario que aparezca desmarcada y por ende que la
+columna correspondiente en la tabla de datos sea invisible.
+
+
+v0.5: (Eddye Lino - 08/May/2009)
+-----
+Se modificaron los métodos: 
+   1) cargarDetReg()
+Se agreg el filtro "Terminan con:".
+
+
+v0.6: (Eddye Lino - 22/May/2009)
+-----
+Se modificaron los métodos: 
+   1) configurarTblDat()
+   2) configurarTblBod()
+   3) agregarColTblDat()
+   4) cargarDetReg()
+   5) mostrarVenConItm(int intTipBus)
+   6) tblBodMouseClicked(java.awt.event.MouseEvent evt)
+   7) ZafMouMotAda.mouseMoved
+Se mejoró el código para que las columnas din�micas en el JTable fueran configurables.
+Se cambió el query para que el stock de las bodegas del grupo sea igual a la suma de las 
+respectivas bodegas de las empresas. Ejemplo:
+Bodega California (Grupo)=Bodega California (TUVAL) + Bodega California (CASTEK) + Bodega California (DIMULTI)
+
+
+v1.0: (Ingrid Lino - 06/Oct/2010)
+-----
+Se cambió completamente la forma de presentar y cargar la información. Se agregaron opciones para grupo.
+
+
+v1.1: (Ingrid Lino - 07/Oct/2010)
+-----
+Se cambió ancho de columnas y titulo de bodegas en el tooltip
+
+
+v1.2: (Ingrid Lino - 21/Oct/2010)
+-----
+Se adicionaron filtros, "Bodegas empresa", "Bodegas grupo", "Stock, faltantes y sobrantes".
+
+
+v1.3: (Ingrid Lino - 10/Dic/2010)
+-----
+Se adicionó filtro al presentar las bodegas(tbr_bodLocPrgUsr), tambien en el query donde se obtiene la informacion, se coloco que si tiene el usuario
+permiso para ver sobrantes, entonces se presente la informacion(antes se ocultaban las columnas pero si se copiaba y pegaba en un excel si se pegaban
+los datos de los sobrantes asi no tuviese permiso) caso contrario se presentan valores ceros.
+
+
+v1.3.1: (Ingrid Lino - 10/Nov/2016)
+-----
+Se cambia el valor que se presenta en sobrante(se estaba presentando en cero), que muestre la información de sobrante(y no cero) sólo para el usuario Admin y LSC. Solicitado por LSC.
+
+
+v1.3.2: (Rosa Zambrano - 15/Nov/2016)
+-----
+Se pone configurable para que se presente la columna de sobrantes solo a los usuarios que tienen el siguiente filtro:
+[2599] - Ficha "Reporte": Tabla->Mostrar "Sobrantes".
+El acceso a este filtro solo debe tenerlo 24-lsensi y 206-cchiriguaya hasta lo indicado el 15/Nov/2016.
+
+
+v1.3.3: (Rosa Zambrano - 21/Nov/2016)
+-----
+Se agrega filtro de mostrar cantidades sobrantes solicitado el 15/Nov/2016 por Don Luigi Sensi.
+Se agrega código de 3 letras solicitado el 16/Nov/2016 por Miguel Peñafiel.
+Se agrega columna de Can.Dis. solicitado el 18/Nov/2016 por Werner Campoverde y Fernando Ruiz.
+
+
+v1.3.4: (Rosa Zambrano - 29/Nov/2016)
+-----
+Se corrige consulta cuando es la misma bodega distintas empresas, para que presente por bloques.
+
+
+v1.3.5: (Rosa Zambrano - 23/Dic/2016)
+-----
+Se agrega columnas de totales de Stock y Disponible solicitado por Ing.Werner Campoverde el 23/Nov/2016.
+
+
+v1.3.6: (Rosa Zambrano - 29/Ago/2018)
+-----
+Se agrega presentación de columnas por orden de bodega.
+

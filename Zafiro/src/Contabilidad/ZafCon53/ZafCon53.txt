@@ -1,0 +1,91 @@
+Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1 b1: (Ingrid Lino - 12/Nov/2008)
+----
+    -Programa nuevo que permite realizar Retenciones de forma masiva, para lo cual se debe previamente haber realizado:
+        1.- Haber ingresado los datos de la Factura del Proveedor a través del programa "Agregar datos adicionales a documentos
+         por pagar"
+        2.- Haber concedido el visto bueno al documento.
+        Si no se realizan estos dos pasos, no aparecerán los documentos en el programa de Retenciones Masivas.
+    -El mismo programa se encarga de realizar la impresión automática, después de haber realizado los documentos.
+    -Se puede generar retenciones para varios proveedores en la misma transacción.
+    -Cada documento genera una retención(si un documento tiene 2%, 30% o mas retenciones se genera una retención), o sea
+     la retención es por documento.
+      
+v0.1: (Ingrid Lino - 17/Nov/2008)
+----
+Pase a producción.
+
+v0.2: (Ingrid Lino - 19/Nov/2008)
+----
+    -El asiento de diario solo estaba generando a la cuenta del 1%Rete.
+     Ejm:
+        si un documento tiene 1% rete, 2% rete, 30% rete, etc generaba el registro adecuado, pero
+            siempre enviaba a la cuenta del 1%.
+        ahora si se genera el registro adecuado para cada tipo de retención.
+
+v0.3: (Ingrid Lino - 29/Dic/2008)
+----
+Se cambió el código del select para obtener el último número de egreso y último número de cheque que antes se 
+tomaba de la tabla tbm_cabPag.ne_numDoc1 y tbm_cabPag.ne_numDoc2 y ahora se leen desde tbm_plaCta.ne_ultChq y 
+tbm_cabtipdoc.ne_ultDoc o tbm_cabGrpTipDoc.ne_ultDoc. Además se agregó que se actualice el estado de impresión 
+del documento y del asiento de diario.
+
+v0.4: (Ingrid Lino - 26/Ene/2009)
+----
+Se corrigió que en asiento de diario se generaba incremento en tbm_cabtipdoc y en el programa también.
+
+
+v0.5: (Ingrid Lino - 09/Jul/2009)
+----
+No recuerdo.
+
+v0.6:  (Ingrid Lino - 15/Jul/2009)
+----
+Se adicionó tab para presentar retenciones emitidas pero q no se ha asignado número ni han sido impresas todavía.
+Desde aquí se podrá imprimir y asignar el número de retención a los documentos que se hayan procesado sólo a través del programa Emisión masiva de retenciones.
+
+v0.6.2:  (Ingrid Lino - 18/Ago/2009)
+----
+Se cambió la línea de vista preliminar por imprimir.
+
+v0.7:  (Ingrid Lino - 10/Nov/2009)
+----
+Se adicionó esquema de impresión continua para linux.
+
+v0.8:  (Ingrid Lino - 10/Feb/2010)
+----
+Se adicionaron filtros para setear estado de impresión de documentos que ya tienen numeración.
+
+v0.9: (Ingrid Lino - 17/May/2010)
+----
+Se adicionaron campos en "tbm_cabPag.tx_comIng, tbm_cabPag.tx_comMod" para insercion, modificacion, anulacion y eliminacion respectivamente.
+
+v0.10: (Ingrid Lino - 10/Dic/2010)
+----
+Se cambió el reporte de impresion, ahora el año fiscal esta en el detalle y el numero de autorizacion en la cabecera.
+
+v0.12: (Ingrid Lino - 06/Ene/2011)
+----
+Se cambió el reporte de impresión, ahora se usa el mismo de ZafCon05(Programa de Emisión de Retenciones).
+
+v0.13: (Ingrid Lino - 12/Jul/2011)
+----
+Se cambió la lectura de campos de factura de proveedor, antes se tomaba de tbm_cabmovinv, ahora bajo el esquema de recepción de factura de proveedor se debe hacer de tbm_pagmovinv.
+
+v0.14: (Ingrid Lino - 01/Oct/2012)
+----
+Se cambian campos en el query para obtener datos en cabecera y detalle, motivo, cambio de campos en el formulario físico.
+
+v0.14.1: (Ingrid Lino - 04/Oct/2012)
+----
+Se copia el query de ZafCon05 a esta clase(solo para impresiones y reimpresiones), esto es porque utilizan el mismo reporte con la diferencia que se imprimen de forma continua.
+
+v0.14.2: (Rosa Zambrano - 30/Ago/2019)
+----
+Se realizan cambios para Jaspersoft Studio.

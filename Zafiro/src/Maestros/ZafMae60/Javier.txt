@@ -1,0 +1,21 @@
+﻿Pendientes:
+1) Opción de eliminar acceso de usuarios por bodegas.
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Javier Ayapata - 21/Dic/2010)
+----
+Clase nueva "Bodegas por programa y usuario..." 
+
+
+v0.2: (Javier Ayapata - 22/Jul/2011)
+-----
+Se agrega función exitForm().
+
+
+v0.3: (Rosa Zambrano - 21/Abr/2016)
+-----
+Se agrega búsqueda por usuario al momento de consultar los accesos a las bodegas.
+
+

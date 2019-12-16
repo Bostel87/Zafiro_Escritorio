@@ -1,0 +1,18 @@
+Observaciones:
+--------------
+Pendientes:
+1) 
+2) 
+3) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v2.0: (Christian Mateo- 31/JUL/2018)
+----
+Clase nueva.
+
+
+v2.1: (Christian Mateo- 31/ENE/2019)
+----
+Se agrega año 2019

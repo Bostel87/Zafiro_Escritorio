@@ -1,0 +1,186 @@
+﻿
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Javier Ayapata  - 19/Jun/2009)
+----
+Se crea clase nueva "Control de Inventario".
+
+
+v0.2: (Javier Ayapata  - 19/Jun/2009)
+-----
+Se agrega funcion para poder extraer el query de actualizacion de inventario.
+
+
+v0.3: (Javier Ayapata  - 06/Nov/2009)
+-----
+Se agrega función donde solo actualiza la cantidad que egresa fisicamente de bodega, esto es para el caso de volver a facturar.
+
+
+v0.4: (Javier Ayapata  - 09/Dic/2009)
+-----
+Se corrige cambio en query de inventario.
+
+
+v0.5: (Javier Ayapata  - 12/Mar/2010)
+-----
+Se agrega en Query de cotizacion campo de peso.
+
+
+v0.6: (Javier Ayapata  - 22/Jun/2010)
+-----
+Se corrige query de de item de inventario.
+
+
+v0.7: (Javier Ayapata  - 12/Jul/2010)
+-----
+Se corrige query del item de inventario.
+
+
+v0.8: (Javier Ayapata  - 10/Ago/2010)
+-----
+Se agrega para que tome el codigo alterno 1 de inventario.
+
+
+v0.9: (Javier Ayapata  - 22/Oct/2010)
+-----
+Se agrega campo en  cotizacion de venta que indica si se modifica precio y descuento.
+
+
+v1.0: (Javier Ayapata  - 08/Dic/2010)
+-----
+Se agrega campo en query de ventas caningbod para el listado de item.
+
+
+v1.1: (Javier Ayapata  - 24/May/2011)
+-----
+En la funcion de enviar mail se quita la frase documento anulado en el sujeto.
+
+
+v1.2: (Javier Ayapata  - 24/Jun/2011)
+-----
+Se agrega funcion nueva para el control de confirmaciones.
+
+
+v1.3: (Javier Ayapata  - 12/Jul/2011)
+-----
+Se agrega funcion nueva para el envio de requisito de impresión de guía.
+  
+
+v1.4: (Javier Ayapata  - 19/Jul/2011)
+-----
+Se agrega funcion nueva saber el estado del item ejemplo  si es de servico
+
+
+v1.5: (Javier Ayapata  - 19/Jul/2011)
+-----
+Se agrega funcion nueva para saber a que servicio de impresion de guia se envia.
+
+
+v1.6: (Javier Ayapata  - 20/Sep/2011)
+-----
+Se agrega funcion nueva para obtener el margen para compra venta relacionadas.
+
+
+v1.7: (Javier Ayapata  - 23/Sep/2011)
+-----
+Se agrega funciones para el nuevo esquema Guías-OD
+
+
+v1.8: (Javier Ayapata  - 27/Sep/2011)
+-----
+Se corrige la funcion envio de requisito a generera guia.
+
+
+v1.9: (Javier Ayapata  - 27/Oct/2011)
+-----
+Se agrega funcion donde cambia estado si tiene item de servicio.
+
+
+v2.0: (Javier Ayapata  - 17/Nov/2011)
+-----
+Se agrega funcion que envie impresion de cliente retira en otro punto remoto.
+
+
+v2.1: (Javier Ayapata  - 24/Nov/2011)
+-----
+Se agrega cambios de cliente retira.
+
+
+v2.2: (Erik Flores  - 12/Jul/2012)
+-----
+Se agrega cambios de cliente retira.
+
+
+v2.3: (Erik Flores  - 02/Ago/2012)
+-----
+Se agrega cambios para envio de correos a varios destinatarios en una sola cadena. Por Ej. correoFicticio@tuvalsa.com; correoFicticio2@tuvalsa.com; correoFicticio3@tuvalsa.com
+ 
+
+v2.4: (Erik Flores  - 19/Sep/2012)
+-----
+Ventana de alerta de notificacion de items faltantes/dañados.
+
+
+v2.5: (Alex Morán - 31/Ene/2013)
+-----
+Se modifica función _getMargenComVenRel, margen para compra venta = 1.
+
+
+v2.6: (Alex Morán - 02/May/2013)
+-----
+Se agrega función _getVerificaConfirmacionIngRel, para generar confirmacion de ingresos a bodega.
+
+
+v2.7: (Alex Morán - 17/Jun/2013)
+-----
+Se agrega función _getVerificaCancelaTransf, para validar cancelación de transferencia.
+Se modifica función _getVerificaConfirmacionIng, para actualizar cantidad por ingresar (confirmación de mercadería que no se enviará).
+
+
+v2.8: (Alex Morán - 09/Sep/2013)
+-----
+Se modifica función _getSqlInvVen, se considera cuenta a nivel de item para contabilizar rubros por intereses, gestion de cobranzas, arriendos, etc.
+
+
+v2.9: (José Marín - 31/Oct/2014)
+-----
+Se modifica las funciones: _getVerificaConfirmacionEgr(), getSqlInvVen(), se agrega por facturacion electronica
+
+
+v3.0: (José Marín - 06/Ago/2015)
+-----
+Se modifica la funcione: _getSqlInvVen(), para que muestren lo que posee la bodega INMACONSA
+
+
+v3.1: (José Marín - 14/Ago/2015)
+-----
+Se modifica la funcione: _getSqlInvVen(), para que funcione para las empresas ECUATOSA, DETOPACIO, COSENCO.
+
+
+v3.3: (Ingrid Lino - 19/Nov/2015)
+-----
+Se valida el envio de correo desde cualquier máquina cliente y no sólo desde el servidor(políticas de seguridad)
+
+
+v3.4: (José Marín - 4/Ene/2016)
+-----
+Se agrega a la consulta el campo tx_codAlt2 para mostrar el codigo de 3 letras Solicitado por AP getSqlInvVen().
+
+v3.4.1: (José Marín - 8/Ene/2016)
+-----
+Se agrega un redondeo.
+
+v3.4.2: (José Marín - 27/Jun/2016)
+-----
+Se agrega cantidad disponible.
+
+
+v3.4.5: (José Marín - 5/Dic/2017)
+-----
+Modificaciones en el query que se usa en cotizaciones de venta.
+
+
+v3.4.6: (José Marín - 22/Jul/2019)
+-----
+Modificaciones para la clave del correo electronico del servidor.

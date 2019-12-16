@@ -1,0 +1,22 @@
+Pendientes:
+1)
+2)
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Ingrid Lino - 08/Sep/2009)
+----
+Nuevo programa creado para configurar proveedores según item.
+
+v0.1.1: (Ingrid Lino - 07/Oct/2009)
+----
+Se adicionaron validaciones de "Agregar proveedor", "Quitar proveedor", "Cambiar proveedor"
+
+v0.1.2: (Ingrid Lino - 22/Oct/2009)
+----
+Se colocó LEFT OUTER JOIN en lugar de INNER JOIN cuando se toma en cuenta para el query la "clasificación"
+
+v0.2: (Ingrid Lino - 17/Dic/2009)
+----
+Se adicionó el filtro en tbm_cli.st_prv='S' porque presentaba a clientes y proveedores

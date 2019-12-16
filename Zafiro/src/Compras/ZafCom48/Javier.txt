@@ -1,0 +1,79 @@
+﻿
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Javier Ayapata - 01/Dic/2010)
+----
+Clase nueva "Listado de Guías de Remisión Bodega Origen vs Bodega Destino"
+
+
+v0.2: (Javier Ayapata - 08/Dic/2010)
+-----
+Se agrega columna de peso.
+
+
+v0.3: (Javier Ayapata - 10/Dic/2010)
+-----
+Se agrega que al momento de consultar verifique la conexion debe de tomar ejemplo dimulti toma conexión remota.
+
+
+v0.4: (Javier Ayapata - 15/Dic/2010)
+-----
+Se agrega que envie un parametro mas al constructor de guia de remision.
+
+
+v0.5: (Javier Ayapata - 23/Dic/2011)
+-----
+Se agrega cambios nuevo esquema Guías-OD
+
+
+v1.1: (Erik Flores - 17/Sep/2012)
+-----
+Se aumenta el numero de version. se agrega columna para distinguir cuando la O/D tiene opcion cliente retira. ap. Pricela del Pezo.
+
+
+v1.2: (José Marín M - 01/Ago/2014)
+-----
+Se agrega nueva columna donde se puede ver el peso pendiente por despachar.
+
+
+v1.3: (Rosa Zambrano - 03/Jul/2015)
+-----
+Se agrega st_Reg='I' en cargarDetReg() para que valide que no se muestren las OD Anuladas en el reporte.
+
+
+v1.4: (Tony Sanginez - 27/Jul/2016)
+-----
+Se agrega el tipo de Documento para Ordenes de Despacho.
+
+
+v1.5: (Tony Sanginez - 03/Ago/2016)
+-----
+Se agrega en la consulta del query en donde no se validaba la bodega de Grupo para la visualización de las Ordenes de Despacho.
+
+
+v1.6: (Tony Sanginez - 04/Ago/2016)
+-----
+Se agrega validación para solo ver las ordenes que estan pendientes y parciales. (Antes mostraba todas)
+
+
+v1.7: (Tony Sanginez - 18/Ago/2016)
+-----
+Se agrega validación de mostrar las ordenes por grupo y por empresa. Anteriormente solo se mostraba por grupo para california.
+
+
+v1.8: (Rosa Zambrano - 29/Ago/2016)
+-----
+Se quita validacion por empresa para que en Inmaconsa presente todas las OD sin importar a que empresa pertenece.
+
+
+v1.9: (Rosa Zambrano - 13/Sep/2016)
+-----
+Se cambia el query de consulta para que presente correctamente los datos de bodega destino.
+Se cambia nuevo constructor de ordenes de despacho y guías de remisión.
+
+
+v2.0: (Tony Sanginez - 13/Oct/2016)
+-----
+Se cambia query para que muestre el kilogramo pendiente de despachar para los que estan parcialmente confirmados.
+Mejoras en el codigo.

@@ -1,0 +1,38 @@
+Pendientes:
+1) 
+2) 
+3) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 04/Jul/2007)
+----
+Clase nueva
+
+
+v0.2: (Eddye Lino - 16/Jul/2010)
+----
+Se modificaron los métodos: 
+   1) configurarTblDatAnaPre()
+   2) cargarAnaPre()
+En dichos métodos se agregó código para no sólo mostrar el precio de lista actual sino tambien el precio
+de lista que estaba vigente al momento de guardar la cotización. Se agregó la columna INT_TBL_DAT_PRE_LIS_ACT
+en la tabla para que el usuario pueda ver el precio anterior y el precio actual.
+
+
+v0.3: (Eddye Lino - 07/Jun/2011)
+----
+Se modificó el método: 
+   1) cargarAnaPre()
+Se eliminó la tabla de "Formas de pago asignadas". Se cambió el uso de double por BigDecimal.
+Además, se cambió el calculo para que cuando se utilizara el costo unitario se calculara en
+base al margen de utilidad de tbm_inv en lugar de tbm_cli.
+
+
+v0.4: (Eddye Lino - 14/Jun/2018)
+----
+Se modificaron los métodos: 
+   1) configurarTblDatAnaPre()
+   2) cargarAnaPre()
+Se agregó el campo "Stock actual (Grupo)".

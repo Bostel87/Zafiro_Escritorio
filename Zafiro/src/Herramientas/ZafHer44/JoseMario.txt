@@ -1,0 +1,15 @@
+Pendientes:
+1)  
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v 0.01: (Jose Mario Marin - 20/Mar/2018)
+----
+Clase nueva.
+ 
+
+v 0.02: (Jose Mario Marin - 23/Mar/2018)
+----
+Modificacion sobre la consulta.

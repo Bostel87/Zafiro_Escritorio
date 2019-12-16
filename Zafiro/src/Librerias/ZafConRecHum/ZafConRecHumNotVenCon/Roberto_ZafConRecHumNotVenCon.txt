@@ -1,0 +1,28 @@
+﻿
+CONTROL DE VERSIONES:
+=====================
+
+
+v1.0: (Roberto Flores- 05/03/2013)
+----
+Clase nueva para la notificación de empleados que se les vence el contrato.
+
+v1.01: (Roberto Flores- 10/09/2013)
+----
+Se añade código de usuario 207 para validación de que María Eugenia es la encargada del área de RRHH.
+
+v1.02: (Roberto Flores- 09/01/2014)
+----
+Se añade código de usuario 220 para validación de que Ronnie es la encargado del área de RRHH.
+
+v1.03: (Roberto Flores- 26/02/2014)
+----
+Se añade código de usuario 225 para validación de que Mercedes que es ayudante del área de RRHH.
+
+v1.04: (Roberto Flores- 26/02/2014)
+----
+Se añade código de usuario 225 para validación de que Mercedes que es ayudante del área de RRHH.
+
+v1.05: (Roberto Flores- 06/03/2014)
+----
+Se añade la versión para que aparezca en el recuadro de notificación.

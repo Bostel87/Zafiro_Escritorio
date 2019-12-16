@@ -1,0 +1,126 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Rosa Zambrano - 02/Ene/2019)
+----
+Clase Nueva "Pago a proveedores del exterior" para pagos de importaciones.
+--------------------**Funcionamiento**--------------------
+ - Asiento de diario DxP nulo.
+ - Varios pedidos pueden realizarse por cada Documento por pagar.
+ - Documentos se graban como predocumentos.
+ - Se valida el ingreso de fecha y valor de la carta.
+ - En la opción modificar: Validar que solo se pueda modificar fecha y valor de la carta.
+ - Se quito el order by para el query de instancias de pedidos en el ZafImp.
+   En la ventana de consulta del pedido, enviaba error porque cuando encuentra un order by, antes de eso le asigna la condición.
+
+v0.1.1: (Rosa Zambrano - 17/Ene/2019)
+-----
+Se agrega cuentas bancarias asociadas al exportador.
+Se agrega validación de Total de DxP anteriores y actuales, para que no exceda el valor a pagar.
+Se agrega rango permitido para que pueda ingresar pagos, con valores distintos en el pedido.
+
+v0.1.2: (Rosa Zambrano - 05/Feb/2019)
+-----
+Se agrega correo para Ginnette Muentes, persona encargada de ingresar pagos al exterior.
+Se renombra el campo tbm_cabMovInv.co_ctaBan por tbm_cabMovInv.co_ctaBanExp.
+
+v0.1.3: (Rosa Zambrano - 06/Feb/2019)
+-----
+Se corrige inserción de pedidos con instancia Ingreso por Importacion.
+Se cambia forma de enviar correos, para que se lea la configuración en el sistema.
+
+v0.1.4: (Rosa Zambrano - 07/Feb/2019)
+-----
+Se agrega filtro de codigo de importador, al momento de presentar el listado de pedidos.
+
+v0.1.5: (Rosa Zambrano - 18/Feb/2019)
+-----
+Se agrega valor de comisión y otras mejoras.
+El valor de comisión se suma en el valor del documento.
+
+v0.1.6: (Rosa Zambrano - 19/Feb/2019)
+-----
+Se agrega configuración de porcentaje de ISD.
+
+v0.1.7: (Rosa Zambrano - 22/Feb/2019)
+-----
+Se agrega en el valor de comisión, el que calcule el total del documento.
+Se agrega numero de versión al guardar para saber en que versión se guarda el documento por pagar.
+
+v0.1.8: (Rosa Zambrano - 25/Feb/2019)
+-----
+Se cambia en consulta de transferencia bancaria para que muestre solo las transferencias bancarias activas.
+
+v0.1.9: (Rosa Zambrano - 18/Mar/2019)
+-----
+Se cambia el nombre del proveedor del exterior para que muestre el nombre alterno.
+
+v0.2.0: (Rosa Zambrano - 02/Abr/2019)
+-----
+Se cambia el nombre del proveedor del exterior al momento de la consulta.
+
+v0.2.1: (Rosa Zambrano - 06/May/2019)
+-----
+Se agrega el nombre del proveedor del exterior en el correo enviado, solicitado por WCD.
+Se agrega valor de comisión en el detalle del correo enviado.
+
+v0.2.2: (Rosa Zambrano - 16/May/2019)
+-----
+Se agrega configuración de tipos de documentos.
+
+v0.2.3: (Rosa Zambrano - 11/Jun/2019)
+-----
+Se agrega en correo el Banco por el cual se realiza el pago.
+
+v0.2.4: (Rosa Zambrano - 20/Jun/2019)
+-----
+Se agrega validación de st_doc='A' para que muestre pedidos activos.
+Se muestra el último nombre del pedido.
+
+v0.2.5: (Rosa Zambrano - 20/Jun/2019)
+-----
+En la función modificar se bloquea la edición del valor de comisión.
+
+v0.2.6: (Rosa Zambrano - 24/Jun/2019)
+-----
+Se modifica la ventana de consulta de pedidos.
+
+v0.2.7: (Rosa Zambrano - 27/Jun/2019)
+-----
+Se realizan mejoras.
+
+v0.2.8: (Rosa Zambrano - 01/Jul/2019) 
+-----
+Se cambia al consultar que muestre el número del pedido y no la versión del pedido.
+
+v0.2.9: (Rosa Zambrano - 03/Jul/2019)
+-----
+Se agrega botón de enviar correo solo para admin.
+Se agrega co_usrMod, fe_ultMod para los documentos por pagar OPIMPE, al no tener fecha de ultima modificación generaba error a WC.
+
+v0.3.0: (Rosa Zambrano - 05/Jul/2019)
+-----
+Se agrega el valor de interes para los documentos por pagar. (tbm_cabMovInv.nd_ValIntExt)
+Al generarse el TRBAEX, se reflejará en el valor de interes de facturas.
+
+v0.3.1: (Rosa Zambrano - 02/Ago/2019)
+-----
+Se agrega validacion cuando los valores de comision e intereses sean nulos, le asigne 0.
+
+v0.3.2: (Ingrid - 04/Sep/2019)
+-----
+Se agrega codificación para ISD Crédito Tributario, Gastos que genere movimiento contable.
+
+v0.3.3: (Ingrid - 18/Oct/2019)
+-----
+Se agrega MENSAJE INFORMATIVO de porque no se guarda el documento por valores en diferencias. Muestra el valor de abonos asociados a un pedido.
+
+v0.3.4: (Boris Parrales - 27/Nov/2019)
+-----
+Se agrega Codigo en boton imprimir para que imprima directamente solicitado por gmuentes
+
+

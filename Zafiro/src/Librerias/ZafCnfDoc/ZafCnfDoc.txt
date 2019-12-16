@@ -1,0 +1,78 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Ingrid Lino - 26/Jul/2016)
+----
+Clase nueva para manejo de confirmaciones. 
+
+
+﻿v0.1.7: (Ingrid Lino - 07/Sep/2016)  
+----- 
+Nuevo esquema de Bodega California y Vía a Daule una sóla instancia para confirmar.
+Local predeterminado de Tuval-California y Dimulti-Vía a Daule pueden tomar mercadería de Bodega Inmaconsa sin necesidad de ingresar por local Inmaconsa.
+
+
+v0.1.9: (Ingrid Lino - 08/Sep/2016)  
+-----
+Actualiza Estados de confirmación  Parcial y Total
+
+
+v0.1.10: (Ingrid Lino - 23/Sep/2016)  
+-----
+Se valida que no guarde cantidades en campos  para confirmar si es de la misma bodega
+
+
+v0.1.10.1: (Ingrid Lino - 17/Oct/2016)  
+-----
+Se realizan cambios para que el sistema de confirmaciones de ingresos permita confirmar items de terminal 'L'
+
+
+v0.1.10.3: (Ingrid Lino - 20/Oct/2016)  
+-----
+Códigos L
+
+
+v0.1.11: (Ingrid Lino - 31/Oct/2016)  
+-----
+Códigos L
+
+
+v0.1.12: (Ingrid Lino - 15/Dic/2016)  
+-----
+Se cambia la forma de saber si tiene o no cantidades pendientes de confirmar(Egreso) el documento isCnfTotDocOri() para poder cambiar el estado de confirmación en el documento.
+, (a2.nd_can - a2.nd_canCon - a2.nd_canNunRec - (CASE WHEN a2.nd_canTra IS NULL THEN 0 ELSE a2.nd_canTra END)   ) AS nd_canPenCnf 
+
+
+v0.1.13: (Jose Marin - 31/Ene/2017)  
+-----
+Modificacion para la transaccion.
+
+
+v0.1.14: (Jose Marin - 1/Jul/2017)  
+-----
+Modificacion para el sistema de Reservas.
+
+
+v0.1.15: (Jose Marin - 29/Ago/2017)  
+-----
+Se agrega el metodo imprimirEgresoReservas(), para imprimir la OD del Egreso de la Reserva.
+
+
+v0.1.16: (Jose Marin - 29/Nov/2017)  
+-----
+Modificaciones para reservas, datos del item.
+
+
+v0.1.17: (Rosa Zambrano - 29/Nov/2017)  
+-----
+Se realizan modificaciones para Modo Offline.
+
+
+v 0.02: (Jose Mario Marin - 24/Oct/2018)  
+-----
+Se realizan modificaciones para el proyecto de facturacion parcial. 
+ 

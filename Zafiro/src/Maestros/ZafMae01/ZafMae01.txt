@@ -1,0 +1,4 @@
+Creado por: Jose Salazar
+
+v0.1 - 26/ene/2006 12h30
+Se cambio sentencia SQL  en el metodo FndCta() para filtrar solo cuentas contables de detalles

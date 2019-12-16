@@ -1,0 +1,121 @@
+﻿Pendientes:
+1)
+2) 
+3) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 29/Mar/2006)
+----
+Clase nueva.
+
+
+v0.2: (Eddye Lino - 20/Abr/2007)
+-----
+Se corrigió query en el método "cargarDetReg()" porque estaba presentando datos duplicados.
+
+
+v0.3: (Eddye Lino - 11/Abr/2008)
+----
+Se agregó el método: 
+   1) insertarHisCotVen()
+   2) validarAutCon()
+Se corrigió el método: 
+   1) actualizarReg()
+En dicho método se agregó código para que llame a la función "insertarHisCotVen()" la cual 
+guarda una copia de la cotización de venta antes de proceder a autorizar la cotización.
+
+
+v0.4: (Eddye Lino - 04/Ago/2008)
+----
+Se agregó un JTextArea donde se presenta "tbm_cli.tx_obsCxC". Además, se agregó el código para 
+hacer que al grabar también se actualice la tabla "tbm_cli" y se inserte en "tbm_obsCxC".
+
+
+v0.5: (Eddye Lino - 23/Oct/2008)
+----
+Se quitó el JTextArea que se agregó en la versión "v0.4" y en su lugar se agregó el botón
+"Observación CxC" que llama a la clase "ZafCxC23_04".
+
+
+v0.6: (Eddye Lino - 05/Feb/2010)
+----
+Se modificó el método: 
+   1) ZafHer03_01(java.awt.Frame parent, boolean modal, ZafParSis obj)
+Se tuvo que agregar "true" en la llamada al constructor de la clase "ZafCxC23_04" porque en dicha
+clase se agregó un parámetro boolean que determina si se habilita/inhabilita el botón "Aceptar"
+en dicha clase.
+
+
+v0.7: (Eddye Lino - 19/Jul/2010)
+----
+Se modificó el método: 
+   1) configurarTblDat()
+   2) cargarReg()
+   3) cargarCabReg()
+   4) actualizarCab()
+   5) actualizarTbmCabCotVen()
+Se cambió la clase "ZafTblCelEdiButDlg" por la clase "ZafTblCelEdiButGen" porque al no tener
+el cuadro de diálogo se le estaba enviando "null" lo cual originaba que el cuadro de diálogo
+se abriera 2 veces (aparecía el cuadro de diálogo y al cerrarlo volvía a aparecer).
+Además, se hizo cambios para que funcionara el nuevo control "Días de validez de la cotización".
+
+
+v0.8: (Eddye Lino - 16/Dic/2010)
+----
+Se agregaron los métodos: 
+   1) isPermitidoAutCon11()
+   2) isPermitidoAutCon12()
+Se modificó el método: 
+   1) configurarTblDat()
+   2) actualizarDet()
+Se agregó código para que el Sistema tambien valide rango que puede autorizar. Ejemplo: Un usuario
+puede tener acceso para autorizar un control pero hasta un cierto máximo. Si la autorización sobrepasa
+ese máximo deberá ser autorizado por un usuaior de mayor jerarquía que si lo pueda hacer.
+Se agregó validación para que al autorizar/denegar sólo se actualizara el registro modificado. Esto se
+hizo porque siempre quedaba registrado el último usuario que autorizó/denegó y eso no estaba bien.
+
+
+v0.9: (Eddye Lino - 16/Dic/2010)
+-----
+Se corrigió el método: 
+   1) isPermitidoAutCon11()
+Se validó que cuando el cliente no tenga deuda se asuma cero.
+   bgdValTotPen=((bgdValTotPen=rst.getBigDecimal("nd_totPen"))==null?BigDecimal.ZERO:bgdValTotPen);
+
+
+v0.10: (Eddye Lino - 06/Dic/2013)
+------
+Se agregó el método: 
+   1) actualizarTbmPedOtrBodCotVen()
+Se agregó dicho método para guardar la autorización para el control "Pedidos a otras bodegas que necesitan autorización".
+
+
+v0.11: (Eddye Lino - 11/Jun/2015)
+------
+Se agregó el método:
+   1) isPermitidoAutCon12()
+En el query se agregó la tabla "tbm_catTipDocSis" para que sólo se consideraran las "Facturas de ventas".
+
+
+v0.12: (José Mario Marín - 19/Sep/2017)
+------
+Se agregó el constructor:
+   1) ZafHer03_01(java.awt.Frame parent, boolean modal, ZafParSis obj, int codEmp, int codLoc, int codCot)
+Para llamar desde el sistema de Reservas y modificaciones para reservas.
+
+
+v0.13: (Eddye Lino - 16/Mar/2018)
+-----
+Se quitaron algunos System.out.println que habían dejado.
+Se agregó código para tratar de detectar un error que se presentó cuando se migró a Java 8.
+El error consistía en que al dar click en el botón para ver el motivo por el cual se necesitaba autorización no aparecía
+el JDialog y tenían que abrir otra solicitud hacer lo mismo y luego regresar a solicitud que se quería autorizar.
+
+
+v0.14: (Eddye Lino - 27/Mar/2018)
+-----
+Se modificó el método:
+   1) configurarTblDat()
+Se movió el código que se encontraba en "beforeEdit" a "actionPerformed" para el objeto "objTblCelEdiButGen".

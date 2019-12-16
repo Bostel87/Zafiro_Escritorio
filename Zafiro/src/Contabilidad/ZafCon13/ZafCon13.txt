@@ -1,0 +1,142 @@
+Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 13/OCt/2006)
+----
+Clase nueva.
+
+
+v0.2: (Ingrid - 18/Oct/2006)
+-----
+Se agregá un chk para cuentas con saldo cero y el reporte de impresián para BG y ER
+
+
+v0.2.1: (Ingrid - 23/Oct/2006)
+-----
+A la opcián de cuentas con saldo cero se le agregá la palabra NO, 
+y se corrigiá el reporte porq los parámetros del query estaban como constantes. 
+Ahora si se están pasando parámetros
+
+
+v0.2.2: (Ingrid - 31/Oct/2006)
+-----
+en la funcion cargarDetReg(), se cambio en la lánea 582 la fecha de inicio de remayorizacion
+por problemas de configuracion de fechas en los servidores
+
+
+v0.2.3: (Ingrid - 10/Nov/2006)
+-----
+Se cambiá los parametros de fecha para remayorizar
+
+
+v0.2.4: (Ingrid - 26/Ene/2007)
+-----
+Se envia parámetros no constants en remayorizar, se toma la fecha del servidor y a esta se le resta 120 dias
+o sea 4 meses
+
+
+v0.3: (Ingrid - 29/Mar/2007)
+-----
+Se agregá cádigo para que se pudiera sacar el Balance y Estado de Resultados del Grupo.
+Se agregá condicián al query del Estado de Resultados para que acumulara sálo el aáo.
+Anteriormente el Estado de Resultados acumulaba todos los meses anteriores a la fecha de corte.
+Ahora sálo acumula los meses anteriores que pertenecen al aáo de corte.
+
+
+v0.4: (Ingrid - 11/Sep/2007)
+-----
+Se adicioná el filtro para que sálo presente informacián del presente anio en estado de resultados. Lo mismo se realizá para el RptZafCon13.jrxml
+
+
+v0.5: (Eddye Lino - 12/Nov/2007)
+-----
+Se corrigiá el mátodo: 
+   1) cargarDetReg()
+Se corrigiá lo siguiente:
+   1) Se cambiá el cádigo para que el JProgressBar fuera indeterminado para evitar tener que ejecutar 2 veces
+      la sentencia SQL (Una para obtener el námero de registros y la otra para obtener los datos).
+      Se corrigiá query porque estaba fallando en cuando se utilizaba el filtro "No incluir cuentas con saldo cero".
+
+
+v0.6: (Ingrid Lino - 26/Mar/2008)
+-----
+Se cambiá un parámetro quemado (200701) por uno variable q tome el valor del aáo de corte y adicione como mes 01.
+El mismo cambio se realizá en el RptZafCon13.jrxml
+
+
+v0.7: (Ingrid Lino - 17/Nov/2008)
+-----
+Se adicionó al momento de impresión el Mes de corte.
+
+
+v0.8: (Ingrid Lino - 26/Ene/2009)
+-----
+Se cambio la forma de cargar la información en el combobox de los años. Ahora se cargan según los años 
+ creados en el sistema y se adicionó el campo mes al momento de sacar el reporte.
+
+
+v0.8.1: (Ingrid Lino - 23/May/2011)
+-----
+Se adicionó en la tabla de totales cuenta de Balance General solicitada por Luigui Sensi.
+
+
+v0.8.2: (Ingrid Lino - 06/Sep/2012)
+-----
+Se coloca en el query de obtención de datos el filtro st_reg='A', porque estaba presentando cuentas Anuladas-Inactivas.
+
+
+v0.8.3: (Ingrid Lino - 15/Jul/2013)
+-----
+Se cambia el formato de impresión para ser usado  a través de la clase del zafiro. Se añade también datos de auditoria en reporte de impresión.
+
+
+v0.8.4: (Ingrid Lino - 03/Ene/2014)
+-----
+Al momento de leer el periodo anterior cuando era mes Septiembre, se estaba dejando 9 y no 09, enviaba parámetro 20139 y no 201309 y esto no permitia retornar la data correctamente.
+
+
+v0.8.5: (Ingrid Lino - 17/Jun/2015)
+-----
+Se ajustan los parámetros que se envian al reporte en la opción de imprimir, debido a cambio de motor de DB, el query daba problemas de ejecución.
+
+
+v0.8.6: (Rosa Zambrano - 19/Oct/2016)
+-----
+La consulta se mantiene igual para el formato normal.
+Se ajusta el programa para consultar el BG y ER con el formato "Mercado de Valores".
+Se agrega botón de exportar para el Balance de Mercado de Valores.
+
+
+v0.9: (Dennis Betancourt - 03/Jul/2018)
+----
+Se agrega un JCheckBox para remayorizar antes de mostrar el reporte.
+
+
+v0.9.1: (Dennis Betancourt - 20/Nov/2018)
+----
+Se movio el codigo de remayorizacion. Se agrego dicho codigo en el metodo remayorizarPeriodo() en la clase ZafAsiDia.
+
+
+v0.9.2: (Dennis Betancourt - 16/Abr/2019)
+----
+Para mostrar el reporte, se modifico la funcion cargarDetReg() para que el Numero y Nombre de la cuenta_contable ya no sea traido de tbm_plaCta. Ahora, por el Plan de cuentas Unificado, estos datos son traidos de tbm_salCta.
+
+
+v0.9.3: (Dennis Betancourt - 17/Jul/2019)
+----
+En Grupo, en la funcion cargarDetReg() se comento la linea que excluia las cuentas de "Costo de venta" de las empresas.
+Linea comentada: AND NOT ( (b1.co_emp=1 AND b1.co_cta=1447) OR (b1.co_emp=2 AND b1.co_cta=559) OR (b1.co_emp=3 AND b1.co_cta=1346) OR (b1.co_emp=4 AND b1.co_cta=1386) )
+
+
+v0.9.4: (Dennis Betancourt - 14/Ago/2019)
+----
+Para mostrar el reporte en Vista preliminar, se modifico la funcion saldosTotales() para que el Numero y Nombre de la cuenta_contable ya no sea traido de tbm_plaCta. Ahora, por el Plan de cuentas Unificado, estos datos son traidos de tbm_salCta.
+
+
+v0.9.5: (Rosa Zambrano - 30/Ago/2019)
+----
+Se realizan cambios para Jaspersoft Studio.

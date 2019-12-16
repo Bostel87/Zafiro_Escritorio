@@ -1,0 +1,17 @@
+﻿
+CONTROL DE VERSIONES:
+=====================
+
+v1.01: (Carlos Lainez - 17/Jun/2011)
+----
+Clase nueva Empleados por Empresa, siendo manejado por el bean ZafRecHum05Bean, creando un manejador de la Pantalla de Mantenimiento de Empleados por Empresa ZafRecHum05.
+
+
+v1.02: (Roberto Flores - 18/Jul/2013)
+-----
+Se realiza validación para solo mostrar empleados por la empresa que se encuentran activos.
+
+
+v1.03: (Rosa Zambrano - 17/Dic/2014)
+-----
+ZafRecHum05Bean - consultarRep():Se corrige el query de consulta del listado de empleados por Grupo LSC, para que solamente aparezcan los empleados que están actualmente activos.

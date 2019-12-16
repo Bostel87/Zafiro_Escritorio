@@ -1,0 +1,2656 @@
+
+
+package RecursosHumanos.ZafRecHum33;
+import Librerias.ZafParSis.ZafParSis;
+import Librerias.ZafPerUsr.ZafPerUsr;
+import Librerias.ZafRecHum.ZafRecHumDao.RRHHDao;
+import Librerias.ZafRecHum.ZafRecHumPoj.TbhSuetra;
+import Librerias.ZafRecHum.ZafRecHumPoj.TbhSuetraPK;
+import Librerias.ZafRecHum.ZafRecHumPoj.TbmRubrolpag;
+import Librerias.ZafRecHum.ZafRecHumPoj.TbmSuetra;
+import Librerias.ZafRecHum.ZafRecHumPoj.TbmSuetraPK;
+import Librerias.ZafRecHum.ZafRecHumPoj.Tbm_tra;
+import Librerias.ZafRecHum.ZafVenFun.Mail;
+import Librerias.ZafRecHum.ZafVenFun.ZafVenFun;
+import Librerias.ZafTblUti.ZafTblBus.ZafTblBus;
+import Librerias.ZafTblUti.ZafTblCelEdiTxt.ZafTblCelEdiTxt;
+import Librerias.ZafTblUti.ZafTblCelRenLbl.ZafTblCelRenLbl;
+import Librerias.ZafTblUti.ZafTblEdi.ZafTblEdi;
+import Librerias.ZafTblUti.ZafTblFilCab.ZafTblFilCab;
+import Librerias.ZafTblUti.ZafTblHeaGrp.ZafTblHeaColGrp;
+import Librerias.ZafTblUti.ZafTblHeaGrp.ZafTblHeaGrp;
+import Librerias.ZafTblUti.ZafTblMod.ZafTblMod;
+import Librerias.ZafTblUti.ZafTblPopMnu.ZafTblPopMnu;
+import Librerias.ZafTblUti.ZafTblTot.ZafTblTot;
+import Librerias.ZafUtil.ZafUtil;
+import Librerias.ZafVenCon.ZafVenCon;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Iterator;
+import java.util.Vector;
+
+/**
+ * Ingresos, Corrección y Aumento de Sueldos.
+ * @author  Roberto Flores
+ * Guayaquil 29/05/2012
+ */
+public class ZafRecHum33 extends javax.swing.JInternalFrame
+{
+    private static final int INT_TBL_DAT_LIN=0;
+    private static final int INT_TBL_DAT_COD_EMP=1;
+    private static final int INT_TBL_DAT_NOM_EMP=2;
+    private static final int INT_TBL_DAT_COD_TRA=3;
+    private static final int INT_TBL_DAT_NOM_APE_TRA=4;
+    private static final int INT_TBL_DAT_CAR_TRA=5;
+    private static final int INT_TBL_DAT_MIN_SEC_SUG=6;
+    private static final int INT_TBL_DAT_MIN_SEC_ASI=7;
+    
+    private static final int INT_TBL_DET_LIN=0;
+    private static final int INT_TBL_DET_TIP_MOD=1;
+    private static final int INT_TBL_DET_FEC_MOD=2;
+    private static final int INT_TBL_DET_USR_MOD=3;
+    private static final int INT_TBL_DET_CAR_TRA=4;
+    private static final int INT_TBL_DET_MIN_SEC_SUG=5;
+    private static final int INT_TBL_DET_MIN_SEC_ASI=6;
+    
+    //Variables
+    //private ZafSelFec objSelFec;
+    private ZafTblBus objTblBus;
+    private ZafParSis objParSis;
+    private ZafUtil objUti;
+    private ZafTblFilCab objTblFilCab;
+    private ZafTblMod objTblMod;
+    private ZafTblMod objTblModDab;
+    private ZafTblEdi objTblEdi;                                //Editor: Editor del JTable.
+    private ZafThreadGUI objThrGUI;
+    private ZafTblCelRenLbl objTblCelRenLbl;                    //Render: Presentar JLabel en JTable.
+    private ZafTblCelEdiTxt objTblCelEdiTxt;                                            //Editor: JTextField en celda.
+    private ZafMouMotAda objMouMotAda;                          //ToolTipText en TableHeader.
+    private ZafMouMotAdaMovReg objMouMotAdaMovReg;                          //ToolTipText en TableHeader.
+    private ZafTblPopMnu objTblPopMnu;                          //PopupMenu: Establecer PopupMenú en JTable.
+    private ZafTblTot objTblTot;                                //JTable de totales.
+    private ZafVenCon vcoEmp;                                   //Ventana de consulta.
+    private ZafVenCon vcoDep;                                   //Ventana de consulta.
+    private ZafVenCon vcoTra;
+    private String strSQL, strAux;
+    private Vector vecDat, vecCab, vecReg;
+    private Vector vecDatMov, vecCabMov;                        
+    private String strCodEmp, strNomEmp;
+    private String strCodDep = "";
+    private String strDesLarDep = "";
+    private String strCodTra = "";
+    private String strNomTra = "";
+    private static final int INT_TBL_DAT_NUM_TOT_CDI=11;                            //Número total de columnas dinámicas.
+    private ZafPerUsr objPerUsr;
+    private ArrayList<String> arrLst=null;
+    private ArrayList<Tbm_tra>   arrLstTbmTra=null;
+    private ArrayList<TbmRubrolpag> arrLstTbmRubRolPag=null;
+    private ArrayList<String> arrLstEmp=null;
+    private ArrayList<String> arrLstCar=null;
+    
+    /** Crea una nueva instancia de la clase ZafRecHum33. */
+    public ZafRecHum33(ZafParSis obj)
+    {
+        try
+        {
+            initComponents();
+            //Inicializar objetos.
+            objParSis=(ZafParSis)obj.clone();
+            objPerUsr=new ZafPerUsr(objParSis);
+            if (!configurarFrm())
+                exitForm();
+        }
+        catch (CloneNotSupportedException e)
+        {
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+    }
+    
+    /** This method is called from within the constructor to
+     * initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is
+     * always regenerated by the Form Editor.
+     */
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        bgrFil = new javax.swing.ButtonGroup();
+        lblTit = new javax.swing.JLabel();
+        panFrm = new javax.swing.JPanel();
+        tabFrm = new javax.swing.JTabbedPane();
+        panFil = new javax.swing.JPanel();
+        optTod = new javax.swing.JRadioButton();
+        optFil = new javax.swing.JRadioButton();
+        jLabel4 = new javax.swing.JLabel();
+        txtCodEmp = new javax.swing.JTextField();
+        txtNomEmp = new javax.swing.JTextField();
+        butEmp = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        txtCodDep = new javax.swing.JTextField();
+        txtNomDep = new javax.swing.JTextField();
+        butDep = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        txtCodTra = new javax.swing.JTextField();
+        txtNomTra = new javax.swing.JTextField();
+        butTra = new javax.swing.JButton();
+        panRpt = new javax.swing.JPanel();
+        sppRpt = new javax.swing.JSplitPane();
+        panRptReg = new javax.swing.JPanel();
+        spnDat = new javax.swing.JScrollPane();
+        tblDat = new javax.swing.JTable() {
+            protected javax.swing.table.JTableHeader createDefaultTableHeader()
+            {
+                return new ZafTblHeaGrp(columnModel);
+            }
+        };
+        spnTot = new javax.swing.JScrollPane();
+        tblTot = new javax.swing.JTable();
+        panRptMovReg = new javax.swing.JPanel();
+        chkMosMovReg = new javax.swing.JCheckBox();
+        panMovReg = new javax.swing.JPanel();
+        spnMovReg = new javax.swing.JScrollPane();
+        tblMovReg = new javax.swing.JTable();
+        panBar = new javax.swing.JPanel();
+        panBot = new javax.swing.JPanel();
+        butCon = new javax.swing.JButton();
+        butGua = new javax.swing.JButton();
+        butCer = new javax.swing.JButton();
+        panBarEst = new javax.swing.JPanel();
+        lblMsgSis = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        pgrSis = new javax.swing.JProgressBar();
+
+        setClosable(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
+        setTitle("Título de la ventana");
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+                exitForm(evt);
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            }
+        });
+
+        lblTit.setFont(new java.awt.Font("MS Sans Serif", 1, 14));
+        lblTit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTit.setText("Título de la ventana");
+        lblTit.setPreferredSize(new java.awt.Dimension(138, 18));
+        getContentPane().add(lblTit, java.awt.BorderLayout.NORTH);
+
+        panFrm.setAutoscrolls(true);
+        panFrm.setPreferredSize(new java.awt.Dimension(475, 311));
+        panFrm.setLayout(new java.awt.BorderLayout());
+
+        tabFrm.setPreferredSize(new java.awt.Dimension(475, 311));
+
+        panFil.setLayout(null);
+
+        optTod.setSelected(true);
+        optTod.setText("Todos los empleados");
+        optTod.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                optTodItemStateChanged(evt);
+            }
+        });
+        optTod.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                optTodActionPerformed(evt);
+            }
+        });
+        panFil.add(optTod);
+        optTod.setBounds(4, 4, 400, 20);
+
+        optFil.setText("Sólo los empleados que cumplan el criterio seleccionado");
+        optFil.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                optFilItemStateChanged(evt);
+            }
+        });
+        optFil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                optFilActionPerformed(evt);
+            }
+        });
+        panFil.add(optFil);
+        optFil.setBounds(4, 24, 400, 20);
+
+        jLabel4.setText("Empresa:"); // NOI18N
+        panFil.add(jLabel4);
+        jLabel4.setBounds(24, 44, 120, 20);
+
+        txtCodEmp.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtCodEmp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCodEmpActionPerformed(evt);
+            }
+        });
+        txtCodEmp.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtCodEmpFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCodEmpFocusLost(evt);
+            }
+        });
+        panFil.add(txtCodEmp);
+        txtCodEmp.setBounds(144, 44, 56, 20);
+
+        txtNomEmp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNomEmpActionPerformed(evt);
+            }
+        });
+        txtNomEmp.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtNomEmpFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtNomEmpFocusLost(evt);
+            }
+        });
+        panFil.add(txtNomEmp);
+        txtNomEmp.setBounds(200, 44, 460, 20);
+
+        butEmp.setText(".."); // NOI18N
+        butEmp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                butEmpActionPerformed(evt);
+            }
+        });
+        panFil.add(butEmp);
+        butEmp.setBounds(660, 44, 20, 20);
+
+        jLabel5.setText("Departamento:"); // NOI18N
+        panFil.add(jLabel5);
+        jLabel5.setBounds(24, 64, 120, 20);
+
+        txtCodDep.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtCodDep.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCodDepActionPerformed(evt);
+            }
+        });
+        txtCodDep.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtCodDepFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCodDepFocusLost(evt);
+            }
+        });
+        panFil.add(txtCodDep);
+        txtCodDep.setBounds(144, 64, 56, 20);
+
+        txtNomDep.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNomDepActionPerformed(evt);
+            }
+        });
+        txtNomDep.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtNomDepFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtNomDepFocusLost(evt);
+            }
+        });
+        panFil.add(txtNomDep);
+        txtNomDep.setBounds(200, 64, 460, 20);
+
+        butDep.setText(".."); // NOI18N
+        butDep.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                butDepActionPerformed(evt);
+            }
+        });
+        panFil.add(butDep);
+        butDep.setBounds(660, 64, 20, 20);
+
+        jLabel6.setText("Empleado:"); // NOI18N
+        panFil.add(jLabel6);
+        jLabel6.setBounds(24, 84, 120, 20);
+
+        txtCodTra.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtCodTra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCodTraActionPerformed(evt);
+            }
+        });
+        txtCodTra.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtCodTraFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCodTraFocusLost(evt);
+            }
+        });
+        panFil.add(txtCodTra);
+        txtCodTra.setBounds(144, 84, 56, 20);
+
+        txtNomTra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNomTraActionPerformed(evt);
+            }
+        });
+        txtNomTra.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtNomTraFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtNomTraFocusLost(evt);
+            }
+        });
+        panFil.add(txtNomTra);
+        txtNomTra.setBounds(200, 84, 460, 20);
+
+        butTra.setText(".."); // NOI18N
+        butTra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                butTraActionPerformed(evt);
+            }
+        });
+        panFil.add(butTra);
+        butTra.setBounds(660, 84, 20, 20);
+
+        tabFrm.addTab("Filtro", null, panFil, "Filtro");
+
+        panRpt.setLayout(new java.awt.BorderLayout());
+
+        sppRpt.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
+        sppRpt.setResizeWeight(0.8);
+        sppRpt.setOneTouchExpandable(true);
+
+        panRptReg.setLayout(new java.awt.BorderLayout(0, 1));
+
+        tblDat.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        spnDat.setViewportView(tblDat);
+
+        panRptReg.add(spnDat, java.awt.BorderLayout.CENTER);
+
+        spnTot.setPreferredSize(new java.awt.Dimension(454, 18));
+
+        tblTot.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        spnTot.setViewportView(tblTot);
+
+        panRptReg.add(spnTot, java.awt.BorderLayout.SOUTH);
+
+        sppRpt.setTopComponent(panRptReg);
+
+        panRptMovReg.setLayout(new java.awt.BorderLayout());
+
+        chkMosMovReg.setText("Mostrar el histórico de sueldos");
+        chkMosMovReg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkMosMovRegActionPerformed(evt);
+            }
+        });
+        panRptMovReg.add(chkMosMovReg, java.awt.BorderLayout.NORTH);
+
+        panMovReg.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        panMovReg.setLayout(new java.awt.BorderLayout());
+
+        tblMovReg.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, false, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        spnMovReg.setViewportView(tblMovReg);
+
+        panMovReg.add(spnMovReg, java.awt.BorderLayout.CENTER);
+
+        panRptMovReg.add(panMovReg, java.awt.BorderLayout.CENTER);
+
+        sppRpt.setBottomComponent(panRptMovReg);
+
+        panRpt.add(sppRpt, java.awt.BorderLayout.CENTER);
+
+        tabFrm.addTab("Reporte", panRpt);
+
+        panFrm.add(tabFrm, java.awt.BorderLayout.CENTER);
+
+        getContentPane().add(panFrm, java.awt.BorderLayout.CENTER);
+
+        panBar.setPreferredSize(new java.awt.Dimension(320, 42));
+        panBar.setLayout(new java.awt.BorderLayout());
+
+        panBot.setPreferredSize(new java.awt.Dimension(304, 26));
+        panBot.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 5, 0));
+
+        butCon.setText("Consultar");
+        butCon.setToolTipText("Ejecuta la consulta de acuerdo al filtro especificado.");
+        butCon.setPreferredSize(new java.awt.Dimension(92, 25));
+        butCon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                butConActionPerformed(evt);
+            }
+        });
+        panBot.add(butCon);
+
+        butGua.setText("Guardar");
+        butGua.setPreferredSize(new java.awt.Dimension(92, 25));
+        butGua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                butGuaActionPerformed(evt);
+            }
+        });
+        panBot.add(butGua);
+
+        butCer.setText("Cerrar");
+        butCer.setToolTipText("Cierra la ventana.");
+        butCer.setPreferredSize(new java.awt.Dimension(92, 25));
+        butCer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                butCerActionPerformed(evt);
+            }
+        });
+        panBot.add(butCer);
+
+        panBar.add(panBot, java.awt.BorderLayout.CENTER);
+
+        panBarEst.setPreferredSize(new java.awt.Dimension(320, 17));
+        panBarEst.setLayout(new java.awt.BorderLayout());
+
+        lblMsgSis.setText("Listo");
+        lblMsgSis.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
+        panBarEst.add(lblMsgSis, java.awt.BorderLayout.CENTER);
+
+        jPanel6.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
+        jPanel6.setMinimumSize(new java.awt.Dimension(24, 26));
+        jPanel6.setPreferredSize(new java.awt.Dimension(200, 15));
+        jPanel6.setLayout(new java.awt.BorderLayout(2, 2));
+
+        pgrSis.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
+        pgrSis.setBorderPainted(false);
+        pgrSis.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        pgrSis.setPreferredSize(new java.awt.Dimension(100, 16));
+        jPanel6.add(pgrSis, java.awt.BorderLayout.CENTER);
+
+        panBarEst.add(jPanel6, java.awt.BorderLayout.EAST);
+
+        panBar.add(panBarEst, java.awt.BorderLayout.SOUTH);
+
+        getContentPane().add(panBar, java.awt.BorderLayout.SOUTH);
+
+        java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+        setBounds((screenSize.width-700)/2, (screenSize.height-450)/2, 700, 450);
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void chkMosMovRegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkMosMovRegActionPerformed
+        if (chkMosMovReg.isSelected())
+            cargarMovReg();
+        else
+            objTblModDab.removeAllRows();
+            
+    }//GEN-LAST:event_chkMosMovRegActionPerformed
+
+    private void butConActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butConActionPerformed
+        if (objThrGUI==null) {
+                objThrGUI=new ZafThreadGUI();
+                objThrGUI.start();
+            }
+    }//GEN-LAST:event_butConActionPerformed
+
+    private void butCerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butCerActionPerformed
+        exitForm(null);
+    }//GEN-LAST:event_butCerActionPerformed
+
+    /** Cerrar la aplicación. */
+    private void exitForm(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_exitForm
+        String strTit, strMsg;
+        strTit="Mensaje del sistema Zafiro";
+        strMsg="¿Está seguro que desea cerrar este programa?";
+        if (javax.swing.JOptionPane.showConfirmDialog(this,strMsg,strTit,javax.swing.JOptionPane.YES_NO_OPTION,javax.swing.JOptionPane.QUESTION_MESSAGE)==javax.swing.JOptionPane.YES_OPTION)
+        {
+            dispose();
+        }
+    }//GEN-LAST:event_exitForm
+
+    private void butGuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butGuaActionPerformed
+        java.sql.Connection con = null;
+        try
+        {
+            if (objTblMod.isDataModelChanged())
+            {
+                if (mostrarMsgCon("¿Está seguro que desea realizar esta operación?")==0)
+                {
+                    con=java.sql.DriverManager.getConnection(objParSis.getStringConexion(),objParSis.getUsuarioBaseDatos(),objParSis.getClaveBaseDatos());
+                    con.setAutoCommit(false);
+                    if (guardarDat(con))
+                    {
+                        if (blnEnvioCorreo())
+                        {
+                            con.commit();
+                            new RRHHDao(objUti, objParSis).callServicio9();
+                            if (objParSis.getCodigoMenu()==3092)
+                            {
+                                butConActionPerformed(null);
+                            }
+                            else
+                            {
+                                cargarMovReg();
+                            }
+                            mostrarMsgInf("La operación GUARDAR se realizó con éxito.");
+                        }
+                        else
+                        {
+                            con.rollback();
+                        }
+                    }
+                    else
+                    {
+                        con.rollback();
+                        mostrarMsgErr("Ocurrió un error al realizar la operación GUARDAR.\nIntente realizar la operación nuevamente.\nSi el problema persiste notifiquelo a su administrador del sistema.");
+                    }
+                }
+            }
+            else
+            {
+                mostrarMsgInf("No ha realizado ningún cambio que se pueda guardar."); 
+            }
+        }
+        catch(Exception e)
+        {
+
+        }
+    }//GEN-LAST:event_butGuaActionPerformed
+   
+    private boolean blnEnvioCorreo()
+    {
+        boolean blnRes=true;
+        try
+        {
+            Mail mail2 = new Mail();
+            String strCorEleTo="lsc@tuvalsa.com;vicepresidencia@tuvalsa.com;gerenciageneral@tuvalsa.com;contador@tuvalsa.com";
+//            String strCorEleTo="sistemas@tuvalsa.com";
+            String strCorEleCC=null;
+            String strCorEleCCO=null;
+            String strMensCorEle = " <HTML> <body> <BR/><BR/>";
+            for (int intPos=0; intPos < arrLstTbmTra.size(); intPos++)
+            {
+                double dblAnt=0;
+                double dblDes=0;
+                int intRubRolPagMaxLen=0;
+                for (int intPosIng=0; intPosIng<arrLstTbmRubRolPag.size() ; intPosIng++)
+                {
+                    int intLen=arrLstTbmRubRolPag.get(intPosIng).getTxNom().length();
+                    if (intLen>intRubRolPagMaxLen)
+                    {
+                        intRubRolPagMaxLen=intLen;
+                    }
+                }
+                for (int intPosIng=0; intPosIng < arrLstTbmRubRolPag.size() ; intPosIng++)
+                {
+                    String str=arrLstTbmRubRolPag.get(intPosIng).getTxNom();
+                    if (str.indexOf("ó")!=-1)
+                    {
+                        str=str.replace("ó", "o");
+                    }
+                    if (str.indexOf("á")!=-1)
+                    {
+                        str=str.replace("á", "a");
+                    }
+                    if (str.indexOf("é")!=-1)
+                    {
+                        str=str.replace("é", "e");
+                    }
+                    if (str.indexOf("í")!=-1)
+                    {
+                        str=str.replace("í", "i");
+                    }
+                    if (str.indexOf("ú")!=-1)
+                    {
+                        str=str.replace("ú", "u");
+                    }
+                    arrLstTbmRubRolPag.get(intPosIng).setTxNom(str);
+                }
+                strMensCorEle+="<TABLE BORDER=3 CELLSPACING=5 WIDTH=300> ";
+                strMensCorEle+="<TR>EMPRESA: " + arrLstEmp.get(intPos).toString() + "</TR><BR/>";
+                strMensCorEle+="<TR>EMPLEADO: " + arrLstTbmTra.get(intPos).getStrTx_ape() + "</TR></BR>";
+                strMensCorEle+="<TR>CARGO: " + arrLstCar.get(intPos).toUpperCase() + "</TR></BR>";
+                strMensCorEle+="<TR><TH COLSPAN=2> ANTES</TH><TH COLSPAN=2> DESPUES</TH></TR>";
+                ArrayList<TbhSuetra> arrLstTbhSueTra=arrLstTbmTra.get(intPos).getArrLstTbhSueTra();
+                ArrayList<TbmSuetra> arrLstTbmSueTra=arrLstTbmTra.get(intPos).getArrLstTbmSueTra();
+                for (int intPosIng=0; intPosIng<arrLstTbmRubRolPag.size(); intPosIng++)
+                {
+                    TbhSuetra tbhSueTra=arrLstTbhSueTra.get(intPosIng);
+                    strMensCorEle+= " <TR> <th><FONT COLOR=\"black\"> " + arrLstTbmRubRolPag.get(intPosIng).getTxNom() + " </FONT></th> <th><FONT COLOR=\"black\"> " + tbhSueTra.getNdValrub() + " </FONT></th>";
+                    dblAnt+=Double.parseDouble(""+tbhSueTra.getNdValrub());
+                    TbmSuetra tbmSueTra = arrLstTbmSueTra.get(intPosIng);
+                    strMensCorEle+= " <th><FONT COLOR=\"black\"> " + arrLstTbmRubRolPag.get(intPosIng).getTxNom() + " </FONT></th> <th><FONT COLOR=\"black\"> "+ tbmSueTra.getNdValrub() +" </FONT></th></TR>";
+                    dblDes+=Double.parseDouble(""+tbmSueTra.getNdValrub());
+                }
+                strMensCorEle+="<th><FONT COLOR=\"black\"> TOTAL </FONT></th> <th><FONT COLOR=\"black\"> "+ objUti.redondear(dblAnt, objParSis.getDecimalesMostrar()) +" </FONT></th>";
+                strMensCorEle+="<th><FONT COLOR=\"black\"> TOTAL </FONT></th> <th><FONT COLOR=\"black\"> "+ objUti.redondear(dblDes, objParSis.getDecimalesMostrar()) +" </FONT></th></TR>";
+                strMensCorEle+="</TABLE> <BR/><BR/>";
+            }
+            String strAsunto="NOTIFICACIONES RRHH - " + objParSis.getNombreMenu();;
+            mail2.enviarCorreoMasivo(strCorEleTo, strCorEleCC, strCorEleCCO, strAsunto, strMensCorEle );
+        }
+        catch(Exception Evt)
+        {
+            blnRes = false;
+            Evt.printStackTrace();
+            objUti.mostrarMsgErr_F1(this, Evt);
+        }
+        return blnRes;
+    }
+    
+    /**
+     * Esta función muestra un mensaje de error al usuario. Se podría utilizar
+     * para mostrar al usuario un mensaje que indique que los datos no se grabaron
+     * y que debe comunicar de este particular al administrador del sistema.
+     */
+    private void mostrarMsgErr(String strMsg)
+    {
+        String strTit;
+        strTit="Mensaje del sistema Zafiro";
+        javax.swing.JOptionPane.showMessageDialog(this,strMsg,strTit,javax.swing.JOptionPane.ERROR_MESSAGE);
+    }
+    
+   /**
+     * Esta función muestra un mensaje "showConfirmDialog". Presenta las opciones
+     * Si y No. El usuario es quien determina lo que debe hacer el sistema
+     * seleccionando una de las opciones que se presentan.
+     */
+    private int mostrarMsgCon(String strMsg)
+    {
+        String strTit;
+        strTit="Mensaje del sistema Zafiro";
+        return javax.swing.JOptionPane.showConfirmDialog(this,strMsg,strTit,javax.swing.JOptionPane.YES_NO_OPTION,javax.swing.JOptionPane.QUESTION_MESSAGE);
+    }
+         
+    private boolean guardarDat(Connection con)
+    {
+        boolean blnRes=true;
+        java.sql.Statement stmLoc = null;
+        java.sql.Statement stmLocSue = null;
+        java.sql.ResultSet rstLoc = null;
+        String strSql="";
+        String strTx_TipModSue="";
+        ArrayList<TbhSuetra> arrLstTbhSueTra = null;
+        ArrayList<TbmSuetra> arrLstTbmSueTra = null;
+        arrLstTbmTra = new ArrayList<Tbm_tra>();
+        arrLstEmp = new ArrayList<String>();
+        arrLstCar = new ArrayList<String>();
+        RRHHDao dao = new  RRHHDao(objUti, objParSis);
+        try
+        {
+            if(con!=null)
+            {
+                con.setAutoCommit(false);
+                stmLoc=con.createStatement();
+                stmLocSue = con.createStatement();
+                ArrayList<Integer> arrLstRubRolPag=obtenerRubRolPag();
+                int intPosRub=INT_TBL_DAT_MIN_SEC_ASI+1;
+                int intContRub=0;
+                for (int i=0; i<tblDat.getRowCount();i++)
+                {
+                    double dblBon=0;
+                    double dblMov=0;
+                    Tbm_tra tbm_tra = null;
+                    if (tblDat.getValueAt(i, INT_TBL_DAT_LIN).toString().compareTo("M")==0)
+                    {
+                        arrLstTbhSueTra = new ArrayList<TbhSuetra>();
+                        arrLstTbmSueTra = new ArrayList<TbmSuetra>();
+                        TbmSuetra tbmSuetra = new TbmSuetra();
+                        tbm_tra = new Tbm_tra();
+                        tbm_tra.setIntCo_tra(Integer.valueOf(tblDat.getValueAt(i, INT_TBL_DAT_COD_TRA).toString()));
+                        tbm_tra.setStrTx_ape(tblDat.getValueAt(i, INT_TBL_DAT_NOM_APE_TRA).toString());
+                        arrLstCar.add(tblDat.getValueAt(i, INT_TBL_DAT_CAR_TRA).toString());
+                        arrLstEmp.add(tblDat.getValueAt(i, INT_TBL_DAT_NOM_EMP).toString());
+                        int intCoTra=Integer.valueOf(tblDat.getValueAt(i, INT_TBL_DAT_COD_TRA).toString());
+                        int intCoEmp=Integer.valueOf(tblDat.getValueAt(i, INT_TBL_DAT_COD_EMP).toString());
+                        if (objParSis.getCodigoMenu()==3092)
+                        {
+                            strTx_TipModSue="I";
+                        }
+                        else if(objParSis.getCodigoMenu()==3096)
+                        {
+                            strTx_TipModSue="C";
+                        }
+                        else if(objParSis.getCodigoMenu()==3100)
+                        {
+                            strTx_TipModSue="A";
+                        }
+                        int intCoHisTbhTraEmp=0;
+                        strSql="select max(co_his) as co_his from tbh_traemp where co_emp = " + tblDat.getValueAt(i, INT_TBL_DAT_COD_EMP).toString() +" "+
+                        "and co_tra = " + tblDat.getValueAt(i, INT_TBL_DAT_COD_TRA).toString();
+                        rstLoc=stmLoc.executeQuery(strSql);
+                        if (rstLoc.next())
+                        {
+                            if (rstLoc.getString("co_his")==null)
+                            {
+                                intCoHisTbhTraEmp=1;
+                            }
+                            else
+                            {
+                                intCoHisTbhTraEmp=rstLoc.getInt("co_his")+1;
+                            }
+                        }
+                        rstLoc=null;
+                        /*INSERCION TBH_TRAEMP*/
+                        strSql="select * from tbm_traemp where co_emp = " + tblDat.getValueAt(i, INT_TBL_DAT_COD_EMP).toString() +" "+
+                        "and co_tra = " + tblDat.getValueAt(i, INT_TBL_DAT_COD_TRA).toString();
+                        rstLoc=stmLoc.executeQuery(strSql);
+                        if (rstLoc.next())
+                        {
+                            Object objCanMinSec  = objTblMod.getValueAt(i, INT_TBL_DAT_MIN_SEC_ASI);
+                            String strCanMinSec="";
+                            if (objCanMinSec==null)
+                            {
+                                if(strCanMinSec.equals(null) || strCanMinSec.equals("") || strCanMinSec.equals("0.0"))
+                                {
+                                    strCanMinSec =null;
+                                }
+                            }
+                            else
+                            {
+                                strCanMinSec=objCanMinSec.toString();
+                            }
+                            strSql="INSERT INTO tbh_traemp(co_emp, co_tra, co_his, co_ofi, co_dep, co_jef, st_horfij, co_hor, "+
+                            "st_recalm, co_car, nd_minsecasi, tx_obs1, st_reg, fe_ing, fe_ultmod, co_usring, co_usrmod, "+
+                            "tx_tipmodsue, fe_ultmodsue, co_usrmodsue, fe_his, co_usrhis) "
+                            + "VALUES ("
+                            + rstLoc.getString("co_emp") + ","
+                            + rstLoc.getString("co_tra")+","
+                            + intCoHisTbhTraEmp + ","
+                            + rstLoc.getString("co_ofi")+","
+                            + rstLoc.getString("co_dep")+","
+                            + rstLoc.getString("co_jef")+", "
+                            + objUti.codificar(rstLoc.getString("st_horfij"))+", "
+                            + rstLoc.getString("co_hor")+", "
+                            + objUti.codificar(rstLoc.getString("st_recalm"))+", "
+                            + rstLoc.getString("co_car")+","
+                            + strCanMinSec+","
+                            + objUti.codificar(rstLoc.getString("tx_obs1"))+", "
+                            + objUti.codificar(rstLoc.getString("st_reg"))+", "
+                            + objUti.codificar(rstLoc.getString("fe_ing"))+", "
+                            + objUti.codificar(rstLoc.getString("fe_ultmod"))+", "
+                            + rstLoc.getString("co_usring")+", "
+                            + rstLoc.getString("co_usrmod")+", "
+                            + objUti.codificar(strTx_TipModSue)+", "
+                            + "current_timestamp, "
+                            + objParSis.getCodigoUsuario()+", "
+                            + "current_timestamp, "
+                            + objParSis.getCodigoUsuario() +")";
+                            stmLoc.executeUpdate(strSql);
+                        }
+                        rstLoc=null;
+                        /*TERMINA LA INSERCION TBH_TRAEMP*/
+                        /*HISTORICO DE SUELDOS*/
+                        int intCoHisTbhSueTra=0;
+                        strSql="select max(co_his) as co_his from tbh_suetra where co_emp = " + tblDat.getValueAt(i, INT_TBL_DAT_COD_EMP).toString() +" "+
+                        "and co_tra = " + tblDat.getValueAt(i, INT_TBL_DAT_COD_TRA).toString();
+                        rstLoc=stmLoc.executeQuery(strSql);
+                        if (rstLoc.next())
+                        {
+                            if (rstLoc.getString("co_his")==null)
+                            {
+                                intCoHisTbhSueTra=1;
+                            }
+                            else
+                            {
+                                intCoHisTbhSueTra=rstLoc.getInt("co_his")+1;
+                            }
+                        }
+                        rstLoc=null;
+                        strSql="select * from tbm_suetra a inner join tbm_rubrolpag b on (a.co_rub=b.co_rub) "+
+                        "where co_emp = " + tblDat.getValueAt(i, INT_TBL_DAT_COD_EMP).toString() +" "+
+                        "and co_tra = " + tblDat.getValueAt(i, INT_TBL_DAT_COD_TRA).toString() + " and b.tx_tiprub = 'I' and b.st_reg like 'A' " +
+                        "order by a.co_rub asc";
+                        rstLoc=stmLoc.executeQuery(strSql);
+                        int intCTbhSueTra=INT_TBL_DAT_MIN_SEC_ASI+1;
+                        while (rstLoc.next())
+                        {
+                            Object objCanRub=objTblMod.getValueAt(i, intCTbhSueTra++);
+                            String strCanRub=null;
+                            if (objCanRub==null)
+                            {
+                                strCanRub =null;
+                            }
+                            else
+                            {
+                                double dblSue=objUti.redondear(objUti.parseDouble(objCanRub), objParSis.getDecimalesMostrar());
+                                if (dblSue>0)
+                                {
+                                    strCanRub=objCanRub.toString();
+                                }
+                                else
+                                {
+                                    strCanRub =null;
+                                }
+                            }
+                            strSql="INSERT INTO tbh_suetra( "+
+                            "co_emp, co_tra, co_rub, co_his, nd_valrub, fe_his, co_usrhis) "+
+                            "VALUES ( "
+                            + rstLoc.getString("co_emp") + ","
+                            + rstLoc.getString("co_tra")+","
+                            + rstLoc.getString("co_rub")+", "
+                            + intCoHisTbhSueTra +", "
+                            + strCanRub+","
+                            + "current_timestamp, "
+                            + objParSis.getCodigoUsuario() +")";
+                            stmLocSue.executeUpdate(strSql);
+                            TbhSuetraPK tbhSuetraPK = new TbhSuetraPK();
+                            tbhSuetraPK.setCoEmp(rstLoc.getShort("co_emp"));
+                            tbhSuetraPK.setCoTra(rstLoc.getShort("co_tra"));
+                            tbhSuetraPK.setCoRub(rstLoc.getShort("co_rub"));
+                            tbhSuetraPK.setCoHis(Short.valueOf(""+intCoHisTbhSueTra));
+                            TbhSuetra tbhSuetra = new TbhSuetra(tbhSuetraPK);
+                            if (strCanRub==null)
+                            {
+                                strCanRub="0";
+                            }
+                            BigDecimal bgd=BigDecimal.ZERO;
+                            strCanRub=rstLoc.getString("nd_valrub");
+                            if (strCanRub==null)
+                            {
+                                strCanRub="0";
+                            }
+                            bgd=bgd.add(objUti.redondearBigDecimal(strCanRub,objParSis.getDecimalesMostrar()));
+                            tbhSuetra.setNdValrub(bgd);
+                            tbhSuetra.setCoUsrhis(Short.valueOf(""+objParSis.getCodigoUsuario()));
+                            arrLstTbhSueTra.add(tbhSuetra);
+                        }
+                        for (int intX= 0; intX<arrLstTbhSueTra.size();intX++)
+                        {
+                            BigDecimal bgd = BigDecimal.ZERO;
+                            TbhSuetra tmp = arrLstTbhSueTra.get(intX);
+                            bgd=bgd.add(tmp.getNdValrub());
+                        }
+                        /*TERMINA LA INSERCION HISTORICO DE SUELDOS*/
+                        String strCanMinSecAsi  = tblDat.getValueAt(i, INT_TBL_DAT_MIN_SEC_ASI).toString().toString();
+                        if (strCanMinSecAsi.equals(null) || strCanMinSecAsi.equals("") || strCanMinSecAsi.equals("0.0"))
+                        {
+                            strCanMinSecAsi =null;
+                        }
+                        strSql="update tbm_traemp set nd_minsecasi ="+ strCanMinSecAsi + 
+                        //", fe_ultmod = current_timestamp, co_usrmod = "+objParSis.getCodigoUsuario()+", tx_tipmodsue = "+ objUti.codificar(strTx_TipModSue) +", "+
+                        ", tx_tipmodsue = "+ objUti.codificar(strTx_TipModSue) +", "+
+                        "fe_ultmodsue = current_timestamp, co_usrmodsue =  " + objParSis.getCodigoUsuario()+" "+
+                        "where co_emp = " + tblDat.getValueAt(i, INT_TBL_DAT_COD_EMP).toString() + " and co_tra = "+
+                        tblDat.getValueAt(i, INT_TBL_DAT_COD_TRA).toString();
+                        stmLoc.executeUpdate(strSql);
+                        intContRub=0;
+                        int intCotraAux = 0;
+                        int intCotraAct = 0;
+                        for (int t=0; t<1; t++)
+                        {
+                            for (int x=intPosRub;x<tblDat.getColumnCount()-1;x++)
+                            {
+                                intCotraAct = Integer.valueOf(tblDat.getValueAt(i, INT_TBL_DAT_COD_TRA).toString()) ;
+                                if (intCotraAct == intCotraAux)
+                                {
+                                    intCotraAux = intCotraAct;
+                                }
+                                int intPosColRub=x+t;
+                                String strCanRub=tblDat.getValueAt(i, intPosColRub).toString();
+                                if (strCanRub.equals(null) || strCanRub.equals("") || strCanRub.equals("0.0"))
+                                {
+                                    strCanRub =null;
+                                }
+                                strSql="update tbm_suetra set nd_valrub = "+ strCanRub + " where co_emp= " + tblDat.getValueAt(i, INT_TBL_DAT_COD_EMP).toString() + " " +
+                                "and co_rub= " + arrLstRubRolPag.get(intContRub) + " and co_tra = " + tblDat.getValueAt(i, INT_TBL_DAT_COD_TRA).toString();
+                                stmLoc.executeUpdate(strSql);
+                                TbmSuetraPK tbmSuetraPK = new TbmSuetraPK(Short.valueOf(tblDat.getValueAt(i, INT_TBL_DAT_COD_EMP).toString()), Short.valueOf(arrLstRubRolPag.get(intContRub).toString()), Short.valueOf(tblDat.getValueAt(i, INT_TBL_DAT_COD_TRA).toString()));
+                                tbmSuetra = new TbmSuetra(tbmSuetraPK);
+                                if (strCanRub==null)
+                                {
+                                    strCanRub="0";
+                                }
+                                BigDecimal bgd = BigDecimal.ZERO;
+                                bgd=bgd.add(objUti.redondearBigDecimal(strCanRub,objParSis.getDecimalesMostrar()));
+                                tbmSuetra.setNdValrub(bgd);
+                                arrLstTbmSueTra.add(tbmSuetra);
+                                if (Double.parseDouble(strCanRub)>0)
+                                    if (arrLstRubRolPag.get(intContRub) == 6 || arrLstRubRolPag.get(intContRub) == 7 )
+                                    {
+                                        //Ingreso Programacion BM.
+                                        if (!dao.generarBoM(con, tblDat.getValueAt(i, INT_TBL_DAT_COD_EMP).toString(), tblDat.getValueAt(i, INT_TBL_DAT_COD_TRA).toString(), Double.parseDouble(strCanRub), 15, Integer.valueOf(arrLstRubRolPag.get(intContRub)) ))
+                                        {
+                                            blnRes=false;
+                                            break;
+                                        }
+                                    }
+                                    intContRub++;
+                            }
+                        }
+                        tbm_tra.setArrLstTbhSueTra(arrLstTbhSueTra);
+                        tbm_tra.setArrLstTbmSueTra(arrLstTbmSueTra);
+                        arrLstTbmTra.add(tbm_tra);
+                    }
+                }
+            }
+        }
+        catch(java.sql.SQLException Evt)
+        {
+            Evt.printStackTrace();
+            blnRes = false;
+            objUti.mostrarMsgErr_F1(this, Evt);
+        }
+        catch(Exception Evt)
+        {
+            blnRes = false;
+            Evt.printStackTrace();
+            objUti.mostrarMsgErr_F1(this, Evt);
+        }
+        finally
+        {
+            try
+            {
+                stmLoc.close();
+                stmLoc=null;
+            }
+            catch (Throwable ignore)
+            {
+            
+            }
+            try
+            {
+                stmLocSue.close();
+                stmLocSue=null;
+            }
+            catch (Throwable ignore){}
+            try
+            {
+                rstLoc.close();
+                rstLoc=null;
+            }
+            catch (Throwable ignore)
+            {
+                
+            }
+        }
+        return blnRes;          
+    }
+    
+    private void optTodItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_optTodItemStateChanged
+
+   }//GEN-LAST:event_optTodItemStateChanged
+
+    private void optTodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optTodActionPerformed
+    if (optTod.isSelected())
+    {
+        txtCodEmp.setText("");
+        txtNomEmp.setText("");
+        txtCodDep.setText("");
+        txtNomDep.setText("");
+        txtCodTra.setText("");
+        txtNomTra.setText("");
+    }
+    optTod.setSelected(true);
+    optFil.setSelected(false);
+    }//GEN-LAST:event_optTodActionPerformed
+
+    private void optFilItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_optFilItemStateChanged
+        
+    }//GEN-LAST:event_optFilItemStateChanged
+
+    private void optFilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optFilActionPerformed
+        optTod.setSelected(false);
+        optFil.setSelected(true);
+    }//GEN-LAST:event_optFilActionPerformed
+
+    private void txtCodEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodEmpActionPerformed
+        txtCodEmp.transferFocus();
+    }//GEN-LAST:event_txtCodEmpActionPerformed
+
+    private void txtCodEmpFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCodEmpFocusGained
+        strCodEmp=txtCodEmp.getText();
+        txtCodEmp.selectAll();
+        optFil.setSelected(true);
+        optTod.setSelected(false);
+    }//GEN-LAST:event_txtCodEmpFocusGained
+
+    private void txtCodEmpFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCodEmpFocusLost
+        if (!txtCodEmp.getText().equalsIgnoreCase(strCodEmp))
+        {
+            if (txtCodEmp.getText().equals(""))
+            {
+                txtCodEmp.setText("");
+                txtNomEmp.setText("");
+            }
+            else
+            {
+                BuscarEmp("a1.co_emp", txtCodEmp.getText(), 0);
+            }
+        }
+        else
+        {
+            txtCodEmp.setText(strCodEmp);
+        }
+   }//GEN-LAST:event_txtCodEmpFocusLost
+
+    private void txtNomEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomEmpActionPerformed
+        txtNomEmp.transferFocus();
+    }//GEN-LAST:event_txtNomEmpActionPerformed
+
+    private void txtNomEmpFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNomEmpFocusGained
+        strNomEmp=txtNomEmp.getText();
+        txtNomEmp.selectAll();
+        optFil.setSelected(true);
+        optTod.setSelected(false);
+   }//GEN-LAST:event_txtNomEmpFocusGained
+
+    private void txtNomEmpFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNomEmpFocusLost
+        if (txtNomEmp.isEditable())
+        {
+            //Validar el contenido de la celda sólo si ha cambiado.
+            if (!txtNomEmp.getText().equalsIgnoreCase(strNomEmp))
+            {
+                if (txtNomEmp.getText().equals(""))
+                {
+                    txtCodEmp.setText("");
+                    txtNomEmp.setText("");
+                }
+                else
+                {
+                    mostrarVenConEmp(2);
+                }
+            }
+            else
+                txtNomEmp.setText(strNomEmp);
+        }
+   }//GEN-LAST:event_txtNomEmpFocusLost
+
+    private void butEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butEmpActionPerformed
+        strCodEmp=txtCodEmp.getText();
+        optFil.setSelected(true);
+        optTod.setSelected(false);
+        mostrarVenConEmp(0);
+    }//GEN-LAST:event_butEmpActionPerformed
+
+    private void txtCodDepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodDepActionPerformed
+        txtCodDep.transferFocus();
+    }//GEN-LAST:event_txtCodDepActionPerformed
+
+    private void txtCodDepFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCodDepFocusGained
+        strCodDep = txtCodDep.getText();
+        txtCodDep.selectAll();
+        optFil.setSelected(true);
+        optTod.setSelected(false);
+    }//GEN-LAST:event_txtCodDepFocusGained
+
+    private void txtCodDepFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCodDepFocusLost
+        if (!txtCodDep.getText().equalsIgnoreCase(strCodDep))
+        {
+            if (txtCodDep.getText().equals(""))
+            {
+                txtCodDep.setText("");
+                txtNomDep.setText("");
+            }
+            else
+            {
+                BuscarDep("a1.co_dep", txtCodDep.getText(), 0);
+            }
+        }
+        else
+        {
+            txtCodDep.setText(strCodDep);
+        }
+    }//GEN-LAST:event_txtCodDepFocusLost
+
+    public void BuscarEmp(String campo,String strBusqueda,int tipo)
+    {
+        vcoEmp.setTitle("Listado de Empresas");
+        if (vcoEmp.buscar(campo, strBusqueda ))
+        {
+            txtCodEmp.setText(vcoEmp.getValueAt(1));
+            txtNomEmp.setText(vcoEmp.getValueAt(2));
+        }
+        else
+        {
+            vcoEmp.setCampoBusqueda(tipo);
+            vcoEmp.cargarDatos();
+            vcoEmp.show();
+            if (vcoEmp.getSelectedButton()==vcoEmp.INT_BUT_ACE)
+            {
+                txtCodEmp.setText(vcoEmp.getValueAt(1));
+                txtNomEmp.setText(vcoEmp.getValueAt(2));
+            }
+            else
+            {
+                txtCodEmp.setText(strCodEmp);
+                txtNomEmp.setText(strNomEmp);
+            }
+        }
+    }
+    
+    public void BuscarDep(String campo,String strBusqueda,int tipo)
+    {
+        vcoDep.setTitle("Listado de Departamentos");
+        if (vcoDep.buscar(campo, strBusqueda))
+        {
+            txtCodDep.setText(vcoDep.getValueAt(1));
+            txtNomDep.setText(vcoDep.getValueAt(3));
+        }
+        else
+        {
+            vcoDep.setCampoBusqueda(tipo);
+            vcoDep.cargarDatos();
+            vcoDep.show();
+            if (vcoDep.getSelectedButton()==vcoDep.INT_BUT_ACE)
+            {
+                txtCodDep.setText(vcoDep.getValueAt(1));
+                txtNomDep.setText(vcoDep.getValueAt(3));
+            }
+            else
+            {
+                txtCodDep.setText(strCodDep);
+                txtNomDep.setText(strDesLarDep);
+            }
+        }
+    }
+    
+    public void BuscarTra(String campo,String strBusqueda,int tipo)
+    {
+        vcoTra.setTitle("Listado de Empleados");
+        if (vcoTra.buscar(campo, strBusqueda))
+        {
+            txtCodTra.setText(vcoTra.getValueAt(1));
+            txtNomTra.setText(vcoTra.getValueAt(2) + " " + vcoTra.getValueAt(3));
+        }
+        else
+        {
+            vcoTra.setCampoBusqueda(tipo);
+            vcoTra.cargarDatos();
+            vcoTra.show();
+            if (vcoTra.getSelectedButton()==vcoTra.INT_BUT_ACE)
+            {
+                txtCodTra.setText(vcoTra.getValueAt(1));
+                txtNomTra.setText(vcoTra.getValueAt(2) + " " + vcoTra.getValueAt(3));
+            }
+            else
+            {
+                txtCodTra.setText(strCodTra);
+                txtNomTra.setText(strNomTra);
+            }
+        }
+    }
+    
+    private void txtNomDepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomDepActionPerformed
+        txtNomDep.transferFocus();
+    }//GEN-LAST:event_txtNomDepActionPerformed
+
+    private void txtNomDepFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNomDepFocusGained
+        strDesLarDep=txtNomDep.getText();
+        txtNomDep.selectAll();
+        optFil.setSelected(true);
+        optTod.setSelected(false);
+    }//GEN-LAST:event_txtNomDepFocusGained
+
+    private void txtNomDepFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNomDepFocusLost
+        if (txtNomDep.isEditable())
+        {
+            //Validar el contenido de la celda sólo si ha cambiado.
+            if (!txtNomDep.getText().equalsIgnoreCase(strDesLarDep))
+            {
+                if (txtNomDep.getText().equals(""))
+                {
+                    txtCodDep.setText("");
+                    txtNomDep.setText("");
+                }
+                else
+                {
+                    mostrarVenConDep(2);
+                }
+            }
+            else
+                txtNomDep.setText(strDesLarDep);
+        }
+    }//GEN-LAST:event_txtNomDepFocusLost
+
+    private void butDepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butDepActionPerformed
+        strCodDep=txtCodDep.getText();
+        optFil.setSelected(true);
+        optTod.setSelected(false);
+        mostrarVenConDep(0);
+    }//GEN-LAST:event_butDepActionPerformed
+
+    
+    
+    private void txtCodTraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodTraActionPerformed
+        txtCodTra.transferFocus();
+    }//GEN-LAST:event_txtCodTraActionPerformed
+
+    private void txtCodTraFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCodTraFocusGained
+        strCodTra = txtCodTra.getText();
+        txtCodTra.selectAll();
+        optFil.setSelected(true);
+        optTod.setSelected(false);
+    }//GEN-LAST:event_txtCodTraFocusGained
+
+    private void txtCodTraFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCodTraFocusLost
+        if (!txtCodTra.getText().equalsIgnoreCase(strCodTra))
+        {
+            if (txtCodTra.getText().equals(""))
+            {
+                txtCodTra.setText("");
+                txtNomTra.setText("");
+            }
+            else
+            {
+                BuscarTra("a1.co_tra", txtCodTra.getText(), 0);
+            }
+        }
+        else
+        {
+            txtCodTra.setText(strCodTra);
+        }
+    }//GEN-LAST:event_txtCodTraFocusLost
+
+    private void txtNomTraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomTraActionPerformed
+        txtNomTra.transferFocus();
+    }//GEN-LAST:event_txtNomTraActionPerformed
+
+    private void txtNomTraFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNomTraFocusGained
+        strNomTra=txtNomTra.getText();
+        txtNomTra.selectAll();
+        optFil.setSelected(true);
+        optTod.setSelected(false);
+    }//GEN-LAST:event_txtNomTraFocusGained
+
+    private void txtNomTraFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNomTraFocusLost
+        if (txtNomTra.isEditable())
+        {
+            //Validar el contenido de la celda sólo si ha cambiado.
+            if (!txtNomTra.getText().equalsIgnoreCase(strNomTra))
+            {
+                if (txtNomTra.getText().equals(""))
+                {
+                    txtCodTra.setText("");
+                    txtNomTra.setText("");
+                }
+                else
+                {
+                    mostrarVenConTra(2);
+                }
+            }
+            else
+                txtNomTra.setText(strNomTra);
+        }
+    }//GEN-LAST:event_txtNomTraFocusLost
+
+    private void butTraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butTraActionPerformed
+        strCodTra=txtCodTra.getText();
+        optFil.setSelected(true);
+        optTod.setSelected(false);
+        mostrarVenConTra(0);
+    }//GEN-LAST:event_butTraActionPerformed
+
+    /** Cerrar la aplicación. */
+    private void exitForm() 
+    {
+        dispose();
+    }    
+        
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup bgrFil;
+    private javax.swing.JButton butCer;
+    private javax.swing.JButton butCon;
+    private javax.swing.JButton butDep;
+    private javax.swing.JButton butEmp;
+    private javax.swing.JButton butGua;
+    private javax.swing.JButton butTra;
+    private javax.swing.JCheckBox chkMosMovReg;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JLabel lblMsgSis;
+    private javax.swing.JLabel lblTit;
+    private javax.swing.JRadioButton optFil;
+    private javax.swing.JRadioButton optTod;
+    private javax.swing.JPanel panBar;
+    private javax.swing.JPanel panBarEst;
+    private javax.swing.JPanel panBot;
+    private javax.swing.JPanel panFil;
+    private javax.swing.JPanel panFrm;
+    private javax.swing.JPanel panMovReg;
+    private javax.swing.JPanel panRpt;
+    private javax.swing.JPanel panRptMovReg;
+    private javax.swing.JPanel panRptReg;
+    private javax.swing.JProgressBar pgrSis;
+    private javax.swing.JScrollPane spnDat;
+    private javax.swing.JScrollPane spnMovReg;
+    private javax.swing.JScrollPane spnTot;
+    private javax.swing.JSplitPane sppRpt;
+    private javax.swing.JTabbedPane tabFrm;
+    private javax.swing.JTable tblDat;
+    private javax.swing.JTable tblMovReg;
+    private javax.swing.JTable tblTot;
+    private javax.swing.JTextField txtCodDep;
+    private javax.swing.JTextField txtCodEmp;
+    private javax.swing.JTextField txtCodTra;
+    private javax.swing.JTextField txtNomDep;
+    private javax.swing.JTextField txtNomEmp;
+    private javax.swing.JTextField txtNomTra;
+    // End of variables declaration//GEN-END:variables
+
+    /** Configurar el formulario. */
+    private boolean configurarFrm()
+    {
+        boolean blnRes=true;
+        try
+        {
+            //Inicializar objetos.
+            objUti=new ZafUtil();
+            strAux=objParSis.getNombreMenu();
+            this.setTitle(strAux + " v1.09");
+            lblTit.setText(strAux);
+            //Configurar las ZafVenCon.
+            configurarVenConDep();
+            configurarVenConTra();
+            configurarVenConEmp();
+            //Configurar los JTables.
+            configurarTblDat();
+            agregarColTblDat();
+            configurarTblDet();
+        }
+        catch(Exception e)
+        {
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        return blnRes;
+    }
+   
+    /**
+     * Esta función configura el JTable "tblDet".
+     * @return true: Si se pudo configurar el JTable.
+     * <BR>false: En el caso contrario.
+     */
+    private boolean configurarTblDet()
+    {
+        boolean blnRes=true;
+        try
+        {
+            //Configurar JTable: Establecer el modelo.
+            vecDatMov=new Vector();    //Almacena los datos
+            vecCabMov=new Vector();  //Almacena las cabeceras
+            vecCabMov.clear();
+            vecCabMov.add(INT_TBL_DET_LIN,"");
+            vecCabMov.add(INT_TBL_DET_TIP_MOD,"Tip.Mod.");
+            vecCabMov.add(INT_TBL_DET_FEC_MOD,"Fec.Mod.");
+            vecCabMov.add(INT_TBL_DET_USR_MOD,"Usr.Mod.");
+            vecCabMov.add(INT_TBL_DET_CAR_TRA,"Cargo");
+            vecCabMov.add(INT_TBL_DET_MIN_SEC_SUG,"Min.Sec.Sug.");
+            vecCabMov.add(INT_TBL_DET_MIN_SEC_ASI,"Min.Sec.Sug.");
+            /*DEFINIR LOS RUBROS*/
+            /*RUBROS DE MANERA DINAMICA*/
+            Connection conIns = null;
+            Statement stmLoc = null;
+            ResultSet rstLoc = null;
+            try
+            {
+                conIns =DriverManager.getConnection(objParSis.getStringConexion(),objParSis.getUsuarioBaseDatos(),objParSis.getClaveBaseDatos());
+                if (conIns!=null)
+                {
+                    strSQL="";
+                    strSQL="select * from tbm_rubRolPag where tx_tipRub like 'I' and st_reg like 'A' order by co_rub ";
+                    stmLoc=conIns.createStatement();
+                    rstLoc=stmLoc.executeQuery(strSQL);
+                    while (rstLoc.next())
+                    {
+                        vecCabMov.add(vecCabMov.size(),rstLoc.getString("tx_nom"));
+                    }
+                }
+            }
+            catch(SQLException ex)
+            {
+                blnRes=false;
+                objUti.mostrarMsgErr_F1(this, ex);
+            }
+            finally
+            {
+                try{stmLoc.close();}catch(Throwable ignore){}
+                try{rstLoc.close();}catch(Throwable ignore){}
+                try{conIns.close();}catch(Throwable ignore){}
+            }
+            vecCabMov.add(vecCabMov.size(),"Total");
+            //Configurar JTable: Establecer el modelo de la tabla.
+            objTblModDab=new ZafTblMod();
+            objTblModDab.setHeader(vecCabMov);
+            tblMovReg.setModel(objTblModDab);
+            //Configurar JTable: Establecer tipo de selección.
+            tblMovReg.setRowSelectionAllowed(true);
+            tblMovReg.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+            //Configurar JTable: Establecer el menú de contexto.
+            objTblPopMnu=new ZafTblPopMnu(tblMovReg);
+            //Configurar JTable: Establecer el tipo de redimensionamiento de las columnas.
+            tblMovReg.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+            //Configurar JTable: Establecer el ancho de las columnas.
+            javax.swing.table.TableColumnModel tcmAux=tblMovReg.getColumnModel();
+            tcmAux.getColumn(INT_TBL_DET_LIN).setPreferredWidth(30);
+            tcmAux.getColumn(INT_TBL_DET_TIP_MOD).setPreferredWidth(80);
+            tcmAux.getColumn(INT_TBL_DET_FEC_MOD).setPreferredWidth(100);
+            tcmAux.getColumn(INT_TBL_DET_USR_MOD).setPreferredWidth(80);
+            tcmAux.getColumn(INT_TBL_DET_CAR_TRA).setPreferredWidth(60);
+            tcmAux.getColumn(INT_TBL_DET_MIN_SEC_SUG).setPreferredWidth(80);
+            tcmAux.getColumn(INT_TBL_DET_MIN_SEC_ASI).setPreferredWidth(80);
+            //Configurar JTable: Ocultar columnas del sistema.
+            objTblModDab.addSystemHiddenColumn(INT_TBL_DAT_COD_EMP, tblDat);
+            //Configurar JTable: Establecer las columnas que no se pueden redimensionar.
+//            tcmAux.getColumn(INT_TBL_DAT_CHK).setResizable(false);
+//            tcmAux.getColumn(INT_TBL_DAT_BUT_TIP_RET).setResizable(false);
+            //Configurar JTable: Establecer el tipo de reordenamiento de columnas.
+            tblMovReg.getTableHeader().setReorderingAllowed(false);
+            //Configurar JTable: Ocultar columnas del sistema.
+//            objTblModDab.addSystemHiddenColumn(INT_TBL_DET_COD_ITM, tblMovReg);
+            //Configurar JTable: Mostrar ToolTipText en la cabecera de las columnas.
+            objMouMotAdaMovReg=new ZafMouMotAdaMovReg();
+            tblMovReg.getTableHeader().addMouseMotionListener(objMouMotAdaMovReg);
+            //Configurar JTable: Establecer la fila de cabecera.
+            objTblFilCab=new ZafTblFilCab(tblMovReg);
+            tcmAux.getColumn(INT_TBL_DET_LIN).setCellRenderer(objTblFilCab);
+            objTblCelRenLbl=new ZafTblCelRenLbl();
+            objTblCelRenLbl.setHorizontalAlignment(javax.swing.JLabel.RIGHT);
+            objTblCelRenLbl.setTipoFormato(objTblCelRenLbl.INT_FOR_NUM);
+            objTblCelRenLbl.setFormatoNumerico(objParSis.getFormatoNumero(),false,true);
+            tcmAux.getColumn(INT_TBL_DET_MIN_SEC_ASI).setCellRenderer(objTblCelRenLbl);
+            tcmAux.getColumn(INT_TBL_DET_MIN_SEC_SUG).setCellRenderer(objTblCelRenLbl);
+            int intP=INT_TBL_DET_MIN_SEC_ASI+1;
+            for (int i=0; i<1; i++)
+            {
+                for(int x=intP;x<tblMovReg.getColumnCount();x++)
+                {
+                    tcmAux.getColumn(x+i).setCellRenderer(objTblCelRenLbl);
+                }
+            }
+            //Libero los objetos auxiliares.
+            tcmAux=null;
+        }
+        catch(Exception e)
+        {
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        return blnRes;
+    }
+    
+    private boolean configurarTblDat()
+    {
+        boolean blnRes=true;
+        try
+        {
+            //Configurar JTable: Establecer el modelo.
+            vecDat=new Vector();    //Almacena los datos
+            vecCab=new Vector();  //Almacena las cabeceras
+            vecCab.clear();
+            vecCab.add(INT_TBL_DAT_LIN,"");
+            vecCab.add(INT_TBL_DAT_COD_EMP,"Cód.Emp.");
+            vecCab.add(INT_TBL_DAT_NOM_EMP,"Empresa");
+            vecCab.add(INT_TBL_DAT_COD_TRA,"Código");
+            vecCab.add(INT_TBL_DAT_NOM_APE_TRA,"Empleado");
+            vecCab.add(INT_TBL_DAT_CAR_TRA,"Cargo");
+            vecCab.add(INT_TBL_DAT_MIN_SEC_SUG,"Min. Sec. Sug.");
+            vecCab.add(INT_TBL_DAT_MIN_SEC_ASI,"Min. Sec. Asi.");
+            /*RUBROS DE MANERA DINAMICA*/
+            Connection conIns = null;
+            Statement stmLoc = null;
+            ResultSet rstLoc = null;
+            try
+            {
+                conIns=DriverManager.getConnection(objParSis.getStringConexion(),objParSis.getUsuarioBaseDatos(),objParSis.getClaveBaseDatos());
+                if (conIns!=null)
+                {
+                    arrLst = new ArrayList<String>();
+                    arrLstTbmRubRolPag = new ArrayList<TbmRubrolpag>();
+                    strSQL="";
+                    strSQL="select * from tbm_rubRolPag where tx_tipRub like 'I' and st_reg like 'A' order by co_rub ";
+                    stmLoc=conIns.createStatement();
+                    rstLoc=stmLoc.executeQuery(strSQL);
+                    while (rstLoc.next())
+                    {
+                        vecCab.add(vecCab.size(),rstLoc.getString("tx_nom"));
+                        TbmRubrolpag tbmRubrolpag= new TbmRubrolpag();
+                        tbmRubrolpag.setCoRub(rstLoc.getShort("co_rub"));
+                        tbmRubrolpag.setTxNom(rstLoc.getString("tx_nom"));
+                        arrLstTbmRubRolPag.add(tbmRubrolpag);
+                        arrLst.add(rstLoc.getString("tx_tipvalrub"));
+                    }
+                }
+            }
+            catch(SQLException ex)
+            {
+                objUti.mostrarMsgErr_F1(this, ex);
+                return false;
+            }
+            finally
+            {
+                try{stmLoc.close();}catch(Throwable ignore){}
+                try{rstLoc.close();}catch(Throwable ignore){}
+                try{conIns.close();}catch(Throwable ignore){}
+            }
+            vecCab.add(vecCab.size(),"Total");
+            objTblMod=new Librerias.ZafTblUti.ZafTblMod.ZafTblMod();
+            objTblMod.setHeader(vecCab);
+            //Configurar ZafTblMod: Establecer el tipo de dato de las columnas.
+            objTblMod.setColumnDataType(INT_TBL_DAT_MIN_SEC_ASI, objTblMod.INT_COL_DBL, new Integer(0), null);
+            //Configurar JTable: Establecer el modelo de la tabla.
+            tblDat.setModel(objTblMod);
+//            //Configurar JTable: Establecer la fila de cabecera.
+//            new Librerias.ZafColNumerada.ZafColNumerada(tblDat, INT_TBL_DAT_LIN);
+            //Configurar JTable: Establecer el tipo de redimensionamiento de las columnas.
+            tblDat.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+            //tblDat.getTableHeader().setReorderingAllowed(false);
+            //Configurar JTable: Establecer el menú de contexto.
+            objTblPopMnu=new ZafTblPopMnu(tblDat);
+            //Tamaño de las celdas
+            javax.swing.table.TableColumnModel tcmAux=tblDat.getColumnModel();
+            tcmAux.getColumn(INT_TBL_DAT_LIN).setPreferredWidth(30);
+            tcmAux.getColumn(INT_TBL_DAT_COD_EMP).setPreferredWidth(60);
+            tcmAux.getColumn(INT_TBL_DAT_NOM_EMP).setPreferredWidth(80);
+            tcmAux.getColumn(INT_TBL_DAT_COD_TRA).setPreferredWidth(60);
+            tcmAux.getColumn(INT_TBL_DAT_NOM_APE_TRA).setPreferredWidth(260);
+            tcmAux.getColumn(INT_TBL_DAT_CAR_TRA).setPreferredWidth(60);
+            tcmAux.getColumn(INT_TBL_DAT_MIN_SEC_SUG).setPreferredWidth(60);
+            tcmAux.getColumn(INT_TBL_DAT_MIN_SEC_ASI).setPreferredWidth(60);
+            //Configurar JTable: Ocultar columnas del sistema.
+            objTblMod.addSystemHiddenColumn(INT_TBL_DAT_COD_EMP, tblDat);
+            //Configurar JTable: Mostrar ToolTipText en la cabecera de las columnas.
+            objMouMotAda=new ZafMouMotAda();
+            tblDat.getTableHeader().addMouseMotionListener(objMouMotAda);
+            //Configurar JTable: Establecer columnas editables.
+            Vector vecAux=new Vector();
+            vecAux.add("" + INT_TBL_DAT_MIN_SEC_ASI);
+            int intP=INT_TBL_DAT_MIN_SEC_ASI+1;
+            int intContRecArrLst = 0;
+            for (int i=0; i<1; i++)
+            {
+                for(int x=intP;x<tblDat.getColumnCount()-1;x++)
+                {
+                    //tcmAux.getColumn(x+i).setCellRenderer(objTblCelRenLbl);
+                    if(arrLst.get(intContRecArrLst).compareTo("M")==0)
+                    {
+                        int intPosColEdi=x+i;
+                        vecAux.add("" + intPosColEdi);
+                    }
+                    intContRecArrLst++;
+                }
+            }
+            objTblMod.setColumnasEditables(vecAux);
+            vecAux=null;
+            //Configurar JTable: Editor de la tabla.
+            objTblEdi=new ZafTblEdi(tblDat);
+            //Configurar JTable: Establecer la fila de cabecera.
+            objTblFilCab=new ZafTblFilCab(tblDat);
+            tcmAux.getColumn(INT_TBL_DAT_LIN).setCellRenderer(objTblFilCab);
+            //Configurar JTable: Renderizar celdas.
+            objTblCelRenLbl=new ZafTblCelRenLbl();
+            //objTblCelRenLbl.setBackground(objParSis.getColorCamposObligatorios());
+            objTblCelRenLbl.setHorizontalAlignment(javax.swing.JLabel.RIGHT);
+            objTblCelRenLbl.setTipoFormato(objTblCelRenLbl.INT_FOR_NUM);
+            objTblCelRenLbl.setFormatoNumerico(objParSis.getFormatoNumero(),false,true);
+            tcmAux.getColumn(INT_TBL_DAT_MIN_SEC_ASI).setCellRenderer(objTblCelRenLbl);
+            tcmAux.getColumn(INT_TBL_DAT_MIN_SEC_SUG).setCellRenderer(objTblCelRenLbl);
+            //objTblCelRenLbl=null;
+            objTblCelEdiTxt=new ZafTblCelEdiTxt(tblDat);
+            tcmAux.getColumn(INT_TBL_DAT_MIN_SEC_ASI).setCellEditor(objTblCelEdiTxt);
+            butCon.setVisible(false);
+            butGua.setVisible(false);
+            butCer.setVisible(false);
+            if (objPerUsr.isOpcionEnabled(3093) || objPerUsr.isOpcionEnabled(3097) || objPerUsr.isOpcionEnabled(3101))
+            {
+                butCon.setVisible(true);
+            }
+            if (objPerUsr.isOpcionEnabled(3094) || objPerUsr.isOpcionEnabled(3098) || objPerUsr.isOpcionEnabled(3102))
+            {
+                butGua.setVisible(true);
+            }
+            if (objPerUsr.isOpcionEnabled(3095) || objPerUsr.isOpcionEnabled(3099) || objPerUsr.isOpcionEnabled(3103))
+            {
+                butCer.setVisible(true);
+            }
+            //Configurar ZafTblMod: Establecer el tipo de dato de las columnas.
+            for (int i=0; i<1; i++)
+            {
+                for(int x=intP;x<tblDat.getColumnCount();x++)
+                {
+                    objTblMod.setColumnDataType(x+i, objTblMod.INT_COL_DBL, new Integer(0), null);
+                    tcmAux.getColumn(x+i).setCellRenderer(objTblCelRenLbl);
+                    tcmAux.getColumn(x+i).setCellEditor(objTblCelEdiTxt);
+                    objTblCelEdiTxt.addTableEditorListener(new Librerias.ZafTblUti.ZafTblEvt.ZafTableAdapter() {
+                        int intFilSel;//=tblDat.getSelectedRow();
+                        public void beforeEdit(Librerias.ZafTblUti.ZafTblEvt.ZafTableEvent evt)
+                        {
+                            
+                        }
+
+                        public void afterEdit(Librerias.ZafTblUti.ZafTblEvt.ZafTableEvent evt)
+                        {
+                            intFilSel=tblDat.getSelectedRow();
+                            calcularTotalEachRow(intFilSel);
+                            
+                        }
+                    });
+                }
+            }
+            objTblCelRenLbl=null;
+            objTblCelEdiTxt=null;
+            //Configurar JTable: Editor de búsqueda.
+            objTblBus=new ZafTblBus(tblDat);
+            //Configurar JTable: Modo de operación del JTable.
+            objTblMod.setModoOperacion(objTblMod.INT_TBL_EDI);
+            //Configurar JTable: Establecer relación entre el JTable de datos y JTable de totales.
+            int intTblCalTotColIni=INT_TBL_DAT_MIN_SEC_ASI+1;
+            int intCol[]= new int[objTblMod.getColumnCount()-INT_TBL_DAT_MIN_SEC_ASI-1];
+            int intColPos=0;
+            for (int i=intTblCalTotColIni;i<objTblMod.getColumnCount();i++)
+            {
+                intCol[intColPos]=i;
+                intColPos++;
+            }
+            objTblTot=new ZafTblTot(spnDat, spnTot, tblDat, tblTot, intCol);
+            //Configurar JTable: Establecer el ListSelectionListener.
+            javax.swing.ListSelectionModel lsm=tblDat.getSelectionModel();
+            lsm.addListSelectionListener(new ZafLisSelLis());
+            //Libero los objetos auxiliares.
+            tcmAux=null;
+        }
+        catch(Exception e)
+        {
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        return blnRes;
+    }
+    
+    private boolean calcularTotalEachRow(int intFilSel)
+    {
+        boolean blnRes=true;
+        try
+        {
+            int intColPos=INT_TBL_DAT_MIN_SEC_ASI+1;
+            double dblTot=0;
+            for (int i=0; i<1; i++)
+            {
+                for(int x=intColPos;x<tblDat.getColumnCount()-1;x++)
+                {
+                    //tcmAux.getColumn(x+i).setCellRenderer(objTblCelRenLbl);
+                    int intPosColSum=x+i;
+                    //vecAux.add("" + intPosColEdi);
+                    double dblValCol=0;
+                    if (!tblDat.getValueAt(intFilSel, intPosColSum).toString().equals("") && tblDat.getValueAt(intFilSel, intPosColSum).toString()!=null)
+                    {
+                        dblValCol= objUti.parseDouble(tblDat.getValueAt(intFilSel, intPosColSum).toString());
+                    }
+                    dblTot=dblTot+dblValCol;
+                }
+            }
+            objTblMod.setValueAt(dblTot, intFilSel, objTblMod.getColumnCount()-1);
+            objTblTot.calcularTotales();
+        }
+        catch(Exception e)
+        {
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        return blnRes;
+    }
+
+    private boolean agregarColTblDat()
+    {
+        int i, intNumFil, intNumColTblDat;
+        ZafTblHeaGrp objTblHeaGrp=(ZafTblHeaGrp)tblDat.getTableHeader();
+        objTblHeaGrp.setHeight(16*2);
+        ZafTblHeaColGrp objTblHeaColGrpEmp=null;
+        java.awt.Color colFonCol;
+        boolean blnRes=true;
+        try
+        {
+            intNumFil=objTblMod.getRowCountTrue();
+            intNumColTblDat=objTblMod.getColumnCount();
+            for (i=0; i<1; i++)
+            {
+                objTblHeaColGrpEmp=new ZafTblHeaColGrp("Datos de los empleados");
+                objTblHeaColGrpEmp.setHeight(16);
+                objTblHeaGrp.addColumnGroup(objTblHeaColGrpEmp);
+                objTblHeaColGrpEmp.add(tblDat.getColumnModel().getColumn(INT_TBL_DAT_COD_EMP+i*INT_TBL_DAT_NUM_TOT_CDI));
+                objTblHeaColGrpEmp.add(tblDat.getColumnModel().getColumn(INT_TBL_DAT_NOM_EMP+i*INT_TBL_DAT_NUM_TOT_CDI));
+                objTblHeaColGrpEmp.add(tblDat.getColumnModel().getColumn(INT_TBL_DAT_COD_TRA+i*INT_TBL_DAT_NUM_TOT_CDI));
+                objTblHeaColGrpEmp.add(tblDat.getColumnModel().getColumn(INT_TBL_DAT_NOM_APE_TRA+i*INT_TBL_DAT_NUM_TOT_CDI));
+                objTblHeaColGrpEmp=new ZafTblHeaColGrp("Sectoriales");
+                objTblHeaColGrpEmp.setHeight(16);
+                objTblHeaGrp.addColumnGroup(objTblHeaColGrpEmp);
+                objTblHeaColGrpEmp.add(tblDat.getColumnModel().getColumn(INT_TBL_DAT_CAR_TRA+i*INT_TBL_DAT_NUM_TOT_CDI));
+                objTblHeaColGrpEmp.add(tblDat.getColumnModel().getColumn(INT_TBL_DAT_MIN_SEC_SUG+i*INT_TBL_DAT_NUM_TOT_CDI));
+                objTblHeaColGrpEmp.add(tblDat.getColumnModel().getColumn(INT_TBL_DAT_MIN_SEC_ASI+i*INT_TBL_DAT_NUM_TOT_CDI));
+                objTblHeaColGrpEmp=new ZafTblHeaColGrp("Ingresos");
+                objTblHeaColGrpEmp.setHeight(16);
+                objTblHeaGrp.addColumnGroup(objTblHeaColGrpEmp);
+                //objTblHeaColGrpEmp.add(tblDat.getColumnModel().getColumn(INT_TBL_BUTJUSSAL+i*INT_TBL_DAT_NUM_TOT_CDI));
+                for (int t=6;t<tblDat.getColumnCount();t++)
+                {
+                    objTblHeaColGrpEmp.add(tblDat.getColumnModel().getColumn(t+i*INT_TBL_DAT_NUM_TOT_CDI));
+                }
+            }
+        }
+        catch(Exception e)
+        {
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        return blnRes;
+    }
+
+    /**
+    * Esta función permite cargar el movimiento del item seleccionado.
+    * @return true: Si se pudo cargar el detalle del registro.
+    * <BR>false: En el caso contrario.
+    */
+    private boolean cargarMovReg()
+    {
+        boolean blnRes=true;
+        int intFilSel=-1;
+        String strSql="";
+        java.sql.Connection con = null;
+        java.sql.Statement stmLoc = null;
+        java.sql.Statement stmLocSue = null;
+        java.sql.ResultSet rstLoc = null;
+        java.sql.ResultSet rstLocSue = null;
+        double dblTot  =0;
+        try
+        {
+            intFilSel=tblDat.getSelectedRow();
+            if (intFilSel!=-1)
+            {
+                strCodEmp=objTblMod.getValueAt(tblDat.getSelectedRow(), INT_TBL_DAT_COD_EMP).toString();
+                strCodTra=objTblMod.getValueAt(tblDat.getSelectedRow(), INT_TBL_DAT_COD_TRA).toString();
+                con=DriverManager.getConnection(objParSis.getStringConexion(), objParSis.getUsuarioBaseDatos(), objParSis.getClaveBaseDatos());
+                if (con!=null)
+                {
+                    stmLoc=con.createStatement();
+                    //strSql= "select * from tbh_traemp where co_emp = "+strCodEmp+" and co_tra = "+strCodTra + " order by co_reg asc";
+                    strSql="select a.*, " +
+                    "case when (tx_tipmodsue = 'I') then 'Ingreso' when (tx_tipmodsue = 'C') then 'Corrección' when (tx_tipmodsue = 'A') then 'Aumento' end as desTx_tipmodsue, "+
+                    "c.tx_usr as usrultmodsue,d.tx_nomcar,d.nd_minsec as minsecsug from tbh_traemp a "+
+                    "inner join tbm_usr c on (a.co_usrmodsue=c.co_usr) "+
+                    "left join tbm_carlab d on (a.co_car=d.co_car) "+
+                    "where co_emp = " + strCodEmp + " and co_tra = " + strCodTra + " " +
+                    "order by co_his asc";
+                    rstLoc=stmLoc.executeQuery(strSql);
+                    while (rstLoc.next())
+                    {
+                        stmLocSue=con.createStatement();
+                        vecReg = new Vector();
+                        vecReg.add(INT_TBL_DET_LIN,"");
+                        vecReg.add(INT_TBL_DET_TIP_MOD,rstLoc.getString("desTx_tipmodsue"));
+                        //vecReg.add(INT_TBL_DET_FEC_MOD,rstLoc.getString("fe_ultmod")==null?"":rstLoc.getString("fe_ultmod").substring(0,10));
+                        vecReg.add(INT_TBL_DET_FEC_MOD,rstLoc.getString("fe_ultmodsue"));
+                        vecReg.add(INT_TBL_DET_USR_MOD,rstLoc.getString("usrultmodsue"));
+                        vecReg.add(INT_TBL_DET_CAR_TRA,rstLoc.getString("tx_nomcar"));
+                        vecReg.add(INT_TBL_DET_MIN_SEC_SUG,rstLoc.getDouble("minsecsug"));
+                        vecReg.add(INT_TBL_DET_MIN_SEC_ASI,rstLoc.getDouble("nd_minsecasi"));
+                        String strCodEmpDet=rstLoc.getString("co_emp");
+                        String strCodTraDet=rstLoc.getString("co_tra");
+                        String strCodHisDet=rstLoc.getString("co_his");
+                        String strSqlDet = "select * from tbh_suetra where co_emp = " + strCodEmpDet + " and co_tra = "+strCodTraDet + " " +
+                               "and co_his = " + strCodHisDet + " and co_rub in "+
+                               "(select co_rub from tbm_rubrolpag where tx_tiprub like 'I' and st_reg like 'A') "+
+                               "order by co_rub, co_his asc";
+                        rstLocSue=stmLocSue.executeQuery(strSqlDet);
+                        dblTot  =0;
+                        int intCanAña=0;
+                        while (rstLocSue.next())
+                        {
+                            if (rstLocSue.getString("nd_valrub")!=null)
+                            {
+                                vecReg.add(vecReg.size(), objUti.parseDouble(rstLocSue.getDouble("nd_valrub")));
+                                dblTot+= objUti.parseDouble(rstLocSue.getDouble("nd_valrub"));
+                                intCanAña++;
+                            }
+                            else
+                            {
+                                vecReg.add(vecReg.size(), new Double(0));
+                                intCanAña++;
+                            }
+                        }
+                        if (intCanAña<arrLst.size())
+                        {
+                            for (int i = intCanAña; i<arrLst.size();i++)
+                            {
+                                vecReg.add(vecReg.size(), new Double(0));
+                            }
+                        }
+                        vecReg.add(vecReg.size(),dblTot);
+                        vecDatMov.add(vecReg);
+                    }
+                    //Asignar vectores al modelo.
+                    objTblModDab.setData(vecDatMov);
+                    tblMovReg.setModel(objTblModDab);
+                    vecDatMov.clear();
+                }
+                else
+                {
+                    objTblModDab.removeAllRows();
+                }
+            }
+        }
+        catch (java.sql.SQLException e)
+        {
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        catch (Exception e)
+        {
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        finally
+        {
+            try{rstLoc.close();rstLoc=null;}catch(Throwable ignore){}
+            try{rstLocSue.close();rstLocSue=null;}catch(Throwable ignore){}
+            try{stmLoc.close();stmLoc=null;}catch(Throwable ignore){}
+            try{stmLocSue.close();stmLocSue=null;}catch(Throwable ignore){}
+            try{con.close();con=null;}catch(Throwable ignore){}
+        }
+        return blnRes;
+    }
+    
+    /**
+     * Esta función muestra un mensaje informativo al usuario. Se podría utilizar
+     * para mostrar al usuario un mensaje que indique el campo que es invalido y que
+     * debe llenar o corregir.
+     */
+    private void mostrarMsgInf(String strMsg)
+    {
+        String strTit;
+        strTit="Mensaje del sistema Zafiro";
+        javax.swing.JOptionPane.showMessageDialog(this,strMsg,strTit,javax.swing.JOptionPane.INFORMATION_MESSAGE);
+    }
+   
+    private class ZafThreadGUI extends Thread
+    {
+        public void run()
+        {
+            lblMsgSis.setText("Obteniendo datos...");
+            pgrSis.setIndeterminate(true);
+            if (!cargarDat())
+            {
+                //Inicializar objetos si no se pudo cargar los datos.
+                //lblMsgSis.setText("Listo");
+                pgrSis.setValue(0);
+                butCon.setText("Consultar");
+            }
+            //Establecer el foco en el JTable sólo cuando haya datos.
+            if (tblDat.getRowCount()>0)
+            {
+                tabFrm.setSelectedIndex(1);
+                tblDat.setRowSelectionInterval(0, 0);
+                tblDat.requestFocus();
+            }
+            objThrGUI=null;
+        }
+    }
+    
+    /**
+    * Se encarga de cargar la informacion en la tabla
+    * @return  true si esta correcto y false  si hay algun error
+    */
+    private boolean cargarDat()
+    {
+        boolean blnRes=false;
+        java.sql.Connection conn=null;
+        java.sql.Statement stmLoc=null;
+        java.sql.ResultSet rstLoc = null;
+        java.sql.Statement stmLocSu=null;
+        java.sql.ResultSet rstLocSu = null;
+        String strSql="", sqlAux="";
+        try
+        {
+            conn=java.sql.DriverManager.getConnection(objParSis.getStringConexion(), objParSis.getUsuarioBaseDatos(), objParSis.getClaveBaseDatos() );
+            if (conn!=null)
+            {
+                stmLoc=conn.createStatement();
+                java.util.Vector vecData = new java.util.Vector();
+                if (!(txtCodEmp.getText().equals("")))
+                {
+                    sqlAux+=" AND d.co_emp="+txtCodEmp.getText()+" ";
+                }
+                if (!(txtCodDep.getText().equals("")))
+                {
+                    sqlAux+=" AND d.co_dep="+txtCodDep.getText()+" ";
+                }
+                if (!(txtCodTra.getText().equals("")))
+                {
+                    sqlAux+=" AND d.co_tra="+txtCodTra.getText()+" ";
+                }
+                String strSqlDep="";
+                if (objParSis.getCodigoUsuario()!=1)
+                {
+                    strSqlDep="left outer join tbr_depprgusr f on(d.co_dep=f.co_dep and f.co_dep in (select co_dep from tbr_depprgusr where co_usr = "+objParSis.getCodigoUsuario()+" "+
+                    "and co_mnu="+objParSis.getCodigoMenu()+")) ";
+                }
+                String strSqlEmp="";
+                if (objParSis.getCodigoEmpresa()==objParSis.getCodigoEmpresaGrupo())
+                {
+                    //strSqlEmp=" and d.co_emp not in (0,4) ";
+                    strSqlEmp=" b.co_emp not in (0,3) ";
+                }
+                else
+                {
+                    //strSqlEmp=" and d.co_emp in ("+ objParSis.getCodigoEmpresa() +") ";
+                    strSqlEmp=" b.co_emp in ("+ objParSis.getCodigoEmpresa() +") ";
+                }
+                if (objParSis.getCodigoMenu()==3092)
+                {
+                    strSql="select co_emp,tx_nomemp as tx_nomemp,nd_minsecasi,d.co_tra,d.co_dep,tx_tipmodsue,(e.tx_ape ||' '|| e.tx_nom) as nomapetra,tx_nomcar, minSecSug from (";
+                    strSql+=" select a.co_emp,a.co_tra,a.co_dep,a.tx_tipmodsue,a.nd_minsecasi,b.tx_nom as tx_nomemp, c.tx_nomcar,c.co_comsec,c.tx_codcomsec, c.nd_minSec as minSecSug from tbm_traemp a";
+                    strSql+=" inner join tbm_emp b on(a.co_emp=b.co_emp)";
+                    strSql+=" left join tbm_carlab c on(a.co_car=c.co_car) where "+strSqlEmp+" and a.st_reg like 'A') d";
+                    strSql+=" inner join tbm_tra e on (d.co_tra=e.co_tra) ";
+                    strSql+=strSqlDep;
+                    strSql+=" where d.tx_tipmodsue is null";
+                    strSql+=" group by d.co_emp, tx_nomemp,nd_minsecasi,d.co_tra, d.co_dep, d.tx_tipmodsue, (tx_ape ||' '|| e.tx_nom) , tx_nomcar, minSecSug";
+                    strSql+=" order by nomapetra";
+                }
+                else if(objParSis.getCodigoMenu()==3096)
+                {
+                    strSql="select co_emp,tx_nomemp as tx_nomemp,nd_minsecasi,d.co_tra,d.co_dep,tx_tipmodsue,(e.tx_ape ||' '|| e.tx_nom) as nomapetra,tx_nomcar, minSecSug from (";
+                    strSql+=" select a.co_emp,a.co_tra,a.co_dep,a.tx_tipmodsue,a.nd_minsecasi,b.tx_nom as tx_nomemp, c.tx_nomcar,c.co_comsec,c.tx_codcomsec, c.nd_minSec as minSecSug from tbm_traemp a";
+                    strSql+=" inner join tbm_emp b on(a.co_emp=b.co_emp)";
+                    strSql+=" left join tbm_carlab c on(a.co_car=c.co_car) where "+strSqlEmp+" and a.st_reg like 'A') d";
+                    strSql+=" inner join tbm_tra e on (d.co_tra=e.co_tra) ";
+                    strSql+=strSqlDep;
+                    strSql+=" where d.tx_tipmodsue is not null "+ sqlAux;
+                    strSql+=" group by d.co_emp, tx_nomemp,nd_minsecasi,d.co_tra, d.co_dep, d.tx_tipmodsue, (tx_ape ||' '|| e.tx_nom) , tx_nomcar, minSecSug";
+                    strSql+=" order by nomapetra";
+                }
+                else if(objParSis.getCodigoMenu()==3100)
+                {
+                    strSql="select co_emp,tx_nomemp as tx_nomemp,nd_minsecasi,d.co_tra,d.co_dep,tx_tipmodsue,(e.tx_ape ||' '|| e.tx_nom) as nomapetra,tx_nomcar, minSecSug from (";
+                    strSql+=" select a.co_emp,a.co_tra,a.co_dep,a.tx_tipmodsue,a.nd_minsecasi,b.tx_nom as tx_nomemp, c.tx_nomcar,c.co_comsec,c.tx_codcomsec, c.nd_minSec as minSecSug from tbm_traemp a";
+                    strSql+=" inner join tbm_emp b on(a.co_emp=b.co_emp)";
+                    strSql+=" left join tbm_carlab c on(a.co_car=c.co_car) where "+strSqlEmp+" and a.st_reg like 'A') d";
+                    strSql+=" inner join tbm_tra e on (d.co_tra=e.co_tra) ";
+                    strSql+=strSqlDep;
+                    strSql+=" where d.tx_tipmodsue is not null "+ sqlAux;
+                    strSql+=" group by d.co_emp, tx_nomemp,nd_minsecasi,d.co_tra, d.co_dep, d.tx_tipmodsue, (tx_ape ||' '|| e.tx_nom) , tx_nomcar, minSecSug";
+                    strSql+=" order by nomapetra";
+                }
+                stmLoc=conn.createStatement();
+                rstLoc=stmLoc.executeQuery(strSql);
+                while(rstLoc.next())
+                {
+                    java.util.Vector vecReg = new java.util.Vector();
+                    int intCont=0;
+                    vecReg.add(INT_TBL_DAT_LIN, "");
+                    vecReg.add(INT_TBL_DAT_COD_EMP, rstLoc.getString("co_emp"));
+                    vecReg.add(INT_TBL_DAT_NOM_EMP, rstLoc.getString("tx_nomemp"));
+                    vecReg.add(INT_TBL_DAT_COD_TRA, rstLoc.getString("co_tra"));
+                    vecReg.add(INT_TBL_DAT_NOM_APE_TRA, rstLoc.getString("nomapetra"));
+                    vecReg.add(INT_TBL_DAT_CAR_TRA, rstLoc.getString("tx_nomcar"));
+                    vecReg.add(INT_TBL_DAT_MIN_SEC_SUG, rstLoc.getDouble("minsecsug"));
+                    vecReg.add(INT_TBL_DAT_MIN_SEC_ASI, rstLoc.getDouble("nd_minsecasi"));
+                    intCont=INT_TBL_DAT_MIN_SEC_ASI+1;
+                    ArrayList<Integer> arrLstRubRolPag=obtenerRubRolPag();
+                    double dblTot=0;
+                    for (Iterator it=arrLstRubRolPag.iterator();it.hasNext();)
+                    {
+                        int intCodRub=(Integer)it.next();
+                        String strSqlSu="select * from tbm_sueTra where co_emp ="+rstLoc.getString("co_emp")+ " and co_rub = " + intCodRub + " "+
+                                  "and co_tra = "+rstLoc.getString("co_tra");
+                        stmLocSu=conn.createStatement();
+                        rstLocSu=stmLocSu.executeQuery(strSqlSu);
+                        if (rstLocSu.next())
+                        {
+                            vecReg.add(intCont, rstLocSu.getDouble("nd_valrub"));
+                            dblTot=dblTot+rstLocSu.getDouble("nd_valrub");
+                        }
+                        else
+                        {
+                            vecReg.add(intCont, objUti.parseDouble(0));
+                        }
+                        intCont++;
+                    }
+                    vecReg.add(dblTot);
+                    vecData.add(vecReg);
+                }
+                rstLoc.close();
+                rstLoc=null;
+                if (rstLocSu!=null)
+                {
+                    rstLocSu.close();
+                    rstLocSu=null;
+                }
+                //calcularTotalEachRow();
+                objTblMod.setData(vecData);
+                tblDat .setModel(objTblMod);
+                objTblTot.calcularTotales();
+                //lblMsgSis.setText("Listo");
+                //lblMsgSis.setText("Se encontraron " + intCantReg + " registros");
+                lblMsgSis.setText("Se encontraron " + tblDat.getRowCount() + " registros.");
+                pgrSis.setValue(0);
+                pgrSis.setIndeterminate(false);
+                stmLoc.close();
+                stmLoc=null;
+                if (stmLocSu!=null)
+                {
+                    stmLocSu.close();
+                    stmLocSu=null;
+                }
+                conn.close();
+                conn=null;
+            }
+        }
+        catch (java.sql.SQLException Evt)
+        {
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, Evt);
+        }
+        catch (Exception Evt)
+        {
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, Evt);
+        }
+        System.gc();
+        return blnRes;
+    }
+    
+    private ArrayList<Integer> obtenerRubRolPag()
+    {
+        Connection conIns = null;
+        Statement stmLoc = null;
+        ResultSet rstLoc = null;
+        ArrayList<Integer> arrLstRubRolPag=null;
+        try
+        {
+            conIns =DriverManager.getConnection(objParSis.getStringConexion(),objParSis.getUsuarioBaseDatos(),objParSis.getClaveBaseDatos());
+            if (conIns!=null)
+            {
+                strSQL="";
+                strSQL="select distinct co_rub from tbm_rubRolPag where tx_tipRub like 'I' and st_reg like 'A' order by co_rub ";
+                stmLoc=conIns.createStatement();
+                rstLoc=stmLoc.executeQuery(strSQL);
+                arrLstRubRolPag=new ArrayList<Integer>();
+                while(rstLoc.next())
+                {
+                    arrLstRubRolPag.add(rstLoc.getInt("co_rub"));
+                }
+            }
+        }
+        catch (SQLException ex)
+        {
+            objUti.mostrarMsgErr_F1(this, ex);
+        }
+        finally
+        {
+            try{stmLoc.close();}catch(Throwable ignore){}
+            try{rstLoc.close();}catch(Throwable ignore){}
+            try{conIns.close();}catch(Throwable ignore){}
+        }
+        return arrLstRubRolPag;
+    }
+
+    /**
+     * Esta clase hereda de la clase MouseMotionAdapter que permite manejar eventos de
+     * del mouse (mover el mouse; arrastrar y soltar).
+     * Se la usa en el sistema para mostrar el ToolTipText adecuado en la cabecera de
+     * las columnas. Es necesario hacerlo porque el ancho de las columnas a veces
+     * resulta muy corto para mostrar leyendas que requieren más espacio.
+     */
+    private class ZafMouMotAda extends java.awt.event.MouseMotionAdapter
+    {
+        public void mouseMoved(java.awt.event.MouseEvent evt)
+        {
+            int intCol=tblDat.columnAtPoint(evt.getPoint());
+            String strMsg="";
+            switch (intCol)
+            {
+                case INT_TBL_DAT_COD_EMP:
+                    strMsg="Código de la empresa";
+                    break;
+                case INT_TBL_DAT_NOM_EMP:
+                    strMsg="Nombre de la empresa";
+                    break;
+                case INT_TBL_DAT_COD_TRA:
+                    strMsg="Código del empleado";
+                    break;
+                case INT_TBL_DAT_NOM_APE_TRA:
+                    strMsg="Nombres y apellidos del empleado";
+                    break;
+                case INT_TBL_DAT_CAR_TRA:
+                    strMsg="Cargo del empleado";
+                    break;
+                case INT_TBL_DAT_MIN_SEC_SUG:
+                    strMsg="Mínimo sectorial sugerido";
+                    break;
+                case INT_TBL_DAT_MIN_SEC_ASI:
+                    strMsg="Mínimo sectorial asignado";
+                    break;
+                default:
+                    break;
+            }
+            tblDat.getTableHeader().setToolTipText(strMsg);
+        }
+    }
+    
+    /**
+     * Esta clase hereda de la clase MouseMotionAdapter que permite manejar eventos de
+     * del mouse (mover el mouse; arrastrar y soltar).
+     * Se la usa en el sistema para mostrar el ToolTipText adecuado en la cabecera de
+     * las columnas. Es necesario hacerlo porque el ancho de las columnas a veces
+     * resulta muy corto para mostrar leyendas que requieren m�s espacio.
+     */
+    private class ZafMouMotAdaMovReg extends java.awt.event.MouseMotionAdapter
+    {
+        public void mouseMoved(java.awt.event.MouseEvent evt)
+        {
+            int intCol=tblMovReg.columnAtPoint(evt.getPoint());
+            String strMsg="";
+            switch (intCol)
+            {
+                case INT_TBL_DET_LIN:
+                    strMsg="";
+                    break;
+                case INT_TBL_DET_TIP_MOD:
+                    strMsg="Tipo de modificación";
+                    break;
+                case INT_TBL_DET_FEC_MOD:
+                    strMsg="Fecha de modificación";
+                    break;
+                case INT_TBL_DET_USR_MOD:
+                    strMsg="Usuario de modificación";
+                    break;
+                case INT_TBL_DET_CAR_TRA:
+                    strMsg="Cargo";
+                    break;
+                case INT_TBL_DET_MIN_SEC_SUG:
+                    strMsg="Mínimo sectorial sugerigo";
+                    break;
+                case INT_TBL_DET_MIN_SEC_ASI:
+                    strMsg="Mínimo sectorial asignado";
+                    break;
+                default:
+                    strMsg="";
+                    break;
+            }
+            tblMovReg.getTableHeader().setToolTipText(strMsg);
+        }
+    }
+
+    /**
+     * Esta clase implementa la interface "ListSelectionListener" para determinar
+     * cambios en la selección. Es decir, cada vez que se selecciona una fila
+     * diferente en el JTable se ejecutará el "ListSelectionListener".
+     */
+    private class ZafLisSelLis implements javax.swing.event.ListSelectionListener
+    {
+        public void valueChanged(javax.swing.event.ListSelectionEvent e)
+        {
+            javax.swing.ListSelectionModel lsm=(javax.swing.ListSelectionModel)e.getSource();
+            if (!lsm.isSelectionEmpty())
+            {
+                if (chkMosMovReg.isSelected())
+                    cargarMovReg();
+                else
+                    objTblModDab.removeAllRows();
+            }
+        }
+    }
+
+    private boolean mostrarVenConEmp(int intTipBus)
+    {
+        boolean blnRes=true;
+        try
+        {
+            switch (intTipBus)
+            {
+                case 0: //Mostrar la ventana de consulta.
+                    vcoEmp.setCampoBusqueda(2);
+                    vcoEmp.show();
+                    if (vcoEmp.getSelectedButton()==vcoEmp.INT_BUT_ACE)
+                    {
+                        txtCodEmp.setText(vcoEmp.getValueAt(1));
+                        txtNomEmp.setText(vcoEmp.getValueAt(2));
+                    }
+                    break;
+                case 1: //Búsqueda directa por "Número de cuenta".
+                    if (vcoEmp.buscar("a1.co_emp", txtCodEmp.getText()))
+                    {
+                        txtCodEmp.setText(vcoEmp.getValueAt(1));
+                        txtNomEmp.setText(vcoEmp.getValueAt(2));
+                    }
+                    else
+                    {
+                        vcoEmp.setCampoBusqueda(0);
+                        vcoEmp.setCriterio1(11);
+                        vcoEmp.cargarDatos();
+                        vcoEmp.show();
+                        if (vcoEmp.getSelectedButton()==vcoEmp.INT_BUT_ACE)
+                        {
+                            txtCodEmp.setText(vcoEmp.getValueAt(1));
+                            txtNomEmp.setText(vcoEmp.getValueAt(2));
+                        }
+                        else
+                        {
+                            txtCodEmp.setText(strCodEmp);
+                        }
+                    }
+                    break;
+                case 2: //Búsqueda directa por "Descripción larga".
+                    if (vcoEmp.buscar("a1.tx_nom", txtNomEmp.getText()))
+                    {
+                        txtCodEmp.setText(vcoEmp.getValueAt(1));
+                        txtNomEmp.setText(vcoEmp.getValueAt(2));
+                    }
+                    else
+                    {
+                        vcoEmp.setCampoBusqueda(1);
+                        vcoEmp.setCriterio1(11);
+                        vcoEmp.cargarDatos();
+                        vcoEmp.show();
+                        if (vcoEmp.getSelectedButton()==vcoEmp.INT_BUT_ACE)
+                        {
+                            txtCodEmp.setText(vcoEmp.getValueAt(1));
+                            txtNomEmp.setText(vcoEmp.getValueAt(2));
+                        }
+                        else
+                        {
+                            txtNomEmp.setText(strNomEmp);
+                        }
+                    }
+                    break;
+            }
+        }
+        catch (Exception e)
+        {
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        return blnRes;
+    }
+     
+    private boolean mostrarVenConTra(int intTipBus)
+    {
+        boolean blnRes=true;
+        try
+        {
+            switch (intTipBus)
+            {
+                case 0: //Mostrar la ventana de consulta.
+                    vcoTra.setCampoBusqueda(1);
+                    vcoTra.show();
+                    if (vcoTra.getSelectedButton()==vcoTra.INT_BUT_ACE)
+                    {
+                        txtCodTra.setText(vcoTra.getValueAt(1));
+                        txtNomTra.setText(vcoTra.getValueAt(2)+ " " + vcoTra.getValueAt(3));
+                    }
+                    break;
+                case 1: //Búsqueda directa por "Número de cuenta".
+                    if (vcoTra.buscar("a1.co_tra", txtCodTra.getText()))
+                    {
+                        txtCodTra.setText(vcoTra.getValueAt(1));
+                        txtNomTra.setText(vcoTra.getValueAt(2)+ " " + vcoTra.getValueAt(3));
+                    }
+                    else
+                    {
+                        vcoTra.setCampoBusqueda(0);
+                        vcoTra.setCriterio1(11);
+                        vcoTra.cargarDatos();
+                        vcoTra.show();
+                        if (vcoTra.getSelectedButton()==vcoTra.INT_BUT_ACE)
+                        {
+                            txtCodTra.setText(vcoTra.getValueAt(1));
+                            txtNomTra.setText(vcoTra.getValueAt(2)+ " " + vcoTra.getValueAt(3));
+                        }
+                        else
+                        {
+                            txtCodTra.setText(strCodTra);
+                        }
+                    }
+                    break;
+                case 2: //Búsqueda directa por "Descripción larga".
+                    if (vcoTra.buscar("a1.tx_ape", txtNomTra.getText()))
+                    {
+                        txtCodTra.setText(vcoTra.getValueAt(1));
+                        txtNomTra.setText(vcoTra.getValueAt(2)+ " " + vcoTra.getValueAt(3));
+                    }
+                    else
+                    {
+                        vcoTra.setCampoBusqueda(1);
+                        vcoTra.setCriterio1(11);
+                        vcoTra.cargarDatos();
+                        vcoTra.show();
+                        if (vcoTra.getSelectedButton()==vcoTra.INT_BUT_ACE)
+                        {
+                            txtCodTra.setText(vcoTra.getValueAt(1));
+                            txtNomTra.setText(vcoTra.getValueAt(2)+ " " + vcoTra.getValueAt(3));
+                        }
+                        else
+                        {
+                            txtNomTra.setText(strNomTra);
+                        }
+                    }
+                    break;
+            }
+        }
+        catch (Exception e)
+        {
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        return blnRes;
+    }
+
+    private boolean configurarVenConEmp()
+    {
+        boolean blnRes=true;
+        String strTitVenCon="";
+        try
+        {
+            //Listado de campos.
+            ArrayList arlCam=new ArrayList();
+            arlCam.add("a1.co_emp");
+            arlCam.add("a1.tx_nom");
+            //Alias de los campos.
+            ArrayList arlAli=new ArrayList();
+            arlAli.add("Código");
+            arlAli.add("Nombre");
+            //Ancho de las columnas.
+            ArrayList arlAncCol=new ArrayList();
+            arlAncCol.add("50");
+            arlAncCol.add("414");
+            //Armar la sentencia SQL.
+            if (objParSis.getCodigoUsuario()==1)
+            {
+                if (objParSis.getCodigoEmpresa()==objParSis.getCodigoEmpresaGrupo())
+                {
+                    strSQL="";
+                    strSQL+="SELECT a1.co_emp, a1.tx_nom";
+                    strSQL+=" FROM tbm_emp AS a1";
+                    strSQL+=" WHERE a1.co_emp<>" + objParSis.getCodigoEmpresaGrupo() + "";
+                    strSQL+=" AND a1.st_reg NOT IN('I','E')";
+                    strSQL+=" ORDER BY a1.co_emp";
+                }
+                else
+                {
+                    strSQL="";
+                    strSQL+="SELECT a1.co_emp, a1.tx_nom";
+                    strSQL+=" FROM tbm_emp AS a1";
+                    strSQL+=" WHERE a1.co_emp in ("+objParSis.getCodigoEmpresa() +")" + "";
+                    strSQL+=" AND a1.st_reg NOT IN('I','E')";
+                    strSQL+=" ORDER BY a1.co_emp";
+                }
+            }
+            else
+            {
+                if (objParSis.getCodigoEmpresa()==objParSis.getCodigoEmpresaGrupo())
+                {
+                    strSQL="";
+                    strSQL+="SELECT a1.co_emp, a1.tx_nom";
+                    strSQL+=" FROM tbm_emp AS a1 INNER JOIN tbr_usremp AS a2";
+                    strSQL+=" ON a1.co_emp=a2.co_emp AND a2.co_usr=" + objParSis.getCodigoUsuario() + "";
+                    strSQL+=" WHERE a1.co_emp<>" + objParSis.getCodigoEmpresaGrupo() + "";
+                    strSQL+=" AND a1.st_reg NOT IN('I','E')";
+                    strSQL+=" ORDER BY a1.co_emp";
+                }
+                else
+                {
+                    strSQL="";
+                    strSQL+="SELECT a1.co_emp, a1.tx_nom";
+                    strSQL+=" FROM tbm_emp AS a1 INNER JOIN tbr_usremp AS a2";
+                    strSQL+=" ON a1.co_emp=a2.co_emp AND a2.co_usr=" + objParSis.getCodigoUsuario() + "";
+                    strSQL+=" WHERE a1.co_emp in ("+objParSis.getCodigoEmpresa() +")" + "";
+                    strSQL+=" AND a1.st_reg NOT IN('I','E')";
+                    strSQL+=" ORDER BY a1.co_emp";
+                }
+            }
+            vcoEmp=new ZafVenCon(javax.swing.JOptionPane.getFrameForComponent(this), objParSis, strTitVenCon, strSQL, arlCam, arlAli, arlAncCol);
+            arlCam=null;
+            arlAli=null;
+            arlAncCol=null;
+            //Configurar columnas.
+            vcoEmp.setConfiguracionColumna(1, javax.swing.JLabel.RIGHT);
+        }
+        catch (Exception e)
+        {
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        return blnRes;
+    }
+    
+    /**
+     * Esta función permite utilizar la "Ventana de Consulta" para seleccionar un
+     * registro de la base de datos. El tipo de búsqueda determina si se debe hacer
+     * una búsqueda directa (No se muestra la ventana de consulta a menos que no 
+     * exista lo que se está buscando) o presentar la ventana de consulta para que
+     * el usuario seleccione la opción que desea utilizar.
+     * @param intTipBus El tipo de búsqueda a realizar.
+     * @return true: Si no se presentó ningún problema.
+     * <BR>false: En el caso contrario.
+     */
+    private boolean mostrarVenConDep(int intTipBus)
+    {
+        boolean blnRes=true;
+        try
+        {
+            switch (intTipBus)
+            {
+                case 0: //Mostrar la ventana de consulta.
+                    vcoDep.setCampoBusqueda(2);
+                    vcoDep.setVisible(true);
+                    if (vcoDep.getSelectedButton()==ZafVenCon.INT_BUT_ACE)
+                    {
+                        txtCodDep.setText(vcoDep.getValueAt(1));
+                        txtNomDep.setText(vcoDep.getValueAt(3));
+                    }
+                    break;
+                case 1: //Búsqueda directa por "Codigo de Departamento".
+                    //vcoDep.setCampoBusqueda(0);
+                    vcoDep.setVisible(true);
+                    if (vcoDep.buscar("a1.co_dep", txtCodDep.getText()))
+                    {
+                        txtCodDep.setText(vcoDep.getValueAt(1));
+                        txtNomDep.setText(vcoDep.getValueAt(3));
+                    }
+                    else
+                    {
+                        vcoDep.setCampoBusqueda(1);
+                        vcoDep.setCriterio1(11);
+                        vcoDep.cargarDatos();
+                        vcoDep.setVisible(true);
+                        if (vcoDep.getSelectedButton()==ZafVenCon.INT_BUT_ACE)
+                        {
+                            
+                            txtCodDep.setText(vcoDep.getValueAt(1));
+                            txtNomDep.setText(vcoDep.getValueAt(3));
+                        }
+                        else
+                        {
+                            txtNomDep.setText(strDesLarDep);
+                        }
+                    }
+                    break;
+                case 2: //Búsqueda directa por "Descripción larga".
+                    vcoDep.setCampoBusqueda(2);
+                    //vcoDep.setVisible(true);
+                    if (vcoDep.buscar("a1.tx_desLar", txtNomDep.getText()))
+                    {
+                        txtCodDep.setText(vcoDep.getValueAt(1));
+                        txtNomDep.setText(vcoDep.getValueAt(3));
+                    }
+                    else
+                    {
+                        vcoDep.setCampoBusqueda(2);
+                        vcoDep.setCriterio1(11);
+                        vcoDep.cargarDatos();
+                        vcoDep.setVisible(true);
+                        if (vcoDep.getSelectedButton()==ZafVenCon.INT_BUT_ACE)
+                        {
+                            txtCodDep.setText(vcoDep.getValueAt(1));
+                            txtNomDep.setText(vcoDep.getValueAt(3));
+                        }
+                        else
+                        {
+                            txtNomDep.setText(strDesLarDep);
+                        }
+                    }
+                    break;
+            }
+        }
+        catch (Exception e)
+        {
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        return blnRes;
+    }
+
+    /**
+     * Esta función configura la "Ventana de consulta" que será utilizada para
+     * mostrar los "Departamentos".
+     */
+    private boolean configurarVenConDep()
+    {
+        boolean blnRes=true;
+        try
+        {
+            //Listado de campos.
+            ArrayList arlCam=new ArrayList();
+            arlCam.add("a1.co_dep");
+            arlCam.add("a1.tx_desCor");
+            arlCam.add("a1.tx_desLar");
+            arlCam.add("a1.st_reg");
+            //Alias de los campos.
+            ArrayList arlAli=new ArrayList();
+            arlAli.add("Código");
+            arlAli.add("Descripción corta");
+            arlAli.add("Descripción larga");
+            arlAli.add("Estado");
+            //Ancho de las columnas.
+            ArrayList arlAncCol=new ArrayList();
+            arlAncCol.add("50");
+            arlAncCol.add("110");
+            arlAncCol.add("110");
+            arlAncCol.add("40");
+            String strSQL="";
+            if (objParSis.getCodigoUsuario()==1)
+            {
+                strSQL="select co_dep,tx_descor,tx_deslar,st_reg from tbm_dep where st_reg like 'A' order by co_dep";
+            }
+            else
+            {
+                strSQL="select co_dep,tx_descor,tx_deslar,st_reg from tbm_dep where co_dep in(select co_dep from tbr_depprgusr where co_usr="+objParSis.getCodigoUsuario()+" " + "and co_mnu="+objParSis.getCodigoMenu()+")";
+            }
+            //Ocultar columnas.
+            int intColOcu[]=new int[1];
+            vcoDep=new ZafVenCon(javax.swing.JOptionPane.getFrameForComponent(this), objParSis, "Listado Departamentos", strSQL, arlCam, arlAli, arlAncCol, intColOcu);
+            arlCam=null;
+            arlAli=null;
+            arlAncCol=null;
+            intColOcu=null;
+            //Configurar columnas.
+            vcoDep.setConfiguracionColumna(1, javax.swing.JLabel.RIGHT);
+            vcoDep.setConfiguracionColumna(4, javax.swing.JLabel.RIGHT);
+        }
+        catch (Exception e)
+        {
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        return blnRes;
+    }
+    
+    /**
+    * Esta función configura la "Ventana de consulta" que será utilizada para
+    * mostrar los "Empleados".
+    */
+    private boolean configurarVenConTra()
+    {
+        boolean blnRes=true;
+        try
+        {
+            //Listado de campos.
+            ArrayList arlCam=new ArrayList();
+            arlCam.add("a1.co_tra");
+            arlCam.add("a1.tx_ape");
+            arlCam.add("a1.tx_nom");
+            //arlCam.add("a1.st_reg");
+            //Alias de los campos.
+            ArrayList arlAli=new ArrayList();
+            arlAli.add("Código");
+            arlAli.add("Apellidos");
+            arlAli.add("Nombres");
+            //arlAli.add("Estado");
+            //Ancho de las columnas.
+            ArrayList arlAncCol=new ArrayList();
+            arlAncCol.add("50");
+            arlAncCol.add("150");
+            arlAncCol.add("150");
+            //arlAncCol.add("40");
+            String strSQL="";
+            if (objParSis.getCodigoEmpresa()==objParSis.getCodigoEmpresaGrupo())
+            {
+                strSQL="select a.co_tra,a.tx_ape,a.tx_nom from tbm_tra a inner join tbm_traemp b on(a.co_tra=b.co_tra) where b.st_reg like 'A' " + "order by (a.tx_ape || ' ' || a.tx_nom)";
+            }
+            else
+            {
+                strSQL="select a.co_tra,a.tx_ape,a.tx_nom from tbm_tra a inner join tbm_traemp b on(a.co_tra=b.co_tra) where b.st_reg like 'A' and co_emp = "+ objParSis.getCodigoEmpresa() + " " + "order by (a.tx_ape || ' ' || a.tx_nom)";
+            }
+            //Ocultar columnas.
+            int intColOcu[]=new int[1];
+            vcoTra=new ZafVenCon(javax.swing.JOptionPane.getFrameForComponent(this), objParSis, "Listado de Empleados", strSQL, arlCam, arlAli, arlAncCol, intColOcu);
+            arlCam=null;
+            arlAli=null;
+            arlAncCol=null;
+            intColOcu=null;
+        }
+        catch (Exception e)
+        {
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        return blnRes;
+    }
+    
+}

@@ -1,0 +1,24 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (José Marín - 17/Oct/2013)
+----
+Clase nueva "Listado de items por grupo (Por items)..."
+
+v0.2: (José Marín - 08/Ene/2014)
+----
+Se agrego poder mostrar los items que no tengan asociado un grupo de importaciones.
+
+v0.3: (José Marín - 08/Ene/2014)
+----
+Se corrigio, no mostrar los eliminados.
+
+v0.4: (Rosa Zambrano - 28/Feb/2019)
+----
+Solicitado por Alfredo Paulson:
+Se agrega partidas arancelarias enlazadas al grupo de items, y si el isd aplica al costo o no.
+

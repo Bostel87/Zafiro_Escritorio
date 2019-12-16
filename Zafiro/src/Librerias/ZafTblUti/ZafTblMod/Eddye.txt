@@ -1,0 +1,182 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 19/Feb/2006)
+----
+Se agregó el método getData().
+
+
+v0.2: (Eddye Lino - 26/Feb/2006)
+-----
+Se agregaron los métodos addElementAtRowHeaderRaise(); clearRowHeaderRaise(); getRowHeaderRaise(); getSizeRowHeaderRaise().
+
+
+v0.3: (Eddye Lino - 08/May/2006)
+----
+Se agregó código en "initRowsState()" para que también inicializara el estado de "isDataModelChanged()".
+Al principio había que utilizar el método "initRowsState()" para inicializar el estado de las celdas que indican
+cambios y luego "setDataModelChanged(false)" para hacer que el JTableModel sepa que ya no hay cambios. Ahora,
+al utilizar el método "initRowsState()" se hacen los 2 pasos al mismo tiempo.
+
+
+v0.4: (Eddye Lino - 04/Ago/2006)
+----
+Se agregó el método "addColumn(javax.swing.JTable tabla, javax.swing.table.TableColumn columna)".
+
+
+v0.5: (Eddye Lino - 17/Sep/2007)
+----
+Se agregaron los métodos: 
+   1) getSystemHiddenColumns()
+   2) setSystemHiddenColumns(ArrayList columnas, javax.swing.JTable tabla)
+   3) removeAllSystemHiddenColumns(javax.swing.JTable tabla)
+   4) addSystemHiddenColumn(int columna, javax.swing.JTable tabla)
+   5) removeSystemHiddenColumn(int columna, javax.swing.JTable tabla)
+   6) addSystemHiddenColumns(ArrayList columnas, javax.swing.JTable tabla)
+   7) removeSystemHiddenColumns(ArrayList columnas, javax.swing.JTable tabla)
+   8) getUserHiddenColumns()
+   9) setUserHiddenColumns(ArrayList columnas, javax.swing.JTable tabla)
+   10) removeAllUserHiddenColumns(javax.swing.JTable tabla)
+   11) addUserHiddenColumn(int columna, javax.swing.JTable tabla)
+   12) removeUserHiddenColumn(int columna, javax.swing.JTable tabla)
+   13) addUserHiddenColumns(ArrayList columnas, javax.swing.JTable tabla)
+   14) removeUserHiddenColumns(ArrayList columnas, javax.swing.JTable tabla)
+
+
+v0.6: (Eddye Lino - 08/Nov/2007)
+----
+Se corrigieron los métodos: 
+   1) setHeader(Vector cabecera)
+   2) setValues(Vector cabecera, Vector datos)
+Se corrigió lo siguiente:
+   1) Se clonó el vector de cabecera "vecCabMod=(Vector)cabecera.clone();" y se agregó "fireTableStructureChanged();".
+   2) Se clonó el vector de cabecera "vecCabMod=(Vector)cabecera.clone();" y se reemplazo el método "fireTableDataChanged();" por "fireTableStructureChanged();".
+
+
+v0.7: (Eddye Lino - 26/Dic/2007)
+----
+Se corrigió el método: 
+   1) addColumn(javax.swing.JTable tabla, javax.swing.table.TableColumn columna)
+Se corrigió lo siguiente:
+   1) Al agregar una columna no se había considerado el tipo de dato de dicha columna. Por eso se
+      agregó el código que se muestra a continuación:
+        //Establecer que la columna agregada de manera predeterminada sea de tipo cadena.
+        arlTipDatCol.add(null);
+        setColumnDataType(vecCabMod.size()-1, INT_COL_STR, null, null);
+
+
+v0.8: (Eddye Lino - 11/Jun/2008)
+----
+Se agregó el método: 
+   1) addColumnasEditables(Vector columnas)
+
+
+v0.8.1: (Ingrid Lino - 22/Ago/2008)
+----
+    El método setValueAt(Object, param2, param3) fue sobrecargado:
+    - Se sobrecargó el método setValueAt() cuyo primer parámetro va a ser un String
+    - Se sobrecargó el método setValueAt() cuyo primer parámetro va a ser un boolean
+
+
+v0.9: (Eddye Lino - 17/Sep/2007)
+----
+Se agregaron los métodos: 
+   1) getColumnasEditables()
+   2) isColumnaEditable(int col)
+
+
+v0.9.1: (Ingrid Lino - 17/Nov/2008)
+-----
+Se sobrecargó el método initRowsState(int fila) para inicializar el estado de la fila que se le envía como parámetro.
+
+
+v0.9.2: (Ingrid Lino - 26/Ene/2009)
+-----
+Se adicionó metodo "setSelectedItem" para setear el valor de un JComboBox.
+
+
+v0.10: (Eddye Lino - 30/Abr/2009)
+-----
+Se agregaron los métodos: 
+   1) isValueAtEqualToString(int intRow, int intCol, String strVal)
+   2) isValueAtEqualToBigDecimal(int intRow, int intCol, java.math.BigDecimal bgdVal)
+
+
+v0.11: (Eddye Lino - 30/Jul/2009)
+-----
+Se agregaron los métodos: 
+   1) isCheckedAnyRow(int col)
+   2) getRowCountChecked(int col)
+Estos métodos permiten determinar si hay filas marcadas y cuántas filas están marcadas.
+
+
+v0.12: (Eddye Lino - 23/Nov/2010)
+-----
+Se agregaron los métodos: 
+   1) getMaxRowsAllowed()
+   2) setMaxRowsAllowed(Integer max)
+   3) setMaxRowsAllowed(Integer max, boolean validarFilas)
+   4) setValueAtCell(Object valor, int row, int col)
+   5) insertRow(boolean validarFilas)
+   6) insertRows(int filas, int posicion, boolean validarFilas)
+   7) compareStringCells(int row1, int col1, int row2, int col2)
+   8) compareStringCells(int row1, int col1, int row2, int col2, boolean nullAsEmptyString, boolean caseSensitive)
+   9) compareNumericCells(int row1, int col1, int row2, int col2, int operador)
+   10) compareNumericCells(int row1, int col1, int row2, int col2, int operador, boolean nullAsZero, boolean emptyStringAsZero)
+   11) clearManualDataSavedBeforeRemoveRow()
+Se modificaron los métodos: 
+   1) insertRows(int filas, int posicion)
+   2) setValueAt(Object valor, int row, int col)
+   3) setValueAt(String valor, int row, int col)
+   4) setValueAt(boolean valor, int row, int col)
+   5) setData(Vector datos)
+   6) setModoOperacion(int modo)
+   7) ZafTblMod()
+   8) addRowDataSavedBeforeRemoveRow(ArrayList row)
+   9) clearDataSavedBeforeRemoveRow()
+   10) setData(Vector datos)
+   11) setValues(Vector cabecera, Vector datos)
+Se agregó código para validar el número máximo de filas que puede admitir la tabla.
+Se agregaron métodos que permiten comparar celdas. La idea es evitar tener líneas muy extensas cuando se hacen comparaciones.
+
+
+v0.13: (Eddye Lino - 19/Abr/2011)
+-----
+Se agregaron los métodos: 
+   1) isSystemHiddenColumn(int columna)
+   2) isUserHiddenColumn(int columna)
+Estos métodos permiten determinar si la columna especificada está oculta por el Systema, Usuario o no está oculta. 
+
+
+v0.14: (Rosa Zambrano - 08/Ago/2017)
+-----
+Se agregó el método: 
+   1) isCheckedAnyColumn(int row)
+Este método permiten determinar si la fila especificada tiene marcada alguna columna.
+
+
+v0.15: (Eddye Lino - 07/Dic/2017)
+-----
+Se agregaron los métodos:
+   1) addColumn(Object headerValue)
+   2) removeColumn(int columna)
+   3) getWidthSystemHiddenColumn(int columna)
+   4) getWidthUserHiddenColumn(int columna)
+Se modificó el método: 
+   1) setChecked(boolean checked, int row, int col)
+Se mejoró el código.
+Antes: setValueAt(new Boolean(checked), row, col);
+Después: setValueAt(Boolean.valueOf(checked), row, col);
+
+
+v0.16: (Eddye Lino - 24/Ene/2018)
+-----
+Se agregaron los métodos:
+   1) clearCell(int row, int col, boolean markRowAsModified)
+   2) clearRow(int row, boolean markRowAsModified)
+   3) clearColumn(int col, boolean markRowAsModified)
+   4) clearAllRows(boolean markRowAsModified)

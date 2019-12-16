@@ -1,0 +1,33 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Javier Ayapata - 22/Ene/2010)
+----
+Clase nueva.
+
+
+v0.2: (Javier Ayapata - 12/Feb/2010)
+-----
+Se agrega que totalize el valor total final.
+
+
+v0.3: (Eddye Lino - 27/Jun/2013)
+-----
+Mejoras en el diseño y corrección de faltas ortográficas.
+
+
+v0.4: (Eddye Lino - 28/Jun/2013)
+-----
+Se corrigieron los métodos: 
+   1) cargarMsnCabTblDat()
+   2) cargarDatChqPenCob()
+Había un error que hacía que los rangos de fechas desde la "Semana 5" estuvieran mal calculados.
+
+
+v0.5: (Eddye Lino - 01/Jul/2013)
+-----
+Se agregó código para cerrar la ventana.

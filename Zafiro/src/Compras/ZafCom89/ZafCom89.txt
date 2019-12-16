@@ -1,0 +1,21 @@
+Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Ingrid Lino - 18/Mar/2013)
+----
+Nuevo programa que presenta el último conteo realizado según bodega seleccionada(stock, faltante, sobrante, cantidad contada, etc).
+
+
+v0.1.1: (Ingrid Lino - 19/Mar/2013)
+----
+Se adicionó filtro para presentar solo items con conteo asociado.
+
+
+v0.1.2: (Rosa Zambrano - 07/May/2018)
+----
+Se adicionó filtro para presentar solo items no contados.
+Se agrego código de 3 letras.

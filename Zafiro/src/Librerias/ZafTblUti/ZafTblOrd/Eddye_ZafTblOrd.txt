@@ -1,0 +1,95 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 19/Feb/2006)
+----
+Clase nueva.
+
+
+v0.2: (Eddye Lino - 30/Oct/2006)
+-----
+Se corrigió falla en el método "compare()".
+Este método estaba ordenando las cadenas con una cierta falla.
+Aparecían todas las mayúsculas primero y luego todas las minúsculas.
+
+
+v0.3: (Eddye Lino - 24/Feb/2008)
+----
+Se corrigió el método: 
+   1) compare(Object o1, Object o2)
+Se corrigió falla que existía al ordenar valores nulos.
+El código al principio estaba así:
+        //Comparar el contenido de las celdas.
+        if (objCel1==null && objCel2==null)
+        {
+            intRes=0;
+        }
+        else if (objCel1==null)
+        {
+            intRes=-1;
+        }
+        else if (objCel2==null)
+        {
+            intRes=1;
+        }
+Quedó así:
+        //Comparar el contenido de las celdas.
+        if (objCel1==null && objCel2==null)
+        {
+            intRes=0;
+        }
+        else if (objCel1==null)
+        {
+            if (blnAsc)
+                intRes=-1;
+            else
+                intRes=1;
+        }
+        else if (objCel2==null)
+        {
+            if (blnAsc)
+                intRes=1;
+            else
+                intRes=-1;
+        }
+
+
+v0.4: (Eddye Lino - 24/Jun/2008)
+----
+Se corrigió el método: 
+   1) compare(Object o1, Object o2)
+Se corrigió falla que existía al ordenar cadenas vacías y valores nulos.
+Se puso como comentario las líneas que convertian a null las cadenas a comparar cuando dichas cadenas
+estaban vacías. Cuando se comparaba una celda que contenía una cadena vacía con una celda que contenía
+un valor nulo las líneas que se muestran a continuación convertían la cadena vacía a nulo lo cual
+generaba que no se ordenaran adecuadamente los datos.
+El código que se puso como comentario es:
+//            //Convertir las cadenas vacías a null.
+//            if (objCel1 instanceof String && ((String)objCel1).length()==0)
+//            {
+//                objCel1=null;
+//            }
+//            if (objCel2 instanceof String && ((String)objCel2).length()==0)
+//            {
+//                objCel2=null;
+//            }
+
+
+v0.5: (Eddye Lino - 17/Nov/2017)
+-----
+Se agregaron los métodos:
+   1) addTblOrdListener(ZafTblOrdListener listener)
+   2) removeTblOrdListener(ZafTblOrdListener listener)
+   3) fireTblOrdListener(ZafTblOrdEvent evt, int metodo)
+   4) cancelarOrdenamiento()
+   5) getColumnaClick()
+   6) ordenar(int intCol)
+   7) getTipoOrdenamiento()
+   8) cambiarIconoOrdenamiento(int columna, int intTipOrd)
+Se modificó el método: 
+   1) thisMouseClicked(java.awt.event.MouseEvent evt)
+Se agregó código para que la clase maneje los eventos "beforeOrder" y "afterOrder".

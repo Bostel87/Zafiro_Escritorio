@@ -1,0 +1,8 @@
+﻿
+CONTROL DE VERSIONES:
+=====================
+
+
+v1.0: (Roberto Flores- 16/07/2013)
+----
+Recursos humanos - Empleados - Empleados por cargo laboral...

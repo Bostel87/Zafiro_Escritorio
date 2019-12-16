@@ -1,0 +1,99 @@
+﻿Pendientes:
+1) 
+2) 
+
+﻿CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Ingrid Lino - 12/Sep/2017)
+----
+Programa que permite realizar Ajustes de inventario
+
+v0.1.1: (Ingrid Lino - 13/Sep/2017)
+----
+Se añade la actualización de item según item creado
+
+v0.1.2: (Ingrid Lino - 13/Sep/2017)
+----
+Se quitan valores absolutos en Valor del Documento. Según Alfredo Paulson.
+
+v0.1.3: (Ingrid Lino - 14/Sep/2017)
+----
+Se añade esquema de cantidades pendientes de ingresar
+
+v0.1.4: (Ingrid Lino - 24/Nov/2017)
+----
+Se añade método de costeo de items
+
+v0.1.5: (Ingrid Lino - 05/Dic/2017)
+----
+Correcciones varias: Número de documento, cantidades cero, items eliminados, etc (Solicitados por Rosa según reportes de usuario y verificaciones de ella ).
+
+v0.1.6: (Ingrid Lino - 07/Dic/2017)
+----
+Cambios en mostrarTipDocPre(), se cambian los parámetros de empresa, local y tipo de documento.
+
+v0.1.7: (Ingrid Lino - 20/Dic/2017)
+----
+Esquema de "Reclamos a Terceros" y "Reclamos a Proveedores" en inventario y diario. Además en función "isValPerVisBueUsrTipDoc" se coloca el valor del documento bdeValDoc en absoluto para validación de VB.
+
+v0.1.8: (Ingrid Lino - 26/Dic/2017)
+----
+Al momento de dar click en la opción de eliminar fila, se llama al método setValDoc() porque cuando se estaba dejando el valor anterior (con items eliminados y no eliminados ).
+
+v0.1.9: (Ingrid Lino - 02/Ene/2018)
+----
+Se agrega group by en el SELECT externo del método "isValAjuIngImp", ya que presentaba información no totalizada, debido al cambio de local de que se realizó en el sistema y que muestra documentos en locales diferentes, por tanto presentaba mensaje que no se podía confirmar ya que no sumaba lo total.
+Ejm: Cant.Ing.Imp. = 100    ;    Cant.Sol.Tra. = 100  ; ( Cant.Tra. = 50  ;   Cant.Tra. = 39  ; Cant.Tra. = 11  ; ) la transferencia está en diferentes locales.
+
+v0.1.10: (Ingrid Lino - 03/Ene/2018)
+----
+Se agrega los códigos de configuración de Castek y Dimulti para las cuentas contables.
+
+v0.1.11: (Ingrid Lino - 16/Ene/2018)
+----
+Se agrega configuración de tipoDocumento=296 de tabla tbm_cfgtipdocctaprg para compras locales.
+
+v0.1.12: (Ingrid Lino - 18/Ene/2018)
+----
+Se cambia el codigo de item de empresa por el de grupo, ya que en la tabla "insertar_tbmDetOrdDis" se guarda información de grupo.
+
+v0.1.13: (Rosa Zambrano - 24/Ene/2018)
+----
+* Se agrega en la función insertar_tbmDetMovInv, para que actualice el campo nd_preUni cuando es un item que no estaba en el ingreso por importación.
+* Se cambia en la función mostrarTipDocPre, para obtener el ne_ultDoc del tipo de documento de ajuste, 
+  se estaba leyendo el ultimo numero documento del ingreso por importación lo cual generaba varios documentos de ajustes con numero de documento repetido.
+
+v0.1.14: (Ingrid Lino - 01/Feb/2018)
+-----
+Se comenta la generación del diario en "isValAjuIngImp", y se valida los costos totales a "Cero" si son nulos o String.
+
+v0.1.15: (Ingrid Lino - 12/Mar/2018)
+-----
+Se comenta en el método "setTipMovAjuLet.generaDiarioAjuste();", porque daba problemas al momento de insertar por usuario.
+
+v0.1.16: (Ingrid Lino - 20/Mar/2018)
+-----
+En la función isValAjuIngImp.transferencia: Se elimina tx_codAlt de query para poder cerrar pedidos.
+Valida conteos modificados.
+
+v0.1.17: (Ingrid Lino - 28/Jun/2018)
+-----
+Se cambia donde el código de menú era 2889.
+
+v0.1.18: (Rosa Zambrano - 10/Jul/2018)
+-----
+Se verifica que se genere consulta al momento de llamar la ventana de ajuste desde algun reporte, ya que no mostraba la información en el formulario de ajuste.
+
+v0.1.19: (Rosa Zambrano - 11/Jul/2018)
+-----
+Se agrega función calcularPesTotDoc, para que recalcule el peso total del documento antes de autorizar, reportado por AP.
+
+v0.1.20: (Rosa Zambrano - 10/Oct/2018)
+-----
+Se corrige aprobación de vistos buenos.
+Se trabaja el costeo dentro de la transacción.
+
+v0.1.21: (Rosa Zambrano - 20/Ago/2019)
+-----
+Se corrige actualización de fecha de asiento de diario.

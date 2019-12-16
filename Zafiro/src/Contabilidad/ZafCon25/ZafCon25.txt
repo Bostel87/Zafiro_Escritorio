@@ -1,0 +1,105 @@
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Ingrid Lino - 21/Jun/2010)
+----
+Nuevo programa que presenta la información de la retenciones emitidas por la empresa, con exporte a Excel.
+
+v0.2: (Ingrid Lino - 09/Jul/2010)
+----
+Se adicionó la opción de exportar a excel y se cambió formato de exportación a excel de campos que representan valores.
+
+v0.2.1: (Ingrid Lino - 20/Jun/2011)
+----
+Se cambia formato de datos en formulario y en archivo .xml. Se adicionó código para reporte en xls para linux.
+
+v0.2.2: (Ingrid Lino - 01/Jul/2011)
+----
+Se quitó numero de serie(rellenar ceros y estatico de 001001 si no habia dato)
+
+v0.2.3: (Ingrid Lino - 28/Sep/2011)
+----
+Se quitó el formato de ceros adelante en el campo tx_codSri.
+
+v0.2.4: (Ingrid Lino - 17/Nov/2011)
+----
+Se cambiaron los campos que estaban siendo leidos de tbm_cabmovinv por los campos de tbm_pagMovInv, campos relacionados con datos de la factura del cliente
+
+v0.2.5: (Ingrid Lino - 29/Feb/2012)
+----
+Se corrige datos de serie de las cías.
+
+v0.2.5: (Ingrid Lino - 26/Jul/2012)
+----
+Se coloca el mismo criterio de "base Imponible" que tiene el % del 30 y 100 al 70(este no constaba en el query porque Tuval, Castek, Dimulti no retienen ese porcentaje, en cambio Cosenco SI.
+
+v0.2.7: (Ingrid Lino - 22/Nov/2012)
+----
+Se añade el porcentaje de retencion 8% en el filtro del query donde se extrae el 1%  y  2%(El 8% es para Ecuatosa).
+
+v0.2.8: (Ingrid Lino - 08/Ene/2015)
+----
+Se agregan tipos de documentos FACVENE(228) y DEVVENE(229) y RFP1E(230).
+
+v0.2.9: (Dennis Betancourt - 11/Jul/2015)
+----
+1) En el query que trae el listado de Datos de retenciones recibidas, se agregaron los nuevos porcentajes de IVA: 10% y 20%.
+2) En el query que trae el listado de Datos de retenciones recibidas, se consideraba el valor de 10 en la condicion del campo tbm_pagMovInv.nd_porret, correspondiente a "Retencion en la fuente 10%". Se tuvo que quitar este valor de 10 en la condicion debido a que ahora ha aparecido el valor de 10 para "Retencion al IVA 10%" y esto iba a ocasionar confusion.
+
+v0.2.10: (Dennis Betancourt - 07/Dic/2015)
+----
+En el query que trae el listado de Datos de retenciones recibidas, se formateo la columna "Com.Vta." para que se muestre el numero de factura con 9 digitos.
+
+v0.2.11: (Dennis Betancourt - 20/Dic/2016)
+----
+En el query que trae el listado de Datos de retenciones recibidas, se modifico la forma de calcular la Base Imponible para la Retencion en la fuente de 1%, 2% y 8% ya que dicho calculo no se realizaba correctamente cuando hay ciertos TipDoc FACVEN que tienen items que son bienes y servicios.
+
+v0.2.12: (Dennis Betancourt - 22/Dic/2016)
+----
+En el query que trae el listado de Datos de retenciones recibidas, se modifico la forma de calcular la Base Imponible para la Retencion de IVA de 10% y 20% ya que dicho calculo no se realizaba correctamente cuando hay ciertos TipDoc FACVEN que tienen items que son bienes y servicios.
+
+v0.2.13: (Dennis Betancourt - 23/Dic/2016)
+----
+Despues de ejecutar el query que trae el listado de Datos de retenciones recibidas, se barre todo el JTable para recalcular el Val.Ret. basado en el valor de la Base Imponible.
+
+v0.2.14: (Dennis Betancourt - 28/Dic/2016)
+----
+En la funcion cargarDetReg() se puso una validacion. Despues de llenar el JTable, se verifica si la diferencia del Valor de retencion calculado comparado con el valor de tbm_detpag.nd_abo es <= a 0.10 entonces se debera tomar en cuenta el valor de tbm_detpag. Caso contrario se tomara en cuenta el valor calculado con la Base Imponible.
+
+v0.2.15: (Dennis Betancourt - 29/Dic/2016)
+----
+En el query que trae el listado de Datos de retenciones recibidas, se modifico la forma de calcular la Base Imponible para la Retencion de IVA de 30% y 70% ya que dicho calculo no se realizaba correctamente cuando hay ciertos TipDoc FACVEN que tienen items que son bienes y servicios.
+
+v0.2.16: (Dennis Betancourt - 24/Ene/2017)
+----
+En la funcion cargarDetReg() se realiza comparaciones de 2 valores de Retenciones. Para el 1er valor se va a calcular la Retencion basada en la Base Imponible calculada del valor de tbm_detpag.nd_abo. Para el 2do valor se va a calcular la Retencion basada en la Base Imponible del JTable. Todo esto se realiza para presentar bien los valores en el JTable de Base Imponible y Retencion.
+
+v0.2.17: (Dennis Betancourt - 02/Feb/2017)
+----
+En la funcion cargarDetReg() despues de llenar el JTable, en todos los calculos donde aparezca "divide" se puso "RoundingMode.HALF_UP".
+
+v0.2.18: (Tony Sanginez - 06/Feb/2017)
+----
+Cambio en query para que tambien tome en cuenta transporte con bien en retenciones de %1
+
+v0.2.19: (Tony Sanginez - 08/Feb/2017)
+----
+Cambio para que cuando transforma desde el valor de retencion a la base imponible y quitaba los decimales colocar el valor de los decimales realizando una validación de rango que este entre una diferencia de 0 y 0.44.
+Se agregó un metodo en ZafCon25_01.java para cuando se realice el export de xml realizar los cambios que se pidieron para que se ajuste en el gamaret. 
+Se agregó checkbox para elegir el formato de GamaRet o el formato que actualmente se estaba trabajando.
+
+v0.2.20: (Tony Sanginez - 21/Mar/2017)
+----
+En el query se estaba cargando los datos con estado E,I en tbm_detpag por lo que mostraba duplicados en la pantalla.
+
+v0.2.21: (Tony Sanginez - 12/Jul/2017)
+----
+Se implementa la carga de las retenciones del %50 al iva y se aumenta en ZafCon25_01 para que se coloque el codigo correcto en vez de 727=50S
+
+v0.2.22: (Dennis Betancourt - 16/Ago/2017)
+----
+Para el calculo de Base Imponible cuando tbm_pagmovinv.nd_porRet = 1, estaba calculando en un mismo query la Base Imponible cuando el item es "Servicio de transporte" (tbm_inv.st_ser = 'T') y cuando el item es un Servicio (tbm_inv.st_ser = 'N'). Se desgloso para que en un query se calcule la Base Imponible solo si el item es "Servicio de transporte". Y se puso otro query para calcular la Base Imponible solo si el item es de Servicio.
+
+v0.2.23: (Dennis Betancourt - 22/May/2018)
+----
+En el query, si tbm_cli.tx_tipide = 'C' (Cedula), se estaba agregando ceros del lado izquierdo del valor guardado en tbm_cli.tx_ide hasta completar 13 digitos, y esto esta mal. Por eso, se puso una condicion para que no haga esto si el campo tbm_cli.tx_tipide = 'C'.

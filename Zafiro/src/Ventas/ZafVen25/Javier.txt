@@ -1,0 +1,233 @@
+﻿
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Javier Ayapata - 24/Sep/2008)
+----
+Clase nueva de autorizacion de solicitud.
+
+
+v0.2: (Javier Ayapata - 25/Sep/2008)
+-----
+Se agrega para que al consultar la factura se pueda elegir tambien otro documento.
+
+
+v0.3: (Javier Ayapata - 29/Sep/2008) 
+-----
+Se agrega para que se pueda autorizar desde el grupo.
+
+
+v0.4: (Javier Ayapata - 04/Oct/2008)
+-----
+Se agrega para que almacene la fecha de autorización .
+
+
+v0.5: (Javier Ayapata - 01/Abr/2009)
+-----
+Se agrega color a las solicitudes que la factura ya esten confirmado o en proceso de confirmacion.
+
+
+v0.6: (Javier Ayapata - 30/Abr/2009)
+-----
+Se agrega color a las solicitudes que la factura ya esten confirmado o en proceso de confirmacion.
+
+
+v0.7: (Javier Ayapata - 09/Jul/2009)
+-----
+  se corrige cambios en estado de confirmacion.
+
+
+v0.8: (Javier Ayapata - 05/Oct/2009) 
+-----
+Se agrega para actuliza los campos de cantidad de ingreso fisico a bodega. cuando se autoriza o se cancela
+
+
+v0.9: (Javier Ayapata - 06/Nov/2009)
+-----
+Se agrega mensaje cunado hay mercadiria solicitada quedar en stock.
+
+
+v1.0: (Javier Ayapata - 17/Mar/2010) 
+-----
+Se agrega los de co_usr autorizacion y maquina 
+
+
+v1.1: (Javier Ayapata - 03/May/2010) 
+-----
+Se agrega cuando se autoriza una sol. que no esta impresa la guia procesa a anular y crear por el restante.
+
+
+v1.2: (Javier Ayapata - 20/May/2010)
+-----
+Se agrega para que presente la observacion de la autorizacion
+
+
+v1.3: (Javier Ayapata - 16/Nov/2010)
+-----
+Se agrega una observacion cuando se reemplaza guia.
+
+
+v1.4: (Javier Ayapata - 27/Abr/2010)
+-----
+Se agrega cuando se autoriza y hay solo items que no ingresan fisicamente ejemp  terminales L
+A exepcion cuando realmente ingrese que no se realize la recepcion en bodega y directamente pase a contabilidad.
+
+
+v1.5: (Javier Ayapata - 16/May/2011) 
+-----
+Se cambia el tipo de documento que genera la guia.
+
+
+v1.6: (Javier Ayapata - 23/Ago/2011)
+-----
+Se corrige cambios al autorizar la solicitud verifique si la mer. ing.fis. a bodega para la recepcion.
+
+
+v1.7: (Javier Ayapata - 23/Sep/2011)
+-----
+Se agrega cambios nuevo esquema Guías-OD
+
+
+v1.8: (Javier Ayapata - 30/Sep/2011)
+-----
+Se corrige el query de consulta de solicitud.
+
+
+v1.9: (Javier Ayapata - 14/Oct/2011)
+-----
+Se corrige al momento de cancelar la solicitud validacion estaba retornando  false cuando debia retornar true.
+
+
+v2.0: (Erik Flores - 01/Feb/2012)
+-----
+ZafVen25_02._getVerificaItmEgrFisBod:  Se corrije condicion, caso en que la totalidad de los items de la solicitud 
+Se volveran a facturar; motivo por el cual pasa directamente a contabilidad y bodega no tiene que confirmar nada
+
+
+v2.1: (Erik Flores - 17/Abr/2012)
+-----
+Devoluciones por descuento especial
+
+
+v2.2: (Erik Flores - 30/Abr/2012)
+-----
+ZafVen25_02._getVerificaItmEgrFisBod:
+ * Se corrige condicion, caso en que la totalidad de los items de la solicitud se volveran a facturar; motivo por el cual
+   pasa directamente a contabilidad y bodega no tiene que confirmar nada
+ZafVen25_02._getVerGenConf:
+ * Se corrige condicion, caso en que la totalidad de los items de la solicitud se volveran a facturar; motivo por el cual
+   pasa directamente a contabilidad y bodega no tiene que confirmar nada
+ZafVen25_02._insertarDetConfEgre
+ * Cuando se este haciendo devoluciones y la cantidad a devolver es igual a la cantidad q se va a volver a facturar no se genera 
+   confirmacion de cantidad nunca recibida, caso contrario se genera una confirmacion por la diferencia.
+
+
+v2.3: (Erik Flores - 11/Jul/2012)
+-----
+Mejoras a devoluciones de venta.
+
+
+v2.4: (Erik Flores - 01/Ago/2012)
+-----
+Devolucion de venta segunda factura con orden de despacho impresa, ningun item entregado.
+
+
+v2.5: (Erik Flores - 05/Nov/2012)
+-----
+Se esta usando el campo nd_CanTotGuiSec de la tabla tbm_detGuiRem para hacer las evaluaciones de los escenarios; 
+Esto hace que falle en los casos de terminales L (No se confirman).
+Se corrige para que en su lugar realice las operaciones SE CORRIGE PARA QUE EN SU LUGAR REALICE LAS OPERACIONES CON LOS CAMPOS ND_CANCON, ND_CANNUNREC DE LA TABLA TBM_DETGUIREM.
+
+
+v2.6: (Erik Flores - 18/Ene/2013) 
+Se verifican y corrigen escenarios faltantes, y nuevos casos reportados por jefe de bodega. 
+
+
+v2.7: (Alex Moran - 31/Ene/2013)
+-----
+Corrección en resulset nulo, valor booleano siempre era falso
+
+
+v2.8: (Alex Moran - 16/Sep/2013)
+-----
+Se verifica y corrije caso items terminales L, caso volver a facturar parcialmente con cantidades confirmadas, no deben pasar por bodega.
+
+
+v2.9: (Alex Moran - 09/Oct/2013)
+-----
+Se modifica para que al momento de autorizar la solicitud de devolución de venta, de existir pendientes de despacho por cliente retira, 
+Se modifique para envío directo a bodega.
+
+
+v3.0: (José Marín - 08/Ago/2014)
+-----
+* Se modifica que no se pueda ni denegar, ni cancelar una devolución que haya estado autorizada, si ya se recibio el material (segundo paso).
+* Cuando tiene volver a facturar y devolución por faltante, rebaja todo y  se queda sin stock a la hora de volver a facturar. Se coloca validación 
+  antes de anular la OD para ver si tiene pendientes en cuyo caso no se anula la OD. 
+  
+
+v3.1: (José Marín - 30/Dic/2015)
+-----
+* Se modifica la anulación automatica de las Solicitudes de devoluciones que esten pendientes o autorizadas de mas de 15 dias (intDiaCanSolDevVen).
+
+
+v3.2: (José Marín - 03/Feb/2016)
+-----
+Se modifica para Cosenco no valide OD ni guias 
+
+
+v3.3: (José Marín - 14/Jul/2016)
+-----
+Se agrega en la funcion procesaDevolucion() el llamado del objeto objZafVen28 para generar la devolucion de venta de forma automática.
+  
+
+v3.4: (Christian Mateo - 15/Jul/2016)
+-----
+Se agrega cambios para el proceso de solicitudes de transferencias de inventario.
+Ventas.ZafVen25.ZafVen25_02.java:    Modificacion de Autorizaciones de devoluciones de venta
+
+
+v3.5: (Christian Mateo - 09/Ago/2016)
+-----
+Se agregan cambios para la autorizacion de solicitudes con opcion volver a facturar.
+Ventas.ZafVen25.ZafVen25_02.java:   _getVerGenConf()
+
+
+v3.6: (José Mario Marín M. - 11/Oct/2016)
+-----
+Se modifica el proceso que genera las Deoluciones de venta Automaticas, se agrega el metodo procesoDevVen().
+
+
+v3.7: (Tony Sanginez - 28/Nov/2016)
+-----
+Se agregan campos al query ya que luego de ejecutarlo los pedia y botaba error.
+Ventas.ZafVen25.ZafVen25_02.java:   _insertarDetConfEgre()
+
+
+v3.8: (Christian Mateo - 07/Dic/2016)
+-----
+Se agregan una columna TIENE GUIA a la consulta y al table para que traiga si la factura que se quiere devolver tiene guia
+
+
+v3.9: (Tony Sanginez - 07/Dic/2016)
+-----
+Al momento de autorizarse se van a imprimir las devoluciones de ventas en las impresoras donde se imprimen las ordenes de despacho. Se agregaron los metodos respectivos para su funcionamiento
+
+
+v4.0: (Tony Sanginez - 12/Dic/2016)
+-----
+Al momento de autorizarse se van a imprimir las devoluciones de ventas en las impresoras donde se imprimen las ordenes de despacho. Se agregaron los metodos respectivos para su funcionamiento. Este cambio fue redisenado para que se impriman en el servicio 01
+
+v4.1: (Christian Mateo - 09-mar-2017)
+-----
+Se mejora el check de guías de remisión de las autorizaciones de solicitud de  devolución
+
+v4.2: (Christian Mateo - 05/May/2017)
+-----
+Se corrige el metodo insertarDetConfEgre para que tome decimales en los campos de nd_canegrbod y nd_candesentcli de la tabla tbm_detmovinv
+y no grababa correctamente en nd_cannunrec
+
+v4.3: (Christian Mateo - 10/Abr/2018)
+-----
+
+Se comenta que envie correo

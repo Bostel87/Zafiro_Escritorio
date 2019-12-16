@@ -1,0 +1,58 @@
+﻿Pendientes:
+1) 
+2) 
+
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Idi Reyes)
+----
+Nueva Clase ZafAutMinMax para controlar rangos al autorizar Documentos.
+
+
+v0.2: (Idi Reyes)
+----
+Correcion de bug
+
+
+v0.3: (Javier Ayapata - 25/Abr/2006)
+----
+Permite ingresar solo una vez el registro de autorizacion en cotizacion de ventas
+
+
+v0.4: (Javier Ayapata - 03/May/2006)
+----
+Se corrigue al generar la autorizacion.
+
+
+v0.5: (Javier Ayapata - 10/Jul/2006)
+----
+Se corrigue al generar la autorizacion que guarde la observacion 
+
+
+v0.6: (Javier Ayapata - 05/Sep/2006)
+----
+Se agrega funcion que permite generar autorizacion si sin que salga la pantalla de problemas 	
+
+
+v0.7: (Javier Ayapata - 07/Sep/2006)
+----
+Se optimiza al momento de generar la outorizacion	
+
+
+v0.8: (Javier Ayapata - 08/Sep/2006)
+---- 
+Se corrigue al momento de autorizar
+
+
+v0.9: (Javier Ayapata - 16/Oct/2006)
+----
+Se corrigue la funcion de autorisar.
+
+
+v1.0: (José Marín - 05/Mar/2014)
+----
+Se permite el paso a la regla 16, pedido a otras bodegas, este permiso se lo ve en ZafVen01_06
+
+

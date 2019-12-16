@@ -1,0 +1,26 @@
+﻿
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Javier Ayapata - 24/Sep/2008)
+----
+Clase nueva.
+"Listado de solicitudes de devolución autorizadas..."
+
+
+v0.2: (Javier Ayapata - 04/Oct/2008)
+-----
+Se agrega la fecha de autorizacion.
+ 
+
+v0.3: (Rosa Zambrano - 14/Dic/2016)
+-----
+Se agrega opciones de copiar, buscar, ordenar solicitado por Ing.Werner Campoverde.
+
+
+v0.4: (Rosa Zambrano - 15/Dic/2016)
+-----
+Se reestructura nuevamente todo el programa.
+Entre las mejoras se agrega filtro de fecha de solicitud y columna Observacion solicitado por Ing.Werner Campoverde.
+
+

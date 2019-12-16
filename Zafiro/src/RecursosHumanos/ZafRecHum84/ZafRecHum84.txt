@@ -1,0 +1,17 @@
+﻿
+CONTROL DE VERSIONES:
+=====================
+
+v1.0: (Tony Sanginez - 04/Jul/2016)
+----
+Clase nueva 
+
+
+v1.1: (Tony Sanginez - 01/Dic/2016)
+-----
+Correcion que hacia que cuando se justificaba un dia se aumentara un dia mas. Validación de botones de Guardar,Cancelar,Cerrar.
+
+
+v1.2: (Tony Sanginez - 02/Dic/2016)
+-----
+Se hizo el cambio respectivo de los codigos de menu para los botones y sus permisos.

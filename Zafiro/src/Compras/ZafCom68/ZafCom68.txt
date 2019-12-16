@@ -1,0 +1,223 @@
+Pendientes:
+1)
+2)
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Ingrid Lino - 01/May/2011)
+----
+Programa que permite configurar los parámetros de importación
+
+v0.1.1: (Ingrid Lino - 23/May/2011)
+----
+Se adicionaron mas columnas de pedido, se ocultan las columnas que no tienen datos para el filtro de items seleccionados. Se adicionó la opción de poder eliminar pedidos.
+
+v0.1.2: (Ingrid Lino - 25/May/2011)
+----
+Se adicionó totales(suma de [peso por cantidad de cada item de la columna seleccionada]) en columnas.
+
+v0.1.3: (Ingrid Lino - 31/May/2011)
+----
+Se agregaron las siguientes opciones: Eliminar filas(estado de eliminado en la db), copiar-pegar, adicionar columnas de valores a importar(4 columnas mas), se edito la columna de peso, filtro terminales.
+
+v0.1.4: (Ingrid Lino - 31/May/2011)
+----
+Se colocó a todas las columnas de cantidad a importar valor cero donde no habia valor(espacio en blanco).
+Esto se hizo por opcion copiar-pegar porque sino no respetaba los espacios en blanco(celdas sin valor) y todos los valores los colocaba
+seguido sin dejar las celdas blancas en blanco donde se pegaba.
+
+v0.1.5: (Ingrid Lino - 01/Jun/2011)
+----
+La carga de los datos estaba mal, no era a "j" sino a "j+1", se cargaban en el modelo los datos en columnas no correctas.
+        for(int j=intNumColIniFecCor; j<intNumColFinFecCor;j++){
+            vecReg.add(j,     "" + rst.getObject(j+1)==null?"0":rst.getString(j+1));
+        }
+Tambien se cambio la forma de presentar el componente de "Ingrese nombre de pedido" para que salga solo en el tab de reporte.
+
+v0.1.6: (Ingrid Lino - 02/Jun/2011)
+----
+El formato de los valores fueron cambiados no a decimales diferentes a cero, sino  que se hace el ajuste a +- entero siguiente anterior.
+Ejm:   52.36   =  52.00                   52.51  =53.00
+
+v0.2: (Ingrid Lino - 09/Abr/2012)
+----
+Se cambia el esquema de cargar la información de los pedidos embarcados, ya no estan como campos en tbm_inv sino que se cargan directamente de los Tipos de Documentos ingresados en el programa de Pedidos Embarcados.
+
+v0.2.1: (Ingrid Lino - 10/Abr/2012)
+----
+Se valida que solo se presenten pedidos embarcados sin haber realizado el ingreso por importacion. Se quita edicion de columnas de pedidos.
+
+v0.2.2: (Ingrid Lino - 24/Abr/2012)
+----
+Se adiciona informacion de notas de pedido que no esten en su totalidad embarcada.
+
+v0.2.3: (Ingrid Lino - 25/Abr/2012)
+----
+Se cambia los campos de lectura del valor del pedido embarcado y la fecha que aparece sobre la tabla ahora es la de arribo.
+
+v0.2.4: (Ingrid Lino - 02/May/2012)
+----
+Se cambia el esquema a piezas de Notas de Pedido y Pedido Embarcado.
+
+v0.2.6: (Ingrid Lino - 26/Jun/2012)
+----
+Se adiciona columna de costos con sus respectivos calculos. Se dejan solo 2 columnas de Pedido y se le coloca a cada una columna de peso, se realizan calculos respectivos.Se calcula segun el costo valores totales en columna promedio anual calculado/manual.
+Se cambia completamente el esquema de totales(se quita ZafTblTot y se maneja esas tablas de totales con ZafTblMod). Se cambia el formato de los numeros en totales(solo valores enteros). etc.
+
+v0.2.6.1: (Ingrid Lino - 26/Jun/2012)
+----
+Se corrige en la tabla de totales, al momento de presentar valores en columna de unidades, habia un error y se iba desplazando hacia las otras columnas.
+
+v0.2.6.2: (Ingrid Lino - 28/Jun/2012)
+----
+En columnas de Pedido se cambia el formato del numero a sin decimales. Se totaliza columnas de HistoricoTotales, stock, pedidos en curso, pedidos, basados en costos.
+
+v0.2.6.3: (Ingrid Lino - 28/Jun/2012)
+----
+Fernando solicita que la presentacion de los historicos de ventas se presente en orden ascendente segun el año y mes. Al cambiar en la tabla donde se muestran
+los años y meses a seleccionar, se cambio automaticamente el orden de esa informacion en las columnas de la tabla de datos, Fernando solicito que en la tabla de
+historicos sea de orden DESCENDENTE(2012 Junio, 2012 Mayo, etc)  y en la tabla de datos se en orden ASCENDENTE(2011 Noviembre, 2011 Septiembre, etc).
+
+v0.2.6.4: (Ingrid Lino - 03/Jul/2012)
+----
+Se adiciona la bodega de inmaconsa en los queries que presentan informacion de Stock Actual.
+
+v0.2.6.5: (Ingrid Lino - 04/Jul/2012)
+----
+Se corrige funcion de calcular peso cuando se cambia la cantidad del pedido, no estaba colocando en la columna adecuada. Tambien al momento de cambiar valor en premedio manual se estaba poniendo en cantidad a importar, se quita esto.
+
+v0.2.7: (Ingrid Lino - 21/Ago/2012)
+----
+Se comenta el codigo del método tblDatFocusGained y tblFixFocusGained porque no estaban permitiendo seleccionar todo el contenido.
+
+v0.2.8: (Ingrid Lino - 23/Ago/2012)
+----
+Don Luigui solicita que en la columna de Totales.Unidades, en la fila donde se visuliza los totales :"Totales - peso" se totalice también.
+
+v0.2.9: (Ingrid Lino - 18/Sep/2012)
+----
+Se adiciona en el filtro del query q no se presenten datos de Notas de Pedido Cerradas, esto se hizo para no mostrar las cantidades que ya no se van a embarcar y no traigan confusion a los q hacen reposicion por importacion.
+
+v0.2.10: (Ingrid Lino - 09/Ene/2013)
+----
+Se adiciona el botón con opción de poder exportar a excel. Se envian solo campos de codigoAlternoItem, nombre, pesoItem, cantidadReponer1, pesoTotal.
+
+v0.3: (Ingrid Lino - 29/Abr/2013)
+----
+Se adiciona codificación para agregar "Pedidos Previos" en la configuración.
+
+v0.3.1: (Ingrid Lino - 30/Abr/2013)
+----
+Se adiciona el calculo de tabla de totales(peso  y costo) y se esconden bien las columnas de totales porque no se escondian bien y al mostrar la informacion la presentaba en la columna pero se veia desfasada y daba a interpretar de manera erronea.
+
+v0.3.2: (Ingrid Lino - 02/May/2013)
+----
+Se corrige calculos de "Promedio anual", el 'Calculado' se estaba recalculando erroneamente.
+
+v0.3.3: (Ingrid Lino - 11/Jun/2013)
+----
+Se agregan columnas para determinar si el item esta marcado como eliminado al visualizarlo, se agrega opción para activar/desactivar a través de un checkbox. Se cambia el esquema de calculos en tabla de totales(mejorar rendimiento).
+
+v0.4: (Ingrid Lino - 15/Jul/2013)
+----
+Se programan las siguientes funcionalidades:
+    -Permitir eliminar Notas de pedido previas
+    -Cambiar esquema de cálculos porque se demoraba mucho cuando el usuario digitaba un valor
+    -Si la Nota de pedido previa ya existe y se la está tratando de insertar nuevamente, se agregan los items a la ya existente
+    -Se agregan cantidades y cálculos de TM(peso). Se agrega selector para saber si es por pieza o por tm.
+
+v0.4.1: (Ingrid Lino - 15/Jul/2013)
+----
+Se valida que cuando se modifique una nota de pedido previa, si el valor es cero o nulo, se actualiza el registro con esa cantidad, pero al mismo tiempo se elimina ese registro porque no deben quedar registros con valor "cero".
+
+v0.4.2: (Ingrid Lino - 15/Jul/2013)
+----
+Se redondea a mas la cantidad de piezas para que quede sin efecto los decimales.(Cuando se ingresa por PESO).
+
+v0.4.3: (Ingrid Lino - 23/Jul/2013)
+----
+En función agregarColumnasPedidosEmbarcados en if(i<(intNumColAddPedEmb)-1)  antes se restaba -2  y solo era de restarle -1.
+
+v0.4.4: (Ingrid Lino - 09/Sep/2013)
+----
+Se adiciona la columna de codigoAlterno2   en la tabla fija y en la tabla de datos(ocultas). Solicitado por AP de manera urgente.
+
+v0.4.5: (Ingrid Lino - 08/Ene/2014)
+----
+Se añade restricción de visualiación para botón Guardar, Eliminar nota de pedido previa y exportar a excel.
+
+v0.4.6: (Ingrid Lino - 07/Jul/2014)
+----
+En la línea 7781, no se estaba validando si el dato es String, daba problemas al momento de guardar.
+
+v0.4.7: (Ingrid Lino - 27/Nov/2014)
+----
+Se adicionan las bodegas de Cuenca, Proyectos, ComprasLocales en "AND co_bodGrp IN(1,2,3,5,11,15,28,26,4)";//28,26,4 Solicitado por AP.
+
+v0.4.8: (Ingrid Lino - 09/Ene/2015)
+----
+Se cambia el esquema de enteros a decimales del JSpinner(Número de meses a reponer).
+
+v0.4.9: (Ingrid Lino - 28/Abr/2015)
+----
+Se diferencia el valor de la bodega de compras locales de la columna "stock" y se coloca este valor en la columna de importaciones que ahora se llamará "Importaciones/compras locales"
+
+v0.4.10: (Ingrid Lino - 05/Jun/2015)
+----
+Se adiciona opción de edición de columna "Promedio anual- manual" según solicitud de AP. Esta opción es configurable.
+
+v0.4.11: (Ingrid Lino - 25/Nov/2015)
+----
+Se quita la bodega 26: Proyectos por solicitud de Werner Campoverde.
+
+v0.4.12: (Rosa Zambrano - 17/Feb/2016)
+----
+Se agrega la bodega 31: Inmaconsa 2 por solicitud de Alfredo Paulson.
+
+v0.4.13: (Ingrid Lino - 19/Jul/2016)
+----
+Implementacion de nuevo proceso de solicitudes de transferencia de inventario.
+
+v0.4.14: (Rosa Zambrano - 27/Jul/2016)
+----
+Se envia objeto de seguimiento al momento de insertar.
+
+v0.4.15: (Ingrid Lino - 26/Abr/2017)
+----
+Se cambia el valor que se presenta en el valor de costo unitario por el valor de (precio unitario * 0.75). Solicitado por LSC el 26Abr2017.
+
+
+v0.4.16: (Ingrid Lino - 27/Abr/2017)
+----
+Se cambian labels y costos a labels de precios, se añade en fila de totales de precio de venta para las columnas de Reposición.
+
+v0.4.17: (Ingrid Lino - 12/May/2017)
+----
+Se adiciona en filas de totales para la fila de ventas y de peso. Solicitado por AP.
+
+v0.4.18: (Ingrid Lino - 16May/2017)
+----
+Se cambia el label para la columna de precio de venta en el panel fijado.
+
+v0.4.19: (Ingrid Lino - 05/Sep/2017)
+----
+En el evento de Pegar estaba dando problemas porque la la asignación a la variable "intFilSelCop=intFilEli" sólo estaba haciendose en el 
+evento "objTblPopMnu.isClickCopiar()", para que no genere excepción y presente el mensaje de ingreso de nombre de pedido
+, se colocó esa asignación a la variable fuera.
+
+v0.4.21: (Ingrid Lino - 28/Nov/2017)
+----
+Se agrega la bodega de Durán en la columna de stock
+
+v0.4.22: (Ingrid Lino - 04/May/2018)
+----
+Se adiciona 3 panes de históricos de ventas, 3 promedios calculados adicionales, etc solicitados por Alfredo Paulson, autorizados por LSC.
+
+v0.4.23: (Ingrid Lino - 11/May/2018)
+----
+Cambios y correcciones en las tablas de totales y en las columnas de totales y de calculados.
+
+v0.4.24: (Ingrid Lino - 15/May/2018)
+----
+Se realizan cambios para corregir cálculos de valores por cambios de columnas nuevas que se adicionaron para stock inial y calculados.

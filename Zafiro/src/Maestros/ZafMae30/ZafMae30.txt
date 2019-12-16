@@ -1,0 +1,16 @@
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Ingrid Lino - 26/Ene/2009)
+----
+Se creo clase para permisos de reportes de sistema por programa y usuario.
+
+
+v0.2: (Rosa Zambrano - 11/May/2015)
+-----
+Se corrige función eliminar_tbrRptSisUsr() para que valide la empresa, local, menu y usuario antes de eliminar.
+
+
+v0.3: (Rosa Zambrano - 09/Jun/2015)
+-----
+Se corrige función consultarReg() para que consulte co_mnu y co_usr con el signo = en vez de like ''.

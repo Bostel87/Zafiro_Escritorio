@@ -1,0 +1,302 @@
+
+----------------------------------------------------------------------------------
+
+//                que+="Select ";
+//                que+=" sum(nd_mondeb-nd_monhab) as saldo";
+//                que+=" From";
+//                que+=" tbm_cabdia as cab left outer join tbm_detdia as det";
+//                que+=" on (cab.co_emp = det.co_emp and cab.co_loc = det.co_loc and cab.co_tipdoc = det.co_tipdoc";
+//                que+=" and cab.co_dia=det.co_dia)";
+//                que+=" left outer join tbm_cabtipdoc as tipdoc";
+//                que+=" on (cab.co_emp=tipdoc.co_emp and  cab.co_loc = tipdoc.co_loc and cab.co_tipdoc=tipdoc.co_tipdoc)";
+//                que+=" left outer join";
+//                que+=" ((Select cabmov.co_emp,det.co_dia,cabmov.co_tipdoc,det.co_cta, tipdoc.tx_descor,";
+//                que+=" cabmov.ne_numdoc, cabmov.tx_nomcli, cabmov.ne_numgui as ne_numdoc2";
+//                que+=" From tbm_cabmovinv as cabmov left outer join tbm_cabtipdoc as tipdoc";
+//                que+=" on (cabmov.co_emp=tipdoc.co_emp and  cabmov.co_loc = tipdoc.co_loc";
+//                que+=" and cabmov.co_tipdoc=tipdoc.co_tipdoc)";
+//                que+=" left outer join tbm_detdia as det";
+//                que+=" on (cabmov.co_emp = det.co_emp and cabmov.co_loc = det.co_loc";
+//                que+=" and cabmov.co_tipdoc = det.co_tipdoc and cabmov.co_doc=det.co_dia)";
+//                que+=" Where det.co_emp =" + objZafParSis.getCodigoEmpresa() + "";
+//                que+=" and det.co_cta=" + txtCodCta.getText() + ")";
+//                que+=" UNION";
+//                que+=" (Select cabmov.co_emp,det.co_dia,cabmov.co_tipdoc,det.co_cta, tipdoc.tx_descor,";
+//                que+=" cabmov.ne_numdoc1 as ne_numdoc, cabmov.tx_nomcli, cabmov.ne_numdoc2 as ne_numdoc2";
+//                que+=" From tbm_cabpag as cabmov left outer join tbm_cabtipdoc as tipdoc";
+//                que+=" on (cabmov.co_emp=tipdoc.co_emp and  cabmov.co_loc = tipdoc.co_loc";
+//                que+=" and cabmov.co_tipdoc=tipdoc.co_tipdoc)";
+//                que+=" left outer join tbm_detdia as det";
+//                que+=" on (cabmov.co_emp = det.co_emp and cabmov.co_loc = det.co_loc";
+//                que+=" and cabmov.co_tipdoc = det.co_tipdoc and cabmov.co_doc=det.co_dia)";
+//                que+=" Where det.co_emp =" + objZafParSis.getCodigoEmpresa() + "";
+//                que+=" and det.co_cta=" + txtCodCta.getText() + "";
+//                que+=" group by  cabmov.co_emp, det.co_dia, cabmov.co_tipdoc, det.co_cta, tipdoc.tx_descor,";
+//                que+=" ne_numdoc,cabmov.ne_numdoc2, cabmov.tx_nomcli";
+//                que+=" )";
+//                que+=" ) as a1";
+//                que+=" on (det.co_emp=a1.co_emp and det.co_cta=a1.co_cta and cab.co_tipdoc=a1.co_tipdoc";
+//                que+=" and cab.co_dia=a1.co_dia)";
+//                que+=" left outer join tbm_placta  as plan  on(plan.co_emp = det.co_emp  and plan.co_cta=det.co_cta)";
+//                que+=" Where cab.co_emp =" + objZafParSis.getCodigoEmpresa() + "";
+//                que+=" and cab.st_reg ='A' and plan.tx_tipcta='D'";
+//                que+=" and cab.fe_dia BETWEEN " + strFechaInicial + "";
+//                que+=" AND " + strFechaFinal + "";
+//                que+=" and det.co_cta=" + txtCodCta.getText() + "";                
+
+
+-----------------------------------------------------------------------
+Query del iReport
+/*OBTENER LOS DATOS DE tbm_cabMovInv.*/
+/*SELECT a2.fe_dia, a2.co_dia, a4.tx_desCor, a1.ne_numDoc, Null AS ne_numDoc2, a1.tx_nomCli, a2.tx_glo, 
+SUM(a3.nd_monDeb) as monDeb, SUM(a3.nd_monHab) as monHab, sum(nd_mondeb-nd_monhab) as saldo
+FROM tbm_cabMovInv AS a1
+INNER JOIN tbm_cabDia AS a2 ON (a1.co_emp=a2.co_emp AND a1.co_loc=a2.co_loc AND a1.co_tipDoc=a2.co_tipDoc AND a1.co_doc=a2.co_dia)
+INNER JOIN tbm_detDia AS a3 ON (a2.co_emp=a3.co_emp AND a2.co_loc=a3.co_loc AND a2.co_tipDoc=a3.co_tipDoc AND a2.co_dia=a3.co_dia)
+INNER JOIN tbm_cabTipDoc AS a4 ON (a2.co_emp=a4.co_emp AND a2.co_loc=a4.co_loc AND a2.co_tipDoc=a4.co_tipDoc)
+WHERE a2.co_emp=$P{co_emp}
+AND a3.co_cta=$P{co_codcta}
+AND (a2.fe_dia BETWEEN $P{fecha_ini} AND $P{fecha_fin})
+AND a2.st_reg='A'
+GROUP BY a2.fe_dia, a2.co_dia, a4.tx_desCor, a1.ne_numDoc, a1.tx_nomCli, a2.tx_glo
+UNION ALL*/
+/*OBTENER LOS DATOS DE tbm_cabPag.*/
+/*SELECT a2.fe_dia, a2.co_dia, a4.tx_desCor, a1.ne_numDoc1, a1.ne_numDoc2, a1.tx_nomCli, a2.tx_glo, 
+SUM(a3.nd_monDeb) as monDeb, SUM(a3.nd_monHab) as monHab, sum(nd_mondeb-nd_monhab) as saldo
+FROM tbm_cabPag AS a1
+LEFT OUTER JOIN tbm_cabDia AS a2 ON (a1.co_emp=a2.co_emp AND a1.co_loc=a2.co_loc AND a1.co_tipDoc=a2.co_tipDoc AND a1.co_doc=a2.co_dia)
+INNER JOIN tbm_detDia AS a3 ON (a2.co_emp=a3.co_emp AND a2.co_loc=a3.co_loc AND a2.co_tipDoc=a3.co_tipDoc AND a2.co_dia=a3.co_dia)
+INNER JOIN tbm_cabTipDoc AS a4 ON (a2.co_emp=a4.co_emp AND a2.co_loc=a4.co_loc AND a2.co_tipDoc=a4.co_tipDoc)
+WHERE a2.co_emp=$P{co_emp} 
+AND a3.co_cta=$P{co_codcta}
+AND (a2.fe_dia BETWEEN $P{fecha_ini} AND $P{fecha_fin})
+AND a2.st_reg='A'
+GROUP BY a2.fe_dia, a2.co_dia, a4.tx_desCor, a1.ne_numDoc1, a1.ne_numDoc2, a1.tx_nomCli, a2.tx_glo
+ORDER BY fe_dia, tx_desCor, ne_numDoc*/
+    
+
+
+
+27-Dic-2006
+private boolean cargarDetReg()
+    {
+        int intCodEmp, intCodLoc, intNumTotReg, i;
+        double dblSub, dblIva;
+        boolean blnRes=true;
+        double dblSalAcu=0.00, dblSalAct=0.00, dblSalAnt=0.00;
+        try
+        {
+            butRepTbl.setText("Detener");
+            lblMsgSis.setText("Obteniendo datos...");
+            intCodEmp=objParSis.getCodigoEmpresa();
+            intCodLoc=objParSis.getCodigoLocal();
+            strFechaInicial = "'"+ objUti.formatearFecha(txtFecIni.getText(),"dd/MM/yyyy","yyyy/MM/dd")+"'";
+            strFechaFinal   = "'"+ objUti.formatearFecha(txtFecFin.getText(),"dd/MM/yyyy","yyyy/MM/dd")+"'";            
+            con=DriverManager.getConnection(objParSis.getStringConexion(), objParSis.getUsuarioBaseDatos(), objParSis.getClaveBaseDatos());
+            
+            Font f = new Font( "Helvetica",Font.BOLD,12 );
+            
+            if (con!=null)
+            {
+                stm=con.createStatement();
+                //Obtener la condicián.
+//                strAux="";
+//                if (txtCodCta.getText().length()>0)
+//                    strAux+=" AND a3.co_cta=" + txtCodCta.getText();
+                //Obtener el námero total de registros.
+                strSQL="";
+                strSQL+="SELECT COUNT(*)";
+                strSQL+=" From";
+                strSQL+=" tbm_cabdia as cab left outer join tbm_detdia as det";
+                strSQL+=" on (cab.co_emp = det.co_emp and cab.co_loc = det.co_loc and cab.co_tipdoc = det.co_tipdoc";
+                strSQL+=" and cab.co_dia=det.co_dia)";
+                strSQL+=" left outer join tbm_cabtipdoc as tipdoc";
+                strSQL+=" on (cab.co_emp=tipdoc.co_emp and  cab.co_loc = tipdoc.co_loc and cab.co_tipdoc=tipdoc.co_tipdoc)";
+                strSQL+=" left outer join";
+                strSQL+=" ((Select cabmov.co_emp,det.co_dia,cabmov.co_tipdoc,det.co_cta, tipdoc.tx_descor,";
+                strSQL+=" cabmov.ne_numdoc, cabmov.tx_nomcli, null as ne_numdoc2";
+                strSQL+=" From tbm_cabmovinv as cabmov left outer join tbm_cabtipdoc as tipdoc";
+                strSQL+=" on (cabmov.co_emp=tipdoc.co_emp and  cabmov.co_loc = tipdoc.co_loc";
+                strSQL+=" and cabmov.co_tipdoc=tipdoc.co_tipdoc)";
+                strSQL+=" left outer join tbm_detdia as det";
+                strSQL+=" on (cabmov.co_emp = det.co_emp and cabmov.co_loc = det.co_loc";
+                strSQL+=" and cabmov.co_tipdoc = det.co_tipdoc and cabmov.co_doc=det.co_dia)";
+                strSQL+=" Where det.co_emp =" + objParSis.getCodigoEmpresa() + "";
+                strSQL+=" and det.co_cta=" + txtCodCta.getText() + " and cabmov.st_reg in ('A','C','R', 'F'))";
+                strSQL+=" union";
+                strSQL+=" (Select cabmov.co_emp,det.co_dia,cabmov.co_tipdoc,det.co_cta, tipdoc.tx_descor,";
+                strSQL+=" cabmov.ne_numdoc1 as ne_numdoc, cabmov.tx_nomcli, cabmov.ne_numdoc2 as ne_numdoc2";
+                strSQL+=" From tbm_cabpag as cabmov left outer join tbm_cabtipdoc as tipdoc";
+                strSQL+=" on (cabmov.co_emp=tipdoc.co_emp and  cabmov.co_loc = tipdoc.co_loc";
+                strSQL+=" and cabmov.co_tipdoc=tipdoc.co_tipdoc)";
+                strSQL+=" left outer join tbm_detdia as det";
+                strSQL+=" on (cabmov.co_emp = det.co_emp and cabmov.co_loc = det.co_loc";
+                strSQL+=" and cabmov.co_tipdoc = det.co_tipdoc and cabmov.co_doc=det.co_dia)";
+                strSQL+=" Where det.co_emp =" + objParSis.getCodigoEmpresa() + "";
+                strSQL+=" and det.co_cta=" + txtCodCta.getText() + " and cabmov.st_reg in ('A')";
+                strSQL+=" group by  cabmov.co_emp, det.co_dia, cabmov.co_tipdoc, det.co_cta, tipdoc.tx_descor,";
+                strSQL+=" ne_numdoc,cabmov.ne_numdoc2, cabmov.tx_nomcli";
+                strSQL+=" )";
+                strSQL+=" ) as a1";
+                strSQL+=" on (det.co_emp=a1.co_emp and det.co_cta=a1.co_cta and cab.co_tipdoc=a1.co_tipdoc";
+                strSQL+=" and cab.co_dia=a1.co_dia)";
+                strSQL+=" left outer join tbm_placta  as plan  on(plan.co_emp = det.co_emp  and plan.co_cta=det.co_cta)";
+                strSQL+=" Where cab.co_emp =" + objParSis.getCodigoEmpresa() + "";
+                strSQL+=" and plan.tx_tipcta='D'";
+                strSQL+=" and cab.fe_dia BETWEEN " + strFechaInicial + " AND " + strFechaFinal + "";
+                strSQL+=" and det.co_cta=" + txtCodCta.getText() + "";
+                System.out.println("SQL de contador:"+strSQL);
+                intNumTotReg=objUti.getNumeroRegistro(this, objParSis.getStringConexion(), objParSis.getUsuarioBaseDatos(), objParSis.getClaveBaseDatos(), strSQL);
+                if (intNumTotReg==-1)
+                    return false;
+                
+                //Armar la sentencia SQL.
+                strSQL="";
+                strSQL+="Select cab.co_emp, cab.co_loc, cab.fe_dia,tipdoc.tx_descor as descrip,a1.tx_descor,ne_numdoc,";
+                strSQL+=" tx_nomcli,tx_glo,sum(nd_mondeb) as monDeb,sum(nd_monhab) as monHab,sum(nd_mondeb-nd_monhab) as saldo";
+                strSQL+=" , a1.ne_numdoc2";                
+                strSQL+=" From";
+                strSQL+=" tbm_cabdia as cab left outer join tbm_detdia as det";
+                strSQL+=" on (cab.co_emp = det.co_emp and cab.co_loc = det.co_loc and cab.co_tipdoc = det.co_tipdoc";
+                strSQL+=" and cab.co_dia=det.co_dia)";
+                strSQL+=" left outer join tbm_cabtipdoc as tipdoc";
+                strSQL+=" on (cab.co_emp=tipdoc.co_emp and  cab.co_loc = tipdoc.co_loc and cab.co_tipdoc=tipdoc.co_tipdoc)";
+                strSQL+=" left outer join";
+                strSQL+=" ((Select cabmov.co_emp, cabmov.co_loc, det.co_dia,cabmov.co_tipdoc,det.co_cta, tipdoc.tx_descor,";
+                strSQL+=" cabmov.ne_numdoc, cabmov.tx_nomcli, null as ne_numdoc2";
+                strSQL+=" From tbm_cabmovinv as cabmov left outer join tbm_cabtipdoc as tipdoc";
+                strSQL+=" on (cabmov.co_emp=tipdoc.co_emp and  cabmov.co_loc = tipdoc.co_loc";
+                strSQL+=" and cabmov.co_tipdoc=tipdoc.co_tipdoc)";
+                strSQL+=" left outer join tbm_detdia as det";
+                strSQL+=" on (cabmov.co_emp = det.co_emp and cabmov.co_loc = det.co_loc";
+                strSQL+=" and cabmov.co_tipdoc = det.co_tipdoc and cabmov.co_doc=det.co_dia)";
+                strSQL+=" Where det.co_emp =" + objParSis.getCodigoEmpresa() + "";
+                strSQL+=" and det.co_cta=" + txtCodCta.getText() + " and cabmov.st_reg in ('A','C','R', 'F'))";
+                strSQL+=" union";
+                strSQL+=" (Select cabmov.co_emp, cabmov.co_loc,det.co_dia,cabmov.co_tipdoc,det.co_cta, tipdoc.tx_descor,";
+                strSQL+=" cabmov.ne_numdoc1 as ne_numdoc, cabmov.tx_nomcli, cabmov.ne_numdoc2 as ne_numdoc2";
+                strSQL+=" From tbm_cabpag as cabmov left outer join tbm_cabtipdoc as tipdoc";
+                strSQL+=" on (cabmov.co_emp=tipdoc.co_emp and  cabmov.co_loc = tipdoc.co_loc";
+                strSQL+=" and cabmov.co_tipdoc=tipdoc.co_tipdoc)";
+                strSQL+=" left outer join tbm_detdia as det";
+                strSQL+=" on (cabmov.co_emp = det.co_emp and cabmov.co_loc = det.co_loc";
+                strSQL+=" and cabmov.co_tipdoc = det.co_tipdoc and cabmov.co_doc=det.co_dia)";
+                strSQL+=" Where det.co_emp =" + objParSis.getCodigoEmpresa() + "";
+                strSQL+=" and det.co_cta=" + txtCodCta.getText() + " and cabmov.st_reg in ('A')";
+                strSQL+=" group by  cabmov.co_emp, cabmov.co_loc, det.co_dia, cabmov.co_tipdoc, det.co_cta, tipdoc.tx_descor,";
+                strSQL+=" ne_numdoc,cabmov.ne_numdoc2, cabmov.tx_nomcli";
+                strSQL+=" )";
+                strSQL+=" ) as a1";
+                strSQL+=" on (det.co_emp=a1.co_emp and det.co_cta=a1.co_cta and cab.co_tipdoc=a1.co_tipdoc";
+                strSQL+=" and cab.co_dia=a1.co_dia)";
+                strSQL+=" left outer join tbm_placta  as plan  on(plan.co_emp = det.co_emp  and plan.co_cta=det.co_cta)";
+                strSQL+=" Where cab.co_emp =" + objParSis.getCodigoEmpresa() + "";
+                strSQL+=" and plan.tx_tipcta='D'";
+                strSQL+=" and cab.fe_dia BETWEEN " + strFechaInicial + " AND " + strFechaFinal + "";
+                strSQL+=" and det.co_cta=" + txtCodCta.getText() + "";
+                strSQL+=" group by ne_numdoc,";
+                strSQL+=" cab.co_emp, cab.co_loc, cab.fe_dia,cab.co_dia,tipdoc.tx_descor, a1.tx_descor,";
+                strSQL+=" tx_nomcli,tx_glo";
+                strSQL+=" ,ne_numdoc2";
+                strSQL+=" Order by cab.fe_dia,a1.tx_descor,ne_numdoc";                                
+                System.out.println("SQL:"+strSQL);
+                rst=stm.executeQuery(strSQL);
+                //Limpiar vector de datos.
+                vecDat.clear();
+                //Obtener los registros.
+                lblMsgSis.setText("Cargando datos...");
+                pgrSis.setMinimum(0);
+                pgrSis.setMaximum(intNumTotReg);
+                pgrSis.setValue(0);
+                i=0;
+                while (rst.next())
+                {
+                    if (blnCon)
+                    {
+                        vecReg=new Vector();
+                        vecReg.add(INT_TBL_LIN,"");
+                        vecReg.add(INT_TBL_FEC_DIA,rst.getString("fe_dia"));
+                        vecReg.add(INT_TBL_COD_DIA,"");
+                        vecReg.add(INT_TBL_DES,rst.getString("descrip"));                                                
+                        vecReg.add(INT_TBL_NUM_DOC,rst.getString("ne_numdoc"));                        
+                        vecReg.add(INT_TBL_NUM_CHQ,rst.getString("ne_numdoc2"));
+                        
+                        String strNomCli=rst.getString("tx_nomcli");
+                        System.out.println("NOMBRE DEL CLIENTE O GLOSA??:"+strNomCli);
+                        if(strNomCli==null){
+                            vecReg.add(INT_TBL_NOM_CLI,rst.getString("tx_glo"));
+                            System.out.println("IN GLOSA");
+                        }                                                    
+                        else{
+                            vecReg.add(INT_TBL_NOM_CLI,rst.getString("tx_nomcli"));                            
+                            System.out.println("IN NOMBRECLI");
+                        }                                                    
+                        vecReg.add(INT_TBL_MON_DEB,rst.getString("monDeb"));
+                        vecReg.add(INT_TBL_MON_HAB,rst.getString("monHab"));
+                        vecReg.add(INT_TBL_SAL,rst.getString("saldo"));
+                        vecDat.add(vecReg); 
+                        i++;
+                        pgrSis.setValue(i);
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                rst.close();
+                stm.close();
+                con.close();
+                rst=null;
+                stm=null;
+                con=null;
+                //Asignar vectores al modelo.
+                objTblMod.setData(vecDat);
+                tblDat.setModel(objTblMod);
+                vecDat.clear();
+                System.out.println("EN VARIABLE:"+intNumTotReg);
+                System.out.println("EN TABLA:"+tblDat.getRowCount());
+                if (tblDat.getRowCount()==tblDat.getRowCount())
+                    lblMsgSis.setText("Se encontraron " + tblDat.getRowCount() + " registros.");
+                else
+                    lblMsgSis.setText("Se encontraron " + intNumTotReg + " registros pero sálo se procesaron " + tblDat.getRowCount() + ".");
+                pgrSis.setValue(0);
+                butRepTbl.setText("Generar datos");
+                objTblTot.calcularTotales();                            
+                
+                //PARA SALDO ACTUAL
+                dblSalAct=retSalAct();
+                System.out.println("EL SALDO ACTUAL ES:"+dblSalAct);
+                txtSal.setText("" + objUti.redondear(dblSalAct,objParSis.getDecimalesMostrar()));
+                txtSal.setText("" + objUti.formatearNumero(dblSalAct, "###,###.##", true));
+                txtSal.setFont(f);
+                txtSal.setEnabled(false);
+                
+                //PARA SALDO ANTERIOR                
+                dblSalAnt=retSalAnt();
+                System.out.println("EL SALDO ANTERIOR ES:"+dblSalAnt);                                                
+                txtSalAnt.setText("" + objUti.redondear(dblSalAnt,objParSis.getDecimalesMostrar()));
+                txtSalAnt.setText("" + objUti.formatearNumero(dblSalAnt, "###,###.##", true));
+                txtSalAnt.setFont(f);
+                txtSalAnt.setEnabled(false);
+
+                //PARA SALDO ACUMULADO
+                dblSalAcu=dblSalAnt+dblSalAct;
+                System.out.println("EL SALDO ACUMULADO ES:"+dblSalAcu);                                                
+                txtSalAcu.setText("" + objUti.redondear(dblSalAcu,objParSis.getDecimalesMostrar()));
+                txtSalAcu.setText("" + objUti.formatearNumero(dblSalAcu, "###,###.##", true));
+                txtSalAcu.setFont(f);
+                txtSalAcu.setEnabled(false);
+            }
+        }
+        catch (java.sql.SQLException e)
+        {
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        catch (Exception e)
+        {
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        return blnRes;
+    }   

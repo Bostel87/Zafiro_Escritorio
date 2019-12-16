@@ -1,0 +1,243 @@
+﻿Pendientes:
+1) Unificación NP, PE, II.
+2)
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Ingrid Lino - 15/Mar/2012)
+----
+Programa que permite ingresar las Notas de Pedido
+
+v0.1.1: (Ingrid Lino - 16/Mar/2012)
+----
+Se quita todo campo o relación con tabla creada para puertos porque se va a trabajar con tabla de ciudades.
+
+v0.1.2: (Ingrid Lino - 02/Abr/2012)
+----
+Se realizan cambios para en lugar de tomar el valor de la nota de pedido como principal, se toma el valor de la pieza, se realizan cambios basado en esto.
+
+v0.1.3: (Ingrid Lino - 17/Abr/2012)
+----
+Nada.
+
+v0.1.4: (Ingrid Lino - 25/Abr/2012)
+----
+Se adiciona campo de fecha de arribo y se cambia esquema a valor de pieza y no tonelada metrica.
+
+v0.2: (Ingrid Lino - 02/May/2012)
+----
+Se cambia el esquema a piezas
+
+v0.2.1: (Ingrid Lino - 04/May/2012)
+----
+Se quita la funcion seteaColumnaPiezas();
+
+v0.2.2: (Ingrid Lino - 12/Jul/2012)
+----
+Se cambio en el reporte de impresion el valor en palabras. Antes se presentaba el valor del documento y Alfredo y Karem solicitaron que fuera el valor del CFR.
+Se añade en el reporte el Tnan.
+
+v0.2.3: (Ingrid Lino - 24/Jul/2012)
+----
+Se cambia el formato de impresion. Se coloca Tabla de Totales de las columnas y se quita lo que estaba anterior a eso, tambien se presenta el valor correcto en la columna segun sea TM o PZA.(solicitado por Alfredo).
+
+v0.2.4: (Ingrid Lino - 13/Ago/2012)
+----
+Se cambia en el query del reporte el campo de tbm_expImp, para el reporte del seguro de muestra tx_nom2 y para el reporte interno tx_nom.
+
+v0.2.5: (Ingrid Lino - 22/Ago/2012)
+----
+Se comenta la creación de cuentas en la Nota de Pedido porque no esta aun relacionado con el Pedido Embarcado y estaba generando cuentas en Nota de Pedido y Pedido Embarcado.
+
+v0.2.6: (Ingrid Lino - 24/Sep/2012)
+----
+Se adiciona un filtro en el formulario para poder modificar fecha de embarque y arribo, incluyendo si el documento esta cerrado.
+
+v0.2.8: (Ingrid Lino - 11/Oct/2012)
+----
+Se corrige problema al momento de guardar cambios en fecha arribo/embarque
+
+v0.3: (Ingrid Lino - 29/Abr/2013)
+----
+Se adiciona codificación para agregar "Pedidos Previos". El ingreso se lo realiza a través de los datos presentados en botón de Pedidos Previos.
+
+v0.3.1: (Ingrid Lino - 04/Jun/2013)
+----
+Se activa la edicion de la columna de Toneladas Metricas.
+
+v0.3.2: (Ingrid Lino - 11/Jun/2013)
+----
+Se comenta en funcion objCom75_02.getCalcularPesoTotal()  se comenta el codigo que valida el TIPO de Nota de Pedido, antes dependia de TM o PZA para calcular el Peso Total, según lo conversado con AP, siempre debe ir con la PZA.
+
+v0.3.3: (Ingrid Lino - 15/Jul/2013)
+----
+Se agrega en el programa que al momento de seleccionar la nota de pedido previa, se cargue tambien la TM.
+
+v0.4: (Ingrid Lino - 16/Ago/2013)
+----
+Se adiciona un constructor de consulta para poder ser llamada la pantalla desde otros programas a manera de consulta.
+
+v0.4.1: (Ingrid Lino - 10/Oct/2013)
+----
+Se quitan campos que habian sido agregados para forma de pago, estos se agregaron en el Pedido Embarcado y ya no en la Nota de Pedido.
+
+v0.4.2: (Ingrid Lino - 19/Nov/2013)
+----
+Se agrega opción a través del menú del sistema, para poder eliminar items(código 3781)
+
+v0.4.3: (Ingrid Lino - 15/Oct/2014)
+----
+Se agrega en el proceso la creación de cuentas de activo y pasivo.
+
+v0.4.4: (Ingrid Lino - 27/Nov/2014)
+----
+Se cambia en txtNomExp2.getText() por txtNomExp.getText() al momento de crear la cuenta contable.
+
+v0.4.5: (Ingrid Lino - 11/Dic/2014)
+----
+Se cambia en el método de factor de flete y calcular flete cuando es TM FOB/CFR antes cantidad(Nota Pedido), Alfredo Paulson indica que debe ser cantidad de tonelada metrica.
+
+v0.4.6: (Ingrid Lino - 14/Abr/2015)
+----
+Se adiciona codificación para Compras Locales.
+
+v0.4.7: (Ingrid Lino - 30/Abr/2015)
+----
+Nuevo formato de impresión para Compras Locales(Bodega).
+
+v0.4.8: (Ingrid Lino - 26/Jun/2015)
+----
+Se realizan cambios para calcular la columna de Arancel, si arancel=0 en cargo a pagar se toma columna "Valor CFR ARA", y si arancel!=0 en tabla de cargos a pagar entonces es la formula anterior quitandole el 1 + (....) se quita el "uno mas"
+
+v0.4.9: (Ingrid Lino - 13/Nov/2015)
+----
+Se añade método isValPreVta para verificar si existen items que reflejen valores menores al margen de precio de venta. Solicitado por LSC y AP.
+
+v0.4.10: (Ingrid Lino - 13/Nov/2015)
+----
+Se valida mensaje informativo de revisar margen de precio para que salga una vez y no en el for
+
+v0.4.11: (Ingrid Lino - 25/Nov/2015)
+----
+Se añade codificación para enviar correo de todos los items segmentados por colores según margen de precio de venta.
+
+v0.4.12: (Ingrid Lino - 27/Nov/2015)
+----
+Se añade factor +-0.5% como validador, se añade número de pedido en el Subject
+
+v0.4.13: (Ingrid Lino - 05/Abr/2016)
+----
+Se añade la columna de codigo de letras del item. Solicitado por Alfredo Paulson.
+
+v0.4.14: (Ingrid Lino - 14/Abr/2016)
+----
+Se valida el código de letras del item cuando se de click en el  botón de cargar pedido
+
+v0.4.15: (Ingrid Lino - 20/Abr/2016)
+----
+Se añade el título de Código en letras del item en el correo que se envía por Problemas de precios.
+
+v0.4.16: (Rosa Zambrano - 03/Jun/2016)
+----
+Se agrega porcentaje del iva en el query del reporte de compras locales, para que calcule el iva basado en el campo nd_ivaCom de la tabla tbm_Emp.
+
+v0.4.17: (Ingrid Lino - 19/Jul/2016)
+----
+Implementacion de nuevo proceso de solicitudes de transferencia de inventario.
+
+v0.4.18: (Rosa Zambrano - 27/Sep/2016)
+----
+Se agrega porcentaje del iva en el query del reporte de compras locales, para que calcule el iva basado en la configuraion de la tabla tbm_cfgImpLoc.
+
+v0.4.19: (Ingrid Lino - 23/Ene/2017)
+----
+Se agrega en el correo(Subject), el número de documento ingresado en el día. Solicitado por Werner Campoverde. Se agrega en beforeInsertar el método regenerarCalculos();
+
+v0.4.20: (Ingrid Lino - 07/Dic/2017)
+----
+Nuevo esquema de Provisiones ( Pedido Embarcado )
+
+v0.4.21: (Ingrid Lino - 29/Dic/2017)
+-----
+Se valida el Arancel de "Cargos a Pagar" y el "Detalle"
+
+v0.4.22: (Rosa Zambrano - 14/Mar/2018)
+-----
+Se cambia forma de consultar no queden abiertas las conexiones.
+
+v0.4.23: (Rosa Zambrano - 10/May/2018)
+-----
+En el correo de revisión de precios, se cambia query para que se ordene por Código Alterno.
+
+v0.5: (Rosa Zambrano - 16/May/2018)
+-----
+Segmentación de compras locales.
+Se asigna la misma versión para los programas NP, PE, II.
+
+v0.6: (Rosa Zambrano - 11/Jul/2018)
+-----
+Se agrega unidad de medida en la tabla de items, solicitado por AP.
+
+v0.7: (Rosa Zambrano - 24/Jul/2018)
+-----
+Se agrega validación para que muestre notas de pedidos del nuevo menu.
+
+v0.7.1: (Ingrid Lino - 21/Sep/2018)
+-----
+En método enviarCorElePreVta se comenta laq validación "if(objTblModImp32_02.getValueAt(i, objImp32_02.INT_TBL_DAT_COD_ITM)!=null){" porque puede ser que está validación no permita enviar el último item de la tabla.
+
+v0.7.2: (Rosa Zambrano - 01/Oct/2018)
+-----
+Se agrega columna de registro en el método enviarCorElePreVta(). 
+Se corrige envio de correos en enviarCorEle, ya que no se enviaba el ultimo item.
+
+v0.7.3: (Rosa Zambrano - 04/Oct/2018)
+-----
+Cambio solicitado por AP: Se agrega función validarRangoPza(), que valida que esten las cantidades dentro del rango permitido.
+
+v0.7.4: (Rosa Zambrano - 18/Oct/2018)
+-----
+* Se presenta mensaje, cuando el peso es 0, para que le asignen un peso al item.
+  - Reportado por Michelle, El motivo de este mensaje, era que se quedaba colgado el proceso de inserción cuando un item no tenia peso.
+* En la función setPesoArancelItem, se comenta la linea: AND a6.nd_ara IS NOT NULL
+  - Reportado por AP, items tenian peso en el sistema pero no se estaba cargando el peso de los items que no tienen arancel.
+
+v0.7.8: (Rosa Zambrano - 29/Oct/2018)
+-----
+Cargar el listado de cargos a pagar por orden de ubicación.
+Se agrega columna “Cos/Kg”.
+
+v0.7.9: (Rosa Zambrano - 30/Oct/2018)
+-----
+Se agrega mes de puerto, solicitado por Alfredo Paulson.
+
+v0.8.0: (Rosa Zambrano - 10/Dic/2018)
+-----
+Se agrega validación isCuentaAsociadaSaldo al modificar.
+
+v0.8.1: (Rosa Zambrano - 18/Dic/2018)
+-----
+Se comenta validación isCuentaAsociadaSaldo al modificar.
+
+v0.8.2: (Rosa Zambrano - 27/Dic/2018)
+-----
+Se agrega validación isCuentaAsociadaSaldo al modificar.
+Se agrega validación para verificar que no exista el mismo pedido.
+Se agrega validación para que ingrese el valor de la factura, y el valor ingresado sea igual al Tot.Fob.Cfr.
+
+v0.8.3: (Rosa Zambrano - 02/Ene/2018)
+-----
+Se agrega validación al insertar para que no exista el mismo pedido.
+
+v0.8.4: (Rosa Zambrano - 03/Ene/2018)
+-----
+Se cambia validación de Valor factura, solicitado por Alfredo Paulson, el IL FREIGHT, GTO ORIGEN EN FACT se incluya para validación.
+
+v0.8.5: (Rosa Zambrano - 04/Ene/2018)
+-----
+Se agrega función actualizar_Tbm_CarPagNotPedImp para que al momento de modificar no mande error.
+
+v0.8.6: (Rosa Zambrano - 11/Feb/2019)
+-----
+Se cambia el envío de correos, por la configuración de la tabla tbm_notSisCorEleLoc.

@@ -1,0 +1,22 @@
+Pendientes:
+1) 
+2) 
+3) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Idi Reyes - 05/Abr/2006)
+----
+Correccion problema de que se queda la fecha y no se la puede borrar.
+
+
+v0.2: (Eddye Lino - 09/Abr/2006)
+-----
+Se agregó constructor en la clase "ZafDatePicker" que recibe un Frame como padre.
+
+v0.3: (Javier Ayapata - 20/Junio/2007)
+-----
+Se agregó funcion en la clase "ZafSelectDate" para ocultar la fecha.
+
+

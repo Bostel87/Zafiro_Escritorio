@@ -1,0 +1,41 @@
+Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (José Salazar - 11/Ene/2006)
+----
+Se modifico formulario agregandose nuevos campos de la base de datos ne_mod y st_cosunical.
+
+
+v0.1.1: (José Salazar - 24/Ene/2006)
+-----
+Se agrego la caja de texto del numero de modulo y los checked para limpiar texto y control de cambios.
+
+
+v0.1.2: (José Salazar - 26/Ene/2006)
+-----
+Se cambio sentencia SQL  en el metodo FndCta() para filtrar solo cuentas contables de detalles.
+Se cambio validacion para que las ctas de debe y haber no sean obligatorias.
+Se cambio comodines.
+
+
+v0.2: (Eddye Lino - 29/Jun/2006)
+-----
+Se corrigió problema con el ZafTblPopMnu.
+
+
+v0.3: (Javier Ayapata - 27/Dic/2006)
+-----
+Se corrige para que las cajas de texto de cuentas no aparezcan con cero.
+
+
+v0.4: (Rosa Zambrano - 13/Oct/2015)
+-----
+Se agrega con.setAutoCommit(false) en la función modificarDoc() debido a cambios en la base de postgres 9.4
+Se agrega ventana de consulta de tipos de documentos.
+Se agrega ventana de consulta de cuentas contables.
+
+

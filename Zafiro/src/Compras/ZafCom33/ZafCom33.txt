@@ -1,0 +1,69 @@
+Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1 b1: (Ingrid Lino - 26/Ago/2008)
+----
+Programa que permite generar una orden de conteo de items
+
+
+v0.1: (Ingrid Lino - 03/Sep/2008)
+-----
+Pase a producción
+
+
+v0.2: (Ingrid Lino - 22/Jun/2009)
+-----
+Se adicionó validación de ingreso de algún item en la orden de conteo.
+
+
+v0.3: (Ingrid Lino - 20/Jul/2009)
+-----
+Se le cambió validación de selección de bodega(ciclado). Se adicionaron conexiones remotas.
+
+
+v0.3.1: (Ingrid Lino - 01/Jul/2011)
+-----
+Se adiciona constructor para ingresar ordenes de conteo(usado desde confirmacion de egresos, para generar conteo de items que nunca se va a enviar).
+
+
+v0.4: (Ingrid Lino - 08/Feb/2013)
+-----
+Se adiciona información de conteo cuando se realiza por importación.
+
+
+v0.4.1: (Ingrid Lino - 14/Abr/2015)
+-----
+Se adiciona codificación para Compras Locales.
+
+
+v0.4.2: (Ingrid Lino - 24/Sep/2015)
+-----
+Se adiciona el campo item de tres letras.
+
+
+v0.4.3: (Ingrid Lino - 24/Sep/2015)
+-----
+Se adiciona correctamente el stock que se presenta por la bodega(estaba presentando por bodega de grupo y no la sumatoria de la bodega por las tres empresas).
+
+
+v0.4.4: (Rosa Zambrano - 29/Sep/2015)
+-----
+Se agrega ubicación del ítem, se modifica la forma de presentar los ítems de acuerdo al estandar.
+Se agrega columna de stock actual.
+
+
+v0.4.5: (Rosa Zambrano - 08/Oct/2015)
+-----
+Se cambia en configurarVenConResCon(), para que presenten en el listado de responsables a los usuarios que esten el grupo de inventaristas.
+
+
+v0.4.6: (Rosa Zambrano - 24/Nov/2015)
+-----
+Se cambia en configurarVenConResCon(), para que también se presenten en el listado de responsables a los usuarios que esten el grupo de supervisores de bodega.
+
+
+

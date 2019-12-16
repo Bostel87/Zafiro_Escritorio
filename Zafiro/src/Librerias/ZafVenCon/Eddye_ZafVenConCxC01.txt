@@ -1,0 +1,113 @@
+﻿Pendientes:
+1) 
+2) 
+3) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 27/Sep/2007)
+----
+Clase nueva.
+
+
+v0.2: (Eddye Lino - 16/Abr/2008)
+----
+Se actualizaron los métodos: 
+   1) configurarVenConCli()
+   2) configurarFrm()
+En dichos métodos se agregó código para que el sistema trabaje con "Clientes por local" ó "Clientes por empresa".
+
+
+v0.3: (Eddye Lino - 28/Nov/2008)
+----
+Se actualizaron los métodos: 
+   1) cargarDetReg()
+   2) setTipoConsulta(int tipo)
+En dichos métodos se agregó las siguientes opciones de filtrado:
+    10: CxC (Todos los créditos).
+    11: CxC (Todos los créditos que no correspondan a retenciones).
+    12: CxC (Todos los créditos que correspondan a retenciones).
+    13: CxC (Todos los débitos).
+    14: CxC (Todos los débitos que no correspondan a retenciones).
+    15: CxC (Todos los débitos que correspondan a retenciones).
+    16: CxP (Todos los créditos).
+    17: CxP (Todos los créditos que no correspondan a retenciones).
+    18: CxP (Todos los créditos que correspondan a retenciones).
+    19: CxP (Todos los débitos).
+    20: CxP (Todos los débitos que no correspondan a retenciones).
+    21: CxP (Todos los débitos que correspondan a retenciones).
+    22: CxC y CxP (Todos los créditos).
+    23: CxC y CxP (Todos los créditos que no correspondan a retenciones).
+    24: CxC y CxP (Todos los créditos que correspondan a retenciones).
+    25: CxC y CxP (Todos los débitos).
+    26: CxC y CxP (Todos los débitos que no correspondan a retenciones).
+    27: CxC y CxP (Todos los débitos que correspondan a retenciones).
+
+v0.4: (Ingrid Lino - 26/Ene/2010)
+----
+Se adicionó filtro para que presente solo información del local según función utilizarClientes del objeto Util.
+
+
+v0.5: (Eddye Lino - 11/Mar/2010)
+-----
+Se agregó el método: 
+   1) limpiar()
+Se modificó el método: 
+   1) butLimActionPerformed(java.awt.event.ActionEvent evt)
+Este método permite limpiar la ventana de consulta.
+
+
+v0.6: (Eddye Lino - 24/Jun/2010)
+-----
+Se modificó el método: 
+   1) cargarDetReg()
+Se mejoró la estructura del query. Además se reemplazó todos los ".show()" por ".setVisible(true)".
+
+
+v0.7: (Eddye Lino - 20/Ago/2010)
+-----
+Se agregaron los métodos: 
+   1) isCheckedMostrarSoloDocumentosContado()
+   2) setCheckedMostrarSoloDocumentosContado(boolean checked)
+   3) isCheckedMostrarRetenciones()
+   4) setCheckedMostrarRetenciones(boolean checked)
+Se modificaron los métodos: 
+   1) setTipoConsulta(int tipo)
+   2) cargarDetReg()
+Se agregaron las siguientes casillas de verificación:
+   Mostrar sólo los documentos de contado
+   Mostrar las retenciones
+
+
+v0.8: (Eddye Lino - 24/Sep/2010)
+-----
+Se agregaron los métodos: 
+   1) getNumeroSerieRetencion()
+   2) getNumeroAutorizacionRetencion()
+   3) getFechaCaducidadRetencion()
+   4) getCodigoSRIRetencion()
+Se modificaron los métodos: 
+   1) configurarVenConCli()
+   2) mostrarVenConCli(int intTipBus)
+
+
+v0.9: (Eddye Lino - 13/Dic/2012)
+-----
+Se agregó el constructor: 
+   1) ZafVenConCxC01(java.awt.Frame padre, ZafParSis parametros, String titulo, boolean tarjetasCredito)
+Se modificó el método:
+   1) cargarDetReg()
+Se modificó la clase para trabajar con "Tarjetas de crédito".
+
+
+v0.10: (Dennis Betancourt - 12/Oct/2016)
+-----
+En la funcion cargarDetReg(), se tuvo que comentar una condicion (AND a5.ne_tipForPag...) debido a que, si hay facturas con co_ForPag = 97 (Tarjeta de credito/debito), esta condicion impedia mostrar dichas facturas.
+
+
+v0.11: (Eddye Lino - 20/Oct/2017)
+-----
+Se modificó el método: 
+   1) tblDatKeyPressed(java.awt.event.KeyEvent evt)
+Se reemplazó "evt.setKeyCode(0);" por "evt.consume();" porque a partir de "Java 7" ya no consumía el ENTER.

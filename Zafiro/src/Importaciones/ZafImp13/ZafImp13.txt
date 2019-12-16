@@ -1,0 +1,9 @@
+Pendientes:
+1)
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Boris Parrales - 23/Jul/2018)
+----
+Nuevo programa Importaciones – Listado de reportes de importaciones – Listado de pedidos embarcados (Formato: Impuestos)…

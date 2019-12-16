@@ -1,0 +1,150 @@
+﻿
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Javier Ayapata - 23/Sep/2011)  
+---- 
+Clase nueva de Seguimiento de Ordenes de Despacho.
+
+
+v0.2: (Javier Ayapata - 30/Sep/2011)  
+----- 
+Se corrige el programa en visualizacion  de botones solo presente puntos a los que se puede consultar.
+
+
+v0.3: (Javier Ayapata - 16/Nov/2011)  
+----- 
+Se agrega poder visualizar las guias y las confirmaciones ..
+
+
+v0.4: (Erik Flores - 10/Jul/2012)  
+----- 
+Mejoras Items faltantes/dañados y despachos atrasados.
+
+
+v0.5: (Erik Flores - 18/Jul/2012)  
+----- 
+Actualizacion de correos electronicos para el envio de notificaciones.
+
+
+v0.6: (Erik Flores - 19/Jul/2012)  
+----- 
+Se mejora el mensaje de correo electronico, se agrega el cliente y el numero del factura.
+
+
+v0.7: (Erik Flores - 26/Jul/2012)  
+----- 
+Se mejora el mensaje de correo electronico, se agrega correo de gerencia.
+
+
+v0.8: (Erik Flores - 01/Ago/2012)  
+----- 
+Se agrega a mpeñafiel para que le envie el correo de notificación. 
+
+
+v0.9: (Erik Flores - 02/Ago/2012)  
+----- 
+Se agrega la observacion al enviar el correo; se modifica el envio de email de notificacion. 
+
+
+v1.0: (Erik Flores - 31/Ago/2012)  
+----- 
+Se modifica la asignacion de ordenes de conteo a inventaristas, se escoge al inventarista de forma aleatoria.
+Se modifica para no permitir registrar faltantes/dañados si el item se retira en otra bodega (cliente retira).
+
+
+v1.1: (Erik Flores - 18/Sep/2012)  
+----- 
+Se modifica para enviar alerta de notificacion de faltantes/dañados a las demas areas.
+
+
+v1.2: (Erik Flores - 29/Nov/2012)  
+----- 
+Se modifica query de consulta para registrar faltantes/dañados. Estaba mostrando error por un subquery que esta trayendo mas de un registro. 
+
+
+v1.3: (Erik Flores - 17/Jun/2013)  
+----- 
+Se modifica consulta para presentar ordenes de despacho de items con terminal L y servicios.
+
+
+v1.4: (Ingrid Lino - 28/Jul/2014)
+----- 
+Se adiciona codificación para presentar el motivo por el que se generó la transacción.
+
+
+v1.5: (Ingrid Lino - 29/Jul/2014)
+----- 
+Se adicionan los tipos de documentos TRINDI(58), TRIADI(96), TRIACQ(97), TRIACM(98), TRINAU(153)
+
+
+v1.6: (Rosa Zambrano - 29/Jun/2015)
+----- 
+Se agrega en la función cargarDetReg() los tipos de documentos, cuando el motivo de traslado sea VENTA. 
+
+
+v1.7: (Rosa Zambrano - 25/Sep/2015)
+----- 
+Se agrega en la función cargarDetReg() la zona de la ciudad y la empresa a la que pertenece la OD para que se presente en el seguimiento.
+Se agrega nuevo filtro de Zona de la ciudad solicitado el 18/Sep/2015.
+
+
+v1.8: (Rosa Zambrano - 26/Ene/2016)
+-----
+Se agrega en la función cargarDetReg() la persona que retira la mercadería en el caso de OD generadas por facturas de venta.
+
+
+v1.9: (Rosa Zambrano - 20/Jul/2016)
+-----
+Se modifica query de cargarDetReg() para que presente los registros de acuerdo al st_ConInv de la tabla tbm_CabMovInv en vez de tbm_CabGuiRem.
+
+
+v1.10: (Rosa Zambrano - 01/Ago/2016)
+-----
+Se modifica query de cargarDetReg() para que presente los registros con el st_conInv.
+
+
+v1.11: (Rosa Zambrano - 08/Ago/2016)
+-----
+Se cambia en la funcion llamarOD consulta de orden de despacho.
+Se agrega actualizacion de las ordenes de despacho pendientes antes de realizar la consulta.
+
+
+v1.12: (Rosa Zambrano - 10/Ago/2016)
+-----
+Se cambia funcion actualizaEstadoConInv.
+
+
+v1.13: (Rosa Zambrano - 10/Ago/2016)
+-----
+Se corrige error al momento de consultar.
+
+
+v1.14: (Rosa Zambrano - 12/Oct/2016)
+-----
+Se quita actualizacion de las ordenes de despacho pendientes antes de realizar la consulta.
+
+
+v1.15: (Rosa Zambrano - 26/Ene/2017)
+-----
+Se agrega la columna de código de seguimiento.
+
+
+v1.16: (Rosa Zambrano - 30/Ene/2017)
+-----
+Se agrega order by por ne_numOrdDes para que se presente por orden de despacho.
+
+
+v1.17: (Rosa Zambrano - 05/Jun/2017)
+-----
+Se corrige error al momento de consultar cuando se desactivaban todos los check de estado de confirmacion en el filtro.
+
+
+v1.18: (Rosa Zambrano - 11/Jun/2018)
+-----
+Se agrega nombre del local de la orden de despacho, solicitado por CChiriguaya y aprobado por Wcampoverde mediante correo del 11/Jun/2018.
+
+
+v1.19: (Rosa Zambrano - 15/Jun/2018)
+-----
+Se agrega fecha de ingreso de la orden de despacho, solicitado por CChiriguaya y aprobado por Wcampoverde.

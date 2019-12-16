@@ -1,0 +1,18 @@
+Pendientes:
+1) 
+2) 
+3) 
+
+CONTROL DE VERSIONES:
+=====================
+
+
+----
+Clase nueva.
+ 
+v0.1: (Eddye Lino - 22/Jun/2006)
+ se crea clase para que realize la actualizacion del precio de venta
+-----
+
+v0.3: (Javier Ayapata - 04/Sep/2006)
+  se corrigue funcion de actualiza precio

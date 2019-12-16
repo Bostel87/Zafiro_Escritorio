@@ -1,0 +1,33 @@
+Control de Versiones:
+
+Javier Ayapata  12-Oct-2009  ver 0.1
+  Clase nueva de reposici�n de inventaria.
+
+Javier Ayapata  20-Oct-2009  ver 0.2
+  se agrega columna de cantidad de compra.
+
+Javier Ayapata  06-Nov-2009  ver 0.3
+  se agrega filtro de gupo por clasificacion.
+
+
+Javier Ayapata  27-Nov-2009  ver 0.5
+  se agrega un  estado donde elege a que proveedor se le cotizara.
+
+
+Javier Ayapata  03-Dic-2009  ver 0.6
+  se corrigue error al consultar grupos.
+
+
+Javier Ayapata  12-Julio-2010  ver 0.7
+  se corrigue ancho de codigo alterno.
+    
+
+Javier Ayapata  30-Julio-2010  ver 0.8
+  se corrigue query que presenta los datos.
+
+
+v 0.9:  (Jose Mario Marin - 9/Feb/2018)
+----
+Modificacion del constructor de OC de ventas.
+
+

@@ -1,0 +1,10 @@
+﻿Pendientes:
+1) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v1.0: (Christian Mateo - 11/Nov/2016)
+----
+Clase nueva.
+

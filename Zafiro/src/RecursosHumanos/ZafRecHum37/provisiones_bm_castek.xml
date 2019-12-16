@@ -1,0 +1,22 @@
+
+<empresa>
+
+	<provision>
+		<nombre>PROVISION  DTS BONO Y MOVILIZACION</nombre>
+		<co_cta>1430</co_cta>
+		<num_cta>1.01.04.02.46</num_cta>
+		<tipo_cuenta>1</tipo_cuenta>
+		<plantilla>-1</plantilla>
+		<ndvalbase>-1</ndvalbase>
+	</provision>
+
+	<provision>
+		<nombre>PROVISION  DTS BONO Y MOVILIZACION</nombre>
+		<co_cta>461</co_cta>
+		<num_cta>2.01.09.01</num_cta>
+		<tipo_cuenta>2</tipo_cuenta>
+		<plantilla>-1</plantilla>
+		<ndvalbase>-1</ndvalbase>		
+	</provision>
+
+</empresa>

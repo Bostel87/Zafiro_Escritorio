@@ -1,0 +1,25 @@
+﻿Pendientes:
+1)
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Ingrid Lino - 14/Nov/2017)
+----
+Clase nueva almacena documentos en la tabla de "Seguimiento de inventario".
+
+
+v0.1.1: (Rosa Zambrano - 16/Nov/2017)
+-----
+Se agregan nuevos campos relacionados con las tablas: tbm_cabDia, tbm_carPagPedEmbImp.
+Se modifican los siguientes métodos: setSegMovInvCompra().
+
+v0.1.2: (Ingrid Lino - 07/Dic/2017)
+-----
+Nuevo esquema de Provisiones ( Pedido Embarcado )
+
+
+v0.1.3: (Ingrid Lino - 11/Ene/2018)
+-----
+Se agrega codigo de registro en "setSegMovInvCompra" (cuando se guardan mas de un documento en el mismo registro), y se cambia el parámetro "co_docRelCabDia" por "co_diaRelCabDia" en tbm_cabDia

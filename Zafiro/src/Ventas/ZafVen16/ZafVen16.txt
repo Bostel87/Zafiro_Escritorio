@@ -1,0 +1,6 @@
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Ingrid Lino - 06/May/2010)
+----
+Programa nuevo que muestra "Listado de devoluciones de ventas/compras vs. facturas/ordenes y cruce de documentos".

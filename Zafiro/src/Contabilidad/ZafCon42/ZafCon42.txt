@@ -1,0 +1,11 @@
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Ingrid Lino - 11/Jun/2007)
+----
+Programa nuevo, que permite realizar "Cierre/Reapertura mensual del Sistema", este programa permite realizar cierres y 
+reaperturas por meses de un determinado año
+
+v0.1b2: (Ingrid Lino - 22/Ago/2007)
+----
+Se adicionó validación que no permite cerrar/reaperturar años menores al año 2006

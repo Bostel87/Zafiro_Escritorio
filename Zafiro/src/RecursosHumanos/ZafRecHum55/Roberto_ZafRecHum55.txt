@@ -1,0 +1,18 @@
+﻿
+CONTROL DE VERSIONES:
+=====================
+
+
+v1.0: (Roberto Flores- 09/11/2012)
+----
+Clase nueva para el mantenimiento de Almuerzos...
+
+
+v1.01: (Roberto Flores- 30/04/2013)
+----
+Nuevo esquema para la configuración de la alimentación. Se aumenta campos para determinar si se le reconoce al empleado la alimentación
+por Rol o Comida.
+
+v1.02: (David Albuja - 24/06/2014)
+----
+Al grabar invoca al Servicio9.

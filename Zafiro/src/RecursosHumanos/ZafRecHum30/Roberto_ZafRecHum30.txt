@@ -1,0 +1,46 @@
+
+
+CONTROL DE VERSIONES:
+=====================
+
+v1.0: (Roberto Flores - 11/Abr/2012)
+----
+Clase nueva.
+
+
+v1.06: (Roberto Flores - 25/Feb/2013)
+-----
+Se aumenta validación para visualizar horas extras dependiendo del local por el cual se ingresa al sistema.
+
+
+v1.07: (Roberto Flores - 18/Abr/2013)
+-----
+Se añade columna para mostrar la fecha de autorización de la solicitud de horas extras.
+
+
+v1.08: (Roberto Flores - 17/Ene/2014)
+-----
+Se realizan validaciones para que el programa funcione a nivel de GRUPO.
+
+
+v1.09: (Roberto Flores - 10/Feb/2014)
+-----
+Validaciones en programa de Autorización de solicitudes de horas suplementarias/extraordinarias relacionado a los usuarios que pueden autorizar.
+
+
+v1.10: (Rosa Zambrano - 20/Oct/2015)
+-----
+Se cambia en la función cargarReg() el query de usuarios, para que presente solamente los usuarios que pueden autorizar horas suplementarias.
+
+
+v1.11: (Tony Sanginez - 25/May/2017)
+-----
+Se modifica la clase ZafRecHum30_02.java ya que el query estaba mal y no traia los datos completos.
+
+
+v1.12: (Tony Sanginez - 23/Jun/2017)
+-----
+Se modifica la clase ZafRecHum30_02.java ya que aparecian repetidos la persona que autorizaba
+
+
+

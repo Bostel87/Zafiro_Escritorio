@@ -1,0 +1,49 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 18/Ene/2006)
+-----
+Se restringió que sólo se presentara el formulario de selección de empresas cuando el archivo "ZafParSis.properties" lo indicara.
+Además, en el formulario de login aparecen los locales de acuerdo a la configuración del archivo "ZafParSis.properties".
+
+
+v0.2: (Eddye Lino - 20/Abr/2006)
+-----
+Se agregó método Local.setDefaulLocal() para corregir el siguiente problema: 
+en algunas máquinas aparecía la coma como separador decimal y no el punto como estaba configurado el sistema.
+
+
+v0.3: (Eddye Lino - 18/Jun/2007)
+-----
+Se agregó código para utilice la clase "ZafProMetThe". Dicha clase permite establecer el tema a utilizar.
+
+
+v0.4: (Eddye Lino - 20/Jun/2007)
+-----
+Se agregó código en "butAceActionPerformed(java.awt.event.ActionEvent evt)" para que cargara los años creados en el sistema.
+
+
+v0.5: (Eddye Lino - 28/Ago/2007)
+-----
+Se quitó el código en "butAceActionPerformed(java.awt.event.ActionEvent evt)" para que cargara los años creados en el sistema.
+Este código se lo pasó a la clase "ZafSeg01_02".
+
+
+v0.6: (Eddye Lino - 22/Dic/2009)
+----
+Se corrigió el método: 
+   1) configurarFrm()
+Se cambió la localidad para evitar que generar 2 versiones de Zafiro.
+Antes:
+   java.util.Locale.setDefault(java.util.Locale.US);
+Después:
+   java.util.Locale.setDefault(new java.util.Locale("es", "ec"));
+
+
+v0.7: (Eddye Lino - 25/Jul/2016)
+----
+Se hizo más grande la ventana porque cuando el nombre de la empresa era largo no se alcanza a ver todo.

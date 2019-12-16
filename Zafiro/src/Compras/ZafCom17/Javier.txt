@@ -1,0 +1,21 @@
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Javier Ayapata - 14/MAyo/2007)
+----
+Clase nueva que permite saber los items que no tienen movimiento a cierta fecha.
+
+
+v0.2: (Javier Ayapata - 16/MAyo/2007)
+----
+  se corrigue el el query no estaba asignada la empresa.
+
+
+
+v0.3: (Javier Ayapata - 17/MAyo/2007)
+----
+  se corrigue el el query para tambien tome en cuenta los movimiento del grupo.
+
+
+
+

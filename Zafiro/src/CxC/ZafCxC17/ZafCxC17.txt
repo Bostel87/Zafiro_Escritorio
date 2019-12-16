@@ -1,0 +1,18 @@
+
+CONTROL DE VERSIONES:
+=====================
+V 0.1: (Lizbeth Muñoz - 29/Diciembre/2008)
+--------------------------------------
+Nuevo programa para visualizar los débitos relacionadoas a una determinada fecha
+
+V 0.1.1 :(Lizbeth Muñoz - 23/Enero/2009)
+---------------------------------------
+-Se agregó un botón en el que se visualiza el documento a consultar.
+-Visualización de documentos con forma de pago de crédito.
+-Ocultar algunas columnas tales como la fecha del documento, codigo del registro etc.
+ 
+
+V 0.1.2 :(Lizbeth Muñoz - 10/Febrero/2009)
+---------------------------------------
+-- Se agregó un filtro para no visualizar los documentos 
+soportados con cheque a fecha

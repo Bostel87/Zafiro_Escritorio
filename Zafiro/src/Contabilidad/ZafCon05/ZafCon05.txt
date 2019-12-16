@@ -1,0 +1,463 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 19/Ene/2006)
+----
+Clase nueva "Emisión de retenciones..."
+Se actualizá el cádigo para que funcione con la correccián hecha en ZafToolBar.
+Ahora luego de "Insertar" se envia el registro al modo "Consultar".
+
+
+v0.2: (Eddye Lino)
+----
+
+
+v0.2.1: (Dario Cardenas - 31/Oct/2006)
+----
+Se corrigio querys para Eliminacion Logica, se cambio el estado I por el estado E
+Se agrego campos necesarios para las retenciones como tx_secdoc, tx_numped, tx_numautsri, tx_feccad
+
+
+v0.2.2: (Dario Cardenas - 06/Nov/2006)
+----
+Se corrigio errores al momento de grabar en los campos para el sri.
+
+
+v0.2.3: (Dario Cardenas - 07/Nov/2006)
+----
+Se arreglo query a la hora de actualizar los campos para el sri.
+
+
+v0.2.4: (Dario Cardenas - 08/Nov/2006)
+----
+Se agrego actualizacion del campo tx_codsri en la tabla tbm_cabmovinv para los datos del sri 
+dentro de la funcion de insertarCabMovInv().
+
+
+v0.3: (Eddye Lino - 09/Nov/2006)
+----
+Se cambiá la forma de eliminar documentos.
+Antes: Se hacáa una eliminacián fásica.
+Ahora: Se hace una eliminacián lágica.
+El cádigo anterior era:
+    private boolean eliminarReg()
+    {
+        boolean blnRes=false;
+        try
+        {
+            con=DriverManager.getConnection(objParSis.getStringConexion(), objParSis.getUsuarioBaseDatos(), objParSis.getClaveBaseDatos());
+            con.setAutoCommit(false);
+            if (con!=null)
+            {
+                if (eliminarDet())
+                {
+                    if (eliminarCab())
+                    {
+                        if (actualizarTbmPagMovInv(2))
+                        {
+                            if (objAsiDia.eliminarDiario(con, objParSis.getCodigoEmpresa(), objParSis.getCodigoLocal(), Integer.parseInt(txtCodTipDoc.getText()), Integer.parseInt(txtCodDoc.getText())))
+                            {
+                                con.commit();
+                                blnRes=true;
+                            }
+                            else
+                                con.rollback();
+                        }
+                        else
+                            con.rollback();
+                    }
+                    else
+                        con.rollback();
+                }
+                else
+                    con.rollback();
+            }
+            con.close();
+            con=null;
+        }
+        catch (java.sql.SQLException e)
+        {
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        catch (Exception e)
+        {
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        return blnRes;
+    }
+
+    private boolean eliminarCab()
+    {
+        boolean blnRes=true;
+        try
+        {
+            if (con!=null)
+            {
+                stm=con.createStatement();
+                //Armar la sentencia SQL.
+                strSQL="";
+                strSQL+="DELETE FROM tbm_cabPag";
+                strSQL+=" WHERE co_emp=" + rstCab.getString("co_emp");
+                strSQL+=" AND co_loc=" + rstCab.getString("co_loc");
+                strSQL+=" AND co_tipDoc=" + rstCab.getString("co_tipDoc");
+                strSQL+=" AND co_doc=" + rstCab.getString("co_doc");
+                stm.executeUpdate(strSQL);
+                stm.close();
+                stm=null;
+            }
+        }
+        catch (java.sql.SQLException e)
+        {
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        catch (Exception e)
+        {
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        return blnRes;
+    }
+
+
+
+v0.4: (Eddye Lino - 10/Nov/2006)
+----
+Se agregá cádigo para que la glosa fuera generada automáticamente por el Sistema.
+
+
+v0.5: (Eddye Lino - 16/Nov/2006)
+----
+Se quitaron las columnas "tx_secDoc, tx_numPed, tx_numAutSRI, tx_fecCad" de la cabecera
+y se las ubicá en el JTable.
+
+
+v0.6: (Dario Cardenas - 08/Ene/2007)
+----
+Se agrego la columna "tx_codsri" en el JTable.
+
+
+v0.7: (Dario Cardenas - 01/Feb/2007)
+----
+Se activo columna CodSri para que se pueda Insertar datos a ese Campo.
+
+
+v0.8: (Dario Cardenas - 07/Feb/2007)
+----
+Se arreglo la Funcion setConCelAlm() ya que a la hora de guardar la informacion para el SRI,
+no estaba guardando bien los campos de FecCad y CodSri.
+
+
+v0.9: (Darío Cárdenas - 30/Mar/2007)
+-----------------------------
+Se modifico funcion InsertarReg(), ya que de ahora en adelante el campo tx_codsri que se guardaba 
+en la tabla tbm_cabmovinv se guardara en la tabla tbm_detpag.
+
+
+v1.0: (Darío Cárdenas - 13/Abr/2007)
+-----------------------------
+Se modifico funcion configurarFrm() en la que permite almacenar datos en las celdas del SRI para 
+que el usuario no vuelva a escribirlas, especificamente en el campo CodRet no se almacenada los datos.
+Ademas se quito filtro de local del doc, ya que desde ahora se va procesar doc sin importar el local
+de procedencia.
+
+
+v1.1: (Darío Cárdenas - 18/Abr/2007)
+-----------------------------
+Se modifico funcion insertarDet(), ya que existia problemas a la hora de grabar un doc con los campos 
+del sri en blanco, por lo que se agrego un filtro para poder grabar dicho doc.
+
+
+v1.2  (Ingrid Lino - 24/May/2007)
+---------------------------------
+Se corrigieron problemas de objetos CelRenChk y CelEdiCk, el cual se estaba tomando no solo para una columna sino para nuevas columnas q se generaron, por tanto se creo un nuevo objeto para esas columnas nuevas, ademas se modificaron los eventos de afterEdit de los dos objetos
+
+
+v1.4  (Ingrid Lino - 03/Ago/2007)
+---------------------------------
+Al momento de insertar, modificar, anular y eliminar se cambiá el esquema de guardar en tbm_detpag y en tbm_pagmovinv segán esquema de signos por tipo de documento
+
+
+v1.5: (Ingrid Lino - 23/Ago/2007)
+----
+Se adicioná cádigo para presentar tipos de documentos por usuarios y cuentas por usuarios
+
+
+v1.6: (Ingrid Lino - 06/Nov/2007)
+----
+Se descomentá la lánea de filtro de co_loc para cuando se consulta porque estaba presentando datos incorrecto por ausencia de este filtro
+
+
+v1.7b1: (Ingrid Lino - 21/Ene/2008)
+----
+Se adicioná cádigo para cuando se grabe un cheque en el q se especifica solo el monto en la cabecera se genere un registro
+automático que guarde la clave primaria de tbm_detPag y el valor del dcto en nd_abo.
+AUNQUE ESTE CAMBIO NO ERA NECESARIO EN ESTE PROGRAMA PORQUE EL CAMPO DE VALOR DE LA CABECERA NO ES EDITABLE,
+POR TANTO SOLO SE PUEDE GUARDAR SI SE HA SELECCIONADO ALGUN REGISTRO, PERO SE ADICIONá ESE CáDIGO POR SI ACASO EN UN FUTURO
+SE DEJE ABIERTO ESE CAMPO EN CABECERA.
+
+
+v1.7: (Ingrid Lino - 23/Ene/2008)
+----
+Pase a produción.
+
+
+v1.8: (Javier Ayapata - 30/Abr/2008)
+----
+Se agrega en la funcion de vista premilimar y imprimir  escoja el reporte de tuval.
+
+
+v1.9: (Ingrid Lino - 22/May/2008)
+----
+Se agregó el filtro de local al momento de consultar(consultarReg) porque no estaba presentando bien la información de diarios,
+Por ejm: para el co_doc=219 hay dos documentos de diferente valor, pero siempre se presentaba el mismo diario.
+
+
+v1.10: (Ingrid Lino - 06/Ago/2008)
+----
+Se modificó la forma de llamar al reporte .jrxml. El motivo es por cambio del SO Windows al SO Linux, y en
+el código se está colocando quemada la ruta de ubicación del reporte.
+Ejm:
+    "C://Zafiro//Reportes_impresos//RptDebBan.jrxml"   -->Para Windows
+    "//Zafiro//Reportes_impresos//RptDebBan.jrxml"     -->Para Linux
+
+
+v1.11: (javier Ayapata - 12/Ago/2008)
+Se agrega carpetas por empresa al imprimir.
+
+
+v1.12: (Ingrid Lino - 25/Sep/2008)
+----
+ - Se quitó la función cargarRegIns() y se modificó en la parte de cargarReg() la lectura del filtro local.
+ - para el query q se carga al modificar carga informacion de todos los locales asignados a esa empresa
+   y para despues de insertar se carga el nuevamente la informacion con lo guardado en la basr(antes quedaba en modo insertar,
+   pero en el toolbar se seteaba a consulta)
+
+
+v1.13 b1: (Ingrid Lino - 12/Nov/2008)
+----
+    -Se adiciona parámetros de permisos de modificación para fecha del documento y para modificación del 
+    documento.
+    Ver diccionario de datos:
+        tbr_tipdocusr.ne_tipresmodfecdoc
+        tipdocusr.ne_tipresmoddoc
+    -Se adiciona código para actualizar en tbm_cabDia.st_imp='S' cuando se realice la impresión.
+    -Se adiciona código para actualizar en tbm_cabPag.st_imp='S' cuando se realice la impresión.
+
+
+v1.13: (Ingrid Lino - 17/Nov/2008)
+----
+Pase a producción.
+
+
+v1.14: (Ingrid Lino - 29/Dic/2008)
+----
+-En el código antes se calculaba la base imponible, ahora solo se lo toma del campo nd_basImp que se agregó en tbm_pagmovinv.
+
+
+v1.15: (Ingrid Lino - 29/Dic/2008)
+----
+-Se bloquearon los campos numero de documento 1 y numero de documento 2 al momento de insertar, y en el
+ numero de documento 2 se coloca tb el dato q se coloca en el numero de documento 1.
+
+
+v1.15.1: (Ingrid Lino - 18/Ago/2009)
+----
+-Se habilitaron los campos numero de documento 1 y numero de documento 2 al momento de insertar.
+
+
+v1.16: (Ingrid Lino -26/Ago/2009)
+----
+- Se cambio en isCamVal() la validación del número del documento(antes estaba con tbm_cabDia.tx_numDia, ahora tbm_cabPag.ne_numDoc1)
+
+
+v1.17: (Ingrid Lino -28/Sep/2009)
+----
+Se unificaron los reportes(solo se dejo una para impresión de todas las empresas.
+
+
+v1.19: (Ingrid Lino -24/Feb/2010)
+----
+Se adicionó código para bloquear campos de número de documento para todos los usuarios excepto 71 y 81
+
+
+v1.19.1: (Ingrid Lino -05/Abr/2010)
+----
+Se quitó el usuario 81 y se colocó al usuario 84 en el bloqueo de número de documento en clickInsertar.
+
+
+v1.20: (Ingrid Lino - 11/May/2010)
+----
+Se adicionó un constructor que es llamado para presentar información del egreso(se llama desde ZafVen07).
+
+
+v1.21: (Ingrid Lino - 17/May/2010)
+----
+Se adicionaron campos en "tbm_cabPag.tx_comIng, tbm_cabPag.tx_comMod" para insercion, modificacion, anulacion y eliminacion respectivamente.
+
+
+v1.22: (Ingrid Lino - 22/Jul/2010)
+----
+Se quitó al usuario bbone y se colocó al user 96 para poder cambiar el numero de la retencion
+
+
+v1.23: (Ingrid Lino - 23/Jul/2010)
+----
+El campo de ruc y direccion del beneficiario estaba tomando el dato erroneo, se corrigió esto.
+
+
+v1.24: (Ingrid Lino - 30/Sep/2010)
+----
+Se adicionó al usuario maveiga para poder cambiar el número de documento.
+
+
+v1.25: (Ingrid Lino - 30/Oct/2010)
+----
+Se cambió formato de impresión.
+
+
+v1.26: (Ingrid Lino - 05/Nov/2010)
+----
+Se quitaron campos de los queries debido a que esos campos van a desaparecer de la db
+
+
+v1.27: (Ingrid Lino - 11/Nov/2010)
+----
+En el query de subreporte se estaban presentando los valores de una misma Fact.Proveedor en varias lineas y debia ser en una sola.
+
+
+v1.28: (Ingrid Lino - 30/Nov/2010)
+----
+Se realizaron cambios en cargar documentos pendientes. Se seleccionan solo los que pertenezcan a una misma factura de proveedor.
+
+
+v1.29: (Ingrid Lino - 01/Dic/2010)
+----
+Se cambió el query para impresión y para cargar datos de la factura del proveedor.
+
+
+v1.30: (Ingrid Lino - 08/Dic/2010)
+----
+Se volvio a editar el campo de fecha del documento.
+
+
+v1.31: (Ingrid Lino - 10/Dic/2010)
+----
+Se adicionó en función existeFacPrvNoAsignada()   strSQL+=" AND a3.tx_numChq='" + objTblMod.getValueAt(i, INT_TBL_DAT_NUM_PED) + "'";
+
+
+v1.32: (Ingrid Lino - 03/Ene/2011)
+----
+Se agregó la ruta Castek/ para la impresion de retenciones para la empresa Castek.
+
+
+v1.32.1: (Ingrid Lino - 14/Mar/2011)
+----
+Se cambió el reporte para Castek. El ejercicio fiscal en el detalle(ya no en cabecera) y el # de comprobante en la cabecera(ya no en el detalle).
+
+
+v1.32.2: (Ingrid Lino - 23/May/2011)
+----
+Se adicionó al usuario bbone para que tenga editable el campo de numero de retencion.
+
+
+v1.32.3: (Ingrid Lino - 18/Jul/2011)
+----
+Se cambió formato de impresión para Quito remoto(block).
+
+
+v1.32.5: (Ingrid Lino - 01/Oct/2012)
+----
+Se cambian campos en el query para obtener datos en cabecera y detalle, motivo, cambio de campos en el formulario físico.
+
+
+v1.33: (Ingrid Lino - 08/Abr/2013)
+----
+Se adiciona formato de impresion nuevo(fisicos son mas grandes ahora) para empresa Dimulti.
+
+
+v1.34: (Ingrid Lino - 03/May/2013)
+----
+Se adiciona al usuario pllongo para que pueda cambiar el número de la retención.
+
+
+v1.35: (Ingrid Lino - 26/Jun/2013)
+----
+Se adiciona el formato de impresión nuevo para las retenciones de Tuval.
+
+
+v1.36: (José Marín - 01/Sep/2014)
+----
+Se modifica el query que se envia al reporte.
+
+
+v1.37: (Dennis Betancourt - 02/Dic/2014)
+----
+En la funcion cargarDocPen(), se agrego una condicion para que no se tome en cuenta la validacion "tbm_pagMovInv.tx_fecCad IS NOT NULL" si se trata de una factura electronica. Si se trata de una factura pre-impresa, alli si se debera tomar en cuenta dicha validacion.
+
+
+v1.38: (José Marín M. - 23/Dic/2014)
+----
+Se modifica el query que se envia al reporte para Facturación Electronica.
+
+
+v1.39: (José Marín M. - 5/Ene/2015)
+----
+Se modifica el query que se envia al reporte para Facturación Electronica, se agregan campos.
+
+
+v1.40: (José Marín M. - 7/Ene/2015)
+----
+Se modifica el query que se envia al reporte para Facturación Electronica, tenia problemas para funcionar con Cosenco.
+
+
+v1.41: (Rosa Zambrano - 23/Feb/2015)
+----
+En la función beforeInsertar() y en la función insertarReg() se agrega validación para que no permita grabar la retención sin antes seleccionar un detalle.
+
+
+v1.42: (Rosa Zambrano - 26/Feb/2015)
+----
+Se agrega la función validarDocEle(), que permite validar si el proveedor tiene un correo asignado en el Maestro de Proveedores antes de emitir retención.
+Se agrega validación validarDocEle(), en los eventos txtCodPrvFocusLost,butBenActionPerformed, txtDesLarPrvFocusLost, y en las funciones insertarReg() y beforeInsertar().
+Se agrega en el método clickConsultar() para que presente el tipo de documento predeterminado al consultar.
+
+v1.43: (Dennis Betancourt - 17/Jun/2015)
+----
+En la funcion que trae el detalle del reporte, se agregaron los nuevos porcentajes de Retencion de IVA: 10% y 20%.
+
+v1.44: (Dennis Betancourt - 19/Jun/2015)
+----
+En la funcion que trae el detalle del reporte, al mostrar la leyenda 'IMPUESTO A LA RENTA' se consideraba el valor de 10 en la condicion del campo tbm_pagMovInv.nd_porret, correspondiente a "Retencion en la fuente 10%". Se tuvo que quitar este valor de 10 en la condicion debido a que ahora ha aparecido el valor de 10 para "Retencion al IVA 10%" y esto se debe mostrar en la leyenda del reporte 'IVA'.
+
+v1.45: (Dennis Betancourt - 13/Jun/2016)
+----
+En la funcion cargarDocPen(), se agrego una condicion para validar algun numero de autorizacion de 49 digitos de longitud debido al esquema Offline del SRI.
+
+v1.46: (Dennis Betancourt - 19/Oct/2016)
+----
+En el metodo generarRpt() se estaba quedando la conexion abierta cuando el usuario imprime el documento y el estado de impresion pasa de N a S. Ahora la conexion ya queda cerrada una vez finalizada la ejecucion del metodo.
+
+v1.47: (Tony Sanginez - 15/Ago/2017)
+----
+Se agrega el usuario gmuentes para que pueda editar el numero de documento.
+
+v1.48: (Dennis Betancourt - 08/Dic/2017)
+----
+Se agrega pulso para Esquema Off Line solo para Dimulti.
+
+v1.49: (Dennis Betancourt - 21/Dic/2017)
+----
+Se elimina llamada a metodo iniciarOffLine() de la clase ZafPulFacEle, el cual usaba el puerto temporal 6013 para Esquema OffLine inicialmente implementado solo para Dimulti.
+
+v1.50: (Dennis Betancourt - 03/Oct/2018)
+----
+En la funcion generarRpt() se realizo una modificacion para que en el reporte se muestre el logo correspondiente a la empresa donde el usuario se logoneo.
+
+v1.51: (Rosa Zambrano - 05/Feb/2019)
+----
+Se elimina uso de libreria obsoleta, para el uso de Jasper Studio.

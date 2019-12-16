@@ -1,0 +1,18 @@
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Javier Ayapata - 19/Julio/2007)
+----
+Clase nueva.
+permite mostrar los item de servicio.
+
+
+
+
+v0.2: (Javier Ayapata - 18/Dic/2007)
+----
+se corrigue el query para obtener los items de servicio y su movimiento.
+
+
+

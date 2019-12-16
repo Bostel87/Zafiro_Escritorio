@@ -1,0 +1,4 @@
+v0.1: (Ingrid Lino - 24/Mar/2011)
+----
+Programa que muestra el BG o ER(comparativo) de acuerdo al filtro de selección de fecha(Presenta todos los meses seleccionados de forma individual).
+

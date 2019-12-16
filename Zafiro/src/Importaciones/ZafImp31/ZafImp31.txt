@@ -1,0 +1,11 @@
+Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Rosa Zambrano - 12/Abr/2018)
+----
+Clase nueva "Facturas de proveedores (Importaciones)".
+

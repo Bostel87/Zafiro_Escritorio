@@ -1,0 +1,94 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 20/Ene/2006)
+----
+Se cambió el query para que tomara el stock global de la empresa grupo.
+
+
+v0.2: (Eddye Lino - 19/Abr/2006)
+-----
+Se cambió el query con un "LEFT OUTER JOIN" porque no estaban apareciendo algunos items.
+El problema era porque no tenían asignado unidad de medida.
+
+
+v0.3: (Eddye Lino - 05/Oct/2006)
+-----
+Se agrega un constructor para poder realizar la consulta desda el programa de unificacion de items.
+
+
+v0.4: (Eddye Lino - 26/Mar/2008)
+-----
+Se corrigieron los métodos: 
+   1) cargarDetReg()
+   2) mostrarVenConItm(int intTipBus)
+En dichos métodos se agregó al query una condición para que sólo se mostrara los items activos.
+Al query se agregó la siguiente condición:
+    strSQL+=" AND a1.st_reg='A'";
+
+
+v0.5: (Eddye Lino - 10/May/2009)
+-----
+Se agregó un JSplitPane y un ZafTblOrd para mejorar la presentación y funcionalidad del programa.
+
+
+v0.6: (Eddye Lino - 25/May/2009)
+-----
+Se modificó los métodos: 
+   1) configurarVenConItm()
+   2) configurarTblDat()
+   3) cargarDetReg()
+   4) cargarStkBod()
+Se modificó el query para que el stock lo tome de la tabla "tbm_inv".
+Si es la empresa grupo se suma el stock de todas las empresas que pertenecen al grupo.
+
+
+v0.7: (Eddye Lino - 23/Feb/2015)
+-----
+Se corrigió los métodos: 
+   1) cargarDetReg()
+Se corrigió el query.
+Antes: strAux+=" AND a1.nd_stkAct>0";
+Después: strAux+=" AND a3.nd_stkAct>0";
+
+
+v0.8: (Rosa Zambrano - 14/Abr/2016)
+-----
+Se modificó los métodos:
+   1) configurarVenConItm()
+   2) mostrarVenConItm()
+   2) configurarTblDat()
+   3) cargarDetReg()
+   4) cargarStkBod()
+Se agrega búsqueda por código de 3 letras aprobado por Ing. Werner Campoverde.
+Se cambio la presentación de la ventana de consulta de los ítems.
+
+
+v0.9: (Eddye Lino - 07/Jun/2016)
+-----
+Se modificó los métodos:
+   1) configurarTblDet()
+   2) cargarStkBod(): Se cambió el nombre a "cargarDatFilSel()"
+Se agregó los campos: nd_canIngBod, nd_canEgrBod, nd_canDesEntBod, nd_canDesEntCli, nd_canTra, nd_canRev, nd_canRes, nd_canDis
+
+
+v0.10: (José Mario Marín - 18/Nov/2016)
+-----
+Se agrego en cargarDetReg(), que muestre el Disponible por empresa de un Item.
+
+
+v0.11: (Rosa Zambrano - 30/Ene/2017)
+-----
+Se modificó los métodos:
+   1) configurarTblDet()
+   2) cargarDatFilSel()
+Se agregó el campo: nd_canResVen
+
+
+v0.12: (Eddye Lino - 25/Oct/2019)
+-----
+Se borró los filtros "Item", "Desde-Hasta" porque se creó la clase "ZafFilItm" que tiene dichos filtros y otros más.

@@ -1,0 +1,22 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Rosa Zambrano - 10/Nov/2016)
+----
+Clase Nueva ZafNotHB para presentar una imagen a los usuarios el dia de su cumpleaños.
+Se deja quemado temporalmente el código 24 (lsensi).
+
+
+v0.1.01: (Rosa Zambrano - 11/Nov/2016)
+-----
+Se realizan varias mejoras en el código.
+
+
+v0.1.02: (Rosa Zambrano - 30/Dic/2016)
+-----
+Se habilita código para que le aparezca la alerta de cumpleaños a todos los usuarios.
+

@@ -1,0 +1,12 @@
+﻿
+CONTROL DE VERSIONES:
+=====================
+
+v1.0: (Roberto Flores - 08/Mar/2012)
+----
+Clase nueva Empleados por Jefe.
+
+
+v1.01: (Rosa Zambrano - 17/Dic/2014)
+-----
+Se corrige el query de consulta del listado de empleados, para que solamente aparezcan los empleados que están actualmente activos en la empresa.

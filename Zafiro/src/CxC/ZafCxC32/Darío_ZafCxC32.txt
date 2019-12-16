@@ -1,0 +1,79 @@
+﻿Pendientes:
+1) Ingresa en el modulo de CxC
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Darío Cárdenas - 12/Sep/2007)
+-----
+Programa que sirve para agregar datos de Referencias bancarias de la empresa o cliente, el ingreso es
+por cada solicitud de credito creada, pueden existir uno o mas referencias, ademas pueden ser para ventas, 
+cobranzas o cuentas por pagar, por ahora esta grabado para el area de cobranzas.
+
+
+v0.1.1: (Darío Cárdenas - 10/Oct/2007)
+------
+Se modifico query para mostrar datos de clientes...
+
+
+v0.1.2: (Darío Cárdenas - 29/Nov/2007)
+-------
+Se modifico funciones para cargar la ventana desde otros programas...
+
+
+v0.1.3: (Darío Cárdenas - 14/Ene/2008)
+-------
+Se agrego Tab para Observaciones varias, ademas se agregaron campos en el Tab de Referencias Bancarias, 
+se modifico varias funciones del programa tales como cargarDetReg(), consultarReg()...
+
+
+v0.1.4: (Darío Cárdenas - 20/Feb/2008)
+-------
+Se creo constructor que recibe 3 parametros(Objeto ZasParSis, Integer CodEmpresa, Integer CodCliente),
+ademas se agrego un nuevo campo en tbm_cli para la observacion del Buro...
+
+
+v0.1.5: (Darío Cárdenas - 14/Mar/2008)
+-------
+Se modifico JTable a editables para visualizar ventanas de otros programas desde el evento del boton Consultar...
+
+
+v0.1.5.1: (Darío Cárdenas - 17/Mar/2008)
+---------
+Se modifico constructor para visualizar botones consultar, modificar, aceptar y cancelar desde la empresa grupo...
+
+
+v0.1.5.2: (Darío Cárdenas - 22/May/2008)
+---------
+Se agrego filtro para mostrar datos de clientes por local...
+
+
+v0.1.5.3: (Darío Cárdenas - 17/Jun/2008)
+---------
+Se agrego filtro para mostrar datos de Panel de Control..
+
+
+v0.1.5.4: (Darío Cárdenas - 13/Ago/2008)
+---------
+Se agrego filtro para mostrar datos de Panel de Control..
+
+
+v0.1.5.5: (Darío Cárdenas - 20/Ago/2008)
+---------
+Se modifico funcion de cargarCabReg(), ya que no mostraba todos los datos de las tablas relacionadas en el query...
+
+
+v0.1.5.6: (Darío Cárdenas - 11/Nov/2008)
+---------
+Se modifico los objetos txArea dentro del panel para poder escribir en forma vertical y no en horizontal...
+
+
+v0.2: (Eddye Lino - 02/Oct/2015)
+----
+Se modificó el método: 
+   1) tblConKeyPressed(java.awt.event.KeyEvent evt)
+   2) tblRefBanKeyPressed(java.awt.event.KeyEvent evt)
+   3) tblRefComKeyPressed(java.awt.event.KeyEvent evt)
+Se reemplazó "evt.setKeyCode(0);" por "evt.consume();" porque a partir de "Java 7" ya no consumía el ENTER.
+

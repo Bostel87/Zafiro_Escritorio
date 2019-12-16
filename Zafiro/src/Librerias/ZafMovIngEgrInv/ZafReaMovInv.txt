@@ -1,0 +1,112 @@
+﻿
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (José Mario Marín  - 20/May/2016)
+----
+Se crea clase nueva "Genera prestamos y transferencias segun la NECESIDAD sea recibida".
+
+
+v0.01.01: (José Mario Marín  - 11/Ago/2016)
+-----
+Se modifica para que las bodegas virtuales no se confirmen.
+
+
+v0.01.03: (José Mario Marín - 23/Ago/2016)
+-----
+Se resta el disponible.
+
+
+v0.01.04: (José Mario Marín - 06/Sep/2016)
+-----
+Si se debe o no generar la OD.
+
+
+v0.01.05: (José Mario Marín - 04/Oct/2016)
+-----
+Si se debe o no generar la OD, usando la nueva clase ZafCfgBod y la nueva tabla tbm_cfgbod.
+
+
+v0.01.06: (José Mario Marín - 28/Oct/2016)
+-----
+Se agrega la tabla tbm_cfgTerInvCon para saber si un terminal se confirma esta pendiente, activar la bodega .
+
+
+v0.01.07: (José Mario Marín - 07/Nov/2016)
+-----
+Se modifica en obtenerDatosTransferencia lea la configuracion para que un item se deba confirmar.
+
+
+v0.01.08: (José Mario Marín - 08/Nov/2016)
+-----
+Se modifica en obtenerDatosTransferencia, el query de obtenerDatosTransferencia().
+
+
+v0.01.09: (José Mario Marín - 24/Ene/2017)
+-----
+Se el query de obtenerDatos(), en la parte de obtener la bodega del ingreso para ver si debe generar transferencia.
+
+
+v0.02: (Rosa Zambrano - 21/Jun/2017)
+-----
+Se corrige el chrGeneraIva que establece si el tipo de movimiento debe calcular IVA o no.
+
+
+v0.02.01: (José Mario Marín - 12/Jul/2017)
+-----
+Se agrega constructor para Reservas.
+
+
+v 0.03: (José Mario Marín - 21/Ago/2017)
+-----
+Se modifica el metodo para saber si una OD se debe confirmar generaODprestamos()y generaODTrans(), y el metodo de para que mueva 
+bien el disponible en el caso de una reserva, generaMovimientoInventarioPrestamosIngreso(), generaMovimientoInventarioTransferencia().
+
+
+
+v 0.03.01: (José Mario Marín - 25/Ago/2017)
+-----
+Se modifica el metodo generaMovimientoInventarioTransferencia(), cuando no posee OD es por que es INMACONSA O COMPRAS LOCALES donde la mercaderia 
+debe moverse a Disponible automaticamente.
+
+
+v 0.03.02: (José Mario Marín - 15/Sep/2017)
+-----
+Se modifica el metodo generaMovimientoInventarioPrestamosIngreso(), cuando no posee OD es por que es RESPOSICION o 
+TRANSFERENCIA el prestamos mueve la mercaderia a una empresa y despues la transferencia lo saca de disponible.
+
+
+ v 0.03.02: (José Mario Marín - 25/Sep/2017)
+-----
+Los metodos generaODprestamos()y generaODTrans() son llamados siempre que se envie un documento para revisar por que se estan quedando documentos sin OD.
+ 
+
+v 0.04: (José Mario Marín - 24/Nov/2017)
+-----
+Modificaciones Costos de inventario.
+
+
+v 0.04.01: (José Mario Marín - 27/Dic/2017)
+-----
+Modificaciones para costos, solo se esta costeando uno de los dos documentos que son generados.
+
+
+v 0.05: (Jose Mario Marin - 24/May/2018)
+----
+Modificacion para hacer control de versiones.
+
+
+v 0.06: (Jose Mario Marin - 13/Sep/2018)
+----
+Modificacion, para reservas.
+
+
+v 0.07: (Rosa Zambrano - 06/Ago/2019)
+-----
+Se agrega el objeto de parametros del sistema para envios de correos.
+
+
+v 0.08: (Jose Mario Marin - 24/Sep/2019)
+-----
+Modificacion en el metodo enviarMovimiento(), donde se encontro por que se relacionaba mal la transferencia con la solicitud de transferencia.
+

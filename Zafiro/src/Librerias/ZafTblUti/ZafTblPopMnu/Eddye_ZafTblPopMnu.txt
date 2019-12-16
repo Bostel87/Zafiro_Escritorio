@@ -1,0 +1,95 @@
+﻿Pendientes:
+1) 
+2) 
+3) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 08/May/2006)
+----
+Se cambió el código del menú "Copiar" para que funcione en Linux.
+
+
+v0.2: (Eddye Lino - 22/Jun/2006)
+----
+Se reemplazó el "mouseReleased" por "mouseClicked" para que funcione en Linux.
+
+
+v0.3: (Eddye Lino - 01/Jul/2006)
+----
+Se corrigió problema que ocurría al copiar los datos seleccionados.
+
+
+v0.4: (Eddye Lino - 28/Mar/2007)
+----
+Se agregó la opción "Insertar filas...".
+
+
+v0.5: (Eddye Lino - 10/May/2007)
+----
+Se agregó listener a la clase (addTblPopMnuListener, removeTblPopMnuListener).
+De esta manera es posible realizar alguna acción antes de ejecutar el c+odigo del menú en el que se dio click (beforeClick)
+o luego de ejecutar el código del menú en el que se dio click (afterClick).
+
+
+v0.6: (Eddye Lino - 06/Sep/2007)
+-----
+Se agregó lo siguiente:
+   1) isValPegVal(String strConCel, int intFil, int intCol)
+   2) getNumeroDecimales()
+   3) setNumeroDecimales(int decimales)
+Se mejoró lo siguiente:
+   1) mnuBorConActionPerformed(java.awt.event.ActionEvent evt)
+   2) mnuPegActionPerformed(java.awt.event.ActionEvent evt)
+
+
+v0.7: (Eddye Lino - 24/Mar/2009)
+-----
+Se agregaron los métodos: 
+   1) mnuMarChkCelSelActionPerformed(java.awt.event.ActionEvent evt)
+   2) mnuDesChkCelSelActionPerformed(java.awt.event.ActionEvent evt)
+   3) isMarcarCasillasVerificacionEnabled()
+   4) setMarcarCasillasVerificacionEnabled(boolean habilitado)
+   5) isMarcarCasillasVerificacionVisible()
+   6) setMarcarCasillasVerificacionVisible(boolean visible)
+   7) isDesmarcarCasillasVerificacionEnabled()
+   8) setDesmarcarCasillasVerificacionEnabled(boolean habilitado)
+   9) isDesmarcarCasillasVerificacionVisible()
+   10)setDesmarcarCasillasVerificacionVisible(boolean visible)
+Dichos métodos sirven para marcar/desmarcar celdas que tienen como editor un CheckBox.
+
+
+v0.8: (Eddye Lino - 20/Abr/2011)
+-----
+Se agregó el método: 
+   1) mnuCopAvaActionPerformed(java.awt.event.ActionEvent evt)
+Se agregó el menú "Copia avanzada...".
+
+
+v0.9: (Ingrid Lino - 15/Ago/2012)
+-----
+Se agregaron los métodos: 
+   1) isClickMarcarCasillasVerificacion()
+   2) isClickDesmarcarCasillasVerificacion()
+
+
+v0.10: (Eddye Lino - 29/Sep/2017)
+-----
+Se agregaron los métodos: 
+   1) isCopiaAvanzadaEnabled()
+   2) setCopiaAvanzadaEnabled(boolean habilitado)
+   3) isCopiaAvanzadaVisible()
+   4) setCopiaAvanzadaVisible(boolean visible)
+Se modificó el constructor: 
+   1) ZafTblPopMnu(javax.swing.JTable tabla)
+Se modificó el método: 
+   1) tblDatMouseReleased(java.awt.event.MouseEvent evt)
+Se agregó el código "tblDat.setComponentPopupMenu(this);" el cual reemplazó al código que estaba en el método "tblDatMouseReleased".
+
+
+v0.11: (Eddye Lino - 25/Ene/2018)
+-----
+Se agregaron los métodos: 
+   1) getNumeroTotalFilasInsertadas()
+   2) getFilasEliminadas()

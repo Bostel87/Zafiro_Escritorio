@@ -1,0 +1,17 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 28/Abr/2008)
+----
+Clase nueva.
+
+
+v0.2: (Eddye Lino - 08/Sep/2017)
+-----
+Se agregaron los métodos: 
+   1) seleccionarCelda(final int columna)
+   2) seleccionarCelda(final int fila, final int columna)

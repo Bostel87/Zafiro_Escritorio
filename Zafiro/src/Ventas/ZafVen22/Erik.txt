@@ -1,0 +1,54 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v1.0: (Erik Flores - 25/Abr/2012)
+----
+Clase nueva.
+
+
+v1.1: (Erik Flores - 27/Abr/2012)
+----
+Mejora botones de consulta local y clientes. Mejora a querys de consulta de clientes.
+
+
+v1.2: (Erik Flores - 30/Abr/2012)
+----
+Se cambia querys de consulta, por motivo de versiones de la base; ya que la version actual de la
+base de datos de produccion no soporta los "ALIAS" sin usar la clausula AS
+
+
+v1.3: (Erik Flores - 17/Sep/2012)
+----
+Se agrega columna con el nombre del vendedor ap. Lenin Yumiseba. 
+
+
+v1.4: (Erik Flores - 08/Oct/2012)
+----
+Se agrega columna con direccion, telefono y ciudad del cliente ap. Lenin Yumiseba. 
+
+
+v1.5: (Erik Flores - 05/Nov/2012)
+----
+Se agrega columna con email del cliente ap. Lenin Yumiseba. 
+
+
+v1.6: (Eddye Lino - 19/Jun/2013)
+----
+Mejoras en el dise�o y corrección de faltas ortogr�ficas.
+
+
+v1.7: (Alex Morán - 25/Jun/2013)
+----
+Se incorpora nuevo esquema de permisos por local programa y usuario, para efectos de poder visualizar locales a cargo.
+
+v1.8: (José Marín M - 20/Ene/2014)
+----
+Se corrigio la consulta para el esquema de permisos por local programa y usuario, para efectos de poder visualizar locales a cargo.
+
+v1.9: (José Marín M - 20/Ene/2014)
+----
+Se corrigio la consulta completa de clientes a los que nunca e les a ni facturado, ni cotizado.

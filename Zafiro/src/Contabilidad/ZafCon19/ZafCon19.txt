@@ -1,0 +1,50 @@
+Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Ingrid Lino - 07/Jul/2010)
+----
+Programa para presentar saldos bancarios(este programa existia pero presentaba problemas frecuentemente, entonces se solicitó rehacerlo desde 0).
+
+v0.1.1: (Ingrid Lino - 12/Jul/2010)
+----
+Al cargar las empresas, se leía un campo con alias de una tabla al q no pertenecía(a2.tx_nom y era a1.tx_nom).
+
+v0.1.2: (Ingrid Lino - 07/Oct/2010)
+----
+Se cambió el orden de presentación de la información(se ordenó por empresa) se ajustó también el tamaño de las columnas para que la información se presente ajustada al tamaño de la columna y no se tenga que estar agrandando el tamaño de la pantalla para ver toda la información.
+
+v0.1.3: (Dennis Betancourt - 9/sep/2013)
+------
+Se agrego columna que muestra los cheques emitidos al proveedor pendientes de ser cobrados en el banco.
+
+v0.2: (Dennis Betancourt - 27/feb/2013)
+----
+Se agregaron 4 columnas: Saldo disponible, Saldo contable, Saldo final disponible y Saldo final contable.
+
+v0.2.1: (Dennis Betancourt - 5/mar/2014)
+------
+1) Al ingresar en el login por Grupo, ahora se presenta el nombre de la empresa en el JTable del reporte; 2) En JTable de totales se redujo el tamaño (height); 3) En los JDialogos de detalle de cada columna se agrego un JTable de totales; 4) Para la col "Val.Egr.Cus." (Cheques emitidos pendiente de entregar al proveedor) se modifico el query y se agrego una condicion para que traiga solamente documentos pendientes de entregar.
+
+v0.2.2: (Dennis Betancourt - 6/mar/2014)
+------
+Se agrego el Cod. de empresa en el filtro de los arreglos antes de presentar el JDialogo del detalle de las columnas debido a que, al ingresar en el login por Grupo, se presento el caso de 2 empresas con un mismo cod_cuenta (15) pero que pertenecian a cuentas bancarias de 2 empresas distintas (Tuval Banco Pichincha y Castek Banco de Machala).
+
+v0.2.3: (Dennis Betancourt - 12/mar/2014)
+------
+Para obtener el Saldo Disponible para cheques del mismo banco se considero que, si la fecha actual es sabado, no debe traer nada y solo debe traer los cheques de bancos distintos tomando en cuenta los 2 dias laborables bancarios que deben tener estos cheques.
+
+v0.2.4: (Dennis Betancourt - 18/mar/2014)
+------
+En los botones de detalle de las columnas que presentan el JDialogo, se arreglo las descripciones del ToolTipText de la col "Val.Aut.Pag", y se agrego ToolTipText a las columnas "Val.Egr.Cus.", "Saldo disponible" y "Saldo contable".
+
+v0.2.5: (Dennis Betancourt - 26/mar/2014)
+------
+Se modifico parte de la logica para obtener el Saldo Disponible de cheques de distintos bancos debido a que, cuando hay feriado local, la fecha de cobro de cheque que se va a obtener no sera la misma en la localidad donde hay feriado.
+
+v0.2.6: (Tony Sanginez - 11/may/2017)
+------
+Se agrega filtro de fecha para poder obtener los saldos filtrados por tal.

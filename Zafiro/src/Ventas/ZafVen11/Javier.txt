@@ -1,0 +1,172 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Javier Ayapata - 24/Sep/2008)
+----
+Clase nueva.
+
+
+v0.2: (Javier Ayapata - 25/Sep/2008)
+----
+Se agrega cuando el usuario lsensi quiera establecer que un item requiere revicion tecnica se abilita el boton aceptar.
+
+
+v0.3: (Javier Ayapata - 29/Sep/2008)
+----
+Se agrega casilla para verificar si por faltante fisico de stock.
+
+
+v0.4: (Javier Ayapata - 09/Oct/2008)
+----
+Se corrigue al momento de modificar o anular saber si esta autorizado o no.
+
+
+v0.5: (Javier Ayapata - 04/Nov/2008)
+----
+Se agrega para que se pueda hacer devoluciones de la factura sin devolver al proveedor.
+
+  
+v0.6: (Javier Ayapata - 13/Nov/2008)
+----
+Se agrega campo nuevo donde se marca si se volvera a facturar.
+
+
+v0.7: (Javier Ayapata - 24/Nov/2008)
+----
+Se agrega campo nuevo donde se marca si se volvera a facturar.
+
+  
+v0.8: (Javier Ayapata - 26/Nov/2008)
+----
+Se corrigue el calculo de descuento .
+
+
+v0.9: (Javier Ayapata - 22/Ene/2009)
+----
+Se corrigue el calculo de descuento .
+
+
+v1.0: (Javier Ayapata - 12/Mar/2009)
+----
+Se cambia el resulset de consulta.
+
+
+v1.1: (Javier Ayapata - 24/Mar/2009)
+----
+Se agrega bloque que no se permita realizar mas devoluciones de por precio o por descuento solo se hace una solo vez.
+
+
+v1.2: (Javier Ayapata - 31/Mar/2009)
+----
+Se agrega dos campos para que se registre la cantidad que de devolvera al proveedor.
+
+
+v1.3: (Javier Ayapata - 30/Abr/2009)
+----
+Se agrega cambios de precio de lista resalta color.
+
+
+v1.4: (Javier Ayapata - 06/Nov/2009)
+----
+Se agrega dos columnas una es la cantidad que se volvera a facturar y la otra es la cantidad que se quedara en stock.
+
+
+v1.5: (Javier Ayapata - 18/Ene/2010)
+----
+Se corrigue error al consultar la solicitud.
+
+
+v1.6: (Javier Ayapata - 16/Abr/2010)
+----
+Se agrega constructor para mostrar la solicitud desde el seguimiento.
+
+
+v1.7: (Javier Ayapata - 03/May/2010)
+----
+Se agrega validacion que no se pueda realizar mas una solicitud si alguna guia no esta impresa.
+
+
+v1.7: (Javier Ayapata - 20/May/2010)
+----
+Se corrigue a lo que presenta la factura el numero de guia presentaba el mismo numero de la factura.
+
+
+v1.8: (Javier Ayapata - 27/Abr/2011)
+----
+Se agrega funcion que verifica ti tiene la factura generado devolucion por reemplazo.
+
+
+v2.0: (Javier Ayapata - 04/Jul/2011)
+----
+Se agrega cliente a quien se volvera a facturar.
+
+
+v2.1: (Javier Ayapata - 17/Ago/2011)
+----
+Se quita validacion de verificacion de impresion de guia que no permitia hacer mas sol.Dev. cuando la guia no esta impresa.
+
+
+v2.2: (Javier Ayapata - 23/Sep/2011)
+----
+Se agrega cambios nuevo esquema Guías-OD
+
+
+v2.3: (Erik Flores - 17/Abr/2012)
+----
+Devoluciones de venta por Descuento Especial.
+
+
+v2.4: (Erik Flores - 25/Abr/2012)
+----
+Se hace la correccion para que la columna de descuento especial no sea editable. 
+Se hace la correccion para que si cambia de tipo de devolucion y regresa a descuento especial muestre el valor del porcentaje de descuento asignado.
+
+
+v2.5: (Erik Flores - 09/May/2012)
+----
+Se hace la correccion para que si cambia de tipo de devolucion y regresa a descuento especial muestre mensaje de error en caso que el cliente no tenga configurado porcentaje de descuento especial.
+
+
+v2.6: (Erik Flores - 21/May/2012)
+----
+Uso de la fucion CODIFICAR para las descripciones de items que usan comillas simples. 
+
+
+v2.7: (Erik Flores - 29/May/2012)
+----
+ZafVen11: Se aumenta el numero de la version. 
+ZafVen11_01: Correccion query de consulta de facturas de venta. se incluye a la clausula ORDER BY el campo del numero de la factura.
+
+
+v2.8: (Alex Morán - 25/Sep/2012)
+----
+ZafVen11: Se modifica para considerar motivo de devolución.
+
+
+v2.9: (José Marín - 13/Nov/2013)
+----
+ZafVen11: Se modifica el checkBox de faltantes y volver a facturar, para que solo se pueda manejar uno a la vez (TEMPORAL)
+
+v3.0: (José Marín - 7/May/2014)
+----
+Se modifica el checkBox de faltantes y volver a facturar, se activa 
+
+v3.1: (José Marín - 4/Jul/2014)
+----
+Se modifico las devoluciones de terminales L, cuando se queria quedar con el material aqui en la empresa no se podia   
+
+v3.2: (José Marín - 5/Jul/2014)
+----
+Se modifica un renderizador  
+
+v3.3: (José Marín - 8/Sep/2014)
+----
+Se pone como no editable la columna de Mercaderia que se solicita se quede en bodega y no se regrese al proveedor.
+
+v3.4: (José Marín - 10/Marzo/2014)
+----
+Se pone como no editable la columna de volver a facturar.    

@@ -1,0 +1,10 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Dennis Betancourt - 24/Ene/2018)
+----
+Clase nueva.

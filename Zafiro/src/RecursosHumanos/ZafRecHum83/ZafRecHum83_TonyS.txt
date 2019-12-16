@@ -1,0 +1,19 @@
+﻿Pendientes:
+1) 
+2) 
+
+﻿CONTROL DE VERSIONES:
+=====================
+
+v1.0: (Tony Sanginez - 01/Feb/2016)
+----
+Clase nueva para la actualización de datos de verificación cuando se mensualizan décimos y cuando recibe comisiones. 
+
+
+v2.0: (Tony Sanginez - 14/Oct/2016)
+-----
+Modificacion de codigo para visualizar botones de consultar y guardar.
+
+v3.0: (Tony Sanginez - 20/Feb/2018)
+-----
+Llamada al servicio 09 al guardar.

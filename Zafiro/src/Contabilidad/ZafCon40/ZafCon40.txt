@@ -1,0 +1,51 @@
+--CONTROL DE CAMBIOS--
+-----------------------------------
+v0.1b1 - 02/Ago/2007 - 08h51
+En método configurarFrm() se había comentado una de las líneas del vector de cabecera y eso estaba generando una 
+excepción al cargar la ventana del programa
+
+v0.1b2 - 08/Ago/2007 - 09h37
+En el filtro que carga los datos por grupos se cambió de lugar en el query el filtro de año(línea 2919 a la línea 2917)
+
+v0.1b3 - 09/Ago/2007 - 10h10
+Se cambió forma de insertar y modificar el campo donde se guardan los valores porque:
+    -Si se ingresa un valor y se guarda no había problema.
+    -Si se elimina el mismo valor(no que se coloque valor '0') el programa generaba una excepcion porq lo tomaba como 'empty String'
+    -Se cambió al siguiente esquema:
+            dlbValMes=objUti.parseDouble(objTblModDetCtaTot.getValueAt(0,j));
+            strSQL+=" SET nd_val=" + objUti.redondear((dlbValMes),objParSis.getDecimalesBaseDatos()) + ",";
+    en todas las líneas donde se guardaba el valor mensual.
+    -Se adicionó el año seleccionado en la línea 3037
+v0.1b4 - 20/Ago/2007 - 14h02
+    -Se colocaron mensajes recomendados por Control de Calidad, para que la Forma sea mas amigable al usuario
+
+v0.1.1  - 31/Ago/2007
+--------
+Se quitó el comentario a una fila del formulario necesaria para que se cargue bien el programa
+
+v0.1.2  - 05/Sep/2007
+--------
+Se cambió en el order by el co_cta por tx_codCta (línea 2937)
+
+v0.1.3  - 07/Sep/2007
+--------
+Se cambió en el order by el co_cta por tx_codCta cuando se consulta
+
+v0.1.4  - 11/Sep/2007
+-----
+Se adicionó código para que el  PopupMenu trabaje con las opciones de pegar y borrar contenido en la tabla de cuentas y de detalle de cuentas
+
+v0.1.5  - 13/Sep/2007 13h10
+--------
+Se cambió en el order by para que presente información no por co_cta sino por tx_codCta
+
+v0.1.7b1 - 17/Sep/2007 16h42
+--------
+Se adicionó opción para consultar datos del grupo
+
+v0.1.8b1 - 21/Sep/2007 10h55
+--------
+Se desbloqueo la opción de insertar en grupo, ya que sólo presentaba la opción de consulta
+Se cambió parte de la codificación para cálculos de la suma para cuentas de mayor.
+Se adicionaron opciones para consultar información ingresada por medio de la empresa grupo o por suma de empresas
+

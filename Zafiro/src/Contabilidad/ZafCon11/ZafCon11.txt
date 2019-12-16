@@ -1,0 +1,137 @@
+﻿CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Ingrid Lino - 28/Dic/2006)
+----
+Se quitá en la funcián cargarDetReg() el filtro por Local.
+
+v0.2: (Ingrid Lino - 05/Jun/2007)
+----
+Se quitaron algunos campos en el query para q no presente varios registros de un mismo cliente:
+    - Se  quito el campo local, direccion, etc
+El campo q es necesario es tx_ruc
+
+
+v0.3: (Ingrid Lino - 12/Jun/2009)
+----
+Se cambio el esquema del reporte para poder consultar cualquier documento configurable
+
+v0.4: (Ingrid Lino - 05/Mar/2010)
+----
+Se corrigió un debugger al momento de consultar N/C
+
+v0.5: (Ingrid Lino - 03/Jun/2010)
+----
+Se cambió código de query porque no estaba presentando la información adecuada
+
+v0.6: (Ingrid Lino - 16/Jun/2010)
+----
+Se adicionaron columnas en el modelo y se cambió también el query en cargarDet();
+
+v0.7: (Ingrid Lino - 09/Jul/2010)
+----
+Se adicionó la opción de exportar a excel.
+
+v0.7.1: (Ingrid Lino - 20/Sep/2010)
+----
+Se cambiaron algunos formatos de celdas de los datos que se presentan en excel.
+
+v0.7.2: (Ingrid Lino - 20/Jun/2011)
+----
+Se cambia formato de datos en formulario y en archivo .xml. Se adicionó código para reporte en xls para linux.
+
+v0.7.3: (Ingrid Lino - 27/Ago/2012)
+----
+Se agrega en el query el filtro que si es empresa ECUATOSA las cuentas sean 428 y 411.
+
+v0.8: (Ingrid Lino - 13/Ago/2013)
+----
+Se adiciona la columna de local '001' y se agrega en el query el filtro que si es empresa DETOPACIO las cuentas sean 1811,2069.
+
+v0.9: (Ingrid Lino - 08/Ene/2015)
+----
+Se agregan tipos de documentos FACVENE(228) y DEVVENE(229).
+
+v0.9.1: (Dennis Betancourt - 07/May/2015)
+------
+En la funcion cargarDetReg(), en el query que trae la informacion del reporte se agrego en la condicion el cod. de cuenta 1904 correspondiente a Castek Cuenca.
+
+v0.9.2: (Dennis Betancourt - 06/Ene/2016)
+------
+Se cambio la ventana obsoleta de consulta de cliente (Librerias.ZafConsulta) por la nueva (Librerias.ZafVenCon).
+
+v0.9.3: (Dennis Betancourt - 30/Jun/2016)
+------
+En la funcion cargarDetReg(), en el query que trae la informacion del reporte se agrego para que se tome en cuenta las ventas de servicios donde el campo tbm_detDia.co_cta tenga la cuenta 7.01.02.04 = OTROS INGRESOS POR SERVICIOS.
+
+v0.9.4: (Dennis Betancourt - 19/Oct/2016)
+------
+Se adicionan las columnas "Val.Com.Sol." (Valor de Comprensacion Solidaria), "For.Pag." (Forma de Pago del SRI) y "Tip.Emi." (Tipo de Emision de factura).
+
+v0.9.5: (Dennis Betancourt - 26/Oct/2016)
+------
+Hay ciertos clientes que tienen Facturas o Devoluciones de Ventas con diferentes porcentajes de IVA, y salia una sola base imponible donde aparecian mezclados ambos porcentajes de IVA. Por ello, se desgloso la base imponible de acuerdo a cada porcentaje de IVA que aparezca.
+
+v0.9.6: (Dennis Betancourt - 07/Nov/2016)
+------
+Hay facturas que tienen en tbm_detMovInv registros donde hay items con y sin IVA, y el calculo en las columnas "Bas.Cer." y "Bas.Grb." no se estaba haciendo correctamente.
+
+v0.9.7: (Dennis Betancourt - 08/Nov/2016)
+------
+En la funcion cargarDetReg(), en el query que trae la informacion del reporte se agrego para que se tome en cuenta las cuentas "12% I.V.A. COBRADO EN VENTAS" y "14% I.V.A. COBRADO EN VENTAS" para que en el reporte sean tomadas en cuenta ciertas facturas relacionadas debido a que en el asiento de diario no aparecen las cuentas "VENTAS MERCADERIAS" y "OTROS INGRESOS POR SERVICIOS" y por eso estas facturas estaban quedando fuera del reporte.
+
+v0.9.8: (Dennis Betancourt - 16/Nov/2016)
+------
+Se adiciona la columna "Cod.Iva.".
+
+v0.9.9: (Dennis Betancourt - 21/Nov/2016)
+------
+Cuando se exportaba a Excel la informacion, los valores numericos de las columnas "Val.Com.Sol.", "For.Pag." y "Cod.Iva" se mostraban en formato texto. Ahora ya se muestran en formato numerico.
+
+v0.9.10: (Dennis Betancourt - 05/Ene/2017)
+-------
+En la funcion cargarDetReg(), en el query que trae la informacion del reporte se modifico para que en la columna "For.Pag." (Forma de Pago del SRI) aparezca el Cod.For.Pag. correspondiente tomando como fecha de referencia el 01/09/2016 ya que a partir de esta fecha aparecieron nuevos Cod.For.Pag.
+
+v0.9.11: (Dennis Betancourt - 16/Ene/2017)
+-------
+En la funcion cargarDetReg(), en el query que trae la informacion del reporte se quito el redondeo a 2 decimales en el campo nd_preuni.
+
+v0.9.12: (Tony Sanginez - 04/Feb/2017)
+-------
+En la funcion cargarDetReg(), en el query que trae la informacion del reporte se cambio la forma en la que se traia 
+el Valor de Compensacion solidaria ya que obtenia el subtotal sin importar si tenia el item iva o no. Y se aumento para que
+solo sea entre la fecha del 1 de Junio del 2016 hasta el 31 de Enero del 2017.
+
+v0.9.13: (Dennis Betancourt - 09/Feb/2017)
+-------
+1) En la funcion cargarDetReg() en el listado que se presenta, basado en la Identificacion del cliente, se va a buscar si es RUC, Cedula, Pasaporte o Consumidor Final.
+2) Se creo un metodo para barrer todo el contenido de la Identificacion del cliente y en la cadena resultante solo va a quedar numeros. Los caracteres que no sean numeros seran ignorados.
+
+v0.9.14: (Tony Sanginez - 10/Feb/2017)
+------
+Se agregó la nueva cuenta de tarifa 0 para tuval: '4680'
+
+v0.9.15: (Tony Sanginez - 15/Feb/2017)
+------
+Se agregó la nueva cuenta de tarifa 0 para cosenco,castek y dimulti.
+
+v0.9.16: (Tony Sanginez - 17/Feb/2017)
+------
+Se agregó la nueva cuenta de Interes Ganados para tuval,cosenco,castek y dimulti.
+
+v0.9.17: (Tony Sanginez - 17/Feb/2017)
+------
+Se agregó la nueva cuenta de Vehiculo para tuval,cosenco,castek y dimulti.
+
+v0.9.18: (Tony Sanginez - 01/Mar/2017)
+------
+Se modificó para que las devoluciones tengan el valor de compensación y ademas que aparezcan para tuval y dimulti.
+Todas las ventas realizadas con el %12 a partir de Junio2016 hasta Enero2017.
+
+v0.9.19: (Dennis Betancourt - 09/Ene/2018)
+----
+Se realizo un cambio para que se muestre en el listado todos los locales de la empresa, sin importar el local por el cual el usuario se logoneo.
+
+v0.9.20: (Dennis Betancourt - 20/Abr/2018)
+----
+Se agregó la cuenta "OTROS INGRESOS" para Tuval, Castek, Dimulti y Cosenco.

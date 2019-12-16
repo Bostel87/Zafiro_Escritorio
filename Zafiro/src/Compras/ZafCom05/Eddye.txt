@@ -1,0 +1,194 @@
+﻿Pendientes:
+1) Filtro por local, bodega, rango de fechas.
+2) Hacer que de acuerdo a las bodegas seleccionadas se calcule automáticamente los saldos.
+   Actualmente sólo para el "co_mnu=886(Kardex de inventario(Unidades))" se calcula el saldo en unidades.
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 20/Ene/2006)
+----
+Clase nueva.
+
+
+v0.2: (Eddye Lino - 10/Mar/2006)
+-----
+Se agregó código para que funcione con la empresa Grupo.
+
+
+v0.3: (Eddye Lino - 23/Jun/2006)
+-----
+Se agregó código para que no aparecieran las compras y las ventas entre compañías.
+
+
+v0.4: (Eddye Lino - 26/Jun/2006)
+-----
+Se corrigió problema en el query que hace que no aparezcan las compras y las ventas entre compañías.
+
+
+v0.5: (Eddye Lino - 28/Jul/2006)
+-----
+Se corrigió el query para que en caso de ingresos (Compras, Devoluciones en compras, Inventario inicial)
+aparezca el costo unitario en vez del costo promedio.
+
+
+v0.6: (Eddye Lino - 09/Ago/2006)
+-----
+Se agregó columna de precio unitario de venta por solicitud del gerente.
+
+
+v0.7: (Eddye Lino - 13/Oct/2006)
+-----
+Se cambió el código para que trabajara con la nueva forma de costear.
+
+
+v0.8: (Eddye Lino - 19/Oct/2006)
+-----
+Se agregó constructor para abrir la ventana con datos de un item en particular.
+
+
+v0.9: (Eddye Lino - 12/Dic/2006)
+-----
+Se agregó condición al query de la empresa GRUPO para que no se mostrara las transferencias que hace cada empresa.
+
+
+v0.10: (Eddye Lino - 31/Ene/2007)
+-----
+Se arreglaron ciertas partes del código para que trabajaran de acuerdo a correcciones hechas en el proceso de costeo.
+Se agregó condición a los querys para que sólo considerara las "Devoluciones" que sean por cantidades.
+
+
+v0.11: (Eddye Lino - 13/Mar/2007)
+-----
+Se agregó casilla de verificación "Quito Sur" en el Grupo para poder consultar la bodega "Quito Sur".
+
+
+v0.12: (Eddye Lino - 22/Nov/2007)
+----
+Se corrigió el método: 
+   1) cargarDetReg()
+En dicho método se agregó una condición al query del grupo para que de acuerdo al estado de la casilla de
+verificación "chkMosAjuItm" se mostrara o no los movimientos correspondientes al tipo de documento 76=AJUITM.
+        if (!chkMosAjuItm.isSelected())
+        {
+            strSQL+=" AND NOT a1.co_tipDoc=76";
+        }
+Además, se mejoró el código para que se presentara un barra de progreso indeterminada en vez de la barra de
+progreso determinada para evitar que se tenga que ejecutar 2 querys y obtener un mejor rendimiento de la aplicación.
+
+
+v0.13: (Eddye Lino - 18/Feb/2008)
+----
+Se corrigió el método: 
+   1) cargarDetReg()
+En dicho método se cambió el query correspondiente al grupo.
+Al principio la línea estaba así:
+        strSQL+=" INNER JOIN tbm_equInv AS a6 ON (a2.co_emp=a6.co_emp AND a2.co_itm=a6.co_itm)";
+Y quedó así:
+        strSQL+=" INNER JOIN tbm_equInv AS a6 ON (a2.co_emp=a6.co_emp AND a2.co_itmAct=a6.co_itm)";
+
+
+v0.14: (Eddye Lino - 07/Abr/2008)
+----
+Se cambió el código para que las bodegas se presentaran en un JTable en vez de casillas de verificación estáticas.
+
+
+v0.15: (Eddye Lino - 12/May/2008)
+----
+Se corrigió el método: 
+   1) cargarDetReg()
+En dicho método se hizo que a la columna del costo unitario se le restara el valor correspondiente al porcentaje de descuento.
+
+
+v0.16: (Eddye Lino - 09/Jun/2008)
+----
+Se modificaron los métodos: 
+   1) configurarTblDat()
+   2) cargarBod()
+   3) cargarDetReg()
+En dichos métodos se hizo cambios para que el mismo programa fuera llamado desde otro lado.
+Ahora también es llamado desde "co_mnu=886(Kardex de inventario(Unidades))" donde se ocultan algunas columnas.
+
+
+v0.17: (Eddye Lino - 14/May/2009)
+----
+Se modificaron los métodos: 
+   1) configurarFrm()
+   2) configurarTblBod()
+   3) cargarBod()
+   4) cargarDetReg()
+En dichos métodos se hizo cambios para que el mismo programa fuera llamado desde otro lado.
+Ahora también es llamado desde "co_mnu=907(Kardex físico de inventario(Unidades))".
+
+
+v0.18: (Eddye Lino - 08/Jun/2009)
+----
+Se corrigió el método: 
+   1) cargarDetReg()
+Se agregó las siguientes condiciones:
+strSQL+=" AND ( (a1.fe_doc<'2009/05/01'"; //Periodo antes del 2009/05/01 (Excluir: compras y ventas entre empresas, transferencias de empresas).
+strSQL+=" ) OR (a1.fe_doc>='2009/05/01') )";  //Periodo después del 2009/05/01 (Considerar todo).
+A partir del "2009/05/01" el Sistema comenzó a trabajar como empresas en lugar de grupo.
+
+
+v0.19: (Eddye Lino - 16/Jul/2009)
+----
+Se corrigió el método: 
+   1) cargarDetReg()
+Se agregó la siguiente condición para la empresa grupo:
+    //Excluir los "INBOVA: Ingreso a bodega en valores" y "EGBOVA: Egreso de bodega en valores".
+    strSQL+=" AND a1.co_tipDoc NOT IN (140, 141)";
+
+
+v0.20: (Eddye Lino - 17/Ago/2009)
+-----
+Se modificó el método: 
+   1) cargarDetReg()
+En dicho método se agregó código para que en la empresa grupo también se excluyeran las compras y ventas entre las
+empresas del grupo para el periodo desde "2009/05/01" en adelante.
+
+
+v0.21: (Eddye Lino - 10/Dic/2010)
+-----
+Se modificaron los métodos: 
+   1) configurarFrm()
+   2) configurarTblDat()
+   3) cargarDetReg()
+En dicho método se agregó la columna "Núm.Gui.Rem." y los cuadros de texto "Cantidad por ingresar" y "Cantidad por egresar"
+en los cuales se presenta las cantidades que están pendientes por confirmar.
+
+
+v0.22: (Eddye Lino - 12/Dic/2012)
+-----
+Se modificaron los métodos: 
+   1) cargarDetReg()
+Se corrigió el criterio de ordenamiento para "Kardex físico de inventario (Unidades)...".
+Al principio la línea estaba así:
+        strSQL+=" ORDER BY a1.fe_doc, a1.ne_secEmp, a2.co_reg";
+Y quedó así:
+        strSQL+=" ORDER BY a1.fe_doc, a1.ne_secGrp, a2.co_reg";
+
+
+v0.23: (Eddye Lino - 26/Feb/2013)
+-----
+Se modificó el método: 
+   1) cargarDetReg()
+Se agregó código para que en el título aparezca el código y nombre del item en lugar del nombre del reporte.
+
+
+v0.24: (Rosa Zambrano - 27/Ene/2017)
+-----
+Se agrega búsqueda por código de 3 letras.
+Se agrega columna de código de seguimiento para mejor revisión de los documentos basados en el nuevo esquema de transferencias de inventario.
+
+
+v0.25: (Rosa Zambrano - 08/Feb/2017)
+-----
+Se modificaron los métodos: 
+   1) cargarDetReg()
+Se agrego order by para que presente los registros en el orden adecuado.
+
+
+v0.26: (Rosa Zambrano - 20/Oct/2017)
+-----
+Se agrega en el query de consulta que excluya los items con tbm_detMovInv.st_Reg ='I', y no afecte en el saldo de unidades de los items eliminados en los ajustes.

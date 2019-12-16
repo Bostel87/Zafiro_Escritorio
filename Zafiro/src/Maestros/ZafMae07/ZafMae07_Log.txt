@@ -1,0 +1,290 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Javier Ayapata - 05/Jun/2008)
+----
+Clase nueva de maestro de cliente.
+
+
+v0.2: (Javier Ayapata - 06/Jun/2008)
+----
+Se agrega que la forma de pago se ingrese como predeterminado de contado =1 ,
+y ne_maxdes=25 , ne_maruti=25 como predeterminado .
+
+
+v0.3: (Javier Ayapata - 17/Jun/2008)
+----
+Se agrega en observaciones datos de auditoria.
+
+
+v0.4: (Javier Ayapata - 19/Jun/2008)
+----
+Se corrige al momento de insertar dato de fecha de propietario.
+
+
+v0.5: (Javier Ayapata - 10/Jul/2008)
+----
+Se agrega en Tab de ventas que permita ingresar nombre de cliente en las cotizaciones de ventas.
+
+
+v0.6: (Javier Ayapata - 16/Jul/2008)
+----
+Se quita validación el tipo de persona.
+
+
+v0.7: (Javier Ayapata - 21/Jul/2008)
+----
+Se agrega al momento de insertar el estado del cliente si tiene que ser revisado por cobranzas sea 'N' caso contrario sea 'A'
+
+
+v0.8: (Javier Ayapata - 22/Jul/2008)
+----
+Se agrega para que se bloquee el tab general execto los telefonos en el modulo de ventas e inventario.
+
+
+v0.8: (Javier Ayapata - 22/Jul/2008)
+----
+Se agrega para que se bloquee el tab general execto los telefonos en el modulo de ventas e inventario.
+
+
+v0.9: (Javier Ayapata - 31/Jul/2008)
+----
+Se corrige en la forma de modificacion de cliente en el Tab General se bloque si el estado del Clientes es 'A' o desbloquea si es lo contrario.
+
+
+v1.0: (Javier Ayapata - 01/Ago/2008)
+----
+Tambien se desbloquea el fax y el vendedor.
+
+
+v1.1: (Javier Ayapata - 14/Ago/2008)
+----
+Se valida que aparesca clientes libre o proveedores libres.
+
+
+v1.2: (Javier Ayapata - 27/Ago/2008)
+----
+Se corrige al insertar Observacion y modificar..
+
+
+v1.3: (Javier Ayapata - 10/Sep/2008)
+----
+Se corrige al actualizar o insertar contactos.
+
+
+v1.4: (Javier Ayapata - 04/Nov/2008)
+----
+Se corrige al insertar observación.
+
+
+v1.5: (Javier Ayapata - 12/Nov/2008)
+----
+Se agrega que solo apasca eliminar en el popup menu en el maestro.
+
+
+v1.6: (Javier Ayapata - 03/Mar/2009)
+----
+Se agrega codificador en las observaciones al momento de insertar y actualizar.
+
+
+v1.7: (Javier Ayapata - 09/Mar/2009)
+----
+Se agrega al cargar datos generales por grupo.
+
+
+v1.8: (Javier Ayapata - 19/Mar/2009)
+----
+Se agrega al cargar datos de observación ordenado por fecha.
+
+
+v1.9: (Javier Ayapata - 31/Mar/2009)
+----
+Se agrega en la observación que el texto no se escriba de largo sino con salto de linea.
+
+
+v2.0: (Javier Ayapata - 07/Ago/2009)
+----
+Se agrega para que la modificar tambien se actualize en la base local y remoto si es que tiene.
+
+
+v2.1: (Javier Ayapata - 18/Ago/2009)
+----
+Se corrige error al momento de insertar el cliente.
+
+
+v2.2: (Javier Ayapata - 25/Ago/2009)
+----
+Se agrega en el tab de credito dos opciones dias del mes que se facturar y dia de la semana que se puede facturar.
+
+
+v2.3: (Javier Ayapata - 31/Ago/2009)
+----
+Se agrega q1ue carge dias a facturara cuando se crea funcion.
+
+
+v2.4: (Javier Ayapata - 02/Feb/2010)
+----
+Se agrega un label donde indica si el cliente tiene que ser dado de alta.
+
+
+v2.5: (Javier Ayapata - 10/Jun/2010)
+----
+Se agrega filtro para la busqueda por grupo de cliente.
+
+
+v2.6: (Javier Ayapata - 04/Abr/2011)
+----
+Se agrega al validar numero de decula o ruc con la nueva funcion creada por carlos.
+
+
+v2.7: (Javier Ayapata - 21/Abr/2011)
+----
+Se cambia funcion al validar numero de cedula o ruc con la nueva funcion creada por carlos.
+
+
+v2.8: (Javier Ayapata - 30/May/2011)
+----
+Se agrega una función que permite obtener el estado de registro del cliente cuando se modifica.
+
+
+v2.9: (Erik Flores - 25/Abr/2012)
+----
+Se agrega un constructor a la clase para ser invocado desde el reporte de listado de clientes. 
+
+
+v3.0: (Erik Flores - 16/May/2012)
+----
+Se habilita botón de listado de ciudades.
+
+
+v3.1: (Erik Flores - 24/Jul/2012)
+----
+Se modifica creación de clientes/proveedores; ya no se registra campo de usuario y fecha de modificacion.
+
+
+v3.2: (Erik Flores - 27/Jul/2012)
+----
+Se modifica la consulta del tab de auditoria.
+En los casos que exista la informacion, se consulta el codigo del usuario que ingresó el cliente desde la tabla TBH_CLI.
+
+
+v3.3: (Erik Flores - 17/Ago/2012)
+----
+Se cambia manera de dar permisos de modificacion de datos de acuerdo al modulo (ventas/inventario/cxc/cxp) y tab.
+
+
+v3.4: (Erik Flores - 28/Sep/2012)
+----
+Correcciones varias. 
+
+
+v3.5: (Roberto Flores - 14/May/2013)
+----
+Se aumentan validaciones para la conexión con la página del registro civil y sri en el caso de que se ingrese una cédula o ruc. Cédula y RUC no pueden ser repetidos.
+Deben de existir para poder continuar con el proceso de guardado.
+
+
+v3.5.2: (José Marín M. - 28/Nov/2013)
+------
+Se aumentan validaciones para saber si el cliente tiene documentos pendientes.
+
+
+v3.5.3: (José Marín M. - 03/Dic/2013)
+------
+Se modificó, la modificación de un cliente por el lado de ventas, se valida primero si tiene permisos de modificación para poder escribir en las tablas.
+
+
+v3.5.4: (José Marín M. - 03/Dic/2013)
+------
+En las observaciones se modifico la tabla para solo poder insertar nuevas observaciones.
+
+
+v3.5.5: (José Marín M. - 07/Ene/2014)
+------
+Se agregó una seguridad mas, en CxC, ventas.
+
+
+v3.5.6: (José Marín M. - 15/Oct/2014)
+------
+Se agrega el correo electronico, para Facturación Electronica.
+
+
+v3.5.7: (José Marín M. - 07/Nov/2014)
+------
+Se agrega el correo electronico dos, para Facturación Electronica.
+
+
+v3.5.8: (José Marín M. - 12/Nov/2014)
+------
+Se agrega el estado para los correos electronicos de Facturación Electronica (st_proCorEleFacElec = null (Pendiente), S (Si tiene), N (No tiene). 
+
+
+v3.5.9: (José Marín M. - 13/Nov/2014)
+------
+Se agranda el tamaño de una caja de texto, se agrega pasaporte en tipo de documento de identificación, se se cambia el campo st_proCorEleFacElec por st_proCorEleFacEle. 
+
+
+v3.6.0: (José Marín M. - 5/Ene/2015)
+------
+Se agrega el estado para los correos electronicos de Facturación Electronica desde proveedores.
+
+
+v3.6.1: (José Marín M. - 6/Ene/2015)
+------
+Se agrega una nueva pestaña para facturación electronica.
+
+
+v3.6.2: (Rosa Zambrano - 18/Feb/2015)
+------
+En la función actualizarTabFacEle() se agrega actualización de datos de auditoría (co_usrmod y fe_ultmod), para la pestaña Facturación Electrónica.
+
+
+v3.6.3: (Dennis Betancourt - 03/Mar/2015)
+----
+Se puso una validacion para verificar que los nombres de las cuentas de correo de facturacion electronica sean correctos (tengan el caracter @, no tengan tilde, tengan el caracter punto, no tengan espacios en blanco, etc).
+
+
+v3.7: (Eddye Lino - 27/Abr/2015)
+-----
+Se mejoró la interface gráfica y se agregó campos para la DINARDAP (Sexo, Estado civil, Parroquia y Origen de ingresos).
+
+
+v3.7.1: (Angie Bajaña - 14/May/2015)
+-----
+Se habilita campos de (sexo , estado civil , origen de ingreso y listado de parroquias ) 
+
+
+v3.7.2: (Angie Bajaña - 16/May/2015)
+-----
+se valida que se muestre todas las parroquias existentes en la base de datos en el caso que no se selecione la ciudad  
+
+
+v3.7.3:  (Angie Bajaña - 20/May/2015)
+-----
+se cambia origen de ingresos de la pestaña Credito a la pestaña General, se crea la funcion "remplazarEspacios "para valida que el (Nombre Cliente) no guarde en la base espacios en blanco 
+se cambia en los campos (sexo,estado civil, origen ingreso) la opcion de null por la opcion (NO APLICA)
+
+
+v3.7.4:  (Angie Bajaña - 19/Jun/2015)
+-----
+Se agrega filtrado para poder consultar los clientes por ciudades.
+
+
+v3.7.5:  (Angie Bajaña - 23/Jun/2015)
+-----
+Se corrige query en insertTabGen() por cambios de postgres 9.4
+
+
+v3.7.6:  (Angie Bajaña - 02/Jul/2015)
+-----
+Se modifica proceso que realizaba internamente el "TxtIde" en la consulta del cliente/proveedor atravez del ID
+Se habilita el metodo ActualizarTabFacEle() para modificar correo en Maestro Cliente/proveedor
+Se modifica el metodo actualizarTabCre() para que se guarden correctamente las modificaciones en Pestaña Credito.
+
+v3.7.7:  (José Marín - 20/Oct/2015)
+-----
+Se modifica para que solo se puedan ingresar direcciones nuevas. 

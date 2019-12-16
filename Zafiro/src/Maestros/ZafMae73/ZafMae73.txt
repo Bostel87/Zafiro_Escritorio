@@ -1,0 +1,10 @@
+﻿Pendientes:
+1)
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Ingrid Lino - 26/Mar/2019)
+----
+Nuevo programa que permite configurar items en grupos
+

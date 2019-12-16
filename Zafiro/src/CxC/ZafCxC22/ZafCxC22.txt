@@ -1,0 +1,100 @@
+﻿Pendientes:
+1) Ingresa en el modulo de CxC
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Dario Cardenas - 17/Abr/2008)
+----
+Programa que sirve para actualizar el campo st_reg de la tabla tbm_cabDia y para mayorizar las ctas. de los asientos de diario 
+que se generan en el programa Cierre de Caja...
+
+
+v0.1.1: (Dario Cardenas - 09/May/2008)
+-----
+Se modifico funcion actualizarEstDia()
+
+
+v0.1.2: (Dario Cardenas - 16/Jun/2008)
+-----
+Se modifico funcion actualizarEstDia() para actualizar la clase asiento de diario...
+
+
+v0.1.6: (Dario Cardenas - 09/Jul/2009)
+-----
+Se agrego parametro a la funcio actualizarEstDia() para actualizar el asiento de diario...
+
+
+v0.1.7: (Ingrid Lino - 16/Jun/2011)
+-----
+Se adiciono en todos los filtros y queries el local porque presentaba mal la informacion, para un documento guardado con 2,1, tipoDoc, 100, presentaba la informacion guardada sin tomar en cuenta el local.
+
+
+v0.1.8: (Ingrid Lino - 30/Abr/2012)
+-----
+Se adiciona la cuenta deudora para poder generar la contabilidad de acuerdo a cuentas bancarias configuradas en el maestro de Tipos de documentos.
+
+
+v0.1.9: (Ingrid Lino - 09/Jul/2012)
+-----
+Se limpia los campos de cuentas de debe y se valida para que al usuario Alfredo Paulson no le salga la cuentas LSC.
+
+
+v0.1.10: (Ingrid Lino - 26/Jul/2012)
+-----
+En funcion "actualizarEstDia()" se adiciono "objAsiDia.inicializar();" antes de objAsiDia.generarDiario()  porque al no inicializarlo, estaba tomando los datos que se le cargaron al inicio, o sea en la primera consulta de la cuenta deudora.
+
+
+v0.1.11: (José Marín - 22/Ene/2015)
+-----
+Se agrega el método regresarDiarioPredocumento(), cambia en cabDia el st_reg a 'O' para regresar a predocumento y poder volver a ser procesado. Necesitado por Claudia Sensi.
+
+
+v0.1.12: (Rosa Zambrano - 25/Ene/2016)
+-----
+Se verifican conexiones abiertas.
+
+
+v0.1.13: (Rosa Zambrano - 12/Feb/2016)
+-----
+Solicitado por Claudia Sensi el 12/Feb/2016: Se agrega validación en para que cuando sea el usuario mcedeño pueda crear nuevas recepciones de efectivo en los bancos, pero no en la cuenta de efectivo LSC. 
+El cambio solicitado se realiza en las funciones mostrarCtaPreTra() y mostrarVenConCtaDeb().  
+
+
+v0.1.14: (Rosa Zambrano - 14/Mar/2016)
+-----
+Se agrega validación en para que cuando sea el usuario mguevara pueda crear nuevas recepciones de efectivo en los bancos, pero no en la cuenta de efectivo LSC. 
+El cambio solicitado se realiza en las funciones mostrarCtaPreTra() y mostrarVenConCtaDeb().  
+
+
+v0.2: (Eddye Lino - 24/Feb/2017)
+-----
+Se modificaron los métodos: 
+   1) mostrarTipDocPre()
+   2) mostrarVenConCtaDeb(int intTipBus)
+El programa estaba presentando como documento predeterminado el que obtenía de "tbr_tipDocPrg".
+Se agregó código para que cuando sea el usuario "admin" utilice "tbr_tipDocPrg" y cuando sea otro usuario utilice "tbr_tipDocUsr".
+Don Luigi solicitó que la cuenta "LSC EFECTIVO" sólo la pudiera utilizar él. Para tal efecto se creó el tipo de documento "RECEFE2".
+La idea es que los demás usuarios utilicen "RECEFE" y Don Luigi "RECEFE2".
+Para tal efecto fue necesario quitar en el método "mostrarVenConCtaDeb" la validación:
+                if(! (objParSis.getCodigoUsuario()==90 || objParSis.getCodigoUsuario()==156) )
+                {
+                    strSQL+=" SELECT a1.co_cta, a1.tx_codCta, a1.tx_desLar, 'D' AS tx_ubiCta";
+                    strSQL+=" FROM tbm_plaCta AS a1, tbm_cabTipDoc AS a2";
+                    strSQL+=" WHERE a1.co_emp=a2.co_emp AND a1.co_cta=a2.co_ctaDeb";
+                    strSQL+=" AND a2.co_emp=" + objParSis.getCodigoEmpresa();
+                    strSQL+=" AND a2.co_loc=" + objParSis.getCodigoLocal();
+                    strSQL+=" AND a2.co_tipDoc=" + txtCodTipDoc.getText();
+                    strSQL+=" AND a1.co_cta=a2.co_ctaDeb";
+                    strSQL+=" UNION";
+                }
+
+v0.3: (Tony Sanginez - 05/Jun/2017)
+-----
+Se modifica para que al momento de cambiar el estado del diario tambien cambie la fecha el cierre de caja
+
+
+v0.4: (Tony Sanginez - 08/Jun/2017)
+-----
+Se agrega formato de fecha para la actualización del cierre de caja.

@@ -1,0 +1,175 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Contabilidad.ZafCon24;
+
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import javax.swing.JTable;
+import jxl.Workbook;
+import jxl.write.Label;
+import jxl.write.WritableCellFormat;
+import jxl.write.WritableFont;
+import jxl.write.WritableSheet;
+import jxl.write.WritableWorkbook;
+import jxl.write.Number;
+//import jxl.format.Alignment;
+import Librerias.ZafUtil.ZafUtil;
+import jxl.write.NumberFormats;
+
+/**
+ *
+ * @author necronet modificado por Ingrid Lino
+ */
+public class ZafCon24_01 {
+
+    private File file;
+    private JTable table;
+    private String nombreTab;
+    private Label LblCol;
+    private final int INT_INC_CAB = 1;//FILA DESDE DONDE SE COMIENZA A COLOCAR LOS DATOS DE LA TABLA(FILA 0, FILA 1, FILA 2.....)
+
+    private Label lblCab;
+    private ZafUtil objUti;
+    private double num;
+    private Number numCol;
+    private final WritableCellFormat dblFormat = new WritableCellFormat(NumberFormats.FLOAT);
+
+    public ZafCon24_01(JTable table, File file, String nombreTab) {
+        try {
+            this.file = file;
+            this.table = table;
+            this.nombreTab = nombreTab;
+            objUti = new ZafUtil();
+        } catch (Exception e) {
+            objUti.mostrarMsgErr_F1(table, e);
+        }
+    }
+
+    public boolean export() {
+        boolean blnRes = false;
+        try {
+            try {
+                if (file.exists()) {
+                    file.delete();
+                }
+                // A partir del objeto File creamos el fichero físicamente
+                if (file.createNewFile()) {
+                    blnRes = true;
+                } else {
+                    blnRes = false;
+                }
+            } catch (java.io.IOException ioe) {
+                ioe.printStackTrace();
+                blnRes = false;
+            }
+
+            DataOutputStream out = new DataOutputStream(new FileOutputStream(file));
+            //WritableFont boldRedFont = new WritableFont(WritableFont.ARIAL, 10, WritableFont.BOLD);
+            WritableWorkbook w = Workbook.createWorkbook(out);
+            WritableSheet s = w.createSheet(nombreTab, 0);
+
+            for (int i = 0; i < table.getColumnCount(); i++) {
+                lblCab = new Label(i, 0, "" + table.getColumnName(i));
+                lblCab.setCellFormat(new WritableCellFormat(new WritableFont(WritableFont.ARIAL, 12, WritableFont.BOLD)));
+                s.addCell(lblCab);
+            }
+            Boolean bln332 = false; //Validacion para el codigo de refertencion 332 no mostrar los campos fec.ret ser.ret num.ret aut.ret
+            for (int i = 0; i < table.getRowCount(); i++) {
+                for (int j = 0; j < table.getColumnCount(); j++) {
+                    String objeto = table.getValueAt(i, j) == null ? "" : table.getValueAt(i, j).toString();
+                    if (!objeto.toString().equals("")) {
+                        if ((j == 10) || (j == 11) || (j == 12) || (j == 22) || (j == 24) || (j == 25) || (j == 26) || (j == 29) || (j == 31) || (j == 32) || (j == 34) || (j == 38) || (j == 39) || (j == 44) || (j == 46) || (j == 47) || (j == 49) || (j == 65)) {
+                            num = Double.parseDouble(String.valueOf(objeto));
+                            numCol = new Number(j, i + INT_INC_CAB, Math.abs(num), dblFormat);
+                            numCol.setCellFormat(new WritableCellFormat(new WritableFont(WritableFont.ARIAL, 10, WritableFont.NO_BOLD)));
+                            s.addCell(numCol);
+                        } else if (j == 37) {
+                            if (objeto.equals("332")) {
+                                num = Double.parseDouble(String.valueOf(objeto));
+                                numCol = new Number(j, i + INT_INC_CAB, Math.abs(num), dblFormat);
+                                numCol.setCellFormat(new WritableCellFormat(new WritableFont(WritableFont.ARIAL, 10, WritableFont.NO_BOLD)));
+                                s.addCell(numCol);
+                                bln332 = true;
+                            } else {
+                                num = Double.parseDouble(String.valueOf(objeto));
+                                numCol = new Number(j, i + INT_INC_CAB, Math.abs(num), dblFormat);
+                                numCol.setCellFormat(new WritableCellFormat(new WritableFont(WritableFont.ARIAL, 10, WritableFont.NO_BOLD)));
+                                s.addCell(numCol);
+                            }
+                        } else {
+                            if ((j == 40 || (j == 41) || (j == 42) || (j == 43)) && bln332) {
+                                objeto = "";
+                                LblCol = new Label(j, i + INT_INC_CAB, String.valueOf(objeto));
+                                LblCol.setCellFormat(new WritableCellFormat(new WritableFont(WritableFont.ARIAL, 10, WritableFont.NO_BOLD)));
+                                s.addCell(LblCol);
+                                if (j == 43) {
+                                    bln332 = false;
+                                }
+                            }else if(j==18){
+                                objeto=objeto.replaceAll("-", "");
+                                LblCol = new Label(j, i + INT_INC_CAB, String.valueOf(objeto));
+                                LblCol.setCellFormat(new WritableCellFormat(new WritableFont(WritableFont.ARIAL, 10, WritableFont.NO_BOLD)));
+                                s.addCell(LblCol);
+                            }else {
+                                if (j == 43) {
+                                    bln332 = false;
+                                }
+                                LblCol = new Label(j, i + INT_INC_CAB, String.valueOf(objeto));
+                                LblCol.setCellFormat(new WritableCellFormat(new WritableFont(WritableFont.ARIAL, 10, WritableFont.NO_BOLD)));
+                                s.addCell(LblCol);
+                            }
+                        }
+
+                    } else {
+                        if (j == 43) {
+                                    bln332 = false;
+                                }
+                        s.addCell(new Label(j, i + INT_INC_CAB, ""));
+                    }
+                }
+            }
+
+//               s.setColumnView(0, 0);
+//               s.setColumnView(1, 0);
+//               s.setColumnView(2, 0);
+//               s.setColumnView(3, 0);
+//               s.setColumnView(4, 0);
+//               s.setColumnView(5, 0);
+//               s.setColumnView(6, 0);
+//               s.setColumnView(7, 0);
+//               s.setColumnView(8, 0);
+//               s.setColumnView(9, 0);
+//               s.setColumnView(10, 0);
+//               s.setColumnView(11, 0);
+//               s.setColumnView(12, 0);
+//               s.setColumnView(45, 0);
+//               s.setColumnView(46, 0);
+//               s.removeColumn(55);
+            s.removeColumn(12);
+            s.removeColumn(11);
+            s.removeColumn(10);
+            s.removeColumn(9);
+            s.removeColumn(8);
+            s.removeColumn(7);
+            s.removeColumn(6);
+            s.removeColumn(5);
+            s.removeColumn(4);
+            s.removeColumn(3);
+            s.removeColumn(2);
+            s.removeColumn(1);
+            s.removeColumn(0);
+
+            w.write();
+            w.close();
+            out.close();
+
+        } catch (Exception e) {
+            blnRes = false;
+        }
+        return blnRes;
+    }
+
+}

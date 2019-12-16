@@ -1,0 +1,14 @@
+Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Ingrid Lino - 28/May/2010)
+----
+Nuevo programa para presentar listado de datos de autorización del SRI
+
+v0.1.1: (Ingrid Lino - 07/Oct/2010)
+----
+Se clonó el objeto ZafParSis.

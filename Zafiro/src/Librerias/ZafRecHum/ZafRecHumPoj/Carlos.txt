@@ -1,0 +1,121 @@
+
+CONTROL DE VERSIONES:
+=====================
+
+Tbm_comsec v1.0: (Carlos Lainez- 24/03/2011)
+----
+Clase POJO(Plane Old Java Object) que representa la estructura de la tabla tbm_comsec 
+Contiene metodos set y get para el manejo de la data
+
+
+Tbm_tipcon v1.0: (Carlos Lainez- 29/03/2011)
+----
+Clase POJO(Plane Old Java Object) que representa la estructura de la tabla tbm_tipcon
+Contiene metodos set y get para el manejo de la data
+
+
+Tbm_tra v1.0: (Carlos Lainez- 01/04/2011)
+----
+Clase POJO(Plane Old Java Object) que representa la estructura de la tabla tbm_tra
+Contiene metodos set y get para el manejo de la data
+
+
+DetFamCon  v1.0: (Carlos Lainez- 05/04/2011)
+----
+Clase POJO(Plane Old Java Object) compuesta por datos de dos tablas tbm_contra y tbm_tipfamcon
+Usada especificamente en la pantalla de Empleados ZafRecHum03 para guardar el Detalle de Familiares y Contactos
+Contiene metodos set y get para el manejo de la data
+
+
+Tbm_contra v1.0: (Carlos Lainez- 05/04/2011)
+----
+Clase POJO(Plane Old Java Object) que representa la estructura de la tabla tbm_contra
+Contiene metodos set y get para el manejo de la data
+
+
+Tbm_tipfamcon v1.0: (Carlos Lainez- 15/04/2011)
+----
+Clase POJO(Plane Old Java Object) que representa la estructura de la tabla tbm_tipfamcon
+Contiene metodos set y get para el manejo de la data
+
+
+Tbm_docdigtra v1.0: (Carlos Lainez- 19/05/2011)
+----
+Clase POJO(Plane Old Java Object) que representa la estructura de la tabla tbm_docdigtra
+Contiene metodos set y get para el manejo de la data
+
+
+DetDocDig  v1.0: (Carlos Lainez- 20/05/2011)
+----
+Clase POJO(Plane Old Java Object) compuesta por datos de dos tablas tbm_docdigtra y tbm_tipdocdigsis
+Usada especificamente en la pantalla de Empleados ZafRecHum03 para guardar el Detalle de Documentos Digitales
+Contiene metodos set y get para el manejo de la data
+
+
+Tbm_traemp v1.0: (Carlos Lainez- 17/06/2011)
+----
+Clase POJO(Plane Old Java Object) que representa la estructura de la tabla tbm_traemp
+Contiene metodos set y get para el manejo de la data
+
+Tbm_hortra v1.0: (Roberto Flores - 08/09/2011)
+----
+Clase POJO(Plane Old Java Object) que representa la estructura de la tabla tbm_hortra
+Contiene metodos set y get para el manejo de la data
+
+Tbm_carlab v1.0: (Roberto Flores - 19/05/2011)
+----
+Clase POJO(Plane Old Java Object) que representa la estructura de la tabla tbm_carlab
+Contiene metodos set y get para el manejo de la data
+
+Tbm_callab v1.0: (Roberto Flores - 19/09/2011)
+----
+Clase POJO(Plane Old Java Object) que representa la estructura de la tabla tbm_callab
+Contiene metodos set y get para el manejo de la data
+
+Tbm_dep v1.0: (Roberto Flores - 21/11/2011)
+----
+Clase POJO(Plane Old Java Object) que representa la estructura de la tabla tbm_dep
+Contiene metodos set y get para el manejo de la data
+
+Tbm_MotHorSupExt v1.0: (Roberto Flores - 26/03/2012)
+----
+Clase POJO(Plane Old Java Object) que representa la estructura de la tabla tbm_motHorSupExt
+Contiene metodos set y get para el manejo de la data
+
+
+
+Tbm_tra v1.01: (Roberto Flores - 06/06/2013)
+----
+Se aumentan variables para: empleado recibe almuerzo, si recibe entonces ingresar la forma en la que recibe el almuerzo y el valor en caso de recibirlo.
+
+Tbm_tra v1.02: (Roberto Flores - 04/07/2013)
+----
+Se realizan validaciones para ingresar la oficina a la cual pertenece el empleado
+
+Tbm_tra v1.03: (Roberto Flores - 22/08/2013)
+----
+Se realizan validaciones para ingresar el cargo laboral del empleado
+
+Tbm_tra v1.04: (Roberto Flores - 19/09/2013)
+----
+Se realizan cambios para almacenar los valores de rubros de ingreso actuales y despues de ser modificados.
+
+TbhSuetraPK v1.0: (Roberto Flores - 19/09/2013)
+----
+Clase nueva.
+
+TbhSuetra v1.0: (Roberto Flores - 19/09/2013)
+----
+Clase nueva.
+
+TbmSuetraPK v1.0: (Roberto Flores - 19/09/2013)
+----
+Clase nueva.
+
+TbmSuetra v1.0: (Roberto Flores - 19/09/2013)
+----
+Clase nueva.
+
+TbmRubrolpag v1.0: (Roberto Flores - 19/09/2013)
+----
+Clase nueva.

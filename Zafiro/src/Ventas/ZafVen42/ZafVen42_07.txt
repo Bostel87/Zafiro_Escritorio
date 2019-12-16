@@ -1,0 +1,10 @@
+Pendientes:
+1) Todos los campos siguen deshabilitados
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (José Marín - 1/Jul/2017)
+----
+Clase nueva (Pedidos a otras bodegas en Reserva nueva tabla grande, se selecciona la forma de descpacho del moviento).

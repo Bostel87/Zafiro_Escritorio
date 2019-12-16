@@ -1,0 +1,37 @@
+Pendientes:
+1) Ingresa en el modulo de CxC
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+V 0.1: (Dario Cardenas - 12/Sep/2007)
+-------------------------------------
+Programa que sirve para agregar datos de los contactos de la empresa o cliente, el ingreso es
+por cada cliente pueden existir uno o mas contactos, ademas pueden ser para ventas, cobranzas o
+cuentas por pagar, por ahora esta grabado para el area de cobranzas.
+
+
+V 0.1.2: (Dario Cardenas - 14/Ene/2008)
+-------------------------------------
+Se modifico funciones del ToolBar...
+
+
+V 0.1.3: (Dario Cardenas - 14/Mar/2008)
+-------------------------------------
+Se modifico JTable a editables para visualizar ventanas de otros programas desde el evento del boton Consultar...
+
+
+V 0.1.4: (Dario Cardenas - 17/Mar/2008)
+-------------------------------------
+Se modifico constructor para visualizar botones consultar, modificar, aceptar y cancelar desde la empresa grupo...
+
+
+V 0.1.5: (Dario Cardenas - 22/May/2008)
+-------------------------------------
+Se agrego filtro para mostrar datos de clientes por local...
+
+
+V 0.1.6: (Dario Cardenas - 17/Jun/2008)
+-------------------------------------
+Se agrego filtro para mostrar datos de Contactos...

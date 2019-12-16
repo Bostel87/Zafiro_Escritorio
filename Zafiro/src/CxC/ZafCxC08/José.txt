@@ -1,0 +1,15 @@
+Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 23/Feb/2006)
+----
+Se arregló el diseño del Formulario.
+
+
+v0.2: (Eddye Lino)
+-----
+

@@ -1,0 +1,10 @@
+Pendientes:
+1)
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Ingrid Lino - 22/Ago/2013)
+----
+Nuevo programa que muestra un Listado de Notas de Pedidos Previas.
+

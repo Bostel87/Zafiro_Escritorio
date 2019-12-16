@@ -1,0 +1,27 @@
+Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 27/Nov/2005)
+-----
+Clase nueva.
+
+
+v0.2: (Eddye Lino - 09/Nov/2009)
+-----
+Se mejoró y agregó código para poder consultar saldos por mes y año.
+Además se incluyó en el query el uso de la tabla "tbr_ctaLocPrgUsr" para poder controlar
+el acceso a las cuentas de acuerdo al usuario.
+
+
+v0.3: (Eddye Lino - 21/Abr/2010)
+-----
+Se modificó el método: 
+   1) cargarDetReg()
+En dicho método se hizo el siguiente cambio en el query. Cuando es el usuario "Administrador" se 
+presentan todas las cuentas y para los otros usuarios hay que darle permisos en la tabla "tbr_ctaLocPrgUsr".
+Antes había que dar permiso a cada cuenta. Pero ahora basta con dar permiso a la cuenta de mayor para que
+se presenten todas las subcuentas.

@@ -1,0 +1,54 @@
+
+
+v 0.2 - (Javier Ayapata - 19/May/2009)
+ clase que se encarga de hacer compras y ventas entre compañias pero solo de terminales S
+
+ v 0.03 - (Javier Ayapata - 11/Ago/2009)
+ se agrega para que actualize secuencia de empresa y grupo tomando la secuencia de la tabla tbm_emp
+
+v 0.05 - (Javier Ayapata - 11/Enero/2010)
+ se agrega las devoluciones automaticas entre compañias.
+
+
+v 0.06 - (Javier Ayapata - 27/Enero/2010)
+ se agrega saldo y cuando se eleja las las bodega de donde sale aparesca seleccionado las misma bodega donde ingresa
+
+
+v 0.07 - (Javier Ayapata - 28/Enero/2010)
+ se agrega redondeo a los valores de sub e iva en devoluciones.
+
+v 0.08 - (Javier Ayapata - 25/Febrero/2011)
+ se cambia para que actualize en nuevos campos de saldos entre compañias.
+
+v 0.9 - (Javier Ayapata - 13/Abril/2011)
+ se agrega opcion de si se trata de realizar devoluciones, o  hacer compras y ventas.
+
+
+v 1.0 - (Javier Ayapata - 18/Abril/2011)
+ se corrigue las cuentas relacionadas que sean las correctas.
+
+
+v 1.1 - (Javier Ayapata - 29/Abril/2011)
+ se corrigue  para tome la cuenta de bodega lo que este en la base de datos.
+
+v 1.2 - (Javier Ayapata - 19/Julio/2011)
+ se agrega lo nuevo que se utilize el precio de venta sino el costo por un margen
+
+v 1.3 - (Javier Ayapata - 20/Sep/2011)
+ se agrega cambio para obtener margen de com ven relacionado.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

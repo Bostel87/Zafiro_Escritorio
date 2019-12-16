@@ -1,0 +1,18 @@
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Javier Ayapata - 10/Jul/2008)
+----
+Clase nueva.
+permite mostrar listado facturas pendientes de impresión.
+
+v 0.2: Erik Flores 2012-03-27
+Se modifica reporte para mostrar mas informacion. EMPRESA, FECHA COTIZACION, NUMERO COTIZACION, COD CLIENTE, NOMBRE CLIENTE Y VENDEDOR.
+Se agrega boton de consulta para visualizar la cotizacion.
+
+v 0.3: Erik Flores 2012-04-05
+Se modifica query de consulta para ordenar los datos por fecha y numero de cotizacion.
+
+v 1.4: Erik Flores 2012-04-30
+Se cambia numero de la version de 0. a 1. Se reemplaza llamada a ventana de consulta de cotizaciones de venta. 

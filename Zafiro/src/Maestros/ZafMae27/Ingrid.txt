@@ -1,0 +1,47 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1 b1: (Eddye Lino)
+--------
+Programa nuevo que se lo utiliza para asignar a los usuarios los tipos de documentos 
+a los que pueden acceder junto con el tipo de docuemnto predeterminado.
+
+
+v0.1 b1_1: (Eddye Lino - 23/Sep/2008)
+---------
+Se adicionó validaciones para que sea obligatorio el seleccionar un documento predeterminado antes de insertar ó modificar .
+Se adicionó una validación en el momento de insertar para que verifique previamente si existe el mismo programa con el usuario que ya contiene documentos insertados.
+Se adicionó una validacion en el que determina si el documento predeterminado tiene seleccionado un tipo de documento esta validacion se presenta antes de insertar ó modificar.
+Se agrego filtro para que el mismo programa sea utillizado por otro código de menú,  de las siguientes funciones que se detallan a continuación.
+insertarDet();
+eliminarDet();
+consultarReg();
+consultarDetReg();
+Se añadió en afterInsertar() la función consultarReg() para que luego de insertar se visualizen solamente los registros que fueron insertados
+se modificó txtCodPrgFocusLost(java.awt.event.FocusEvent evt) cuando es estado (objTooBar.getEstado()=='n') es decir cuando va a insertar que cargue la función cargarDetReg(); Caso contrario no carga dicha función.
+se modificó txtNomPrgFocusLost(java.awt.event.FocusEvent evt) cuando es estado (objTooBar.getEstado()=='n') es decir cuando va a insertar que cargue la función cargarDetReg(); Caso contrario no carga dicha función.
+se modificó butPrgActionPerformed(java.awt.event.FocusEvent evt) cuando es estado (objTooBar.getEstado()=='n') es decir cuando va a insertar que cargue la función cargarDetReg(); Caso contrario no carga dicha función.
+Se agregó el ordenamiento al tblDat
+Se modificó la función configurarVenConPrg() para que presente los programas donde tx_tipMnu='C' or tx_tipMnu='R'
+
+
+v0.1.1: (Ingrid Lino - 26/Sep/2011)
+-------
+Se realizan cambios varios.
+
+
+v0.1.2: (Ingrid Lino - 13/Ene/2012)
+-------
+Se quita validacion de modificacion de doc y de fecha, para el programa "Tipos de documentos por detalle de programa y usuario..." se deja solo en "Tipos de documentos por cabecera de programa y usuario..."
+
+v0.1.4: (José Marín - 24/Oct/2013)
+-------
+Se corrigio la modificacion
+
+v0.1.5: (José Marín - 27/Dic/2013)
+-------
+Se corrigio la modificacion entrando por "Tipos de documentos por detalle de programa y usuario..." 

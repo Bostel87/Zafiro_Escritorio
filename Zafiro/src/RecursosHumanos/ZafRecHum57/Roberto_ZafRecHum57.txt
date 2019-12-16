@@ -1,0 +1,25 @@
+﻿
+CONTROL DE VERSIONES:
+=====================
+
+
+v1.0: (Roberto Flores- 09/03/2013)
+----
+Clase nueva para el Registro de Novedades de recursos humanos...
+
+v1.01: (Roberto Flores- 01/04/2013)
+----
+Se corrige validación al momento de realizar la modificación de los registros.
+
+v1.02: (Roberto Flores- 15/04/2013)
+----
+Se contemplan validaciones al momento de inicializar el programa de
+Seguimiento de Novedades de recursos humanos al abrir Zafiro.
+
+v1.03: (Roberto Flores- 22/05/2013)
+----
+Validaciones para Reporte de solicitudes de novedades de recursos humanos....
+
+v1.04: (Roberto Flores- 10/07/2013)
+----
+Validaciones para poder imprimir reporte desde Seguimiento de novedades de recursos humanos

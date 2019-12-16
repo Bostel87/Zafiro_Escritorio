@@ -1,0 +1,16 @@
+﻿
+CONTROL DE VERSIONES:
+=====================
+
+
+v1.0: (Roberto Flores- 18/07/2012)
+----
+Clase nueva para el mantenimiento de las Plantillas para el Rol de Pagos
+
+v1.01: (Roberto Flores- 12/03/2013)
+----
+Mejora consulta de Query de plantilla
+
+v1.02: (Roberto Flores- 06/03/2014)
+----
+Se realiza corrección al momento de hacer modificaciones. Se permite setear cuentas contables = null.

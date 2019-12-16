@@ -1,0 +1,53 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 13/Feb/2006)
+----
+Se agregó búsqueda por "Cuenta" y columna "Cuenta" en JTable.
+
+
+v0.2: (Eddye Lino - 29/Jun/2009)
+-----
+Se modificaron los métodos: 
+   1) configurarFrm()
+   2) cargarDetReg()
+Se reemplazó la clase "ZafConsulta" por lo clase "ZafVenCon". Además se agregó código para que los
+documentos sean filtrados de acuerdo a la tabla "tbr_tipDocUsr".
+
+
+v0.3: (Eddye Lino - 17/May/2010)
+-----
+Se modificaron los métodos: 
+   1) configurarTblDat()
+   2) cargarDetReg()
+   3) configurarVenConLoc()
+   4) configurarVenConTipDoc()
+   5) configurarVenConCli()
+Se agregó en el JTable campos de auditoría para poder determinar la fecha, usuario y computadora
+de ingreso y última modificación del documento. Dichas columnas se presentan sólo si el usuario 
+tiene permiso para poder verlas. Además se agregó el uso de la función "objUti.utilizarClientesEmpresa()".
+
+
+v0.4: (Eddye Lino - 05/Oct/2015)
+-----
+Se modificó el método: 
+   1) tblDatKeyPressed(java.awt.event.KeyEvent evt)
+Se reemplazó "evt.setKeyCode(0);" por "evt.consume();" porque a partir de "Java 7" ya no consumía el ENTER.
+
+
+v0.5: (Rosa Zambrano - 31/Ago/2016)
+-----
+Se modificó el método:
+   1) cargarDetReg()
+Se cambio la forma de busqueda de tipos de documentos, para que presente todos los tipos de documentos configurados por el local que se ingresa.
+
+
+v0.6: (Tony Sanginez - 13/Dic/2017)
+-----
+Se modificó el método:
+   1) cargarDetReg()
+Se corrigió query ya que faltaba el signo de "=" y botaba error.

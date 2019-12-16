@@ -1,0 +1,42 @@
+﻿
+CONTROL DE VERSIONES:
+=====================
+
+v0.1:  Javier Ayapata  14/Junio/2010
+----
+   clase nueva 
+
+
+v0.2:  Javier Ayapata  29/Junio/2010
+----
+   se corrigue query de consulta el campo co_tipdocon se tome de tbm_detpag y no  de tbm_decrecdoc.
+
+
+v0.3:  Javier Ayapata  09/Agosto/2010
+----
+   se agrega usuario y fecha de persona que anula. y se agrega validacion de documentos anulados.
+
+
+v0.4:  Javier Ayapata  20/Septiembre/2010
+----
+   se agrega en consulta que verifique el estado Activo en tabla tbr_detrecdocpagmvoinv.
+
+
+v 0.5 - (Javier Ayapata - 22/Octubre/2010)
+ se cambia configuracion de reporteria que esta en el servidor.
+
+
+v 0.6 - (Javier Ayapata - 29/Noviembre/2010)
+ se agrega para pueda seleccionar el tipo de documento predeterminado.
+
+
+v 0.7 - (Javier Ayapata - 02/Diciembre/2010)
+ se corrigue para que aparesca lo que ya tienen asignado el banco.
+
+
+v 0.8 - (Javier Ayapata - 30/Mayo/2011)
+ se agrega para que muestre el valor pendiente asignar a la factura.
+
+
+
+

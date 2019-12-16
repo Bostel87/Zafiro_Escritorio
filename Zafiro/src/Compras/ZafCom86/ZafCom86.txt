@@ -1,0 +1,36 @@
+﻿Pendientes:
+1) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Rosa Zambrano - 15/Jul/2016)
+----
+Clase nueva.
+"Listado de egresos físicos de mercadería pendientes de confirmar..."
+
+
+v0.2: (Rosa Zambrano - 15/Oct/2016)
+-----
+Se corrige consulta por ítem.
+Se adapta reporte para que presente todos los egresos pendientes, aunque no esten en la tabla de seguimiento.
+
+
+
+v0.3: (Rosa Zambrano - 17/Oct/2016)
+-----
+Se agrega bodega destino en caso de tener solicitud de transferencia.
+
+
+v0.4: (Rosa Zambrano - 28/Nov/2016)
+-----
+Se agrega validacion para que no presente los documentos con st_ConInv='F' en tbm_CabMovInv
+
+
+v0.5: (Rosa Zambrano - 03/Mar/2017)
+-----
+Se agrega group by en query de consulta para que no presente registros repetidos.
+
+
+
+

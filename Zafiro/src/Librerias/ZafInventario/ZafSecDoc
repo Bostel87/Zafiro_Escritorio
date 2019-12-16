@@ -1,0 +1,12 @@
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Javier Ayapata - 01/Ene/2006)
+----
+Clase para manejar las secuencia de empresa.
+
+
+v0.02: (José Mario Marín  - 4/Dic/2017)
+-----
+Se agregan metodos para el manejo de las secuencias de empresa.

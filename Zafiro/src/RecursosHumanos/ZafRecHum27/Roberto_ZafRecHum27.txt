@@ -1,0 +1,100 @@
+﻿
+CONTROL DE VERSIONES:
+=====================
+
+v1.0: (Roberto Flores - 03/Abr/2012)
+----
+Clase nueva.
+
+
+v1.15: (Roberto Flores - 18/Abr/2013)
+-----
+Se los siguientes cambios:
+    a)se añade columna para mostrar la marcación de entrada y salida del empleado que ha realizado sobretiempo.
+    b)se valida el ingreso de solicitudes pasadas si tbr_tipDocUsr.ne_tipResModFecDoc=2.
+      Si tbr_tipDocUsr.ne_tipResModFecDoc=1 entonces la fecha de solicitud es igual a la fecha del documento y solo se pueden ingresar
+      solicitudes y realizar el sobretiempo el mismo día que se crea la solicitud. 
+    c)Si se selecciona hora desde las '17:00' automáticamente la hora por defecto será las '18:00'.
+    d)Se muestra las horas de autorizaciones del sobretiempo realizado.
+
+
+v1.16: (Roberto Flores - 23/Ago/2013)
+-----
+Se realizan validaciones para solo mostrar las solicitudes que el usuario crea y se cambia la lógica del detalle 
+de  empleados seleccionados para la solicitud..
+
+
+v1.17: (Roberto Flores - 22/Nov/2013)
+-----
+Se realiza corrección en validación (empresa, local) de empleados elegidos para una solicitud de horas extras.
+
+
+v1.18: (Christian Mateo - 03/Feb/2015)
+-----
+Se realiza corrección en las horas para que puedan ingresar a partir de las 17 horas
+
+
+v1.19: (Christian Mateo - 06/Feb/2015)
+-----
+Se realiza validacion para habilitar grabar solicitudes de un mismo empleado el mismo dia
+con la condicion de que no se solapen las horas o se intercalen
+Tambien se agrega validacion para que se puedan escoger horas extras entre las sgts:
+ 05:00 AM - 08:00 AM
+ 17:15 PM - 00:00 AM
+Se modifica que al grabar no tome en consideracion el campo INT_TBL_LINEA sino el check que indica que se quiere grabar ese registro
+
+
+v1.20: (Rosa Zambrano - 09/Nov/2015)
+-----
+Se modifica query en insertarRegSol() para que consulte los usuarios a autorizar sin importar que sea horas extras suplementarios o extraordinarias.
+
+
+v1.21: (Tony Sanginez - 27/Nov/2015)
+-----
+Se agregó validación para que se pueda laborar como horas extra hasta las 8pm.
+Se agregó validación para que los días domingos se puedan asignar para laborar como horas extras.
+
+
+v1.22: (Tony Sanginez - 21/Dic/2015)
+-----
+Se modificó las horas de los sabados para que se pueda trabajar desde las 02:30AM
+
+
+v1.23: (Tony Sanginez - 09/Ene/2016)
+-----
+Se modificó las horas de los sabados y domingos para que se pueda trabajar hasta las 11pm
+
+
+v1.24: (Tony Sanginez - 22/Ene/2016)
+-----
+Se modificó para que se pueda trabajar desde las 4am de lunes a viernes.
+
+
+v1.25: (Tony Sanginez - 22/Ene/2016)
+-----
+Se modificó para que se pueda trabajar desde las 4am de lunes a viernes.
+
+
+v1.26: (Tony Sanginez - 16/Feb/2016)
+-----
+Se modificó para que se pueda validar las solicitudes con los horarios de los trabajadores y aparte ya se puede realizar solicitudes hasta las 10am dependiendo del horario del trabajador.
+
+
+v1.27: (Tony Sanginez - 26/Feb/2016)
+-----
+Se modificó en la consulta por un error que habia al momento de ingresar una solicitud y se ingresaba en el dia siguiente y al consultar el horario del trabajador calculaba con el dia siguiente.
+
+
+v1.28: (Tony Sanginez - 06/Abr/2016)
+-----
+Se modificó para que pueda realizarse una solicitud hasta las 8y30am los Sábados.
+
+
+v1.29: (Tony Sanginez - 24/Feb/2017)
+-----
+Se eliminó los minutos de gracia. Que estaban asignados en una validación.
+
+
+v1.30: (Tony Sanginez - 08/Ene/2018)
+-----
+Se agrega validación para que solo se pueda agregar una solicitud 15 dias antes o despues.

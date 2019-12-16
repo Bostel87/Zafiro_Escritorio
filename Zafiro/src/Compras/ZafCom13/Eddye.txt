@@ -1,0 +1,28 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 13/Ago/2007)
+----
+Clase nueva.
+
+
+v0.2: (Eddye Lino - 26/Mar/2008)
+-----
+Se corrigieron los métodos: 
+   1) cargarDetReg()
+   2) mostrarVenConItm(int intTipBus)
+En dichos métodos se agregó al query una condición para que sólo se mostrara los items activos.
+Al query se agregó la siguiente condición: strSQL+=" AND a1.st_reg='A'";
+    
+
+v0.3: (Rosa Zambrano - 05/Ene/2015)
+-----
+Se cambia en los metodos cargarDetReg() para que realice la búsqueda del stock de acuerdo a las empresas seleccionadas.
+Se agrega filtro que permita la búsqueda de los ítems inactivos, por solicitud de Don Luigi para verificar ítems con stock e inactivos a la vez.
+Se reemplaza el esquema anterior de ventana de consulta y se utiliza el esquema actual de ZafVenCon.
+Se habilita la configuración de permisos de usuario utilizando la librería ZafPerUsr.
+Se agrega la columna de estado de registro del ítem y la columna de empresa para que se pueda identificar el ítem al ingresar por grupo.

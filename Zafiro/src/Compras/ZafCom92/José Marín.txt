@@ -1,0 +1,71 @@
+﻿Pendientes:
+1)  
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (José Marín - 30/Mar/2015)
+----
+Clase nueva.
+
+
+v0.1.1: (José Marín - 26/Jul/2016)
+-----
+Modificacion de errores de salida de proyecto.
+
+
+v0.1.2: (José Marín - 5/Ago/2016)
+-----
+Modificacion de errores de salida de proyecto.
+
+
+v0.1.3: (José Marín - 25/Ago/2016)
+-----
+Modificacion de errores de salida de proyecto transferencia, Importaciones.
+
+
+v0.1.04: (José Marín - 2/Sep/2016)
+-----
+Correccion Query de importaciones.
+
+
+v0.1.04.01: (José Marín - 02/Sep/2016)
+-----
+Correccion Query de importaciones.
+
+
+v0.1.04.02: (José Marín - 07/Oct/2016)
+-----
+Uso de nueva configuracion. 
+
+
+v0.1.04.03: (José Marín - 14/Nov/2016)
+-----
+Uso de nueva configuracion.
+
+
+v0.1.04.04: (José Marín - 17/Nov/2016)
+-----
+Uso de nueva configuracion, para las bodegas donde pueden autorizar.
+
+
+v0.1.04.05: (José Marín - 16/Dic/2016)
+-----
+Se actualiza st_ConInv='N' en el caso de denegar las solicitudes.
+
+
+v0.1.04.06: (Rosa Zambrano - 12/Sep/2017)
+-----
+Importaciones: Se realizan modificaciones para autorización de solicitudes de transferencias de importaciones.
+Importaciones: Se agrega en la funcion validaStock que valide la bodega Origen del pedido.
+
+
+v0.1.04.07: (Rosa Zambrano - 25/Oct/2017)
+-----
+Importaciones: Se cambia el query que realiza el cierre de documentos de ajustes.
+
+
+v0.1.04.08: (José MarioMarín - 4/Ene/2018)
+-----
+Modificacion en la fecha con la que se autoriza la solicitud, ahora se envia en la cadena a la base la fecha de la base.

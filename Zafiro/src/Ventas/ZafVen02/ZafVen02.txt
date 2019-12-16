@@ -1,0 +1,769 @@
+﻿Pendientes:
+1) 
+2) 
+
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (IdiTrix)
+----
+Implementacion de Autorizaciones.
+
+
+v0.2: (IdiTrix)
+-----
+Para blokear ke no pueda imprimir documentos pendientes.
+Control de precio, costo y descuento en uno solo ... Validacion para venta de contado
+
+
+v0.3: (IdiTrix)
+-----
+Correccion de evento para controlar cambios en el documento.
+Cambios en metodos addLisCamTbls, removeLisCamTbls 
+se elimino metodo addListenerCambio	
+
+
+v0.3.1: (IdiTrix)
+-----
+Agrego para que no ponga los vendedores predeterminados cuando elijen un cliente, que solo lo haga al modificar o insertar.
+No permite imprimir cuando no esta autorizada.
+
+
+v0.3.2: (IdiTrix)
+-----
+En cotizaciones cuando pasa a la factura no estaba grabando el total
+Corregir el iva parece que lo pone asi no tenga iva la factura.
+
+
+v0.3.3: (IdiTrix)
+-----
+Poner el stock consolidado en stok ke se presenta en mas informacion	
+Correcion porke esta haciendo retencion 1% a personas naturales	
+No permitir anular FACTURAS!!! cuando aun no esta autorizada	
+
+
+v0.3.4: (Jose - 16/Feb/2006)
+-----
+Se actualiza metodo ZafSisCon actualizarInventario requiere local
+
+
+v0.3.5: (Javier Ayapata - 28/Mar/2006)
+-----
+Se corrigio el tamaño de las celdas y en forma de pago que tome solo el st_reg A y C.
+
+
+v0.3.6: (Javier Ayapata - 29/Mar/2006)
+-----
+Se corrige la el query de busqueda de factura.
+
+
+v0.3.7: (Javier Ayapata - 30/Mar/2006)
+-----
+Se corrige al cerrar la ventana cerrando la conexion.
+
+
+v0.3.8: (Javier Ayapata - 30/Mar/2006)
+-----
+Se corrige el control en Iva.
+
+
+v0.3.9: (Javier Ayapata - 26/Abr/2006)
+-----
+Se corrige query para que busque tambien las anuladas.
+
+
+v0.4: (Javier Ayapata - 06/May/2006)
+-----
+Se corrige, se redondea a dos decimales.  
+
+
+v0.5: (Javier Ayapata - 15/May/2006)
+-----
+Se corrige en total que sea igual que la cotizacion.  
+
+
+v0.6: (Javier Ayapata - 15/May/2006)
+-----
+Se corrige en el iva  que sea igual que la cotizacion.  
+
+
+v0.7: (Javier Ayapata - 29/May/2006)
+-----
+Se agrega al insertar en tbm_cabmovinv el secuencial de empresa y grupo.
+
+
+v0.8: (Javier Ayapata - 05/Jun/2006)
+-----
+Se corrige que cuadre la fecha de la factura con el diario y se muestra datos ocultos el stock,costo unitario.
+
+
+v0.9: (Javier Ayapata - 07/Jun/2006)
+-----
+Se agrega para que  valida al anular o eliminar sie esta copfirmado.
+
+
+v1.0: (Javier Ayapata - 16/Jun/2006)
+-----
+Se agrega para que guarde la fecha y el usuario cuando se anula.
+
+
+v1.1: (Javier Ayapata - 20/Jun/2006)
+-----
+Se agrega botones para inprimir y vista preliminar de nositol.
+
+
+v1.2: (Javier Ayapata - 23/Jun/2006)
+-----
+Se corrige que no mueva inventario en grupo si algun cliente es empresa de la misma.
+
+
+v 3.0: (Javier Ayapata - 03/Jul/2006)
+-----
+Se hace una restructuracion del programa para que sea mas liviano.
+
+
+v 3.1: (Javier Ayapata - 10/Jul/2006)
+-----
+Se agrega que inserte total y valor del iva en la base.
+
+
+v 3.2: (Javier Ayapata - 13/Jul/2006)
+-----
+Se corrige para que no se repita dos veces el numero de factura.
+
+
+v 3.4: (Javier Ayapata - 19/Jul/2006)
+-----
+Se agrega codigo alterno2 del item.
+
+
+v 3.5: (Javier Ayapata - 04/Ago/2006)
+-----
+Se modifica que el boton P quede activo cuando se consulta.
+
+
+v 3.8: (Javier Ayapata - 04/Sep/2006)
+-----
+Se agrega para que no se puedad anular si tiene documentos asociados a el.
+
+
+v 4.0: (Javier Ayapata - 04/Sep/2006)
+-----
+Se corrige al quitar el descuento.
+
+
+v 4.1: (Javier Ayapata - 02/Oct/2006) 
+-----
+Se agrega para que se visualize si es item de servicio en listado de item.
+
+
+v 4.2: (Javier Ayapata - 13/Oct/2006)
+-----
+Se corrige al momento de obtener el descuento.
+
+
+v 4.3: (Javier Ayapata - 23/Oct/2006)
+-----
+Se agrega para la funcion de saldo de grupo.
+
+
+v 4.4: (Javier Ayapata - 06/Nov/2006)
+-----
+Se corrige al insertar la factura.
+
+
+v 4.5: (Javier Ayapata - 10/Nov/2006)
+-----
+Se agrega la eliminacion logica .
+
+v 4.6: (Javier Ayapata - 10/Nov/2006)
+-----
+Se corrige al momento de v aloidar el cliente.
+
+
+v 4.7: (Javier Ayapata - 27/Nov/2006)
+-----
+Se agrega la impresion de cosenco.
+
+
+v 4.8: (Javier Ayapata - 28/Nov/2006)
+-----
+Se corrige la validacion de ventas entre compa�ias. 
+
+
+v 4.9: (Javier Ayapata - 06/Dic/2006)
+-----
+Se Corrige al momento de seleccinar el cliente y el vendedor.
+
+
+v 5.0: (Javier Ayapata - 08/Dic/2006)
+-----
+Se corrige al llamar la funcion de existeStockItem_Factura.
+
+
+v 5.1: (Javier Ayapata - 03/Ene/2007)
+-----
+Se corrige al momento de insertar que busque el ruc del cliente
+
+
+v 5.2: (Javier Ayapata - 04/Ene/2007)
+-----
+Se corrige al momento de modificar la factura cuando es venta entre compa�is.
+
+
+v 5.3: (Javier Ayapata - 12/Ene/2007)
+-----
+Se agrega una validacion para el motivo de transporte.
+
+
+v 5.5: (Javier Ayapata - 14/May/2007)
+-----
+Se agrega al momento de modificar la no se pueda cambiar datos en los items que tienes terminales L 
+
+
+v 5.6: (Javier Ayapata - 24/May/2007)
+-----
+Se agrega el codigo de retencion para las facturas y las ordenes de compra
+
+
+v 5.7: (Javier Ayapata - 30/May/2007)
+-----
+Se agrega estado de registro sea A.
+ 
+
+v 5.8: (Javier Ayapata - 30/May/2007)
+-----
+Se agrega en la funcion de calcularPagos la forma de retencion del 1% para fletes
+
+
+v 5.9: (Javier Ayapata - 02/Jul/2007)
+-----
+Se corrige en la funcion calcularPagos la forma de retencion del 1 % para los fletes.
+
+
+v 6.0: (Javier Ayapata - 4/Jul/2007)
+-----
+Se agrega para que obtenga el telefono y ruc en variable para la modifcacion.
+
+
+v 6.1: (Javier Ayapata - 12/Jul/2007)
+-----
+Se corrige al momento de obtener la forma de pago donde antes buscaba los estado A y C=CXC  ahora A y F=facturacion.
+ 
+
+v 6.2: (Javier Ayapata - 27/Jul/2007)
+-----
+Se habilita el asiento de diario para que el usuario pueda colocar las cuentas de ecuatosa.
+
+
+v 6.3: (Javier Ayapata - 15/Ago/2007)
+-----
+Se corrige para que calule el subtotal cuando se coloca la cantidad.
+
+
+v 6.4:(Javier Ayapata - 24/Ago/2007)
+-----
+Se agrega la clase asiento de diario mejorada que contiene la mayorizacion en linea.
+
+
+v 6.5: (Javier Ayapata - 26/Sep/2007)
+-----
+Se agrega un costructor para el programa cobro en efectivo.
+
+ 
+v 6.6 (Javier Ayapata - 14/Nov/2007)
+-----
+se agrega validacion de sistema operativo para las impresiones.
+
+
+v 6.7: (Javier Ayapata - 18/Dic/2007)
+-----
+se agrega en la forma de pago que no retenga para ecuatosa.
+
+
+v 6.8: (Javier Ayapata - 22/Ene/2008)
+-----
+se agrega listado de item que no salgan los estado unificados.
+
+
+v 6.8.1: (Javier Ayapata - 28/Ene/2008)
+-----
+Se agrega que almecene el campo co_itmact en tbm_detmovinv 
+
+
+v 6.8.2: (Javier Ayapata - 11/Mar/2008)
+-----
+Se corrige query para obtener listado de cliente, y no se permite anular y cambios cuando algun item esta unificado.
+ 
+
+v 6.8.3: (Javier Ayapata - 24/Mar/2008)
+-----
+Se agrega filtro de clientes por local.
+
+
+v 6.8.4: (Javier Ayapata - 24/Abr/2008)
+-----
+Se agrega filtro para politicas de retenciones.
+
+
+v 6.8.5: (Javier Ayapata - 07/May/2008)
+-----
+Se agrega para que el iva calcule si el cliente tiene asignado o no.
+
+
+v 6.8.7: (Javier Ayapata - 13/May/2008)
+-----
+Se agrega para que al momento de anular si tiene una transfe. genere otra por anulacion.
+
+
+v 6.8.8: (Javier Ayapata - 15/May/2008)
+-----
+Se agrega para que al momento de anular en la transf. que genere poner obs de que factura y trans de anula y reversa.
+
+
+v 6.8.9: (Javier Ayapata - 16/May/2008)
+-----
+Se corrige en la transf. se quema el codigo local para grupo a 1.
+
+
+v 6.9.0: (Javier Ayapata - 03/Jun/2008)
+-----
+Se corrige al momento de insertar la factura. 
+
+
+v 6.9.1: (Javier Ayapata - 17/Jun/2008)
+-----
+Se agrega para que el usuario de gina pueda anular facturas pero que no hayan sido impresa.
+
+
+v 6.9.2: (Javier Ayapata - 11/Jul/2008)
+-----
+Se agrega al momento de anular la factura verfique las transferencia que tiene asociado y muestre un mensaje que transferencia se reversan y si la 
+transferencia este confirmado o no.
+ 
+
+v 6.9.3: (Javier Ayapata - 28/Oct/2008)
+-----
+Se agrega para que almacene en la tabla tbm_invbod el campo nd_canegr.
+
+
+v 6.9.4: (Javier Ayapata - 26/Nov/2008)
+-----
+Se agrega clase nueva de movimiento de inventario.
+
+
+v 6.9.5: (Javier Ayapata - 26/Ene/2009)
+-----
+Se agrega cambios en enviar parametros al asiento de diario.
+
+
+v 6.9.6: (Javier Ayapata - 29/Ene/2009)
+-----
+Se agrega filtro de tipo de documento por usuario.
+
+
+v 6.9.7: (Javier Ayapata - 09/Mar/2009)
+-----
+Se verifica proceso de anulacion de factura y orden de compra.
+
+
+v 6.9.8: (Javier Ayapata - 19/Mar/2009)
+-----
+Se agrega en vista preliminar donde se escoje factuta o guia solo para castek.
+
+
+v 6.9.9: (Javier Ayapata - 19/Mar/2009)
+-----
+Se agrega en vista preliminar donde se escoje factuta o guia solo para dimulti.
+
+
+v 7.0.0: (Javier Ayapata - 15/Abr/2009)
+-----
+Se agrega al consultar calcule el iva en base al detalle.
+
+
+v 7.01: (Javier Ayapata - 11/May/2009)
+-----
+Se agrega para que seleccione las bodega .
+
+
+v 7.02: (Javier Ayapata - 28/Mayo/2009)
+-----
+Se corrige un cambio en funcion al anular.
+
+
+v 7.03: (Javier Ayapata - 03/Jul/2009)
+-----
+Se agrega cuando se anula la factura tamb se anule la guia.
+
+
+v 7.04: (Javier Ayapata - 11/Ago/2009)
+-----
+Se agrega para que actualize secuencia de empresa y grupo tomando la secuencia de la tabla tbm_emp
+
+
+v 7.05: (Javier Ayapata - 18/Ago/2009)
+-----
+Se cambia el usuario gina a usuario csuarez para que pueda anular las facturas de ventas.
+
+
+v 7.06: (Javier Ayapata - 06/Nov/2009)
+-----
+Se agrega que al momento de anular verifiqua solo las ordenes las compras que se anularan
+
+
+v 7.07: (Javier Ayapata - 18/Ene/2010)
+-----
+Se agrega columna nueva en asiento de diario
+
+
+v 7.08: (Javier Ayapata - 17/Feb/2010)
+-----
+Se agrega cuando se anula la factura que tiene numero 0 cambia el estado de latizacion para que permita volvel a facturar las misma.
+
+
+v 7.09: (Javier Ayapata - 16/Abr/2010)
+-----
+Se agrega constructor para mostrar la factura desde el seguimiento de devolucion de ventas.
+
+
+v 8.00: (Javier Ayapata - 27/Abr/2010)
+-----
+Se corrige al cargar registro desde el grupo.
+
+
+v 8.01: (Javier Ayapata - 10/May/2010)
+-----
+Se agrega validacion al momento de anular si necesita autorizacion.
+
+
+v 8.02: (Javier Ayapata - 10/May/2010)
+-----
+Se agrega para que pueda anular la nueva contadora  leonor soliz
+
+
+v 8.03: (Javier Ayapata - 09/Ago/2010)
+-----
+Se agrega cuando se anula verifique si tiene alguna recepcion de cheque asociado 
+
+
+v 8.04: (Javier Ayapata - 30/Ago/2010)
+-----
+Se agrega para que pueda anular al nuevo contador  juan 
+
+
+v 8.05: (Javier Ayapata - 17/Sep/2010)
+-----
+Se agrega para que pueda anular las prefacturas la jefa de cobranzas.
+
+
+v 8.06: (Javier Ayapata - 22/Oct/2010)
+-----
+Se cambia configuracion de reporteria que esta en el servidor.
+
+
+v 8.07: (Javier Ayapata - 07/Dic/2010)
+-----
+Se agrega para que envie correo cuando se anula factura al bodega.
+
+
+v 8.08: (Javier Ayapata - 08/Dic/2010)
+Se agrega para que avise tambien las ordenes que se anula.
+
+
+v 8.09: (Javier Ayapata - 27/Ene/2011)
+-----
+Se agrega para que coloque null cuando valor foreneo sea 0.
+
+
+v 8.10: (Javier Ayapata - 23/May/2011)
+-----
+Se agrega validacion al anular cuando la guia tiene generada guia secundaria.
+
+
+v 8.11: (Javier Ayapata - 24/Jun/2011)
+-----
+Se agrega para tome la cuenta de correo desde la clase de correo ...
+
+
+v 8.12: (Javier Ayapata - 15/Jul/2011)
+-----
+Se corrige la table de forma de pago y se agrega tamb. para que retenga el 2% cuando sea servicio.
+
+
+v 8.13: (Javier Ayapata - 27/Jul/2011)
+-----
+Se agrega al consultar factura y que sea por cliente al momento de aceptar a la ventana de consulta de cliente se aga un disponse.
+
+
+v 8.14: (Javier Ayapata - 08/Ago/2011)
+-----
+Se corrige al consultar factura en seguimiento de devolucion 
+
+
+v 8.15: (Javier Ayapata - 23/Ago/2011)
+-----
+Se corrige al consultar factura valide el tipo de documento que tenga.
+
+
+v 8.16: (Javier Ayapata - 23/Sep/2011)
+-----
+Se agrega cambios para nuevo esquema guías-OD
+
+
+v 8.17: (Javier Ayapata - 05/Oct/2011)
+-----
+Se agrega boton en pantalla de factura un boton que presenta la(s) guias de remision generado y otro boton donde presenta los items pendientes de confirmar.
+
+
+v 8.18: (Javier Ayapata - 08/Nov/2011)
+-----
+Se corrige al calcular forma de pago.
+
+
+v 8.19: (Javier Ayapata - 24/Nov/2011)
+-----
+Se agrega cliente retira....
+
+
+v 8.20: (Javier Ayapata - 04/Dic/2011)
+-----
+Se agrega validacion de campos de cliente retira.
+
+
+v 8.21: (Javier Ayapata - 09/Dic/2011)
+-----
+Se agrega nuevo tab en poder ver los pedidos en la otra bodega..
+
+
+v8.22: (Erik Flores - 16/Abr/2012)
+-----
+Anulacion de prefacturas de dias anteriores.
+
+
+v8.23: (Erik Flores - 02/May/2012)
+-----
+Modificaciones a boton de consulta de pedidos. Se modifica query de consulta para que consulte las ordenes pendientes
+solo una vez y no como actualmente. 
+
+
+v8.24: (Erik Flores - 14/May/2012)
+-----
+Notificacion a bodega de anulacion de factura siempre y cuando la O/D tenga numero asignado y este impresa.
+
+
+v8.25: (Erik Flores - 15/May/2012)
+-----
+Mejora a consulta de facturas. Se ordena por fecha y numero de factura. 
+
+
+v8.26: (Erik Flores - 24/May/2012)
+-----
+Mejora a consulta de pedidos hechos en otras bodegas.
+
+
+v8.27: (Erik Flores - 12/Jul/2012)
+-----
+Se agrega a FRUIZ para la anulacion de pre-facturas.
+
+
+v8.28: (Erik Flores - 08/Oct/2012)
+-----
+Se agrega consulta de guias de remision relacionadas.
+
+
+v8.29: (Erik Flores - 11/Oct/2012)
+-----
+Se modifica consulta de guias de remision relacionadas. Se pone tipo de documento real. 
+
+
+v8.3: (Erik Flores - 29/Oct/2012)
+-----
+No se permite anular facturas que tengan marcada opcion cliente retira.  
+
+
+v8.4: (Erik Flores - 31/Oct/2012)
+-----
+ZafVen02_04. BLOQUEO CLIENTE RETIRA EN MANTA Y SANTO DOMINGO.
+
+
+v8.5: (Erik Flores - 09/Ene/2013)
+-----
+ZafVen02. TARJETAS DE CREDITO
+
+
+v8.6: (Alex Moran - 29/Ene/2013)
+-----
+ZafVen02. Corrección en porcentajes de descuento, se modificaba al momento de cambiar tab de forma de pago a general
+
+
+v8.7: (Alex Moran - 01/Mar/2013)
+-----
+ZafVen02. Se agrega validación para no permitir anular facturas generadas por volver a facturar de una solicitud de devolución
+
+
+v8.8: (Alex Morán - 02/May/2013)
+-----
+ZafVen02_04. Se modifica para presentar orden de articulos según el orden de la cotización en el tab pedidos.
+
+
+v8.9: (Alex Morán - 09/Ago/2013)
+-----
+ZafVen02. Corrección en validación al momento de anular facturas con opción cliente retira.
+
+
+v9.0: (Alex Morán - 02/Sep/2013)
+-----
+ZafVen02. Corrección en función _consultar2, utilizada por otros componentes para presentar el registro de facturas.
+
+
+v9.1: (Alex Morán - 09/Sep/2013)
+-----
+ZafVen02. Se modifica para considerar contabilización de ventas por intereses, gestion de cobranzas, arriendos, etc.
+
+
+v9.2: (Alex Morán - 16/Sep/2013)
+-----
+ZafVen02. Se corrije nombre de campo referenciada en consulta, método _getCargarDetReg.
+
+
+v9.3: (José Marín - 31/Mar/2014)
+-----
+Se agrega Datafast, para los conbros con tarjeta de credito
+
+
+v9.4: (José Marín - 31/Mar/2014)
+-----
+Se agrega validación en la anulación, solo se puede anular las prefacturas 
+
+
+v.9.5: (Mayra Cortez - 06/Jun/2014)
+-----
+Se quito nla validacion de dia para la anulacion de prefacturas.
+
+
+v.9.6: (José Marín M - 27/Oct/2014)
+-----
+Se agrega un nuevo reporte para facturación electronica 
+
+
+v.9.7: (José Marín M - 04/Nov/2014)
+-----
+Se cambia la ruta del logo para facturación electronica
+
+
+v.9.8: (José Marín M - 15/Dic/2014)
+-----
+Se bloquea poner cliente retira en la ventana de pedidos ZafVen02_04
+
+
+v.9.9: (José Marín M - 23/Dic/2014)
+-----
+Se agrega un campo en el reporte tx_desConEsp
+
+
+v.10.0: (José Marín M - 21/Ene/2015)
+-----
+Se agrega la funcion validarAutFacEleSRI(), para que no se puedan imprimir facturas que no hayan sido autorizadas por el SRI.
+
+
+v.10.1: (Dennis Betancourt - 20/Feb/2015)
+-----
+Se modifican los parametros que son enviados al reporte de Factura electronica. Ya no se envia como parametro el SQL. Ahora se envia: codEmp, codLoc, codTipDoc, codDoc, ambiente, RUTA_LOGO.
+
+
+v.10.2: (Dennis Betancourt - 04/Mar/2015)
+-----
+En la funcion validarAutFacEleSRI() se puso una validacion para que se verifique si la factura esta autorizada por el SRI solo cuando tbm_cabTipDoc.st_utiFacEle = 'S' de acuerdo al TipDoc.
+
+
+v.10.3: (José Marín M - 7/Abr/2015)
+-----
+Se agrega un boton para que las facturas sean enviadas en linea al SRI.
+
+
+v.10.4: (José Marín M - 14/Ago/2015)
+-----
+Se agrega validación para permitir que se puedan anular facturas en ECUATOSA COSENCO DETOPACIO
+
+
+v.10.5: (José Marín M - 11/Sep/2015)
+-----
+Se modifica que el SUBTOTAL, IVA, y TOTAL de la factura se lean directamente de la base y no se recalcule al momento de consultar
+
+
+v.10.6: (Tony Sanginez - 17/Mar/2016)
+-----
+Se cambia en el metodo generarRpt() , objRptSis.generarReporte() por  objRptSis.generarReporteA5() para las impresiones en A5.
+
+
+v.10.7: (Rosa Zambrano - 08/Jun/2016)
+-----
+Se modifica la función _getCargarCabReg() para presentar los valores del subtotal, iva y total al momento de consultar una factura en algun reporte.
+Se cambia la función mostrarItmPenConfEgr() para que presente las cantidades pendientes correctas.
+
+
+v.10.8: (Christian Mateo - 17/Jun/2016)
+-----
+Se modifica nombre de campo en resultset en el alias.
+
+
+v.10.9: (Tony Sanginez - 20/Jun/2016)
+-----
+Se agrega constructor utilizado como HashMap para reportes de seguimiento de solicitudes de transferencias de inventario.
+
+
+v11.0: (Rosa Zambrano - 08/Ago/2016)
+-----
+Se cambia query de cantidades pendientes de las ordenes de despacho.
+
+
+v11.1: (Dennis Betancourt - 14/Sep/2016)
+-----
+Al reporte de Factura electronica se le envia un nuevo parametro: strDesForPagSri (Descripcion de Forma de pago segun la ficha tecnica del SRI).
+
+
+v11.2: (Rosa Zambrano - 15/Dic/2016)
+-----
+Se cambia consulta de cantidades pendientes para nuevo esquema de manejo códigos L.
+
+
+v11.3: (Jose Marin - 31/Ene/2017)
+-----
+Se cambia consulta de cantidades pendientes para nuevo esquema de manejo códigos L.
+
+
+v11.4: (Jose Marin - 31/Ene/2017)
+-----
+Se modifica el pulso que usan las vendedoras para enviar la factura al SRI.
+
+
+v11.5: (Dennis Betancourt - 08/Dic/2017)
+-----
+Se agrega pulso Off Line SOLO para Dimulti.
+
+
+v11.6: (Dennis Betancourt - 21/Dic/2017)
+-----
+Se elimina llamada a metodo iniciarOffLine() de la clase ZafPulFacEle, el cual usaba el puerto temporal 6013 para Esquema OffLine inicialmente implementado solo para Dimulti.
+
+
+v 11.6.1: (Jose Mario Marin - 9/Ene/2018)
+-----
+Se modifica el programa por que estaba recalculando el documento cuando esta en modo consulta.
+
+
+v11.7: (Dennis Betancourt - 24/Ene/2018)
+-----
+Se agrega el boton <Obtener XML> el cual enviara un correo al usuario adjuntando los archivos XML y PDF de la factura.
+
+
+v11.8: (Rosa Zambrano - 24/May/2018)
+-----
+Se modifica generarRpt() para que envie como parametro tx_Ate, que muestre la autorización de la GR. (POFASA)
+
+
+v11.9: (Rosa Zambrano - 29/May/2018)
+-----
+Se modifica generarRpt() para que envie como parametro tx_numGuiRem, que muestre la autorización de la GR. (POFASA)

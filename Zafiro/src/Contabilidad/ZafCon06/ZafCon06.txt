@@ -1,0 +1,66 @@
+Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 19/Ene/2006)
+----
+Se actualiz� el c�digo para que funcione con la correcci�n hecha en ZafToolBar.
+Ahora luego de "Insertar" se envia el registro al modo "Consultar".
+
+v0.2: (Dario Cardenas - 09/Nov/2006)
+------------------------------------
+Se corrigio Query para Eliminacion Logica en la funcion eliminarCab(), se elimino la funcion eliminarDet().
+
+v0.3: (Ingrid Lino - 23/Ago/2007)
+-----
+Se adicion� c�digo para presentar tipos de documentos por usuarios y cuentas por usuarios
+
+v0.4b1: (Ingrid Lino - 21/Ene/2008)
+-----
+Se adicion� c�digo para cuando se grabe un cheque en el q se especifica solo el monto en la cabecera se genere un registro
+autom�tico que guarde la clave primaria de tbm_detPag y el valor del dcto en nd_abo.
+
+v0.4: (Ingrid Lino - 23/Ene/2008)
+-----
+Pase a producci�
+
+v0.5: (Ingrid Lino - 06/Ago/2008)
+-----
+Se modificó la forma de llamar al reporte .jrxml. El motivo es por cambio del SO Windows al SO Linux, y en
+el código se está colocando quemada la ruta de ubicación del reporte.
+Ejm:
+    "C://Zafiro//Reportes_impresos//RptCreBan.jrxml"   -->Para Windows
+    "//Zafiro//Reportes_impresos//RptCreBan.jrxml"     -->Para Linux
+
+v0.6 b1: (Ingrid Lino - 12/Nov/2008)
+-----
+    -Se adiciona parámetros de permisos de modificación para fecha del documento y para modificación del 
+    documento.
+    Ver diccionario de datos:
+        tbr_tipdocusr.ne_tipresmodfecdoc
+        tipdocusr.ne_tipresmoddoc
+    -Se adiciona código para actualizar en tbm_cabDia.st_imp='S' cuando se realice la impresión.
+    -Se adiciona código para actualizar en tbm_cabPag.st_imp='S' cuando se realice la impresión.
+
+v0.6: (Ingrid Lino - 17/Nov/2008)
+-----
+Pase a producción.
+
+v0.6.1: (Ingrid Lino - 25/Sep/2009)
+-----
+Se adicionó código de impresión y vista prelimiar para Linux
+
+v0.6.2: (Ingrid Lino - 07/Jun/2010)
+-----
+Se colocó todo el objeto toolbar como invisible.(Este programa no se lo está usando en producción porque solo afecta a diarios y no a valores de pagos).
+
+v0.6.3: (Ingrid Lino - 17/Jun/2010)
+-----
+La validación del toolbar invisible se lo colocó solo cuando el código de menu es  544(544->Depositos, 564->Notas de Credito Bancarias).
+
+v0.6.4: (Rosa Zambrano - 30/Ago/2019)
+----
+Se realizan cambios para Jaspersoft Studio.

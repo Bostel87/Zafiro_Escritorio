@@ -1,0 +1,53 @@
+Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v.1: (Ingrid - 30/Mar/2006)
+---------------------------
+Se agreg� filtro por empresa y se cambi� la codificaci�n de como se llama a  ZafConsulta a la forma actual
+
+v0.1.1: (Ingrid - 31/Mar/2006)
+------------------------------
+Se cambi� seteo a 'S' el estado de postfechado(st_pos), porque se estaba seteando el campo de st_entsop.
+Correcci�n en la l�nea 622
+
+v1.3: (Ingrid - 05/Jul/2006)
+----------------------------
+Se corrigi� el valor que se presentaba en la columna de documento, porque se presentaba el valor del 
+documento y no el valor pendiente
+
+v1.4: (Dario Cardenas - 10/May/2007)
+------------------------------------
+Se modifico funcion Run(), ya que desde ahora se procesaran documentos de varios locales de TUVAL,
+ademas se agrego columna codloc para visualizar que local del documento que se esta trabajando.
+En la funcion que ejecuta el boton GUARDAR, en el UPDATE se agrego el campo st_entsop para actualizarlo
+con estado 'S'.
+
+v1.5: (Dario Cardenas - 10/May/2007)
+------------------------------------
+Se modifico funcion del boton guardar, se asigno en el campo de nd_monchq de la tabla tbm_pagmovinv
+el valor de la suma (nd_monpag+nd_abo) ya que solo guardaba el valor total del mon_pag y no el saldo
+
+v1.6: (Dario Cardenas - 10/Jul/2007)
+------------------------------------
+Se modifico funcion del boton consultar, ya que dicha funcion no tenia el filtro del estado del reg
+dentro de la tabla tbm_cabmovinv...
+
+v1.7: (Dario Cardenas - 17/Jul/2007)
+------------------------------------
+Se modifico funcion ZafConsultar(), ya que dicha funcion estaba mostrando datos con saldo cero...
+
+v1.8: (Dario Cardenas - 12/Nov/2007)
+------------------------------------
+Se modifico dise�o de ventana y se reemplazo funciones para cargar datos
+
+v1.9: (Dario Cardenas - 21/Nov/2007)
+------------------------------------
+Se quito la edicion de la columna de NumDoc...
+
+v2.0: (Dario Cardenas - 25/Mar/2008)
+------------------------------------
+Se implemento clase para saber parametros del sistema por cliente...

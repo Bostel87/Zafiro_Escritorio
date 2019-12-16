@@ -1,0 +1,14 @@
+﻿Pendientes:
+1) Validación de locales por programa y usuario en caso de que se solicite esta configuración.
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Rosa Zambrano - 05/Nov/2015)
+----
+Clase nueva "Listado clientes/proveedores".
+
+
+v0.2: (Rosa Zambrano - 28/Nov/2015)
+-----
+Se agrega rango de fecha para buscar el ultimo movimiento del cliente/proveedor.

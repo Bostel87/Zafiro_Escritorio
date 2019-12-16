@@ -1,0 +1,203 @@
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Javier Ayapanta - 04/Jun/2007)
+----
+Clase Nueva "Reemplazo de factura".
+
+v0.1.1: (Javier Ayapanta - 06/Jun/2007)
+-----
+Se corrige al momento de insertar la factura.
+
+v0.1.2: (Javier Ayapanta - 27/Jun/2007)
+-----
+Se corrige al momento de insertar la factura.
+
+v0.1.3: (Javier Ayapanta - 02/Jul/2007)
+-----
+Se corrige en la funcion calcularPagos la forma de retencion del 1 % para los fletes.
+
+v0.1.4: (Javier Ayapanta - 04/Jul/2007)
+-----
+Se corrige al momento de crear la nueva factura se obtiene la informacion del cliente el Ruc.
+
+v0.1.5: (Javier Ayapanta - 09/Jul/2007)
+-----
+Se corrige al momento obtener el calculo de subtotal y total de la devolucion.
+
+v0.1.6: (Javier Ayapanta - 02/Ago/2007)
+-----
+Se agrega para que se pueda buscar por local y porder hacer el reemplazo de factura, se quita la validacion de confirmacion.
+
+v0.1.7: (Javier Ayapanta - 03/Ago/2007)
+-----
+Se agrega que se guarde el numero de factura de la cual se esta reemplazando.  
+
+v0.1.8: (Javier Ayapanta - 07/Ago/2007)
+-----
+Se agrega validacion al momento de anular que no puedan anular hasta 5 dias antes y que genera la nueva factura al primer dia del mes siguiente laborable.
+
+v0.1.9: (Javier Ayapanta - 24/Ago/2007)
+-----
+Se agrega mayorizacion en linea.
+
+v0.2.0: (Javier Ayapanta - 27/Ago/2007)
+-----
+Se agrega para que puedan cambiar el cliente cuando se realiza el reemplazo de la factura.
+
+v0.2.1: (Javier Ayapanta - 10/Ene/2008)
+-----
+Se agrega control al realizar el reemplazo de factura que no tenga pagos asociados.
+
+v0.2.2: (Javier Ayapanta - 28/Ene/2008)
+-----
+Se agrega que almecene el campo co_itmact en tbm_detmovinv.
+
+v0.2.3: (Javier Ayapanta - 11/Mar/2008)
+-----
+Se corrige query para obtener listado de cliente y no se permite reeplazar factura si tiene unificacion en los item.
+
+v0.2.4: (Javier Ayapanta - 25/Mar/2008)
+-----
+Se agrega para que realize de forma automatica los cruces entre la devolucion y la factura.
+
+v0.2.5: (Javier Ayapanta - 02/Abr/2008)
+-----
+Se agrega para que realice cruce de manera automatica entre la devolucion y la factura.
+
+v0.2.6: (Javier Ayapanta - 24/Abr/2008)
+-----
+Se agrega filtro para las retenciones.
+
+v0.2.7: (Javier Ayapanta - 07/May/2008)
+-----
+Se agrega para que el iva calcule si el cliente tiene asignado o no.
+
+v0.2.8: (Javier Ayapanta - 09/May/2008)
+-----
+Se corrige el secuencial de la factura que sea priemero la devolucion y desp. la factura.
+
+v0.2.9: (Javier Ayapanta - 11/Jun/2008)
+-----
+Se corrige al reemplazar la factura en la tabla tbr_cabmovinv .
+ 
+v0.3.0: (Javier Ayapanta - 05/Ago/2008)
+-----
+Se corrige al realizar la devolucion y se abilita en el campo de tx_obs1 en factura.
+
+v0.3.1: (Javier Ayapanta - 14/Ago/2008)
+-----
+Se corrige al momento de hacer cruce automatico tomando en cuenta los estado A y C en pagmovinv
+
+v0.3.2: (Javier Ayapanta - 14/Ene/2009)
+-----
+Se agrega impresión directa a la factura de facturación.
+
+v0.3.3: (Javier Ayapanta - 26/Ene/2009)
+-----
+Se agrega cambio al momento de enviar parametros al asiento de diario.
+
+v0.3.4: (Javier Ayapanta - 29/Ene/2009)
+-----
+Se agrega nueva clase de inventario.
+
+v0.3.5: (Javier Ayapanta - 09/Mar/2009)
+-----
+Se corrige al momento de hacer reemplazo por anulacion.
+
+v0.3.6: (Javier Ayapanta - 01/Abr/2009)
+-----
+Se quita la impresion automatica de guia.
+
+v0.3.7: (Javier Ayapanta - 02/Abr/2009)
+-----
+Se corrige cuando se hace devolucion de venta por problema de iva.
+
+v0.3.8: (Javier Ayapanta - 24/Abr/2009)
+-----
+Se corrige cuando se cambia de cliente verifique si marca iva o no .
+
+v0.3.9: (Javier Ayapanta - 19/May/2009)
+-----
+Se agrega para que eliga local para dimulti.
+
+v0.4.0: (Javier Ayapanta - 11/Ago/2009)
+-----
+Se agrega para que actualice secuencia de empresa y grupo tomando la secuencia de la tabla tbm_emp
+
+v0.4.1: (Javier Ayapanta - 17/Sep/2009)
+-----
+Se agrega para que almecene el estado confirmacion en null en devven
+
+v0.4.2: (Javier Ayapanta - 06/Nov/2009)
+-----
+Se agrega filtro que solo aparezca cliente del mismo grupo de la facturar nueva.
+
+v0.4.3: (Javier Ayapanta - 14/Dic/2009)
+-----
+Se agrega para que solo aparezca el local en cual esta trabajando.
+
+v0.4.4: (Javier Ayapanta - 08/Ene/2010)
+-----
+Se agrega al reemplazar la factura el filtro de cliente por local.
+
+v0.4.5: (Javier Ayapanta - 18/Ene/2010)
+-----
+Se agrega columna nueva en asiento de diario.
+
+v0.4.6: (Javier Ayapanta - 10/Feb/2010)
+-----
+Se agrega validacion si ya tiene solicitud de dev avtida no permite reemplazar.
+
+v0.4.7: (Javier Ayapanta - 05/Jul/2010)
+-----
+Se agrega codigo de menu de devolucion nueva.
+
+v0.4.8: (Javier Ayapanta - 23/Ago/2010)
+-----
+Se agrega para que la nueva factura lleve el mismo numero de guia al cual reemplazo.
+
+v0.4.9: (Javier Ayapanta - 25/Feb/2011)
+-----
+Se agrega para que reemlace la guia que corresponde a la factura que se reemplaza.
+
+v0.5.0: (Javier Ayapanta - 02/Mar/2011)
+-----
+Se agrega validacion de fecha del primer corte en forma de pago.
+
+v0.5.1: (Javier Ayapanta - 27/Jun/2011)
+-----
+Se corrige al cargar la factura.
+
+v0.5.2: (Javier Ayapanta - 18/Jul/2011)
+-----
+Se agrega para que al momento de reemplazar facturar tambien calcule los items de servicio para que separe la retencion del mismo.
+
+v0.5.4: (Javier Ayapanta - 25/Oct/2011)
+-----
+Se corrige problema que no generaba devolucion en ciertos casos.
+
+v0.5.5: (Javier Ayapanta - 16/Nov/2011)
+-----
+Se agrega el numero de orden de despacho que no tenia cuando se realizaba el reemplazo.
+
+v0.5.6: (Erick Flores - 06/Sep/2012)
+-----
+Relacionar en tbr_detMovInv la nueva factura con los documentos intermedios anteriores, Caso opcion Cliente Retira. No se puede confirmar el ingreso en otra bodega.
+
+v0.5.7: (Erick Flores - 09/Ene/2013)
+-----
+Se tarjetas de credito.
+
+v0.6.0: (Alex Morán - 29/Ene/2013)
+-----
+ZafVen24_01. Corrección en porcentajes de descuento, se modificaba al momento de cambiar tab de forma de pago a general.
+
+v0.6.1: (Alex Morán - 02/May/2013)
+-----
+Se modifica para considerar tabla calendario por ciudad en reemplazo de tablas de feriados por ciudad.
+
+v0.6.2: (Rosa Zambrano - 11/Ene/2019)
+-----
+Se modifica las librerias para adaptar a Jaspersoft Studio.

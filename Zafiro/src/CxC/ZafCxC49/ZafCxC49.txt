@@ -1,0 +1,14 @@
+Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Dario Cardenas - 23/Abr/2008)
+--------------------------------------
+Se creo Programa tipo Reporte para mostrar un Listado de Recepcion de Efectivo Pendiente de Procesar.
+
+v0.2: (Dario Cardenas - 17/Jun/2008)
+--------------------------------------
+Se creo Programa tipo Reporte para mostrar un Listado de Recepcion de Efectivo Pendiente de Procesar.

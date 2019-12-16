@@ -1,0 +1,16 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 28/Oct/2005)
+----
+Clase nueva.
+
+
+v0.2: (Eddye Lino - 03/Sep/2007)
+-----
+Se agregó el listener: 
+   1) actionPerformed(ZafTableEvent evt)

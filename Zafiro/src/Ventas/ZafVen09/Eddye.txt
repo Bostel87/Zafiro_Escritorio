@@ -1,0 +1,36 @@
+﻿Pendientes:
+1) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 07/May/2007)
+----
+Clase nueva "Reporte Ventas Bruta"
+
+
+v0.2: (Eddye Lino - 26/May/2009)
+-----
+Se modificó los métodos: 
+   1) configurarFrm()
+   2) cargarDetReg()
+Se agregó casilla de verificación "Excluir las ventas entre las empresas del grupo".
+
+
+v0.3: (Eddye Lino - 02/Jun/2009)
+-----
+Se modificó los métodos: 
+   1) cargarDetReg()
+Se eliminó del query la condición "AND (a1.st_tipDev IS NULL OR a1.st_tipDev='C')".
+
+
+v0.4: (Rosa Zambrano - 16/Nov/2015)
+-----
+Se corrige query de la función cargarDetReg() para que presente los valores correctos.
+Se agrega nueva función sqlConFil() para retornar todos los filtros seleccionados por el usuario a la hora de la consulta.
+Se agrega en la función cargarDetReg() el parametro sqlConFil(), para que realice la consulta en base a los filtros seleccionados por el usuario.
+Se agrega permisos de usuarios para configuración de locales en la tabla tbr_locPrgUsr, en reemplazo de los parametros de la tabla tbr_parUsr.
+Se utiliza la función validaLocUsr() en la  función sqlConFil() para validar si el usuario tiene locales permitidos.
+Se agrega filtro para búsqueda de reportes de ventas brutas por local de acuerdo a los locales permitidos.
+
+

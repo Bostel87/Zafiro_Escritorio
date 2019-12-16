@@ -1,0 +1,30 @@
+Clase nueva .
+
+Javier Ayapata  12-Dic-2007  ver 0.1
+  listado de clientes con credito cerrado
+
+Javier Ayapata  17-Dic-2007  ver 0.2
+ se corrigue listado de cliente agregando ordenamiento y busqueda.
+
+Javier Ayapata  19-Dic-2007  ver 0.3
+ se corrigue query para obtener listado de cliente con credito cerrado.
+
+Javier Ayapata  03-Jun-2008  ver 0.4
+ se corrigue query para obtener listado de cliente con credito cerrado.
+
+Javier Ayapata  10-Jun-2008  ver 0.5
+ se corrigue query para obtener listado de cliente con credito cerrado, faltando soporte de cheque.
+
+Javier Ayapata  17-Jun-2008  ver 0.6
+ se agrega datos de cheque en documento vencidos.
+
+Javier Ayapata  01-Sep-2008  ver 0.7
+ se corrigue al consular registro.
+
+Javier Ayapata  09-Ago-2011  ver 0.8
+ se corrigue campo ne_mod a entero
+
+
+
+
+

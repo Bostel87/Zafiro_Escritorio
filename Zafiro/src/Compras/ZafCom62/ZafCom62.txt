@@ -1,0 +1,7 @@
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Ingrid Lino - 23/Ene/2012)
+---
+Clase nueva para crear configurar Items por Grupo

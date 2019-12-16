@@ -1,0 +1,26 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Rosa Zambrano - 18/Mar/2016)
+----
+Clase nueva "Beneficios Sociales del mes".
+Consulta todos los beneficios sociales de los empleados por mes.
+
+
+v0.2: (Rosa Zambrano - 03/May/2016)
+-----
+Se oculta columna de Tipo de Provisión.
+
+
+v0.3: (Rosa Zambrano - 20/May/2016)
+-----
+Se agrega la columna de plantilla del trabajador.
+
+
+v0.4: (Rosa Zambrano - 07/Mar/2017)
+-----
+Se pone como visible la columna de plantilla del trabajador.

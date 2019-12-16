@@ -1,0 +1,11 @@
+CONTROL DE VERSIONES:
+=====================
+v0.1: (Ingrid Lino - 30/Jul/2007)
+----
+Programa nuevo, que permite realizar "Reapertura anual de Presupuestos", este programa permite realizar reaperturas para un determinado año.
+Una vez que se realiza una reapertura anual, debe verificar si no cuenta con cierres mensuales, si este es el caso, y desea hacer
+cambios en un mes cerrado, por mas de haber realizado la reapertura anual necesitará realizar la reapertura mensual de ese año.
+
+v0.1b1: (Ingrid Lino - 22/Ago/2007)
+---
+Se adicionó validación para años que no han sido presupuestados no se puedan reaperturar

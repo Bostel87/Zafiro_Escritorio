@@ -1,0 +1,20 @@
+﻿
+CONTROL DE VERSIONES:
+=====================
+
+
+v1.0: (Roberto Flores- 19/04/2012)
+----
+Clase nueva
+
+v1.01: (Roberto Flores- 03/05/2013)
+----
+Se realizan mejoras en el programa: tipo de empleado (administrativo, no administrativo). Nuevo esquema de alimentación..
+
+v1.02: (Roberto Flores- 02/07/2013)
+----
+Se realiza mejora en query para mostrar los empleados que reciben almuerzo y forma de recibirlo sea comida.
+
+v1.03: (Roberto Flores- 11/07/2013)
+----
+Cambio en query para reporte de almuerzos. Se muestran quiebres en el reporte de la oficina y tipo de empleado...

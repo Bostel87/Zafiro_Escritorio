@@ -1,0 +1,53 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v1.0: (Roberto Flores - 29/May/2011)
+----
+Clase nueva para el ingreso, corrección y aumento de sueldos.
+
+
+v1.02: (Roberto Flores - 18/Jul/2013)
+-----
+Se realiza validación para contemplar casos de historicos de sueldos pasados por empleados que no tienen añadidos los rubros de ingresos que se presentaron 
+después (caso: Otros Ingresos y Movilización 2)...
+
+
+v1.03: (Roberto Flores - 19/Sep/2013)
+-----
+Se realizan validaciones para enviar correos a LSC detallando el antes y después -cuando se realiza un Ingreso, Corrección o modificación de sueldos.
+
+
+v1.04: (Roberto Flores - 28/Oct/2013)
+-----
+Se realizan validaciones para enviar correos a LSC y Fernando Ruiz detallando el antes y después -cuando se realiza un Ingreso, Corrección o modificación de sueldos.
+
+
+v1.05: (Roberto Flores - 13/Nov/2013)
+-----
+Se valida para que al enviar el mail se envie el cargo del empleado. Solicitado por: Fernando Ruiz.
+
+
+v1.06: (Roberto Flores - 13/Nov/2013)
+-----
+Se valida para enviar correo de novedades de sueldos a Ing. Juan Rodas. Solicitado por: Juan Rodas.
+
+
+v1.07: (David Albuja - 06/Jun/2014)
+-----
+Se Agrego cálculo de Bono y Movilización programado.
+
+
+v1.08: (David Albuja - 19/Jun/2014)
+-----
+Al grabar invoca al Servicio9.
+
+
+v1.09: (Eddye Lino - 14/Ago/2014)
+-----
+Se mejoró la interface gráfica.
+
+

@@ -1,0 +1,14 @@
+Pendientes:
+1) 
+2) 
+
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (IdiTrix)
+----
+	Correccion para poder grabar parametros null
+
+v0.2: ()
+-----

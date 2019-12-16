@@ -1,0 +1,8 @@
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (José Marín- 23/01/2013)
+----
+Clase nueva.
+

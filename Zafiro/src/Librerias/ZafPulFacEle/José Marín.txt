@@ -1,0 +1,27 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (José Marín M. - 6/Nov/2014)
+----
+Clase nueva.
+
+v0.2: (José Marín M. - 16/Nov/2017)
+----
+Off line.
+
+v0.3: (Dennis Betancourt - 21/Dic/2017)
+----
+Se elimina metodo iniciarOffLine(), el cual usaba el puerto temporal 6013 para Esquema OffLine inicialmente solo para Dimulti.
+
+v0.4: (Dennis Betancourt - 24/Ene/2018)
+----
+Se agrega el metodo iniciarEnvioPulsoServicio15(), el cual enviara un correo al usuario adjuntando los archivos XML y PDF del Comprobante Electronico solicitado (factura, guia de remision, devolucion de venta, retencion).
+
+
+v0.05: (José Marín M.- 17/May/2019)
+----
+Se modifica por cambios del servidor, de California a Inmaconsa.

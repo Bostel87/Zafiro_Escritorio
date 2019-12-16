@@ -1,0 +1,48 @@
+
+CONTROL DE VERSIONES:
+=====================
+
+v1.0: (Roberto Flores - 22/08/2012)
+----
+Clase nueva Primera quincena y fin de mes (Datos utilizados para generar...).
+
+
+v1.01: (Roberto Flores - 07/01/2013)
+-----
+Se añade un botón que sirve como enlace para visualizar las Novedades del empleado.
+
+
+v1.03: (Roberto Flores - 25/01/2013)
+-----
+Se añade columnas para visualizar dias laborados, sueldo iess y horas extras fijas.
+
+
+v1.04: (Roberto Flores - 06/03/2013)
+-----
+Se añade columna donde consta la fecha de inicio del contrato del empleado y se resalta columnas (empleado , fecha de inicio del contrato) de color amarillo
+para identificar empleados nuevos.
+
+
+v1.05: (Roberto Flores - 31/03/2013)
+-----
+Se añade validación para que cuando Ronnie o Mercedes ingresen solo tengan activa la opción : Sueldo.
+
+
+v1.06: (Tony Sanginez - 16/03/2016)
+-----
+Se estandariza el anio y el mes en donde no se mostraba el actual.
+
+
+v1.07: (Tony Sanginez - 12/04/2016)
+-----
+Se estandariza el anio y el mes en donde no se mostraba el actual(Modificación no se reflejaba en GRUPO).
+
+
+v1.08: (Tony Sanginez - 04/01/2018)
+-----
+Se agrega botón para ejecutar el Servicio 09.
+
+
+v1.09: (Tony Sanginez - 27/01/2018)
+-----
+Se agrega un objeto para evitar nulos al momento de realizar la configuración con las clases de ZafTblTot y ZafTblFilCab.

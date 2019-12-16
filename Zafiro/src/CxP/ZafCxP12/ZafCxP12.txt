@@ -1,0 +1,18 @@
+Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Dennis Betancourt - 13/Dic/2013)
+----
+Nuevo programa para registrar que los cheques han sido entregados a proveedores y clientes.
+
+v0.1.1: (Dennis Betancourt - 05/mar/2014)
+------
+Se modifico el query principal basado en el query del programa "Conciliacion bancaria" especialmente en las condiciones del Where
+
+v0.1.2: (Dennis Betancourt - 14/may/2014)
+------
+Se agrego una condicion en el query principal (tbm_detDia.st_conban = 'S') debido a que, al efectuar la operacion 'Consultar', el programa no estaba considerando los documentos donde el campo tbm_detDia.st_conban tenga el valor de 'S'

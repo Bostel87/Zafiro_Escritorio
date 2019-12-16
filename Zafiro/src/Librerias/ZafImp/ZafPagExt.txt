@@ -1,0 +1,66 @@
+Pendientes:
+1) 
+2) 
+
+?CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Ingrid Lino - 05/Ene/2019)
+----
+Nueva clase
+
+v0.1.1: (Ingrid Lino - 05/Feb/2019)
+----
+Se agrega la asignaci�n de datos a la variable INT_COD_CTA_BAN_ING en el m�todo "getDatOrdPagExterior"
+
+v0.1.2: (Ingrid Lino - 07/Feb/2019)
+----
+Se agrega código para poder generar la información en tabla de seguimiento según los pedidos aplicados.
+
+
+v0.1.3: (Ingrid Lino - 08/Feb/2019)
+----
+Se cambia codificación en query de método "insertarCabSegMovInv";
+
+
+v0.1.4: (Ingrid Lino - 08/Feb/2019)
+----
+Se cambia completamente el query, para sólo obtener los códigos de seguimientos asociados, no importa la instancia. "insertarCabSegMovInv"
+
+v0.1.5: (Ingrid Lino - 11/Feb/2019)
+----
+Se agregan tablas de relación porque se estaba tomando el código de registro y no el código de cargo a pagar y generaba problemas porque no entraba en parte de la codificación que genera las cuentas contables.
+
+v0.1.6: (Ingrid Lino - 14/Feb/2019)
+----
+Se cambia en getDxPExterior()se cambia línea  "ON a2.co_empRelMovInv=a3.co_emp AND a2.co_locRelMovInv=a3.co_loc AND a2.co_tipDocRelMovInv=a3.co_tipDoc AND a2.co_docRelMovInv=a3.co_doc"; que estaba apuntando a los campos de Pedido Embarcado.
+
+v0.1.7: (Rosa Zambrano - 18/Feb/2019)
+-----
+Se agrega el rubro de comision en el asiento de diario al exterior, solicitado por LSC.
+Se modifica la función insertarDetOtrMovBan, para que solo guarde un registro y lo guarde con el valor total. Revisado con Ingrid Lino.
+
+v0.1.8: (Rosa Zambrano - 17/Jun/2019)
+-----
+Se agrega codigo de menú de ISD Gasto.
+
+v0.1.9: (Rosa Zambrano - 20/Jun/2019)
+-----
+Cambio solicitado por Alfredo Paulson, 20Jun2019:
+ - Se realiza cambio en la cuenta contable del pedido en los TRBAEX, para que en vez de utilizar la cuenta de activo, utilice siempre la cuenta de pasivo.
+   Se debio hacer el cambio, por nuevo esquema de generación de asientos de diarios y reversión.
+   Si el cambio no se realizaba, se presentaban valores negativos en los saldos contables.
+ - Este cambio aplicará solo para los nuevos TRBAEX, los anteriores serán reclasificados y revisados por las areas correspondientes.
+Para el cambio de la cuenta contbale, se modifica la función generaDiarioTRBAEX, anteriormente llamada getDxPExterior.
+
+v0.2.0: (Rosa Zambrano - 05/Jul/2019)
+-----
+Se agrega la reclasificación de la cuenta de provisión de interes.
+
+v0.2.1: (Ingrid - 04/Sep/2019)
+-----
+Se agrega codificación para ISD Crédito Tributario, Gastos que genere movimiento contable.
+
+v0.2.2: (Ingrid - 26/Sep/2019)
+-----
+En método "generaAsiDiaTRBAEX" en cada bloque que calcula el valor que se va a colocar en el diario, se inicializa con valor CERO porque se estaba quedando con un valor y al colocar el siguiente dato colocaba ese dato aún cuando debía ser CERO.

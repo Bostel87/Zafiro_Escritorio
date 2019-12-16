@@ -1,0 +1,52 @@
+﻿Pendientes:
+1) Grupo: Agregar código para que funcione la búsqueda por Cliente y Forma de pago.
+2) 
+3) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 21/Ene/2007)
+----
+Clase nueva.
+
+
+v0.2: (Eddye Lino - 14/May/2007)
+-----
+Se agregó JTable para filtrar las cotizaciones de venta por empresa. Es decir, el programa ahora permite consultar las
+cotizaciones de venta de todas las empresas del grupo o de una o más empresas en particular.
+El JTable de empresas sólo aparece en la empresa grupo.
+
+
+v0.3: (Eddye Lino - 08/Jul/2008)
+-----
+Se agregaron los siguientes filtros al programa:
+   1) Vendedor
+   2) Item
+
+
+v0.4: (Eddye Lino - 20/Jul/2008)
+-----
+Se agregó la columna INT_TBL_DAT_NOM_CLI_COT al JTable. Para personas/empresas que todavía no están registrados como clientes
+en el sistema los vendedores utilizan el cliente "Varios". Para que el usuario pueda en un futuro saber a quién le cotizó como
+cliente "Varios" se permitió que se pudiera ingresar el nombre del posible cliente al que le estaba cotizando el vendedor. Por
+eso fue necesario agregar la columna INT_TBL_DAT_NOM_CLI_COT al JTable.
+
+
+v0.5: (Eddye Lino - 15/Ene/2010)
+-----
+Se modificó el método: 
+   1) configurarVenConCli()
+Se agregó el uso de la función "objUti.utilizarClientesEmpresa()" para presentar clientes por local o clientes por empresa.
+
+
+v0.6: (Eddye Lino - 07/May/2013)
+-----
+Se modificaron algunos métodos que se detectaron eran ineficientes.
+
+
+v0.7: (Eddye Lino - 02/Oct/2015)
+----
+Se modificó el método: 
+   1) tblDatKeyPressed(java.awt.event.KeyEvent evt)
+Se reemplazó "evt.setKeyCode(0);" por "evt.consume();" porque a partir de "Java 7" ya no consumía el ENTER.

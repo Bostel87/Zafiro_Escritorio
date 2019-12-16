@@ -1,0 +1,104 @@
+﻿Pendientes:
+1)
+2) 
+3) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 29/Mar/2006)
+----
+Clase nueva.
+
+
+v0.2: (Eddye Lino - 05/Abr/2006)
+-----
+Se agregó JDialog para validar ingreso.
+Se corrigieron problemas varios.
+
+
+v0.3: (Eddye Lino - 24/Jul/2006)
+-----
+Se modificó el código para que al ingresar a la empresa Grupo mostrara las solicitudes de autorizaciones de todas las empresas.
+
+
+v0.4: (Eddye Lino - 03/Sep/2007)
+-----
+Se modificó el código para que utilizara la clase "ZafTblCelEdiButGen" como editor de la columna que presenta la cotización.
+
+
+v0.5: (Eddye Lino - 11/Abr/2008)
+-----
+Se corrigió el método: 
+   1) abrirFrm()
+En dicho método se cambió la clase invocada. La clase "ZafVen01_His" presenta la cotización de venta actual y la última cotización histórica.
+Al principio la línea estaba así:
+        invocarClase("Ventas.ZafVen01.ZafVen01");
+Y quedó así:
+        invocarClase("Ventas.ZafVen01.ZafVen01_His");
+
+
+v0.6: (Eddye Lino - 23/Oct/2008)
+-----
+Se agregó la columna "Identificación" en el JTable porque era necesaria enviarselo a la clase "ZafHer03_01".
+
+
+v0.7: (Eddye Lino - 13/Ago/2009)
+-----
+Se agregó el método: 
+   1) darBajSolAutCotVenAnt()
+Se modificaron los métodos: 
+   1) ZafThreadGUI.run()
+   2) cargarDetReg()
+Se agregó código para que se dieran de baja las solicitudes de autorización de cotizaciones de venta
+al cabo del 4 día hacia atrás. Ejemplo: si hoy es 13/Ago/2009 se darán de baja todas las solicitudes
+cuya fecha sea menor o igual al 09/Ago/2009.
+
+
+v0.8: (Eddye Lino - 11/Dic/2009)
+-----
+Se modificaron los métodos: 
+   1) abrirFrm()
+Se cambió la clase a invovar.
+Antes:
+    invocarClase("Ventas.ZafVen01.ZafVen01_His");
+Ahora:
+    invocarClase("Ventas.ZafVen01.ZafVen01");
+
+
+v0.9: (Eddye Lino - 21/Dic/2009)
+-----
+Se modificaron los métodos: 
+   1) abrirFrm()
+Se cambió la clase a invovar. Se la dejó como estaba al principio.
+Antes:
+    invocarClase("Ventas.ZafVen01.ZafVen01");
+Ahora:
+    invocarClase("Ventas.ZafVen01.ZafVen01_His");
+
+
+v0.10: (Eddye Lino - 26/Mar/2012)
+-----
+Se modificaron los métodos: 
+   1) configurarTblDat()
+   2) cargarDetReg()
+Se agregó código para que las filas correspondientes a clientes que tienen "Observación CxC"
+aparezcan con fuente de color rojo.
+
+
+v0.11: (Rosa Zambrano - 27/Jul/2015)
+-----
+Solicitado por el Ing.Werner Campoverde, 23/Jul/2015. 
+Se modificaron los métodos: 
+   1) configurarTblDat()
+Se agrego el objeto ZafTblOrd para Ordenamiento de la consulta de documentos pendientes de autorización.
+
+
+v0.12: (Jose Marin - 31/Jul/2017)
+-----
+Modificaciones para reserva de Inventario.
+
+
+v0.13: (Eddye Lino - 16/Mar/2018)
+-----
+Se quitaron algunos System.out.println que habían dejado.

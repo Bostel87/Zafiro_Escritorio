@@ -1,0 +1,41 @@
+﻿Pendientes:
+1) Hay que hacer configurable el cierre del documento COBTCM, COBTCD. Actualmente está quemado en el programa las cuentas que se deben utilizar.
+2)
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Omar Gutierrez - 13/Nov/2012)
+----
+Clase nueva "Cierres de cobros a clientes con tarjetas de crédito...".
+
+
+v0.2: (Alex Morán - 04/Feb/2013)
+-----
+Corrección para que incorpore tipo de documento por defecto y popup relacionado.
+
+
+v0.3: (Alex Morán - 04/Abr/2013)
+-----
+Corrección en control txtLote, se actualizaba con código de documento
+
+
+v0.4: (Alex Morán - 02/May/2013)
+-----
+Se corrigen parámetros al momento de imprimir reporte.
+
+
+v0.5: (Eddye Lino - 31/Oct/2013)
+-----
+Sólo funcionaba con "Medianet". Se agregó código para que funcionara con "Datafast".
+
+
+v0.6: (José Marín - 31/Mar/2014)
+-----
+Se agregó código para que funcionara con "Datafast".
+
+
+v0.7: (Rosa Zambrano - 05/May/2015)
+-----
+Se corrige modo de consulta y se valida que no puedan realizar cierres sin seleccionar previamente algún cobro.
+

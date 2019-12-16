@@ -1,0 +1,9 @@
+//revisar el codigo de la funcion insertar....de donde llamo a la funcion y porq tiene q ser po insercion
+
+v.1: (Darío Cárdenas - 10/Nov/2006)
+----
+Se corrigio Query para Eliminacion Logica en la funcion eliminarCab(), se elimino la funcion eliminarDet().
+
+v.2: (Darío Cárdenas - 31/Ene/2007)
+------------------------------------
+Se modifico la funcion eliminarDet() antes estaba eliminando registros en tbm_cadpag cuando eran en tbm_detpag.

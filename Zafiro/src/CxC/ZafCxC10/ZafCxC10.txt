@@ -1,0 +1,179 @@
+﻿﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 19/Ene/2006)
+----
+Se actualizó el código para que funcione con la corrección hecha en ZafToolBar.
+Ahora luego de "Insertar" se envia el registro al modo "Consultar".
+
+
+v0.2: (Ingrid Lino - 02/May/2006)
+-----
+Se quitó y cambió codificación en los modos insertar, modificar, eliminar y anular las operaciones que se hacian en 
+las tablas tbm_cabpag y tbm_detpag, dejando solo los ingresos y demós operaciones en tbm_cabmovinv y tbm_pagmovinv.
+
+
+v2.1: (Ingrid Lino - 07/Jul/2006)
+-----
+Se habilitaron los botones de impresión y vista preliminar despuós de realizar una inserción.
+
+
+v2.3: (Javier Ayapata - 09/Ago/2006)
+-----  
+Se agrega reportes e impresion del codumento.
+
+
+v2.4: (Javier Ayapata - 16/Oct/2006)
+-----  
+Se agrega dos botones para reportes e impresion del documento.
+
+
+v2.5: (Darío Cárdenas - 09/Nov/2006)
+-----  
+Se corrigio Query para Eliminacion Logica en la funcion eliminarCab(), se elimino la funcion eliminarDet().
+
+
+v2.6: (Darío Cárdenas - 15/Feb/2007)
+----- 
+Se corrigio Query para Eliminacion Logica en la funcion eliminarCabMovInv() y eliminarPagMovInv.
+Se inactivo la funcion eliminarDet().
+
+
+v2.8: (Darío Cárdenas - 02/Jul/2007)
+----- 
+Se creo chk, label y txtbox para Iva en Notas de Credito a Proveedores...
+
+
+v2.9: (Darío Cárdenas - 23/Ago/2007)
+----- 
+Se modifico el obj de asiento de diario.
+
+
+v3.0: (Darío Cárdenas - 24/Ago/2007)
+----- 
+Se modifico el obj de asiento de diario.
+
+
+v3.1: (Darío Cárdenas - 30/Ago/2007)
+----- 
+Se modifico funciones de validacion para insertar-modificar valores en los asientos de diarios,
+ya que permitia guardar valores en los diarios mayores al valor del documento...
+
+
+v3.2: (Darío Cárdenas - 28/Nov/2007)
+----- 
+Se modifico funciones para dejar establecido el ultimo numero de documento a la hora de Insertar un Doc.
+
+
+v3.3: (Darío Cárdenas - 05/Dic/2007)
+----- 
+Se modifico funcion insertarCabMovInv(), se agrego un cmpo de dicha tabla para almacenar nd_tot.
+
+
+v3.4: (Darío Cárdenas - 07/Dic/2007)
+----- 
+Se agrego funcion filtro para verificar si doc. posee pagos asociados al mismo.
+
+
+v3.5: (Darío Cárdenas - 25/Mar/2008)
+-----
+Se implemento clase para saber parametros del sistema por cliente.
+
+
+v3.6: (Darío Cárdenas - 29/May/2008)
+----- 
+Se modifico funcion afterInsertar().
+
+
+v3.7: (Darío Cárdenas - 25/Ago/2008)
+----- 
+Se genero funcion para usar clase de RptSis.
+
+
+v3.7: (Darío Cárdenas - 17/Oct/2008)
+-----
+Se modifico funcion de la clase de RptSis para imprimir varios modelos de los reportes.
+
+
+v3.8: (Darío Cárdenas - 30/Ene/2009)
+-----
+Se modifico query para insertar registros en el tipdoc 40 en los campos co_tipret, nd_porret de tbm_pagmovinv.
+
+
+v4.0: (Darío Cárdenas - 25/Jun/2009)
+-----
+Se agrego fitro para modificar un documento.
+
+
+v4.2: (Darío Cárdenas - 02/Sep/2009)
+-----
+Se agrego filtro para insertar registros N/D.
+
+
+v4.3: (Ingrid Lino - 06/May/2010)
+-----
+Se sobrecargo el constructor(Este es llamado desde el programa CxC58).
+
+
+v4.4: (Ingrid Lino - 29/Sep/2010)
+-----
+Se validó al momento de insertar el campo número de documento porque permitía ingresar varios documentos con el mismo número.
+
+
+v4.5: (Ingrid Lino - 18/Jul/2011)
+-----
+Se cambian formatos de impresión, se añaden queries para impresión en el programa y se quita el query del .jrxml. 
+Se generan nuevos reportes y depuran y cambian existentes.
+
+
+v4.6: (José Marín - 04/Jul/2014)
+-----
+Al momento de insertar un documento se quedaba grabado en co_forPag=null, y ahora queda grabado co_forPag=1.
+
+
+v4.7: (Rosa Zambrano - 23/May/2016)
+-----
+Se agrega la configuración del porcentaje del iva, para que calcule el iva en base al valor que se obtiene del ZafCtaCtb.
+La variable dblPorIva almacenará el porcentaje.
+
+
+v4.8: (Tony Sanginez - 05/May/2017)
+-----
+Se agregaron campos de Numero de Autorizacion, Numero de Secuencia, Numero de Serie para la nota de credito.
+Se agregó el detalle de la factura origen de la nota de credito.
+Se agregaron validaciones respectivas para que el valor total no sobrepase el valor de la factura origen.
+Se agregaron modificaciones para que los cambios reflejados solo apliquen a las notas de debito de compras.
+
+v4.9: (Tony Sanginez - 08/May/2017)
+-----
+Se valida para que el detalle de las Notas de debito de proveedores no se pueda visualizar en las otras pantallas.
+
+v5.0 (Tony Sanginez - 08/May/2017)
+-----
+Se valida el ingreso del detalle para los otros menus de Debito y Credito para cuentas por cobrar.
+
+v5.1 (Tony Sanginez - 20/Jun/2017)
+-----
+Validacion para de ivas para 14 y 12%. Le asigna dependiendo de la fecha a la cual fue emitida la factura.
+
+v5.2 (Tony Sanginez - 21/Jun/2017)
+-----
+Se corrige validacion que se hacia al comparar el diario con el subtotal y no con el total.
+
+v5.3 (Dennis Betancourt - 20/Sep/2018)
+-----
+1) En la pestaña "General" se agrego el campo "Subtotal Base 0".
+2) Al grabar, en el campo tbm_cabmovinv.nd_poriva se estaba grabando valores decimales (Ej: 0.14, 0.12). Se corrigio para que se grabe el porcentaje de IVA con un numero entero.
+3) Se comienza a grabar datos en los campos nd_subIvaCer y nd_subIvaGra de la tabla tbm_cabmovinv.
+
+v5.4 (Dennis Betancourt - 30/Nov/2018)
+-----
+Al dar click en "Insertar" o "Modificar", el programa obligaba a que se digitara algun valor en el campo "Subtotal IVA" y esto causaba un conflicto cuando la factura del proveedor no tiene IVA. Esto fue corregido.
+
+v5.5 (Dennis Betancourt - 12/Dic/2018)
+-----
+Al consultar, se esta leyendo y mostrando valores de Sub.Base.Cero y Sub.Iva donde corresponda. En el JTable se esta leyendo y mostrando valores para las columnas "Val.Sin.Iva", "Sub.Fac.Prv" y "Iva.Fac.Prv".

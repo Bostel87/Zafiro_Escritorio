@@ -1,0 +1,32 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 25/Jun/2008)
+----
+Clase nueva.
+
+
+v0.2: (Eddye Lino - 04/Ago/2008)
+-----
+Se agregó un JTable donde se presentan las observaciones que se encuentran en la tabla "tbm_obsCli".
+
+
+v0.3: (Eddye Lino - 23/Oct/2008)
+-----
+Se agregaron los métodos: 
+   1) insertarTbmObsCli()
+   2) setParDlg(int intCodEmp, int intCodLoc, int intCodCli)
+   3) setParDlg(int intCodEmp, int intCodLoc, String strIdeCli)
+Dichos métodos se agregaron porque ésta clase ahora es llamada también desde "ZafHer03_01".
+También se hizo que a más de grabar en "tbm_cli" se grabara también en "tbm_obsCli".
+
+
+v0.4: (Eddye Lino - 04/Feb/2010)
+----
+Se modificaron los métodos: 
+   1) ZafCxC23_04(java.awt.Frame parent, boolean modal, ZafParSis obj, boolean blnHabButAce)
+Se agregó parámetro al constructor para poder habilitar/inhabilitar el botón "Aceptar".

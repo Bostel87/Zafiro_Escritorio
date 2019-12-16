@@ -1,0 +1,53 @@
+﻿
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Javier Ayapata - 23/Sep/2011)
+----
+Clase nueva de seguimiento de facturas - OD
+
+
+v0.2: (Javier Ayapata - 26/Sep/2011)
+-----
+Se corrigue consulta de facturas.
+
+
+v0.3: (Javier Ayapata - 30/Sep/2011)
+-----
+Se agrega un boton de presente los items pendiente de confirmnar despacho.
+
+
+v0.4: (Javier Ayapata - 16/Nov/2011)
+-----
+Se agrega poder visualizar las guía de remision.
+
+
+v0.5: (Tony Sanginez - 13/May/2016)
+-----
+Se agrego la visualizacion de Pasos para el seguimiento de factura.
+El filtro de guia de remision sirve para que se pueda ver todas las guias dependiendo de la factura, si es que no se lo checkea igual se mostraran las guias pero agrupadas. 
+
+
+v0.6: (Tony Sanginez - 13/May/2016)
+-----
+Modificaciones de formato en la visualización de la tabla.
+
+
+v0.7: (Rosa Zambrano - 20/Jun/2016)
+-----
+Se agregan modificaciones en ZafVen21_02.java para realizar la consulta de ítems pendientes en la factura comercial.
+
+
+v0.8: (Rosa Zambrano - 08/Ago/2016)
+-----
+Se agregan modificaciones en ZafVen21_02.java para realizar la consulta de ítems pendientes en la factura comercial.
+
+
+v0.9: (Tony Sanginez - 01/Dic/2016)
+-----
+Se modifica la codificacion del filtro del local ya que no se podia visualizar correctamente.
+
+
+v0.10: (Rosa Zambrano - 15/Dic/2016)
+-----
+Se cambia consulta de cantidades pendientes para nuevo esquema de manejo códigos L.

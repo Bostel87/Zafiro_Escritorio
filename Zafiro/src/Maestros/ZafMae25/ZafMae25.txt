@@ -1,0 +1,228 @@
+
+    private boolean cargarReg()
+    {
+        boolean blnRes=true;
+        arlDat.clear();
+        cargarDrv();
+                
+        try{
+            //conGrl=java.sql.DriverManager.getConnection(strConIni,strUsrIni,strPswIni);                        
+            conGrl=conexDB(strConIni, strUsrIni, strPswIni);
+            if(conGrl!=null){
+                
+                stmGrl=conGrl.createStatement();
+                strSQL="";
+                strSQL+="select ";
+                strSQL+=" co_reg, co_grp, co_regorg, co_regdes, tx_freact, st_reg";
+                strSQL+=" from tbm_basdat2 as a1";
+                strSQL+=" where a1.co_grp=2";
+                rstGrl=stmGrl.executeQuery(strSQL);
+//                System.out.println("TBM_BASDAT2: " + strSQL);
+                for(int i=0;rstGrl.next();i++){
+                    arlReg=new ArrayList();
+                    arlReg.add(INT_COL_BAS_COD_REG, rstGrl.getString("co_reg"));                    
+                    arlReg.add(INT_COL_BAS_COD_GRP, rstGrl.getString("co_grp"));
+                    arlReg.add(INT_COL_BAS_REG_ORI, rstGrl.getString("co_regorg"));
+                    arlReg.add(INT_COL_BAS_REG_DES, rstGrl.getString("co_regdes"));
+                    arlReg.add(INT_COL_BAS_FREC_ACT, rstGrl.getString("tx_freact"));
+                    arlReg.add(INT_COL_BAS_EST_REG, rstGrl.getString("st_reg"));
+                    arlDat.add(arlReg);
+                }
+//                System.out.println("ARRAY: "+arlDat.toString());
+                
+                stmGrl.close();                rstGrl.close();
+                stmGrl=null;                   rstGrl=null;                
+            }//fin de la conexion
+            conGrl.close();
+            conGrl=null;
+//            System.out.println("STRING DE CONEX EN TBM_BASDAT2: "+strConIni);
+                
+            //PARA LEER TBM_BASDAT    
+            conGrl=conexDB(strConIni, strUsrIni, strPswIni);
+            if(conGrl!=null){                
+                for (int j=0;j<arlDat.size();j++){
+                    stmGrl=conGrl.createStatement();
+                    strSQL="";
+                    strSQL+="select ";
+                    strSQL+=" co_reg, tx_drvcon, tx_strCon, tx_usrcon, tx_clacon, co_emp, tx_nom";
+                    strSQL+=" from tbm_basdat as a2";
+                    strSQL+=" where a2.co_reg=" + objUti.getStringValueAt(arlDat, j, INT_COL_BAS_REG_ORI) + "";
+                    strSQL+=" and st_reg='A'";
+//                    System.out.println("TBM_BASDAT: " + strSQL);
+                    rstGrl=stmGrl.executeQuery(strSQL);
+                                        
+                    while (rstGrl.next()){
+                        strConLoc=rstGrl.getString("tx_strCon");                       
+                        strUsrLoc=rstGrl.getString("tx_usrcon");
+                        strPswLoc=rstGrl.getString("tx_clacon");
+                        conLoc=conexDB(strConLoc, strUsrLoc, strPswLoc);
+                        
+                        arlDatInv.clear();
+                        arlDatInvBod.clear();
+                        stmLoc=conLoc.createStatement();
+                        strSQLLoc="";
+                        strSQLLoc+="select";
+                        strSQLLoc+=" a1.co_emp as codEmpInv, a1.co_itm as codItmInv, a1.tx_codalt, a1.tx_nomitm,";
+                        strSQLLoc+=" a1.co_cla1, a1.co_cla2, a1.co_cla3, a1.co_uni, a1.nd_itmuni,";
+                        strSQLLoc+=" a1.st_ser, a1.nd_cosuni, a1.nd_cosult, a1.nd_prevta1, a1.nd_prevta2,";
+                        strSQLLoc+=" a1.nd_prevta3, a1.nd_stkact as stkInv, a1.nd_stkmin as stkMinInv, a1.nd_stkmax as stkMaxInv, a1.st_ivacom,";
+                        strSQLLoc+=" a1.st_ivaven, a1.tx_obs1, a1.tx_obs2, a1.st_reg, a1.fe_ing, a1.fe_ultmod,";
+                        strSQLLoc+=" a1.co_usring, a1.co_usrmod, a1.tx_codalt2, a1.st_regrep,";                        
+                        strSQLLoc+=" a2.co_emp as codEmpInvBod, a2.co_bod as codBod, a2.co_itm as codItmInvBod, a2.nd_stkact as stkInvBod, ";
+                        strSQLLoc+=" a2.nd_stkmin as stkMinInvBod, a2.nd_stkmax as stkMaxInvBod";
+                        strSQLLoc+=" from tbm_invbod as a2 left outer join tbm_inv as a1";
+                        strSQLLoc+=" on a2.co_emp=a1.co_emp and a2.co_itm=a1.co_itm";
+                        strSQLLoc+=" where a2.co_emp=" + rstGrl.getString("co_emp") + "";
+                        strSQLLoc+=" and a1.st_regrep in ('I', 'M')";
+                        strSQLLoc+=" order by a2.co_emp, a2.co_itm ";
+                        System.out.println("TBM_INV: " + strSQLLoc);
+                        rstLoc=stmLoc.executeQuery(strSQLLoc);
+                        System.out.println("STRING DE CONEX EN TBM_INV: "+strConLoc);
+                        
+                        while(rstLoc.next()){
+                            arlRegInv=new ArrayList();
+                            //PARA LOS DATOS DE TBM_INV
+                            arlRegInv.add(INT_INV_COD_EMP, rstLoc.getString("codEmpInv"));
+                            arlRegInv.add(INT_INV_COD_ITM, rstLoc.getString("codItmInv"));
+                            arlRegInv.add(INT_INV_COD_ALT, rstLoc.getString("tx_codalt"));
+                            arlRegInv.add(INT_INV_NOM_ITM, rstLoc.getString("tx_nomitm"));
+                            arlRegInv.add(INT_INV_COD_CLA_UNO, rstLoc.getString("co_cla1"));
+                            arlRegInv.add(INT_INV_COD_CLA_DOS, rstLoc.getString("co_cla2"));
+                            arlRegInv.add(INT_INV_COD_CLA_TRE, rstLoc.getString("co_cla3"));
+                            arlRegInv.add(INT_INV_COD_UNI, rstLoc.getString("co_uni"));
+                            arlRegInv.add(INT_INV_ITM_UNI, rstLoc.getString("nd_itmuni"));
+                            arlRegInv.add(INT_INV_EST_SER, rstLoc.getString("st_ser"));
+                            arlRegInv.add(INT_INV_COS_UNI, rstLoc.getString("nd_cosuni"));
+                            arlRegInv.add(INT_INV_PRE_VTA_UNO, rstLoc.getString("nd_prevta1"));
+                            arlRegInv.add(INT_INV_PRE_VTA_DOS, rstLoc.getString("nd_prevta2"));
+                            arlRegInv.add(INT_INV_PRE_VTA_TRE, rstLoc.getString("nd_prevta3"));
+                            arlRegInv.add(INT_INV_STK_ACT, rstLoc.getString("stkInv"));
+                            arlRegInv.add(INT_INV_STK_MIN, rstLoc.getString("stkMinInv"));
+                            arlRegInv.add(INT_INV_STK_MAX, rstLoc.getString("stkMaxInv"));
+                            arlRegInv.add(INT_INV_IVA_COM, rstLoc.getString("st_ivacom"));
+                            arlRegInv.add(INT_INV_IVA_VEN, rstLoc.getString("st_ivaven"));
+                            arlRegInv.add(INT_INV_OBS_UNO, rstLoc.getString("tx_obs1"));
+                            arlRegInv.add(INT_INV_OBS_DOS, rstLoc.getString("tx_obs2"));
+                            arlRegInv.add(INT_INV_EST_REG, rstLoc.getString("st_reg"));
+                            arlRegInv.add(INT_INV_FEC_ING, rstLoc.getString("fe_ing"));
+                            arlRegInv.add(INT_INV_FEC_MOD, rstLoc.getString("fe_ultmod"));
+                            arlRegInv.add(INT_INV_COD_USR_ING, rstLoc.getString("co_usring"));
+                            arlRegInv.add(INT_INV_COD_USR_MOD, rstLoc.getString("co_usrmod"));
+                            arlRegInv.add(INT_INV_COD_ALT_DOS, rstLoc.getString("tx_codalt2"));
+                            arlRegInv.add(INT_INV_REG_REP, rstLoc.getString("st_regrep"));
+                            arlDatInv.add(arlRegInv);
+                            
+                            //PARA LOS DATOS DE TBM_INVBOD
+                            arlRegInvBod=new ArrayList();
+                            arlRegInvBod.add(INT_INVBOD_COD_EMP, rstLoc.getString("codEmpInvBod"));
+                            arlRegInvBod.add(INT_INVBOD_COD_BOD, rstLoc.getString("codBod"));
+                            arlRegInvBod.add(INT_INVBOD_COD_ITM, rstLoc.getString("codItmInvBod"));
+                            arlRegInvBod.add(INT_INVBOD_STK_ACT, rstLoc.getString("stkInvBod"));
+                            arlRegInvBod.add(INT_INVBOD_STK_MIN, rstLoc.getString("stkMinInvBod"));
+                            arlRegInvBod.add(INT_INVBOD_STK_MAX, rstLoc.getString("stkMaxInvBod"));
+                            arlDatInvBod.add(arlRegInvBod);
+
+                                        
+                            
+                        }
+
+                        
+                    }
+                } 
+                
+                    System.out.println("  -------------------------------  ");
+                    System.out.println("ARRAY DE TBM_INV: "+arlDatInv.toString());
+                    System.out.println("ARRAY DE TBM_INVBOD: "+arlDatInvBod.toString());
+                    System.out.println("  -------------------------------  ");
+                
+            }
+            System.out.println("STRING DE CONEX EN TBM_BASDAT: "+strConIni);
+        }
+        catch (java.sql.SQLException e)
+        {
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        catch (Exception e)
+        {
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }      
+        return blnRes;
+    }    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    for (int k=0;k<datInv.size();k++){
+                        //PARA REGISTROS QUE HAN SIDO INSERTADOS
+                        if(objUti.getStringValueAt(arlDatInv, k, INT_INV_REG_REP).toString().equals("I")){
+                            if (insertaTbmInv(datInv)){
+                                conTmp.commit();
+                                blnRes=true;
+                            }
+                            else
+                                conTmp.rollback();
+                        }
+                                                                        
+                        //PARA REGISTROS QUE HAN SIDO MODIFICADOS
+                        if(objUti.getStringValueAt(arlDatInv, k, INT_INV_REG_REP).toString().equals("M")){
+                            if (modificaTbmInv(datInv)){
+                                conTmp.commit();
+                                blnRes=true;
+                            }
+                            else
+                                conTmp.rollback();
+                        }
+                    }//FIN DEL FOR DEL ARRAYLIST DE TBM_INV
+
+
+
+
+
+-----------------------------------------------------------
+select * from(
+	select *from (
+	
+	select count(co_grp) as cntCodGrp from tbm_basdat2
+	where co_grp=2
+	) as x,
+	(
+	select count(st_reg) as cntEstReg from tbm_basdat2
+	where st_reg='A'
+	) as y
+) as x
+where cntCodGrp=cntEstReg

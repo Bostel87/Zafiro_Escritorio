@@ -1,0 +1,16 @@
+Pendientes:
+1) 
+2) 
+3) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 05/Jul/2007)
+----
+Clase nueva
+
+
+v0.2: (Eddye Lino - 27/Sep/2018)
+----
+Se agregó el uso de la clase "ZafTblOrd".

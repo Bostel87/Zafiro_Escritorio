@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE attributes PUBLIC "-//NetBeans//DTD DefaultAttributes 1.0//EN" "http://www.netbeans.org/dtds/attributes-1_0.dtd">
+<attributes version="1.0">
+    <fileobject name="ZafCon16.java">
+        <attr name="class_dependency_java.lang.Thread" stringvalue="ZafCon16.ZafThreadGUI"/>
+        <attr name="class_dependency_javax.swing.JInternalFrame" stringvalue="ZafCon16"/>
+        <attr name="class_dependency_javax.swing.table.AbstractTableModel" stringvalue="ZafCon16.ZafTableModel"/>
+    </fileobject>
+    <fileobject name="ZafCon16_1.java">
+        <attr name="class_dependency_java.lang.Thread" stringvalue="ZafCon16_1.ZafThreadGUI"/>
+        <attr name="class_dependency_javax.swing.JInternalFrame" stringvalue="ZafCon16_1"/>
+        <attr name="class_dependency_javax.swing.table.AbstractTableModel" stringvalue="ZafCon16_1.ZafTableModel"/>
+    </fileobject>
+</attributes>

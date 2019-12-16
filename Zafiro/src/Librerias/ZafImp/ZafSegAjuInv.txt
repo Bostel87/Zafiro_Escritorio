@@ -1,0 +1,16 @@
+﻿Pendientes:
+1) 
+2) 
+
+﻿CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Rosa Zambrano - 08/Sep/2017)
+----
+Clase nueva que muestra un seguimiento de documentos de ajustes de inventario(importaciones) por cabecera y detalle.
+
+
+v0.1.1: (Rosa Zambrano - 25/Jun/2018)
+-----
+Se agrega constantes de código de menú de objImp para segmentación de compras locales.
+

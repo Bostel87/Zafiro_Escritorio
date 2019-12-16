@@ -1,0 +1,11 @@
+
+CONTROL DE VERSIONES:
+=====================
+
+v1.0: (Roberto Flores - 24/01/2014)
+----
+Clase nueva
+
+v1.1: (David Albuja- 24/06/2014)
+----
+Al grabar invoca al Servicio9.

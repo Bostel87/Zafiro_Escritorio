@@ -1,0 +1,41 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (José Marín - 29/Jul/2013)
+----
+Clase nueva.
+
+
+v0.2: (José Marín - 01/Ago/2013)
+-----
+Se agrego la barra de desplazamiento, se elimino de la objTooBar el nombre del usuario. 
+
+
+v0.3: (José Marín - 01/Ago/2013)
+-----
+Se cambio el orden de los textBox. 
+
+
+v0.4: (Angie Bajaña - 02/Jul/2015)
+-----
+Se modifico el metodo ActualizarReg() para que elimine e inserte los locales correctos en la base para el programa #1939.
+
+
+v0.5: (Rosa Zambrano - 18/Ago/2015)
+-----
+Se corrige query de la función cargarOpcMnu() por cambios de postgres versión 9.4
+
+
+v0.6: (Rosa Zambrano - 21/Feb/2017)
+-----
+Se corrige query de consulta para que aparezca los locales en orden.
+Se agrega opción de busqueda y ordenamiento.
+
+
+v0.7: (Rosa Zambrano - 23/Feb/2017)
+-----
+Se agrega ordenamiento al momento de consulta.

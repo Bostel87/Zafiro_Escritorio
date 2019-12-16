@@ -1,0 +1,18 @@
+
+CONTROL DE VERSIONES:
+=====================
+
+v2.1: (Javier Ayapata- 13/Mar/2006)
+----
+ 
+  SE agrego una variable para poder guardar el codigo del cliente
+
+
+v2.2: (Javier Ayapata- 13/Mar/2006)
+----
+    se quito la Variable que obtenia el codigo del cliente
+
+v2.0: (Javier Ayapata- 10/Abr/2006)
+----
+    ZafAddDelLinTbl2
+    se crea clase para la validacion de numero de item a nivel de cotizacion

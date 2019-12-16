@@ -1,0 +1,59 @@
+﻿
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Ingrid Lino - 22/Jul/2010)
+----
+Programa nuevo que permite realizar "cobros de valores depositados directamente en el banco".
+
+
+v0.1.1: (Ingrid Lino - 26/Jul/2010)
+-----
+Se adicionó constructor para ser llamado desde ZafCon58.
+
+
+v0.1.2: (Ingrid Lino - 29/Jul/2010)
+-----
+Se adicionó código para impresión y vista preliminar
+
+
+v0.1.3: (Ingrid Lino - 06/Ago/2010)
+-----
+Se colocó como inactiva la columna de chequeo de valores depositados(documentos ingresados por Alfredo) porque los usuarios seleccionaban este check y guardaban(no seleccionaban las facturas a cancelar).
+
+
+v0.1.4: (Ingrid Lino - 16/Nov/2010)
+-----
+En afterInsertar, antes de consultar el documento después de insertarlo, se seteo con "" los campos de la cuenta, porque cuando realizaba la consulta, tomaba estos campos para la búsqueda.
+
+
+v0.1.5: (Ingrid Lino - 05/Abr/2011)
+-----
+Se adiciona código para generar liberación(impresión) de guía de remisión(código facilitado por Vico y adaptado a mi programación).
+
+
+v0.1.6: (Dennis Betancourt - 25/Nov/2014)
+-----
+Al momento de insertar, al presionar el boton que presenta el JDialogo para mostrar las facturas a las que aplica el valor depositado, se agrego para que tambien muestre las retenciones.
+
+
+v0.1.7: (Christian Mateo -  21/Ago/2015)
+-----
+Se agrega el uso de ZafReglas para generación de OD Y G.R., en reemplazo del ZafSer01.
+
+
+v0.1.8: (Christian Mateo -  11/Sep/2015)
+-----
+Se modifica para que no genere od remotas por cobros directamente depositados en el banco. Solo debe generar las od locales y las confirmaciones y guias remision por terminales L.
+
+
+v0.1.9: (Christian Mateo -  26/Jul/2016)
+-----
+Se modifica por el nuevo proyecto de transferencias
+
+
+v0.2: (Rosa Zambrano -  11/Jul/2017)
+-----
+ZafCxC76_02: Se corrige consulta para visualizacion de facturas aplicables.
+
+

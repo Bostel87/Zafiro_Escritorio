@@ -1,0 +1,111 @@
+﻿Pendientes:
+1) En la función imprimirOrdenAlmacenamiento() cambiar la variable blnPruebas=true para realizar pruebas.
+2) 
+
+﻿CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Javier Ayapata - 18/May/2011)
+----
+Clase nueva de confirmación de inventario relacionada(entre compañias).
+
+
+v0.2: (Javier Ayapata - 31/May/2011)
+-----
+Se agrega para las guias secundaria un tab para búsqueda.
+
+
+v0.3: (Javier Ayapata - 02/Jun/2011)
+-----
+Se agrega mensaje que tipo de guia es ..
+
+
+v0.4: (Javier Ayapata - 27/Jun/2011)
+-----
+Se corrige query que carga el detalle.
+
+
+v0.5: (Javier Ayapata - 30/Jun/2011)
+-----
+Se agregan nuevos cambios en cantidad nunca recibida.
+
+
+v0.6: (Javier Ayapata - 12/Jul/2011)
+-----
+Se agrega que almecene null en estado de cantidad nunca recibida cuando no hay cantidad faltante.
+
+
+v0.7: (Erik Flores - 01/Ago/2012)
+-----
+Se agregan vaidaciones para que no permita confirmar un valor mayor al que tiene la guia. 
+
+
+v0.8: (Erik Flores - 06/Ago/2012)
+-----
+Se agregan cierre de sesiones que se estaban quedando colgadas. 
+
+
+v0.9: (Erik Flores - 06/Ago/2012)
+-----
+Se modifica para que no verifique la cantidad confirmada. Se estaba bloqueando ingresos. 
+
+
+v1.0: (Alex Morán - 02/May/2013)
+-----
+Se valida para que solamente se permita confirmar ingresos de acuerdo a los egresos confirmados en punto remoto. 
+
+
+v1.1: (José Marín - 21/Jul/2014)
+-----
+Se valida para que solamente se permita confirmar ingresos de acuerdo a los egresos confirmados en punto remoto. 
+
+
+v1.2: (José Marín - 21/Ago/2014)
+-----
+Se agrega la Orden de Almacenamiento al momento de confirmar, y que se maneje con el codigo de 3 letras.
+Se modifica la forma de llamar al reporte. 
+
+
+v1.3: (Rosa Zambrano - 23/Feb/2015)
+-----
+Se agrega configuración de los permisos de usuarios en Botones: Consultar, Guardar, Vista Preliminar, Imprimir y Cerrar utilizando Libería ZafPerUsr.
+Se re-ubica el orden de los botones en el formulario.
+
+
+v1.4: (Rosa Zambrano - 23/Dic/2015)
+-----
+Se agrega función imprimirOrdenAlmacenamiento() la misma que solo imprime la confirmación de ingreso que se esta realizando actualmente y no la totalidad de todas las confirmaciones.
+Se cambia el uso de la función imprimeDirecto(), por la función imprimirOrdenAlmacenamiento() al momento de guardar la confirmación de ingreso.
+La funcion imprimeDirecto() será utilizada por vista preliminar e imprimir, a traves de estas opciones se podrá imprimir la totalidad de las confirmaciones de ingreso realizadas a la guía relacionada.
+Se corrige para que al momento de consultar la guía de remisión solo presente una vez la ventana de consulta de guías de remisión y no 2 veces.
+
+
+v1.5: (Rosa Zambrano - 28/Dic/2015)
+-----
+Se habilita temporalmente la función imprimeDirecto() para que se impriman todos los items confirmados al momento de guardar.
+
+
+v1.6: (Rosa Zambrano - 05/Ene/2016)
+-----
+Se cambia el uso de la función imprimeDirecto(), por la función imprimirOrdenAlmacenamiento() al momento de guardar la confirmación de ingreso.
+Se cambia en la función guardarReg() la forma de ingresar las confirmaciones de ingreso en el sistema, anteriormente se realizaba una confirmación
+por ítem, actualmente el esquema es que se guarde una sola confirmación de ingreso por los items confirmados al momento.
+Estos cambios se realizaron por la solicitud de Carlos Chiriguaya de que solo se impriman los ítems que se confirman al momento y no la totalidad.
+Adicional se realiza la configuración de Tipos de Documentos para los usuarios con relación a la tabla tbr_TipDocUsr.
+
+
+v1.7: (Rosa Zambrano - 08/Ene/2016)
+-----
+Se habilita temporalmente la función imprimeDirecto() para que se impriman todos los items confirmados al momento de guardar.
+
+
+v1.8: (Rosa Zambrano - 04/Feb/2016)
+-----
+Se habilita cambios realizados en la versión v1.6, pero con las correcciones respectivas.
+Se cambia en las funciones: cargarDocGuia() , consultaGuia(), cargarVenBusDoc() el query para que ademas de validar el punto de partida, valide el punto de destino.
+En la función guardarReg(): Se asignan nuevos nombres de variables a las variables anteriormente utilizadas en la inserción de confirmación de ingreso.
+Se agregan variables globales que contengan la pk de la confirmación de ingreso.
+Se habilita la columna de Cantidad en Mal Estado.
+Se cambia validación para que presente los items que hayan sido confirmados en su totalidad.
+
+

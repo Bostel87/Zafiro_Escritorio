@@ -1,0 +1,28 @@
+﻿Pendientes:
+1) 
+2) 
+
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 08/Abr/2009)
+----
+Clase nueva.
+
+
+v0.2: (Eddye Lino - 28/Oct/2010)
+-----
+Se modificó el método: 
+   1) cargarDetReg()
+Se eliminó la casilla "Sólo items con stock".
+
+
+v0.3: (Ingrid Lino - 29/Jul/2014)
+-----
+Se adiciona columna de código alterno 2. A las columnas código alterno y código alterno 2 se les agrega el mostrarlas por medio de permisos según configuración.
+
+
+v0.4: (Rosa Zambrano - 30/Dic/2015)
+-----
+Se adiciona filtro por código de 3 letras, solicitado por Econ. Alfredo Paulson.

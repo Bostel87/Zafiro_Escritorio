@@ -1,0 +1,27 @@
+﻿Pendientes:
+1) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Rosa Zambrano - 19/Abr/2016)
+----
+Clase nueva.
+"Seguimiento de solicitudes de transferencia de inventario para la venta…" por el módulo de Ventas.
+"Seguimiento de solicitudes de transferencia de inventario para bodegueros ..." por el módulo de Inventario.
+
+
+v0.1.1: (Rosa Zambrano - 07/Sep/2016)
+-----
+Se cambia query de consulta y se realizan varias mejoras.
+
+
+v0.1.2: (Rosa Zambrano - 14/Nov/2016)
+-----
+Se corrige búsqueda para las solicitudes pendientes de autorizar.
+
+
+v0.1.3: (Rosa Zambrano - 05/Jun/2017)
+-----
+Se cambia campo st_aut por EstAut para filtrar por el estado de autorización de la solicitud, solicitado por Carlos Chiriguaya.
+

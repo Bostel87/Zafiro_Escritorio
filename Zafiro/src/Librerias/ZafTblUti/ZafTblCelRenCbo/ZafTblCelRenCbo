@@ -1,0 +1,15 @@
+Pendientes:
+1) 
+2) 
+3) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 01/Jul/2006)
+----
+Clase nueva que permite el manejo de combobox en celdas de una tabla
+
+v0.2: (Ingrid Lino - 07/Oct/2010)
+----
+Se adicionó en el método getTableCellRendererComponent()  setBorder(null); removeAllItems(); addItem( value );

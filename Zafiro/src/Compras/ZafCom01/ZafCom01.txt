@@ -1,0 +1,118 @@
+Creado por: Jose Salazar
+
+v0.1 - 06/ene/2006  - 9h53
+Se agrego columna de telefono a la ventana de consulta de Proveedor
+metodo FndProveedor(string,int)
+
+v.1.1 - 06/ene/2006 - 11h00
+Se corrigio error al insertar el subtotal 
+
+v0.2 - 19-ene-2006 - 13h50
+Se actualizo metodos para usar actualizacion de ZafToolBar
+
+v0.2.1 - 24/ene/2006 - 10h00
+Se arreglo problemas al mostrar valor de costeo 
+
+v0.2.1 - 24/ene/2006 - 10h00
+ Se arreglo problemas al mostrar valor de costeo 
+
+v0.2.2 ( Javier Ayapata 27/Mar/2006 )
+    Se agrego una ventana de ayuda cuando se preciona F8 en un item, tambien se Agrego
+    la ventan de confirmacion de cerrar ventana 
+
+v0.2.3 ( Javier Ayapata 18/Abr/2006 )
+   Se agrega la vista preliminar y la impresion del Ireport
+
+
+v0.2.4 ( Javier Ayapata 03/May/2006 )
+     Se corrigue para que coloque el iva cuando se busca por el boton de item
+
+v0.2.5 ( Javier Ayapata 10/May/2006 )
+     Se corrigue para que funcione con la clase ZafPopupmenu
+
+v0.2.8 ( Javier Ayapata 21/May/2006 )
+     se optimiza la conexion a base en la funcion de calculaPagos()
+
+v0.3 ( Javier Ayapata 10/Jul/2006 )
+  se  obtimiza en la forma de pago
+
+v0.4 ( Javier Ayapata 22/Ago/2006 )
+  se  agrega que actualiza precios 
+
+v0.5 ( Javier Ayapata 23/Oct/2006 )
+  se agrega un filtro de las terminales en listado de items.
+
+v0.6 ( Javier Ayapata 31/Oct/2006 )
+  se corrigue al momento de consultar listado de item de compras.
+
+v1.0 ( Javier Ayapata 28/Oct/2006 )
+  se quita validacion de item de servicion, ahora salen todos.
+
+v1.1 ( Javier Ayapata 05/Dic/2006 )
+  se corrigue al momento de elegir el proveedor y comprador.
+
+v1.4 ( Javier Ayapata 08/Febre/2007 )
+  se agrega el estado de replicacion.
+
+v1.5 ( Javier Ayapata 20/Abril/2007 )
+   se agrega el uso de las terminales.
+
+v 1.6 - (Javier Ayapata - 09/Mayo/2007)
+   se agrega valisacion en el listado de item que no aparescan los estado Inactivos.
+
+v 1.7 - (Javier Ayapata - 20/Julio/2007)
+   se agrega para que no coja los items que tienen estado E eliminado.
+
+v 1.8 - (Javier Ayapata - 22/enero/2008)
+   se agrega en listado de items  para que no aparescan los estado Unificado.
+
+v 1.8.1 - (Javier Ayapata - 28/enero/2008)
+   se agrega que almecene el campo co_itmact en tbm_detmovinv 
+ 
+v 1.8.2 - (Javier Ayapata - 11/Mar/2008)
+   se corrigue el query que extraer los proveedores agregando la tabla tbr_cliloc
+ 
+v 1.8.2 - (Javier Ayapata - 17/Jun/2008)
+   se corrigue el query que extraer los proveedores agregando la tabla tbr_cliloc
+  
+v 1.8.3 - (Javier Ayapata - 31/Jul/2008)
+   se agrega para que pueda ser tomado tambien estado los estado de cliente Nuevo 'N'.
+
+v 1.8.4 - (Javier Ayapata - 28/Oct/2008)
+   se corrigue la funcion de insertar datos.
+
+v 1.8.5 - (Javier Ayapata - 26/Nov/2008)
+   se corrigue error al consultar.
+
+v 1.9 - (Javier Ayapata - 11/May/2009)
+   se agrega para que pueda escojer bodega.
+
+v 2.0 - (Javier Ayapata - 15/Oct/2009)
+   se agrega constructor de la cotizacion cuando es llamado de la pantalla de reposición.
+
+v 2.1 - (Javier Ayapata - 22/Octubre/2010)
+ se cambia configuracion de reporteria que esta en el servidor.
+
+v 2.2 - (Javier Ayapata - 17/Enero/2011)
+  Se agrega en ventana de consulta de item columna si el item es de servicio.
+
+v 2.3 - ERIK FLORES 2012-05-07
+  Se modifica para que no se permita hacer cotizaciones/ordenes de compra para items terminal L
+
+v 2.4 - ERIK FLORES 2012-05-09
+  Se modifica para que en COSENCO se permita hacer la cotizacion de compra de items terminal L 
+
+v. 2.5 - Alex Moran 2013-01-02
+  Se modifica para utilizar correctamente la funcion de redondeo
+
+v 2.6: (José Marín M. - 6/Nov/2014)
+----
+Se cambia el manejo de las bodegas, se lo hace cofigurable  
+
+v 2.8: (José Marín M. - 7/Nov/2014)
+----
+Se agrega validación en bodega predeterminada  
+
+v 2.9: (José Marín M. - 25/Sep/2015)
+----
+Se agrega el codificar en el detalle de la cotización  

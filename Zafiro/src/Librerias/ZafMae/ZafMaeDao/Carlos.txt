@@ -1,0 +1,87 @@
+
+CONTROL DE VERSIONES:
+=====================
+
+Tbm_ciuDAOInterface v1.0: (Carlos Lainez- 05/04/2011)
+----
+Interfaz con metodos definidos para el manejo de la tabla tbm_ciu
+
+
+Tbm_ciuDAO(Data Access Object) v1.0: (Carlos Lainez- 05/04/2011)
+----
+Implementacion de la interfaz Tbm_ciuDAOInterface
+Contiene los metodos y las sentencias SQL necesarias para manipular los datos de la tabla tbm_ciu
+
+
+Tbm_varDAOInterface v1.0: (Carlos Lainez- 05/04/2011)
+----
+Interfaz con metodos definidos para el manejo de la tabla tbm_var
+
+
+Tbm_varDAO(Data Access Object) v1.0: (Carlos Lainez- 05/04/2011)
+----
+Implementacion de la interfaz Tbm_varDAOInterface
+Contiene los metodos y las sentencias SQL necesarias para manipular los datos de la tabla tbm_var
+
+
+Tbm_regDAOInterface v1.0: (Carlos Lainez- 13/05/2011)
+----
+Interfaz con metodos definidos para el manejo de la tabla tbm_reg
+
+
+Tbm_regDAO(Data Access Object) v1.0: (Carlos Lainez- 13/05/2011)
+----
+Implementacion de la interfaz Tbm_regDAOInterface
+Contiene los metodos y las sentencias SQL necesarias para manipular los datos de la tabla tbm_reg
+
+
+Tbm_tipdocdigsisDAOInterface v1.0: (Carlos Lainez- 17/05/2011)
+----
+Interfaz con metodos definidos para el manejo de la tabla tbm_tipdocdigsis
+
+
+Tbm_tipdocdigsisDAO(Data Access Object) v1.0: (Carlos Lainez- 17/05/2011)
+----
+Implementacion de la interfaz Tbm_tipdocdigsisDAOInterface
+Contiene los metodos y las sentencias SQL necesarias para manipular los datos de la tabla tbm_tipdocdigsis
+
+
+Tbm_docdigsisDAOInterface  v1.0: (Carlos Lainez- 24/05/2011)
+----
+Interfaz con metodos definidos para el manejo de la tabla tbm_docdigsis
+
+
+Tbm_docdigsisDAO(Data Access Object)  v1.0: (Carlos Lainez- 24/05/2011)
+----
+Implementacion de la interfaz Tbm_docdigsisDAOInterface
+Contiene los metodos y las sentencias SQL necesarias para manipular los datos de la tabla tbm_docdigsis
+
+
+Tbm_empDAOInterface v1.0: (Carlos Lainez- 22/06/2011)
+----
+Interfaz con metodos definidos para el manejo de la tabla tbm_emp
+
+
+Tbm_empDAO(Data Access Object)  v1.0: (Carlos Lainez- 22/06/2011)
+----
+Implementacion de la interfaz Tbm_empDAOInterface
+Contiene los metodos y las sentencias SQL necesarias para manipular los datos de la tabla tbm_emp
+
+
+Tbm_ciuDAO(Data Access Object)  v1.0: (Roberto Flores - 22/06/2011)
+----
+Implementacion de la interfaz Tbm_ciuDAOInterface
+Contiene los metodos y las sentencias SQL necesarias para manipular los datos de la tabla tbm_ciu
+
+
+Tbm_varDAO(Data Access Object)  v1.0: (Roberto Flores - 22/06/2011)
+----
+Implementacion de la interfaz Tbm_varDAOInterface
+Contiene los metodos y las sentencias SQL necesarias para manipular los datos de la tabla tbm_var
+
+
+Tbm_tipdocdigsisDAO(Data Access Object) v1.0: (Christian Mateo- 18/01/2019)
+----
+Se mofidica el metodo consultarLisGen para poder consultar el empleado sin problemas por el campo tipo Timestamp.
+
+

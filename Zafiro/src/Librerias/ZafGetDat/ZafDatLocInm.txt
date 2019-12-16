@@ -1,0 +1,15 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Rosa Zambrano - 28/Nov/2017)
+----
+Clase nueva "Obtiene los locales de Inmaconsa, correspondientes a cada local".
+
+
+
+
+ 

@@ -1,0 +1,8 @@
+﻿
+CONTROL DE VERSIONES:
+=====================
+
+v0.1:  Javier Ayapata  24/11/2008 
+----
+   clase nueva que muestra las solicitudes que se volvera a facturar.
+

@@ -1,0 +1,26 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Rosa Zambrano - 06/Jul/2015)
+----
+Clase nueva para "Configuración de Servicios".
+
+
+v0.1.1: (Rosa Zambrano - 14/Nov/2017)
+-----
+Para obtener el puerto del servidor configurado en la tabla tbm_serCliSerLoc, se agregan los métodos:
+  1) getPueSer()
+  2) setPueSer()
+
+
+v0.1.2: (Rosa Zambrano - 29/Nov/2017)  
+-----
+Se realizan modificaciones para Modo Offline.
+
+
+
+

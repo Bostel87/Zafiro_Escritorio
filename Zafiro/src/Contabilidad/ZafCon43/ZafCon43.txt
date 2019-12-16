@@ -1,0 +1,10 @@
+CONTROL DE VERSIONES:
+=====================
+v0.1: (Ingrid Lino - 30/Jul/2007)
+----
+Programa nuevo, que permite realizar "Cierre anual de Presupuestos", este programa permite realizar cierre para un determinado año.
+Una vez que se realiza un cierre anual no se podrá realizar un presupuesto para ese año
+
+v0.1b1: (Ingrid Lino - 22/Ago/2007)
+---
+Se adicionó validación para años que no han sido presupuestados no se puedan cerrar

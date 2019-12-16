@@ -1,0 +1,11 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 22/Feb/2008)
+----
+Clase nueva.
+

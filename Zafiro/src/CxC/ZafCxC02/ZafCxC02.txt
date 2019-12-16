@@ -1,0 +1,18 @@
+﻿CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Tony Sanginez - 19/Oct/2015)
+----
+Clase nueva.
+
+v0.2: (Tony Sanginez - 16/Ene/2016)
+-----
+Modificaciones de un error al no cuadrar despues de reestructurar las retenciones. Cambios en la pantalla y validaciones.
+
+v0.3: (Tony Sanginez - 04/May/2016)
+-----
+Redondeo de valores ya que impedia que cuadren.
+
+v0.4: (Dennis Betancourt - 30/May/2018)
+-----
+Se tuvo que reestructurar el programa. Se tomo cierta parte del codigo de la version anterior.

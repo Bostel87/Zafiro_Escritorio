@@ -1,0 +1,35 @@
+﻿Pendientes:
+1) 
+2) 
+3) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 22/Oct/2014)
+----
+Clase nueva.
+
+
+v0.2: (Eddye Lino - 02/Oct/2015)
+-----
+Se modificó el método: 
+   1) tblDatKeyPressed(java.awt.event.KeyEvent evt)
+Se reemplazó "evt.setKeyCode(0);" por "evt.consume();" porque a partir de "Java 7" ya no consumía el ENTER.
+
+
+v0.3: (Rosa Zambrano - 28/Mar/2018)
+-----
+Se agrega lugar de destino en el reporte.
+
+
+v0.4: (Rosa Zambrano - 07/Jun/2018)
+-----
+Se agraga validación de filtro "Ficha "Reporte": Tabla->Mostrar "Datos de ingreso y última modificación de documentos",
+para que muestre los datos de auditoría a los usuarios con este filtro.
+
+
+v0.5: (Rosa Zambrano - 13/Jun/2018)
+-----
+Se muestra el código de cliente solicitado Carlos Chiriguaya.
+

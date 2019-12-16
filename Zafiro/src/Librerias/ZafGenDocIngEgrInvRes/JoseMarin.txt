@@ -1,0 +1,47 @@
+Pendientes:
+1)  
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (José Marín - 3/Jul/2017)
+----
+Clase nueva.
+
+
+v0.02: (José Marín - 31/Ago/2017)
+----
+Modificaciones en las cantidades.
+
+
+v0.03: (José Marín - 27/Sep/2017)
+----
+Se crea el metodo prepararEgreso() para poner cantidades tanto en despacho como en bodega.
+
+
+v0.04: (José Marín - 13/Oct/2017)
+----
+Se modifica el calculo para el costo total, no cambiaba el signo cuando era un egreso.
+
+
+v0.04.01: (José Marín - 14/Nov/2017)
+----
+Se modifica que grave el nombre de los items desde la cotizacion, se agrega costeo de items, se agrega una validacion
+al insercion del documento.
+
+
+v0.04.02: (José Marín - 29/Nov/2017)
+----
+Se modifica que grave el nombre.
+
+
+v0.04.03: (Rosa Zambrano - 06/Ago/2019)
+-----
+Se agrega el objeto de parametros del sistema para envios de correos.
+
+
+v0.05: (José Marín - 07/Ago/2019)
+-----
+Modificaciones para reservas en Cosenco.
+

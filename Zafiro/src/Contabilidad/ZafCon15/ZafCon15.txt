@@ -1,0 +1,174 @@
+﻿
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Jose Salazar - 02/Feb/2006)
+----
+Clase nueva que muestra los movimientos de las cuentas de detalle de un periodo de tiempo. 
+
+ 
+v0.2: (Jose Salazar - 08/Feb/2006)
+-----   
+Se agrego subreporte para retenciones.
+
+
+v0.2.1: (Jose Salazar - 10/Feb/2006)
+----- 
+Se valido que quede vacio la caja de txtos de la cuenta.
+Se cambio estructuras de query para mostrar todos los asientos contables tengan o no documentos asociados.
+
+
+v0.2.2: (Ingrid Lino - 07/Mar/2006)
+----- 
+Se corrigió la fecha de corte para presentar saldos anteriores ya que estaba realizando siempre el corte
+desde el mes de enero hasta la fecha de corte final, cuando en realidad deberá de presentar el saldo del mes anterior a la fecha de corte.
+
+
+v0.2.3: (Ingrid Lino - 15/Mar/2006)
+----- 
+Se corrigió datos de saldos anteriores y saldos acumulados.
+
+
+v4.0: (Ingrid Lino - 23/Ago/2006)
+----- 
+Se cambió todo el esquema de este reporte, se adiciono una tabla con el formato del iReport,
+y el archivo de iReport se lo mejorá a nivel de query y de paso de parametros asi como diseño el programa lee el .jasper
+
+
+v4.2: (Ingrid Lino - 27/Dic/2006)
+----- 
+Se cambiá el query por fallas al presentar la informacián, si existáan 2 cádigos de diario iguales pero en locales
+diferentes, presentaba 2 registros, pero con el mismo valor para los 2.
+
+
+v4.2.1: (Ingrid Lino - 28/Dic/2006)
+----- 
+Se adicioná nuevamente el campo de cádigo de diario a peticián del Ing. Eddye Lino; ese campo se habáa quitado por 
+peticián del Ing. Rená Villán. El campo está en una columna oculta.
+
+
+v5.0.0: (Ingrid Lino - 14/Feb/2007)
+----- 
+Se cambiá el query de ejecucián del reporte porque se quedaba colgado cuando se ejecutaba el programa
+
+
+v5.1.0: (Ingrid Lino - 28/Feb/2007)
+----- 
+Se adicioná filtro en el query para presentar saldos iniciales en el reporte
+
+
+v5.2.0: (Ingrid Lino - 01/Mar/2007)
+----- 
+Se cambiaron y adicionaron unas validaciones
+
+
+v5.3.0: (Ingrid Lino - 04/Jun/2007)
+----- 
+Se agregá filtro de tipos de documentos en la funcion que carga el detalle
+
+
+v5.4.0: (Ingrid Lino - 18/Feb/2008)
+----- 
+Se agregá filtro de tipo de documento NDPR. solicitado por Javier Ayapata para cuadre de Cuenta 1.01.06.01.01 - bodega California
+
+
+v5.5.0: (Ingrid Lino - 09/Abr/2008)
+----- 
+Se agregá al filtro donde se leen co_tipDoc in(5,30,48,49) los tipos de documentos para transferencias bancarias(86,87,88,89)
+
+
+v5.6.0: (Ingrid Lino - 10/Jun/2008)
+----- 
+Se cambió el filtro para cuentas de Estados de Resultados, para q presente como saldo anterior solo el saldo del 
+presente año, esto no se aplica para las cuentas de Balance General(Para regporte impreso y reporte tabla).
+
+
+v5.7.0: (Ingrid Lino - 29/Dic/2008)
+----- 
+Se quitó una conexión que estaba quedando abierta. No representaba mayor problema porq cuando se cerraba la ventana,la conexión se cerraba.
+
+
+v6.0.0: (Ingrid Lino - 12/Ene/2009)
+----- 
+Se cambió el query para obtener datos porque se estaba dejando quemado en la parte que extraia datos q solo estaban en diarios los tipos de 
+documentos, y si el tipo de documento no estaba en el codigo, ese registro y sus valores no aparecian y presentaba datos erroneos en el reporte.
+Ademas se adicionó un filtro de proveedor en el reporte(Solicitado por Eddye y Rene).
+
+
+v7.0: (Ingrid Lino - 26/Ene/2009)
+----- 
+Se cambio completamente el esquema de cargar datos y la interfaz grafica, se adiciono filtro por proveedor. 
+Se cambiaron funciones de calcular saldos actuales y anteriores porq se requeria q filtraran por proveedor.
+Ademas se adicionó la opción de importar a excel la información. Se necesita la libreria jxl.
+
+
+v7.2: (Ingrid Lino - 04/Nov/2009)
+-----
+Se adicionó código para impresión en SO linux.
+
+
+v7.3: (Ingrid Lino - 06/Nov/2009)
+-----
+Se quitó la opción de selector a la izquierda porque no tenia forma de conocer el parámetro de fecha desde para poder enviar ese
+dato como parámetro para calcular el valor de Saldo Anterior.
+
+
+v7.4: (Ingrid Lino - 05/May/2010)
+-----
+Se adicionó en el filtro de la cuenta que se selecciona para los user(71,84) que solo se presenten las cuentas bancarias.
+
+
+v7.5: (Ingrid Lino - 02/Jun/2010)
+-----
+Se quitó el filtro de cuentas por tipo de documento.
+
+
+v7.6: (Ingrid Lino - 21/Sep/2010)
+-----
+Se agregó una columna donde se presenta el nombre de la persona que generó el documento(para tener acceso se debe dar permiso al usuario).
+
+
+v7.7: (Ingrid Lino - 19/Nov/2010)
+-----
+En el query no se estaba presentando bien el dato de descripción cuando tenia un valor '', en el query se verificaba cuando era NULL, pero no ''.
+
+
+v7.8: (Ingrid Lino - 28/Abr/2011)
+-----
+En el query de obtención de información, se agregó en el Order by la fe_ing(esto por la cuenta Efectivo en Transito para presentar primero los INCA y luego los CIECAJ, tipo kardex).
+
+
+v7.9: (Ingrid Lino - 31/Oct/2011)
+-----
+Se quita el bloqueo de usuario=71.
+
+
+v7.10: (Ingrid Lino - 07/Mar/2012)
+-----
+Se adiciona filtro para presentar documentos que han sido anulados.
+
+
+v7.11: (Ingrid Lino - 29/Jun/2012)
+-----
+Se adiciona en el query para obtener las cuentas a presentar, que presente solo las cuentas activas.
+
+
+v7.12: (Ingrid Lino - 22/May/2013)
+-----
+Se corrige como obtener el valor de saldos acumulados(totales).
+
+
+v7.13: (Rosa Zambrano - 24/Jun/2015)
+-----
+Se cambia esquema de impresión de Reporte, se agrega la función generarRpt() volviendo configurable el reporte.
+Se cambia la dirección de exportación "C:\\Zafiro\\Reportes\\Excel\\MMC.xls". 
+
+
+v7.14: (Tony Sanginez - 03/Mar/2017)
+-----
+Se mejora la busqueda por proveedores en el query que hasta el momento no funcionaba.
+
+
+v7.15: (Tony Sanginez - 27/Oct/2017)
+-----
+Se agrega el campo Local para la consulta ya que mostraba dificultad al momento de distinguir los locales por empresa. Se modifica la libreria exportar para que se ajuste a los cambios respectivos.

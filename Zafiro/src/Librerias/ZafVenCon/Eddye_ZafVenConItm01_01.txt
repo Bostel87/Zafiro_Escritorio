@@ -1,0 +1,33 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 07/Oct/2019)
+----
+Clase nueva.
+
+
+v0.2: (Eddye Lino - 16/Oct/2019)
+----
+Se modificaron los métodos: 
+   1) configurarFrm()
+   2) getConSQLTod()
+   3) isCamVal()
+   4) limpiar()
+   5) llenarCboCri(javax.swing.JComboBox objCboCri)
+   6) getConSQLFilAdi(String strCamUti, String strOpeUti, javax.swing.JComboBox objCboCri, javax.swing.JTextField objTxtCri)
+   7) isCriVal(javax.swing.JComboBox objCboCri, javax.swing.JTextField objTxtCri)
+Se agregó el filtro "Revisión técnica" y "Tipo de item".
+Además, se agregaron los criterios: "tiene N caracteres" y "no tiene N caracteres".
+
+
+v0.3: (Eddye Lino - 22/Nov/2019)
+----
+Se modificaron los métodos: 
+   1) configurarFrm()
+   2) getConSQLTod()
+   3) limpiar()
+Se agregó el filtro "Código alterno 2 (3 letras):".

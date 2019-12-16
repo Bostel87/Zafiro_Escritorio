@@ -1,0 +1,13 @@
+CONTROL DE VERSIONES:
+=====================
+v0.1b1: (Ingrid Lino - 24/Sep/2007  13h04)
+----
+Programa nuevo que presenta informaci�n de ventas detallado por cliente
+
+v0.1: (Ingrid Lino -03-May-2011  15h58)
+----
+Pase a producción de "Historial de postergaciones de cheques de clientes"
+
+v0.1.1: (Ingrid Lino -05-May-2011  14h08)
+----
+Se adicionó columna de "Número total de postergaciones" aprobadas de la factura del cliente.

@@ -1,0 +1,27 @@
+﻿
+CONTROL DE VERSIONES:
+=====================
+
+v1.0: (Roberto Flores - 22/Nov/2013)
+----
+Clase nueva Pago del décimo tercer sueldo...
+
+
+v1.01: (Roberto Flores- 13/Dic/2013)
+-----
+Se realizan validaciones para considerar las comisiones aportables al seguro y comisiones de vendedoras como bono.
+
+
+v1.02: (Roberto Flores - 17/Dic/2013)
+-----
+Se realiza corrección al momento de saldar lo pendiente a cancelar con lo que se va a pagar.
+
+
+v1.03: (Roberto Flores - 18/Dic/2013)
+-----
+Se realizan validaciones para regresar al período anterior de la movilización(Diciembre-Noviembre).
+
+
+v1.04: (Rosa Zambrano - 24/May/2016)
+-----
+Se elimina objeto objInvItm, el cual no estaba siendo utilizado.

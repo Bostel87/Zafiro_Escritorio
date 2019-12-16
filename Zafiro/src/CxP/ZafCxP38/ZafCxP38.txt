@@ -1,0 +1,20 @@
+Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1 b1: (Ingrid Lino - 12/Nov/2008)
+----
+    - Programa nuevo que permite el ingreso de datos de adicionales de documentos por pagar(el proveedor nos envía
+      la Factura, de la que debemos ingresar unos datos para la elabortación de retenciones.
+
+v0.1: (Ingrid Lino - 17/Nov/2008)
+----
+Pase a producción.
+
+
+v0.1.1: (Ingrid Lino - 25/03/2009)
+----
+-ZafCxP38 se cambio el orden de la columna Fecha de caducidad por numero de pedido y viceversa.

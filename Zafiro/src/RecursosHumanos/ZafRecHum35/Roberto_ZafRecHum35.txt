@@ -1,0 +1,15 @@
+﻿
+CONTROL DE VERSIONES:
+=====================
+
+
+v1.0: (Roberto Flores- 24/06/2012)
+----
+Clase nueva
+
+v1.01: (Roberto Flores- 17/07/2013)
+Se realiza corrección, tabla anteriormente se llamaba tbm_cabegrprgtra y ahora se llama tbm_cabingegrprgtra.
+
+v1.02: (David Albuja - 24/06/2014)
+----
+Al grabar invoca al Servicio9.

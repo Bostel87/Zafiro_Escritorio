@@ -1,0 +1,13 @@
+
+CONTROL DE VERSIONES:
+=====================
+
+ZafRecHum29 v1.0: (Roberto Flores - 24/03/2012)
+----
+Se creo la Pantalla de Mantenimiento Motivos de horas suplementarias/extraordinarias
+siendo manejado por el bean ZafRecHum29Bean
+
+
+ZafRecHum29Bean v1.0: (Roberto Flores - 24/03/2012)
+----
+Se creo bean manejador de la Pantalla de Mantenimiento Motivos de horas suplementarias/extraordinarias

@@ -1,0 +1,26 @@
+Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1 : (Ingrid Lino - 08/Feb/2013)
+----
+Programa que permite realizar las distribuciones de bodega importaciones a bodegas inmaconsa, california, etc.
+
+v0.1.1 : (Ingrid Lino - 25/Feb/2013)
+----
+Se me extravió el programa fuente y me tocó hacer cambios a un respaldo para poder pasar nuevamente el programa.
+
+v0.1.2 : (Ingrid Lino - 20/Mar/2013)
+----
+Se adiciona la opcion de seleccionar en el header los checkbox.
+
+v0.1.3 : (Ingrid Lino - 28/Mar/2013)
+----
+Se modifica en el reporte de impresión el código alterno del item, lo estaba tomando de tbm_detMovInv y si el item ha sido modificado o unificado, se mostraba el anterior codigo de item.
+
+v0.1.4 : (Ingrid Lino - 14/Abr/2015)
+----
+Se adiciona codificación para Compras Locales.

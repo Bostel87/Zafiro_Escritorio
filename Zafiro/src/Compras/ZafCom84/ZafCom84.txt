@@ -1,0 +1,11 @@
+﻿Pendientes:
+1) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Tony Sanginez - 01/Jun/2016)
+----
+Clase nueva "Seguimiento de solicitudes de transferencias de inventario (Formato 1: Detalle)...".
+
+		                

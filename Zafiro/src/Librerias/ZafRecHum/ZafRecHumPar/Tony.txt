@@ -1,0 +1,30 @@
+﻿Pendientes:
+1) 
+2) 
+
+﻿CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Tony Sanginez - 01/Feb/2016)
+----
+Libreria nueva que devuelve el valor del sueldo básico.
+
+
+v0.2: (Tony Sanginez - 11/Feb/2016)
+-----
+Se agregaron dos nuevas variables de parametrizaciones. Porcentaje de aporte patronal y porcentaje de fondo de reserva
+
+
+v0.3: (Rosa Zambrano - 06/Ene/2017)
+-----
+Se actualiza SBU en el año 2017.
+
+
+v0.4: (Rosa Zambrano - 28/Mar/2018)
+-----
+Se actualiza SBU en el año 2018, con el valor de $386.
+
+
+v0.5: (Rosa Zambrano - 15/Ene/2019)
+-----
+Se actualiza SBU en el año 2019, con el valor de $394.

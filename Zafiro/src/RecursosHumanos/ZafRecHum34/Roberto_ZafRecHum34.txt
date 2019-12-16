@@ -1,0 +1,42 @@
+﻿
+CONTROL DE VERSIONES:
+=====================
+
+
+v1.0: (Roberto Flores- 19/06/2012)
+----
+Clase nueva
+
+
+v1.22: (Roberto Flores- 04/05/2012)
+-----
+Validación para contemplar precancelaciones, bloquearlas al momento de modificarlas como precanceladas.
+Solo el usuario administrador y el usuario quien crea el registro puede realizar modificaciones.
+
+v1.23: (Roberto Flores- 05/07/2013)
+-----
+Se solicita poder visualizar egresos de empleados anulados para realizar liquidación de haberes.
+
+
+v1.24: (Roberto Flores- 22/10/2013)
+-----
+Se realizan validaciones relacionadas a las autorizaciones de novedades extémporaneas.
+
+
+v1.25: (David Albuja - 24/06/2014)
+-----
+Al grabar invoca al Servicio9.
+
+
+v1.26: (Tony Sanginez - 01/12/2016)
+-----
+Query que mostraba a todos los empleados inactivos es cambiado para que solo se muestren los activos.
+
+
+v1.27: (Tony Sanginez - 04/01/2018)
+-----
+No se va a poder seleccionar la fecha del documento. Se va a guardar con la fecha en la que se inserte el documento. Se agrega esta validación.
+
+v1.28: (Tony Sanginez - 28/01/2018)
+-----
+Se modifica para que se pueda consultar empleados inactivos y que no permita realizar ningun tipo de cambio.

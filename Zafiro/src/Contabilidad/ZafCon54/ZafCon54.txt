@@ -1,0 +1,50 @@
+Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1 b1: (Ingrid Lino - 12/Nov/2008)
+----
+    -Programa nuevo que permite realizar Cheques de forma masiva, para lo cual se debe previamente haber realizado:
+        1.- Haber ingresado los datos de la Factura del Proveedor a través del programa "Agregar datos adicionales a documentos
+         por pagar"(Este paso no es obligatorio, pero debería hacerselo previamente, porque el programa genera la glosa
+         del documento automáticamente y se toman campos para dicha glosa de los ingresados a través de este programa, 
+         en caso de no hacerlo, en la glosa se almacernarán esos datos en blanco o null.
+        2.- Haber concedido el visto bueno al documento.(este si es obligatorio).
+    -El mismo programa se encarga de realizar la impresión automática, después de haber realizado los documentos.
+    -Se puede generar cheques para varios proveedores en la misma transacción.
+    -Se genera un cheque por proveedor y por fecha de cheque.
+      Ejm:
+        Proveedor XYZ tiene O/C  555, 556, 557 sin fecha o los 3 con una fecha de cheque-> genera un solo cheque.
+        Proveedor XYZ tiene O/C  555(20/11/2008), 556, 557 sin fecha -> genera dos cheques..uno al 20/11/2008 para la 
+           O/C 555 y otro cheque con fecha al día para las O/C 556 y 557.
+      
+v0.1: (Ingrid Lino - 17/Nov/2008)
+----
+Pase a producción.
+
+v0.2: (Ingrid Lino - 29/Dic/2008)
+----
+Se cambió el código del select para obtener el último número de egreso y último número de cheque que antes se 
+tomaba de la tabla tbm_cabPag.ne_numDoc1 y tbm_cabPag.ne_numDoc2 y ahora se leen desde tbm_plaCta.ne_ultChq y 
+tbm_cabtipdoc.ne_ultDoc o tbm_cabGrpTipDoc.ne_ultDoc. Además se agregó que se actualice el estado de impresión 
+del documento y del asiento de diario.
+
+v0.4: (Ingrid Lino - 09/Jul/2009)
+----
+Se adicionaron cambios en campo glosa.
+
+v0.5: (Ingrid Lino - 18/Ago/2009)
+----
+El valor de abono se obtendrá (valor pendiente - valor de la devolucion si es q tiene).
+
+v0.6: (Ingrid Lino - 17/May/2010)
+----
+Se adicionaron campos en "tbm_cabPag.tx_comIng, tbm_cabPag.tx_comMod" para insercion, modificacion, anulacion y eliminacion respectivamente.
+
+v0.7: (Rosa Zambrano - 30/Ago/2019)
+----
+Se realizan cambios para Jaspersoft Studio.
+

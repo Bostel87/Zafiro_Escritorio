@@ -1,0 +1,1486 @@
+/*
+ * ZafImp16.java
+ *
+ * Created on 22 de marzo del 2019
+ */
+package Maestros.ZafMae73;
+import Librerias.ZafParSis.ZafParSis;
+import Librerias.ZafUtil.ZafUtil;
+import Librerias.ZafTblUti.ZafTblFilCab.ZafTblFilCab;
+import Librerias.ZafTblUti.ZafTblMod.ZafTblMod;
+import Librerias.ZafTblUti.ZafTblCelRenLbl.ZafTblCelRenLbl;
+import Librerias.ZafTblUti.ZafTblPopMnu.ZafTblPopMnu;
+import Librerias.ZafTblUti.ZafTblBus.ZafTblBus;
+import Librerias.ZafTblUti.ZafTblOrd.ZafTblOrd;
+import java.sql.Connection;
+import java.sql.Statement;
+import java.sql.ResultSet;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.Vector;
+import java.util.ArrayList;
+
+/**
+ *
+ * @author  Ingrid Lino
+ */
+public class ZafMae73 extends javax.swing.JInternalFrame
+{
+    //Constantes: Columnas del JTable:
+    static final int INT_TBL_DAT_GRP_LIN=0;
+    static final int INT_TBL_DAT_GRP_COD_EMP=1;//INT_TBL_DAT_INV_COD_EMP
+    static final int INT_TBL_DAT_GRP_COD_CLA=2;//INT_TBL_DAT_INV_COD_CLA
+    static final int INT_TBL_DAT_GRP_COD_GRP=3;//INT_TBL_DAT_INV_COD_GRP
+    static final int INT_TBL_DAT_GRP_COD_ITM_EMP=4;//INT_TBL_DAT_INV_COD_ITM_EMP
+    static final int INT_TBL_DAT_GRP_COD_ITM_MAE=5;//INT_TBL_DAT_INV_COD_MAE_ITM
+    static final int INT_TBL_DAT_GRP_COD_ALT_ITM=6;//INT_TBL_DAT_INV_COD_ALT_ITM
+    static final int INT_TBL_DAT_GRP_DES_COR_TIP_DOC=7;//INT_TBL_DAT_INV_COD_LET_ITM, DESCRIP. CORTA GRUPO, DESCRIP. CORTA CLASIF.
+    static final int INT_TBL_DAT_GRP_DES_LAR_TIP_DOC=8;//INT_TBL_DAT_INV_NOM_ITM, NOMBRE DEL GRUPO, NOMBRE CLASIFICACION
+    static final int INT_TBL_DAT_GRP_UNI_MED=9;//INT_TBL_DAT_INV_UNI_MED
+    static final int INT_TBL_DAT_GRP_FIL_SEL=10;//Si se debe insertar
+    //static final int INT_TBL_DAT_GRP_COD_GRP_ITM=9;//El grupo al que pertenece el item
+    
+    static final int INT_TBL_DAT_INV_LIN=0;
+    static final int INT_TBL_DAT_INV_COD_EMP=1;
+    static final int INT_TBL_DAT_INV_COD_ITM_EMP=2;
+    static final int INT_TBL_DAT_INV_COD_MAE_ITM=3;
+    static final int INT_TBL_DAT_INV_COD_ALT_ITM=4;
+    static final int INT_TBL_DAT_INV_COD_LET_ITM=5;
+    static final int INT_TBL_DAT_INV_NOM_ITM=6;
+    static final int INT_TBL_DAT_INV_UNI_MED=7;
+    
+    //Variables
+    private ZafParSis objParSis;
+    private ZafUtil objUti;
+    private ZafTblFilCab objTblFilCabGrp, objTblFilCabInv;
+    private ZafTblMod objTblModGrp, objTblModInv;
+    private ZafThreadGUI objThrGUI;
+    private ZafTblCelRenLbl objTblCelRenLblGrp, objTblCelRenLblInv; //Render: Presentar JLabel en JTable.
+    private ZafMouMotAdaGrp objMouMotAdaGrp;                        //ToolTipText en TableHeader.
+    private ZafMouMotAdaInv objMouMotAdaInv;                        //ToolTipText en TableHeader.
+    private ZafTblPopMnu objTblPopMnuGrp, objTblPopMnuInv;          //PopupMenu: Establecer PopupMenú en JTable.
+    private ZafTblBus objTblBusGrp, objTblBusInv;                   //Editor de búsqueda.
+    private ZafTblOrd objTblOrdGrp, objTblOrdInv;                   //JTable de ordenamiento.
+    private Connection con;
+    private Statement stm;
+    private ResultSet rst;
+    
+    private Vector vecDatGrp, vecDatInv, vecCabGrp, vecCabInv, vecRegGrp, vecRegInv;
+    private boolean blnCon;                                     //true: Continua la ejecución del hilo.
+        
+    private String strSQL, strAux;
+    private String strVer=" v0.1";
+    private ArrayList arlRegInv, arlDatInv;
+    
+    private final int INT_ARL_INV_COD_EMP=0;
+    private final int INT_ARL_INV_COD_ITM_EMP=1;
+    private final int INT_ARL_INV_COD_MAE_ITM=2;
+    private final int INT_ARL_INV_COD_ALT_ITM=3;
+    private final int INT_ARL_INV_COD_LET_ITM=4;
+    private final int INT_ARL_INV_NOM_ITM=5;
+    private final int INT_ARL_INV_UNI_MED=6;
+    
+    private java.util.Date datFecAux;
+    
+    private ArrayList arlRegFilEli, arlDatFilEli;
+    final int INT_ARL_FIL_ELI_COD_EMP=0;
+    final int INT_ARL_FIL_ELI_COD_GRP=1;
+    final int INT_ARL_FIL_ELI_COD_ITM=2;
+    final int INT_ARL_FIL_ELI_EST=3;
+    
+    private String strCodItmTblGrp;
+
+    /** Crea una nueva instancia de la clase ZafIndRpt. */
+    public ZafMae73(ZafParSis obj){
+        try{
+            objParSis = (ZafParSis) obj.clone();
+            arlDatInv=new ArrayList();
+            arlDatFilEli=new ArrayList();
+            if(objParSis.getCodigoEmpresa() == objParSis.getCodigoEmpresaGrupo()){
+                initComponents();
+                if (!configurarFrm()){
+                    exitForm();
+                }
+            }
+            else{
+                mostrarMsgInf("Este programa sólo puede ser ejecutado desde GRUPO.");
+                dispose();
+            }
+
+        } 
+        catch (CloneNotSupportedException e) {    this.setTitle(this.getTitle() + " [ERROR]"); }
+    }
+    
+    /** This method is called from within the constructor to
+     * initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is
+     * always regenerated by the Form Editor.
+     */
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        bgrFil = new javax.swing.ButtonGroup();
+        lblTit = new javax.swing.JLabel();
+        panFrm = new javax.swing.JPanel();
+        tabFrm = new javax.swing.JTabbedPane();
+        jPanel1 = new javax.swing.JPanel();
+        panGrp = new javax.swing.JPanel();
+        spnGrp = new javax.swing.JScrollPane();
+        tblGrp = new javax.swing.JTable();
+        jPanel2 = new javax.swing.JPanel();
+        butIzq = new javax.swing.JButton();
+        butIzq1 = new javax.swing.JButton();
+        panInv = new javax.swing.JPanel();
+        spnInv = new javax.swing.JScrollPane();
+        tblInv = new javax.swing.JTable();
+        panBar = new javax.swing.JPanel();
+        panBot = new javax.swing.JPanel();
+        butCon = new javax.swing.JButton();
+        butGua = new javax.swing.JButton();
+        butCer = new javax.swing.JButton();
+        panBarEst = new javax.swing.JPanel();
+        lblMsgSis = new javax.swing.JLabel();
+        panPrgSis = new javax.swing.JPanel();
+        pgrSis = new javax.swing.JProgressBar();
+
+        setClosable(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
+        setTitle("Título de la ventana");
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+                exitForm(evt);
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            }
+        });
+
+        lblTit.setFont(new java.awt.Font("MS Sans Serif", 1, 14)); // NOI18N
+        lblTit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTit.setText("Título de la ventana");
+        lblTit.setPreferredSize(new java.awt.Dimension(138, 18));
+        getContentPane().add(lblTit, java.awt.BorderLayout.NORTH);
+
+        panFrm.setPreferredSize(new java.awt.Dimension(475, 311));
+        panFrm.setLayout(new java.awt.BorderLayout());
+
+        tabFrm.setPreferredSize(new java.awt.Dimension(475, 311));
+
+        jPanel1.setLayout(new java.awt.GridLayout(1, 2));
+
+        panGrp.setLayout(new java.awt.BorderLayout());
+
+        tblGrp.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, false, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        spnGrp.setViewportView(tblGrp);
+
+        panGrp.add(spnGrp, java.awt.BorderLayout.CENTER);
+
+        jPanel2.setPreferredSize(new java.awt.Dimension(60, 100));
+        jPanel2.setLayout(null);
+
+        butIzq.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        butIzq.setText("<<");
+        butIzq.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                butIzqActionPerformed(evt);
+            }
+        });
+        jPanel2.add(butIzq);
+        butIzq.setBounds(4, 120, 50, 21);
+
+        butIzq1.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        butIzq1.setText(">>");
+        butIzq1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                butIzq1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(butIzq1);
+        butIzq1.setBounds(4, 160, 50, 21);
+
+        panGrp.add(jPanel2, java.awt.BorderLayout.LINE_END);
+
+        jPanel1.add(panGrp);
+
+        panInv.setLayout(new java.awt.BorderLayout());
+
+        tblInv.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        spnInv.setViewportView(tblInv);
+
+        panInv.add(spnInv, java.awt.BorderLayout.CENTER);
+
+        jPanel1.add(panInv);
+
+        tabFrm.addTab("tab3", jPanel1);
+
+        panFrm.add(tabFrm, java.awt.BorderLayout.CENTER);
+
+        getContentPane().add(panFrm, java.awt.BorderLayout.CENTER);
+
+        panBar.setPreferredSize(new java.awt.Dimension(320, 42));
+        panBar.setLayout(new java.awt.BorderLayout());
+
+        panBot.setPreferredSize(new java.awt.Dimension(304, 26));
+        panBot.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 5, 0));
+
+        butCon.setText("Consultar");
+        butCon.setToolTipText("Ejecuta la consulta de acuerdo al filtro especificado.");
+        butCon.setPreferredSize(new java.awt.Dimension(92, 25));
+        butCon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                butConActionPerformed(evt);
+            }
+        });
+        panBot.add(butCon);
+
+        butGua.setText("Guardar");
+        butGua.setPreferredSize(new java.awt.Dimension(92, 25));
+        butGua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                butGuaActionPerformed(evt);
+            }
+        });
+        panBot.add(butGua);
+
+        butCer.setText("Cerrar");
+        butCer.setToolTipText("Cierra la ventana.");
+        butCer.setPreferredSize(new java.awt.Dimension(92, 25));
+        butCer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                butCerActionPerformed(evt);
+            }
+        });
+        panBot.add(butCer);
+
+        panBar.add(panBot, java.awt.BorderLayout.CENTER);
+
+        panBarEst.setPreferredSize(new java.awt.Dimension(320, 17));
+        panBarEst.setLayout(new java.awt.BorderLayout());
+
+        lblMsgSis.setText("Listo");
+        lblMsgSis.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
+        panBarEst.add(lblMsgSis, java.awt.BorderLayout.CENTER);
+
+        panPrgSis.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
+        panPrgSis.setMinimumSize(new java.awt.Dimension(24, 26));
+        panPrgSis.setPreferredSize(new java.awt.Dimension(200, 15));
+        panPrgSis.setLayout(new java.awt.BorderLayout());
+
+        pgrSis.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
+        pgrSis.setBorderPainted(false);
+        pgrSis.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        pgrSis.setPreferredSize(new java.awt.Dimension(100, 16));
+        panPrgSis.add(pgrSis, java.awt.BorderLayout.CENTER);
+
+        panBarEst.add(panPrgSis, java.awt.BorderLayout.EAST);
+
+        panBar.add(panBarEst, java.awt.BorderLayout.SOUTH);
+
+        getContentPane().add(panBar, java.awt.BorderLayout.SOUTH);
+
+        setBounds(0, 0, 700, 450);
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void butConActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butConActionPerformed
+        //Realizar acción de acuerdo a la etiqueta del botón ("Consultar" o "Detener").
+        if(butCon.getText().equals("Consultar")){
+            blnCon=true;
+            if(objThrGUI==null){
+                objThrGUI=new ZafThreadGUI();
+                objThrGUI.start();
+            }            
+        }
+        else{
+            blnCon=false;
+        }
+    }//GEN-LAST:event_butConActionPerformed
+
+    private void butCerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butCerActionPerformed
+        exitForm(null);
+    }//GEN-LAST:event_butCerActionPerformed
+
+    /** Cerrar la aplicación. */
+    private void exitForm(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_exitForm
+        String strTit, strMsg;
+        javax.swing.JOptionPane oppMsg=new javax.swing.JOptionPane();
+        strTit="Mensaje del sistema Zafiro";
+        strMsg="¿Está seguro que desea cerrar este programa?";
+        if (oppMsg.showConfirmDialog(this,strMsg,strTit,javax.swing.JOptionPane.YES_NO_OPTION,javax.swing.JOptionPane.QUESTION_MESSAGE)==javax.swing.JOptionPane.YES_OPTION)
+        {
+            dispose();
+        }
+    }//GEN-LAST:event_exitForm
+
+    private void butIzqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butIzqActionPerformed
+        // TODO add your handling code here:
+        getArrFilSelInv();
+        getInsTblGrpFilSelTblInv();
+        eliminaFilSelInv();
+    }//GEN-LAST:event_butIzqActionPerformed
+
+    private void butGuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butGuaActionPerformed
+        // TODO add your handling code here:
+        if(guardarDatos()) {
+            mostrarMsgInf("<HTML>La información se guardó correctamente.</HTML>");
+        } 
+        else{
+            mostrarMsgInf("<HTML>La información no se pudo guardar.<BR>Verifique y vuelva a intentarlo.</HTML>");
+        }
+        
+        
+        
+    }//GEN-LAST:event_butGuaActionPerformed
+
+    private void butIzq1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butIzq1ActionPerformed
+        // TODO add your handling code here:
+        getArrFilSelGrp();//getArrFilSelInv
+        getInsTblInvFilSelTblGrp();
+        eliminaFilSelGrp();
+    }//GEN-LAST:event_butIzq1ActionPerformed
+
+    /** Cerrar la aplicación. */
+    private void exitForm() 
+    {
+        dispose();
+    }    
+        
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup bgrFil;
+    private javax.swing.JButton butCer;
+    private javax.swing.JButton butCon;
+    private javax.swing.JButton butGua;
+    private javax.swing.JButton butIzq;
+    private javax.swing.JButton butIzq1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel lblMsgSis;
+    private javax.swing.JLabel lblTit;
+    private javax.swing.JPanel panBar;
+    private javax.swing.JPanel panBarEst;
+    private javax.swing.JPanel panBot;
+    private javax.swing.JPanel panFrm;
+    private javax.swing.JPanel panGrp;
+    private javax.swing.JPanel panInv;
+    private javax.swing.JPanel panPrgSis;
+    private javax.swing.JProgressBar pgrSis;
+    private javax.swing.JScrollPane spnGrp;
+    private javax.swing.JScrollPane spnInv;
+    private javax.swing.JTabbedPane tabFrm;
+    private javax.swing.JTable tblGrp;
+    private javax.swing.JTable tblInv;
+    // End of variables declaration//GEN-END:variables
+   
+    /** Configurar el formulario. */
+    private boolean configurarFrm(){
+        boolean blnRes=true;
+        try{            
+            //Inicializar objetos.
+            objUti=new ZafUtil();
+            strAux=objParSis.getNombreMenu();
+            this.setTitle(strAux + strVer);
+            lblTit.setText(strAux);
+
+            //Configurar los JTables.
+            configurarTblDatGrp();
+            configurarTblDatInv();
+        }
+        catch(Exception e) {    blnRes=false; objUti.mostrarMsgErr_F1(this, e);  }
+        return blnRes;
+    }
+
+
+    /**
+     * Esta función configura el JTable "tblDat".
+     * @return true: Si se pudo configurar el JTable.
+     * <BR>false: En el caso contrario.
+     */
+    private boolean configurarTblDatGrp(){
+        boolean blnRes=true;
+        try{
+            //Configurar JTable: Establecer el modelo.
+            vecDatGrp=new Vector();    //Almacena los datos
+            vecCabGrp=new Vector(11);  //Almacena las cabeceras
+            vecCabGrp.clear();
+            vecCabGrp.add(INT_TBL_DAT_GRP_LIN,"");
+            vecCabGrp.add(INT_TBL_DAT_GRP_COD_EMP,"Cód.Emp.");
+            vecCabGrp.add(INT_TBL_DAT_GRP_COD_CLA,"Cód.Cla.");
+            vecCabGrp.add(INT_TBL_DAT_GRP_COD_GRP,"Cód.Grp.");
+            vecCabGrp.add(INT_TBL_DAT_GRP_COD_ITM_EMP,"Cód.Itm.Emp.");
+            vecCabGrp.add(INT_TBL_DAT_GRP_COD_ITM_MAE,"Cód.Itm.Mae.");
+            vecCabGrp.add(INT_TBL_DAT_GRP_COD_ALT_ITM,"Cód.Alt.Itm.");
+            vecCabGrp.add(INT_TBL_DAT_GRP_DES_COR_TIP_DOC,"Des.Cor.");//item, grupo, clasificacion
+            vecCabGrp.add(INT_TBL_DAT_GRP_DES_LAR_TIP_DOC,"Descripción");//item, grupo, clasificacion
+            vecCabGrp.add(INT_TBL_DAT_GRP_UNI_MED,"Uni.Med.");
+            vecCabGrp.add(INT_TBL_DAT_GRP_FIL_SEL,"");
+
+            objTblModGrp=new ZafTblMod();
+            objTblModGrp.setHeader(vecCabGrp);
+            tblGrp.setModel(objTblModGrp);
+
+            //Configurar JTable: Establecer tipo de selección.
+            tblGrp.setRowSelectionAllowed(true);
+            tblGrp.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+            //Configurar JTable: Establecer el menú de contexto.
+            objTblPopMnuGrp=new ZafTblPopMnu(tblGrp);
+            objTblPopMnuGrp.setBorrarContenidoEnabled(true);
+            objTblPopMnuGrp.setPegarEnabled(true);
+            objTblPopMnuGrp.setInsertarFilaEnabled(false);
+            objTblPopMnuGrp.setInsertarFilasEnabled(false);
+            
+             objTblPopMnuGrp.addTblPopMnuListener(new Librerias.ZafTblUti.ZafTblEvt.ZafTblPopMnuAdapter() {
+                int intFilEli[];
+                
+                 
+                public void beforeClick(Librerias.ZafTblUti.ZafTblEvt.ZafTblPopMnuEvent evt) {
+                    intFilEli=tblGrp.getSelectedRows();
+                    System.out.println("beforeClick: " + intFilEli.length);
+                }
+                public void afterClick(Librerias.ZafTblUti.ZafTblEvt.ZafTblPopMnuEvent evt) {
+                    System.out.println("afterClick: " + intFilEli.length);
+                    
+                    //no cambiar a la variable global porque esta solo se carga si se da click en "copiar"
+                    if (objTblPopMnuGrp.isClickEliminarFila()){
+                        for(int p=(intFilEli.length-1);p>=0; p--){
+                            //se guardan los datos necesarios en un arraylist para guardar en frio esos items eliminados.
+                            arlRegFilEli=new ArrayList();
+                            arlRegFilEli.add(INT_ARL_FIL_ELI_COD_EMP, "" + objTblModGrp.getValueAt(p, INT_TBL_DAT_GRP_COD_EMP));
+                            arlRegFilEli.add(INT_ARL_FIL_ELI_COD_GRP, "" + objTblModGrp.getValueAt(p, INT_TBL_DAT_GRP_COD_GRP));
+                            arlRegFilEli.add(INT_ARL_FIL_ELI_COD_ITM, "" + objTblModGrp.getValueAt(p, INT_TBL_DAT_GRP_COD_ITM_EMP));
+                            arlRegFilEli.add(INT_ARL_FIL_ELI_EST, "" + objTblModGrp.getValueAt(p, INT_TBL_DAT_GRP_FIL_SEL));
+                            arlDatFilEli.add(arlRegFilEli);
+                            //ahora si se remueve la fila seleccionada
+                            objTblModGrp.removeRow(intFilEli[p]);
+                        }
+                    }
+                    //para seleccionar una fila
+                    tblGrp.setRowSelectionAllowed(true);
+                    tblGrp.setColumnSelectionAllowed(false);
+                }
+            });
+            
+            
+            
+            //Configurar JTable: Establecer el tipo de redimensionamiento de las columnas.
+            tblGrp.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+            //Configurar JTable: Establecer el ancho de las columnas.
+            javax.swing.table.TableColumnModel tcmAux=tblGrp.getColumnModel();
+            
+            tcmAux.getColumn(INT_TBL_DAT_GRP_LIN).setPreferredWidth(10);
+            tcmAux.getColumn(INT_TBL_DAT_GRP_COD_EMP).setPreferredWidth(60);
+            tcmAux.getColumn(INT_TBL_DAT_GRP_COD_CLA).setPreferredWidth(60);
+            tcmAux.getColumn(INT_TBL_DAT_GRP_COD_GRP).setPreferredWidth(60);
+            tcmAux.getColumn(INT_TBL_DAT_GRP_COD_ITM_EMP).setPreferredWidth(60);
+            tcmAux.getColumn(INT_TBL_DAT_GRP_COD_ITM_MAE).setPreferredWidth(60);
+            tcmAux.getColumn(INT_TBL_DAT_GRP_COD_ALT_ITM).setPreferredWidth(60);
+            tcmAux.getColumn(INT_TBL_DAT_GRP_DES_COR_TIP_DOC).setPreferredWidth(160);
+            tcmAux.getColumn(INT_TBL_DAT_GRP_DES_LAR_TIP_DOC).setPreferredWidth(250);
+            tcmAux.getColumn(INT_TBL_DAT_GRP_UNI_MED).setPreferredWidth(60);
+            tcmAux.getColumn(INT_TBL_DAT_GRP_FIL_SEL).setPreferredWidth(60);
+
+            //Configurar JTable: Establecer el tipo de reordenamiento de columnas.
+            tblGrp.getTableHeader().setReorderingAllowed(false);
+            //Configurar JTable: Ocultar columnas del sistema.
+            objTblModGrp.addSystemHiddenColumn(INT_TBL_DAT_GRP_COD_EMP, tblGrp);
+            objTblModGrp.addSystemHiddenColumn(INT_TBL_DAT_GRP_COD_CLA, tblGrp);
+            objTblModGrp.addSystemHiddenColumn(INT_TBL_DAT_GRP_COD_GRP, tblGrp);
+            objTblModGrp.addSystemHiddenColumn(INT_TBL_DAT_GRP_COD_ITM_EMP, tblGrp);
+            objTblModGrp.addSystemHiddenColumn(INT_TBL_DAT_GRP_COD_ITM_MAE, tblGrp);
+            objTblModGrp.addSystemHiddenColumn(INT_TBL_DAT_GRP_FIL_SEL, tblGrp);
+            
+            //Configurar JTable: Mostrar ToolTipText en la cabecera de las columnas.
+            objMouMotAdaGrp=new ZafMouMotAdaGrp();
+            tblGrp.getTableHeader().addMouseMotionListener(objMouMotAdaGrp);
+            //Configurar JTable: Editor de búsqueda.
+            objTblBusGrp=new ZafTblBus(tblGrp);
+            //Configurar JTable: Establecer la fila de cabecera.
+            objTblFilCabGrp=new ZafTblFilCab(tblGrp);
+            tcmAux.getColumn(INT_TBL_DAT_GRP_LIN).setCellRenderer(objTblFilCabGrp);
+            //Configurar JTable: Renderizar celdas.
+            objTblCelRenLblGrp=new ZafTblCelRenLbl();
+            objTblCelRenLblGrp.setHorizontalAlignment(javax.swing.JLabel.LEFT);
+            objTblCelRenLblGrp.setTipoFormato(objTblCelRenLblGrp.INT_FOR_GEN);
+            objTblCelRenLblGrp.setFormatoNumerico(objParSis.getFormatoNumero(),false,true);
+            tcmAux.getColumn(INT_TBL_DAT_GRP_DES_COR_TIP_DOC).setCellRenderer(objTblCelRenLblGrp);
+            tcmAux.getColumn(INT_TBL_DAT_GRP_DES_LAR_TIP_DOC).setCellRenderer(objTblCelRenLblGrp);
+            objTblCelRenLblGrp=null;
+            //Configurar JTable: Establecer la clase que controla el ordenamiento.
+            objTblOrdGrp=new ZafTblOrd(tblGrp);
+            
+            //Configurar JTable: Establecer columnas editables.
+//            vecAux=new Vector();
+//            vecAux.add("" + INT_TBL_DAT_BUT);
+//            objTblMod.setColumnasEditables(vecAux);
+//            vecAux=null;
+            
+            //Libero los objetos auxiliares.
+            tcmAux=null;
+            
+            objTblModGrp.setModoOperacion(objTblModGrp.INT_TBL_EDI);
+        }
+        catch(Exception e){
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        return blnRes;
+    }
+    
+    
+    /**
+     * Esta función configura el JTable "tblDat".
+     * @return true: Si se pudo configurar el JTable.
+     * <BR>false: En el caso contrario.
+     */
+    private boolean configurarTblDatInv(){
+        boolean blnRes=true;
+        try{
+            //Configurar JTable: Establecer el modelo.
+            vecDatInv=new Vector();    //Almacena los datos
+            vecCabInv=new Vector(8);  //Almacena las cabeceras
+            vecCabInv.clear();
+            vecCabInv.add(INT_TBL_DAT_INV_LIN,"");
+            vecCabInv.add(INT_TBL_DAT_INV_COD_EMP,"Cód.Emp.");
+            vecCabInv.add(INT_TBL_DAT_INV_COD_ITM_EMP,"Cód.Itm.Emp.");
+            vecCabInv.add(INT_TBL_DAT_INV_COD_MAE_ITM,"Cód.Mae.Itm.");
+            vecCabInv.add(INT_TBL_DAT_INV_COD_ALT_ITM,"Cód.Alt.Itm.");
+            vecCabInv.add(INT_TBL_DAT_INV_COD_LET_ITM,"Cód.Let.");
+            vecCabInv.add(INT_TBL_DAT_INV_NOM_ITM,"Item.");
+            vecCabInv.add(INT_TBL_DAT_INV_UNI_MED,"Uni.Med.");
+
+            objTblModInv=new ZafTblMod();
+            objTblModInv.setHeader(vecCabInv);
+            tblInv.setModel(objTblModInv);
+
+            //Configurar JTable: Establecer tipo de selección.
+            tblInv.setRowSelectionAllowed(true);
+            tblInv.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+            //Configurar JTable: Establecer el menú de contexto.
+            objTblPopMnuInv=new ZafTblPopMnu(tblInv);
+            //Configurar JTable: Establecer el tipo de redimensionamiento de las columnas.
+            tblInv.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+            //Configurar JTable: Establecer el ancho de las columnas.
+            javax.swing.table.TableColumnModel tcmAux=tblInv.getColumnModel();
+            
+            tcmAux.getColumn(INT_TBL_DAT_INV_LIN).setPreferredWidth(10);
+            tcmAux.getColumn(INT_TBL_DAT_INV_COD_EMP).setPreferredWidth(50);
+            tcmAux.getColumn(INT_TBL_DAT_INV_COD_ITM_EMP).setPreferredWidth(60);
+            tcmAux.getColumn(INT_TBL_DAT_INV_COD_MAE_ITM).setPreferredWidth(60);
+            tcmAux.getColumn(INT_TBL_DAT_INV_COD_ALT_ITM).setPreferredWidth(100);
+            tcmAux.getColumn(INT_TBL_DAT_INV_COD_LET_ITM).setPreferredWidth(70);
+            tcmAux.getColumn(INT_TBL_DAT_INV_NOM_ITM).setPreferredWidth(200);
+            tcmAux.getColumn(INT_TBL_DAT_INV_UNI_MED).setPreferredWidth(70);
+
+            //Configurar JTable: Establecer las columnas que no se pueden redimensionar.
+            //tcmAux.getColumn(INT_TBL_DAT_BUT_CTA).setResizable(false);
+            //Configurar JTable: Establecer el tipo de reordenamiento de columnas.
+            tblInv.getTableHeader().setReorderingAllowed(false);
+            //Configurar JTable: Ocultar columnas del sistema.
+            objTblModInv.addSystemHiddenColumn(INT_TBL_DAT_INV_COD_ITM_EMP, tblInv);
+            objTblModInv.addSystemHiddenColumn(INT_TBL_DAT_INV_COD_ITM_EMP, tblInv);
+            objTblModInv.addSystemHiddenColumn(INT_TBL_DAT_INV_COD_MAE_ITM, tblInv); 
+            
+            //Configurar JTable: Mostrar ToolTipText en la cabecera de las columnas.
+            objMouMotAdaInv=new ZafMouMotAdaInv();
+            tblInv.getTableHeader().addMouseMotionListener(objMouMotAdaInv);
+            //Configurar JTable: Editor de búsqueda.
+            objTblBusInv=new ZafTblBus(tblInv);
+            //Configurar JTable: Establecer la fila de cabecera.
+            objTblFilCabInv=new ZafTblFilCab(tblInv);
+            tcmAux.getColumn(INT_TBL_DAT_INV_LIN).setCellRenderer(objTblFilCabInv);
+            //Configurar JTable: Renderizar celdas.
+            objTblCelRenLblInv=new ZafTblCelRenLbl();
+            objTblCelRenLblInv.setHorizontalAlignment(javax.swing.JLabel.LEFT);
+            objTblCelRenLblInv.setTipoFormato(objTblCelRenLblInv.INT_FOR_GEN);
+            objTblCelRenLblInv.setFormatoNumerico(objParSis.getFormatoNumero(),false,true);
+            tcmAux.getColumn(INT_TBL_DAT_INV_COD_ALT_ITM).setCellRenderer(objTblCelRenLblInv);
+            tcmAux.getColumn(INT_TBL_DAT_INV_COD_LET_ITM).setCellRenderer(objTblCelRenLblInv);
+            tcmAux.getColumn(INT_TBL_DAT_INV_NOM_ITM).setCellRenderer(objTblCelRenLblInv);
+            tcmAux.getColumn(INT_TBL_DAT_INV_UNI_MED).setCellRenderer(objTblCelRenLblInv);
+            objTblCelRenLblInv=null;
+            //Configurar JTable: Establecer la clase que controla el ordenamiento.
+            objTblOrdInv=new ZafTblOrd(tblInv);
+            
+            //Configurar JTable: Establecer columnas editables.
+//            vecAux=new Vector();
+//            vecAux.add("" + INT_TBL_DAT_BUT);
+//            objTblMod.setColumnasEditables(vecAux);
+//            vecAux=null;
+            
+            //Libero los objetos auxiliares.
+            tcmAux=null;
+            objTblModInv.setModoOperacion(objTblModInv.INT_TBL_EDI);
+        }
+        catch(Exception e){
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        return blnRes;
+    }
+    
+    
+    
+    
+    
+    /**
+     * Esta clase hereda de la clase MouseMotionAdapter que permite manejar eventos de
+     * del mouse (mover el mouse; arrastrar y soltar).
+     * Se la usa en el sistema para mostrar el ToolTipText adecuado en la cabecera de
+     * las columnas. Es necesario hacerlo porque el ancho de las columnas a veces
+     * resulta muy corto para mostrar leyendas que requieren más espacio.
+    */
+    private class ZafMouMotAdaGrp extends java.awt.event.MouseMotionAdapter{
+        public void mouseMoved(java.awt.event.MouseEvent evt){
+            int intCol=tblGrp.columnAtPoint(evt.getPoint());
+            String strMsg="";
+            switch (intCol){
+                case INT_TBL_DAT_GRP_COD_EMP:
+                    strMsg="Código de empresa";
+                    break;
+                case INT_TBL_DAT_GRP_COD_CLA:
+                    strMsg="Código de clasificación";
+                    break;
+                case INT_TBL_DAT_GRP_COD_GRP:
+                    strMsg="Código de grupo";
+                    break;
+                case INT_TBL_DAT_GRP_COD_ITM_EMP:
+                    strMsg="Código de item";
+                    break;
+                case INT_TBL_DAT_GRP_COD_ITM_MAE:
+                    strMsg="Código de item maestro";
+                    break;
+                case INT_TBL_DAT_GRP_COD_ALT_ITM:
+                    strMsg="Código alterno de item";
+                    break;
+                case INT_TBL_DAT_GRP_DES_COR_TIP_DOC:
+                    strMsg="Descripción corta del grupo";
+                    break;
+                case INT_TBL_DAT_GRP_DES_LAR_TIP_DOC:
+                    strMsg="Descripción larga del grupo";
+                    break;
+                case INT_TBL_DAT_GRP_UNI_MED:
+                    strMsg="Unidad de medida";
+                    break;
+                case INT_TBL_DAT_GRP_FIL_SEL:
+                    strMsg="";
+                    break;
+                default:
+                    break;
+            }
+            tblGrp.getTableHeader().setToolTipText(strMsg);
+        }
+    }
+    
+    
+    /**
+     * Esta clase hereda de la clase MouseMotionAdapter que permite manejar eventos de
+     * del mouse (mover el mouse; arrastrar y soltar).
+     * Se la usa en el sistema para mostrar el ToolTipText adecuado en la cabecera de
+     * las columnas. Es necesario hacerlo porque el ancho de las columnas a veces
+     * resulta muy corto para mostrar leyendas que requieren más espacio.
+    */
+    private class ZafMouMotAdaInv extends java.awt.event.MouseMotionAdapter
+    {
+        public void mouseMoved(java.awt.event.MouseEvent evt)
+        {
+            int intCol=tblInv.columnAtPoint(evt.getPoint());
+            String strMsg="";
+            switch (intCol)
+            {
+                case INT_TBL_DAT_INV_COD_ITM_EMP:
+                    strMsg="Código de item de empresa";
+                    break;
+                case INT_TBL_DAT_INV_COD_MAE_ITM:
+                    strMsg="Código de item maestro";
+                    break;
+                case INT_TBL_DAT_INV_COD_ALT_ITM:
+                    strMsg="Código alterno de item";
+                    break;
+                case INT_TBL_DAT_INV_COD_LET_ITM:
+                    strMsg="Código en letras de item";
+                    break;
+                case INT_TBL_DAT_INV_NOM_ITM:
+                    strMsg="Nombre de item";
+                    break;
+                case INT_TBL_DAT_INV_UNI_MED:
+                    strMsg="Unidad de medida de item";
+                    break;
+                default:
+                    break;
+            }
+            tblInv.getTableHeader().setToolTipText(strMsg);
+        }
+    }
+    
+
+    /**
+     * Esta función muestra un mensaje informativo al usuario. Se podría utilizar
+     * para mostrar al usuario un mensaje que indique el campo que es invalido y que
+     * debe llenar o corregir.
+     */
+    private void mostrarMsgInf(String strMsg)
+    {
+        javax.swing.JOptionPane oppMsg=new javax.swing.JOptionPane();
+        String strTit;
+        strTit="Mensaje del sistema Zafiro";
+        oppMsg.showMessageDialog(this,strMsg,strTit,javax.swing.JOptionPane.INFORMATION_MESSAGE);
+    }
+    
+    /**
+     * Esta función muestra un mensaje "showConfirmDialog". Presenta las opciones
+     * Si y No. El usuario es quien determina lo que debe hacer el sistema
+     * seleccionando una de las opciones que se presentan.
+     */
+    private int mostrarMsgCon(String strMsg)
+    {
+        javax.swing.JOptionPane oppMsg=new javax.swing.JOptionPane();
+        String strTit;
+        strTit="Mensaje del sistema Zafiro";
+        return oppMsg.showConfirmDialog(this,strMsg,strTit,javax.swing.JOptionPane.YES_NO_OPTION,javax.swing.JOptionPane.QUESTION_MESSAGE);
+    }
+    
+    /**
+     * Esta función muestra un mensaje de error al usuario. Se podría utilizar
+     * para mostrar al usuario un mensaje que indique que los datos no se grabaron
+     * y que debe comunicar de este particular al administrador del sistema.
+     */
+    private void mostrarMsgErr(String strMsg)
+    {
+        javax.swing.JOptionPane oppMsg=new javax.swing.JOptionPane();
+        String strTit;
+        strTit="Mensaje del sistema Zafiro";
+        oppMsg.showMessageDialog(this,strMsg,strTit,javax.swing.JOptionPane.ERROR_MESSAGE);
+    }
+
+    /**
+     * Esta función obtiene la condición SQL adicional para los campos que "Terminan con".
+     * La cadena recibida es separada para formar la condición que se agregará la sentencia SQL.
+     * Por ejemplo: 
+     * Si strCam="a2.tx_codAlt" y strCad="I, S, L" el resultado sería "AND (a2.tx_codalt LIKE '%I' OR a2.tx_codalt LIKE '%S' OR a2.tx_codalt LIKE '%L')"
+     * @param strCam El campo que se utilizará para la condición.
+     * @param strCad La cadena que se separará para formar la condición.
+     * @return La cadena que contiene la condición SQL .
+     */
+    private String getConSQLAdiCamTer(String strCam, String strCad)
+    {
+        byte i;
+        String strRes="";
+        try
+        {
+            if (strCad.length()>0)
+            {
+                java.util.StringTokenizer stkAux=new java.util.StringTokenizer(strCad, ",", false);
+                i=0;
+                while (stkAux.hasMoreTokens())
+                {
+                    if (i==0)
+                        strRes+=" AND (LOWER(" + strCam + ") LIKE '%" + stkAux.nextToken().toLowerCase() + "'";
+                    else
+                        strRes+=" OR LOWER(" + strCam + ") LIKE '%" + stkAux.nextToken().toLowerCase() + "'";
+                    i++;
+                }
+                strRes+=")";
+            }
+        }
+        catch (java.util.NoSuchElementException e)
+        {
+            strRes="";
+        }
+        return strRes;
+    }
+    
+    /**
+     * Esta clase crea un hilo que permite manipular la interface gráfica de usuario (GUI).
+     * Por ejemplo: se la puede utilizar para cargar los datos en un JTable donde la idea
+     * es mostrar al usuario lo que está ocurriendo internamente. Es decir a medida que se
+     * llevan a cabo los procesos se podría presentar mensajes informativos en un JLabel e
+     * ir incrementando un JProgressBar con lo cual el usuario estaría informado en todo
+     * momento de lo que ocurre. Si se desea hacer ésto es necesario utilizar ésta clase
+     * ya que si no sólo se apreciaría los cambios cuando ha terminado todo el proceso.
+     */
+    private class ZafThreadGUI extends Thread
+    {
+        public void run()
+        {
+            if (!consultarReg())
+            {
+                //Inicializar objetos si no se pudo cargar los datos.
+                lblMsgSis.setText("Listo");
+                pgrSis.setValue(0);
+                butCon.setText("Consultar");
+            }
+            //Establecer el foco en el JTable sólo cuando haya datos.
+            if (tblGrp.getRowCount()>0)
+            {
+                tabFrm.setSelectedIndex(0);
+                tblGrp.setRowSelectionInterval(0, 0);
+                tblGrp.requestFocus();
+            }
+            
+            //Establecer el foco en el JTable sólo cuando haya datos.
+            if (tblInv.getRowCount()>0)
+            {
+                tblInv.setRowSelectionInterval(0, 0);
+                tblInv.requestFocus();
+            }
+            
+            objThrGUI=null;
+        }
+    }
+    
+    /**
+     * Esta función permite consultar los registros de acuerdo al criterio seleccionado.
+     * @return true: Si se pudo consultar los registros.
+     * <BR>false: En el caso contrario.
+     */
+    private boolean consultarReg(){
+        boolean blnRes=true;
+        try{
+            pgrSis.setIndeterminate(true);
+            butCon.setText("Detener");
+            lblMsgSis.setText("Obteniendo datos...");
+            con=DriverManager.getConnection(objParSis.getStringConexion(), objParSis.getUsuarioBaseDatos(), objParSis.getClaveBaseDatos());
+            if (con!=null){
+                arlDatFilEli.clear();
+                if(cargarDetRegGrp()){
+                    if(cargarDetRegInv()){
+                        
+                    }
+                }
+                con.close();
+                con=null;
+            }
+        }
+        catch(java.sql.SQLException e){
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        catch(Exception e){
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        return blnRes;
+    }
+
+    
+    
+    
+    
+    /**
+     * Esta función permite consultar los registros de acuerdo al criterio seleccionado.
+     * @return true: Si se pudo consultar los registros.
+     * <BR>false: En el caso contrario.
+     */
+    private boolean cargarDetRegGrp(){
+        boolean blnRes=true;
+        int intNiv;
+        strCodItmTblGrp="";
+        try{
+            pgrSis.setIndeterminate(true);
+            butCon.setText("Detener");
+            lblMsgSis.setText("Obteniendo datos...");
+            strAux="";
+            if (con!=null){
+                stm=con.createStatement();
+                strSQL="";
+                strSQL+=" SELECT a1.co_emp, a1.co_claModInv, 0 AS co_grp, 0 AS co_itm, Null AS co_itmMae, Null AS tx_codAlt";
+                strSQL+=" , a1.tx_desCor AS tx_desCor, a1.tx_desLar AS tx_desLar, Null AS tx_uniMed, 0 AS ne_niv, 0 AS co_grpPad, '' AS st_fil";
+                strSQL+=" FROM tbm_claModInv AS a1";
+                strSQL+="  WHERE a1.co_emp=" + objParSis.getCodigoEmpresa() + " AND a1.st_reg='A'";
+                strSQL+=" UNION";
+                strSQL+=" SELECT a1.co_emp, CASE WHEN a1.co_claModInv IS NULL THEN a1.co_grpPad ELSE a1.co_claModInv END co_claModInv, a1.co_grp, 0 AS co_itm, Null AS co_itmMae, Null AS tx_codAlt";
+                strSQL+=" , a1.tx_desCor AS tx_desCor, a1.tx_desLar AS tx_desLar, Null AS tx_uniMed, a1.ne_niv, a1.co_grpPad, '' AS st_fil";
+                strSQL+=" FROM tbm_grpClaModInv AS a1";
+                strSQL+=" WHERE a1.co_emp=" + objParSis.getCodigoEmpresa() + " AND a1.st_reg='A'";
+                strSQL+=" UNION";
+                strSQL+=" SELECT a1.co_emp, a5.co_claModInv, a1.co_grp, a1.co_itm, ''|| a3.co_itmMae, a2.tx_codAlt";
+                strSQL+=" , a2.tx_codAlt2 AS tx_desCor, a2.tx_nomItm AS tx_desLar, a4.tx_desCor AS tx_uniMed, (a5.ne_niv+1), a5.co_grpPad, 'M' AS st_fil";
+                strSQL+=" FROM (tbr_grpClaModInv AS a1 INNER JOIN tbm_grpClaModInv AS a5 ON a1.co_emp=a5.co_emp AND a1.co_grp=a5.co_grp)";
+                strSQL+=" INNER JOIN (tbm_inv AS a2 LEFT OUTER JOIN tbm_var AS a4 ON a2.co_uni=a4.co_reg)";
+                strSQL+=" ON a1.co_emp=a2.co_emp AND a1.co_itm=a2.co_itm";
+                strSQL+=" INNER JOIN tbm_equInv AS a3 ON a2.co_emp=a3.co_emp AND a2.co_itm=a3.co_itm";
+                strSQL+=" WHERE a1.co_emp=" + objParSis.getCodigoEmpresa() + " AND a1.st_reg='A'";
+                strSQL+=" ORDER BY co_emp, co_claModInv, co_grp, co_grpPad, co_itm";
+                System.out.println("cargarDetRegGrp: " + strSQL);
+                rst=stm.executeQuery(strSQL);
+
+                //Limpiar vector de datos.
+                vecDatGrp.clear();
+                //Obtener los registros.
+                lblMsgSis.setText("Cargando datos...");
+                for(int k=0; (rst.next()); k++){
+                    if(blnCon){
+                        vecRegGrp=new Vector();
+                        vecRegGrp.add(INT_TBL_DAT_GRP_LIN,"");
+                        vecRegGrp.add(INT_TBL_DAT_GRP_COD_EMP,         rst.getString("co_emp"));
+                        vecRegGrp.add(INT_TBL_DAT_GRP_COD_CLA,         rst.getString("co_claModInv"));
+                        vecRegGrp.add(INT_TBL_DAT_GRP_COD_GRP,         rst.getString("co_grp"));
+                        vecRegGrp.add(INT_TBL_DAT_GRP_COD_ITM_EMP,     rst.getString("co_itm"));
+                        vecRegGrp.add(INT_TBL_DAT_GRP_COD_ITM_MAE,     rst.getString("co_itmMae"));
+                        vecRegGrp.add(INT_TBL_DAT_GRP_COD_ALT_ITM,     rst.getString("tx_codAlt"));
+                        vecRegGrp.add(INT_TBL_DAT_GRP_DES_COR_TIP_DOC, rst.getString("tx_desCor"));
+                        intNiv=rst.getInt("ne_niv");
+                        strAux="";
+                        for (int j=0; j<intNiv; j++)
+                            strAux+="     ";
+
+                        vecRegGrp.add(INT_TBL_DAT_GRP_DES_LAR_TIP_DOC, (strAux + rst.getString("tx_desLar")));
+                        vecRegGrp.add(INT_TBL_DAT_GRP_UNI_MED,         rst.getString("tx_uniMed"));
+                        vecRegGrp.add(INT_TBL_DAT_GRP_FIL_SEL,         rst.getString("st_fil"));
+                        vecDatGrp.add(vecRegGrp);
+                        
+                        if(k==0)
+                            strCodItmTblGrp="" + rst.getString("co_itm");
+                        else
+                            strCodItmTblGrp+=", " + rst.getString("co_itm");
+                    }
+                    else{
+                        break;
+                    }
+                }
+                rst.close();
+                stm.close();
+                rst=null;
+                stm=null;
+                //Asignar vectores al modelo.
+                objTblModGrp.setData(vecDatGrp);
+                tblGrp.setModel(objTblModGrp);
+                vecDatGrp.clear();
+                if (blnCon)
+                    lblMsgSis.setText("Se encontraron " + tblGrp.getRowCount() + " registros.");
+                else
+                    lblMsgSis.setText("Interrupción del usuario. Sólo se procesaron " + tblGrp.getRowCount() + " registros.");
+                butCon.setText("Consultar");
+                pgrSis.setIndeterminate(false);
+            }
+        }
+        catch (java.sql.SQLException e){
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        catch (Exception e){
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        return blnRes;
+    }
+
+    
+    
+    
+    /**
+     * Esta función permite consultar los registros de acuerdo al criterio seleccionado.
+     * @return true: Si se pudo consultar los registros.
+     * <BR>false: En el caso contrario.
+     */
+    private boolean cargarDetRegInv(){
+        boolean blnRes=true;
+        try{
+            pgrSis.setIndeterminate(true);
+            butCon.setText("Detener");
+            lblMsgSis.setText("Obteniendo datos...");
+            strAux="";
+            if (con!=null){
+                stm=con.createStatement();
+                strSQL="";
+                strSQL+=" SELECT a1.co_emp, a1.co_itm, a3.co_itmMae, a1.tx_codAlt, a1.tx_codAlt2, a1.tx_nomItm, a2.tx_desCor";
+                strSQL+=" FROM (tbm_inv AS a1 LEFT OUTER JOIN tbm_var AS a2 ON a1.co_uni=a2.co_reg)";
+                strSQL+=" INNER JOIN tbm_equInv AS a3";
+                strSQL+=" ON a1.co_emp=a3.co_emp AND a1.co_itm=a3.co_itm";
+                strSQL+=" WHERE a1.co_emp=" + objParSis.getCodigoEmpresa() + " AND a1.st_reg='A'";
+                strSQL+=" AND a1.co_itm NOT IN(" + strCodItmTblGrp + ")";
+                strSQL+=" ORDER BY a1.tx_codAlt";
+                System.out.println("cargarDetRegInv: " + strSQL);
+                rst=stm.executeQuery(strSQL);
+
+                //Limpiar vector de datos.
+                vecDatInv.clear();
+                //Obtener los registros.
+                lblMsgSis.setText("Cargando datos...");
+                while(rst.next()){
+                    if(blnCon){
+                        vecRegInv=new Vector();
+                        vecRegInv.add(INT_TBL_DAT_INV_LIN,"");
+                        vecRegInv.add(INT_TBL_DAT_INV_COD_EMP, rst.getString("co_emp"));
+                        vecRegInv.add(INT_TBL_DAT_INV_COD_ITM_EMP, rst.getString("co_itm"));
+                        vecRegInv.add(INT_TBL_DAT_INV_COD_MAE_ITM, rst.getString("co_itmMae"));
+                        vecRegInv.add(INT_TBL_DAT_INV_COD_ALT_ITM, rst.getString("tx_codAlt"));
+                        vecRegInv.add(INT_TBL_DAT_INV_COD_LET_ITM, rst.getString("tx_codAlt2"));
+                        vecRegInv.add(INT_TBL_DAT_INV_NOM_ITM,     rst.getString("tx_nomItm"));
+                        vecRegInv.add(INT_TBL_DAT_INV_UNI_MED,     rst.getString("tx_desCor"));
+                        vecDatInv.add(vecRegInv);
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                rst.close();
+                stm.close();
+                rst=null;
+                stm=null;
+                //Asignar vectores al modelo.
+                objTblModInv.setData(vecDatInv);
+                tblInv.setModel(objTblModInv);
+                vecDatInv.clear();
+                if (blnCon)
+                    lblMsgSis.setText("Se encontraron " + tblInv.getRowCount() + " registros.");
+                else
+                    lblMsgSis.setText("Interrupción del usuario. Sólo se procesaron " + tblInv.getRowCount() + " registros.");
+                butCon.setText("Consultar");
+                pgrSis.setIndeterminate(false);
+            }
+        }
+        catch(java.sql.SQLException e){
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        catch(Exception e){
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        return blnRes;
+    }
+
+    /**
+     * Función que permite obtener la información seleccionada y la almacena en un ArrayList
+     * @return true Si se pudo realizar la operación
+     * <BR>false Caso contrario
+     */
+    private boolean getArrFilSelInv(){
+        boolean blnRes=true;
+        try{
+            
+            arlDatInv.clear();
+            int intFilSel[];
+            intFilSel=tblInv.getSelectedRows();
+            for (int i=0; i<intFilSel.length; i++){
+                arlRegInv=new ArrayList();
+                arlRegInv.add(INT_ARL_INV_COD_EMP, objTblModInv.getValueAt(intFilSel[i], INT_TBL_DAT_INV_COD_EMP));
+                arlRegInv.add(INT_ARL_INV_COD_ITM_EMP, objTblModInv.getValueAt(intFilSel[i], INT_TBL_DAT_INV_COD_ITM_EMP));
+                arlRegInv.add(INT_ARL_INV_COD_MAE_ITM, objTblModInv.getValueAt(intFilSel[i], INT_TBL_DAT_INV_COD_MAE_ITM));
+                arlRegInv.add(INT_ARL_INV_COD_ALT_ITM, objTblModInv.getValueAt(intFilSel[i], INT_TBL_DAT_INV_COD_ALT_ITM));
+                arlRegInv.add(INT_ARL_INV_COD_LET_ITM, objTblModInv.getValueAt(intFilSel[i], INT_TBL_DAT_INV_COD_LET_ITM));
+                arlRegInv.add(INT_ARL_INV_NOM_ITM, objTblModInv.getValueAt(intFilSel[i], INT_TBL_DAT_INV_NOM_ITM));
+                arlRegInv.add(INT_ARL_INV_UNI_MED, objTblModInv.getValueAt(intFilSel[i], INT_TBL_DAT_INV_UNI_MED));
+                arlDatInv.add(arlRegInv);  
+            }
+            System.out.println("arlDatInv: " + arlDatInv.toString());
+            //Seleccionar la fila donde se encontró el valor buscado.
+            tblInv.setRowSelectionInterval(intFilSel[0], intFilSel[intFilSel.length-1]);
+            //Ubicar el foco en la fila seleccionada.
+            tblInv.changeSelection(intFilSel[0], INT_TBL_DAT_INV_NOM_ITM, true, true);
+            tblInv.requestFocus();
+        }
+        catch(Exception e){
+            objUti.mostrarMsgErr_F1(this, e);
+            blnRes=false;
+        }
+        return blnRes;
+        
+    }
+    
+    /**
+     * Función que pasa la información del item al panel de Grupos y Clasificaciones
+     * @return true Si se pudo realizar la operación
+     * <BR>false Caso contrario
+     */
+    private boolean getInsTblGrpFilSelTblInv(){
+        boolean blnRes=true;
+        int intFilSelGrp=-1;
+        int intFilInvAdd=0;
+        String strCodGrpFilSel="";
+        try{
+            intFilSelGrp=(tblGrp.getSelectedRow()+1);
+            intFilInvAdd=arlDatInv.size();
+            strCodGrpFilSel=(objTblModGrp.getValueAt(tblGrp.getSelectedRow(), INT_TBL_DAT_GRP_COD_GRP)==null?"":objTblModGrp.getValueAt(tblGrp.getSelectedRow(), INT_TBL_DAT_GRP_COD_GRP).toString());
+
+            for(int i=(intFilInvAdd-1); i>=0; i--){
+                objTblModGrp.insertRow(intFilSelGrp);
+                objTblModGrp.setValueAt(objUti.getStringValueAt(arlDatInv, i, INT_ARL_INV_COD_EMP), (intFilSelGrp), INT_TBL_DAT_GRP_COD_EMP);
+                objTblModGrp.setValueAt(objUti.getStringValueAt(arlDatInv, i, INT_ARL_INV_COD_ITM_EMP), (intFilSelGrp), INT_TBL_DAT_GRP_COD_ITM_EMP);
+                objTblModGrp.setValueAt(objUti.getStringValueAt(arlDatInv, i, INT_ARL_INV_COD_MAE_ITM), (intFilSelGrp), INT_TBL_DAT_GRP_COD_ITM_MAE);
+                objTblModGrp.setValueAt(objUti.getStringValueAt(arlDatInv, i, INT_ARL_INV_COD_ALT_ITM), (intFilSelGrp), INT_TBL_DAT_GRP_COD_ALT_ITM);
+                objTblModGrp.setValueAt(objUti.getStringValueAt(arlDatInv, i, INT_ARL_INV_COD_LET_ITM), (intFilSelGrp), INT_TBL_DAT_GRP_DES_COR_TIP_DOC);
+                objTblModGrp.setValueAt(objUti.getStringValueAt(arlDatInv, i, INT_ARL_INV_NOM_ITM), (intFilSelGrp), INT_TBL_DAT_GRP_DES_LAR_TIP_DOC);
+                objTblModGrp.setValueAt(objUti.getStringValueAt(arlDatInv, i, INT_ARL_INV_UNI_MED), (intFilSelGrp), INT_TBL_DAT_GRP_UNI_MED);
+                objTblModGrp.setValueAt("I", (intFilSelGrp), INT_TBL_DAT_GRP_FIL_SEL);
+                objTblModGrp.setValueAt(strCodGrpFilSel, (intFilSelGrp), INT_TBL_DAT_GRP_COD_GRP);
+            }
+        }
+        catch(Exception e){
+            objUti.mostrarMsgErr_F1(this, e);
+            blnRes=false;
+        }
+        return blnRes;
+        
+    }
+    
+    
+    
+    /**
+     * Función que permite obtener la información seleccionada y la almacena en un ArrayList
+     * @return true Si se pudo realizar la operación
+     * <BR>false Caso contrario
+     */
+    private boolean eliminaFilSelInv(){
+        boolean blnRes=true;
+        try{
+            
+            arlDatInv.clear();
+            int intFilSel[];
+            intFilSel=tblInv.getSelectedRows();
+            objTblModInv.setModoOperacion(objTblModInv.INT_TBL_INS);
+            
+            for(int i=(intFilSel.length-1);i>=0; i--){
+                objTblModInv.removeRow(intFilSel[i]);
+            }
+            
+            //para seleccionar una fila
+            tblInv.setRowSelectionAllowed(true);
+            tblInv.setColumnSelectionAllowed(false);
+            objTblModInv.setModoOperacion(objTblModInv.INT_TBL_EDI);
+        }
+        catch(Exception e){
+            objUti.mostrarMsgErr_F1(this, e);
+            blnRes=false;
+        }
+        return blnRes;
+        
+    }
+    
+    
+    /**
+     * Función que permite obtener la información seleccionada y la almacena en un ArrayList
+     * @return true Si se pudo realizar la operación
+     * <BR>false Caso contrario
+     */
+    private boolean getArrFilSelGrp(){
+        boolean blnRes=true;
+        String strEstFilItm="";
+        try{
+            arlDatInv.clear();
+            int intFilSel[];
+            intFilSel=tblGrp.getSelectedRows();
+            for (int i=0; i<intFilSel.length; i++){
+                strEstFilItm=(objTblModGrp.getValueAt(intFilSel[i], INT_TBL_DAT_GRP_FIL_SEL)==null?"":(objTblModGrp.getValueAt(intFilSel[i], INT_TBL_DAT_GRP_FIL_SEL).toString()));
+                arlRegInv=new ArrayList();
+                arlRegInv.add(INT_ARL_INV_COD_EMP, objTblModGrp.getValueAt(intFilSel[i], INT_TBL_DAT_GRP_COD_EMP));
+                arlRegInv.add(INT_ARL_INV_COD_ITM_EMP, objTblModGrp.getValueAt(intFilSel[i], INT_TBL_DAT_GRP_COD_ITM_EMP));
+                arlRegInv.add(INT_ARL_INV_COD_MAE_ITM, objTblModGrp.getValueAt(intFilSel[i], INT_TBL_DAT_GRP_COD_ITM_MAE));
+                arlRegInv.add(INT_ARL_INV_COD_ALT_ITM, objTblModGrp.getValueAt(intFilSel[i], INT_TBL_DAT_GRP_COD_ALT_ITM));
+                arlRegInv.add(INT_ARL_INV_COD_LET_ITM, objTblModGrp.getValueAt(intFilSel[i], INT_TBL_DAT_GRP_DES_COR_TIP_DOC));
+                arlRegInv.add(INT_ARL_INV_NOM_ITM, objTblModGrp.getValueAt(intFilSel[i], INT_TBL_DAT_GRP_DES_LAR_TIP_DOC));
+                arlRegInv.add(INT_ARL_INV_UNI_MED, objTblModGrp.getValueAt(intFilSel[i], INT_TBL_DAT_GRP_UNI_MED));
+                arlDatInv.add(arlRegInv);
+                
+                System.out.println("strEstFilItm: " + strEstFilItm);
+                
+                if(strEstFilItm.equals("M")){
+                    //se guardan los datos necesarios en un arraylist para guardar en frio esos items eliminados.
+                    arlRegFilEli=new ArrayList();
+                    arlRegFilEli.add(INT_ARL_FIL_ELI_COD_EMP, "" + objTblModGrp.getValueAt(intFilSel[i], INT_TBL_DAT_GRP_COD_EMP));
+                    arlRegFilEli.add(INT_ARL_FIL_ELI_COD_GRP, "" + objTblModGrp.getValueAt(intFilSel[i], INT_TBL_DAT_GRP_COD_GRP));
+                    arlRegFilEli.add(INT_ARL_FIL_ELI_COD_ITM, "" + objTblModGrp.getValueAt(intFilSel[i], INT_TBL_DAT_GRP_COD_ITM_EMP));
+                    arlRegFilEli.add(INT_ARL_FIL_ELI_EST, "" + objTblModGrp.getValueAt(intFilSel[i], INT_TBL_DAT_GRP_FIL_SEL));
+                    arlDatFilEli.add(arlRegFilEli);
+//                            //ahora si se remueve la fila seleccionada
+//                            objTblModGrp.removeRow(intFilEli[p]);
+//                    //para seleccionar una fila
+//                    tblGrp.setRowSelectionAllowed(true);
+//                    tblGrp.setColumnSelectionAllowed(false);
+                } 
+            }
+            System.out.println("arlDatInv: " + arlDatInv.toString());
+            System.out.println("arlDatFilEli: " + arlDatFilEli.toString());
+            //Seleccionar la fila donde se encontró el valor buscado.
+            tblGrp.setRowSelectionInterval(intFilSel[0], intFilSel[intFilSel.length-1]);
+            //Ubicar el foco en la fila seleccionada.
+            tblGrp.changeSelection(intFilSel[0], INT_TBL_DAT_GRP_DES_LAR_TIP_DOC, true, true);
+            tblGrp.requestFocus();
+        }
+        catch(Exception e){
+            objUti.mostrarMsgErr_F1(this, e);
+            blnRes=false;
+        }
+        return blnRes;
+    }
+            
+    
+    
+    
+    /**
+     * Función que pasa la información del item al panel de Grupos y Clasificaciones
+     * @return true Si se pudo realizar la operación
+     * <BR>false Caso contrario
+     */
+    private boolean getInsTblInvFilSelTblGrp(){
+        boolean blnRes=true;
+        int intFilSelGrp=-1;
+        int intFilInvAdd=0;
+        try{
+            intFilSelGrp=(tblInv.getSelectedRow()+1);
+            intFilInvAdd=arlDatInv.size();
+
+            for(int i=(intFilInvAdd-1); i>=0; i--){
+                objTblModInv.insertRow(intFilSelGrp);
+                objTblModInv.setValueAt(objUti.getStringValueAt(arlDatInv, i, INT_ARL_INV_COD_EMP), (intFilSelGrp), INT_TBL_DAT_INV_COD_EMP);
+                objTblModInv.setValueAt(objUti.getStringValueAt(arlDatInv, i, INT_ARL_INV_COD_ITM_EMP), (intFilSelGrp), INT_TBL_DAT_INV_COD_ITM_EMP);
+                objTblModInv.setValueAt(objUti.getStringValueAt(arlDatInv, i, INT_ARL_INV_COD_MAE_ITM), (intFilSelGrp), INT_TBL_DAT_INV_COD_MAE_ITM);
+                objTblModInv.setValueAt(objUti.getStringValueAt(arlDatInv, i, INT_ARL_INV_COD_ALT_ITM), (intFilSelGrp), INT_TBL_DAT_INV_COD_ALT_ITM);
+                objTblModInv.setValueAt(objUti.getStringValueAt(arlDatInv, i, INT_ARL_INV_COD_LET_ITM), (intFilSelGrp), INT_TBL_DAT_INV_COD_LET_ITM);
+                objTblModInv.setValueAt(objUti.getStringValueAt(arlDatInv, i, INT_ARL_INV_NOM_ITM), (intFilSelGrp), INT_TBL_DAT_INV_NOM_ITM);
+                objTblModInv.setValueAt(objUti.getStringValueAt(arlDatInv, i, INT_ARL_INV_UNI_MED), (intFilSelGrp), INT_TBL_DAT_INV_UNI_MED);
+            }
+        }
+        catch(Exception e){
+            objUti.mostrarMsgErr_F1(this, e);
+            blnRes=false;
+        }
+        return blnRes;
+        
+    }
+            
+            
+            
+    /**
+     * Función que permite obtener la información seleccionada y la almacena en un ArrayList
+     * @return true Si se pudo realizar la operación
+     * <BR>false Caso contrario
+     */
+    private boolean eliminaFilSelGrp(){
+        boolean blnRes=true;
+        try{
+            int intFilSel[];
+            intFilSel=tblGrp.getSelectedRows();
+            objTblModGrp.setModoOperacion(objTblModGrp.INT_TBL_INS);
+            
+            for(int i=(intFilSel.length-1);i>=0; i--){
+                objTblModGrp.removeRow(intFilSel[i]);
+            }
+            
+            //para seleccionar una fila
+            tblGrp.setRowSelectionAllowed(true);
+            tblGrp.setColumnSelectionAllowed(false);
+            objTblModGrp.setModoOperacion(objTblModGrp.INT_TBL_EDI);
+        }
+        catch(Exception e){
+            objUti.mostrarMsgErr_F1(this, e);
+            blnRes=false;
+        }
+        return blnRes;
+        
+    }
+                  
+                  
+                  
+                  
+                  
+    
+   private boolean guardarDatos(){
+        boolean blnRes=true;
+        try{
+            con=DriverManager.getConnection(objParSis.getStringConexion(), objParSis.getUsuarioBaseDatos(), objParSis.getClaveBaseDatos());
+            if(con!=null){
+                con.setAutoCommit(false);
+                if(eliminar_tbrGrpClaModInv()){
+                    if(guardar_tbrGrpClaModInv()){
+                        con.commit();
+                    }
+                    else{
+                        con.rollback();
+                        blnRes=false;
+                    }
+                }
+                else{
+                    con.rollback();
+                    blnRes=false;
+                }
+                con.close();
+                con=null;
+            }
+        }
+        catch(java.sql.SQLException e){
+            objUti.mostrarMsgErr_F1(this, e);
+            blnRes=false;
+        }
+        catch(Exception e){
+            objUti.mostrarMsgErr_F1(this, e);
+            blnRes=false;
+        }
+        return blnRes;
+    }
+    
+    
+   /**
+    * Función que permite guardar la información
+    * @return true Si se puede realizar la operación
+    * <BR> false Caso contrario 
+    */
+   private boolean guardar_tbrGrpClaModInv(){
+        boolean blnRes=true;
+        String strLinIns="";
+        try{
+            if(con!=null){
+                stm=con.createStatement();
+                //Obtener la fecha del servidor.
+                datFecAux=objUti.getFechaServidor(objParSis.getStringConexion(), objParSis.getUsuarioBaseDatos(), objParSis.getClaveBaseDatos(), objParSis.getQueryFechaHoraBaseDatos());
+                if (datFecAux==null)
+                    return false;
+                
+                for(int i=0; i<objTblModGrp.getRowCountTrue(); i++){
+                    strLinIns=objTblModGrp.getValueAt(i, INT_TBL_DAT_GRP_FIL_SEL)==null?"":objTblModGrp.getValueAt(i, INT_TBL_DAT_GRP_FIL_SEL).toString();
+                    if(strLinIns.equals("I")){
+                        
+                        strSQL="";
+                        strSQL+=" INSERT INTO tbr_grpClaModInv(";
+                        strSQL+="   co_emp, co_grp, co_itm, st_reg, fe_ing, co_usring)";
+                        strSQL+="   (SELECT ";
+                        strSQL+="" + objTblModGrp.getValueAt(i, INT_TBL_DAT_GRP_COD_EMP) + "";//co_emp
+                        strSQL+=", " + objTblModGrp.getValueAt(i, INT_TBL_DAT_GRP_COD_GRP) + "";//co_grp
+                        strSQL+=", " + objTblModGrp.getValueAt(i, INT_TBL_DAT_GRP_COD_ITM_EMP) + "";//co_itm
+                        strSQL+=", 'A'";//st_reg
+                        strSQL+=", '" + objUti.formatearFecha(datFecAux, objParSis.getFormatoFechaHoraBaseDatos()) + "'";//fe_ing
+                        strSQL+=", " + objParSis.getCodigoUsuario() + "";//co_usring
+                        strSQL+="	    WHERE NOT EXISTS(";
+                        strSQL+="           SELECT *FROM tbr_grpClaModInv";
+                        strSQL+="           WHERE co_emp=" + objTblModGrp.getValueAt(i, INT_TBL_DAT_GRP_COD_EMP) + "";
+                        strSQL+="           AND co_grp=" + objTblModGrp.getValueAt(i, INT_TBL_DAT_GRP_COD_GRP) + "";
+                        strSQL+="           AND co_itm=" + objTblModGrp.getValueAt(i, INT_TBL_DAT_GRP_COD_ITM_EMP) + "";
+                        strSQL+="	   )";
+                        strSQL+=");";
+                        
+                        strSQL+=" UPDATE tbr_grpClaModInv";
+                        strSQL+=" SET st_reg='A'";
+                        strSQL+=" , fe_ultMod='" + objUti.formatearFecha(datFecAux, objParSis.getFormatoFechaHoraBaseDatos()) + "'";
+                        strSQL+=" , co_usrMod=" + objParSis.getCodigoUsuario() + "";
+                        strSQL+="   WHERE co_emp=" + objTblModGrp.getValueAt(i, INT_TBL_DAT_GRP_COD_EMP) + "";
+                        strSQL+="   AND co_grp=" + objTblModGrp.getValueAt(i, INT_TBL_DAT_GRP_COD_GRP) + "";
+                        strSQL+="   AND co_itm=" + objTblModGrp.getValueAt(i, INT_TBL_DAT_GRP_COD_ITM_EMP) + "";
+                        strSQL+=" AND EXISTS(";
+                        strSQL+="           SELECT *FROM tbr_grpClaModInv";
+                        strSQL+="           WHERE co_emp=" + objTblModGrp.getValueAt(i, INT_TBL_DAT_GRP_COD_EMP) + "";
+                        strSQL+="           AND co_grp=" + objTblModGrp.getValueAt(i, INT_TBL_DAT_GRP_COD_GRP) + "";
+                        strSQL+="           AND co_itm=" + objTblModGrp.getValueAt(i, INT_TBL_DAT_GRP_COD_ITM_EMP) + "";
+                        strSQL+="           )";
+                        strSQL+=";";
+                        System.out.println("guardar_tbrGrpClaModInv: " + strSQL);
+                        stm.executeUpdate(strSQL);
+                    }
+                }
+                stm.close();
+                stm=null;
+
+            }
+        }
+        catch(java.sql.SQLException e){
+            objUti.mostrarMsgErr_F1(this, e);
+            blnRes=false;
+        }
+        catch(Exception e){
+            objUti.mostrarMsgErr_F1(this, e);
+            blnRes=false;
+        }
+        return blnRes;
+   }
+   
+   
+   /**
+    * Función que permite eliminar la información del grupo seleccionado
+    * @return true Si se puede realizar la operación
+    * <BR> false Caso contrario 
+    */
+   private boolean eliminar_tbrGrpClaModInv(){
+        boolean blnRes=true;
+        String strUpdSQL="";
+        int intCodEmpEli=-1;
+        int intCodGrpEli=-1;
+        int intCodItmEli=-1;
+        String strLinUpd="";
+        try{
+            if(con!=null){
+                stm=con.createStatement();
+                
+                //Obtener la fecha del servidor.
+                datFecAux=objUti.getFechaServidor(objParSis.getStringConexion(), objParSis.getUsuarioBaseDatos(), objParSis.getClaveBaseDatos(), objParSis.getQueryFechaHoraBaseDatos());
+                if (datFecAux==null)
+                    return false;
+
+                for(int i=0; i<arlDatFilEli.size(); i++){
+                    strLinUpd=objUti.getStringValueAt(arlDatFilEli, i, INT_ARL_FIL_ELI_EST);
+                    if(strLinUpd.equals("M")){
+                        intCodEmpEli=objUti.getIntValueAt(arlDatFilEli, i, INT_ARL_FIL_ELI_COD_EMP);
+                        intCodGrpEli=objUti.getIntValueAt(arlDatFilEli, i, INT_ARL_FIL_ELI_COD_GRP);
+                        intCodItmEli=objUti.getIntValueAt(arlDatFilEli, i, INT_ARL_FIL_ELI_COD_ITM);
+                        
+                        strSQL="";
+                        strSQL+=" UPDATE tbr_grpClaModInv";
+                        strSQL+=" SET st_reg='I'";
+                        strSQL+=" , fe_ultMod='" + objUti.formatearFecha(datFecAux, objParSis.getFormatoFechaHoraBaseDatos()) + "'";
+                        strSQL+=" , co_usrMod=" + objParSis.getCodigoUsuario() + "";
+                        strSQL+="   WHERE co_emp=" + intCodEmpEli + "";
+                        strSQL+="   AND co_grp=" + intCodGrpEli + "";
+                        strSQL+="   AND co_itm=" + intCodItmEli + "";
+                        strSQL+=";";
+                        strUpdSQL+=strSQL;
+                    }
+                }
+                System.out.println("eliminar_tbrGrpClaModInv: " + strUpdSQL);
+                stm.executeUpdate(strUpdSQL);
+                stm.close();
+                stm=null;
+            }
+        }
+        catch(java.sql.SQLException e){
+            objUti.mostrarMsgErr_F1(this, e);
+            blnRes=false;
+        }
+        catch(Exception e){
+            objUti.mostrarMsgErr_F1(this, e);
+            blnRes=false;
+        }
+        return blnRes;
+   }
+   
+   
+    
+    
+}

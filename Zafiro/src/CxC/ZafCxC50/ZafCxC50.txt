@@ -1,0 +1,14 @@
+
+CONTROL DE VERSIONES:
+=====================
+
+v 0.1: (javier Ayapata - 21/Jul/2008)
+------
+Se crea clase nueva para dar de alta a clientes/proveedores.
+
+v. 1.0 EFLORESA 2012-07-26
+SE MODIFICA PORQUE AL DAR EL ALTA A UN CLIENTE ERRONEAMENTE SE ESTABA REGISTRANDO EL USUARIO QUE MODIFICA EN EL CAMPO CO_USRING EN LUGAR DEL CAMPO CO_USRMOD
+
+v1.2: (José Marín - 16/Dic/2013)
+-----
+Se modifico la consulta de clientes nuevos, para que aparezcan por Empresa y por local, sea según el caso

@@ -1,0 +1,12 @@
+Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (José Marín - 16/Nov/2017)
+----
+Clase nueva (Muestra un listado de las Cotizaciones ).
+
+ 

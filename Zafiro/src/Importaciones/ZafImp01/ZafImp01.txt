@@ -1,0 +1,21 @@
+Pendientes:
+1)
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Ingrid Lino - 22/Ago/2012)
+----
+Nuevo programa "Listado de importaciones" muestra información de la Factura del Proveedor por Importación. Usado especialmente para saber cuando es la fecha de vencimiento de la Factura de Proveedor por Importación.
+
+v0.1.1: (Ingrid Lino - 23/Ago/2012)
+----
+Se cambia el order by al query de obtención de datos(solicitado por AP).
+
+v0.1.2: (Ingrid Lino - 04/Sep/2012)
+----
+Se desmarca en el selector de la fecha para que no se filtre solo por la fecha seleccionada por defecto sino que consulte todo(solicitado por AP).
+
+v0.1.3: (Ingrid Lino - 19/Oct/2012)
+----
+Se adiciona la columna de fe_ing. Para que Olga Mejia pueda ordenar las Facturas por Orden de Ingreso y no por Orden de Vencimiento, porque ella necesita ese dato para cancelaciones a Pedidos.

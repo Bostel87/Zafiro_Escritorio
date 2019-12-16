@@ -1,0 +1,130 @@
+﻿Pendientes:
+1) Hacer configurable la consulta por local de acuerdo a la tabla tbr_locPrgUsr.
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Darío Cárdenas - 16/Ene/2007)
+----
+Se creo Programa tipo Reporte para mostrar Estado de Cuentas de Clientes/Proveedores en el area de Cuentas por Cobrar de Clientes.
+
+
+v0.2: (Darío Cárdenas - 15/Mar/2007)
+-----
+Se crea botones para VistaPreliminar e Imprimir un Reporte.
+
+
+v0.3: (Darío Cárdenas - 03/Abr/2007)
+-----
+Se agregaron Filtros para Cortes de Fechas bien sean DESDE y HASTA, ademas filtro por tipo de Documentos.
+
+
+v0.4: (Darío Cárdenas - 18/May/2007)
+-----
+Se agrego variable de direccion tipo parametro para guardar ruta de la imagen en el reporte.
+
+
+v0.5: (Darío Cárdenas - 05/Jul/2007)
+-----
+Se agrego funcion para generar reporte con la clase ZafRptSis.
+
+
+v0.6: (Darío Cárdenas - 15/Oct/2007)
+-----
+Se agrego funciones para generar informacion por grupo, ademas se modifico el diseño de la pantalla principal.
+
+
+v0.7: (Darío Cárdenas - 18/Oct/2007)
+-----
+Se modifico diseño de programa, se agrego formato de consulta de fechas y se mejoro ancho de columnas.
+
+
+v0.8: (Darío Cárdenas - 13/Nov/2007)
+-----
+Se modifico filtro en funcion generar reporte para utilizar los filtros del diseño, sin presionar consultar sino directamente desde de vista preliminar.
+
+
+v0.8.1: (Darío Cárdenas - 19/Nov/2007)
+-----
+Se agrego filtro en la funcion de generar Reporte para mostrar datos mas especificos para los clientes.
+
+
+v0.8.2: (Darío Cárdenas - 27/Nov/2007)
+-----
+Se agrego filtro en los querys para mostrar datos por modulos de area dentro de cobranzas.
+
+
+v0.8.3: (Darío Cárdenas - 06/Dic/2007)
+-----
+Se agrego renderizador para ordernar las columnas desde la cabecera de la tabla.
+
+
+v0.8.4: (Darío Cárdenas - 24/Abr/2008)
+-----
+Se modifico query de la funcion configurarVenConCli(), para mostrar datos de clientes por empresa y local.
+
+
+v0.8.5: (Darío Cárdenas - 02/Jun/2008)
+-----
+Se agrego funcion para mostrar datos de clientes por local desde Castek Manta.
+
+
+v0.8.6: (Darío Cárdenas - 27/Oct/2008)
+-----
+Se modifico funcion generarRpt() para mostrar datos por local desde Castek Manta.
+
+
+v0.8.7: (Darío Cárdenas - 24/mar/2009)
+-----
+Se modifico funcion generarRpt() para mostrar Datos ordenados por co_tipdoc, fe_doc, ne_numdoc, co_reg.
+
+
+v0.8.9: (Javier Ayapata - 24/mar/2009)
+-----
+Se agrega en reportes  la ruta de logo para reportes.
+
+
+v0.9.0: (Erik Flores - 08/Feb/2012)
+-----
+Función FilSql()
+Se agrega conversion explicita de numero a caracter con la funcion to_char, por motivo que la nueva version de la base no soporta conversiones implicitas. 
+
+
+v1.0.0: (Erik Flores - 20/Jun/2012)
+-----
+Se permite que todas las celdas sean redimensionables.
+
+
+v1.0.1: (Rosa Zambrano - 21/May/2015)
+-----
+En la función generarRpt(): Se agrega Logo para el nuevo Local CUENCA para la visualización del reporte Estado de Cuenta de Clientes.
+
+
+v1.0.2: (Rosa Zambrano - 10/Jun/2015)
+-----
+Se corrige en la función generarRpt() el envio de parametros CodEmp, CodCli para que se envie como enteros.
+Se corrige en el ZafRptCxC20 todos los querys de los reportes por el cambio a la nueva version de postgres 9.4
+
+
+v1.0.3: (Rosa Zambrano - 28/Dic/2016)
+-----
+En la función generarRpt(): Se agrega Logo para la empresa Cosenco para la visualización del reporte Estado de Cuenta de Clientes.
+Se realizan otras mejoras en el diseño y código.
+Se agrega uso de libreria ZafVenCon para manejar ventanas de consultas.
+
+
+v1.0.4: (José Marín M - 20/Abr/2017)
+-----
+Se agrega fecha de corte.
+
+
+v1.0.5: (José Marín M - 20/Abr/2017)
+-----
+Se agrega fecha de corte.
+
+
+v1.0.6: (Rosa Zambrano - 28/Nov/2017)
+-----
+En la función generarRpt(): Se hace configurable la ruta del Logo y la dirección del local.
+Estos cambios se realizan para la visualización del reporte Estado de Cuenta de Clientes del nuevo Local DURAN.

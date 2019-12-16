@@ -1,0 +1,43 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (José Marín - 07/Jul/2017)
+----
+Clase nueva "Obtiene datos"
+ * Datos de Items
+
+
+v0.2: (José Marín - 18/Ago/2017)
+----
+Se agrega un nuevo metodo:
+    getDisponibleItemEmpresa() 
+
+
+v0.03: (José Marín - 21/Ago/2017)
+----
+Se modifican los query para validar los nulo en el disponible.
+
+
+v0.04: (José Marín - 19/Feb/2018)
+----
+Modificacion para trabajar con el nuevo estado de tbm_inv.st_oblCamNomItm, Estado de obligatorio cambiar nombre del item.
+
+
+v0.05: (José Marín - 19/Jul/2019)
+----
+Agrego nuevos metodos para manejar los terminales que manejaran bloqueo.
+
+
+v0.06: (José Marín - 2/Ago/2019)
+----
+Se agrego que se modifique el campo tx_codAlt2 en el detalle de la cotizacion.
+
+
+v0.07: (José Marín - 28/Nov/2019)
+----
+Se agregan nuevos metodos.
+

@@ -1,0 +1,15 @@
+CONTROL DE VERSIONES:
+=====================
+
+v0.1b1: (Ingrid Lino - 02/Ago/2007)
+----
+Reporte que presenta información del presupuesto real vs. datos presupuestados
+
+
+v0.1b2: (Ingrid Lino - 08/Ago/2007)
+----
+Se cambió el orden del filtro por co_per de la línea 1332 a la 1327 y de la línea 1347 a la 1342 por motivo que no estaba presentando la información en los meses en los que no existía su período.
+
+v0.1.1: (Ingrid Lino - 14/Sep/2007 - 13h31)
+----
+Se cambió la forma de calcular la diferencia entre datos reales y datos presupuestados

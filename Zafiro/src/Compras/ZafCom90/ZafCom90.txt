@@ -1,0 +1,130 @@
+﻿Pendientes:
+1) Hay que corregir el código que valida los datos luego de ser pegados en la columna de unidad de medida.
+
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Ingrid Lino)
+----
+Clase nueva.
+
+v0.1.1: (Ingrid Lino)
+-----
+Al mostrar la informacion de las instancias de los pedidos, se ordenaban de manera ASC, se cambio a DESC
+
+
+v0.1.2: (Ingrid Lino - 02/Jun/2015)
+-----
+Se realizan cambios en cargar pedidos, se oculta columnas, se recalculan valores según datos ingresados en columnas de márgenes, peso unitario, precio venta
+
+
+v0.1.3: (Ingrid Lino - 03/Jun/2015)
+-----
+Se adicionan cambios para calcular bien margenes cuando esta seleccionada la opción de "kilos", se coloca tooltips para las columnas dinamicas
+
+
+v0.1.4: (Ingrid Lino - 03/Jun/2015)
+-----
+Se oculta columna de peso auxiliar y se cambia el fondo de color de la celda de la columna de peso.
+
+
+v0.1.5: (Ingrid Lino - 15/Jun/2015)
+-----
+Se agrega en el evento "Pegar" la opción de recalcular cuando se pegue información en las columnas "Factor de costo", "Margen con factor", "Factor precio kilos", "Margen precio kilos".
+
+
+v0.1.6: (Ingrid Lino - 16/Jun/2015)
+-----
+Se agrega el filtro de código alterno "Terminan con..". Solicitado por Claudia Sensi.
+
+
+v0.1.7: (Ingrid Lino - 07/Ago/2015)
+-----
+Se agrega el filtro de "Terminan con" para cuando se carga información de columnas Ingreso por Importación, Pedido Embarcado, Nota Pedido. Solicitado por Claudia Sensi
+
+
+v0.1.8: (Ingrid Lino - 18/Ene/2016)
+-----
+Se añade en el header de las columnas de Nota de Pedido, Pedido Embarcado, Ingreso por Importación las fechas de documento, fecha de arribo, mes de arribo respectivamente. Solicitado por Alfredo Paulson.
+
+
+v0.1.10: (Ingrid Lino - 23/Mar/2016)
+-----
+Se hace editable la columna del código alterno del item. solicitado por AP.
+
+
+v0.1.11: (Ingrid Lino - 29/Mar/2016)
+-----
+Se modificar para que al momento de validar si existe codigoAlternoItem en la DB no restringir(sólo para AP).
+
+
+v0.1.12: (Ingrid Lino - 18/May/2016)
+-----
+Se baja el tono de color rojo. Solicitado por LSC.
+
+
+v0.1.13: (Rosa Zambrano - 31/May/2016)
+-----
+Se agrega configuración del iva con la libreria ZafParSis.
+
+
+v0.1.14: (Ingrid Lino - 02/Jun/2016)
+-----
+Se cambia en el cálculo del Precio de Lista calculado el 112 al 114(calclulo para obtener el 25%)
+
+
+v0.1.15: (Ingrid Lino - 05/Sep/2016)
+-----
+Se comentan unos systems.out que mostraban un error por leer filas que no existen.
+
+
+v0.1.16: (Ingrid Lino - 12/May/2017)
+-----
+Se añaden columnas de margen para Pedido Embarcado(los 3) y Nota de Pedido(los 3). Solicitado por LSC.
+
+
+v0.1.17: (Rosa Zambrano - 01/Jun/2017)
+-----
+Se cambia en el cálculo del Precio de Lista calculado del 114(calclulo para obtener el 25%) a la configuracion del iva tbm_cfgImpLoc.
+Este cambio se realiza en las funciones calcularPreLisCal(), calcularPreLisCalConsulta().
+
+
+v0.1.18: (Ingrid Lino - 28/Jun/2017)
+-----
+Se adiciona panel fijo para mostrar información general del item. Solicitado por LSC y Werner Campoverde.
+
+
+v0.1.18.1: (Ingrid Lino - 03/Jul/2017)
+-----
+Se elimina la opción de poder ordenar la tabla, ya que sólo ordena una de las dos tablas(fija o no fija).
+
+
+v0.1.18.2: (Rosa Zambrano - 05/Sep/2017)
+-----
+Se Agrega histórico de ítems.
+
+
+v0.1.18.3: (Rosa Zambrano - 12/Sep/2017)
+-----
+Se modificaron los metodos cargarCabeceraIngresosImportacion() y cargarDetReg() para presentar la informacion consolidada del ingreso por importación y ajuste.
+
+
+v0.1.18.4: (Rosa Zambrano - 22/Sep/2017)
+-----
+Se realizan unas mejoras proyecto importaciones.
+
+
+v0.1.18.5: (Rosa Zambrano - 26/Ene/2018)
+-----
+Se agrega en las funciones cargarCabeceraIngresosImportacion() y cargarDetReg() para que excluya los ajustes con tbm_CabMovInv.st_Reg='O', 
+esto estaba generando que el reporte muestre 2 veces el mismo ítem, según reportado por Peter Graf.
+Las lineas de código modificadas son: 1985 y 4093, se agrego la siguiente codificación  "AND c1.st_reg IN ('A')".
+
+v0.1.18.6: (Ingrid Lino - 06/Jun/2018)
+-----
+Se cambia el limmit de columnas de Pedidos a 5 en lugar de 3. Solicitado por Werner Campoverde.
+
+v0.1.18.7: (Rosa Zambrano - 25/Jun/2018)
+-----
+Se agrega constantes de código de menú de objImp para segmentación de compras locales.

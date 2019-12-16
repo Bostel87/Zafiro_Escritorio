@@ -1,0 +1,27 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1 b1: (Ingrid Lino - 26/Ago/2008)
+----
+Cuadro de dialogo que muestra los items de acuerdo al filtro seleccionado.
+
+
+v0.1: (Ingrid Lino - 03/Sep/2008)
+-----
+Pase a producción.
+
+
+v0.2: (Ingrid Lino - 22/Jun/2009)
+-----
+Se colocó mas ancho en algunos campos que no se apreciaban bien(salían entre cortados).
+
+
+v0.3: (Rosa Zambrano - 29/Sep/2015)
+-----
+Se agrega ubicación del ítem, se modifica la forma de presentar los ítems de acuerdo al estandar y otras mejoras.
+Se habilita la opción de Marcar/Desmarcar las casillas de verificación de los ítems.
+Se corrige filtro de mostrar items con stock.

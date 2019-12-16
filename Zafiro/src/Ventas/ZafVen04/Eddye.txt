@@ -1,0 +1,177 @@
+﻿Pendientes:
+1) Hacer que los filtros de rango "Desde - Hasta" y "Terminen con:" funcionen con el proceso de unificación de items.
+2) 
+3) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 10/Ene/2006)
+----
+Se agregó JTable de totales.
+
+
+v0.2: (Eddye Lino - 07/Mar/2006)
+-----
+Se agregó código para que funcione con la empresa Grupo.
+
+
+v0.3: (Eddye Lino - 10/Mar/2006)
+-----
+Se actualizó query porque se agregaron nuevos campos.
+
+
+v0.4: (Eddye Lino - 03/Abr/2006)
+-----
+Se eliminó del reporte las ventas entre empresa del grupo.
+Fue una solución temporal hasta que se busque una manera de hacerlo dinámico.
+
+
+v0.5: (Eddye Lino - 25/Oct/2006)
+-----
+Se corrigió problema en el query del grupo.
+
+
+v0.6: (Eddye Lino - 02/Mar/2007)
+-----
+Se agregó clausula en los querys de empresa y grupo para que sólo considere las devoluciones de inventario.
+
+
+v0.7: (Eddye Lino - 13/Mar/2007)
+-----
+Se corrigió el querys porque generaba un error cuando se filtraba por rango de items en el Grupo.
+
+
+v0.8: (Eddye Lino - 30/Mar/2007)
+-----
+Se agregó JTable para filtrar las ventas por empresa. Es decir, el programa ahora permite consultar las
+ventas de todas las empresas del grupo o de una o más empresas en particular.
+El JTable de empresas sólo aparece en la empresa grupo.
+
+
+v0.9: (Eddye Lino - 08/Abr/2007)
+-----
+Se remplazó el uso de la clase "ZafSelectDate" por la clase "ZafSelFec".
+Se agregó código a la función "cargarMovReg()" para que trabajara con la empresa grupo.
+
+
+v0.10: (Eddye Lino - 06/Jul/2007)
+-----
+Se agregó filtro por "Código alterno de item que 'Termina con:'".
+Se corrigió el query para que utilizara el campo "tbm_detMovInv.nd_tot" en lugar de calcular dicho campo.
+
+
+v0.11: (Eddye Lino - 11/Jul/2007)
+-----
+Se mejoró filtro por "Código alterno de item que 'Termina con:'" para que permitiera consultar por más de
+un terminal. Por ejemplo: si se desea buscar los códigos que terminan en "S" o "T" o "L" se deberá digitar "S,T,L".
+
+
+v0.12: (Eddye Lino - 08/Abr/2008)
+-----
+Se modificó el programa para que ahora se pudiera filtrar por locales. Antes sólo se podóa filtrar por empresas.
+Dicho cambio se lo realizó tanto a nivel de empresas como a nivel de grupo.
+
+
+v0.13: (Eddye Lino - 01/Ago/2008)
+----
+Se corrigió el método: 
+   1) cargarDetReg()
+En dicho método se corrigió el query correspondiente a la empresa grupo porque estaba fallando cuando se filtraba
+por un item en particular. Por ejemplo: al consultar el item 870-110I en el mes de agosto daba "Uni.Ven.=408"
+cuando en realidad debería dar "Uni.Ven.=414". Lo mismo ocurría con los campos "Ven.Tot.", "Cos.Tot.", "Ganancia" y "Margen".
+
+
+v0.14: (Eddye Lino - 25/May/2009)
+-----
+Se modificó los métodos: 
+   1) cargarDetReg()
+   2) configurarVenConItm()
+   3) mostrarVenConItm(int intTipBus)
+Se modificó el query para que el stock lo tome de la tabla "tbm_inv".
+Si es la empresa grupo se suma el stock de todas las empresas que pertenecen al grupo.
+
+
+v0.15: (Eddye Lino - 02/Jun/2009)
+-----
+Se modificó los métodos: 
+   1) configurarTblDet()
+   2) cargarDetReg()
+   3) cargarMovReg()
+Se eliminó del query la condición "AND (a1.st_tipDev IS NULL OR a1.st_tipDev='C')".
+Hubo que hacer cambios en el query para que cuando se saque las "Uni.Ven." sólo se considere como unidades
+vendidas las cantidades correspondientes a devoluciones de ventas por cantidades.
+
+
+v0.16: (Eddye Lino - 22/Ene/2010)
+-----
+Se modificó los métodos: 
+   1) configurarFrm()
+   2) configurarTblDat()
+   3) cargarDetReg()
+   4) cargarLoc()
+En dichos métodos se hizo cambios para que el mismo programa fuera llamado desde otro lado.
+Ahora también es llamado desde "co_mnu=229(Listado de ventas por item (Unidades)...)".
+
+
+v0.17: (Eddye Lino - 05/Jul/2010)
+-----
+Se agregó filtro por "Vendedor/Comprador".
+
+
+v0.18: (Ingrid Lino - 07/Feb/2011)
+-----
+Se adicionó filtro de mostrar información solo de clientes y mostrar informacion de clientes de grupo. Esto es solo es para grupo.
+
+
+v0.19: (Ingrid Lino - 05/Jul/2012)
+-----
+Se quita el filtro de "Excluir ventas entre compañias" y se coloca el mismo filtro de VEntas a realcionadas para cuando se ingresa por Empresas(solo estaba habilitado para Grupo. Se realizan cambios respectivos en el query.
+
+
+v0.20: (Ingrid Lino - 06/Jul/2012)
+-----
+Se agrega filtro en formulario: "Excluir facturas generadas por Otros Ingresos". Existen items usados para facturar por Intereses, Gestion de cobranzas, etc, estos salen en este programa pero para efectos de cuadre de Juan Rodas existe la necesidad de poner exluirlos.
+
+
+v0.21: (Ingrid Lino - 02/Oct/2012)
+-----
+En el filtro "Excluir Facturas generadas por Otros Ingresos" daba un error al ejecutar el QUery, se corrige ese error.
+
+
+v0.22: (Eddye Lino - 13/Ago/2013)
+-----
+Se agregó el filtro "Préstamos", "Tipo de item" y otras mejoras más.
+
+
+v0.23: (Eddye Lino - 23/Ago/2013)
+-----
+El Sr. Sensi solicitó que se haga más alto el JTable de locales.
+
+
+v0.24: (Eddye Lino - 07/May/2014)
+-----
+Se modificó los métodos: 
+   1) configurarTblDat()
+   2) cargarDetReg()
+Se agregó la opción de menú "Ficha "Reporte": Tabla->Mostrar "Venta total"".
+
+
+v0.25: (Eddye Lino - 20/Nov/2015)
+-----
+Se agrega opción de ordenar tabla en tbl de locales.
+
+
+v0.26: (Rosa Zambrano - 25/Abr/2016)
+-----
+Se modificaron los métodos: 
+   1) configurarVenConItm()
+   2) mostrarVenConItm()
+   3) configurarTblDat()
+   4) cargarDetReg()   
+Se agrega búsqueda por código de 3 letras solicitado y aprobado por Ing. Werner Campoverde en todos los reportes que realicen búsquedas por ítem.
+
+
+v0.27: (Eddye Lino - 16/Oct/2019)
+-----
+Se borró los filtros "Item", "Desde-Hasta", "Termina con" porque se creó la clase "ZafFilItm" que tiene dichos filtros y otros más.

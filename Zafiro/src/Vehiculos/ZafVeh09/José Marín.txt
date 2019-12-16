@@ -1,0 +1,19 @@
+Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (José Marín - 19/Ago/2013)
+----
+Clase nueva.
+
+v0.2: (José Marín - 25/Feb/2014)
+----
+Se modifico la consulta solo por empresas.
+
+v0.3: (José Marín - 19/Ene/2015)
+----
+Se modifico la consulta para que aparezcan los vehiculos que no tienen un chofer asignado.
+

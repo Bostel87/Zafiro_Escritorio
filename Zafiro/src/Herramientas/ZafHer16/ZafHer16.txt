@@ -1,0 +1,10 @@
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Ingrid Lino - 11/Jun/2007)
+----
+Programa nuevo, que permite realizar "Reapertura anual del Sistema", este programa permite reaperturar un año que ha sido cerrado.
+
+v0.1b2: (Ingrid Lino - 22/Ago/2007)
+----
+Se adicionó validación que no permite reapertura años menores al 2006

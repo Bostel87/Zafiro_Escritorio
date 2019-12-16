@@ -1,0 +1,79 @@
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Javier Ayapata)
+----
+Programa que permite Unificar Item
+
+
+
+v0.2: (06/07/2006 Javier Ayapata)
+----
+se corrigue al momento de unificar
+
+
+v0.4: (25/Ago/2006 Javier Ayapata)
+----   
+  Se Corrigue el proceso de Unificacion. 
+
+v0.5: (12/Sep/2006 Javier Ayapata)
+----   
+  Se Agrega al proceso de Unificacion que guarde el registro que se prevalese y desaparece en los historicos
+  tablas que son tbh_inv y tbh_uniinv
+
+v0.6: (14/Sep/2006 Javier Ayapata)
+----   
+ se agrega al momento de procesar que presenta una pantalla de espera.
+v0.8: (02/Oct/2006 Javier Ayapata)
+----   
+  se agrga un botton para la llamada de Maestro de Inventario 
+v0.8.1: (02/Oct/2006 Javier Ayapata)
+----   
+  se agrega para que presente el Kardes. 
+v0.8.2: (04/Oct/2006 Javier Ayapata)
+----   
+  se agrega ordenamiento en las tablas y un separador entre las tablas
+
+v0.8.4: (05/Oct/2006 Javier Ayapata)
+----   
+  se agrega dos botones para modificar el  item y poder ver el stock consolidado.
+
+v0.8.5: (10/Oct/2006 Javier Ayapata)
+---
+    se agrega dos botones para modificar el  item y poder ver el stock consolidado  y se agrega la unidad del item.
+
+v0.8.6: (11/Oct/2006 Javier Ayapata)
+---
+  se agraga para que setee el codigo del menu de inventario.
+
+v0.8.7: (06/Nov/2006 Javier Ayapata)
+---
+ Se agraga que realize el proceso de recosteo por cada item que aya sido unificado.
+
+
+v0.9: (  08/Mayo/2007  Javier Ayapata)
+ se corrigue al unificar se a�macena en un  tabla lo que se va unificar.
+
+
+v1.0: (  11/Mayo/2007  Javier Ayapata)
+ se  grega el popupMenu en la tabla para que pueda copiar.
+
+v1.1: (  24/Mayo/2007  Javier Ayapata)
+  se agrega la busqueda en la tabla.
+
+v1.2: (  20/Septiembre/2007  Javier Ayapata)
+  se agrega un checkbox para saber si es item de servicio.
+
+v1.2: (  20/Septiembre/2007  Javier Ayapata)
+  se agrega un checkbox para saber si es item de servicio.
+
+v1.3: (José Marín - 10/Feb/2016)
+----
+Se agrega que el programa envie correo electronico para saber que hay algo por procesar.
+
+
+
+
+
+

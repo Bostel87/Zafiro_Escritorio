@@ -1,0 +1,15 @@
+﻿Pendientes:
+1)  
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v 0.01: (José Marín - 30/Oct/2018)
+----
+Clase nueva. Generacion de factura parcial.
+ 
+
+v 0.02: (José Marín - 8/Ene/2019)
+----
+Modificacion al guardar una cotizacion con forma de pago de tarjeta de credito.

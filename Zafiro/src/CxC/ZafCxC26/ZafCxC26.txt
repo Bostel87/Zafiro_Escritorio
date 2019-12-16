@@ -1,0 +1,27 @@
+Pendientes:
+1) Ingresa en el modulo de CxC
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+V 0.1: (Dario Cardenas - 12/Sep/2007)
+-------------------------------------
+Programa que sirve para agregar datos generales del Propietario de la empresa, numero de accionistas que
+representan en la empresa.
+
+V 0.1.2: (Dario Cardenas - 14/Ene/2008)
+-------------------------------------
+Se agrego un ScrollPanel al Tab de Propietarios de la empresa...
+
+V 0.1.3: (Dario Cardenas - 14/Mar/2008)
+-------------------------------------
+Se modifico JTable a editables para visualizar ventanas de otros programas desde el evento del boton Consultar...
+
+V 0.1.4: (Dario Cardenas - 22/May/2008)
+-------------------------------------
+Se agrego filtro para mostrar datos de clientes por local...
+
+V 0.1.5: (Dario Cardenas - 17/Jun/2008)
+-------------------------------------
+Se agrego filtro para mostrar datos del propietario...

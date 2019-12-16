@@ -1,0 +1,9 @@
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Ingrid Lino - 06/May/2010)
+----
+Programa nuevo que muestra "Listado de cruce de documentos vs. documentos cruzados".
+v0.1.1: (Ingrid Lino - 06/May/2010)
+----
+Se colocaron correctamente los codigos para tener acceso a los botones de Consultar y Cerrar(Para los usuarios no estaban editables).

@@ -1,0 +1,22 @@
+
+CONTROL DE VERSIONES:
+=====================
+
+ZafVenCiu v1.0: (Carlos Lainez- 04/04/2011)
+----
+Ventana de Consulta de Ciudades.
+
+
+ZafVenEstCiv v1.0: (Carlos Lainez- 04/04/2011)
+----
+Ventana de Consulta de Estado Civil.
+
+
+ZafVenReg v1.0: (Carlos Lainez- 13/05/2011)
+----
+Ventana de Consulta de Regiones
+
+
+ZafVenTipDocDig v1.0: (Carlos Lainez- 18/05/2011)
+----
+Ventana de Consulta de Tipos de Documentos Digitales

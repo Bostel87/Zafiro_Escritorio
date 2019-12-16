@@ -1,0 +1,23 @@
+Observaciones:
+--------------
+Este programa sirve para CxC y CxP.
+Los códigos en tbm_mnuSis son:
+	326: Listado de Clientes con Credito cerrado por retenciones pendientes	
+
+Pendientes:
+1) 
+2) 
+3) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Dario Cardenas - 16/Mar/2007)
+-----
+Programa que muestra el listado de clientes con credito cerrado por retenciones pendientes
+
+
+v0.2: (Eddye Lino - 09/Ago/2011)
+-----
+Se modificó el código donde se utiliza el campo "ne_mod". Por error se lo había creado como
+CHAR en la Base de Datos cuando en realidad es SMALLINT.

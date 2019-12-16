@@ -1,0 +1,16 @@
+﻿
+CONTROL DE VERSIONES:
+=====================
+
+
+v1.0: (Roberto Flores - 04/07/2013)
+----
+Clase nueva Recursos humanos - Roles de pago - Beneficios sociales - Décimo cuarto sueldo...
+
+v1.01: (Roberto Flores - 21/08/2013)
+----
+Se aumentan columnas: fecha real fin de contrato y dias totales laborados...
+
+v1.02: (Roberto Flores - 12/03/2014)
+----
+Validaciones para empleados nuevos y se mueven las columnas de totales al inicio 

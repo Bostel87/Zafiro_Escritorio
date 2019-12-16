@@ -1,0 +1,23 @@
+﻿
+CONTROL DE VERSIONES:
+=====================
+
+
+v1.0: (Roberto Flores- 28/May/2013)
+----
+Roles de Pago, Bono y Movilización (Impresión)(Por empleado y rango de fechas)...
+
+
+v1.01: (Roberto Flores- 02/Jul/2013)
+-----
+Validaciones para uso de mismo reporte impresión de roles masivos y impresión de roles por empleado y rango de impresión
+
+
+v1.02: (Roberto Flores- 26/Mar/2014)
+-----
+Se quita validación para solo mostrar empleados activos. Ahora se muestran los anulados también.
+
+
+v1.03: (Rosa Zambrano - 09/Jun/2015)
+-----
+Se corrige query en generarRpt() debido al cambio de Postgres 9.4 en Servidor de BD. 

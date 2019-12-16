@@ -1,0 +1,7 @@
+v0.1: (Ingrid Lino - 16/Dic/2010)
+----
+Programa que muestra los documentos que tienen IVA y que no generan retenciones, es complemento del programa ZafCon24(Datos de retenciones emitidas).
+
+v0.1.1: (Ingrid Lino - 22/Dic/2010)
+----
+Se quito en el query el /*AND a1.fe_venChq IS NOT NULL*/ porque con el esquema anterior ese dato es nulo o blanco y por ende no presentaba muchos registros.

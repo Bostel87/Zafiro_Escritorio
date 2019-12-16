@@ -1,0 +1,57 @@
+﻿Pendientes:
+1) Hay que hacer configurable el cobro del documento COTCRM, COTCCM, COTCVM, COTCRD, COTCCD, COTCVD. Actualmente está quemado en el programa las cuentas que se deben utilizar.
+2)
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Omar Gutierrez  13/Nov/2012)
+----
+Clase nueva.
+
+
+v0.2: (Alex Morán - 07/Mar/2013)
+----
+Conciliación de cobros de tarjetas de crédito por retenciones, comisiones y valores a cobrar.
+
+
+v0.3: (Alex Morán - 02/May/2013)
+----
+Se corrigen parámetros al momento de imprimir reporte.
+
+
+v0.4: (Eddye Lino - 31/Oct/2013)
+-----
+Sólo funcionaba con "Medianet". Se agregó código para que funcionara con "Datafast".
+
+
+v0.5: (Eddye Lino - 24/Dic/2013)
+-----
+Se hizo invisibles y opcionales las columnas: Número de serie, Número de documento, Número de
+autorización del SRI, Fecha de caducidad y Código del SRI cuando se llama el programa desde:
+3411: Cobros a tarjetas de crédito (Comisiones)...
+3421: Cobros a tarjetas de crédito (Valores a cobrar)...
+
+
+v0.5.1: (José Marín - 28/Feb/2014)
+-----
+Se quita la restriccion de solo poder ingresar cantidades menores a las pendientes, 
+solicitado por Magaly autorizado por Eddy Lino 
+
+v0.6: (José Marín - 28/Feb/2014)
+-----
+Se modifica para que trabaje con "Datafast"
+
+
+v0.6.1: (José Marín - 7/Abr/2014)
+-----
+Se quita la restriccion de solo poder ingresar cantidades menores a las pendientes, 
+solicitado por Wendy Moran autorizado por Eddy Lino 
+
+v0.6.2: (José Marín - 10/Sep/2014)
+-----
+Se agregan validaciones para la facturación electronica, en la autorización del SRI 
+
+v0.6.3: (Dennis Betancourt - 07/Jun/2017)
+-----
+Se modifico la condicion para que el Numero_Autorizacion_SRI ademas de permitir que tenga 10 o 37 digitos, ahora pueda permitir que tenga 49 digitos de longitud debido al esquema OffLine del SRI.

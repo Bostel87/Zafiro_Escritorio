@@ -1,0 +1,97 @@
+PASO 1:
+-------
+Importar las librerías.
+
+import Librerias.ZafTblUti.ZafTblHeaGrp.ZafTblHeaGrp;
+import Librerias.ZafTblUti.ZafTblHeaGrp.ZafTblHeaColGrp;
+
+PASO 2:
+-------
+Sobreescribir el método createDefaultTableHeader() de JTable.
+Haga lo siguiente:
+    1) Abra NetBeans.
+    2) En la vista diseño seleccione el JTable en el que desea incorporar ZafTblHeaGrp.
+    3) En la ventana "Properties" seleccione el grupo "Code".
+    4) En el grupo "Code" seleccione la propiedad "Custom Creation Code" y de click en el botón correspondiente
+       a dicha propiedad. Se abrirá un cuadro de diálogo.
+    5) Pegue el siguiente código:
+new javax.swing.JTable() {
+            protected javax.swing.table.JTableHeader createDefaultTableHeader()
+            {
+                return new ZafTblHeaGrp(columnModel);
+            }
+        };
+    6) De click en el botón "Ok" y verifique en el método "private void initComponents()" que el código aparece como
+       se muestra a continuación:
+        tblDat = new javax.swing.JTable() {
+            protected javax.swing.table.JTableHeader createDefaultTableHeader()
+            {
+                return new ZafTblHeaGrp(columnModel);
+            }
+        };
+
+PASO 3:
+-------
+Crear un objeto del tipo ZafTblHeaGrp y un ZafTblHeaColGrp por cada grupo.
+Agregar las columnas adecuadas a cada ZafTblHeaColGrp.
+Ejemplo con 2 filas:
+            //Agrupar las columnas.
+            ZafTblHeaGrp objTblHeaGrp=(ZafTblHeaGrp)tblDat.getTableHeader();
+            objTblHeaGrp.setHeight(16*2);
+            
+            ZafTblHeaColGrp objTblHeaColGrpAmeSur=new ZafTblHeaColGrp("América del Sur");
+            objTblHeaColGrpAmeSur.setHeight(16);
+            objTblHeaColGrpAmeSur.add(tcmAux.getColumn(INT_TBL_DAT_ECU));
+            objTblHeaColGrpAmeSur.add(tcmAux.getColumn(INT_TBL_DAT_COL));
+            objTblHeaColGrpAmeSur.add(tcmAux.getColumn(INT_TBL_DAT_VEN));
+            
+            ZafTblHeaColGrp objTblHeaColGrpAmeNor=new ZafTblHeaColGrp("América del Norte");
+            objTblHeaColGrpAmeNor.setHeight(16);
+            objTblHeaColGrpAmeNor.add(tcmAux.getColumn(INT_TBL_DAT_MEX));
+            objTblHeaColGrpAmeNor.add(tcmAux.getColumn(INT_TBL_DAT_USA));
+
+            ZafTblHeaColGrp objTblHeaColGrpEur=new ZafTblHeaColGrp("Europa");
+            objTblHeaColGrpEur.setHeight(16);
+            objTblHeaColGrpEur.add(tcmAux.getColumn(INT_TBL_DAT_ESP));
+            objTblHeaColGrpEur.add(tcmAux.getColumn(INT_TBL_DAT_ITA));
+            objTblHeaColGrpEur.add(tcmAux.getColumn(INT_TBL_DAT_ALE));
+            objTblHeaColGrpEur.add(tcmAux.getColumn(INT_TBL_DAT_POR));
+
+            objTblHeaGrp.addColumnGroup(objTblHeaColGrpAmeSur);
+            objTblHeaGrp.addColumnGroup(objTblHeaColGrpAmeNor);
+            objTblHeaGrp.addColumnGroup(objTblHeaColGrpEur);
+
+Ejemplo con 3 filas:
+            //Agrupar las columnas.
+            ZafTblHeaGrp objTblHeaGrp=(ZafTblHeaGrp)tblDat.getTableHeader();
+            objTblHeaGrp.setHeight(16*3);
+            
+            ZafTblHeaColGrp objTblHeaColGrpPlaTie=new ZafTblHeaColGrp("Planeta Tierra");
+            objTblHeaColGrpPlaTie.setHeight(16);
+            
+            ZafTblHeaColGrp objTblHeaColGrpAmeSur=new ZafTblHeaColGrp("América del Sur");
+            objTblHeaColGrpAmeSur.setHeight(16);
+            objTblHeaColGrpAmeSur.add(tcmAux.getColumn(INT_TBL_DAT_ECU));
+            objTblHeaColGrpAmeSur.add(tcmAux.getColumn(INT_TBL_DAT_COL));
+            objTblHeaColGrpAmeSur.add(tcmAux.getColumn(INT_TBL_DAT_VEN));
+            
+            ZafTblHeaColGrp objTblHeaColGrpAmeNor=new ZafTblHeaColGrp("América del Norte");
+            objTblHeaColGrpAmeNor.setHeight(16);
+            objTblHeaColGrpAmeNor.add(tcmAux.getColumn(INT_TBL_DAT_MEX));
+            objTblHeaColGrpAmeNor.add(tcmAux.getColumn(INT_TBL_DAT_USA));
+
+            ZafTblHeaColGrp objTblHeaColGrpEur=new ZafTblHeaColGrp("Europa");
+            objTblHeaColGrpEur.setHeight(16);
+            objTblHeaColGrpEur.add(tcmAux.getColumn(INT_TBL_DAT_ESP));
+            objTblHeaColGrpEur.add(tcmAux.getColumn(INT_TBL_DAT_ITA));
+            objTblHeaColGrpEur.add(tcmAux.getColumn(INT_TBL_DAT_ALE));
+            objTblHeaColGrpEur.add(tcmAux.getColumn(INT_TBL_DAT_POR));
+
+            objTblHeaColGrpPlaTie.add(objTblHeaColGrpAmeSur);
+            objTblHeaColGrpPlaTie.add(objTblHeaColGrpAmeNor);
+            objTblHeaColGrpPlaTie.add(objTblHeaColGrpEur);
+            
+            objTblHeaGrp.addColumnGroup(objTblHeaColGrpPlaTie);
+
+Nota.- El código presentado en las líneas anteriores se encuentra en 2 ejemplos.
+       Solicitelos al desarrollador de dicha clase.

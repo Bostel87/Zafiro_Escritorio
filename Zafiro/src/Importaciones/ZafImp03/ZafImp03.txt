@@ -1,0 +1,32 @@
+﻿Pendientes:
+1)
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Ingrid Lino - 22/Ago/2013)
+----
+Nuevo programa que muestra el Listado de Notas de Pedido.
+
+
+v0.1.1: (José Marín - 14/Oct/2013)
+-----
+Se agrego la columna “Nota de pedido esta cerrada” con relacion al campo tbm_cabNotPedImp.st_cie.
+
+
+v0.1.2: (Rosa Zambrano - 18/Dic/2015)
+-----
+Se cambia la forma de presentar la fe_Emb y fe_arr en la función cargarDetReg().
+La tabla tbm_cabNotPedImp es usada para extraer el campo ne_aniemb (año de embarque) en base a este parametro se realiza la siguiente validación: 
+CASE WHEN a1.ne_aniemb IS NOT NULL THEN (a1.ne_aniemb) WHEN a1.ne_aniemb IS NULL THEN EXTRACT('year' FROM a1.fe_doc) END 
+
+
+v0.1.3: (Rosa Zambrano - 12/Sep/2017)
+-----
+Modificaciones para Proyecto de Costos. 
+Se agrega columna para ver documentos de ajustes de inventario (importaciones).
+
+
+v0.1.4: (Rosa Zambrano - 25/Jun/2018)
+-----
+Modificaciones para cambios de exportador de cabecera a detalle.

@@ -1,0 +1,351 @@
+﻿Pendientes:
+1) configurarVenConItm(): Ver si se puede quitar del query la columna del stock.
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 13/Feb/2006)
+----
+Programa nuevo.
+
+
+v0.2: (Eddye Lino - 03/Mar/2006)
+-----
+Se agregó la opción "Consultar".
+
+
+v0.3: (Eddye Lino - 30/May/2006)
+-----
+Se agregó código para que grabara los campos "ne_secGrp" y "ne_secEmp".
+
+
+v0.4: (Eddye Lino - 19/Oct/2006)
+-----
+Se agregó código para que grabara nuevos campos que se agregaron a la base de datos.
+Se cambió la forma de recosteo por el nuevo esquema de recosteo.
+
+
+v0.5: (Javier Ayapata - 10/Julio/2007)
+-----
+Se agrega codigo para vista priliminar e imprimir.
+
+
+v0.6: (Eddye Lino - 23/Ago/2007)
+-----
+Se agregó código que requer�a la clase "ZafAsiDia".
+Mediante este código la clase "ZafAsiDia" muestra sólo las cuentas asignadas al usuario.
+
+
+v0.7: (Eddye Lino - 30/Ene/2008)
+-----
+Se agregó código para grabar el campo "tbm_detMovInv.co_itmAct". Dicho campo fue creado para mejorar la forma
+de unificar items. Antes la unificación actualizaba el campo "tbm_detMovInv.co_itm" para todos los movimientos
+de los items a unificar. Ahora sólo actualiza dicho campo a partir de la fecha de unificación y en el nuevo campo
+(co_itmAct) queda el c�digo actual del item. Es decir, el código del último item con el que fue unificado.
+
+
+v0.8: (Eddye Lino - 19/Feb/2008)
+-----
+Se reemplazó el uso de la clase "ZafConsulta" por la clase "ZafVenCon" para seleccionar el "Tipo de documento".
+Además, se modificó los querys para que los tipos de documentos aparezcan de acuerdo al usuario. Sólo si es el 
+usuario administrador tiene acceso a todos los documentos.
+
+
+v0.9: (Eddye Lino - 29/Feb/2008)
+----
+Se corrigió el método: 
+   1) configurarTblDat()
+En dicho método se agregó al query una condición para que sólo se mostrara los items activos.
+Al query se agregó la siguiente condición:
+    strSQL+=" AND a1.st_reg='A'";
+
+
+v0.10: (Eddye Lino - 27/Oct/2008)
+-----
+Se modificó el método: 
+   1) insertarDet()
+En dicho método se cambió el query para que almacene "0" ya que antes el campo "nd_canCon" almacenaba "Null".
+El query quedó así:
+    strSQL+=", 0"; //nd_canCon
+
+
+v0.11: (Eddye Lino - 27/Nov/2008)
+-----
+Se modificaron los métodos: 
+   1) configurarTblDat()
+   2) mostrarTipDocPre()
+   3) configurarVenConTipDoc()
+   4) mostrarVenConTipDoc(int intTipBus)
+   5) actualizarTbmInvBod(int intTipOpe)
+Se reemplazó el uso de la clase"ZafConsulta" por la clase "ZafVenCon" cuando se seleccionaba el item y la bodega.
+En los otros métodos se agregó código para que se pueda guardar datos en los campos "tbm_invBod.nd_canIngBod" y
+"tbm_invBod.nd_canEgrBod" de acuerdo al valor del campo "tbm_cabTipDoc.st_merIngEgrFisBod".
+
+
+v0.12: (Eddye Lino - 04/May/2009)
+-----
+Se modificaron los métodos: 
+   1) configurarVenConItm()
+Se ocultó la columna de stock del item.
+
+
+v0.12.1: (Eddye Lino - 05/May/2009)
+-----
+ se agrega ruta de reporte para linux
+
+
+v0.13: (Eddye Lino - 24/Jun/2009)
+-----
+Se modificaron los métodos: 
+   1) imprimir()
+   2) vistaPreliminar()
+Se agregó código para cerrar la conexión porque dejaba una conexión abierta. El código que se agregó fué "conIns.close();".
+
+
+v0.14: (Eddye Lino - 14/Jul/2009)
+-----
+Se modificaron los métodos: 
+   1) getStkBod(int intCodEmp, int intCodBod, int intCodItm)
+   2) isStkBodSuf()
+   3) recostearItm()
+Se reemplazó el uso del tipo de dato "double" por el uso de la clase "BigDecimal".
+Se corrigió error en la validación del stock.
+Se modificó el costeo para que trabajara con la nueva función de costeo.
+
+
+v0.15: (Eddye Lino - 31/Jul/2009)
+-----
+Se agregaron los métodos: 
+   1) beforeClickInicio()
+   2) beforeClickAnterior()
+   3) beforeClickSiguiente()
+   4) beforeClickFin()
+   5) beforeClickInsertar()
+   6) beforeClickConsultar()
+   7) beforeClickModificar()
+   8) beforeClickEliminar()
+   9) beforeClickAnular()
+   10) beforeClickImprimir()
+   11) beforeClickVistaPreliminar()
+   12) beforeClickAceptar()
+   13) beforeClickCancelar()
+   14) cargarDocumento(Integer codigoEmpresa, Integer codigoLocal, Integer codigoTipoDocumento, Integer codigoDocumento)
+Se agregó las variables intCodEmp y intCodLoc a nivel de clase para que se pudiera utilizar
+el código de empresa y local recibidos como parámetros. Antes se tenía establecido en el código
+que siempre se utilizara la empresa y local al cual se ingresó. Pero en la clase ZafCom31 era
+necesario desde una empresa poder abrir documentos que correspondían a otras empresas y locales.
+Se modificaron los métodos: 
+   1) isRegPro()
+   2) ...
+Se modificó algunos métodos para utilizar los nuevos métodos que se agregaron.
+
+
+v0.16: (Eddye Lino - 11/Ago/2009)
+-----
+Se agregó el método: 
+   1) actualizarSecUltDocTbmCabMovInv()
+Se modificaron los métodos: 
+   1) insertarReg()
+   2) insertarCab()
+Se agregó código para que en lugar de ir a obtener los valores para "ne_secGrp" y "ne_secEmp" de la tabla
+"tbm_cabMovInv" se lo obtenga de la tabla "tbm_emp".
+
+
+v0.17: (Eddye Lino - 22/Dic/2009)
+-----
+Se corrigió el método: 
+   1) insertarDet()
+Se agregó código para que almacenara el campo "st_merIngEgrFisBod".
+
+
+v0.18: (Eddye Lino - 12/Mar/2010)
+-----
+Se agregó el constructor: 
+   1) ZafCom20(ZafParSis obj, Integer codigoEmpresa, Integer codigoLocal, Integer codigoTipoDocumento, Integer codigoDocumento)
+Se eliminó el método:
+   1) formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt)
+Se modificaron los métodos: 
+   1) ZafCom20(ZafParSis obj)
+   2) configurarVenConBod()
+   3) configurarTblDat()
+Se agregó código para utilizar la tabla "tbr_bodTipDocPrgUsr" mediante la cual se puede dar
+permiso a la bodegas de acuerdo al tipo de documento, programa y usuario.
+
+
+v0.19: (Eddye Lino - 07/Jun/2010)
+-----
+Se modificaron los métodos: 
+   1) insertarCab()
+   2) actualizarCab()
+   3) anularCab()
+   4) eliminarCab()
+Se agregó código para que se almacenara los campos de auditoría correspondientes a la computadora en
+la cual se ingresó, modificó o anuló un documento.
+
+
+v0.20: (Eddye Lino - 20/Jul/2010)
+-----
+Se modificaron los métodos: 
+   1) configurarTblDat()
+   2) consultarReg()
+   3) mostrarTipDocPre()
+   4) configurarVenConTipDoc()
+   5) mostrarVenConTipDoc(int intTipBus)
+   6) cargarCabReg()
+   7) isCamVal()
+   8) isStkBodSuf()
+   9) insertarReg()
+   10) calcularToFil()
+   12) calcularTotDoc()
+   13) actualizarTbmInvBod(int intTipOpe)
+   14) generarRpt(int intTipRpt)
+Se eliminó el método: 
+   1) getStkBod(int intCodEmp, int intCodBod, int intCodItm)
+Se agregó código para corregir cosas que no funcionaban en la nueva versión de PostgreSQL.
+Se agregó código para evitar que se pudiera seleccionar la misma bodega como origen y destino.
+Además se agregó código para que se validara el máximo número de filas permitidas en la tabla de acuerdo
+al tipo de documento seleccionado.
+
+
+v0.21: (Eddye Lino - 21/Dic/2010)
+-----
+Se modificaron los métodos: 
+   1) insertarReg()
+Se agregó el método: 
+   1) generarComVenAut()
+Se agregó código para que al grabar una transferencia se generaran compras y ventas automáticas de
+acuerdo al valor del campo tbm_emp.st_traInvGenComVenAutEmpRel.
+
+
+v0.22: (Eddye Lino - 25/Feb/2011)
+-----
+Se modificó el método: 
+   1) insertarDet()
+Se agregó código para almacenar el campo "tbm_detMovInv.tx_nomBodOrgDes".
+
+
+v0.23: (Eddye Lino - 09/May/2011)
+-----
+Se agregó el método: 
+   1) insertarTbrDetMovInv()
+   2) eliminarTbrDetMovInv()
+   3) anularTbrDetMovInv()
+   4) eliminarLogTbrDetMovInv()
+Se modificaron los métodos: 
+   1) insertarReg()
+   2) actualizarReg()
+   3) anularReg()
+   4) eliminarReg()
+Se agregó código para almacenar datos en "tbr_detMovInv".
+
+
+v0.24: (Eddye Lino - 13/Jun/2011)
+-----
+Se agregaron los métodos: 
+   1) cargarIpPuertoGuiaEmp()
+   2) enviarRequisitoImp(String strIp, int intPuerto)
+Se modificó el método: 
+   1) insertarReg()
+Se agregó código para enviar mensaje al servicio cliente/servidor de Javier Ayapata
+que se encarga de imprimir las guías de remisión.
+
+
+v0.25: (Eddye Lino - 23/Jun/2011)
+-----
+Se cambió el uso de double por BigDecimal. Además se agregó columnas "Pes.Uni." y "Pes.Tot.".
+
+
+v0.26: (Eddye Lino - 06/Jul/2011)
+-----
+Se modificó el método: 
+   1) insertarReg()
+Se agregó código para que sólo se envie mensaje de impresión de guía al servidor de donde sale la mercadería.
+
+
+v0.27: (Eddye Lino - 13/Jul/2011)
+-----
+Se modificaron los métodos: 
+   1) ZafCom20(ZafParSis obj)
+   2) insertarReg()
+   3) calcularTotDoc()
+Se agregó uso de la clase "ZafInvItm".
+Redondié a 2 decimales el Peso Total del documento.
+
+
+v0.28: (Eddye Lino - 19/Jul/2011)
+-----
+Se modificaron los métodos: 
+   1) ZafCom20(ZafParSis obj)
+   2) insertarReg()
+Antes había código regado en ZafCom20 que se podía meter en ZafInvItm. Ahora se metió
+todo el código en la clase ZafInvItm de manera que ahora sólo hay que invocar al método
+objInvItm.enviarRequisitoImp(con, intCodEmp, intCodLoc, Integer.parseInt(txtCodTipDoc.getText()), Integer.parseInt(txtCodDoc.getText()), 1);
+
+
+v0.29: (Eddye Lino - 26/Jul/2011)
+-----
+Se modificó el método: 
+   1) isCamVal()
+Se agregó validación para que todas las filas tengan la misma bodega origen y la misma bodega destino.
+
+
+v0.30: (Eddye Lino - 20/Ene/2012)
+-----
+Se corrigió el método: 
+   1) insertarDet()
+Antes:
+   strSQL+=", -" + ...
+Después:
+   strSQL+=", -1*" + ...
+
+
+v0.31: (Eddye Lino - 20/Feb/2013)
+-----
+Se modificó el método: 
+   1) isCamVal()
+Se mejoró la validación para el "Número de documento".
+
+
+v0.32: (Eddye Lino - 27/Jun/2013)
+-----
+Se corrigió el método: 
+   1) configurarFrm()
+Se corrigió la validación que impedía que no se pueda elegir la misma bodega como origen y destino
+porque para el "Administrador" estaba validando bien. Pero para los otros usuarios si estaba
+permitiendo elegir la misma bodega como origen y destino.
+
+
+v0.33: (Christian Mateo -  21/Ago/2015)
+-----
+Se agrega el uso de ZafReglas para generación de OD Y G.R., en reemplazo del ZafSer01.
+
+
+v0.34: (Christian Mateo -  26/May/2016)
+-----
+Se elimino objeto objZafGenGuiRem que generaba ordenes de despacho, por motivo que las ordenes de despacho se manejarán en el nuevo esquema de solicitudes de transferencia de inventario.
+
+
+v0.35: (Tony Sanginez -  01/Jun/2016)
+-----
+Se agrega constructor utilizado como HashMap para reportes de seguimiento de solicitudes de transferencias de inventario.
+
+
+v0.36: (Rosa Zambrano -  15/Jul/2016)
+-----
+Se elimina objeto objInvItm, el cual no estaba siendo utilizado.
+Se deshabilito las opciones de Insertar, Modificar, Eliminar, Anular para el proyecto de transferencias de inventario.
+Se agrega cambios para el proceso de solicitudes de transferencias de inventario.
+
+
+v0.37: (Rosa Zambrano -  06/Sep/2017)
+-----
+Se agrega columna de código de 3 letras.
+Se cambia forma de consultar no queden abiertas las conexiones.
+
+
+v0.38: (Eddye Lino - 26/Sep/2017)
+-----
+Se modificó el método: 
+   1) recostearItm()
+Se agregó código para que cuando se inserte se llame al método "costearDocumento" en lugar de "recostearItm2009DesdeFecha".

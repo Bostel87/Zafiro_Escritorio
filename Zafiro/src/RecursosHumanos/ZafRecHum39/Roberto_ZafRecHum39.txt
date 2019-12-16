@@ -1,0 +1,8 @@
+﻿
+CONTROL DE VERSIONES:
+=====================
+
+
+v1.0: (Roberto Flores- 19/07/2012)
+----
+Clase nueva para la Asignación de una plantilla al empleado

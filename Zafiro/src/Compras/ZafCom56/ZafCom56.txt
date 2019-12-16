@@ -1,0 +1,42 @@
+Pendientes:
+1)
+2)
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Ingrid Lino - 07/Oct/2009)
+----
+Programa que permite ingrear el stock mínimo(Grupo).
+
+v0.1.1: (Ingrid Lino - 22/Oct/2009)
+----
+Se colocó LEFT OUTER JOIN en lugar de INNER JOIN cuando se toma en cuenta para el query la "clasificación"
+
+v0.1.2: (Ingrid Lino - 04/Feb/2010)
+----
+Se corrigió que al seleccionar la opción de "Sólo mostrar items que tienen stock mínimo sugerido" estaba tomando el nd_stkMin y no nd_stkMinSug.
+
+v0.1.3: (Ingrid Lino - 28/Sep/2010)
+----
+Se cambió el campo de orden al momento de la consulta.
+
+v0.1.4: (Ingrid Lino - 29/Sep/2010)
+----
+Las columnas editables establan bloqueadas. Se las activo.
+
+v0.1.5: (Ingrid Lino - 08/Nov/2010)
+----
+Se colocó correctamente la visibilidad de los botones de la pantalla para que se muestren solo si se tiene permiso para ellos.
+
+v0.2: (Ingrid Lino - 13/Dic/2011)
+----
+Se cambia en un 50% el programa por nuevo esquema de columnas, ahora se debe presentar columnas con histórico de ventas, promedio calculado, promedio manual, etc.
+
+v0.2.1: (Ingrid Lino - 05/Dic/2014)
+----
+Se agregan en "Sugerencia de inventario desde otras bodegas" los códigos "S". Solicitado por Alfredo Paulson y Werner Campoverde.
+
+v0.2.2: (Ingrid Lino - 06/Ago/2015)
+----
+Se cambia el tipo de dato aceptado por el elemento número de meses a reponer, antes sólo valor entero, ahora permite valores decimales.

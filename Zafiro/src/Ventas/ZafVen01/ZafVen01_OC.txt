@@ -1,0 +1,41 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+
+v5.7: (José Marín M  - 20/Oct/2016)
+-----
+Items de codigos L, se confirman en Inmaconsa.
+
+v 5.8: (José Marín M  - 7/Mar/2017)
+-----
+Modificacion de Reservas.
+
+
+v 5.11:(Dennis  - 7/Mar/2017)
+-----
+Modificacion del metodo generaAsiento().
+
+
+v 5.13:(José Marín M  - 11/Oct/2017)
+-----
+Se agrega en la observacion el numero de la cotizacion.
+
+
+v 5.14:(José Marín M  - 30/Oct/2017)
+-----
+Se agrega Costeo de Items.
+
+
+v 5.15:(José Marín M  - 13/Nov/2017)
+-----
+Modificaciones para OC generadas por el sistema de reservas.
+
+
+v 5.16:(José Marín M  - 15/Oct/2018)
+-----
+Modificación en el despacho de los codigos L.
+

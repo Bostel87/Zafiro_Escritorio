@@ -1,0 +1,26 @@
+CONTROL DE VERSIONES:
+=====================
+v0.1: (Ingrid Lino - 24/Mar/2008)
+----
+Programa nuevo que permite el proceso de unificaci�n de clientes.
+ 1,- Se guardan los clientes que prevalecen y desaparecen en una tabla temporal junto con empresa y estado de procesado o no. Este proceso es el que realiza el usuario.
+ 2,- Para poder replicar la informaci�n a todos los servidores se deber� tener los datos completos en todas las empresas(proceso de llevar y traer datos haberlo corrido, y pararlo mientras se corre el proceso de unificaci�n. Proceso realizado por Sistemas por el momento, porq se debe tener todos los datos y ese proceso lo controla Javier Ayapata.
+NOTA: Este proceso s�lo se puede correr si los datos se encuentran en todas las empresas, caso contrario puede haber p�rdida de informaci�n y sin posibilidad de reversar el proceso de unificaci�n
+
+v0.2: (Ingrid Lino - 24/Mar/2008)
+----
+Se quit� filtro de repetici�n de clientes porque a la fecha por proceso corrido por el Ing. Eddye ya no existen clientes repetidos
+( al campo tx_ide (RUC de cliente) se lo afect� de la sgt manera: se tom� los 8 primeros d�gitos y se adicion� subgui�n (_) seguido del c�digo de cliente ).
+
+
+v0.2.1: (Ingrid Lino - 09/Abr/2008)
+----
+Se adicion� al filtro de las funciones cargarDetRegUno() y cargarDetRegDos() la empresa cuando se lee de tabla tbt_cliUni que solo ten�a filtro de estado.
+
+v0.3: (Ingrid Lino - 04/Sep/2008)
+----
+Se adicionaron campos a tablas.
+
+v0.3.1: (Ingrid Lino - 05/Nov/2010)
+----
+Se quitaron campos de los queries debido a que esos campos van a desaparecer de la db.

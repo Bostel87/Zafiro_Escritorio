@@ -1,0 +1,67 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v1.0: (Roberto Flores - 05/Sep/2012)
+----
+Clase nueva para las Justificaciones de las marcaciones incompletas.
+
+
+v1.01: (Roberto Flores - 04/Nov/2013)
+-----
+Se realiza validación para considerar justificaciones desde 7 días atrás de la fecha actual (desactivada).
+
+
+v1.02: (Roberto Flores - 13/Ene/2014)
+-----
+Se realizan validaciones para poder realizar justificaciones por oficinas por programa y usuario definidas en tbr_ofiLocPrgUsr.
+
+
+v1.03: (Roberto Flores - 24/Ene/2014)
+-----
+Se deja activa la validación para considerar justificaciones desde 7 días atrás de la fecha actual y se muestran solo empleados pertenecientes a la
+oficina en el filtro.
+
+
+v1.04: (Roberto Flores - 19/Mar/2014)
+-----
+Se desactiva la validación para considerar justificaciones desde 7 días atrás de la fecha actual.
+
+
+v1.05: (David Albuja - 04/Jun/2014)
+-----
+Se agrega validación para realizar devoluciones de valores descontados en periodos anteriores.
+Se activa la validación para considerar justificaciones desde 7 días atrás de la fecha actual.
+Validacion para no desjustificar un registro.
+Al grabar invoca al Servicio9.
+
+
+v1.06: (Eddye Lino - 25/Sep/2014)
+-----
+Se modificó el método: 
+   1) verificarFecha(String strFec)
+Werner autorizó temporalmente que se pudiera justificar 3o días para que se pongan al día.
+
+
+v1.07: (Eddye Lino - 26/Sep/2014)
+-----
+Se modificó el método: 
+   1) verificarFecha(String strFec)
+Se regresó la validación a 7 días.
+
+
+v1.08: (Eddye Lino - 28/Oct/2014)
+-----
+Se modificó el método: 
+   1) verificarFecha(String strFec)
+Werner autorizó temporalmente que se pudiera justificar 30 días para que se pongan al día.
+
+
+v1.09: (Eddye Lino - 04/Nov/2014)
+-----
+Se modificó el método: 
+   1) verificarFecha(String strFec)
+Se regresó la validación a 7 días.

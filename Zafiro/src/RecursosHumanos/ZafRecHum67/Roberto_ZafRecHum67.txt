@@ -1,0 +1,12 @@
+﻿
+CONTROL DE VERSIONES:
+=====================
+
+
+v1.0: (Roberto Flores- 28/06/2013)
+----
+Clase nueva Empleados por oficina...
+
+v1.01: (Roberto Flores- 11/07/2013)
+----
+Se realiza corrección relacionada a las operaciones que el usuario puede realizar...

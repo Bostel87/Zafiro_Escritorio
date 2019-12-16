@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE attributes PUBLIC "-//NetBeans//DTD DefaultAttributes 1.0//EN" "http://www.netbeans.org/dtds/attributes-1_0.dtd">
+<attributes version="1.0">
+    <fileobject name="ZafCxC48.java">
+        <attr name="class_dependency_Librerias.ZafToolBar.ZafToolBar" stringvalue="ZafCxC48.MiToolBar"/>
+        <attr name="class_dependency_java.awt.event.MouseMotionAdapter" stringvalue="ZafCxC48.ZafMouMotAda"/>
+        <attr name="class_dependency_java.lang.Thread" stringvalue="ZafCxC48.ZafThreadGUI"/>
+        <attr name="class_dependency_javax.swing.JInternalFrame" stringvalue="ZafCxC48"/>
+    </fileobject>
+    <fileobject name="ZafCxC48_1.java">
+        <attr name="class_dependency_java.lang.Thread" stringvalue="ZafCxC48_1.ZafThreadGUI"/>
+    </fileobject>
+</attributes>

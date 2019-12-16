@@ -1,0 +1,15 @@
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Ingrid Lino - 11/Jun/2007)
+----
+Programa nuevo, que permite realizar "Cierre anual del Sistema", este programa inhabilita realizar diarios en períodos cerrados
+
+v0.1b1: (Ingrid Lino - 02/Ago/2007)
+----
+Se quitó en filtro tx_tipCie='A' en línea 576
+
+
+v0.1b2: (Ingrid Lino - 22/Ago/2007)
+----
+Se adicionó validación que no permite cerrar/reaperturar años menores al 2006

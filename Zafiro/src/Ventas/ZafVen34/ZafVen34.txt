@@ -1,0 +1,47 @@
+﻿Pendientes:
+1) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Rosa Zambrano - 10/Dic/2015)
+----
+Clase nueva "Listado documentos de ventas (Detallado por ítem)".
+
+
+v0.2: (Rosa Zambrano - 15/Dic/2015)
+-----
+Se agrega búsqueda por ítem solicitado por el Ing. Werner Campoverde.
+
+
+v0.3: (Rosa Zambrano - 16/Dic/2015)
+-----
+Se agrega la columna de identificación del cliente solicitado por el Ing. Werner Campoverde.
+Se habilita reporte para que funcione por Grupo LSC.
+
+
+v0.4: (Rosa Zambrano - 17/Mar/2017)
+-----
+Se agregan cambios solicitados por Ing.Werner Campoverde y Ing.Fernando Ruiz:
+ - Filtro: Mostrar relacionadas.
+ - Columna con nombre del local.
+
+
+v0.5: (Rosa Zambrano - 09/Mar/2018)
+-----
+Se agregan cambios solicitados por Ing. Werner Campoverde:
+ - Nuevas columnas de costo unitario actual, peso y si es item de servicio o bien.
+ - Por defecto aparezca desmarcado el filtro de ventas relacionadas y los documentos activos.
+ - Filtro tipo de documento con check.
+ 
+
+v0.6: (Jose Mario Marin - 12/Jun/2019)
+-----
+Se agregan nuevas columnas solicitado por Alfredo, Usuario de ingreso, Usuario vendedor, Vendedor configurado, vendedor Proximo Mes
+
+
+v0.7: (Rosa Zambrano - 27/Ago/2019)
+-----
+Solicitado por Ing.Werner Campoverde, se agrega columna de costo unitario y costo total del documento.
+
+

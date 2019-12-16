@@ -1,0 +1,12 @@
+﻿Pendientes:
+1)
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Rosa Zambrano - 12/Sep/2017)
+----
+Nuevo programa "Configuración de vistos buenos".
+
+
+

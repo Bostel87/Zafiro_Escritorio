@@ -1,0 +1,46 @@
+
+CONTROL DE VERSIONES:
+=====================
+Clase nueva.
+v1.0: (Javier Ayapata - 2/Julio/2007)
+----
+  clase que permite saber el total vendido y comprado en el mes.
+
+v1.2: (Javier Ayapata - 9/Julio/2007)
+ se corrigue el query para obtener los pagos y los cobros.
+
+v1.3: (Javier Ayapata - 18/Julio/2007)
+  se agrega otra tabla donde muestra saldo inicial valor de ventas y saldo final 
+
+v1.4: (Javier Ayapata - 27/Julio/2007)
+ se agrega los ratios.
+
+v1.5: (Javier Ayapata - 02/Agosto/2007)
+ se corrigue el ratio cuando se esta calculando en el mes presente tomando los dias del mes.
+ 
+
+v1.7: (Javier Ayapata - 06/Agosto/2009)
+ se agrega para pueda incluir o excluir compras y ventas entre compañias.
+
+
+v1.8: (Javier Ayapata - 03/Diciembre/2009)
+ se agrega tipo de documento de depoC
+
+v1.9: (Javier Ayapata - 11/Enero/2010)
+ se corrigue signo al presentar .
+
+v2.0: (Javier Ayapata - 19/Enero/2010)
+ se marca por default las ventas entre compañias.
+
+v2.2: (Javier Ayapata - 26/Julio/2011)
+ se reestructura el programa con nuevos cambios.
+
+
+v2.3: (Javier Ayapata - 26/Agosto/2011)
+Se corrigue reporte estaba sumando los saldos incobrables y presentaba un  cobro erroneo
+
+
+v2.4: (José Marín - 8/Jul/2015)
+-----  
+Se excluye la tabla tbm_salCtaCli, pues no tine datos nuevos desde el 2008 y las funciones SaldoFin() y SaldoIni() que consultaban dicha tabla 
+solo traian 0 como resultado, pues buscan datos del año actual.

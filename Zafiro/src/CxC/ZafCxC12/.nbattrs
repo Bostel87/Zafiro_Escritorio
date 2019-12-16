@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE attributes PUBLIC "-//NetBeans//DTD DefaultAttributes 1.0//EN" "http://www.netbeans.org/dtds/attributes-1_0.dtd">
+<attributes version="1.0">
+    <fileobject name="ZafCxC12.java">
+        <attr name="class_dependency_java.awt.event.MouseMotionAdapter" stringvalue="ZafCxC12.ZafMouMotAdaUno;ZafCxC12.ZafMouMotAdaDos"/>
+        <attr name="class_dependency_java.lang.Cloneable" stringvalue="ZafCxC12"/>
+        <attr name="class_dependency_java.lang.Thread" stringvalue="ZafCxC12.ZafThreadGUIPro;ZafCxC12.ZafThreadGUIDos;ZafCxC12.ZafThreadGUIUno;ZafCxC12.ZafThreadGUIUniTmp"/>
+        <attr name="class_dependency_javax.swing.JInternalFrame" stringvalue="ZafCxC12"/>
+        <attr name="class_dependency_javax.swing.event.DocumentListener" stringvalue="ZafCxC12.ZafDocLis"/>
+    </fileobject>
+    <fileobject name="ZafCxC12_01.java">
+        <attr name="class_dependency_java.awt.event.MouseMotionAdapter" stringvalue="ZafCxC12_01.ZafMouMotAda"/>
+        <attr name="class_dependency_java.lang.Thread" stringvalue="ZafCxC12_01.ZafThreadGUI"/>
+        <attr name="class_dependency_javax.swing.JInternalFrame" stringvalue="ZafCxC12_01"/>
+        <attr name="class_dependency_javax.swing.event.DocumentListener" stringvalue="ZafCxC12_01.ZafDocLis"/>
+    </fileobject>
+</attributes>

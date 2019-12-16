@@ -1,0 +1,38 @@
+
+CONTROL DE VERSIONES:
+=====================
+
+Tbm_var v1.0: (Carlos Lainez- 05/04/2011)
+----
+Clase POJO(Plane Old Java Object) que representa la estructura de la tabla tbm_var
+Contiene metodos set y get para el manejo de la data
+
+
+Tbm_ciu v1.0: (Carlos Lainez- 05/04/2011)
+----
+Clase POJO(Plane Old Java Object) que representa la estructura de la tabla tbm_ciu
+Contiene metodos set y get para el manejo de la data
+
+
+Tbm_reg v1.0: (Carlos Lainez- 13/05/2011)
+----
+Clase POJO(Plane Old Java Object) que representa la estructura de la tabla tbm_reg
+Contiene metodos set y get para el manejo de la data
+
+
+Tbm_tipdocdigsis v1.0: (Carlos Lainez- 17/05/2011)
+----
+Clase POJO(Plane Old Java Object) que representa la estructura de la tabla tbm_tipdocdigsis
+Contiene metodos set y get para el manejo de la data
+
+
+Tbm_docdigsis v1.0: (Carlos Lainez- 24/05/2011)
+----
+Clase POJO(Plane Old Java Object) que representa la estructura de la tabla tbm_docdigsis
+Contiene metodos set y get para el manejo de la data
+
+
+Tbm_emp v1.0: (Carlos Lainez- 22/06/2011)
+----
+Clase POJO(Plane Old Java Object) que representa la estructura de la tabla tbm_emp
+Contiene metodos set y get para el manejo de la data

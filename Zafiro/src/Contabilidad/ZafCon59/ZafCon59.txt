@@ -1,0 +1,159 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Ingrid Lino - 01/Jul/2011)
+----
+Programa que muestra talon resumen para declaraciones. Genera formulario 103 y 104.
+
+v0.1.1: (Ingrid Lino - 06/Jul/2011)
+----
+Se adiciono código para obtener pagos de bienes o servicios que no están sujetos a retención.
+
+v0.1.2: (Ingrid Lino - 12/Jul/2011)
+----
+Se quitaron registros de IVA que no debian tomarse en cuenta en valores de Compras.
+
+v0.1.3: (Ingrid Lino - 21/Jul/2011)
+----
+Se quito validacion de tx_codSri en el query de doc. que tienen IVA y no generan retencion
+
+v0.1.4: (Ingrid Lino - 26/Sep/2011)
+----
+Se cambio esquema de Formulario 103 y de 104.
+
+v0.1.5: (Ingrid Lino - 14/Oct/2011)
+----
+Al calcular el valor de credito del mes anterior no se estaba tomando en cuenta la restriccion que si las ventas de contado son negativas(DEVVEN mayores) se debe tomar como valor de credito el valor de las Ventas a Credito - Vetnas de contado(DEVVEN) y ese es el valor de credito del mes anterior.
+
+v0.1.6: (Ingrid Lino - 28/Oct/2011)
+----
+Se adiciona esquema para Cosenco(solo se adiciona al leer CRUP en TCD es codigo=61, en Cosenco=60).
+
+v0.1.7: (Ingrid Lino - 11/Nov/2011)
+----
+Se realizan cambios para poder presentar información para Cosenco, Detopacio(Para Ecuatosa no funciona porque las cuentas contables no son iguales a las otras empresas).
+
+v0.2: (Ingrid Lino - 29/Feb/2012)
+----
+Se cambian los queries para obtener los datos de Compras y de Iva en Compras.
+
+v0.2.1: (Ingrid Lino - 25/Abr/2012)
+----
+Se adiciona en el query de N/C las cuentas 551,1037,1163 que faltaban(Ventas UIO, Ventas StoDomingo, etc).
+
+v0.2.2: (Ingrid Lino - 21/Jun/2012)
+----
+Se adiciona las columnas para presentar valores de DEVCOM que se han dado de baja por CRUP y no por cruces con FACCOM.
+
+v0.2.3: (Ingrid Lino - 15/Nov/2012)
+----
+Se cambió la versión del formulario 103, de 01 a 02  en: <codigo_version_formulario>03201202</codigo_version_formulario>
+
+v0.2.4: (Ingrid Lino - 28/Feb/2013)
+----
+Se modifica el formato de generación de xml del 103 y 104, por cambios en programas del SRI, el DIM ahora contiene el Formularios y otros mas y ahi no leia el archivo xml generado por el sistema.
+
+v0.2.5: (Ingrid Lino - 08/Ene/2015)
+----
+Se agregan tipos de documentos FACVENE(228) y DEVVENE(229).
+
+v0.2.6: (Dennis Betancourt - 26/May/2015)
+----
+En el query que trae el valor de 'IVA Compras' no se considera los documentos que tengan cuentas de IVA transitorias.
+
+v0.2.7: (Dennis Betancourt - 10/May/2016)
+----
+Se agregan columnas de Retencion IVA 10% y Retencion IVA 20% en el programa y en el reporte.
+
+v0.2.8: (Dennis Betancourt - 12/May/2016)
+----
+En el query que trae el valor de 'Ret.IVA 10%' en la condicion "AND a3.co_tipRet IN(...)", se quitó el co_tipRet 12 = RF10 = "Retención en la fuente 10%" para evitar obtener un valor no real al calcular el valor de Ret.Iva 10% debido a que aparece el numero 10 ocasionando conflicto al momento de realizar GROUP BY.
+
+v0.2.9: (Dennis Betancourt - 26/May/2016)
+----
+Se busco codigo quemado de IVA (0.12; 1.12) y se modifico para que el valor sea tomado del campo de la tabla respectiva donde esta guardado el valor de IVA.
+
+v0.2.10: (Dennis Betancourt - 30/Ago/2016)
+----
+1) Se agregaron querys para obtener la base imponible y el valor respectivo para IVA Ventas e IVA Compras para el 12% y 14%. Los valores calculados no se muestran en el programa pero si en el reporte.
+2) Para IVA Importacion, se procedio a calcular de forma correcta el valor (col. Val.) de acuerdo a lo indicado por el valor de IVA. Es decir, si el periodo seleccionado es menor al 1/Jun/2016 se calcula basado en el IVA 12%. Caso contrario, se tomara el porcentaje de IVA Compras que esta en el objeto ZafParSis.
+
+v0.2.11: (Dennis Betancourt - 31/Ago/2016)
+----
+Se agregan columnas de Credito tributario (IVA Retencion en Ventas) del 10%, 20%, 30%, 70% y 100% en el programa y en el reporte.
+
+v0.2.12: (Dennis Betancourt - 07/Sep/2016)
+----
+1) Si las Bases_Imponibles_IVA_Ventas de 12% y 14% son de signo distinto, no se debera aplicar la funcion abs() para que el calculo se realice correctamente, pues si las Bases_Imponibles tienen distinto signo es debido a la presencia de TipDoc DEVVENE y debe efectuarse una resta.
+2) En el query de IVA Compras, al momento de traer los documentos que tengan TipDoc "Notas_debito_proveedores", se incluyo en el Where las cuentas contables "14% IVA COMPRAS" y "IVA BIENES Y SERVICIOS 14%".
+
+v0.2.13: (Dennis Betancourt - 11/Nov/2016)
+----
+Hay facturas que tienen en tbm_detMovInv registros donde hay items con y sin IVA, y el calculo no se estaba haciendo correctamente en las columnas "Val.Bru." y "Val.Net." de Ventas con IVA y Ventas sin IVA.
+
+v0.2.14: (Dennis Betancourt - 18/Nov/2016)
+----
+Se agrego informacion desglosada para mostrar las Ventas al contado y Ventas a credito para el IVA 12% y 14%. Los valores calculados no se muestran en el programa pero si en el reporte.
+
+v0.2.15: (Cristian Mateo - 08/Ene/2017)
+----
+
+v0.2.16: (Tony Sanginez - 04/Feb/2017)
+-----
+Se agregó nuevo campo de compensacion solidaria. Se agrego en el query de busqueda la compensacion solidaria.
+
+v0.2.17: (Tony Sanginez - 09/Feb/2017)
+-----
+Se agregaron campos de Anio y validaciones de null para el reporte.
+
+v0.2.18: (Tony Sanginez - 09/Feb/2017)
+-----
+Se agrego un check box para el uso del formato Antiguo.
+
+v0.2.19: (Tony Sanginez - 14/Feb/2017)
+-----
+Se agregan filtros para el modo de impresión.
+
+v0.2.20: (Tony Sanginez - 15/Feb/2017)
+-----
+Se agrego filtro para que en los valores de Contado y Credito no incluya los valores con iva 0%
+
+v0.2.21: (Tony Sanginez - 17/Feb/2017)
+-----
+Se agrego filtro para que en los valores de Contado y Credito no incluya los valores con iva detallado 0%
+
+v0.2.22: (Tony Sanginez - 22/Feb/2017)
+-----
+Solo utiliza los valores de la tabla nueva para compras.
+
+v0.2.23: (Tony Sanginez - 01/Mar/2017)
+-----
+Se agregan validaciones para que los campos de compensación se carguen de la nueva tabla y se hacen mejoras al reporte anterior para la mejora de los campos de compra.
+
+v0.2.24: (Tony Sanginez - 22/Mar/2017)
+-----
+Se agregan validaciones para formato antiguo para que me divida el valor de iva 12% e iva 14% en compras.
+
+v0.2.25: (Tony Sanginez - 25/Mar/2017)
+-----
+Se agrega validación para Cosenco de credito tributario 10 y 100 porque estan quemadas las cuentas y traia valores de cuentas que no tienen que ver.
+
+v0.2.26: (Tony Sanginez - 12/Jun/2017)
+-----
+Se agrega validación para importaciones de Iva 14 hasta el mes de Mayo del 2017
+
+v0.2.27: (Tony Sanginez - 22/Jun/2017)
+-----
+Implementación del formulario 103 con su respectivo Reporte.
+
+v0.2.28: (Tony Sanginez - 17/Jul/2017)
+-----
+Se agregan nuevos campos de retencion de credito tributario del %50 y modificaciones en el reporte antiguo y nuevo.
+
+v0.2.29: (Tony Sanginez - 22/Ago/2017)
+-----
+Se modifica al generar el Rpt de Iva a partir del 2017Junio ya que no tomaba en cuenta algunos valores.

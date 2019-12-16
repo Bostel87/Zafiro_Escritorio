@@ -1,0 +1,13 @@
+﻿
+CONTROL DE VERSIONES:
+=====================
+
+v0.1:  Javier Ayapata   08 / Sep / 2009
+ Clase Nueva
+
+
+v0.2:  Javier Ayapata   18 / Sep / 2009
+se agrega para que se cree en todas las compañias.
+
+v0.3:  Javier Ayapata   06 / Nov / 2009
+se agrega tipo de grupo.

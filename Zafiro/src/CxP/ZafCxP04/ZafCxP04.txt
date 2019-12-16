@@ -1,0 +1,53 @@
+Pendientes:
+1) Dividir el programa en los otros programas de autorización de bancos y programa de autorización de pagos.
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1 b1: (Ingrid Lino - 06/Ago/2008)
+---
+Nuevo programa que permite conceder vistos buenos a los usuarios para los diferentes tipos de documentos
+
+v0.1 : (Ingrid Lino - 02/Sep/2008)
+---
+Pase a producción
+
+v0.1.1 : (Ingrid Lino - 09/Sep/2008)
+---
+    -El método cargarDetReg() cuando no encontraba registros, presentaba "Cargando datos",
+     así q se modificó la parte de presentar número de registros encontrados, en el caso q el resultSet no 
+     devuelva registros, presenta "0 registros encontrados" y ya no se queda con el msj "Cargando datos"
+    -Se cambió el query porque el valor de documento lo estaba presentando en base al corte de la fecha de vencimiento, es decir,
+     si el documento tenía 2 pagos de 100(100*2=200) y la fecha de pago del primero era 01-01-2008 y del otro 05-05-2008
+     y la fecha de corte de vecimiento era de 01-04-2008, el valor de documento q presentaba era sólo 100, cuando debía presentar 200.
+
+v0.2 : (Ingrid Lino - 09/Sep/2008)
+---
+    - Se adicionó en el filtro los documentos q pertenecieran al módulo '4'.
+    - Cuando se cargaba un tipo de documento y luego se cambiaba a otro, el proceso de generación de columnas dinámicas
+      se colgaba porq no estaba eliminando las columnas adicionadas y se agregaban nuevamente.
+
+v0.2.1 : (Ingrid Lino - 30/Sep/2008)
+---
+    -Se adicionó en configurarVenConTipDoc() el filtro para tipo de documentos de acuerdo a tipos de doc asociados al prog.
+
+v0.3 b1: (Ingrid Lino - 12/Nov/2008)
+---
+    -Se adicionó al programa para que presente sólo en el caso de FACVEN los documentos que tienen exceso en valores.
+
+v0.3: (Ingrid Lino - 17/Nov/2008)
+---
+Pase a producción.
+
+v0.4: (Ingrid Lino - 09/Jul/2009)
+---
+Se adicionó en el header de la tabla q cuando se dé click, se autoseleccionen todas las columnas del objeto checkbox(Aprobar)
+
+v0.5: (Ingrid Lino - 18/Ago/2009)
+---
+Se cambió el filtro de Fecha de Vencimiento por Fecha de Documento.
+
+v0.6: (Ingrid Lino - 05/Nov/2010)
+---
+Se quitaron campos de los queries debido a que esos campos van a desaparecer de la db

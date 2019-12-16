@@ -1,0 +1,3 @@
+ Ver 0.1  javier Ayapata 08-Febrero-2007
+ se crea clase nueva para poder obtener el coneccion remota cuando mueva inventario.
+ 

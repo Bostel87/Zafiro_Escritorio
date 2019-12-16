@@ -1,0 +1,9 @@
+
+
+CONTROL DE VERSIONES:
+=====================
+
+v1.0: (Roberto Flores- 21/09/2011)
+----
+Clase nueva para el mantenimiento de los calendarios laborales.
+Corregir la fecha de inicio de desarrollo

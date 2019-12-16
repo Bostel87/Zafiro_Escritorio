@@ -1,0 +1,39 @@
+funcion para crear item con terminacion S 
+
+try
+            {
+                java.sql.Connection con = DriverManager.getConnection(objZafParSis.getStringConexion(),objZafParSis.getUsuarioBaseDatos(),objZafParSis.getClaveBaseDatos());
+                con.setAutoCommit(false);
+               
+           
+                 String Ter="P";
+                
+                   java.sql.Statement stmLis;
+                   java.sql.ResultSet rstLis;
+        
+                if (con!=null)
+                {
+        
+                    String sql = "select b.co_itm from prueba_item as a " +
+                    " inner join tbm_inv as b on (upper(trim(a.codalt))=upper(trim(b.tx_codalt)) and b.co_emp=1)" +
+                    " where upper(a.codalt)  like '%"+Ter+"'";
+                    stmLis = con.createStatement();
+                    rstLis = stmLis.executeQuery(sql);
+                    while (rstLis.next())
+                    {
+                    
+                    int intCodEqu  = getCodItemenMaestro(con);
+                    if (intCodEqu == 0)
+                        MensajeInf("Problemas al crear codigo de item consolidado");
+                      
+                    CrearItemenEmpresas(con,intCodEqu, rstLis.getInt(1) , Ter);
+                    
+                    System.out.println("OK......"+rstLis.getInt(1));
+                }
+                con.commit();    
+              }  
+            }catch(SQLException e){
+                
+                objUti.mostrarMsgErr_F1(this, e);
+              
+            }

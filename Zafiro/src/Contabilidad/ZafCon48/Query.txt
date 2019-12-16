@@ -1,0 +1,38 @@
+SELECT x.co_reg, x.co_cta, x.tx_codCta, x.descripc, x.ne_pad, x.ne_niv,
+ SUM(x.salEne) AS salEne, SUM(x.salFeb) AS salFeb, SUM(x.salMar) AS salMar,
+ SUM(x.salAbr) AS salAbr, SUM(x.salMay) AS salMay, SUM(x.salJun) AS salJun,
+ SUM(x.salJul) AS salJul, SUM(x.salAgo) AS salAgo, SUM(x.salSep) AS salSep,
+ SUM(x.salOct) AS salOct, SUM(x.salNov) AS salNov, SUM(x.salDic) AS salDic FROM(
+	SELECT b1.co_cta, b1.tx_codcta,
+	CASE WHEN b1.tx_desLar IS NULL THEN a2.tx_nom
+	ELSE b1.tx_desLar END AS descripc, a2.co_reg, a2.ne_pad,a2.ne_niv,
+	CASE WHEN a4.ne_mes=1 THEN SUM(a4.nd_val) END AS salEne,
+	CASE WHEN a4.ne_mes=2 THEN SUM(a4.nd_val) END AS salFeb,
+	CASE WHEN a4.ne_mes=3 THEN SUM(a4.nd_val) END AS salMar,
+	CASE WHEN a4.ne_mes=4 THEN SUM(a4.nd_val) END AS salAbr,
+	CASE WHEN a4.ne_mes=5 THEN SUM(a4.nd_val) END AS salMay,
+	CASE WHEN a4.ne_mes=6 THEN SUM(a4.nd_val) END AS salJun,
+	CASE WHEN a4.ne_mes=7 THEN SUM(a4.nd_val) END AS salJul,
+	CASE WHEN a4.ne_mes=8 THEN SUM(a4.nd_val) END AS salAgo,
+	CASE WHEN a4.ne_mes=9 THEN SUM(a4.nd_val) END AS salSep,
+	CASE WHEN a4.ne_mes=10 THEN SUM(a4.nd_val) END AS salOct,
+	CASE WHEN a4.ne_mes=11 THEN SUM(a4.nd_val) END AS salNov,
+	CASE WHEN a4.ne_mes=12 THEN SUM(a4.nd_val) END AS salDic
+	FROM tbm_cabEstFinPer AS a1 INNER JOIN tbm_detEstFinPer AS a2
+	ON a1.co_emp=a2.co_emp AND a1.co_estFin=a2.co_estFin
+	LEFT OUTER JOIN tbm_plaCta as b1 ON a2.co_emp=b1.co_emp AND a2.co_cta=b1.co_cta
+	LEFT OUTER JOIN tbm_detEstFinPre AS a4
+	ON b1.co_emp=a4.co_emp AND b1.co_cta=a4.co_cta
+	LEFT OUTER JOIN tbm_cabEstFinPre AS a3
+	ON a4.co_emp=a3.co_emp AND a4.ne_ani=a3.ne_ani AND a4.ne_ani=2007
+	WHERE a1.co_emp=1
+	GROUP BY a2.ne_pad,a2.ne_niv, b1.co_cta, b1.tx_codcta, b1.tx_desLar, a2.tx_nom, a4.ne_mes, a2.co_reg
+	ORDER BY a2.ne_pad, a2.ne_niv, a2.co_reg
+ ) AS x
+ GROUP BY x.co_cta, x.tx_codCta, x.descripc, x.co_reg, x.ne_pad, x.ne_niv
+ ORDER BY x.co_reg
+
+----------------------------------------------------------------------------
+                    dblSalEne=rst.getDouble("salEne");
+//                    if(dblPrcIncDecEne!=0)
+//                        dblSalEne=(dblSalEne*(dblPrcIncDecEne/100))+dblSalEne;

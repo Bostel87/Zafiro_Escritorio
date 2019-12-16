@@ -1,0 +1,21 @@
+﻿Pendientes:
+1) ISD Costos: Análisis para validar fechas de vigencias en ISD.
+2)
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Ingrid Lino - 01/Dic/2011)
+----
+Nuevo programa para ingresar partidas arancelarias
+
+
+v0.1.1: (Ingrid Lino - 02/Dic/2011)
+-----
+El campo fecha hasta no estaba permitiendo null. Se valida esto.
+
+
+v0.1.2: (Rosa Zambrano - 12/Ene/2018)
+-----
+Se agrega opción de ISD (Costo).
+Valida que se haya actualizado el estado de costo en el ISD antes de insertar, modificar.

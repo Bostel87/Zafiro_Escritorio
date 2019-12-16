@@ -1,0 +1,26 @@
+﻿
+CONTROL DE VERSIONES:
+=====================
+
+
+v0.1: (Angie Bajaña- 01/09/2015)
+-----
+Clase nueva
+
+
+v0.2: (Tony Sanginez- 07/10/2015)
+-----
+Se modificó el método: 
+   1) tblDatKeyPressed(java.awt.event.KeyEvent evt)
+Se reemplazó "evt.setKeyCode(0);" por "evt.consume();" porque a partir de "Java 7" ya no consumía el ENTER.
+
+
+v0.3: (Tony Sanginez- 27/11/2015)
+-----
+Se agregó el día domingo como hora extraordinaria, anteriormente solo estaban los días sabados.
+Se agregó un union al query para poder visualizar las horas extras de los domingos.
+
+
+v0.4: (Tony Sanginez- 27/10/2016)
+-----
+se corrige error que cuando una hora no es autorizada botaba un null y evitaba poder observar los otros registros.

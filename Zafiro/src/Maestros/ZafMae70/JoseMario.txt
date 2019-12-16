@@ -1,0 +1,7 @@
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.01: (José Marín - 11/Sep/2018)
+----
+Programa nuevo "Usuarios por programa y usuario".

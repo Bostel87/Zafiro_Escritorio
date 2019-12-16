@@ -1,0 +1,9 @@
+﻿Pendientes:
+1)
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Ingrid Lino - 22/May/2014)
+----
+Nuevo programa "Items por proveedores del exterior" permite configurar los items del inventario a un determinado proveedor del exterior.

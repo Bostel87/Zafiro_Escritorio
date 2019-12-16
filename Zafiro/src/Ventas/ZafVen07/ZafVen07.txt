@@ -1,0 +1,18 @@
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Ingrid Lino - 11/May/2010)
+----
+Nuevo programa que permite autorizar documentos para ser anulados.
+
+
+v0.1.1: (Ingrid Lino - 11/May/2010)
+-----
+Se adicionó filtro "Mostrar documentos que tienen pagos asociados" para permitir autorizar documentos por pagar al mismo tiempo que se autorizan sus pagos asociados.
+
+
+v0.1.2: (Rosa Zambrano - 15/Jun/2015)
+-----
+Se corrige consulta de Tipos Documentos por Programa y Usuario.
+Se agrega nuevos documentos electrónicos Facvene y Devvene.

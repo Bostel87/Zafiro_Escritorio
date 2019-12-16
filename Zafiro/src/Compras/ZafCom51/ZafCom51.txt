@@ -1,0 +1,191 @@
+﻿
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Javier Ayapata - 25/Feb/2011)
+----
+Clase nueva. 
+
+
+v0.2: (Javier Ayapata - 02/Mar/2011)
+-----
+Se corrige el tiempo de consulta.
+
+
+v0.3: (Javier Ayapata - 23/Mar/2011)
+-----
+Se corrige para que aparesca la bodega predeterminada.
+
+
+v0.4: (Javier Ayapata - 25/Mar/2011)
+-----
+Se cambia para que presenta todas las bodegas en una tabla.
+
+
+v0.5: (Javier Ayapata - 27/Abr/2011)
+-----
+Se agrega ordenado por codigo alterno del item en ventana de consulta de item.
+
+
+v0.6: (Javier Ayapata - 15/Jun/2011)
+-----
+Se agrega ordenado por secuencia de grupo.
+
+
+v0.7: (Javier Ayapata - 20/Jun/2011)
+-----
+Se agrega usuario que ingresa el documento solo valido para transferencia.
+
+
+v0.8: (Javier Ayapata - 29/Jul/2011)
+-----
+Se agrega para que cuando se cliente relacionado presenta lo que tenga on obser. de detmovinv que seria el numero de guia.
+
+
+v0.9: (Javier Ayapata - 03/Sep/2011)
+-----
+Se realiza cambios en el kardex para el nuevo cambio de esquema de guias.
+
+
+v1.0: (Javier Ayapata - 23/Sep/2011)
+-----
+Se agrega cambios nuevo esquema Guías-OD.
+
+
+v1.1: (Erik Flores - 21/Jun/2012)
+-----
+Se modifica consulta de item en el boton cantidad por egresar. Se esta mostrando valores erroneos.
+
+
+v1.2: (Erik Flores - 26/Sep/2012)
+-----
+Se agrega un Listado de ordenes de despacho (Relacionadas) al momento de abrir el listado de guias de remision. 
+
+
+v1.3: (Erik Flores - 01/Oct/2012)
+-----
+Se agrega la visualizacion de ordenes por transferencias de inventario. 
+
+
+v1.4: (Erik Flores - 08/Oct/2012)
+-----
+Se muestra las guias asociadas a las ordenes de despacho relacionadas.
+
+
+v1.5: (Erik Flores - 10/Oct/2012)
+-----
+Se muestra las guias asociadas a las ordenes de despacho relacionadas.
+
+
+v1.6: (Erik Flores - 12/Nov/2012)
+-----
+Se muestra las guias asociadas a trainv, trainau, devven, devcom, compra.
+
+
+v1.7: (Alex Morán - 18/Jun/2013)
+-----
+Se muestra las guias asociadas a inbopr.
+
+
+v1.8: (Alex Morán - 03/Sep/2013)
+-----
+Se corrije consulta que presenta listado de documentos asociados por Inmaconsa.
+
+
+v1.9: (Rosa Zambrano - 21/Dic/2015)
+-----
+Se configura para que cuando sea Cosenco se presente todos los documentos relacionados.
+
+
+v2.0: (Rosa Zambrano - 21/Dic/2015)
+-----
+Se realizan otras mejoras.
+
+
+v2.1: (Rosa Zambrano - 12/Ene/2016)
+-----
+Se agrega búsqueda por código de 3 letras aprobado por Ing. Werner Campoverde.
+
+
+v2.2: (Rosa Zambrano - 19/Jul/2016)
+-----
+Se agrega cambios en los querys que presentan las cantidades pendientes de ingresar y egresar para el nuevo proceso de solicitudes de transferencias.
+
+
+v2.3: (Rosa Zambrano - 26/Jul/2016)
+-----
+Se agrega cambios en el boton de cantidad de  egresar mercaderia.
+
+
+v2.4: (Tony Sanginez - 28/Jul/2016)
+-----
+Se agregan dos textboxs para verificar la cantidad de reserva para venta y la cantidad disponible.
+
+
+v2.5: (Tony Sanginez - 02/Ago/2016)
+-----
+Validación para la visualización de bodegas de ingreso y egreso en donde aparecia duplicada la bodega
+
+
+v2.6: (Rosa Zambrano - 15/Sep/2016)
+-----
+Se cambia query de botones de cantidad de egresar e ingresar mercaderia.
+
+
+v2.7: (Rosa Zambrano - 21/Sep/2016)
+-----
+Se realizan mejoras y se oculta columna de Cantidad Despacho.
+
+
+v2.8: (Rosa Zambrano - 26/Ene/2017)
+-----
+Se agrega columna de código de seguimiento.
+
+
+v2.9: (Rosa Zambrano - 08/Feb/2017)
+-----
+Se agrega order by para que presente el orden adecuado.
+
+
+v3.0: (Rosa Zambrano - 17/Feb/2017)
+-----
+Se realizan modificaciones para la sumatoria total de las cantidades pendientes de ingresar y egresar leyendo en tbm_detMovInv en vez de tbm_invBod.
+Se agrega la consulta de los pendientes de bodega y despacho para facilitar la consulta al personal de despacho.
+
+
+v3.1: (Rosa Zambrano - 19/Sep/2017)
+-----
+Se realizan otras mejoras.
+Se agrega cantidades de reserva solicitada y botones que muestren las cotizaciones que tienen cantidades reservadas.
+Se corrige query para que muestre las guias de remision para las transferencias de inventario.
+
+
+v3.2: (Rosa Zambrano - 21/Sep/2017)
+-----
+Se corrige query de mostrarDocumentosEgresos().
+
+
+v3.3: (Rosa Zambrano - 11/Oct/2017)
+-----
+Se corrige query de documentos reservados por venta, en la función mostrarDocumentosReservasVendidas.
+Se agrega el co_tipDoc=294 para documentos de egresos (Prefacturas).
+Se agrega en el query de consulta que excluya los documentos con tbm_cabMovInv.st_Reg ='O', para ocultar los ajustes que aun no han sido aprobados.
+Se realizan otras mejoras.
+
+
+v3.4: (Rosa Zambrano - 20/Oct/2017)
+-----
+Se agrega en el query de consulta que excluya los items con tbm_detMovInv.st_Reg ='I', para ocultar los items eliminados en los ajustes.
+
+
+v3.5: (Rosa Zambrano - 12/Dic/2017)
+-----
+Se cambia en la consulta de documentos pendientes por egresar que muestre los documentos que no tengan seguimiento.
+Las funciones modificadas son: cargarCantidadesTotales, mostrarDocumentosEgresos.
+
+
+v3.6: (Rosa Zambrano - 08/Ene/2018)
+-----
+Se cambia en la consulta de documentos de reservas autorizadas, que presentaba error al momento de querer visualizar las reservas.
+
+

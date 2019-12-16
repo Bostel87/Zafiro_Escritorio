@@ -1,0 +1,16 @@
+﻿Pendientes:
+1) 
+2) 
+3) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Rosa Zambrano - 12/Oct/2017)
+----
+Clase nueva "Actualización de datos de conteo."
+
+
+v0.1.1: (Rosa Zambrano - 07/May/2018)
+----
+Implementar Histórico con libreria ZafHisTblBasDat.

@@ -1,0 +1,15 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.01: (José Marín - 26/Ago/2019)
+----
+Clase nueva para el manejo de perfiles/Guardar escritorios. 
+
+
+v0.02: (José Marín - 17/Sep/2019)
+----
+Se agregan nuevos metodos perfiles/Guardar escritorios. 

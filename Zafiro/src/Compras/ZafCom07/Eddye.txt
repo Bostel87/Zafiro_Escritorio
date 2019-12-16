@@ -1,0 +1,248 @@
+﻿Pendientes:
+1) Recosteo de cada empresa.
+2) Filtro de items y de fechas.
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 20/Ene/2006)
+-----
+Clase nueva.
+
+
+v0.2: (Eddye Lino - 16/Oct/2006)
+-----
+Se cambió el código para que trabajara con la nueva forma de costear.
+
+
+v0.3: (Eddye Lino - 19/Oct/2006)
+-----
+Se agregó código para que permitiera programar la ejecución a una fecha y hora determinada.
+
+
+v0.4: (Eddye Lino - 20/Oct/2006)
+-----
+Se corrigió query que trae los items a procesar para que no filtre por local.
+
+
+v0.5: (Eddye Lino - 31/Ene/2007)
+-----
+Se corrigió problemas de recosteo.
+
+
+v0.6: (Eddye Lino - 25/Abr/2007)
+-----
+Se agregó código para evitar que se pueda recostear items de períodos anteriores al "31/Dic/2006".
+
+
+v0.7: (Eddye Lino - 19/Nov/2007)
+-----
+Se reemplazó el uso de la clase "ZafSelectDate" por la clase "ZafSelFec".
+
+
+v0.8: (Eddye Lino - 27/Nov/2007)
+-----
+Se corrigió el método: 
+   1) recostearItm()
+En dicho método se agregó una condición a los querys para que sólo se actualizaran los diarios correspondientes
+a costo del año 2007 en adelante. Esto es una solución provisional hasta que se lo haga dinámicamente.
+
+
+v0.9: (Eddye Lino - 14/Dic/2007)
+-----
+Se corrigió el método: 
+   1) recostearItm()
+Se corrigieron los querys que generan los asientos de diario porque generaban un error cuando se recosteaba
+la empresa grupo.
+
+
+v0.10: (Eddye Lino - 11/Ene/2008)
+------
+Se corrigió el método: 
+   1) recostearItm()
+Se corrigieron los querys que enceran los items de servicio debido a que inicialmente el campo tbm_inv.st_ser sólo almacenaba 'S' o 'N'
+pero en el transcurso del 2007 apareció el estado 'T' que indicaba que era un item de servicio pero de transporte.
+Se reemplazó la línea:
+    strSQL+=" AND st_ser='S'";
+Por:
+    strSQL+=" AND st_ser IN ('S', 'T')";
+
+
+v0.11: (Eddye Lino - 30/Ene/2008)
+------
+Se corrigió el método: 
+   1) recostearItm()
+Se cambiaron de posición los querys que enceraban los items de servicio. Antes dichos querys se encontraban al final del
+proceso de generación de asientos de diario. Esto ocasionaba que se generaran asientos de diario de costo de ventas por items de servicio.
+Además que creó la variable "strFecGenAsiDia" para facilitar la configuración de la fecha desde la cual se debe genrar los
+asientos de diario de costo de ventas.
+
+
+v0.12: (Eddye Lino - 06/Feb/2008)
+------
+Se corrigió el método: 
+   1) recostearItm()
+Se agregó la condición "AND (a1.st_tipDev IS NULL OR a1.st_tipDev='C')" a los querys que generan los asientos de diario debido
+a que se estaban generando asientos de diario que correspondían a devoluciones en venta por precio o porcentaje de descuento
+cuando en realidad sólo deben generarse por devolución de cantidades.
+
+
+v0.13: (Eddye Lino - 30/Abr/2009)
+------
+Se modificó el método: 
+   1) recostearItm()
+Se modificó el código para que al costear fechas menores al año 2009 se utilice el método "objUti.recostearItm" y para fechas
+mayores o iguales al año 2009 se utilice el método "objUti.recostearItm2009RangoFechas".
+
+
+v0.14: (Eddye Lino - 03/Jun/2009)
+------
+Se modificó los métodos: 
+   1) recostearItm()
+Se eliminó de los querys la condición "AND (a1.st_tipDev IS NULL OR a1.st_tipDev='C')".
+Hubo que quitar dicha condición porque luego de un análisis se llegó a la conclusión de 
+que las devoluciones de ventas también deben generar asientos de diario de costo de venta.
+
+
+v0.15: (Eddye Lino - 08/Jun/2009)
+------
+Se corrigió el método: 
+   1) cargarDetReg()
+Se modificó el código para que trabajara con un JProgressBar indeterminado para evitar hacer doble consulta y
+disminuir el tiempo de consulta. Además se agregó el filtro "Fecha y hora de consulta".
+
+
+v0.16: (Eddye Lino - 16/Jul/2009)
+------
+Se modificó el método: 
+   1) recostearItm()
+Se agregó validación para que hasta el año 2008 se costeo utilizando el método "recostearItmGrp" y del 2009
+en adelante se costee utilizando "recostearItm2009RangoFechas".
+
+
+v0.17: (Eddye Lino - 17/Ago/2009)
+------
+Se agregó casilla de verificación "Actualizar los asientos de diario".
+
+
+v0.18: (Eddye Lino - 07/Ene/2010)
+------
+Se corrigió el método: 
+   1) recostearItm()
+Se cambió los querys que generaban el detalle del asiento de diario porque tenían una falla y además se lo
+hizo más dinámico ya que antes las cuentas eran fijas y ahora se las toma de las tablas tbm_bod y tbm_loc.
+
+
+v0.19: (Eddye Lino - 23/Abr/2010)
+------
+Se modificó el método: 
+   1) configurarFrm()
+   2) recostearItm()
+Se hizo que cuando se ingresara por la empresa grupo no apareciera marcado la casilla
+"Actualizar los asientos de diario".
+Tambie se cambio la fecha de actualización de diarios a "2010/01/01" ya que el año 2009
+ya está cerrado.
+
+
+v0.20: (Eddye Lino - 23/Dic/2010)
+------
+Se modificó el método: 
+   1) recostearItm()
+Se agregó la clase ZafTblOrd y se hizo que si el item tenía problemas al recostear no se marcara la casilla de verificación.
+
+
+v0.21: (Eddye Lino - 16/May/2011)
+------
+Se modificó el método: 
+   1) recostearItm()
+Se cambió la fecha de generación de diarios.
+
+
+v0.22: (Eddye Lino - 09/Ene/2012)
+------
+Se modificó el método: 
+   1) recostearItm()
+Se agregó el estado "O" a los items de servicio a encerar.
+Antes:
+   strSQL+=" AND st_ser IN ('S', 'T')";
+Después:
+   strSQL+=" AND st_ser IN ('S', 'T', 'O')";
+Además se puso como comentario el código correspondiente a "st_regRep".
+
+
+v0.23: (Eddye Lino - 08/Ago/2012)
+------
+Se modificó el método: 
+   1) recostearItm()
+Se cambio la fecha de actualización de diarios a "2012/01/01" ya que el año 2011
+ya se iba a cerrar.
+
+
+v0.24: (Eddye Lino - 31/Ago/2012)
+------
+Se modificó el método: 
+   1) recostearItm()
+Se mejoró los querys que enceraban los campos que deben estar en cero para los items de servicio.
+
+
+v0.25: (Eddye Lino - 29/Ago/2013)
+------
+Se modificó el método: 
+   1) recostearItm()
+Se cambió la fecha de generación de diarios.
+
+
+v0.26: (Eddye Lino - 23/Jun/2014)
+------
+Se modificó el método: 
+   1) recostearItm()
+Se cambio la fecha de actualización de diarios a "2014/01/01" porque ya no se iba a hacer cambios en el 2013.
+
+
+v0.27: (Ingrid Lino - 02/Dic/2014)
+------
+Se agrega codificación para COSVENE(235) y COSDEVE(236) para proceso de recosteo porque se estaban quedando fuera los movimientos de FACVENE.
+
+
+v0.28: (Eddye Lino - 14/Abr/2015)
+------
+Se modificó el método: 
+   1) recostearItm()
+Se cambio la fecha de actualización de diarios a "2015/01/01" porque ya no se iba a hacer cambios en el 2014.
+
+
+v0.29: (Eddye Lino - 16/Abr/2015)
+------
+Se modificaron las clases: 
+   1) ZafThreadGUI
+   2) ZafThreadExe
+Se modificó el código para que al utilizar el botón "Programar" se consulte antes de recostear.
+Antes se recosteaba los items que ya estaban cargados en el JTable. Ahora primero se consulta y luego se recostea.
+
+
+v0.30: (Eddye Lino - 24/Ago/2016)
+------
+Se modificó el método: 
+   1) recostearItm()
+Se cambio la fecha de actualización de diarios a "2016/01/01" porque ya no se iba a hacer cambios en el 2015.
+
+
+v0.31: (Eddye Lino - 06/Jul/2017)
+------
+Se modificó el método: 
+   1) recostearItm()
+Se cambio la fecha de actualización de diarios a "2017/01/01" porque ya no se iba a hacer cambios en el 2016.
+
+
+v0.32: (Eddye Lino - 26/Sep/2017)
+-----
+Se modificó el método: 
+   1) recostearItm()
+Se agregó código para que se guarde datos en el campo "tbm_inv.nd_valExi" que se adicionó con la finalidad de costear en lugar de recostear.
+
+
+v0.33: (Eddye Lino - 19/Abr/2018)
+------
+Se modificó el método: 
+   1) recostearItm()
+Se cambio la fecha de actualización de diarios a "2018/01/01" porque ya no se iba a hacer cambios en el 2017.

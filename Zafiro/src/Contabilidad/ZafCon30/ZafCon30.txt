@@ -1,0 +1,10 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Ingrid Lino - 13/Mar/2015)
+----
+Clase nueva que permite obtener los datos para el Reporte de la Super de Cías(Trimestral)

@@ -1,0 +1,48 @@
+Pendientes:
+1) configurarVenConSolCre() Configurar Filtro por Locales con la tabla tbr_LocPrgUsr, en vez de tbr_parUsr.
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Darío Cardenas - 12/Sep/2007)
+----
+Programa que sirve para agregar datos de Referencias bancarias de la empresa o cliente, el ingreso es por cada solicitud de credito creada, pueden existir uno o mas referencias.
+Ademas pueden ser para ventas, cobranzas o cuentas por pagar, por ahora esta grabado para el area de cobranzas.
+
+
+v0.1.2: (Darío Cardenas - 14/Ene/2008)
+-----
+Se modificó funciones del ToolBar.
+
+
+v0.1.3: (Darío Cardenas - 14/Mar/2008)
+-----
+Se modifico JTable a editables para visualizar ventanas de otros programas desde el evento del boton Consultar.
+
+
+v0.1.4: (Darío Cardenas - 17/Mar/2008)
+-----
+Se modifico constructor para visualizar botones consultar, modificar, aceptar y cancelar desde la empresa grupo.
+
+
+v0.1.5: (Darío Cardenas - 22/May/2008)
+-----
+Se agrego filtro para mostrar datos de clientes por local.
+
+
+v0.1.6: (Darío Cardenas - 17/Jun/2008)
+-----
+Se agrego filtro para mostrar datos de Referencias Bancarias.
+
+
+v0.1.7: (Darío Cardenas - 15/Ago/2008)
+-----
+Se agrego función para consultar Datos de Clientes cuando se ingresa el numero de una solicitud ya creada.
+
+
+v0.1.8: (Rosa Zambrano - 15/Oct/2015)
+-----
+Se agrego ventana de consulta del listado de ciudades usando la librería ZafVenCon.
+
+

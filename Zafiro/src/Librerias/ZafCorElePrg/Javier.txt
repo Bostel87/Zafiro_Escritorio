@@ -1,0 +1,17 @@
+v0.1  (24-junio-2011)
+  clase donde se almecena las cuentas de correos utilizados.
+
+v0.2  (14-julio-2011)
+  se agrega nuevo cuenta de correo para alfredo .
+
+v0.3  (31-Agosto-2011)
+  se agrega nuevo cuenta de correo para el area de ventas .
+
+v0.4  Erik Flores 2012-02-22
+  se agrega cuenta de correo administracion@castek.ec.
+
+v0.5  Erik Flores 2012-05-14
+  se agregan cuentas de correo de bodegas TUVAL, CASTEK y DIMULTI para las notificaciones de anulacion de facturas.
+
+v0.6  Erik Flores 2012-07-18
+  se actualizan cuentas de correo de bodegas TUVAL, CASTEK y DIMULTI para las notificaciones de anulacion de facturas.

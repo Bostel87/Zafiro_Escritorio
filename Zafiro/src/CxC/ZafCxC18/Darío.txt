@@ -1,0 +1,75 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Darío Cárdenas - 17/Oct/2006)
+-----
+Se creo Programa tipo Reporte para mostrar Retenciones Recaudadas y por Recaudar 
+en el area de Cuentas por Cobrar de Clientes.
+
+
+v0.2: (Darío Cárdenas - 06/Nov/2006)
+-----
+Se corrigio Texto de los CheckBox y las consultas para las retenciones de 1 y 30 %
+
+
+v0.3: (Darío Cárdenas - 15/Mar/2007)
+-----
+Se genero botones para VistaPreliminar e Imprimir un Reporte
+
+
+v0.4: (Darío Cárdenas - 28/Nov/2007)
+-----
+Se modifico funcion para mostrar datos con retenciones del 2% y se quito filtro por local...
+
+
+v0.5: (Darío Cárdenas - 24/Abr/2008)
+-----
+Se modifico query de la funcion configurarVenConCli(), para mostrar datos de clientes por empresa y local...
+
+
+v0.6: (Darío Cárdenas - 02/Jun/2008)
+-----
+Se agrego funcion para mostrar datos de clientes por local desde Castek Manta...
+
+
+v0.7: (Darío Cárdenas - 24/Nov/2008)
+-----
+Se agrego funcion GenerarRpt(), para utilizar la clase de Reportes y los botones de Vista Preliminar e Imprimir...
+
+
+v0.8: (Darío Cárdenas - 16/Dic/2008)
+-----
+Se modifico conexiones, que quedaban abiertas...
+
+
+v0.9: (Darío Cárdenas - 24/Mar/2009)
+-----
+Se modifico funcion generarRpt() para mostrar Datos ordenados a la hora de imprimir...
+
+
+v0.10: (Darío Cárdenas - 24/Mar/2009)
+-----
+Se agrego columnas para ver datos de la retencion....
+
+
+v0.11: (Darío Cárdenas - 11/May/2009)
+-----
+Se agrego filtros de consultas
+
+
+v0.12: (Eddye Lino - 01/Jul/2010)
+-----
+Se hizo lo siguiente:
+1) Se estandarizó la interface gráfica.
+2) Se cambio el modo de trabajo del JProgressBar a "Indeterminate(true)".
+
+
+v0.13: (Eddye Lino - 09/Ago/2011)
+-----
+Se modificó el código donde se utiliza el campo "ne_mod". Por error se lo había creado como
+CHAR en la Base de Datos cuando en realidad es SMALLINT.
+

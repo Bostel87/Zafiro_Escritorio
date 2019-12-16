@@ -1,0 +1,310 @@
+﻿Pendientes:
+1) Unificación NP, PE, II
+2)
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Ingrid Lino - 15/Mar/2012)
+----
+Programa que permite realizar los ingresos por importación.
+
+v0.1.1: (Ingrid Lino - 16/Mar/2012)
+----
+Se quita todo campo o relación con tabla creada para puertos porque se va a trabajar con tabla de ciudades.
+A nivel de db se cambia en el constraint "$8" de tbm_cabPedEmbImp el campo co_emp por co_imp. Generaba error al tratar de crear la cuenta de activo y pasivo.
+
+v0.1.2: (Ingrid Lino - 02/Abr/2012)
+----
+Se realizan cambios para en lugar de tomar el valor de la importacion como principal, se toma el valor de la pieza, se realizan cambios basado en esto.
+
+v0.1.3: (Ingrid Lino - 17/Abr/2012)
+----
+Nada
+
+v0.1.4: (Ingrid Lino - 23/Abr/2012)
+----
+Se guarda valores en campos de costo de grupo(antes no se guardaban y estaba generando que se caiga el valor del costo, esto se podia ver en el kardex).
+
+v0.2: (Ingrid Lino - 02/May/2012)
+----
+Se cambia el esquema a piezas
+
+v0.2.1: (Ingrid Lino - 04/May/2012)
+----
+En la busqueda por campo Numero de Pedido se le adiciono funcionalidad de buscar por dato contenido y no directa.
+
+v0.2.2: (Ingrid Lino - 30/May/2012)
+----
+Se corrige al momento de hacer cambios el valor del total Fob/Cfr se calculaba de las piezas y no de la TM.
+
+v0.2.3: (Ingrid Lino - 04/Jun/2012)
+----
+Se adiciona el numero del pedido en la ventana de consulta.
+
+v0.2.4: (Ingrid Lino - 21/Jun/2012)
+----
+Se adiciona la columna de precios en permitidos para editar segun permisos de usuarios.
+
+v0.2.5: (Ingrid Lino - 12/Jul/2012)
+----
+Se cambio en el reporte de impresion el valor en palabras. Antes se presentaba el valor del documento y Alfredo y Karem solicitaron que fuera el valor del CFR.
+
+v0.2.6: (Ingrid Lino - 13/Jul/2012)
+----
+En funcion "calcularC12_ValorFlete()"  no se habia validado que tome la columna dependiendo de si es PZA o TM. Se corrigio.
+
+v0.2.7: (Ingrid Lino - 24/Jul/2012)
+----
+Se cambia el formato de impresion. Se coloca Tabla de Totales de las columnas y se quita lo que estaba anterior a eso, tambien se presenta el valor correcto en la columna segun sea TM o PZA.(solicitado por Alfredo).
+
+v0.2.8: (Ingrid Lino - 08/Ago/2012)
+----
+Se adiciona en el query del reporte para detalle de items, el parametro del codigo del arancel.
+
+v0.2.9: (Ingrid Lino - 16/Ago/2012)
+----
+Se redondea a 2 decimales el valor del documento y los valores del diario.(Solicitado por Alfredo Paulson)
+
+v0.2.10: (Ingrid Lino - 21/Ago/2012)
+----
+Se cambia el mensaje que se presenta cuando el valor ingresado es diferente al del inicio.
+
+v0.2.11: (Ingrid Lino - 25/Sep/2012)
+----
+Se da acceso a la columna de Tonelada métrica pero para tipo de importacion por PIEZAS, solo para Modificación y no para inserción. Solicitado por AP
+
+v0.2.12: (Ingrid Lino - 25/Sep/2012)
+----
+Se permite editar la columna de Tonelada metrica al insertar para Tipo PZAS.
+
+v0.2.13: (Ingrid Lino - 15/Oct/2012)
+----
+Se quita la nueva programación para conteos, eso aún no se pasa a producción.
+
+v0.3: (Ingrid Lino - 08/Feb/2013)
+----
+Se adiciona código para generar Ordenes de conteo para el nuevo proceso de conteos por importación.
+
+v0.3.1: (Ingrid Lino - 12/Abr/2013)
+----
+Cambios varios(no recuerdo cual fue el cambio que realice).
+
+v0.3.2: (Ingrid Lino - 03/Jun/2013)
+----
+Se permite guardar piezas con valores 0
+
+v0.4: (Ingrid Lino - 16/Ago/2013)
+----
+Se adiciona un constructor de consulta para poder ser llamada la pantalla desde otros programas a manera de consulta...
+
+v0.4.1: (Ingrid Lino - 11/Dic/2014)
+----
+Se cambia en el método de factor de flete y calcular flete cuando es TM FOB/CFR antes cantidad Ingreso Importación, Alfredo Paulson indica que debe ser cantidad de tonelada metrica.
+
+v0.4.2: (Ingrid Lino - 14/Abr/2015)
+----
+Se adiciona codificación para Compras Locales.
+
+v0.4.3: (Ingrid Lino - 17/Abr/2015)
+----
+Se cambia el asiento de diario para que trabaje como el INIMPO. Solicitado por AP.
+
+v0.4.4: (Ingrid Lino - 28/Abr/2015)
+----
+Se pasa el valor del tipo de documento al ZafCom77_02 por haber agregado el tipo de documento INBOCL
+
+v0.4.5: (Ingrid Lino - 15/May/2015)
+----
+Se adiciona en el filtro del botón de consulta y en el campo txt de ingreso de código alterno para que permita visualizar terminales 'I' y 'S'.
+
+v0.4.6: (Ingrid Lino - 04/Jun/2015)
+----
+Se setea el valor a 0.00 de costo unitario cuando la cantidad de tonelada metrica o cantidad de ingreso por importación es cero.
+
+v0.4.7: (Ingrid Lino - 26/Jun/2015)
+----
+Se realizan cambios para calcular la columna de Arancel, si arancel=0 en cargo a pagar se toma columna "Valor CFR ARA", y si arancel!=0 en tabla de cargos a pagar entonces es la formula anterior quitandole el 1 + (....) se quita el "uno mas"
+
+v0.4.8: (Ingrid Lino - 21/Sep/2015)
+----
+Se cambia el esquema de inserción y modificación para adaptarlo a migración de código web a código de java swing.
+
+v0.4.9: (Ingrid Lino - 23/Sep/2015)
+----
+Verificación por cálculo de aranceles.
+
+v0.4.10: (Ingrid Lino - 13/Nov/2015)
+----
+Se añade método isValPreVta para verificar si existen items que reflejen valores menores al margen de precio de venta. Solicitado por LSC y AP.
+
+v0.4.11: (Ingrid Lino - 13/Nov/2015)
+----
+Se valida mensaje informativo de revisar margen de precio para que salga una vez y no en el for
+
+v0.4.12: (Ingrid Lino - 25/Nov/2015)
+----
+Se añade codificación para enviar correo de todos los items segmentados por colores según margen de precio de venta.
+
+v0.4.13: (Ingrid Lino - 27/Nov/2015)
+----
+Se añade factor +-0.5% como validador, se añade número de pedido en el Subject
+
+v0.4.14: (Ingrid Lino - 11/Abr/2016)
+----
+Se añade la columna de código del item en letras, solicitado por Alfredo Paulson.
+
+v0.4.15: (Ingrid Lino - 20/Abr/2016)
+----
+Se añade el título de Código en letras del item en el correo que se envía por Problemas de precios.
+
+v0.4.16: (Ingrid Lino - 26/Abr/2016)
+----
+Se activa el botón modificar para todos los usuarios.
+
+v0.4.17: (Rosa Zambrano - 31/May/2016)
+-----
+Se agrega configuración del iva con la libreria ZafParSis.
+
+v0.4.18: (Rosa Zambrano - 28/Jun/2016)
+-----
+Se agrega porcentaje del iva en el query del reporte de compras locales, para que calcule el iva basado en el campo nd_ivaCom de la tabla tbm_Emp en la funcion generarRpt().
+
+v0.4.19: (Ingrid Lino - 19/Jul/2016)
+-----
+Implementacion de nuevo proceso de solicitudes de transferencia de inventario.
+
+v0.4.20: (Rosa Zambrano - 27/Jul/2016)
+-----
+Se corrige query de reporte compras locales.
+
+v0.4.21: (Rosa Zambrano - 05/Ago/2016)
+-----
+Se habilita la opcion de modificar solicitada por Alfredo Paulson 05/Ago/2016.
+
+v0.4.22: (Rosa Zambrano - 26/Sep/2016)
+-----
+Se modifica reporte de compras locales, con la configuracion del iva según la tabla tbm_cfgImpLoc.
+
+v0.4.23: (Ingrid Lino - 28/Oct/2016)
+-----
+Se activa el proceso de recosteo
+
+v0.4.24: (Rosa Zambrano - 01/Nov/2016)
+-----
+Se inactiva el proceso de recosteo.
+
+v0.4.25: (Ingrid Lino - 23/Ene/2017)
+----
+Se agrega en el correo(Subject), el número de documento ingresado en el día. Solicitado por Werner Campoverde.
+
+v0.4.26:(Rosa Zambrano - 20/Jun/2017)
+-----
+Se agrega constructor con HashMap.
+
+v0.4.27: (Rosa Zambrano - 12/Sep/2017)
+-----
+Se quita opción de modificar, anular (No se pueden habilitar estas opciones por que afectarían al disponible, el mismo que solo podrá afectarse en el conteo).
+Se modifica para que cuando se ingrese un INIMPO/INBOCL, solo afecte el stock y NO DISPONIBLE, ya que el disponible se afectará en los conteos de inventario.
+Se agrega campo tbm_cabMovInv.st_ingImp al insertarReg() con estado 'P' = Pendiente. Los ingresos de importación que tengan NULL se identificarán con el esquema anterior.
+
+v0.4.28: (Rosa Zambrano - 13/Sep/2017)
+-----
+Se agrega el incremento de las cantidades por ingresar al momento de realizar el ingreso por importación.
+
+v0.4.29: (Rosa Zambrano - 14/Sep/2017)
+-----
+Se corrige opcion de vista preliminar.
+
+v0.4.30: (Rosa Zambrano - 06/Oct/2017)
+-----
+Cuando se llama al constructor ZafCom77 desde otro fuente, se agrega filtro de busqueda por empresa y local.
+
+v0.4.31: (Rosa Zambrano - 25/Oct/2017)
+-----
+Se realiza cambios en la orden de distribución.
+
+v0.4.32: (Rosa Zambrano - 24/Nov/2017)
+-----
+Se modificó el método: 
+   1) recostearItm()
+Se agregó código para que cuando se inserte se llame al método "costearDocumento" en lugar de "recostearItm2009DesdeFecha".
+Se habilito el método recostearItm() en la función insertarReg().
+
+v0.4.33: (Rosa Zambrano - 20/Dic/2017)
+-----
+Se habilita la opción de anular, para el pedido P-807-0 que tiene un tipo de cambio incorrecto, autorizado por Alfredo Paulson mediante correo.
+
+v0.4.34: (Ingrid Lino - 29/Dic/2017)
+-----
+Se valida el Arancel de "Cargos a Pagar" y el "Detalle"
+
+v0.4.35: (Ingrid Lino - 04/Ene/2018)
+-----
+Se valida el valor de derecho arancelario que pueda tomar el valor de "cero" 0 para calcular el prorrateo de items para calcular el valor de arancel. Solicitado por AP.
+
+v0.4.36: (Rosa Zambrano - 24/Abr/2018)
+-----
+Se agrega nuevo reporte sin partidas arancelarias.
+Se cambia el modo de consulta para que lea los datos que tiene el ingreso por importación y no tbm_inv.
+
+v0.4.37: (Rosa Zambrano - 10/May/2018)
+-----
+En el correo de revisión de precios, se cambia query para que se ordene por Código Alterno.
+
+v0.4.38: (Rosa Zambrano - 16/May/2018)
+-----
+Segmentación de compras locales.
+Se asigna la misma versión para los programas NP, PE, II.
+
+v0.4.39: (Rosa Zambrano - 25/Jun/2018)
+-----
+Se traslada el exportador de "Cabecera" al "Detalle".
+Se agrega que en el detalle de nota de pedido se guarde tbm_detNotPedEmb.co_Exp lo que se encuentra en txtCodExp.
+
+v0.4.40: (Rosa Zambrano - 26/Jun/2018)
+-----
+Se agrega validación de permisos de usuarios.
+
+v0.4.41: (Rosa Zambrano - 26/Jun/2018)
+-----
+Se cambia consultarReg validando cuando se llama desde otros programas.
+
+v0.4.42: (Rosa Zambrano - 11/Jul/2018)
+-----
+Se agrega unidad de medida en la tabla de items, solicitado por AP.
+
+v0.4.43: (Rosa Zambrano - 24/Jul/2018)
+-----
+Se agrega validación para que muestre pedidos del nuevo menu.
+
+v0.5: (Rosa Zambrano - 01/Oct/2018)
+-----
+Se agrega columna de registro en el método enviarCorElePreVta(). 
+Se corrige envio de correos en enviarCorEle, ya que no se enviaba el ultimo item.
+
+v0.6: (Rosa Zambrano - 04/Oct/2018)
+-----
+Se actualiza correo sistemas9 por sistemas3.
+
+v0.7: (Rosa Zambrano - 09/Nov/2018)
+-----
+Se valida que se presenten los pedidos de acuerdo al módulo importaciones u compras locales.
+
+v0.8: (Rosa Zambrano - 21/Feb/2019)
+-----
+Se cambia el envío de correos, por la configuración de la tabla tbm_notSisCorEleLoc.
+Se corrige para que presente los items S.
+
+v0.9: (Rosa Zambrano - 05/Abr/2019)
+-----
+Se elimina función de creación de cuentas contables para compras locales, según indicaciones de AP., no se generan cuentas para compras locales.
+Se ocultan las columnas porcentaje de Arancel, cantidad en tonelada, valor flete, valor cfrara, total arancel, total gastos para compras locales.
+
+v1.0: (Rosa Zambrano - 18/Abr/2019)
+-----
+Se cambia en la consulta para que solo muestre pedidos de compras locales.
+
+v1.1: (Rosa Zambrano - 11/Jun/2019)
+-----
+Se pone transaccionado el costeo.

@@ -1,0 +1,19 @@
+Pendientes:
+1) 
+2) 
+3) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Ingrid Lino - 14/Mar/2011)
+----
+Programa nuevo para recepción de factura de ventas y devoluciones de compra.
+
+v0.1.1: (Ingrid Lino - 15/Mar/2011)
+----
+Se ocultaron columnas que no deberia de ver el usuario y se ordenaron los datos presentados por fecha, cliente, numero de documento.
+
+v0.1.2: (Ingrid Lino - 29/Nov/2013)
+----
+Se inactivan los botones en la configuracion para cualquier usuario, excepto admin. Solo tendrán acceso según permisos.

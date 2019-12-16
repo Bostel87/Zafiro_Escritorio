@@ -1,0 +1,37 @@
+﻿Pendientes:
+1) 
+2) 
+3) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 18/Mar/2006)
+----
+Clase nueva.
+
+
+v0.2: (Ingrid Lino - 30/Jul/2007)
+-----
+Se adicionó el método setCancelarEdicion(). Se está usando en el programa de presupuesto general (ZafCon40)
+
+
+v0.3: (Eddye Lino - 14/Jul/2010)
+-----
+Se modificó el método: 
+   1) mostrarVenCon()
+Se reemplazó el método show() por el método setVisible(true) porque ya estaba marcado como "Deprecated".
+
+
+v0.4: (Eddye Lino - 14/Sep/2012)
+-----
+Se corrigió el método: 
+   1) isCellEditable(java.util.EventObject anEvent)
+Se eliminó el método: 
+   1) thisFocusGained(java.awt.event.FocusEvent evt)
+Se agregó código para trabajara con el evento "beforeEdit" ya que al parecer se había pasado por alto.
+Se eliminó el actionListener "focusGained" porque dicho
+código estaba presentando problemas cuando se mostraba un JOptionPane. Se analizó y se llegó a la conclusión de que no
+era necesario ese Listener.
+
+

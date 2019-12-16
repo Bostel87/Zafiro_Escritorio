@@ -1,0 +1,19 @@
+﻿Pendientes:
+1) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Javier Ayapata - 20/Ago/2009)
+----
+Clase nueva "Impresión de guías de remisión...". 
+
+
+v0.2: (Rosa Zambrano - 24/May/2016)
+-----
+Se elimina objeto objInvItm, el cual no estaba siendo utilizado.
+
+
+v0.3: (Rosa Zambrano - 30/Ago/2019)
+----
+Se realizan cambios para Jaspersoft Studio.

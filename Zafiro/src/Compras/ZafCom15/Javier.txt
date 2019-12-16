@@ -1,0 +1,72 @@
+Pendientes:
+1) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v1.2: Javier Ayapata (17/Oct/2006)
+-----
+Clase nueva.
+
+
+v1.4: Javier Ayapata (10/Nov/2006)
+-----
+Se corrigue la funcion cargarDetReg_Fec y se  agrega filtro por terminal. 
+
+
+v1.5: Javier Ayapata (02/Ene/2007)
+-----
+Se corrigue la funcion cargarDetReg_Fec, solo queda para obtenga datos de la tabla tbm_detmovinv.
+
+
+v1.8: Javier Ayapata (28/Mar/2007)
+-----
+Se agrega una columna para que muestre el stock del grupo, tambien se agrego el listado valorizado del grupo.
+
+
+v1.9: Javier Ayapata (30/Mar/2007)
+-----
+Se corrigue el al momento de obtener el listrado valorizado del grupo.
+
+
+v2.0: Javier Ayapata (15/Nov/2007)
+-----
+Se agrega listado a la fecha actual que filtra en la tabla de tbm_inv.
+
+
+v2.1: Javier Ayapata (10/Ene/2008)
+-----
+Se el query al memento de obtener el stock de empresa.
+
+
+v2.2: Javier Ayapata (18/Ene/2008)
+-----
+Se corrigue el query que no tome en cuenta las devolucione por precio y descuento.
+
+
+v2.3: Javier Ayapata (11/Mar/2008)
+-----
+Se corrigue el query para obtener saldos por empresa
+
+
+v2.5: Javier Ayapata (26/Oct/2011)
+-----
+Se agrega para que tambien filtre por bodega.
+
+
+v2.6: (Eddye Lino - 21/May/2013)
+------
+Se modific� el m�todo: 
+   1) cargarDetReg_Fec()
+En el 2012 se agreg� el estado 'E' al campo st_tipDev lo cual hizo que no cuadre el valorizado con el Balance General.
+Por eso fue necesario hacer lo siguiente:
+Antes:
+   strSQL+=" a1.st_tipdev NOT IN ('P', 'V')";
+Despu�s:
+   strSQL+=" a1.st_tipdev='C'";
+
+
+v 2.61: (Jose Mario Marin - 11/Oct/2018)
+------
+Se agrega ver la cuenta de bodega cuando ingresa por alguna de las empresas, ademas se agrega un boton para dirigirse al Kardex del item seleccionado.
+

@@ -1,0 +1,22 @@
+﻿Pendientes:
+1)
+2)
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Ingrid Lino - 28/Dic/2017)
+----
+Programa que permite realizar la configuración de conversión de inventario
+
+v0.1.1: (Ingrid Lino - 28/Dic/2017)
+----
+Se elimina doble for en método isFilCompleta porque daba problema al guardar.
+
+v0.1.2: (Ingrid Lino - 28/Dic/2017)
+----
+Se agrega la opción para poder modificar en el programa.
+
+v0.1.3: (Ingrid Lino - 11/Ene/2018)
+----
+Se agrega columna de "Porcentaje de Costo unitario" para cada item de ingreso

@@ -1,0 +1,20 @@
+﻿Pendientes:
+1) Ing.Eddye Lino: Analizar si debe almacenarse nd_preUni para documentos de conversión y ordenes de trabajo.
+2)
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Ingrid Lino - 17/Ene/2018)
+----
+Programa que permite realizar Conversiones de inventario según configuración.
+
+v0.1.1: (Ingrid Lino - 19/Ene/2018)
+----
+Se agrega funcionalidad de eliminar grupo en modo insertar (por mala digitación), se valida que máximo sean 3 veces el mismo item de egreso. Se valida columna de costo unitario cero no se permita.
+
+v0.1.2: (Rosa Zambrano - 24/Ene/2018)
+----
+Se realiza cambio en consulta de datos del item, porque se estaba leyendo como código del item por empreasa, el código del item por grupo 
+y generaba problemas de inventario a Eddy Carvajal al momento de insertar porque consultaba el stock de otro item distinto.
+Se asigna abs al nd_cosUni.

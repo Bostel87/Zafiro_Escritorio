@@ -1,0 +1,7 @@
+
+CONTROL DE VERSIONES:
+=====================
+
+v1.0: (Roberto Flores- 22/11/2012)
+----
+Clase nueva Roles de pago: Novedades (Quincena y fin de mes)...

@@ -1,0 +1,12 @@
+Pendientes:
+1) Presentar cada cliente con el total que tiene que pagar en primera instancia, 
+luego el detalle de cada documento
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Dario Cardenas - 06/Mar/2009)
+----
+Programa Nuevo para Generar Saldos Detallados de Clientes pertenecientes a Grupo de Empresas 
+o del mismo cliente comprando en las otras empresas...

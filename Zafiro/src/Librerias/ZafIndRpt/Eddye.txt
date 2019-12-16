@@ -1,0 +1,24 @@
+﻿Pendientes:
+1) 
+2) 
+
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 10/Ene/2005)
+----
+Se arregló el programa para que sólo se mostrara los reportes de acuerdo al perfil del usuario.
+
+
+v0.2: (Eddye Lino - 02/Jul/2006)
+-----
+Se actualizó la clase para que trabaje con el paquete "ZafTblUti" y para que llame al 
+"Garbage Collector" cada vez que se cierra un JInternalFrame que es llamado desde "ZafIndRpt".
+
+
+v0.3: (Eddye Lino - 02/Oct/2015)
+----
+Se modificó el método: 
+   1) tblDatKeyPressed(java.awt.event.KeyEvent evt)
+Se reemplazó "evt.setKeyCode(0);" por "evt.consume();" porque a partir de "Java 7" ya no consumía el ENTER.

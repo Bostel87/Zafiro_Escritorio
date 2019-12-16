@@ -1,0 +1,24 @@
+Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+V 0.1: (Dario Cardenas - 21/Nov/2007)
+--------------------------------------
+Programa para Establecer las Solicitudes de Credito a Analizar...
+
+
+V 0.2: (Dario Cardenas - 14/Ene/2008)
+--------------------------------------
+Se modifico funciones del ToolBar...
+
+
+V 0.3: (Dario Cardenas - 14/Mar/2008)
+-------------------------------------
+Se modifico JTable a editables para visualizar ventanas de otros programas desde el evento del boton Consultar...
+
+V 0.4: (Dario Cardenas - 17/Jun/2008)
+-------------------------------------
+Se modifico JTable a editables para visualizar ventanas de otros programas desde el evento del boton Consultar...

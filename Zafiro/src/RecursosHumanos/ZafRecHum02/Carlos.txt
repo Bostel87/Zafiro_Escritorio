@@ -1,0 +1,13 @@
+
+CONTROL DE VERSIONES:
+=====================
+
+ZafRecHum02 v1.0: (Carlos Lainez- 29/03/2011)
+----
+Se creo la Pantalla de Mantenimiento para los Tipos de Contrato
+siendo manejado por el bean ZafRecHum02Bean
+
+
+ZafRecHum02Bean v1.0: (Carlos Lainez- 29/03/2011)
+----
+Se creo bean manejador de la Pantalla de Mantenimiento para los Tipos de Contrato ZafRecHum02

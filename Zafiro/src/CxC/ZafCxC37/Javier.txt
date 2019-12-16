@@ -1,0 +1,35 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Javier Ayapata - 01/Jun/2010)
+----
+Clase nueva.
+
+
+v0.2: (Javier Ayapata - 10/Jun/2010)
+-----
+Se agrega para que almacene datos de quien asigna banco.
+
+
+v0.3: (Javier Ayapata - 30/Jul/2010)
+-----
+Se agrega para que filtre por el permiso que tenga asigando si tiene para guardar o no
+
+
+v0.4: (Javier Ayapata - 29/Nov/2010)
+-----
+Se agrega boton donde se puede marcar el banco predeterminado.
+
+
+v0.5: (Javier Ayapata - 30/May/2011)
+-----
+Se agrega columna en la tabla donde presenta valor pendiente de asignar 
+
+
+v0.6: (Eddye Lino - 27/Jun/2013)
+-----
+Mejoras en el diseño y corrección de faltas ortográficas.

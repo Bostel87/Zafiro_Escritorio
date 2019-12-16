@@ -1,0 +1,19 @@
+﻿v0.1: (Ingrid Lino - 12/Jun/2009)
+----
+Programa que muestra los documentos que tienen pendiente aplicar pago.(Documento está abierto)
+
+v0.2: (Ingrid Lino - 01/Jul/2010)
+----
+Se realizaron cambios en el query de acuerdo al filtro de "Mostrar solo retenciones", y se agrego tambien que muestre la informacion de tipos de documentos configurados al usuario
+
+v0.2.1: (Ingrid Lino - 27/Oct/2010)
+----
+Se adicionaron campos de nombre de local, descripcion de tipo de documento y se reorganizaron las columnas.
+
+v0.2.2: (Dennis Betancourt - 04/Ene/2018)
+----
+Se realizo un cambio para que se muestre en el listado todos los locales de la empresa, sin importar el local por el cual el usuario se logoneo.
+
+v0.2.3: (Dennis Betancourt - 17/Ene/2018)
+----
+Se agrego un combo de Local, y se agrego para que el programa use la tabla tbr_locPrgUsr, para que muestre en el listado los locales a los cuales el usuario esta autorizado para consultar informacion.

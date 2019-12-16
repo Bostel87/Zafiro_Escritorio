@@ -1,0 +1,56 @@
+﻿javier Ayapata 17 Diciembre 2010 
+ver 0.1
+Clase nueva, que realiza compra y venta apartir de una transferencia.
+
+ver 0.2
+se cambia para que actualiza los nuevos campos de saldos entre compañias.
+
+ver 0.3
+se cambia para que genere tambien las devoluciones.
+
+
+ver 0.4 ( 23/ junio /2011 ) Javier Ayapata
+se agrega para la venta se tome el costo y recostee despues de la compra.
+
+
+ver 0.5 ( 20/ Septiembre /2011 ) Javier Ayapata
+se agrega para que trabaje con margen en compra venta relacionada.
+
+v. 0.6 Erik Flores 2012-08-22
+Se modifica para que no genere devoluciones de compra/venta
+
+v. 0.7 Erik Flores 2012-11-07
+Se modifica para que ahora si genere devoluciones de compra/venta
+
+v. 0.8 Erik Flores 2012-11-14
+Se modifica para asigne secuencial de empresa/grupo a documentos intermedios.
+
+v. 0.9 Erik Flores 2012-11-30
+Se modifica para que si genere devoluciones de compra/venta... again... :(
+Se crea variable BOOLEAN blnReaDevComVen para setear si se realiza o no devoluciones entre empresas: TRUE si realiza FALSE no
+
+v. 1.0 Erik Flores 2012-12-13
+Se modifica para que ahora si genere devoluciones de compra/venta again
+
+v. 1.1 ALEX MORAN 2013-01-31
+Se modifica variable BOOLEAN blnReaDevComVen para que no genere devoluciones de compra/venta
+
+v. 1.2 Ingrid Lino ( 2014-09-24)
+-----
+Se adiciona codificación para que realice documentos para Cuenca.
+
+v. 1.3: (José Marín M -  28/Dic/2015)
+-----
+Se modifica variable BOOLEAN blnReaDevComVen para que genere devoluciones de compra/venta
+
+v. 1.4: (José Marín M -  26/Ene/2016)
+-----
+Se modifica variable BOOLEAN blnReaDevComVen para que NO genere devoluciones de compra/venta
+
+v. 1.5: (José Marín M -  26/Feb/2016)
+-----
+Se modifica variable BOOLEAN blnReaDevComVen para que SI genere devoluciones de compra/venta
+
+v. 1.6: (José Marín M -  28/Mar/2016)
+-----
+Se modifica variable BOOLEAN blnReaDevComVen para que NO genere devoluciones de compra/venta

@@ -1,0 +1,79 @@
+﻿
+﻿CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Javier Ayapata - 01/Jun/2010)  
+---- 
+Clase nueva de recepcion de cheque y retencion.
+
+
+v0.2: (Javier Ayapata - 10/Jun/2010)  
+-----
+Se corrige estado de asignación de facturas.
+
+
+v0.3: (Javier Ayapata - 15/Jun/2010)  
+-----
+Se agrega para que solo restructure si esta fuera del rango establecido para ajuste.
+
+
+v0.4: (Javier Ayapata - 14/Jul/2010)  
+-----
+Se corrige al consultar las facturas .
+
+
+v0.5: (Javier Ayapata - 21/Jul/2010)  
+-----
+Se agrega para que recalcule el total despues de eliminar
+
+
+v0.6: (Javier Ayapata - 22/Oct/2010)  
+-----
+Se cambia configuracion de reporteria que esta en el servidor.
+
+
+v0.7: (Javier Ayapata - 19/Nov/2010)  
+-----
+Se agrega para cuando sea venta de contado e ingresen despues el cheque y con fecha del dia se imprima la guia.
+
+
+v0.8: (Javier Ayapata - 28/Jul/2011)  
+-----
+Se agrega para que filtre por local para que busque la factura y retenciones.
+
+
+v0.9: (Javier Ayapata - 24/Ago/2011)  
+-----
+Se corrige al obtener ip de envio de imp. guía
+
+
+v0.9.1: (Javier Ayapata - 07/Dic/2011)  
+-----
+Se cambia parámetros de envio en llamada a ZafCxC11_01, todos los parámetros de tipo DOUBLE a BIGDECIMAL. En ZafCxC11_01 si se cambia en todo el .java los DOUBLES por BIGDECIMAL.
+
+
+v0.9.2: (Dennis Betancourt - 09/Ene/2015)  
+-----
+Al momento de insertar, al presionar el boton que presenta el JDialogo para mostrar las facturas a las que aplica el valor depositado, se agrego para que tambien muestre las retenciones.
+
+
+v0.9.3: (Christian Mateo -  21/Ago/2015)
+-----
+Se agrega el uso de ZafReglas para generación de OD Y G.R., en reemplazo del ZafSer01.
+
+v0.9.4: (Christian Mateo -  11/Sep/2015)
+-----
+Se modifica para que no genere od remotas por recepcion de cheques. Solo debe generar las od locales y las confirmaciones y guias remision por terminales L.
+
+
+v0.9.5: (Christian Mateo -  26/Jul/2016)
+-----
+Se modifica para el nuevo proceso de transferencias.
+
+
+v0.9.6: (Christian Mateo -  07/Feb/2017)
+-----
+
+Se modifica por fallo en manta en la generacion de la od. por el cambio de compensacion salarial
+
+

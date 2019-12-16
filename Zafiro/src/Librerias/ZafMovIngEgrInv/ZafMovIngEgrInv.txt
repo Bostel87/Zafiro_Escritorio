@@ -1,0 +1,89 @@
+CONTROL DE VERSIONES:
+=====================
+
+v0.1.3: (Ingrid Lino  - 07/Oct/2016)
+----
+Se cambia código para que trabaje con nueva tabla de configuración de bodegas tbm_cfgBod
+
+
+v0.1.4: (Ingrid Lino  - 12/Oct/2016)
+----
+Se cambia la ruta del reporte de Orden de Almacenamiento y se añade la ubicación en el detalle del item
+
+
+v0.1.5: (Ingrid Lino  - 20/Oct/2016)
+----
+Códigos L
+
+
+v0.1.9: (Ingrid Lino  - 31/Oct/2016)
+----
+Códigos L
+
+
+v0.1.11: (Ingrid Lino  - 28/Nov/2016)
+----
+Se realizan cambios varios para facturación/compras de relacionadas.
+
+
+v0.1.12: (Ingrid Lino  - 08/Mar/2017)
+----
+Se crea nuevo método para poder obtener la bodega de destino dentro de la empresa que genera la partida de la mercadería "getCodBodDes_EmpPtoPar"
+
+
+v0.1.13: (Jose Mario Marin - 27/Mar/2017)
+----
+Obtener codigo para generar documentos.
+
+
+v0.1.14: (Ingrid Lino  - 12/May/2017)
+----
+Se cambia en función donde se usa divide el redondeo de BigDecimal.ROUND_UP a BigDecimal.ROUND_HALF_UP
+
+
+v0.1.15: (Ingrid Lino  - 12/Jul/2017)
+----
+Se cambian las cuentas de IVA del 14% al 12%
+
+
+v0.1.16: (Jose Mario Marin - 30/Oct/2017)
+----
+Modificaciones para sistema de Costos.
+
+
+v0.1.17: (Jose Mario Marin - 27/Dic/2017)
+----
+Modificaciones para costos, solo se esta costeando uno de los dos documentos que son generados.
+
+
+v0.1.18: (Jose Mario Marin - 21/Feb/2018)
+----
+Se modifica el codigo para que no busque el costo anterior de un item cuando se factura, sino que trabaje directamente con el costo de tbm_inv, en el egreso
+y en el ingreso se trabaja con el mismo costo del egreso.
+
+
+v0.02: (Jose Mario Marin - 24/May/2018)
+----
+Modificacion para hacer control de versiones.
+
+
+v0.03: (Jose Mario Marin - 22/Oct/2018)
+----
+Modificacion , para costos entre documentos relacionados.
+
+
+v0.04: (Jose Mario Marin - 30/Oct/2018)
+----
+Modificacion, para facturacion parcial.
+
+
+v0.05: (Jose Mario Marin - 04/Ene/2019)
+----
+Modificaciones para prestamos y facturas.
+
+
+v0.06: (Rosa Zambrano - 16/May/2019)
+----
+Cambios para que la ruta del reporte de la orden de almacenamiento sea configurable con la tabla tbm_rptSis.
+ * Se modifica la función insertar_tbmCabMovInv.
+ * Se agrega nuevo metodo getRutaRptSis.

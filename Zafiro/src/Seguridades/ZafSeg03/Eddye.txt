@@ -1,0 +1,27 @@
+﻿Pendientes:
+1) 
+2) 
+
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino)
+----
+
+
+v0.2: (Eddye Lino - 17/Ene/2006)
+-----
+Se corrigió el código para que muestre también los separadores.
+
+
+v0.3: (Eddye Lino - 15/Nov/2011)
+-----
+Se reemplazó el uso de la clase "ZafConsulta" por la clase "ZafVenCon" para seleccionar el "Usuario".
+Además, se modificó el query porque no funcionaba en la nueva versión de PostgreSQL.
+
+
+v0.4: (Rosa Zambrano - 18/Oct/2016)
+-----
+Se agrega objeto objTblBus para realizar la búsqueda, esto facilitaría al dar accesos permitiendo buscar por código de menú.
+

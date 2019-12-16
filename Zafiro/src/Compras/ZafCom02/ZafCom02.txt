@@ -1,0 +1,560 @@
+﻿Pendientes:
+1) Cambiar el uso de la libreria ZafInvItm por la nueva libreria ZafStkInv al momento de realizar una OC.
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.0: (José Salazar - 06/Ene/2006)
+----
+Nuevo Programa "Ordenes de Compra"
+
+
+v0.1: (José Salazar - 06/Ene/2006)
+-----
+Se modifico metodo de insertar y modificar para calculo de costeo.
+Pendiente calculo de costeo para los casos de anulacion , eliminacion y modificar documento. 
+Modificar pendiente solo en le caso de eliminar un item en el documento.
+
+
+v0.2: (José Salazar - 19/Ene/2006)
+-----
+Se agrego metodos para cargar registro luego de insertar, envia a metodo consultar.
+
+
+v0.2.1: (José Salazar - 24/Ene/2006)
+-----
+Se arreglo problemas al mostrar valor de costeo.
+
+
+v0.2.2: (José Salazar - 24/Ene/2006)
+-----
+Se agrego funcionalidad para que al anular y eliminar una o/c la cotizacion cambie.
+Su estado de facturada F a estado Activo A, cambio que permite utilizarla cotizacion nuevamente.
+
+
+v0.2.3: (José Salazar - 24/Ene/2006)
+-----
+Se modifico llamada a metodo AsiDia para que no modifique el codigo del tipo de documento.
+
+
+v0.2.4: (José Salazar - 25/Ene/2006)
+-----
+Se corrigio generacion secuencia automatica de numero de orden; metodo cargaNum_Doc_OrdCom().
+
+
+v0.2.5: (José Salazar - 25/Ene/2006)
+-----
+Se modifico metodos para calculo de costeo enviando valor del descuento, provisionalmente.
+
+
+v0.2.6: (José Salazar - 06/Feb/2006)
+-----
+Se corrigio problema de carga de forma de pago.
+
+
+v0.2.7: (José Salazar - 17/Feb/2006)
+-----
+Se modifico metodos para movInventario actualizado segun SisCon.
+
+
+v0.2.8: (Javier Ayapata - 13/Mar/2006)
+-----
+Se modifico que al momento de cerrar el programa pregunte. 
+Se corrigio que al ingresar un registro ingrese tamb en el campo de ultima fecha de mod y usuario que modifico.
+
+
+v0.2.9: (Javier Ayapata - 14/Mar/2006)
+-----
+Se corrigio al insertar al diario con la fecha del documento.
+ 
+
+v0.3: (Javier Ayapata - 15/Mar/2006)
+-----
+Se corrigio que al insertar y al modificar afecte al campo nd_tot de la tabla tbm_cabmovinv.
+
+
+v0.4: (Javier Ayapata - 16/Mar/2006)
+-----
+Se corrigio en el secuencial de numero de oreden de compra.
+
+
+v0.5: (Javier Ayapata - 04/Abr/2006)
+-----
+Se corrigio error al momento de buscar. 
+
+
+v0.6: (Javier Ayapata - 13/Abr/2006)
+-----
+Se corrigue al momento de validar el iva.
+
+
+v0.7: (Javier Ayapata - 17/Abr/2006)
+-----
+Se agrega la forma  de retiro a la orden de compra.   
+
+
+v0.8: (Javier Ayapata - 19/Abr/2006)
+-----
+Se agrega la vista preliminar y al imprimir con el ireport.
+
+
+v0.9: (Javier Ayapata - 28/Abr/2006)
+-----
+Se corrige la presentacion en el reporte.
+
+
+v2.0: (Javier Ayapata - 02/May/2006)
+-----
+Se corrigue que aya Stock para poder hacer la anulacion o eliminaion de la O/C.
+
+
+v2.1: (Javier Ayapata - 03/May/2006)
+-----
+Se corrigue para que coloque el iva cuando se busca por el boton de item.
+
+
+v2.2: (Javier Ayapata - 10/May/2006)
+-----
+Se corrigue al momento de ingrementarn o disminuir el inventario, y se cambia las ventanas de consulta.
+
+
+v2.3: (Javier Ayapata - 10/May/2006)
+-----
+Se agrega al insertar en tbm_cabmovinv el secuencial de empresa y grupo. 
+
+
+v2.4: (Javier Ayapata - 07/Jun/2006)
+-----
+Se agrega al insertar en tbm_detmovinv que inserte tamb en nd_preuni y tamb que valide cofirmacion de bodega al anular o eliminar.  
+
+
+v2.5: (Javier Ayapata - 14/Jun/2006)
+-----
+Se corrigue que no pueda modificar el tipo de documento y codigo de documento y se agrega también el usuario y fecha quien anula el documento.
+
+
+v2.6: (Javier Ayapata - 15/Jun/2006)
+-----
+Se agrega para que recostee los item comprados.
+
+
+v2.8: (Javier Ayapata - 21/Jun/2006)
+-----
+Se optimiza la conexion a base en la funcion de calculaPagos().
+
+
+v2.9: (Javier Ayapata - 23/Jun/2006)
+-----
+Se corrigue que no mueva inventario en grupo si algun cliente es empresa de la misma.
+
+
+v3.1: (Javier Ayapata - 26/Jun/2006)
+-----
+Se corrigue que no mueva inventario en grupo si algun cliente es empresa de la misma.
+
+
+v4.2: (Javier Ayapata - 10/Jul/2006)
+-----
+Se optimiza las conexiones  a la base para el asiento diario y forma de pago.
+
+
+v4.3: (Javier Ayapata - 13/Jul/2006)
+-----
+Se corrigue que refresque el numero de secuencia de orden de compra.
+
+
+v4.4: (Javier Ayapata - 17/Jul/2006)
+-----
+Se corrigue al calcular el iva.
+
+
+v4.5: (Javier Ayapata - 19/Jul/2006)
+-----      
+Se agrega codigo alterno2 del item.
+
+
+v4.6: (Javier Ayapata - 20/Jul/2006)
+-----  
+Se cambia la funcuion de recostear item.
+
+
+v4.7: (Javier Ayapata - 21/Jul/2006)
+----- 
+Se verifica al calcular el total de la compra.
+
+
+v4.8: (Javier Ayapata - 16/Ago/2006)
+-----
+Se agrega en anular y eliminar la funcion de recosteo.
+
+
+v4.9: (Javier Ayapata - 22/Ago/2006)
+-----
+Se corrigue redondeo en la retencion. 
+
+
+v5.0: (Javier Ayapata - 30/Ago/2006)
+-----
+Se agrega que insertar y modifique el campo nd_costot, y se agrega que no pueda anular si tiene documentos asosiados.  
+
+
+v5.1: (Javier Ayapata - 20/Sep/2006)
+-----
+Se agrega al momento de insertar que recalcule todo.
+
+
+v5.2: (Javier Ayapata - 26/Sep/2006)
+-----
+Se corrigue al obtener las bodegas de la empresa.
+
+
+v5.3: (Javier Ayapata - 02/Oct/2006)
+-----
+Se Agrega en el query de inventario que solo muestre los items que no sean de servicio.
+
+
+v5.4: (Javier Ayapata - 13/Oct/2006)
+-----
+Se agrega la nueva funcion de recosteo de item.
+
+
+v5.5: (Javier Ayapata - 17/Oct/2006)
+-----
+Se agrega al momento de insertar el campo nd_cosunigrp y  nd_costotgrp.
+
+
+v5.6: (Javier Ayapata - 23/Oct/2006)
+-----
+Se agrega un filtro de las terminales en listado de items.
+
+
+v5.7: (Javier Ayapata - 07/Nov/2006)
+-----
+Se corrige variable de cambios. 
+
+
+v5.8: (Javier Ayapata - 09/Nov/2006)
+-----
+Se agrega la eliminacion logica. 
+
+
+v5.9: (Javier Ayapata - 09/Nov/2006)
+-----
+Se corrigue al momento de v aloidar el cliente.
+
+
+v6.0: (Javier Ayapata - 17/Nov/2006)
+-----
+Se corrigue que el campo tx_numped si es vacio reciva vacio.
+
+
+v6.1: (Javier Ayapata - 20/Nov/2006)
+-----
+Se habilita el boton de copiar.
+
+
+v6.2: (Javier Ayapata - 28/Nov/2006)
+-----
+Se quita validacion de item de servicion, ahora salen todos y se agrega cuenta para los items de servicio.
+
+
+v6.3: (Javier Ayapata - 05/Dic/2006)
+-----
+Se corrigue al momento de elegir el proveedor y comprador. 
+
+
+v6.5: (Javier Ayapata - 02/Ene/2007)
+-----
+Se corrigue para que se puedad anular las compras entre compañías.
+
+
+v6.6: (Javier Ayapata - 08/Feb/2007)
+-----
+Se agrega el estado de replicacion.
+
+
+v6.7: (Javier Ayapata - 28/Mar/2007)
+-----
+Se agrega la valizacion de contribuynete especial.
+
+
+v6.8: (Javier Ayapata - 10/Abr/2007)
+-----
+Se corrigue la valizacion de controbuynete especial.
+
+
+v6.9: (Javier Ayapata - 03/May/2007)
+-----
+Se agreaga al momento de modificar no eliminar el detalle, actualizar registro por registro, se bloquea algunas celdas. 
+
+
+v7.0: (Javier Ayapata - 03/May/2007)
+-----
+Se agrega al momento de modificar dejar el estado del registro en estado M enb tbm_PagMovInv.
+
+
+v7.1: (Javier Ayapata - 08/May/2007)
+-----
+Se agreaga el popup menu con el nuevo esquema donde se puede escojer la opcion que se desea colocar.
+
+
+v7.2: (Javier Ayapata - 09/May/2007)
+-----
+Se agrega valisacion en el listado de item que no aparescan los estado Inactivos.
+
+
+v7.3: (Javier Ayapata - 24/May/2007)
+-----
+Se agrega el codigo de retencion en el pago.
+
+
+v7.4: (Javier Ayapata - 30/May/2007)
+-----
+Se corrigue que el estado sea A en st_reg.
+
+
+v7.5: (Javier Ayapata - 30/Jun/2007)
+-----
+Se corrigue la funcion calculaPagos se agrega la retencion del 1% para los fletes.
+
+
+v7.6: (Javier Ayapata - 02/Jul/2007)
+-----
+Se agrega al momento de calcular los pagos verifique si es de la fecha menor al 30 de junio 2007 obtenga la retencion del 1 %
+
+
+v7.7: (Javier Ayapata - 20/Jul/2007)
+-----
+Se agrega para que no coja los items que tienen estado E eliminado.
+
+
+v7.8: (Javier Ayapata - 24/Ago/2007)
+-----
+Se agrega la mayorizacion en linea.
+
+
+v7.9: (Javier Ayapata - 14/Nov/2007)
+-----
+Se agrega validacion de sistema operativo para las impresiones.
+
+
+v7.9.1: (Javier Ayapata - 28/Ene/2008)
+-----
+Se agrega que almecene el campo co_itmact en tbm_detmovinv. 
+
+
+v7.9.2: (Javier Ayapata - 21/Feb/2008)
+-----
+Se agrega para que no tome en cuenta los estado U de item.
+
+
+v7.9.3: (Javier Ayapata - 11/Mar/2008)
+-----
+Se corrigue el query para obtener proveedores y se agraga tabla tbr_cliloc y no se permite hacer cambion si algun iten tiene modificaion.
+
+
+v7.9.4: (Javier Ayapata - 18/Mar/2008)
+-----
+Se corrigue para que inserte el detalle en blanco y tambien al momento de anular.
+
+
+v7.9.5: (Javier Ayapata - 14/Abr/2008)
+-----
+Se corrigue para que trabaje con el nuevo esquema de politicas de retenciones.
+
+
+v7.9.6: (Javier Ayapata - 07/May/2008)
+-----
+Se agrega para que el iva calcule si el cliente/proveedor tiene asignado o no.
+
+
+v7.9.7: (Javier Ayapata - 14/May/2008)
+-----
+Se corrigue funcion genera diario.
+
+
+v7.9.8: (Javier Ayapata - 24/Jun/2008)
+-----
+Se corrigue al momento de insertar se desavilita los campos ne_Secempant y ne_secgrpant.
+
+
+v7.9.9: (Javier Ayapata - 31/Jul/2008)
+-----
+Se agrega funcion de validicacion de proveedor que este dado de alta.
+
+
+v7.10.0: (Javier Ayapata - 23/Sep/2008)
+-----
+Se agrega que al moneto de actualizar pago no elimine solo actualiza datos.
+
+
+v7.10.1: (Javier Ayapata - 28/Oct/2008)
+-----
+Se agrega para que solo se pueda modificar si el valor esta a favor caso contrario ingresa por la validacion.
+
+
+v7.10.2: (Javier Ayapata - 04/Nov/2008)
+-----
+Se agrega para que almacene el cod Sri en pagmovinv.
+
+
+v7.10.3: (Javier Ayapata - 18/Nov/2008)
+-----
+Se agrega nuevo esquema de inventario.
+
+
+v7.10.5: (Javier Ayapata - 26/Nov/2008)
+-----
+Se agrega nueva clase de movimiento de inventario.
+
+
+v7.10.6: (Javier Ayapata - 16/Ene/2009)
+-----
+Se agrega bloqueo  en la fecha del documento.
+
+
+v7.10.7: (Javier Ayapata - 29/Ene/2009)
+-----
+Se agrega filtro de tipo de documentos por usuarios.
+
+
+v8.0.0: (Javier Ayapata - 15/Abr/2009)
+-----
+Se agrega la base imponible del iva. 
+
+
+v8.0.1: (Javier Ayapata - 11/May/2009)
+-----
+Se agrega para que se visialize las bodegas.
+
+
+v8.0.2: (Javier Ayapata - 11/Ago/2009)
+-----
+Se agrega para que actualize secuencia de empresa y grupo tomando la secuencia de la tabla tbm_emp.
+
+
+v8.0.3: (Javier Ayapata - 15/Oct/2009)
+-----
+Se agrega constructor que es llamando de la pantalla de reposición.
+
+
+v8.0.4: (Javier Ayapata - 18/Ene/2010)
+-----
+Se agrega columna nueva en asiento de diario.
+
+
+v8.0.5: (Javier Ayapata - 12/Mar/2010)
+-----
+Se agrega constructor para presentar la orden de compra.
+
+
+v8.0.6: (Javier Ayapata - 15/Jul/2010)
+-----
+Se agrega cambios al modificar costos que es a contra es validado por item deacuerdo al marguen establecido.
+
+
+v8.0.7: (Javier Ayapata - 22/Oct/2010)
+-----
+Se cambia configuracion de reporteria que esta en el servidor.
+
+
+v8.0.8: (Javier Ayapata - 01/Dic/2010)
+-----
+Se bloquea para que no se pueda modificar cuando tenga factura del proveedor asociado.
+
+
+v8.0.10: (Javier Ayapata - 08/Dic/2010)
+-----
+Se agrega para q se envie mail a bodega cuando hay alguna anulacion.
+
+ 
+v8.0.11: (Javier Ayapata - 17/Ene/2011)
+-----
+Se agrega en forma de pago para que divida cuando es servicio y transporte.
+
+
+v8.0.12: (Javier Ayapata - 14/Mar/2011)
+-----
+Se agrega cuando no lleve iva en forma de pago no retenga iva.
+
+
+v8.0.13: (Javier Ayapata - 15/Jun/2011)
+-----
+Se agrega casilla donde se marca si se emite cheque.
+
+
+v8.0.14: (Javier Ayapata - 22/Jun/2011)
+-----
+Se agrega para que se recostee de manera automatica.
+
+
+v8.0.15: (Javier Ayapata - 23/Ago/2011)
+-----
+Se corrigue al consultar  que valide el tipo de documento.
+
+
+v8.16: (Javier Ayapata - 23/Sep/2011)
+-----
+Se corrigue el calculo de total.
+
+
+v8.17: (Javier Ayapata - 26/Oct/2011)
+-----
+Se agrega que el estado de impresion quede con "S" ya impreso.
+
+
+v8.18: (Erik Flores - 20/Nov/2012)
+-----
+Se modifica criterios de consulta de ordenes de compra.
+
+
+v8.19: (Alex Morán - 03/Jun/2013)
+-----
+Se modifica redondeo en totales.
+
+
+v8.20: (Ingrid Lino - 01/Dic/2014)
+-----
+Se agrega campo de numero de pedido(tx_numDoc2) segun lo solicitado por Alfredo Paulson. Solo en O/C, no en proceso usado a traves de Facturacion(compras de terminales "L").
+
+
+v8.21: (Ingrid Lino - 22/Dic/2014)
+-----
+Se valida que sólo pida el campo Número de Pedido cuando sea Insertar.
+
+
+v8.22: (Rosa Zambrano - 28/May/2015)
+-----
+Se agrega en generarRpt() como parametro RUTA_LOGO, para que se imprima con logo las Ordenes de Compra (Tuval, Castek, Dimulti)
+
+
+v8.23: (Angie Bajaña - 26/Ago/2015)
+-----
+Se modifica el metodo calculaTotal() para resolver el descuadre eventual que se generaba  en el redondeo del iva
+
+
+v8.24: (José Marín - 30/Nov/2015)
+-----
+Se agregaga validación para evitar que se cambie el diario al modificar.  
+
+
+v8.25: (José Marín - 6/Jun/2016)
+-----
+Se cambia la consulta (cargarCabReg) para que toma el porcentaje de IVA de tbm_cabMovInv, y se agrega en el evento 
+clickInsertar tomar el iva de tbm_emp.nd_ivaCom  
+
+
+v8.26: (Tony Sanginez - 15/Jul/2016)
+-----
+Se agrega constructor utilizado como HashMap para reportes de seguimiento de solicitudes de transferencias de inventario.
+
+
+v8.27: (Rosa Zambrano - 19/Sep/2016)
+-----
+Se agrega constructor utilizado como HashMap para reportes de seguimiento de solicitudes de transferencias de inventario.
+
+
+v8.28: (Tony Sanginez - 29/Sep/2016)
+-----
+Se modifica para que se utilice la nueva libreria de inventario.

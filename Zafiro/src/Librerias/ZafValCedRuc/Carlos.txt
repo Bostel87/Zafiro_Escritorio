@@ -1,0 +1,10 @@
+
+CONTROL DE VERSIONES:
+=====================
+
+v1.0: (Carlos Lainez- 22/Mar/2011)
+----
+Se creó clase VerificarId con métodos para chequear el correcto formato del número de cédula y los diferentes tipos de RUC aplicando la validación del dígito verificador.
+v1.1: (Carlos Lainez 21/Abr/2011)
+----
+Se creó nuevo método verificarId(String strId)

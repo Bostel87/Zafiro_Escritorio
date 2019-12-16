@@ -1,0 +1,18 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (José Marín - 07/Jul/2017)
+----
+Clase nueva "Obtiene datos"
+ * Datos de las bodegas
+
+
+
+v0.02: (José Marín - 27/Nov/2019)
+----
+Se agregan los metodos: getBodegaXEmpresa(); getNombreBodega();
+

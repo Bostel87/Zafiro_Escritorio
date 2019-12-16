@@ -1,0 +1,120 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Ingrid Lino - 07/Oct/2010)
+----
+Clase nueva que permite realizar transferencias al exterior y locales. Esta clase es leída solo si se ingresa por la empresa GRUPO, caso contrario se ingresa por la clase ZafCon02.
+Las clases ZafCon02_02 y ZafCon02_03 pertenecen a la clase ZafCon02_01, no se usan por ZafCon02.
+
+
+v0.1.1: (Ingrid Lino - 10/Nov/2010)
+-----
+Se adicionó en el arreglo del asiento de diario el campo que refleja la referencia que se ingresa en cada cuenta del detalle del diario.
+
+
+v0.1.2: (Ingrid Lino - 14/Dic/2010)
+-----
+Se cambiaron las cuentas que generaban el diario(solicitado por contador Juan Rodas, por proceso de depuración y elimnación de cuentas "Tuval, Castek, Dimulti").
+
+
+v0.1.3: (Ingrid Lino - 05/May/2011)
+-----
+Se adicionaron campos para colocar información de la cuenta bancaria, esta información es usada en los reportes de las cartas para transferencias.
+
+
+v0.1.4: (Ingrid Lino - 17/May/2011)
+-----
+Se adicionó columna para colocar el valor de la transferencia sin impuestos ni aranceles. Este valor es el que se debe imprimir en la carta y no el del asiento de diario.
+
+
+v0.1.5: (Ingrid Lino - 20/Jun/2011)
+-----
+Se cambio forma de obtener los parametros que se envian al reporte, tambien hubo algunos cambios de formato de campos en el query. Se ocultaron columnas codigoEmpresa, codigoCuenta.
+
+
+v0.1.7: (Ingrid Lino - 01/Jul/2011)
+-----
+Se adiciono programacion para acceso a diario de Derechos Arancelarios y correcion en reportes para derechos arancelarios.
+
+
+v0.1.10: (Ingrid Lino - 06/Jul/2011)
+-----
+Se adicionó tipo de moneda Euros.
+
+
+v0.1.11: (Ingrid Lino - 09/Sep/2011)
+-----
+En tbm_expImp se elimina el campo co_emp y tx_emp.
+
+
+v0.1.12: (Ingrid Lino - 18/Oct/2011)
+-----
+Se cambia ciertos formatos de impresión del Reporte SRI(Alfredo cambia de linux a W7).
+
+
+v0.1.13: (Ingrid Lino - 09/Abr/2012)
+-----
+Se agrega codificación para carta de Transferencias Arancelarias de Banco Internacional.
+
+
+v0.1.14: (Ingrid Lino - 25/Abr/2012)
+-----
+Se cambia el campo tbm_expImp.tx_nom por tbm_expImp.tx_nom2  en reportes de impresion.
+
+
+v0.1.15: (Ingrid Lino - 15/May/2012)
+-----
+Se adiciono el formato de Transferencias al exterior para el Bco del Pichincha Miami y se hizo cambios en el reporte del SRI porque se estaba cargando ese reporte al momento de hacer esta nueva opcion de MIAMI.
+
+
+v0.1.16: (Ingrid Lino - 04/Jun/2012)
+-----
+Se añade en el formato para Banco Pichincha Transferencias al exterior, campo de tabla nueva de provincias. Se crea nuevo formato para Banco de Pichincha Miami(locales).
+
+
+v0.1.16.1: (Ingrid Lino - 28/Jun/2012)
+-----
+Se cambia el nombre corto de la provincia por el nombre largo de la misma.
+
+
+v0.1.17: (Ingrid Lino - 03/Ago/2012)
+-----
+Se genera programación para reportes de Produbank Panama para transferencias locales y transferencias al exterior.
+
+
+v0.1.18: (Ingrid Lino - 08/Ago/2012)
+-----
+Cambios en datos y diseño del reporte segun verificacion con Olga Mejia.
+
+
+v0.1.19: (Ingrid Lino - 13/Ago/2012)
+-----
+Los parametros de la Fecha del reporte de produbank para tx locales estaba mal, se corrigio.
+
+
+v0.1.20: (Rosa Zambrano - 18/May/2015)
+-----
+Se agrega en generarRpt() un nuevo reporte para Asientos Diarios de Otros Movimientos Bancarios GRUPO LSC.
+
+
+v0.1.21: (Ingrid Lino - 26/Jun/2015)
+-----
+Se agrega el campo tx_obs1 al momento de generar el reporte (389) "Carta transferencias por derechos arancelarios (Produbanco)" (ZafRptCon02_05)
+
+
+v0.1.22: (Rosa Zambrano - 17/Sep/2015)
+-----
+Se cambian códigos de cuentas en las funciones getCuentaDebe() y getCuentaHaber() por nuevas cuentas de compañías relacionadas.
+
+
+v0.1.23: (Rosa Zambrano - 12/Abr/2018)
+-----
+Se renombra el menú: "Otros Movimientos Bancarios" por "Transferencias Bancarias entre empresas relacionadas".
+Todos los pagos de aranceles y pagos al exterior serán trasladados a un nuevo menú: "Pago a proveedores del exterior (Importaciones)".
+
+
+

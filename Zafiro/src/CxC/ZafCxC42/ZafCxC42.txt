@@ -1,0 +1,38 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Darío Cárdenas - 23/Abr/2008)
+-----
+Se creo Programa tipo Reporte para mostrar un Listado de Documentos por Cobrar de acuerdo a la Forma de Pago.
+
+
+v0.2: (Darío Cárdenas - 02/Jun/2008)
+-----
+Se agrego filtro para mostrar datos de clientes por local desde castek manta...
+
+
+v0.3: (Eddye Lino - 22/Feb/2010)
+-----
+Se modificó el método: 
+   1) ZafCxC42(ZafParSis obj)
+   2) configurarFrm()
+   3) cargarDetReg()
+Se hizo lo siguiente:
+1) Que de forma predeterminada aparecieran marcados todos los tipos de formas de pago.
+2) Se agregó la clase ZafTblOrd.
+3) Se cambio el modo de trabajo del JProgressBar a "Indeterminate(true)".
+
+
+v0.4: (Eddye Lino - 09/Ago/2011)
+-----
+Se modificó el código donde se utiliza el campo "ne_mod". Por error se lo había creado como
+CHAR en la Base de Datos cuando en realidad es SMALLINT.
+
+
+v0.5: (Rosa Zambrano - 05/Feb/2019)
+-----
+Se elimina uso de libreria obsoleta, para el uso de Jasper Studio.

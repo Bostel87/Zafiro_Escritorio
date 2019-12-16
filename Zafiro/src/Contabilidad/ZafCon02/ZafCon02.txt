@@ -1,0 +1,195 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 19/Ene/2006)
+----
+Se actualiza el código para que funcione con la correccián hecha en ZafToolBar.
+Ahora luego de "Insertar" se envia el registro al modo "Consultar".
+
+
+v0.1.1: (Ingrid Lino - 21/Feb/2006)
+-----
+Se adicioná el reporte de asientos de diario.
+
+
+v0.1.2: (Ingrid Lino - 22/Feb/2006)
+-----
+Se creo el reporte de asiento de diario.
+
+
+v0.2: (Eddye Lino - 06/Mar/2006)
+-----
+Se agregá temporalmente un control para evitar que se ingrese diarios que no sean DIGECO.
+Salió se permite eliminar diarios que son DIGECO.
+
+
+v0.2.2: (Ingrid Lino - 07/Mar/2006)
+-----
+Se corrigió la fecha de corte para presentar saldos anteriores en el reporte ya que estaba realizando siempre el corte desde el mes de enero hasta.
+
+
+v0.2.3: (Ingrid Lino - 28/Sep/2006)
+-----
+Se cambió el reporte de iReport porque presentaba errores en la máquina del Ing. Villán. El reporte se llama ZafRepCon02_new.jrxml
+
+
+v0.3: (Eddye Lino - 09/Nov/2006)
+-----
+Se agregá la condicián "AND a1.st_reg<>'E'" a la funcián "consultarReg" porque:
+Se cambiá la forma de eliminar documentos.
+Antes: Se hacáa una eliminacián fásica.
+Ahora: Se hace una eliminacián lágica.
+
+
+v0.4: (Eddye Lino - 28/Nov/2006)
+-----
+Se validó lo siguiente:
+    1) Que sálo sea posible anular los DIGECO. Es decir, todo lo que no sea DIGECO debe ser anulado en el programa que fue hecho.
+    2) Que todos los documentos que no sean DIGECO validen que no se pueda alterar la fecha, el námero de diario y el valor original
+       del diario. Es decir, se permite cambiar las cuentas siempre y cuando el valor del diario se mantenga.
+
+
+v0.5: (Ingrid Lino - 23/Ago/2007)
+-----
+Se adicionó cádigo para presentar tipos de documentos por usuarios y cuentas por usuarios
+
+
+v0.5.1: (Ingrid Lino - 28/Ago/2007)
+-----
+Se colocó alias a los campos presentados en la ventana de consulta (lánea 1557)
+
+
+v0.6: (Ingrid Lino - 13/Mar/2008)
+-----
+Se adicioná cádigo para esquema de bancos y validaciones al momento de cancelar que no permita guardar diarios descuadrados cuando presenta 
+mensaje de si se desea guardar cambios cuando se da click en cancelar.
+
+
+v0.7: (Ingrid Lino - 16/Abr/2008)
+-----
+Se adicioná en la funcián de insertar que el estado del registro sea 'O' en caso que el cádigo de menu sea 1708
+Este filtro es usado para el mená en CxC-Cobros en efectivo - Cierre de Caja (solo se lo hizo para insercián).
+
+
+v0.8 b1: (Ingrid Lino - 24/Abr/2008)
+-----
+- Se solicitá que para el programa Cierre de Caja con co_mnu=1708 se colocara un label y un textfield de monto del documento,
+  el mismo que tendrá la funcionalidad de cuando pierda el foco, aparezca el asiento de diario(cuentas asociados al documento y el valor
+  de debe y haber sea el valor del documento).
+  Para los demás programas no se ven reflejados estos cambios.
+- Se adicioná la opcián de Anular, se permitirá anular un documento siempre que no tenga documentos asociados.
+
+
+v0.8: (Ingrid Lino - 25/Abr/2008)
+-----
+Pase a producción.
+
+
+v0.9 b1: (Ingrid Lino - 12/Nov/2008)
+-----
+-Se adiciona parámetros de permisos de modificación para fecha del documento y para modificación del documento.
+ Ver diccionario de datos:
+   tbr_tipdocusr.ne_tipresmodfecdoc
+   tipdocusr.ne_tipresmoddoc
+-Se adiciona código para actualizar en tbm_cabDia.st_imp='S' cuando se realice la impresión.
+
+
+v0.9: (Ingrid Lino - 17/Nov/2008)
+-----
+Pase a producción.
+
+
+v0.10: (Ingrid Lino - 09/Mar/2009)
+-----
+Se adicionaron controles de ingreso para el programa de "cierre de caja" de valor del documento,
+que exista el detalle del diario, que se ingrese la glosa. Solicitud realizada por Gina.
+
+
+v0.11: (Ingrid Lino - 19/Mar/2009)
+-----
+Se adicionó documento TRBAVA para ser realizado a través del programa asiento de diario.
+
+
+v0.12: (Ingrid Lino - 30/Sep/2009)
+-----
+Se adicionó código para impresión en SO Linux.
+
+
+v0.13: (Ingrid Lino - 18/Mar/2010)
+-----
+En isCamVal, se estaba validando que el número de diario no se repita en todos los casos y debe ser solo cuando se lo inserta.
+
+
+v0.14: (Ingrid Lino - 19/Mar/2010)
+-----
+En la consulta del documento se adicionaron tablas tbr_tipDocPrg(admin) y tipDocUsr para que solo presente los documentos asociados al programa.
+
+
+v0.15: (Ingrid Lino - 06/Oct/2010)
+-----
+Se sobrecargó el método formInternalFrameOpened() permitiendo que si se ingresa por grupo redireccione a la clase ZafCon02_01, si se ingresa por empresas continua en ZafCon02.
+
+
+v0.15.1: (Ingrid Lino - 10/Dic/2010)
+-----
+Se cambió validación de diferencia de diario de Double a BigDecimal.
+
+
+v0.15.2: (Ingrid Lino - 01/Jun/2011)
+-----
+Se agregó el tipo de documento Cierre de Caja 2(usado por Karen de Cobranzas). El programa valida que solo ciertos tipos de documentos sean ingresados por el programa Asiento de Diario y este no estaba incluido.
+
+
+v0.15.3: (Ingrid Lino - 16/Jun/2011)
+-----
+Se cambió la ventana de consulta de tipos de documentos.
+
+
+v0.15.4: (Ingrid Lino - 22/Ago/2012)
+-----
+Se genera código para nuevo programa "Facturas de proveedores (Importaciones)" solo se permite ingresar a través de Grupo.
+
+
+v0.15.5: (Rosa Zambrano - 06/May/2015)
+-----
+Se agrega en generarRpt() para programa "Facturas de proveedores (Importaciones)".
+
+
+v0.15.6: (Rosa Zambrano - 14/May/2015)
+-----
+Se cambia búsqueda en generarRpt(), cuando se ingrese por otro menú diferente al de Factura Importaciones.
+
+
+v0.15.7: (Rosa Zambrano - 26/Ago/2016)
+-----
+Se agrega Tipo Documento Cierre de Caja 3.
+
+
+v0.15.8: (Tony Sanginez - 01/Nov/2016)
+-----
+Se habilita para que se pueda anular por usuario.
+
+
+v0.15.9: (Dennis Betancourt - 25/Ene/2018)
+-----
+1) Se valida que el campo "Numero de diario" no se guarde con valor ya existente en la tabla tbm_cabdia.
+2) Se valida que no permita grabar si es que no hay ninguna cuenta contable en el asiento.
+
+
+v0.15.10: (Dennis Betancourt - 15/Mar/2018)
+-----
+Al momento de insertar, se actualiza el campo tbm_cabtipdoc.ne_ultdoc con el valor del campo "Num.Asi.Dia".
+
+
+v0.15.11: (Rosa Zambrano - 12/Abr/2018)
+-----
+Se trasladan de este fuente los siguientes menú:
+  1) "Otros Movimientos Bancarios", el cual será renombrado por "Transferencias Bancarias entre empresas relacionadas".
+  2) "Pago a proveedores del exterior (Importaciones)", nuevo menú para realizar todos los pagos de aranceles y pagos al exterior.
+  3) "Factura de proveedores (Importaciones)"
+Se cierran conexiones al momento de consultar.
+

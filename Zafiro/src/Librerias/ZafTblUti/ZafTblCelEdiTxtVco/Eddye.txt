@@ -1,0 +1,23 @@
+﻿Pendientes:
+1) 
+2) 
+3) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 08/May/2006)
+----
+Clase nueva.
+
+
+v0.2: (Eddye Lino - 28/Jul/2010)
+-----
+Se modificó el método: 
+   1) mostrarVenCon()
+Se reemplazó el método "show()" por el método "setVisible(true)" porque ya estaba deprecated.
+
+
+v0.3: (Ingrid Lino - 12/Sep/2017)
+-----
+Se añade validación a través de variable "blnMosVenCon" para saber si la ventana de consulta debe visualizarse o no.

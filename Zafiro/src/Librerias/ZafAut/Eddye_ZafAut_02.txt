@@ -1,0 +1,42 @@
+Pendientes:
+1) 
+2) 
+3) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 29/Mar/2006)
+----
+Se hizo reingeniería de ésta clase.
+
+
+v0.2: (Eddye Lino - 03/Abr/2006)
+-----
+Se corrigieron problemas varios.
+
+
+v0.3: (Eddye Lino - 06/Abr/2006)
+-----
+Se corrigió query para que ya no muestra documentos vencidos.
+
+
+v0.4: (Eddye Lino - 10/Abr/2006)
+-----
+Se corrigió query para que ya no muestra documentos vencidos.
+
+
+v0.5: (Eddye Lino - 18/Ago/2009)
+----
+Se modificaron los métodos: 
+   1) configurarFrm()
+   2) configurarTblDat()
+   3) cargarDetReg()
+Se cambió el uso a una barra de progreso indeterminada para mejorar el rendimiento de la consulta.
+Antes se ejecutaba un query para hacer un COUNT(*) y determinar la cantidad total de registros que
+se van a cargar pero al utilizar una barra de progreso indeterminada ya no es necesario.
+
+
+v0.6: (Eddye Lino - 27/Nov/2018)
+----
+Se agregó el uso de la clase "ZafTblOrd".

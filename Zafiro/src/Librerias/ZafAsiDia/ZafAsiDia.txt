@@ -1,0 +1,405 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Eddye Lino - 26/Ene/2006)
+----
+Se corrigiá problema en generarDiario().
+
+
+v0.2: (Eddye Lino - 04/Feb/2006)
+-----
+Se corrigiá problema en el mátodo getDatTipDocBasDat().
+
+
+v0.3: (Eddye Lino - 27/Feb/2006)
+-----
+Se agregá mátodo generarDiarioTransferencias().
+
+
+v0.4: (Ingrid Lino - 30/Ago/2006)
+-----
+Se agregá mátodo setPuntosCta(). Este mátodo hace que aparezcan los puntos separadores de cuentas antes de efectuar la consulta.
+
+
+v0.5: (Eddye Lino - 09/Nov/2006)
+-----
+Se cambiá la forma de eliminar documentos.
+Antes: Se hacáa una eliminacián fásica.
+Ahora: Se hace una eliminacián lágica.
+El cádigo anterior era:
+    public boolean eliminarDiario(java.sql.Connection conexion, int empresa, int local, int tipoDocumento, int codigoDiario)
+    {
+        if (eliminarDet(conexion, empresa, local, tipoDocumento, codigoDiario))
+            if (eliminarCab(conexion, empresa, local, tipoDocumento, codigoDiario))
+                return true;
+        return false;
+    }
+
+    private boolean eliminarCab(java.sql.Connection con, int intCodEmp, int intCodLoc, int intTipDoc, int intCodDia)
+    {
+        boolean blnRes=true;
+        try
+        {
+            if (con!=null)
+            {
+                stm=con.createStatement();
+                //Armar la sentencia SQL.
+                strSQL="";
+                strSQL+="DELETE FROM tbm_cabDia";
+                strSQL+=" WHERE co_emp=" + intCodEmp;
+                strSQL+=" AND co_loc=" + intCodLoc;
+                strSQL+=" AND co_tipDoc=" + intTipDoc;
+                strSQL+=" AND co_dia=" + intCodDia;
+                stm.executeUpdate(strSQL);
+                stm.close();
+                stm=null;
+            }
+        }
+        catch (java.sql.SQLException e)
+        {
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        catch (Exception e)
+        {
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        return blnRes;
+    }
+
+v0.6: (Eddye Lino - 28/Nov/2006)
+-----
+Se agregá los mátodos: getMontoInicialDebe(), getMontoInicialHaber().
+
+v0.7: (Eddye Lino - 19/Abr/2007)
+-----
+Se agregá cádigo para evitar que se pueda grabar diarios anteriores al "31/Dic/2006".
+Es decir, que no se pueda grabar diarios de periodos cerrados.
+
+v0.8: (Javier Ayapata - 19/Abr/2007)
+-----
+Se agregá funcion insertarDiario_OC que permite ingresar el diario sin alterar el numero de documento de la tabla tbm_cabtipdoc.
+
+v0.9: (Ingrid Lino - 11/Jun/2007)
+-----
+Se agregá cádigo para no permitir ingreso de diarios de meses, aáos o cuentas cerradas
+
+v0.10: (Ingrid Lino - 20/Jun/2007)
+-----
+Se realizaron modificaciones con la siguiente finalidad:
+       - Se mejorá el proceso de: 
+           - no permitir ingresar, modificar, anular, eliminar documentos que tienen
+               *cierre mensual*
+               *cierre de cuentas contables*
+               *cierre anual*
+       - Cuando se desea insertar, modificar, anular o eliminar, los diarios deben ser de un ano que ha sido creado en el sistema, caso contrario
+         no permitirá efectuar la operacián deseada
+       - Que al generar diarios se realice el proceso de mayorizacián en lánea:
+            *se recalculan los saldos de la cuenta afectada
+            *se recalculan los saldos de las cuentas que son de niveles superiores a la cuenta afectada(cuentas padres)
+            *se recalcula el saldo de la cuenta de estado de resultados
+
+v0.11: (Eddye Lino - 10/Jul/2007)
+-----
+Se agregá listener a la clase addAsiDiaListener, removeAsiDiaListener).
+De esta manera es posible realizar alguna accián antes de realizar alguna operacián (beforeInsertar, beforeConsultar, beforeModificar, beforeEliminar, beforeAnular)
+o luego de ejecutar la operacián especificada (afterInsertar, afterConsultar, afterModificar, afterEliminar, afterAnular).
+
+
+v0.12: (Eddye Lino - 16/Jul/2007)
+-----
+Se agregaron los listener: 
+   1) beforeEditarCelda(ZafAsiDiaEvent evt)
+   2) afterEditarCelda(ZafAsiDiaEvent evt)
+   3) beforeConsultarCuentas(ZafAsiDiaEvent evt)
+   4) afterConsultarCuentas(ZafAsiDiaEvent evt)
+
+
+v0.13: (javier Ayapata - 24/Ago/2007)
+ se agrega la funcion generarDiarioTransferencias_cotizacion que me permite realizar la transferencia desde la cotizacion.
+
+v0.14: (Ingrid - 29/Ago/2007)
+----- 
+Se cambiá la forma de asignar el valor al debe y haber en la funcián de mayorizacián. láneas(4264,4265)
+
+v0.15: (Dario Cardenas - 12/Sep/2007)
+----- 
+Se agrego funciones tipo bandera para el programa docxpagar a la hora de generar los asientos de diario
+ 
+v0.16: (Ingrid Lino - 26/Sep/2007  - 14h03)
+-----
+Se cambiá el parámetro recibido por medio del objeto table model "objTblMod.getValueAt(i,INT_TBL_DAT_COD_CTA)" por la variable "intCodCta"
+porque lo que contiene el objeto es la nueva cuenta, mientras que lo que contiene la variable es lo que se ha almacenado en el ArrayList
+que se carga por medio de la consulta.
+    Cuando se modifica primero se restan/suman los valores que tenáa el documento al inicio y luego se suma/resta con los datos ingresados
+    en la tabla al momento de modificar.
+                            
+v0.17: (Ingrid Lino - 29/Oct/2007  - 11h30)
+-----
+En funcián mayorizarCta a la siguiente asignacián :
+    dlbValDeb=Double.parseDouble(""+  (objTblMod.getValueAt(i,INT_TBL_DAT_DEB)==null?""+0.00:""+objTblMod.getValueAt(i,INT_TBL_DAT_DEB))   );
+    dblValHab=Double.parseDouble(""+  (objTblMod.getValueAt(i,INT_TBL_DAT_HAB)==null?""+0.00:""+objTblMod.getValueAt(i,INT_TBL_DAT_HAB))   );
+
+se la cambiá por:
+    dlbValDeb=Double.parseDouble(objUti.codificar(objTblMod.getValueAt(i,INT_TBL_DAT_DEB), 3));
+    dblValHab=Double.parseDouble(objUti.codificar(objTblMod.getValueAt(i,INT_TBL_DAT_HAB), 3));
+porque estaba dando problemas al momento de guardar, ya que presentaba un problema de String empty
+
+v0.18: (Ingrid Lino - 31/Oct/2007  - 16h50)
+-----
+Se solicitá modificar funcián setPuntosCta().
+    *Se sensa aplica el concepto de MOD(%) 
+        - cuando la longitud de la cuenta es par, los 3 áltimos dágitos se toman como si fueran de un solo nivel
+        - cuando la longitud de la cuenta es impar, los 2 áltimos dágitos se toman como si fueran un sálo nivel
+
+
+v0.19: (Ingrid Lino - 11/Mar/2008  - 12h50)
+-----
+Se solicitá sobrecargar la funcián insertarDiario(), a la cual se le agregá el parámetro CODIGO DE DIARIO.(Lánea 4989)
+    public boolean insertarDiario(java.sql.Connection conexion, int empresa, int local, int tipoDocumento, String codigoDocumento, String numeroDiario, java.util.Date fechaDiario)
+
+    
+v0.20: (Ingrid Lino - 16/Abr/2008  - 11h42)
+-----
+Se solicitá sobrecargar la funcion "insertarDiario" a la que se le adicioná el parámetro de estado de diario
+Esto es necesario para cuando se llama al programa desde co_mnu=1708 en CxC-Cobros en efectivo-Cierre de Caja
+    insertarDiario(java.sql.Connection conexion, int empresa, int local, int tipoDocumento, String numeroDiario, java.util.Date fechaDiario, String estadoDiario)
+
+Tambián se sobrecargo la funcián "insertarCab" a la que se le adicioná el parámetro de estado de diario porque es usada en la funcián
+sobrecargada arriba (insertarDiario)
+    if (insertarCab(conexion, empresa, local, tipoDocumento, null, numeroDiario, fechaDiario, estadoDiario))
+    está funcián no debe mayorizar el movimiento efectuado.
+
+
+v0.21: (Dario Cardenas - 17/Abr/2008  - 10h20)
+-----
+Se agrego funcion "actualizarDiarioCieCaj" a la que se le modifico el parametro de fecha de diario
+Esto es necesario para cuando se llama al programa desde CxC-Cobros en efectivo-Recepcion de Efectivo
+    actualizarDiarioCieCaj(java.sql.Connection conexion, int empresa, int local, int tipoDocumento, int codigoDiario, String numeroDiario, String strFecDia, String estadoDiario)
+
+
+v0.22: (Dario Cardenas  &  Ingrid Lino - 13/Jun/2008  - 16h52)
+-----
+Se cambió la forma de mayorización en línea para la opción de modificar(para procesos en común y para Cierre caja)
+    - Ejm de un caso en el que el proceso no estaba mayorizando:
+        Si se ingresaba un documento en una fecha X y luego se lo moficaba a una fecha Y, no se veían reflejados
+            los cambios de sus saldos en la tabla de saldos, porq solo se recalculaban todos a la fecha inicial y
+            y no a la nueva fecha. Por tanto, el valor de la cuenta no era correcto.
+            
+v0.23: (Ingrid Lino - 20/Jun/2008  - 08h19)
+-----
+Se realizaron cambios en mayorización para anulaciones automáticas.
+
+
+
+v0.24: (Dario Cardenas - 13/Ago/2008  - 16h20)
+-----
+Se agrego funcion generarDiarioTra para crear asientos con las nuevas cuentas creadas en los tipos de 
+documentos para depositos en transito, que son las cuentas tbm_cabtipdoc.co_ctadebtra y tbm_cabtipdoc.co_ctahabtra
+    generarDiarioTra(int codigoTipoDocumento, double valorDebe, double valorHaber)
+
+v0.25: (Ingrid Lino - 28/Oct/2008  - 14h38)
+-----
+Se agregó función que genera diario enviando cuenta de debe y cuenta de haber con sus respectivos montos.
+   * generarDiario(String codigoTipoDocumento, int codigoCuentaDebe,  String valorDebe, int codigoCuentaHaber, String valorHaber)
+   * generarDiario(int codigoTipoDocumento, int codigoCuentaDebe, double valorDebe, int codigoCuentaHaber, double valorHaber)
+Estas serán usadas en el programa de Emisión de Cheques Masivos
+
+v0.26 b1: (Ingrid Lino - 12/Nov/2008  - 09h51)
+-----
+    -Se adicionaron métodos para generación de asientos de diario para Emisión de Cheques Masivos.
+        generarDiario(String codigoTipoDoc, int codigoCtaDeb,  String valorDebe, int codigoCtaHab, String valorHaber)
+    -Se cambió parte del código de la función:
+        insertarDiario(con, objParSis.getCodigoEmpresa(), objParSis.getCodigoLocal(), Integer.parseInt(txtCodTipDoc.getText()), txtNumDoc1.getText(), objUti.parseDate(dtpFecDoc.getText(),"dd/MM/yyyy")))
+
+        la misma que trabaja ya con el esquema de numDoc por Grupo tbm_cabGrpTipDoc.ne_UltDoc. Si el documento toma
+        en cuenta a la tabla tbm_cabGrpTipDoc, entonces incrementa el ultDoc en esa tabla, caso contrario trabaja como
+        se había venido trabajando anteriormente, incrementando ultDoc en tbm_cabTipDoc.
+        (Esto se hace porque la clase asiento de diario es la que se encarga de incrementar el ne_ultDoc(antes solo
+         estaba en tbm_cabTipDoc)
+
+v0.26: (Ingrid Lino - 17/Nov/2008  - 09h51)
+-----
+Pase a producción.
+
+v0.27: (Ingrid Lino - 29/Nov/2008  - 08h55)
+-----
+Se quitó el update de incremento en tbm_cabtipdoc y en tbm_cabGrpTipdoc para emisión de retenciones
+masivas y emisión de cheques masivos.
+
+
+v0.28: (Ingrid Lino - 07/Ene/2009  - 14h19)
+-----
+Se adicionó control para q no se puedan anular y eliminar documentos q no sean del presente año.
+
+v0.29: (Ingrid Lino - 14/Ene/2009  - 14h19)
+-----
+Se corrigió en el código de modificación. No estaba dejando modificar ciertos documentos por el siguiente caso:
+    - Se tiene un documento ingresado con fecha '2009-01-X'  y se lo desea modificar al mes '2008-12-X' salia que el mes estaba cerrado
+      cuando en realidad no estaba cerrado y era porq tomaba el mes '01' (del 2009) y el año '2008' y ese lo validaba.
+      ANTES:
+                    if(   (intFunAni==intArlAni)  || (intRefAniNew==intArlAni) ){
+                        if(    (intFunMes==intArlMes)  ||   (intRefMesNew==intArlMes)  ){
+                            mostrarMsgInf("<HTML>El mes que desea modificar está cerrado. <BR>Está tratando de MODIFICAR un documento de un periodo cerrado. <BR>Aperture el mes que desea modificar y vuelva a intentarlo.</HTML>");
+                            return false;
+                        }
+                    }
+      DESPUES:
+                    if(   (intFunAni==intArlAni)){
+                        if(    (intFunMes==intArlMes)){
+                            mostrarMsgInf("<HTML>El mes que desea modificar está cerrado. <BR>Está tratando de MODIFICAR un documento de un periodo cerrado. <BR>Aperture el mes que desea modificar y vuelva a intentarlo.</HTML>");
+                            return false;
+                        }
+                    }
+                    
+                    if( (intRefAniNew==intArlAni)  ){
+                        if( (intRefMesNew==intArlMes)  ){
+                            mostrarMsgInf("<HTML>El mes que desea modificar está cerrado. <BR>Está tratando de MODIFICAR un documento de un periodo cerrado. <BR>Aperture el mes que desea modificar y vuelva a intentarlo.</HTML>");
+                            return false;
+                        }
+                    }
+
+v0.30: (Ingrid Lino - 21/Ene/2009  - 11h17)
+-----
+    -Se adicionó control de modificación de fecha del documento (tbr_tipDocUsr.ne_tipresmodfecdoc) al momento de insertar y de modificar.
+      
+v0.31: (Ingrid Lino - 26/Ene/2009  - 10h02)
+-----
+-Se adicionó el parámetro de código de menú a la función "insertarDiario_OC()" porque los programas de Javier cargan
+ pantallas internas y esas se procesan bajo otro código. se sobrecargaron también las funciones 
+        insertarCab()
+        fechaPermitida()
+        canChangeDate()    a las que se le adicionó el parámetro código de menú.
+
+v0.32: (Ingrid Lino - 29/Ene/2009  - 14h07)
+-----
+Se sobrecargó la función :
+    - insertarDiario(java.sql.Connection conexion, int empresa, int local, int tipoDocumento, String numeroDiario, java.util.Date fechaDiario, int codigoMenuReferencial)
+    - actualizarDiario(java.sql.Connection conexion, int empresa, int local, int tipoDocumento, int codigoDiario, String numeroDiario, java.util.Date fechaDiario, String estadoDiario, int codigoMenuReferencial)
+    - actualizarCab(java.sql.Connection con, int intCodEmp, int intCodLoc, int intTipDoc, int intCodDia, String strNumDia, java.util.Date datFecDia, String strEstReg, int codigoMenuReferencial)
+
+a la q se le adicionó el codigo de Menu. Es usada por Dario Cárdenas para tipos de documentos q internamente
+generan un documento(Cruces).
+
+v0.33: (Ingrid Lino - 09/Mar/2009  - 10h22)
+-----
+El programa de Dario para recepción de efectivo estaba actualizando la glosa a null para el programa de cierre de caja. Yo corregi este problema 
+colocando en actualizarDiario el filtro 
+
+            if ( ! ( objParSis.getCodigoMenu()==1669) ){//este es el codigo de menu del programa "recepcion de efectivo"
+                    strSQL+=", tx_glo=" + objUti.codificar(txtGlo.getText());
+para que solo en esos casos se genere la actualizacion de la glosa
+
+v0.34: (Ingrid Lino - 18/Ene/2010)
+-----
+Se agregó un vector de registro al vector que genera el detalle del asiento de diario, este se ha
+creado porque se ha adicionado la validacion de no poder
+anular documentos con alguna conciliacion ni modificar la cuenta si esta conciliada.
+
+v0.35: (Ingrid Lino - 26/Ene/2010)
+-----
+Se ocultó la columna de estado de conciliación
+
+v0.35.1: (Ingrid Lino - 02/Feb/2010)
+----------------------------------------
+Se comentaron dos mensajes que no debian presentarse al usuario al anular un documento.
+
+v0.36: (Ingrid Lino - 30/Jul/2010)
+-----
+Se validó correctamente al insertar, modificar, anular, eliminar un documento cuya cuenta esté cerrada en un determinado mes.
+
+v0.37: (Ingrid Lino - 12/Ago/2010)
+-----
+En función "existenCuentaAnteriorCerrada" a la variable strCodCtaDet=""  tenia espacios en blanco y se le asigno 0 por default.
+
+v0.38: (Ingrid Lino - 07/Oct/2010)
+-----
+Se adicionaron funciones de generación de diario e inserción para el programa de ZafCon02 para transferencias de dinero local y exterior a través del grupo.
+
+v0.39: (Ingrid Lino - 10/Nov/2010)
+-----
+Se adicionó en el arreglo del asiento de diario(arlDatDetDiaMod) el campo que refleja la referencia que se ingresa en cada cuenta del detalle del diario.
+
+v0.40: (Ingrid Lino - 29/Jun/2012)
+-----
+Se adiciona en el query para obtener las cuentas a presentar, que presente solo las cuentas activas.
+
+v0.40.1: (Ingrid Lino - 22/Ago/2012)
+-----
+Se adicionan métodos para insertar y actualizar Diario adicionando parámetro de fecha de vencimiento y valor de documento. Usados en nuevo programa "Facturas de proveedores (Importaciones)".
+
+v0.40.2: (Ingrid Lino - 06/Feb/2013)
+-----
+Se coloca un filtro para permitir anular documentos de años anteriores solo a los usuarios admin y jrodas.
+
+v0.40.6: (Ingrid Lino - 04/Sep/2014)
+-----
+Se redondea en isDocumentoCuadrado() la línea:   BigDecimal bdeMonto=objUti.redondearBigDecimal(""+monto, 2);
+
+v0.40.7: (José Marín M - 13/Oct/2014)
+-----
+Se crea la funcion isDocumentoCuadradoBde() return ((bdeMonDeb.subtract(bdeMonHab)).compareTo(bdeVal)==0);
+
+v0.40.7: (José Marín M - 13/Oct/2014)
+-----
+Se modifica la funcion isDocumentoCuadradoBde() 
+
+v0.40.8: (Ingrid Lino M - 12/Sep/2017)
+-----
+Se añade codificación para enviar en método de insertar, el código del documento, cuando el estado es 'O'.
+
+v0.40.9: (José Marín M - 14/Sep/2017)
+-----
+SE agrega validacion canChangeDate().
+
+v0.40.11: (Ingrid Lino - 07/Dic/2017)
+-----
+Nuevo esquema de Provisiones ( Pedido Embarcado )
+
+v0.40.12: (Rosa Zambrano - 11/Ene/2018)
+-----
+Cambio en la función de insertarDiarioProvision, en el llamado de libreria SegMovInv. Se agrega null en codigo de registro.
+
+v0.40.13: (Dennis Betancourt - 20/Nov/2018)
+-----
+Se agrega el metodo remayorizarPeriodo().
+
+v0.40.14: (Dennis Betancourt - 29/Ene/2019)
+-----
+En el query, al momento de remayorizar, se modifico codigo en la funcion SUM por si se llegara a presentar algun valor NULL.
+Antes: SUM(a2.nd_monDeb - a2.nd_monHab) AS nd_salCta
+Ahora: SUM( (case when a2.nd_monDeb is null then 0 else a2.nd_monDeb end) - (case when a2.nd_monHab is null then 0 else a2.nd_monHab end) ) AS nd_salCta
+
+v0.40.15: (Dennis Betancourt - 07/Feb/2019)
+-----
+Se comenta metodos que se encargan de mayorizar en linea.
+
+v0.40.16: (Christian Mateo - 23/Mar/2019)
+-----
+Se agrega método reestructurargenerarDiarioCheques se usa para poder generar el diario de forma correcta en los casos de cobros de valores depositados
+directamente en el banco, cobro de cheques y cobros en efectivo , utilizado para cuadrar las cuentas de Clientes.
+
+v0.41.0: (Rosa Zambrano - 23/Abr/2019)
+-----
+Se agregan campos nuevos para la tabla de saldo de cuentas en generarDiarioProvision.
+
+v0.41.1: (Dennis Betancourt - 07/May/2019)
+----
+En el metodo remayorizarPeriodo(), dentro del "for (j = 6; j > 1; j--)", se traia los campos "ne_niv" y "ne_pad" de la tabla tbm_plaCta. Ahora se trae estos campos de la tabla tbm_salCta, debido al Plan de cuentas unificado.
+
+v0.41.2: (Dennis Betancourt - 17/May/2019)
+----
+En la funcion cargarDetReg(), se modifico para que el Numero y Nombre de la cuenta_contable ya no sea traido de tbm_plaCta. Ahora, por el Plan de cuentas Unificado, estos datos son traidos de tbm_salCta.
+
+v0.41.3: (Ingrid Lino - 17/Jun/2019)
+-----
+Nuevo esquema de asiento de diario en provisiones
+
+v0.41.4: (Rosa Zambrano - 07/Ago/2019)
+-----
+Se modifica funcion insertarCuentaProvision para insertar ultimo periodo del año en las cuentas de provisiones.

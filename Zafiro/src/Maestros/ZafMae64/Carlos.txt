@@ -1,0 +1,13 @@
+
+CONTROL DE VERSIONES:
+=====================
+
+ZafMae64 v1.0: (Carlos Lainez- 18/05/2011)
+----
+Se creo la Pantalla de Mantenimiento para los Tipos de documentos dogitales
+siendo manejado por el bean ZafMae64Bean
+
+
+ZafMae64Bean v1.0: (Carlos Lainez- 18/05/2011)
+----
+Se creo bean manejador de la Pantalla de Mantenimiento para los Tipos de documentos dogitales ZafMae64

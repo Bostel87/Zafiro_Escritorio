@@ -1,0 +1,168 @@
+ 
+    private boolean cargarDetReg()
+    {
+        String strNiv;
+        int intCodEmp, intNumTotReg, i;
+        boolean blnRes=true;
+        try
+        {
+            butCon.setText("Detener");
+            lblMsgSis.setText("Obteniendo datos...");
+            intCodEmp=objParSis.getCodigoEmpresa();
+            con=DriverManager.getConnection(objParSis.getStringConexion(), objParSis.getUsuarioBaseDatos(), objParSis.getClaveBaseDatos());
+            if (con!=null)
+            {
+                
+                strAux="";
+                //corte por fecha
+                if (dtpFecDes.isFecha() && dtpFecHas.isFecha()){
+                    strAux+=" AND (a1.fe_doc>='" + objUti.formatearFecha(dtpFecDes.getText(),"dd/MM/yyyy",objParSis.getFormatoFechaBaseDatos()) + "'";
+                    strAux+=" AND a1.fe_doc<='" + objUti.formatearFecha(dtpFecHas.getText(),"dd/MM/yyyy",objParSis.getFormatoFechaBaseDatos()) + "')";                    
+                }
+               
+////////////////*************************************************************///////////////////////////
+
+                stmDsc=con.createStatement();
+                strSQL="";  
+                strSQL+="select count(a1.co_doc) as numVta";
+                strSQL+=" from tbm_cabmovinv as a1";
+                strSQL+=" where a1.co_emp= " + intCodEmp + "";
+                strSQL+=" and (a1.co_tipdoc=1 or a1.co_tipdoc=7)";
+                strSQL+=strAux;
+                strSQL+=" group by a1.fe_doc";
+                strSQL+=" order by a1.fe_doc";                                
+                System.out.println("SQL del numero de ventas:"+strSQL);
+                rstDsc=stmDsc.executeQuery(strSQL);
+                intNumTotReg=objUti.getNumeroRegistro(this, objParSis.getStringConexion(), objParSis.getUsuarioBaseDatos(), objParSis.getClaveBaseDatos(), strSQL);
+                if (intNumTotReg==-1)
+                    return false;
+/*
+                vecDatUno.clear();
+                lblMsgSis.setText("Cargando datos...");
+                pgrSis.setMinimum(0);
+                pgrSis.setMaximum(intNumTotReg);
+                pgrSis.setValue(0);
+                i=0;
+                while (rstDsc.next())
+                {
+                    if (blnCon)
+                    {
+                        vecRegUno=new Vector();
+                        //lo que se presenta en el reporte
+                        vecRegUno.add(INT_TBL_DAT_LIN,""); 
+                        vecRegUno.add(INT_TBL_DAT_FEC_DOC,"");
+                        vecRegUno.add(INT_TBL_DAT_COD_EMP,"");
+                        vecRegUno.add(INT_TBL_DAT_NOM_EMP,"");
+                        vecRegUno.add(INT_TBL_DAT_NUM_VTA,""+rstDsc.getInt("numVta"));                        
+                        vecRegUno.add(INT_TBL_DAT_MIX_VTA,"");
+                        vecRegUno.add(INT_TBL_DAT_VAL_DSCT,"");
+                        vecRegUno.add(INT_TBL_DAT_VAL_NET, "");
+                        vecRegUno.add(INT_TBL_DAT_MIX_NET,"");
+                        vecRegUno.add(INT_TBL_DAT_VAL_IVA, "");
+                        vecRegUno.add(INT_TBL_DAT_VAL_TOT, "");
+                        vecRegUno.add(INT_TBL_DAT_VAL_COS,"");
+                        vecRegUno.add(INT_TBL_DAT_VAL_UTI,"");
+                        vecRegUno.add(INT_TBL_DAT_MIX_UTI,"");
+                        vecDatUno.add(vecRegUno);
+                        i++;
+                        pgrSis.setValue(i);
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                rstDsc.close();
+                stmDsc.close();
+                rstDsc=null;
+                stmDsc=null;
+                
+                objTblMod.setData(vecDatUno);
+                tblDat.setModel(objTblMod);
+*/
+/////////************************************************************************////////////////                
+
+                stm=con.createStatement();
+                strSQL="";
+                strSQL+="select";
+                strSQL+=" abs(a1.nd_sub) as sub, abs(sum(a2.mo_pag)) as tot, abs(sum(mo_pag)-a1.nd_sub) as iva, a1.fe_doc";
+                strSQL+=" from tbm_cabmovinv as a1 inner join tbm_pagmovinv as a2";
+                strSQL+=" on a1.co_emp=a2.co_emp and a1.co_loc=a2.co_loc and a1.co_tipdoc=a2.co_tipdoc and a1.co_doc=a2.co_doc";
+                strSQL+=" where a1.co_emp=" + intCodEmp + "";
+                strSQL+=" and (a1.co_tipdoc=1 or a1.co_tipdoc=7)";                
+                strSQL+=strAux;
+                strSQL+=" group by a1.fe_doc,";
+                strSQL+=" a1.nd_sub";
+                strSQL+=" order by a1.fe_doc";                                               
+                System.out.println("SQL para obtener el valor del descuento: " + strSQL);
+                rst=stm.executeQuery(strSQL);
+
+                vecDat.clear();
+                lblMsgSis.setText("Cargando datos...");
+                pgrSis.setMinimum(0);
+                pgrSis.setMaximum(intNumTotReg);
+                pgrSis.setValue(0);
+                i=0;
+                while (rst.next())
+                {
+                    if (blnCon)
+                    {
+                        vecReg=new Vector();
+                        //lo que se presenta en el reporte
+                        vecReg.add(INT_TBL_DAT_LIN,""); 
+                        vecReg.add(INT_TBL_DAT_FEC_DOC, ""+rst.getDate("fe_doc"));
+                        vecReg.add(INT_TBL_DAT_COD_EMP,"");
+                        vecReg.add(INT_TBL_DAT_NOM_EMP,"");
+                        vecReg.add(INT_TBL_DAT_NUM_VTA,"");                        
+                        vecReg.add(INT_TBL_DAT_MIX_VTA,"");
+                        vecReg.add(INT_TBL_DAT_VAL_DSCT,"");
+                        vecReg.add(INT_TBL_DAT_VAL_NET, ""+rst.getDouble("sub"));
+                        vecReg.add(INT_TBL_DAT_MIX_NET,"");
+                        vecReg.add(INT_TBL_DAT_VAL_IVA, ""+rst.getDouble("iva"));
+                        vecReg.add(INT_TBL_DAT_VAL_TOT, ""+rst.getDouble("tot"));
+                        vecReg.add(INT_TBL_DAT_VAL_COS,"");
+                        vecReg.add(INT_TBL_DAT_VAL_UTI,"");
+                        vecReg.add(INT_TBL_DAT_MIX_UTI,"");
+                        vecDat.add(vecReg);
+                        i++;
+                        pgrSis.setValue(i);
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                rst.close();
+                stm.close();
+                con.close();
+                rst=null;
+                stm=null;
+                con=null;
+ 
+/////////************************************************************************////////////////                                
+                //Asignar vectores al modelo.
+                objTblMod.setData(vecDat);
+                tblDat.setModel(objTblMod);
+                if (intNumTotReg==tblDat.getRowCount())
+                    lblMsgSis.setText("Se encontraron " + intNumTotReg + " registros.");
+                else
+                    lblMsgSis.setText("Se encontraron " + intNumTotReg + " registros pero sálo se procesaron " + tblDat.getRowCount() + ".");
+                pgrSis.setValue(0);
+                butCon.setText("Consultar");
+                                                               
+                objTblTotales.calcularTotal();
+                objTblTotales.isActivo(true);                
+            }
+        }
+        catch (java.sql.SQLException e)
+        {
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        catch (Exception e)
+        {
+            blnRes=false;
+            objUti.mostrarMsgErr_F1(this, e);
+        }
+        return blnRes;
+    }

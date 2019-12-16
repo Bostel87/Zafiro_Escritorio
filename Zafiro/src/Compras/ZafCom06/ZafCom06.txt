@@ -1,0 +1,77 @@
+﻿
+﻿CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Javier Ayapata - 01/Mar/2010)  
+---- 
+Clase nueva "Autorización OD".
+
+
+v0.2: (Javier Ayapata - 16/Abr/2010)  
+-----
+Se corrige el sql no presentaba las guias de la facturas que ya fueron canceladas.
+
+
+v0.3: (Javier Ayapata - 14/Jul/2010)  
+-----
+Se agrega para que envia mensaje de impresion al servidor de impresion correspondiente.
+
+
+v0.4: (Javier Ayapata - 11/Ago/2010)  
+-----
+Se agrega para solo se autorize impresion de guia si tiene todo pagado solo carla puede autorizar sin importar pago o no.
+
+
+v0.5: (Javier Ayapata - 18/Ago/2010)  
+-----
+Se agrega para solo se autorize impresion de guia si tiene todo pagado tambien para alfredo.
+
+
+v0.6: (Javier Ayapata - 25/Ago/2010)  
+-----
+Se corrige al verificar si esta pagado todo la factura antes de poder autorizar imp. guia.
+
+
+v0.8: (Javier Ayapata - 20/Sep/2010)  
+-----
+Se agrega para motrar listado de todas las guias autorizadas.
+
+
+v0.9: (Javier Ayapata - 22/Oct/2010)  
+-----
+Se cambia la configuracion de direccion de IP para impresion de guia.
+
+
+v1.0: (Javier Ayapata - 08/Feb/2011)  
+-----
+Se cambia para que pueda ver todas las bodega el administrador.
+
+
+v1.1: (Javier Ayapata - 19/Jul/2011)  
+-----
+Se agrega clase para se envie impresión de guía.
+
+
+v1.2: (Javier Ayapata - 30/Abr/2012)  
+-----
+Se quita validacion de autorizacion de guias por codigo de usuario. El permiso se dara a traves de la opcion de menu.
+
+
+v1.3: (Christian Mateo -  21/Ago/2015)
+-----
+Se agrega el uso de ZafReglas para generación de OD Y G.R., en reemplazo del ZafSer01.
+
+v1.4: (Christian Mateo -  11/Sep/2015)
+-----
+Se modifica para que no genere od remotas por cobros tarjetas de credito. Solo debe generar las od locales y las confirmaciones y guias remision por terminales L.
+
+v1.5: (Christian Mateo -  12/Oct/2015)
+-----
+Se modifica para que no genere nuevas OD locales cuando ya existe un numero de orden, La validacion se la realiza sobre la tabla tbm_cabguirem, antes se realizaba sobre tbm_cabmovinv.
+
+
+
+
+  
+  
+  

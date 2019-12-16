@@ -1,0 +1,31 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (José Marín - 14/Jun/2018)
+----
+Clase nueva (Reporte de clientes por vendedores)...
+
+
+v0.02: (José Marín - 7/Jul/2018)
+----
+Modificacion en los vendedores a mostrar...
+ 
+
+v0.03: (José Marín - 7/Jul/2018)
+----
+Modificacion en los vendedores a mostrar, para que se muestren los inactivos...
+
+
+v0.04: (José Marín - 7/Ene/2019)
+----
+Modificacion para que en la ventana de consulta se muestren solo los documentos del cliente seleccionados...
+
+
+v0.05: (José Marín - 7/Mar/2019)
+----
+Se modifico un campo en la consulta por vendedor a6.st_ven='S'  
+

@@ -1,0 +1,192 @@
+﻿
+CONTROL DE VERSIONES:
+=====================
+ 
+v0.1: (Javier Ayapata - 24/Sep/2008) 
+----
+Clase nueva de recepción de mercaderia - revisión técnica - IngEgre Merca Bod.
+
+
+v0.2: (Javier Ayapata - 29/Sep/2008)
+-----
+Se agrega casilla de verificación si es por faltante fisico de stock.
+
+
+v0.3: (Javier Ayapata - 04/Nov/2008) 
+-----
+Se agrega que actualice en la tabla de tbm_invbod campos de nd_caningfisbod.
+
+
+v0.4: (Javier Ayapata - 26/Nov/2008) 
+-----
+Se corrige al momento de consultar por error de versión de libreria de porgrest.
+
+
+v0.5: (Javier Ayapata - 11/Mar/2009) 
+-----
+Se agrega para que aparezca la observación de la solicitud.
+
+
+v0.6: (Javier Ayapata - 18/Mar/2009) 
+-----
+Se corrige datos de envío al reporte.
+ 
+
+v0.7: (Javier Ayapata - 29/May/2009)
+-----
+Se corrige ruta del reporte para linux .
+
+
+v0.8: (Javier Ayapata - 08/06/2009)
+-----
+Se agrega para Dimulti que se pueda filtrar solicitudes de local1 y local3.
+
+
+v0.9: (Javier Ayapata - 05/Oct/2009)
+-----
+Se corrige cuando se actualiza los campos de ingreso  físico a bodega de la tbl tbm_invbod.
+
+
+v1.0: (Javier Ayapata - 06/Nov/2009)
+-----
+Se agrega para que solo confirme mercaderia que no se vuelve a facturar.
+
+
+v1.1: (Javier Ayapata - 16/Abr/2010)
+-----
+Se agrega constructor para mostrar el documento desde el seguimiento.
+
+
+v1.2: (Javier Ayapata - 03/May/2010)
+-----
+Se agrega para no se pueda hacer la recepcion cuando la guia correspondiente no esta impresa.
+
+
+v1.3: - (Javier Ayapata - 22/Oct/2010)
+-----
+Se cambia configuracion de reporteria que esta en el servidor.
+
+
+v1.4: - (Javier Ayapata - 27/Abr/2011)
+-----
+Se agrega para cuando son termninales L a exepción que ingrese a bodega  que no se confirme el ingreso.
+
+
+v1.5: (Javier Ayapata - 23/Sep/2011)
+-----
+Se agrega cambios nuevo esquema Guías-OD.
+
+
+v1.6: (Erik Flores - 27/Abr/2012)
+-----
+Se modifica en ZafVen27.generarRpt, el proceso para que en la empresa Tuval llame al Reporte Adaptado para la Impresora de Punto de Venta.
+
+
+v1.7: (Erik Flores - 12/Dic/2012)
+-----
+Se modifica para que al momento de aceptar la recepcion de mercaderia se envie requerimiento de impresion a la impresora de punto de venta. 
+
+
+v1.8: (Erik Flores - 14/Dic/2012)
+-----
+Se modifica porque se estaba enviando mal el tipo de documento para requerimiento de impresión. 
+
+
+v1.9: (Alex Morán - 27/Ago/2013)
+-----
+Se modifica para considerar el caso en que la guía de remisión (relacionada) es emitida posterior a la autorización de la solicitud de devolución de ventas.
+
+
+v2.0: (Alex Morán - 02/Sep/2013)
+-----
+Se corrige condición en consulta caso en que la guía de remisión (relacionada) es emitida posterior a la autorización.
+
+
+v2.1: (Alex Morán - 09/Oct/2013)
+-----
+Se mejora consulta de solicitudes de devolución de ventas listas para generar devoluciones.
+
+
+v2.2: (Rosa Zambrano - 25/Feb/2015)
+-----
+Se modifica en la función generarRpt, la configuración del reporte para que se imprima en el formato de OD (Impresoras Etiqueteras) 
+en las empresas distintas de Castek.
+Se modifica el método clickInsertar(), para que obtenga la hora y fecha del servidor, en vez de la hora y fecha de la PC.
+
+
+v2.3: (José Marín - 03/Jul/2015)
+-----
+Se añade la función imprimirOrdenAlmacenamiento(), que imprime una Orden de almacenamiento al momento que se confirma que la mercaderia esta lista 
+para ingresar a bodega. 
+
+
+v2.4: (José Marín - 22/Jul/2015)
+-----
+Se corrige el query en imprimirOrdenAlmacenamiento(), debido a que el campo nd_canRevBodAce esta como character varying en la BD.
+
+
+v2.5: (Rosa Zambrano - 09/Sep/2015)
+-----
+Se cambia la ruta del reporte de la Orden de Almacenamiento para que busque el reporte en el servidor, en vez del directorio del sistema.
+
+
+v2.6: (Rosa Zambrano - 26/Sep/2015)
+-----
+Se agrega impresión de Ordenes de Almacenamiento en Manta, Sto Domingo y Cuenca.
+
+
+v2.7: (Rosa Zambrano - 05/Oct/2015)
+-----
+Se corrige query de orden de almacenamiento para que valide el código de la bodega de grupo, en vez de la empresa.
+Se agrega reporte de Orden de Almacenamiento para las devoluciones de ventas.
+Se cambio ruta de reporte de ticket de devolución para que salga en formato grande solo para Manta y Sto Domingo.
+
+
+v2.8: (Rosa Zambrano - 11/Ene/2016)
+-----
+Se agrega el código de 3 letras en el query de las funciones imprimirOrdenAlmacenamiento() y generarRpt() para que se impriman en las ordenes de almacenamiento.
+
+
+v2.9: (José Marín - 08/Abr/2016)
+-----
+Se agrega en la funcion procesaDevolucion() el llamado del objeto objZafVen28 para generar la devolucion de venta de forma automática.
+
+
+v2.10: (Rosa Zambrano - 14/Jul/2016)
+-----
+Se agrega impresion de ticket de devolucion de forma automática, ya que habia dejado de realizarse la impresion.
+
+
+v2.11: (Christian Mateo - 15/Jul/2016)
+-----
+Se agrega cambios para el proceso de solicitudes de transferencias de inventario.
+Ventas.ZafVen27.ZafVen27.java:    Modificacion de Recepcion de mercaderia sujeta a devolucion
+
+
+v2.12: (Christian Mateo - 27/Jul/2016)
+-----
+Se cambia query de recepcion.
+
+
+v2.13: (Rosa Zambrano - 10/Oct/2016)
+-----
+Se agrega validación en la función validaCampos() para que no permita guardar sin haber recepcionado algun ítem.
+
+
+v2.14: (Rosa Zambrano - 24/Oct/2016)
+-----
+Se corrige impresión de orden de almacenamiento en recepción de devolución, porque se imprimia múltiples veces.
+
+v2.15: (Christian Mateo 20/Nov/2017)
+-----
+Se modifica para que se pueda realizar la recepcion por reservas
+
+v2.16: (Christian Mateo 27/Nov/2017)
+-----
+Se modifica por fallo en el cambio de reservas metodo realizaConfGuiSal
+
+
+
+
+
+

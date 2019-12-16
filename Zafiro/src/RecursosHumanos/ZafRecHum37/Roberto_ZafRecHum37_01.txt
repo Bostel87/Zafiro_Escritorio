@@ -1,0 +1,7 @@
+
+CONTROL DE VERSIONES:
+=====================
+
+v1.0: (Roberto Flores - 03/01/2013)
+----
+Clase nueva para la configuración de rubros de los empleados que no tienen asociadas cuentas contables.

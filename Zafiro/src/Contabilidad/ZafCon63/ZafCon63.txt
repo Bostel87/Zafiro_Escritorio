@@ -1,0 +1,24 @@
+﻿Pendientes:
+1) 
+2)
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Rosa Zambrano - 16/Mar/2016)
+----
+Clase nueva "Configuración de formatos para el plan de cuentas".
+La funcionalidad de este programa es DRAG AND DROP.
+Permite ingresar y actualizar nuevos formatos de plan de cuentas contables.
+Este programa fue solicitado por el formato de plan de cuentas Mercado de Valores de la Super de Compañías.
+
+
+v0.2: (Rosa Zambrano - 11/May/2016)
+-----
+Se agrega campo tx_niv1 en la actualización e ingreso de cuentas de detalle al formato de plan de cuentas.
+Función cargarDetRegPlaCtaEmp(): Se habilita en el Formato de Empresa para que aparezcan todas las cuentas de detalle sin importar que ya hallan sido trasladas al nuevo formato.
+
+
+v0.3: (Rosa Zambrano - 09/Jun/2016)
+-----
+Se realizan mejoras visuales.

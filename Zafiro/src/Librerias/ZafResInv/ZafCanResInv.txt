@@ -1,0 +1,22 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (José Marín - 21/Sep/2017)
+----
+Clase nueva (Cancelacion de Reserva de inventario). 
+
+
+v0.02: (José Marín - 07/May/2018)
+----
+Modificacion en el envio de correos electronicos al cancelarse una reserva.
+
+
+v0.03: (Rosa Zambrano - 06/Ago/2019)
+-----
+Se agrega el objeto de parametros del sistema para envios de correos.
+
+ 

@@ -1,0 +1,168 @@
+﻿Pendientes:
+1) 
+2) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (José Marín - 1/Jul/2017)
+----
+Clase nueva (Solicitud, Autorizacion y seguimiento de reservas).
+
+
+v0.02: (José Marín - 17/Ago/2017)
+----
+Modificaciones para Reservas en la empresa, modificaciones en el query para obtener mercaderia de otras bodegas.
+
+
+v0.03: (José Marín - 18/Ago/2017)
+----
+ Modificaciones en el query para obtener mercaderia de otras bodegas.
+
+
+v0.04: (José Marín - 21/Ago/2017)
+----
+ Modificaciones en el query para validaciones de nulos.
+ 
+
+v0.05: (Rosa Zambrano - 22/Ago/2017)
+----
+Modificaciones en la funcion, validaStock(), se agrego el tx_codAlt y cantidad disponible de grupo.
+
+
+v0.05.1: (José Marín - 21/Ago/2017)
+----
+Tenia un booleano, mal declarado la validacion nunca pasaba. 
+
+
+v0.06: (José Marín - 7/Sep/2017)
+----
+Modificaciones de los Terminales S, al comienzo pense los terminales S debian ser solo locales, segun de donde se trate de reservar, 
+pero ahora se lo maneja como un Item normal, entonces se debe poder elegir de donde pedirlo. 
+Modificaciones para reserva en la propia empresa.
+
+
+v0.06.01: (José Marín - 12/Sep/2017)
+----
+Modificacion en la consulta por grupo esta dando un error.
+
+
+v0.06.02: (José Marín - 15/Sep/2017)
+----
+Modificacion en la consulta.
+
+
+v0.06.03: (José Marín - 15/Sep/2017)
+----
+Modificacion en los controles de CxC, para que se presente directamente la pantalla de Autorizaciones la cotizacion con la que e esta trabajando.
+
+
+v0.07: (José Marín - 21/Sep/2017)
+----
+Se agrega Cancelacion de Reservas. Solo cancelacion completa. (La pantalla de parciales es tonta).
+
+
+v0.07.01: (José Marín - 27/Sep/2017)
+----
+Se agrega modificacion para reserva.
+
+
+v0.07.02: (José Marín - 27/Sep/2017)
+----
+Se agrega JTable de totales a solicitud de FRuiz.
+
+
+v0.07.03: (José Marín - 28/Sep/2017)
+----
+Se agrega validacion para que no puedan denegar una reserva que ya esta autorizada.
+
+
+v0.07.04: (José Marín - 3/Oct/2017)
+----
+Modificaciones en el diseño, no estaba aumentando la tabla de tamaño cuando hacen grande la ventana.
+
+
+v0.07.05: (José Marín - 4/Oct/2017)
+----
+Modificaciones en los filtros de busqueda.
+
+
+v0.07.06: (José Marín - 26/Oct/2017)
+----
+Se modifica que grave el nombre del item desde la cotizacion.
+
+
+v0.07.07: (José Marín - 13/Nov/2017)
+----
+Modificaciones para OC por reservas, en pagos y en datos de despacho.
+
+
+v0.07.08: (José Marín - 30/Nov/2017)
+----
+Se agrega validacion para que no se pueda autorizar una reserva de una cotizacion facturada.
+
+
+v0.07.09: (José Marín - 7/May/2018)
+----
+Se agrega una columna para poder ver los pedidos a otras bodegas, se agrega envio de correos electronicos al momento de cancelar.
+
+
+v 0.08: (Jose Mario Marin - 24/May/2018)
+----
+Modificacion para hacer control de versiones.
+
+
+v 0.09: (Jose Mario Marin - 10/Jul/2018)
+----
+Modificacion en la clase realizaMovimientoEntreEmpresas().
+
+
+v 0.10: (Jose Mario Marin - 11/Jul/2018)
+----
+Modificacion en la clase realizaMovimientoEntreEmpresas(), disponible debe ser mayor e igual.
+
+
+v 0.11: (Jose Mario Marin - 11/Jul/2018)
+----
+Se agrega llamado a impremir OD por reserva, faltava un enviar en reservar por Empresa.
+
+
+v 0.12: (Jose Mario Marin - 13/Sep/2018)
+----
+Modificacion al cargar despues de autorizar a veces no cargaba todos los datos al entrar por grupo, mostraba la ultima empresa por la que autorizo.
+
+
+v 0.14: (Jose Mario Marin - 21/Nov/2018)
+----
+Modificaciones para que por grupo funcione adecuadamente.
+
+
+v 0.15: (Jose Mario Marin - 27/Jun/2019)
+----
+Modificaciones en el query de consulta.
+
+
+v 0.16: (Jose Mario Marin - 16/Jul/2019)
+----
+Modificaciones para la validación de la fecha que se puede solicitar o autorizar una reserva, para facturación 
+automática maximo 8 dias antes de fin de mes, solicitado por LSC y Werner Campoverde.
+
+v 0.17: (Rosa Zambrano - 23/Jul/2019)
+----
+Modificaciones para la validación de la fecha que se puede solicitar o autorizar una reserva, para facturación 
+automática maximo 30 dias antes de fin de mes, solicitado por LSC y Werner Campoverde.
+
+
+v 0.18: (Jose Mario Marin - 26/Jul/2019)
+----
+Modificaciones para trabajar con los codigos L.
+
+
+v 0.19: (Rosa Zambrano - 06/Ago/2019)
+-----
+Se agrega el objeto de parametros del sistema para envios de correos.
+
+
+v 0.20: (Rosa Zambrano - 06/Ago/2019)
+-----
+Modificaciones para reservas en Cosenco.

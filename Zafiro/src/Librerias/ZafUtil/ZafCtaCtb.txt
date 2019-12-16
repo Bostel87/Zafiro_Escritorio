@@ -1,0 +1,15 @@
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Javier Ayapata - 10/Jun/2006)
+----
+Clase nueva.
+
+
+v 0.01.01: (José Marín - 18/Oct/2016)
+-----
+Modificaciones para Transferencias de Inventario, OC Con Iva por local y empresa.
+
+
+

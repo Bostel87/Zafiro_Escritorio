@@ -1,0 +1,43 @@
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1:  Javier Ayapata  01/03/2010
+  clase nueva. 
+
+v0.2:  Javier Ayapata  13/ Abril /2010
+  se agrega columna si ya esta completado toda la guia remisión
+
+v0.3:  Javier Ayapata  26/ Julio /2010
+  se corrigue la busqueda cuando es por numero de guia.
+
+v0.4:  Javier Ayapata  20/ Enero /2011
+  se agrega un boton en la muestra la guia de remisión.
+
+v0.5:  Javier Ayapata  27/ Abril /2011
+  se agrega nuevo cambio en el programa ( para jimy )
+
+v0.6:  Javier Ayapata  28/ Abril /2011
+  se agrega filtro de estado de confirmacion.
+
+v0.7:  Javier Ayapata  03/ Mayo /2011
+  se agrega para cuando elija las pendiente no aparescan las que tengas guias secundaria procesado todas.
+
+
+v0.9:  Javier Ayapata  06/ Mayo /2011
+  se agrega cambios en reporteria a peticion de jimmy
+
+v1.0:  Javier Ayapata  12/ Mayo /2011
+  se agrega estado que separa pmc  y pxc a peticion de jimmy
+
+v1.1:  Javier Ayapata  16/ Mayo /2011
+  se agrega nuevo reporte para angela.
+
+v. 1.2: (Alex Morán - 2013-06-17)
+  Se modifica consulta para presentar guías de remisión de items con terminal L y servicios.
+
+
+
+
+
+

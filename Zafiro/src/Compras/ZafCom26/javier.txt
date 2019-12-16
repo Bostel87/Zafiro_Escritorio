@@ -1,0 +1,9 @@
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Javier Ayapata - 28/Mar/2008)
+----
+Clase nueva.
+permite mostrar listado de items el stock restado los Ajustes de item 
+

@@ -1,0 +1,69 @@
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Javier Ayapata - 12Abr/2011
+----
+Clase nueva.
+CxC >> "Análisis de antigüedad detallado de saldos de clientes..."
+CxP >> "Análisis de antigüedad detallado de saldos de proveedores..."
+
+
+v0.2: (Javier Ayapata - 12/Abr/2011)
+-----
+
+
+v0.3:  (Javier Ayapata  09/Ago/2011)
+-----
+Se corrige el que sea entero campo ne_mod.
+
+
+v0.4: (Erik Flores - 23/Mar/2012)
+-----
+Se modificaron las funciones FILTRO, CARGARDETREGCORFEC.
+Se modifica la columna DIAS del select para que el filtro se haga con la fecha de la condicion y no con la fecha del sistema.
+
+
+v0.5: (Erik Flores - 04/Abr/2012)
+-----
+Análisis de antiguedad de saldo de clientes. se modifica la funcion configurarVenConCli()
+Se hace la consulta de solo los clientes del local seleccionado o empresa/grupo.
+
+
+v0.6: (Alex Morán - 11/Mar/2013)
+-----
+Análisis detallado de antiguedad de saldo de clientes.
+Se agrega filtro vendedor en consulta.
+
+
+v0.7: (Alex Morán - 2013/may/15)
+-----
+Se modifica para considerar saldos de provedores.
+
+
+v0.8: (Alex Morán - 21/Ago/2013)
+-----
+Se corrige consulta, cuando el usuario no es admin no filtra por el local seleccionado.
+
+
+v0.9: ( Alex Morán - 23/Ago/2013)
+-----
+Se corrige criterio clientes empresa y local seleccionado.
+
+     
+v0.10: (Mayra Cortez - 03/Jun/2014)
+-----
+Se quita el filtro de "Excluir ventas entre compañias" y se coloca el filtro para Empresas relacionadas, el filtro para Prestamos, el filtro para Clientes y el filtro para todos.
+Se cambio la pantalla de diseño las opciones de filtrado.
+Se posicionó la fecha mas arriba.
+
+     
+v0.11: (Mayra Cortez - 12/Jun/2014)
+-----
+Se agrego la codificacion para los permisos de acceso.
+
+
+v0.12: ( Rosa Zambrano - 02/May/2016)
+-----
+En la función filtro() se cambia el query cuando se selecciona el filtro de "Mostrar sólo los documentos vencidos" para que la consulta sea más ágil.
+

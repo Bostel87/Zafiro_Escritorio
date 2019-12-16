@@ -1,0 +1,32 @@
+﻿Pendientes:
+1) Habilitar la opción de filtro por destinatario, en caso de requerirse.
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Tony Sanginez - 08/May/2016)
+----
+Clase nueva "Seguimiento de solicitudes de transferencias de inventario (Formato 1: Cabecera)...".
+
+
+v0.2: (Rosa Zambrano - 20/Oct/2016)
+-----
+Se adapta query para que presente todos los seguimientos inclusive los que no tienen solicitud de transferencia asignadas.
+Se agrega búsqueda por tipo de documento de solicitud.
+Se agrega búsqueda por número de cotización.
+
+
+v0.3: (Rosa Zambrano - 20/Oct/2016)
+-----
+Se cambia constructor que llama a Orden de Despacho y Guia de Remisión.
+	
+
+v0.4: (Rosa Zambrano - 20/Jun/2017)
+-----
+Se cierran conexiones abiertas en la función llamarMovInv.
+Se agrega codigo de menu 2889 para visualizar los INIMPO.
+
+
+v0.5: (Rosa Zambrano - 03/Jul/2017)
+-----
+Se agrega codigo de menu 1918 para visualizar las DEVVENE

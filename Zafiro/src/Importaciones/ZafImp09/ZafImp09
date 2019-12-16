@@ -1,0 +1,24 @@
+Pendientes:
+1) 
+2) 
+3) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Ingrid Lino - 08/Jul/2016)
+----
+Clase nueva.
+
+
+v0.2: (Ingrid Lino - 12/Jul/2016)
+-----
+Se cambio la forma de calcular las columnas de variación de Pedidos, por fila seleccionada y por cada columna. Cuando es FOB: ambos valores(FOB y CFR), CFR: El FOB va en CFR
+
+v0.2.1: (Ingrid Lino - 12/Jul/2016)
+-----
+Limpiar las columnas de calculo de variación cuando se de click en otra celda
+
+v0.2.2: (Ingrid Lino - 12/Jul/2016)
+-----
+Se cambio la forma de calcular las columnas de variación, el dividendo por el divisor y viceversa.

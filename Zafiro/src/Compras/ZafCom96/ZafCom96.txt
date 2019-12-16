@@ -1,0 +1,77 @@
+﻿Pendientes:
+1) 
+
+CONTROL DE VERSIONES:
+=====================
+
+v1.0: (Tony Sanginez - 10/Oct/2016)
+----
+Clase nueva.
+
+
+v1.1: (Tony Sanginez - 10/Oct/2016)
+-----
+Se agrega filtro y se realizan mejoras en el codigo. 
+
+
+v1.2: (Tony Sanginez - 13/Oct/2016)
+-----
+Se realiza la modificacion respectivamente para que se habilite la reversion de TRINBR y mejoras en el codigo.
+
+
+v1.3: (Tony Sanginez - 19/Oct/2016)
+-----
+Mejoras en el código, conexiones abiertas y estado de confirmacion de la tranferencia reversa.
+
+
+v1.4: (Tony Sanginez - 28/Nov/2016)
+-----
+Cambio de estructura del programa total y migración de codigo a ZafCom96_01.
+ZafCom96_01 nueva clase para cancelacion por items. El codigo se migra de ZafCom96 a ZafCom96_01.
+
+
+v1.5: (Tony Sanginez - 01/Dic/2016)
+-----
+Modificacion de query en el cual los campos de cancelacion de la tabla tbm_cabsoltrainv ya no van a esta disponibles.
+
+
+v1.6: (Tony Sanginez - 02/Dic/2016)
+-----
+Modificacion de query que pedia castear un select para poder compararlo con un campo.
+
+
+v1.7: (Tony Sanginez - 31/Ene/2017)
+-----
+Mejoras en los filtros de busqueda y visualización. Mejoras en el codigo y correcciones.
+
+
+v1.8: (Tony Sanginez - 01/Feb/2017)
+-----
+Mejora en query para la consulta de las solicitudes.
+
+v1.9: (Tony Sanginez - 27/Mar/2017)
+-----
+Se agrega validación para busqueda de item.
+
+v2.0: (Tony Sanginez - 20/Sep/2017)
+-----
+Se modifica la actualización de la transferencia cuando esta solo en pendiente ya que reversaba la cantidad completa y no la seleccionada.
+
+
+v2.1: (Tony Sanginez - 24/Nov/2017)
+-----
+Se agrega recosteo al momento de realizar una cancelación.
+
+v2.2: (Tony Sanginez - 30/Nov/2017)
+-----
+Validación para que no puedan cancelar en el periodo de Compra/Venta
+
+v2.3: (Tony Sanginez - 19/Ene/2017)
+-----
+Se agrego validación para cuando la mercadería aun se encuentra en bodega se pueda reversar los valores de nd_candesentcli de la tranferencia.
+
+
+v2.4: (Jose Mario Marin - 25/Abr/2018)
+-----
+Se modifica la clase ZafCom96_01, se modifica la cta con la que graba la transferencia en dimulti de la 3000 a la 2253 BODEGA GENERAL
+

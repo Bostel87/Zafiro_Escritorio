@@ -1,0 +1,18 @@
+﻿Pendientes:
+1) 
+2) 
+
+
+CONTROL DE VERSIONES:
+=====================
+
+v0.1: (Javier Ayapata - 09/Ene/2007)
+----
+Clase nueva.
+
+
+v0.2: (Eddye Lino - 22/Ago/2017)
+----
+Se modificó el método: 
+   1) cargarDetReg()
+Se cambió el nombre de los campos "co_reg, co_regUni" por "co_his, co_hisUni" en las tablas "tbh_inv y tbh_uniInv".
